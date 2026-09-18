@@ -7,6 +7,8 @@ ns.RegisterGuide({
     faction = "Horde",
     minLevel = 45,
     maxLevel = 55,
+    map = 1447,
+    zone = "Azshara",
     next = "GEN_HORDE_FELWOOD",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 10 quests, 27 steps, model reaches level 47. Not a speedrun route - a sensible order; the engine adapts as you play.",

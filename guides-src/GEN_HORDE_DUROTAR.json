@@ -6,6 +6,8 @@
   "race": ["Orc", "Troll"],
   "minLevel": 1,
   "maxLevel": 10,
+  "map": 1411,
+  "zone": "Durotar",
   "next": "GEN_HORDE_THE_BARRENS",
   "author": "ForeverGuide route generator",
   "notes": "Auto-generated from the quest database: 30 quests, 90 steps, model reaches level 10. Not a speedrun route - a sensible order; the engine adapts as you play.",

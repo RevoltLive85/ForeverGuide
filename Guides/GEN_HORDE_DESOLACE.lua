@@ -7,6 +7,8 @@ ns.RegisterGuide({
     faction = "Horde",
     minLevel = 30,
     maxLevel = 40,
+    map = 1443,
+    zone = "Desolace",
     next = "GEN_HORDE_DUSTWALLOW_MARSH",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 24 quests, 72 steps, model reaches level 34. Not a speedrun route - a sensible order; the engine adapts as you play.",

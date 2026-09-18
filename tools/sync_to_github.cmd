@@ -23,6 +23,12 @@ if not exist ".git" (
     git reset --soft origin/main 2>nul
 )
 
+rem the beta overwrites SavedVariables at every reload: harvest what the addon recorded first
+where python >nul 2>nul && (
+    python tools\merge_recorded.py >nul 2>nul && echo recorder data merged into data-src\forever.json
+    python tools\collect_reports.py >nul 2>nul
+)
+
 set MSG=%~1
 if "%MSG%"=="" set MSG=update %date% %time%
 git add -A

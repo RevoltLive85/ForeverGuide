@@ -7,6 +7,8 @@ ns.RegisterGuide({
     faction = "Alliance",
     minLevel = 10,
     maxLevel = 20,
+    map = 1439,
+    zone = "Darkshore",
     next = "GEN_ALLIANCE_ASHENVALE",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 56 quests, 150 steps, model reaches level 18. Not a speedrun route - a sensible order; the engine adapts as you play.",

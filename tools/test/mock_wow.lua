@@ -305,6 +305,16 @@ function _G.MOCK_MOVE(mapX, mapY)
 end
 
 
+-- ---- CVars (addon-registered ones persist in config-cache.wtf) ---------------
+world.cvars = {}
+_G.C_CVar = {
+    RegisterCVar = function(name, default) if world.cvars[name] == nil then world.cvars[name] = default or "" end end,
+    SetCVar = function(name, value) if world.cvars[name] == nil then return false end world.cvars[name] = tostring(value or "") return true end,
+    GetCVar = function(name) return world.cvars[name] end,
+    AreCVarsLoaded = function() return true end,
+}
+_G.GetRealmName = function() return "Classic Beta PvE 2" end
+
 -- ---- Retail settings API (as on Forever's 12.x engine) ----------------------
 _G.Settings = {
     RegisterCanvasLayoutCategory = function(frame, name)

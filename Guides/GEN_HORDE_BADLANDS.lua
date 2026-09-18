@@ -7,6 +7,8 @@ ns.RegisterGuide({
     faction = "Horde",
     minLevel = 35,
     maxLevel = 45,
+    map = 1418,
+    zone = "Badlands",
     next = "GEN_HORDE_SWAMP_OF_SORROWS",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 17 quests, 48 steps, model reaches level 40. Not a speedrun route - a sensible order; the engine adapts as you play.",

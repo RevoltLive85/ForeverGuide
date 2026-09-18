@@ -8,6 +8,8 @@ ns.RegisterGuide({
     race = { "Human" },
     minLevel = 1,
     maxLevel = 10,
+    map = 1429,
+    zone = "Elwynn Forest",
     next = "GEN_ALLIANCE_WESTFALL",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 40 quests, 102 steps, model reaches level 10. Not a speedrun route - a sensible order; the engine adapts as you play.",

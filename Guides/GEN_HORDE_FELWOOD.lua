@@ -7,6 +7,8 @@ ns.RegisterGuide({
     faction = "Horde",
     minLevel = 48,
     maxLevel = 55,
+    map = 1448,
+    zone = "Felwood",
     next = "GEN_HORDE_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 16 quests, 43 steps, model reaches level 49. Not a speedrun route - a sensible order; the engine adapts as you play.",

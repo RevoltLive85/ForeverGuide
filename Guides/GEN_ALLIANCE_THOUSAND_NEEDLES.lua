@@ -7,6 +7,8 @@ ns.RegisterGuide({
     faction = "Alliance",
     minLevel = 25,
     maxLevel = 35,
+    map = 1441,
+    zone = "Thousand Needles",
     next = "GEN_ALLIANCE_DESOLACE",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 9 quests, 27 steps, model reaches level 30. Not a speedrun route - a sensible order; the engine adapts as you play.",

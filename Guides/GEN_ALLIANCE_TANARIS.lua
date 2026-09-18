@@ -7,6 +7,8 @@ ns.RegisterGuide({
     faction = "Alliance",
     minLevel = 40,
     maxLevel = 50,
+    map = 1446,
+    zone = "Tanaris",
     next = "GEN_ALLIANCE_FERALAS",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 27 quests, 76 steps, model reaches level 45. Not a speedrun route - a sensible order; the engine adapts as you play.",

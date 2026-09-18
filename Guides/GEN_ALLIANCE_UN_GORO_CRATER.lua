@@ -7,6 +7,8 @@ ns.RegisterGuide({
     faction = "Alliance",
     minLevel = 48,
     maxLevel = 55,
+    map = 1449,
+    zone = "Un'Goro Crater",
     next = "GEN_ALLIANCE_FELWOOD",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 25 quests, 72 steps, model reaches level 51. Not a speedrun route - a sensible order; the engine adapts as you play.",

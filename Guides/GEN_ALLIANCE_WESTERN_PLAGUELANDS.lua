@@ -7,6 +7,8 @@ ns.RegisterGuide({
     faction = "Alliance",
     minLevel = 51,
     maxLevel = 58,
+    map = 1422,
+    zone = "Western Plaguelands",
     next = "GEN_ALLIANCE_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 31 quests, 85 steps, model reaches level 55. Not a speedrun route - a sensible order; the engine adapts as you play.",

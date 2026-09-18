@@ -7,6 +7,8 @@ ns.RegisterGuide({
     faction = "Alliance",
     minLevel = 10,
     maxLevel = 20,
+    map = 1432,
+    zone = "Loch Modan",
     next = "GEN_ALLIANCE_REDRIDGE_MOUNTAINS",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 25 quests, 75 steps, model reaches level 17. Not a speedrun route - a sensible order; the engine adapts as you play.",

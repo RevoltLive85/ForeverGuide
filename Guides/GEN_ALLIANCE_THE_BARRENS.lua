@@ -7,6 +7,8 @@ ns.RegisterGuide({
     faction = "Alliance",
     minLevel = 10,
     maxLevel = 25,
+    map = 1413,
+    zone = "The Barrens",
     next = "GEN_ALLIANCE_ARATHI_HIGHLANDS",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 14 quests, 40 steps, model reaches level 20. Not a speedrun route - a sensible order; the engine adapts as you play.",

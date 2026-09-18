@@ -170,3 +170,21 @@ folded into guides-src by `tools/apply_edits.py`. `/fg resync` skips out-levelle
 **GitHub**: the AddOns folder is a git checkout of https://github.com/RevoltLive85/ForeverGuide (initialised and pushed from
 the PC through the cc-shell tool, `core.autocrlf=false`); `tools/sync_to_github.cmd` for manual edits. Claude commits + pushes
 after every install via `cc_run` in that folder. Tests: 96 checks.
+
+## Update 2026-09-18 (night) — live in-game verification, SavedVariables workaround (v0.2.2)
+- Live test through computer use on the running client (WowB.exe, char Sniff-Yahbooty lvl 11 dwarf in Dun Morogh): v0.2.1/0.2.2
+  load without Lua errors; window, arrow, level tags, `/fg` readout, guide switching all render correctly.
+- **Root cause of "wrong guide on login"**: the beta client writes `WTF\...\SavedVariables\ForeverGuide.lua` at every
+  logout/reload but never reads it back (both account and per-character files) -> every session starts with nil SVs,
+  `AutoPick` ran and (before the fix) could pick Darkshore for a dwarf; progress was lost each reload.
+  Evidence: after reload N the file only ever contains data produced since reload N-1 (compared .lua vs .lua.bak).
+- Fixes: (1) `Guide:AutoPick` now scores level fit, current zone (guides carry `map`/`zone` headers), same continent,
+  and the race's `next` chain -> Loch Modan for a level-11 dwarf in Dun Morogh. (2) `Persist.lua`: mirrors
+  activeGuide/step/done ranges/mode/autoPick + settings (ui/arrow/minimap/nav/auto/recorder) + step edits into
+  addon-registered CVars (`ForeverGuideA0..5` account, `ForeverGuideC<NameRealm>0..5` per char, 200 chars each) via
+  `C_CVar.RegisterCVar/SetCVar/GetCVar`; `Database.freshAccount/freshChar` detect the empty load; restore in
+  `Persist:OnInit` (TOC: right after Events.lua); saved on FG_* events (2 s debounce), every 30 s, and at logout.
+  Verified in game: `/reload` -> "restored your guide, progress and settings from the cvar mirror", Dun Morogh step 36 kept.
+- Recorder / reports data is still SV-file-only (overwritten every reload, one generation in .bak):
+  `tools\sync_to_github.cmd` now runs merge_recorded.py + collect_reports.py before committing.
+- Tests: 103 checks (mock C_CVar + a simulated empty-SV login).

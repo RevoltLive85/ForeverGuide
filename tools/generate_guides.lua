@@ -857,6 +857,7 @@ for _, r in ipairs(results) do
                     version = 1,
                     faction = faction,
                     minLevel = zd.min, maxLevel = zd.max,
+                    map = Z.areaToMap[zd.id], zone = zoneName,
                     author = "ForeverGuide route generator",
                     notes = string.format("Auto-generated from the quest database: %d quests, %d steps, model reaches level %d. Not a speedrun route - a sensible order; the engine adapts as you play.", count, #steps, endLevel),
                     steps = steps,
@@ -864,7 +865,7 @@ for _, r in ipairs(results) do
                 if zd.races and (faction == "Alliance") == (zd.nextA ~= nil) then guide.race = zd.races end
                 if nextID then guide.next = nextID end
                 local lines = { "{" }
-                for _, k in ipairs({ "id", "name", "version", "faction", "race", "minLevel", "maxLevel", "next", "author", "notes" }) do
+                for _, k in ipairs({ "id", "name", "version", "faction", "race", "minLevel", "maxLevel", "map", "zone", "next", "author", "notes" }) do
                     if guide[k] ~= nil then lines[#lines + 1] = "  " .. jsonString(k) .. ": " .. jsonValue(guide[k]) .. "," end
                 end
                 lines[#lines + 1] = '  "steps": ['

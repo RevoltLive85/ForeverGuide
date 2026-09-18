@@ -7,6 +7,8 @@ ns.RegisterGuide({
     faction = "Horde",
     minLevel = 40,
     maxLevel = 50,
+    map = 1444,
+    zone = "Feralas",
     next = "GEN_HORDE_SEARING_GORGE",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 20 quests, 58 steps, model reaches level 45. Not a speedrun route - a sensible order; the engine adapts as you play.",

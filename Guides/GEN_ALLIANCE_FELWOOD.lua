@@ -7,6 +7,8 @@ ns.RegisterGuide({
     faction = "Alliance",
     minLevel = 48,
     maxLevel = 55,
+    map = 1448,
+    zone = "Felwood",
     next = "GEN_ALLIANCE_BURNING_STEPPES",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 15 quests, 45 steps, model reaches level 49. Not a speedrun route - a sensible order; the engine adapts as you play.",

@@ -8,6 +8,8 @@ ns.RegisterGuide({
     race = { "Tauren" },
     minLevel = 1,
     maxLevel = 10,
+    map = 1412,
+    zone = "Mulgore",
     next = "GEN_HORDE_THE_BARRENS",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 31 quests, 91 steps, model reaches level 10. Not a speedrun route - a sensible order; the engine adapts as you play.",

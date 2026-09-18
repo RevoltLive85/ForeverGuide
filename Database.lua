@@ -50,6 +50,9 @@ local CHAR_DEFAULTS = {
 }
 
 function Database:Init()
+    -- the Forever beta writes SavedVariables but does not read them back (Persist.lua mirrors the essentials)
+    Database.freshAccount = (ForeverGuideDB == nil)
+    Database.freshChar = (ForeverGuideCharDB == nil)
     ForeverGuideDB = ns.CopyDefaults(DEFAULTS, ForeverGuideDB)
     ForeverGuideCharDB = ns.CopyDefaults(CHAR_DEFAULTS, ForeverGuideCharDB)
     ns.db = ForeverGuideDB

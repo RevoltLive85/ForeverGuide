@@ -7,6 +7,8 @@ ns.RegisterGuide({
     faction = "Horde",
     minLevel = 10,
     maxLevel = 20,
+    map = 1421,
+    zone = "Silverpine Forest",
     next = "GEN_HORDE_HILLSBRAD_FOOTHILLS",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 29 quests, 76 steps, model reaches level 19. Not a speedrun route - a sensible order; the engine adapts as you play.",

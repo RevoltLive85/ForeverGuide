@@ -6,6 +6,8 @@
   "race": ["Scourge"],
   "minLevel": 1,
   "maxLevel": 10,
+  "map": 1420,
+  "zone": "Tirisfal Glades",
   "next": "GEN_HORDE_SILVERPINE_FOREST",
   "author": "ForeverGuide route generator",
   "notes": "Auto-generated from the quest database: 38 quests, 111 steps, model reaches level 10. Not a speedrun route - a sensible order; the engine adapts as you play.",

@@ -404,6 +404,10 @@ do
     check(n > 10, "resync skipped the out-levelled quests (" .. n .. ")")
     local cs = G:GetCurrentStep()
     check(cs == nil or not cs.quest or ns.Quest:XPMultiplier(cs.quest) > 0.2 or ns.Quest:IsOnQuest(cs.quest), "current step after resync is not a grey quest")
+    -- auto-pick prefers the race's natural chain / same continent over a far zone of the same level
+    MOCK_LEVEL(11); settle()
+    local pick = G:AutoPick()
+    check(pick and pick.id == "GEN_ALLIANCE_WESTFALL", "level-11 human in Elwynn auto-picks Westfall, not Darkshore (" .. tostring(pick and pick.id) .. ")")
     MOCK_LEVEL(5); settle()
     G:Reset(); settle()
 end
@@ -463,6 +467,37 @@ do
         if not e:find("unknown command", 1, true) then unexpected = unexpected + 1 end
     end
     check(unexpected == 0, "command / UI sweep produced no errors (" .. unexpected .. ")")
+end
+
+-- ---- beta SavedVariables bug: state survives a login with empty SavedVariables via cvars ----
+do
+    G:Activate("GEN_ALLIANCE_DUN_MOROGH", true); settle()
+    G:SetStep(20); settle()
+    G.progress.done[7] = true G.progress.done[8] = true G.progress.done[12] = true
+    ns.char.mode = "guide"
+    ns.db.ui.x, ns.db.ui.y = -123, -45
+    ns.db.minimap.angle = 137
+    ns.AutoQuest:Set("accept", "guide")
+    ns.Commands:Run("edit note keep me")
+    ns.db.edits.GEN_ALLIANCE_DUN_MOROGH[G.current] = { type = G:GetCurrentStep().type, quest = G:GetCurrentStep().quest, map = 1426, x = 12.5, y = 34.5, npc = 999 }
+    ns.Persist:Save()
+    check(#(MOCK.cvars.ForeverGuideA0 or "") > 0 and #(MOCK.cvars.ForeverGuideCSniffClassicBetaPvE20 or MOCK.cvars["ForeverGuideC" .. ((UnitName("player") .. GetRealmName()):gsub("[^%w]", "")):sub(1, 24) .. "0"] or "") > 0, "cvar mirror written (account + character)")
+    local savedStep, savedGuide = G.progress.step, ns.char.activeGuide
+    -- simulate the beta: SavedVariables come back nil at the next login
+    ForeverGuideDB, ForeverGuideCharDB = nil, nil
+    ns.Database:Init()
+    check(ns.Database.freshChar and ns.char.activeGuide == nil, "fresh login: character SavedVariables empty")
+    ns.Persist.restored = { acct = false, char = false }
+    ns.Persist:Restore()
+    check(ns.char.activeGuide == savedGuide, "active guide restored from the cvar mirror (" .. tostring(ns.char.activeGuide) .. ")")
+    local p = ns.char.guides[savedGuide]
+    check(p and p.step == savedStep and p.done[7] and p.done[8] and p.done[12] and not p.done[9], "step + done list restored (" .. tostring(p and p.step) .. ")")
+    check(ns.db.ui.x == -123 and ns.db.ui.y == -45 and ns.db.minimap.angle == 137 and ns.db.auto.accept == "guide", "settings restored")
+    local e = ns.db.edits and ns.db.edits[savedGuide] and ns.db.edits[savedGuide][savedStep]
+    check(e and e.x == 12.5 and e.npc == 999, "step edit restored")
+    ns.AutoQuest:Set("accept", "on")
+    ns.db.edits = {}
+    G:Activate(savedGuide, true); G:Reset(); settle()
 end
 
 -- ---- no swallowed errors anywhere -------------------------------------------------

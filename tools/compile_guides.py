@@ -36,7 +36,7 @@ STEP_FIELDS = {
 }
 GUIDE_FIELDS = {
     "id": str, "name": str, "version": int, "faction": str, "race": list, "class": list,
-    "minLevel": int, "maxLevel": int, "next": str, "author": str, "notes": str, "steps": list,
+    "minLevel": int, "maxLevel": int, "map": int, "zone": str, "next": str, "author": str, "notes": str, "steps": list,
 }
 ID_RE = re.compile(r"^[A-Z0-9_]+$")
 
@@ -143,7 +143,7 @@ def compile_guide(guide):
         "local _, ns = ...",
         "ns.RegisterGuide({",
     ]
-    for key in ("id", "name", "version", "faction", "race", "class", "minLevel", "maxLevel", "next", "author", "notes"):
+    for key in ("id", "name", "version", "faction", "race", "class", "minLevel", "maxLevel", "map", "zone", "next", "author", "notes"):
         if key in guide:
             lines.append(f"    {key} = {lua_value(guide[key])},")
     lines.append("    steps = {")

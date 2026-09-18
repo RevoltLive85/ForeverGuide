@@ -7,6 +7,8 @@ ns.RegisterGuide({
     faction = "Horde",
     minLevel = 30,
     maxLevel = 45,
+    map = 1434,
+    zone = "Stranglethorn Vale",
     next = "GEN_HORDE_DUSTWALLOW_MARSH",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 61 quests, 176 steps, model reaches level 40. Not a speedrun route - a sensible order; the engine adapts as you play.",

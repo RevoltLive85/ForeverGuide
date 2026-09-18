@@ -7,6 +7,8 @@ ns.RegisterGuide({
     faction = "Horde",
     minLevel = 30,
     maxLevel = 40,
+    map = 1417,
+    zone = "Arathi Highlands",
     next = "GEN_HORDE_STRANGLETHORN_VALE",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 32 quests, 89 steps, model reaches level 35. Not a speedrun route - a sensible order; the engine adapts as you play.",

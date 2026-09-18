@@ -34,6 +34,7 @@ Log in, enable it on the AddOns screen, then:
 | `/fg scan` | ask the server about every quest id 1-100000; log out, then `python tools/scan_diff.py` lists Forever's new quests vs Questie |
 | `/fg wrong <text>` / `/fg reports` | report the current step as wrong (saved with your position + target); `python tools/collect_reports.py` turns the reports into a review list |
 | `/fg options` | options panel (also Esc -> Options -> AddOns -> ForeverGuide); key bindings under Key Bindings -> AddOns |
+| `/fg persist [save]` | state of the SavedVariables workaround (see *Beta caveats*) |
 | `/fg resync` | levelled elsewhere? skips the quests that would give 20% xp or less and continues from the first open step |
 | `/fg edit here` / `npc` / `note <text>` / `radius <yd>` / `clear`, `/fg edits` | fix the current step in place (position = where you stand, npc = your target); saved per guide, `python tools/apply_edits.py` folds the edits into the guide source |
 
@@ -47,6 +48,7 @@ ForeverGuide/
   Core.lua          namespace, secret-value-safe helpers, module registry, lifecycle
   Database.lua      SavedVariables (ForeverGuideDB account, ForeverGuideCharDB per char)
   Events.lua        one event frame + internal FG_* message bus + debounce
+  Persist.lua       beta workaround: mirrors guide/progress/settings into CVars (SavedVariables are not read back)
   Player.lua        level, faction, class, race, map, zone, coords, facing, target/npc info
   Quest.lua         quest log snapshot, states, objective diffing, titles, Blizzard waypoints
   Navigation.lua    map coords -> distance/direction, arrival detection, Blizzard user waypoint
@@ -149,8 +151,13 @@ each zone to learn Forever's real IDs; the recorder also stores every map it see
 
 ## Beta caveats (1.60.1)
 
-* SavedVariables are written on logout but reportedly not always read back on login. The addon works
-  from defaults when that happens; progress may need `/fg step <n>` after a fresh login.
+* **SavedVariables are written at logout but never read back at login** (confirmed on build 69913 -
+  every session started from scratch). `Persist.lua` works around it: the active guide, step, progress,
+  mode, settings and step edits are mirrored into addon-registered CVars (which the client does persist)
+  and restored when the SavedVariables come back empty. `/fg persist` shows the state. Big data
+  (recorder entries, `/fg wrong` reports) still only lives in the SavedVariables *files*, which are
+  overwritten at every reload - `tools\sync_to_github.cmd` harvests them (merge_recorded / collect_reports)
+  before committing, so run it regularly.
 * Everything from the game can be a secret value in combat. All reads go through `ns.Plain*` helpers.
 * The classic quest IDs / NPC IDs in the sample guide come from Questie's Classic Era data and must be
   verified on Forever (`/fg rec dump`).

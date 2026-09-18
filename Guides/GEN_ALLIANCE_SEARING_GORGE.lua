@@ -7,6 +7,8 @@ ns.RegisterGuide({
     faction = "Alliance",
     minLevel = 43,
     maxLevel = 50,
+    map = 1427,
+    zone = "Searing Gorge",
     next = "GEN_ALLIANCE_BLASTED_LANDS",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 21 quests, 66 steps, model reaches level 45. Not a speedrun route - a sensible order; the engine adapts as you play.",

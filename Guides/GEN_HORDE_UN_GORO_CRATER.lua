@@ -7,6 +7,8 @@ ns.RegisterGuide({
     faction = "Horde",
     minLevel = 48,
     maxLevel = 55,
+    map = 1449,
+    zone = "Un'Goro Crater",
     next = "GEN_HORDE_AZSHARA",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 25 quests, 75 steps, model reaches level 51. Not a speedrun route - a sensible order; the engine adapts as you play.",

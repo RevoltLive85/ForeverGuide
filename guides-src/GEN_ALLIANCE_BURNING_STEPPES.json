@@ -5,6 +5,8 @@
   "faction": "Alliance",
   "minLevel": 50,
   "maxLevel": 58,
+  "map": 1428,
+  "zone": "Burning Steppes",
   "next": "GEN_ALLIANCE_WESTERN_PLAGUELANDS",
   "author": "ForeverGuide route generator",
   "notes": "Auto-generated from the quest database: 10 quests, 31 steps, model reaches level 52. Not a speedrun route - a sensible order; the engine adapts as you play.",

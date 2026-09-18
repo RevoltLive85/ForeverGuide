@@ -97,19 +97,46 @@ function Guide:Applicable(guide)
     return true
 end
 
+--- Pick the guide that fits this character best: level range first, then
+--- the zone the player is standing in, then the same continent, then the
+--- guide's own starting-zone chain (a dwarf gets Loch Modan, not Darkshore).
 function Guide:AutoPick()
     local level = ns.Player:GetLevel()
+    local curMap = ns.Player:GetMapID()
+    local curName = curMap and ns.Player:GetMapName(curMap)
+    local _, _, curInst = ns.Player:GetWorldPosition()
+    local _, raceFile = ns.Player:GetRace()
+    -- guides for the character's race chain: every guide reachable through `next` from a race guide
+    local chain = {}
+    for _, id in ipairs(self.list) do
+        local g = self.registry[id]
+        if g.race and raceFile and ns.Contains(g.race, raceFile) then
+            local cur, guard = g, 0
+            while cur and guard < 40 do
+                chain[cur.id] = true
+                cur = cur.next and self.registry[cur.next] or nil
+                guard = guard + 1
+            end
+        end
+    end
     local best, bestScore = nil, nil
     for _, id in ipairs(self.list) do
         local g = self.registry[id]
         if self:Applicable(g) then
             local minL, maxL = g.minLevel or 1, g.maxLevel or 60
-            local score
-            if level >= minL and level <= maxL then
-                score = 0
-            else
-                score = math.min(math.abs(level - minL), math.abs(level - maxL))
+            local score = 0
+            if level < minL or level > maxL then
+                score = 10 * math.min(math.abs(level - minL), math.abs(level - maxL))
             end
+            if g.map and curMap and g.map == curMap then
+                score = score - 5                           -- standing in it
+            elseif g.zone and curName and g.zone == curName then
+                score = score - 5
+            elseif g.map and curInst and ns.Navigation then
+                local inst = ns.Navigation:MapToWorld(g.map, 50, 50)
+                if inst and inst ~= curInst then score = score + 4 end   -- other continent
+            end
+            if not chain[g.id] then score = score + 2 end   -- off the race's natural path
             if not bestScore or score < bestScore then best, bestScore = g, score end
         end
     end

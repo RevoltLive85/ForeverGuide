@@ -7,6 +7,8 @@ ns.RegisterGuide({
     faction = "Horde",
     minLevel = 10,
     maxLevel = 25,
+    map = 1413,
+    zone = "The Barrens",
     next = "GEN_HORDE_STONETALON_MOUNTAINS",
     author = "ForeverGuide route generator",
     notes = "Auto-generated from the quest database: 68 quests, 192 steps, model reaches level 22. Not a speedrun route - a sensible order; the engine adapts as you play.",
