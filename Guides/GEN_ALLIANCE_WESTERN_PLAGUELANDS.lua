@@ -14,7 +14,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 5092, questName = "Clear the Way", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 1
         { type = "ACCEPT", quest = 5401, questName = "Argent Dawn Commission", npc = 10840, npcName = "Argent Officer Pureheart", map = 1422, zone = "Western Plaguelands", x = 43, y = 83.6 }, -- 2
         { type = "TURNIN", quest = 5401, questName = "Argent Dawn Commission", npc = 10840, npcName = "Argent Officer Pureheart", map = 1422, zone = "Western Plaguelands", x = 43, y = 83.6 }, -- 3
-        { type = "KILL", quest = 5092, questName = "Clear the Way", npc = 1783, target = "Skeletal Flayer / Slavering Ghoul", map = 1422, zone = "Western Plaguelands", x = 47.3, y = 80.5 }, -- 4
+        { type = "KILL", quest = 5092, questName = "Clear the Way", npc = 1783, target = "Skeletal Flayer / Slavering Ghoul", map = 1422, zone = "Western Plaguelands", x = 47.3, y = 80.5, near = true }, -- 4
         { type = "TURNIN", quest = 5092, questName = "Clear the Way", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 5
         { type = "ACCEPT", quest = 5215, questName = "The Scourge Cauldrons", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 6
         { type = "ACCEPT", quest = 5097, questName = "All Along the Watchtowers", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 7
@@ -29,32 +29,32 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 211, questName = "Alas, Andorhal", target = "Araj's Phylactery Shard", map = 1422, zone = "Western Plaguelands", x = 45.3, y = 69.2 }, -- 16
         { type = "TURNIN", quest = 211, questName = "Alas, Andorhal", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 17
         { type = "ACCEPT", quest = 4984, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 18
-        { type = "KILL", quest = 4984, questName = "The Wildlife Suffers Too", npc = 1817, target = "Diseased Wolf", map = 1422, zone = "Western Plaguelands", x = 52.5, y = 70.5 }, -- 19
+        { type = "KILL", quest = 4984, questName = "The Wildlife Suffers Too", npc = 1817, target = "Diseased Wolf", map = 1422, zone = "Western Plaguelands", x = 52.5, y = 70.5, near = true }, -- 19
         { type = "KILL", quest = 5216, questName = "Target: Felstone Field", npc = 11075, target = "Cauldron Lord Bilemaw", map = 1422, zone = "Western Plaguelands", x = 36.9, y = 57.4, note = "loot Felstone Field Cauldron Key" }, -- 20
         { type = "ACCEPT", quest = 5021, questName = "Better Late Than Never", npc = 10778, npcName = "Janice Felstone", map = 1422, zone = "Western Plaguelands", x = 38.4, y = 54.1 }, -- 21
         { type = "TURNIN", quest = 5216, questName = "Target: Felstone Field", map = 1422, zone = "Western Plaguelands", x = 37.3, y = 56.8 }, -- 22
         { type = "TURNIN", quest = 5021, questName = "Better Late Than Never", map = 1422, zone = "Western Plaguelands", x = 38.7, y = 55.2 }, -- 23
         { type = "ACCEPT", quest = 5022, questName = "Better Late Than Never", map = 1422, zone = "Western Plaguelands", x = 38.7, y = 55.2 }, -- 24
         { type = "ACCEPT", quest = 5217, questName = "Return to Chillwind Camp", map = 1422, zone = "Western Plaguelands", x = 37.3, y = 56.8 }, -- 25
-        { type = "ACCEPT", quest = 5058, questName = "Mrs. Dalson's Diary", map = 1422, zone = "Western Plaguelands", x = 47.8, y = 50.7 }, -- 26
-        { type = "TURNIN", quest = 5058, questName = "Mrs. Dalson's Diary", map = 1422, zone = "Western Plaguelands", x = 47.8, y = 50.7 }, -- 27
-        { type = "ACCEPT", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 28
-        { type = "KILL", quest = 5060, questName = "Locked Away", npc = 10836, target = "Farmer Dalson", map = 1422, zone = "Western Plaguelands", x = 48.2, y = 49.7, note = "loot Dalson Cabinet Key" }, -- 29
-        { type = "TURNIN", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 30
-        { type = "TURNIN", quest = 4984, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 31
-        { type = "ACCEPT", quest = 4985, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 32
-        { type = "KILL", quest = 4985, questName = "The Wildlife Suffers Too", npc = 1816, target = "Diseased Grizzly", map = 1422, zone = "Western Plaguelands", x = 55.2, y = 64.5 }, -- 33
-        { type = "TURNIN", quest = 4985, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 34
-        { type = "ACCEPT", quest = 4986, questName = "Glyphed Oaken Branch", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 35
-        { type = "TURNIN", quest = 5217, questName = "Return to Chillwind Camp", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 36
-        { type = "ACCEPT", quest = 5219, questName = "Target: Dalson's Tears", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 37
-        { type = "KILL", quest = 5219, questName = "Target: Dalson's Tears", npc = 11077, target = "Cauldron Lord Malvinious", map = 1422, zone = "Western Plaguelands", x = 46.1, y = 52.6, note = "loot Dalson's Tears Cauldron Key" }, -- 38
-        { type = "TURNIN", quest = 5219, questName = "Target: Dalson's Tears", map = 1422, zone = "Western Plaguelands", x = 46.2, y = 51.9 }, -- 39
-        { type = "ACCEPT", quest = 5220, questName = "Return to Chillwind Camp", map = 1422, zone = "Western Plaguelands", x = 46.2, y = 51.9 }, -- 40
+        { type = "TURNIN", quest = 5217, questName = "Return to Chillwind Camp", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 26
+        { type = "ACCEPT", quest = 5219, questName = "Target: Dalson's Tears", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 27
+        { type = "TURNIN", quest = 4984, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 28
+        { type = "ACCEPT", quest = 4985, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 29
+        { type = "KILL", quest = 4985, questName = "The Wildlife Suffers Too", npc = 1816, target = "Diseased Grizzly", map = 1422, zone = "Western Plaguelands", x = 55.2, y = 64.5, near = true }, -- 30
+        { type = "TURNIN", quest = 4985, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 31
+        { type = "ACCEPT", quest = 4986, questName = "Glyphed Oaken Branch", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 32
+        { type = "KILL", quest = 5219, questName = "Target: Dalson's Tears", npc = 11077, target = "Cauldron Lord Malvinious", map = 1422, zone = "Western Plaguelands", x = 46.1, y = 52.6, note = "loot Dalson's Tears Cauldron Key" }, -- 33
+        { type = "ACCEPT", quest = 5058, questName = "Mrs. Dalson's Diary", map = 1422, zone = "Western Plaguelands", x = 47.8, y = 50.7 }, -- 34
+        { type = "TURNIN", quest = 5219, questName = "Target: Dalson's Tears", map = 1422, zone = "Western Plaguelands", x = 46.2, y = 51.9 }, -- 35
+        { type = "TURNIN", quest = 5058, questName = "Mrs. Dalson's Diary", map = 1422, zone = "Western Plaguelands", x = 47.8, y = 50.7 }, -- 36
+        { type = "ACCEPT", quest = 5220, questName = "Return to Chillwind Camp", map = 1422, zone = "Western Plaguelands", x = 46.2, y = 51.9 }, -- 37
+        { type = "ACCEPT", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 38
+        { type = "KILL", quest = 5060, questName = "Locked Away", npc = 10836, target = "Farmer Dalson", map = 1422, zone = "Western Plaguelands", x = 48.2, y = 49.7, note = "loot Dalson Cabinet Key" }, -- 39
+        { type = "TURNIN", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 40
         { type = "ACCEPT", quest = 6004, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 41
-        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1833, target = "Scarlet Knight", map = 1422, zone = "Western Plaguelands", x = 49.6, y = 33.2 }, -- 42
-        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1826, target = "Scarlet Mage", map = 1422, zone = "Western Plaguelands", x = 52.8, y = 36.7 }, -- 43
-        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1831, target = "Scarlet Hunter / Scarlet Medic", map = 1422, zone = "Western Plaguelands", x = 52.2, y = 44 }, -- 44
+        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1833, target = "Scarlet Knight", map = 1422, zone = "Western Plaguelands", x = 49.6, y = 33.2, near = true }, -- 42
+        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1826, target = "Scarlet Mage", map = 1422, zone = "Western Plaguelands", x = 52.8, y = 36.7, near = true }, -- 43
+        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1831, target = "Scarlet Hunter / Scarlet Medic", map = 1422, zone = "Western Plaguelands", x = 52.2, y = 44, near = true }, -- 44
         { type = "TURNIN", quest = 6004, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 45
         { type = "ACCEPT", quest = 6023, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 46
         { type = "KILL", quest = 6023, questName = "Unfinished Business", npc = 11611, target = "Cavalier Durgen", map = 1422, zone = "Western Plaguelands", x = 55.2, y = 23.6 }, -- 47
@@ -64,10 +64,10 @@ ns.RegisterGuide({
         { type = "COMPLETE", quest = 6025, questName = "Unfinished Business", target = "Overlook Hearthglen from a high vantage point", map = 1422, zone = "Western Plaguelands", x = 45.8, y = 18.2, note = "Overlook Hearthglen from a high vantage point" }, -- 51
         { type = "TURNIN", quest = 6025, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 52
         { type = "ACCEPT", quest = 4971, questName = "A Matter of Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 53
-        { type = "KILL", quest = 4971, questName = "A Matter of Time", npc = 10717, target = "Temporal Parasite", map = 1422, zone = "Western Plaguelands", x = 45.2, y = 62.8 }, -- 54
+        { type = "KILL", quest = 4971, questName = "A Matter of Time", npc = 10717, target = "Temporal Parasite", map = 1422, zone = "Western Plaguelands", x = 45.2, y = 62.8, near = true }, -- 54
         { type = "TURNIN", quest = 4971, questName = "A Matter of Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 55
         { type = "ACCEPT", quest = 4972, questName = "Counting Out Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 56
-        { type = "COLLECT", quest = 4972, questName = "Counting Out Time", target = "Andorhal Watch", map = 1422, zone = "Western Plaguelands", x = 40.9, y = 67.1 }, -- 57
+        { type = "COLLECT", quest = 4972, questName = "Counting Out Time", target = "Andorhal Watch", map = 1422, zone = "Western Plaguelands", x = 40.9, y = 67.1, near = true }, -- 57
         { type = "TURNIN", quest = 4972, questName = "Counting Out Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 58
         { type = "TURNIN", quest = 5220, questName = "Return to Chillwind Camp", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 59
         { type = "ACCEPT", quest = 5222, questName = "Target: Writhing Haunt", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 60
@@ -92,7 +92,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 5507, questName = "Mantles of the Dawn", npc = 10857, npcName = "Argent Quartermaster Lightspark", map = 1422, zone = "Western Plaguelands", x = 42.8, y = 83.7 }, -- 79
         { type = "TURNIN", quest = 5521, questName = "Chromatic Mantle of the Dawn", npc = 10857, npcName = "Argent Quartermaster Lightspark", map = 1422, zone = "Western Plaguelands", x = 42.8, y = 83.7 }, -- 80
         { type = "ACCEPT", quest = 5537, questName = "Skeletal Fragments", npc = 11056, npcName = "Alchemist Arbington", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 83.8 }, -- 81
-        { type = "COLLECT", quest = 5537, questName = "Skeletal Fragments", target = "Skeletal Fragments", map = 1422, zone = "Western Plaguelands", x = 47.3, y = 80.5 }, -- 82
+        { type = "COLLECT", quest = 5537, questName = "Skeletal Fragments", target = "Skeletal Fragments", map = 1422, zone = "Western Plaguelands", x = 47.3, y = 80.5, near = true }, -- 82
         { type = "TURNIN", quest = 5537, questName = "Skeletal Fragments", npc = 11056, npcName = "Alchemist Arbington", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 83.8 }, -- 83
         { type = "ACCEPT", quest = 5538, questName = "Mold Rhymes With...", npc = 11056, npcName = "Alchemist Arbington", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 83.8 }, -- 84
         { type = "TURNIN", quest = 5538, questName = "Mold Rhymes With...", npc = 5411, npcName = "Krinkle Goodsteel", map = 1446, zone = "Tanaris", x = 51.5, y = 28.8 }, -- 85

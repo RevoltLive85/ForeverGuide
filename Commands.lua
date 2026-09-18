@@ -30,6 +30,9 @@ local HELP = {
     "/fg scan [from] [to] | stop | resume | status   find every quest id the server knows (diff vs Questie with tools/scan_diff.py)",
     "/fg harvest [sweep [from to] | status]   passive quest discovery: quest lines of every zone map / client cache sweep",
     "/fg bliz on|off     also use Blizzard's own waypoint arrow",
+    "/fg resync          skip quests you out-levelled (<=20% xp) and continue from the first open step",
+    "/fg edit here|npc|note <text>|radius <yd>|clear   correct the current step in place (saved; tools/apply_edits.py folds it into the guide)",
+    "/fg edits [clear]   list / wipe your edits of the active guide",
     "/fg wrong [text]    report the current step as wrong (coords/npc/quest) - saved with your position for the route fixer",
     "/fg reports [clear] what you reported so far (tools/collect_reports.py turns them into corrections)",
     "/fg options         open the options panel",
@@ -286,8 +289,8 @@ function handlers.way(rest)
     ns.Printf("waypoint set: map %d @ %s, %s", mapID, x, y)
 end
 
-function handlers.lock() ns.db.ui.locked = true ns.Events:Fire("FG_LOCK_CHANGED") ns.Print("window and arrow locked.") end
-function handlers.unlock() ns.db.ui.locked = false ns.Events:Fire("FG_LOCK_CHANGED") ns.Print("window and arrow unlocked - drag them, then /fg lock.") end
+function handlers.lock() ns.db.ui.locked = true ns.Events:Fire("FG_LOCK_CHANGED", true) ns.Print("window and arrow locked.") end
+function handlers.unlock() ns.db.ui.locked = false ns.Events:Fire("FG_LOCK_CHANGED", false) ns.Print("window and arrow unlocked - drag them, then /fg lock.") end
 function handlers.resetpos() ns.UI:ResetPosition() ns.Arrow:ResetPosition() ns.Print("window and arrow positions reset.") end
 
 function handlers.auto(rest)
@@ -351,11 +354,10 @@ function handlers.harvest(rest)
 end
 
 function handlers.bliz(rest)
-    if rest == "on" then ns.db.nav.blizzardWaypoint = true
-    elseif rest == "off" then ns.db.nav.blizzardWaypoint = false ns.Call("C_Map.ClearUserWaypoint")
-    else ns.db.nav.blizzardWaypoint = not ns.db.nav.blizzardWaypoint end
-    ns.Printf("Blizzard waypoint arrow %s", ns.db.nav.blizzardWaypoint and "on" or "off")
-    ns.Guide:UpdateNavigation()
+    local on
+    if rest == "on" then on = true elseif rest == "off" then on = false else on = not ns.db.nav.blizzardWaypoint end
+    ns.Navigation:SetBlizzardWaypointEnabled(on)
+    ns.Printf("Blizzard waypoint arrow %s", on and "on" or "off")
 end
 
 -- ------------------------------------------------------------
@@ -396,6 +398,34 @@ function handlers.reports(rest)
             r.guide and (r.guide .. " step " .. tostring(r.step) .. " ") or (r.mode == "auto" and "auto " or ""),
             r.q and ("quest " .. r.q .. " ") or "", r.text and ('"' .. r.text .. '"') or "",
             r.zone or "?", r.x or 0, r.y or 0, r.npcName and (" target " .. r.npcName .. " (" .. tostring(r.npc) .. ")") or "")
+    end
+end
+
+function handlers.resync()
+    if not ns.Guide.active then ns.Print("no guide active.") return end
+    local n = ns.Guide:Resync()
+    ns.Printf("resynced: %d out-levelled quest%s skipped, now at step %s.", n, n == 1 and "" or "s", tostring(ns.Guide.current))
+end
+
+function handlers.edit(rest)
+    local what, arg = rest:match("^(%S*)%s*(.*)$")
+    local E = ns.Editor
+    local ok, msg
+    if what == "here" then ok, msg = E:Here()
+    elseif what == "npc" then ok, msg = E:NPC()
+    elseif what == "note" then ok, msg = E:Note(arg)
+    elseif what == "radius" then ok, msg = E:Radius(arg)
+    elseif what == "clear" then ok, msg = E:Clear()
+    else ns.Print("/fg edit here | npc | note <text> | radius <yards> | clear") return end
+    if ok then ns.Print(msg) else ns.Warn(msg) end
+end
+
+function handlers.edits(rest)
+    if rest == "clear" then
+        local ok, msg = ns.Editor:ClearGuide()
+        if ok then ns.Print(msg) else ns.Warn(msg) end
+    else
+        ns.Editor:List()
     end
 end
 

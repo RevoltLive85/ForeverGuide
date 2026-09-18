@@ -31,7 +31,7 @@ function Tracker:BestForQuest(entry)
     local DB, Q = ns.DB, ns.Quest
     local questID = entry.questID
     if not DB:GetQuest(questID) then return nil end
-    local locs, what = {}, nil
+    local locs, what, whatFor = {}, nil, {}
     if entry.ready then
         locs = DB:QuestEnds(questID)
         what = "turn in"
@@ -43,8 +43,8 @@ function Tracker:BestForQuest(entry)
                 local dbo = DB:MatchObjective(questID, idx, o.text)
                 if dbo then
                     for _, l in ipairs(dbo.locations) do
-                        l.objective = o.text
                         locs[#locs + 1] = l
+                        whatFor[l] = o.text        -- do not write into the shared (cached) location tables
                     end
                 end
             end
@@ -57,7 +57,7 @@ function Tracker:BestForQuest(entry)
     end
     local loc, dist = DB:Nearest(locs)
     if not loc then return nil end
-    return { questID = questID, title = entry.title, what = what or loc.objective or loc.name or "objective",
+    return { questID = questID, title = entry.title, what = what or whatFor[loc] or loc.name or "objective",
              loc = loc, distance = dist }
 end
 
@@ -91,7 +91,7 @@ function Tracker:Rethink()
             local t = ns.Navigation.target
             if not (t and t.map == c.loc.map and t.x == c.loc.x and t.y == c.loc.y) then
                 ns.Navigation:SetTarget({ map = c.loc.map, x = c.loc.x, y = c.loc.y,
-                    label = c.title .. " - " .. c.what, radius = 20 })
+                    label = c.title .. " - " .. c.what, radius = 20, owner = "tracker" })
             end
         else
             ns.Navigation:Clear()
@@ -107,7 +107,10 @@ function Tracker:Describe()
 end
 
 function Tracker:OnInit()
-    local function rethink() ns.Events:Debounce("tracker", 0.3, function() Tracker:Rethink() end) end
+    local function rethink()
+        if not Tracker:IsActive() then return end
+        ns.Events:Debounce("tracker", 0.3, function() Tracker:Rethink() end)
+    end
     ns.Events:RegisterMany({ "FG_QUEST_LOG_CHANGED", "FG_ZONE_CHANGED", "FG_GUIDE_CHANGED", "FG_MODE_CHANGED" }, rethink)
     ns.Events:Register("FG_NAV_ARRIVED", function()
         if Tracker:IsActive() then ns.Events:After(2, function() Tracker:Rethink() end) end
@@ -116,8 +119,11 @@ end
 
 function Tracker:OnEnable()
     local function tick()
-        if Tracker:IsActive() then Tracker:Rethink() end
-        C_Timer.After(RETHINK, tick)
+        if Tracker:IsActive() then
+            local ok, err = pcall(Tracker.Rethink, Tracker)
+            if not ok then ns.ReportOnce("tracker:tick", err) end
+        end
+        C_Timer.After(RETHINK, tick)   -- always re-armed, even after an error
     end
     C_Timer.After(RETHINK, tick)
 end

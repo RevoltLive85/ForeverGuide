@@ -16,23 +16,23 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 416, questName = "Rat Catching", npc = 1340, npcName = "Mountaineer Kadrell", map = 1432, zone = "Loch Modan", x = 32.6, y = 49.7 }, -- 3
         { type = "TURNIN", quest = 6387, questName = "Honor Students", npc = 1572, npcName = "Thorgrum Borrelson", map = 1432, zone = "Loch Modan", x = 33.9, y = 51 }, -- 4
         { type = "ACCEPT", quest = 6391, questName = "Ride to Ironforge", npc = 1572, npcName = "Thorgrum Borrelson", map = 1432, zone = "Loch Modan", x = 33.9, y = 51 }, -- 5
-        { type = "COLLECT", quest = 418, questName = "Thelsamar Blood Sausages", target = "Boar Intestines / Bear Meat", map = 1432, zone = "Loch Modan", x = 39, y = 51.3 }, -- 6
-        { type = "COLLECT", quest = 418, questName = "Thelsamar Blood Sausages", target = "Spider Ichor", map = 1432, zone = "Loch Modan", x = 34.3, y = 54.2 }, -- 7
-        { type = "COLLECT", quest = 416, questName = "Rat Catching", target = "Tunnel Rat Ear", map = 1432, zone = "Loch Modan", x = 26.5, y = 44 }, -- 8
+        { type = "COLLECT", quest = 418, questName = "Thelsamar Blood Sausages", target = "Boar Intestines / Bear Meat", map = 1432, zone = "Loch Modan", x = 39, y = 51.3, near = true }, -- 6
+        { type = "COLLECT", quest = 418, questName = "Thelsamar Blood Sausages", target = "Spider Ichor", map = 1432, zone = "Loch Modan", x = 34.3, y = 54.2, near = true }, -- 7
+        { type = "COLLECT", quest = 416, questName = "Rat Catching", target = "Tunnel Rat Ear", map = 1432, zone = "Loch Modan", x = 26.5, y = 44, near = true }, -- 8
         { type = "TURNIN", quest = 416, questName = "Rat Catching", npc = 1340, npcName = "Mountaineer Kadrell", map = 1432, zone = "Loch Modan", x = 32.6, y = 49.7 }, -- 9
         { type = "TURNIN", quest = 418, questName = "Thelsamar Blood Sausages", npc = 1963, npcName = "Vidra Hearthstove", map = 1432, zone = "Loch Modan", x = 34.8, y = 49.3 }, -- 10
         { type = "ACCEPT", quest = 224, questName = "In Defense of the King's Lands", npc = 1089, npcName = "Mountaineer Cobbleflint", map = 1432, zone = "Loch Modan", x = 22.1, y = 73.1 }, -- 11
         { type = "ACCEPT", quest = 267, questName = "The Trogg Threat", npc = 1092, npcName = "Captain Rugelfuss", map = 1432, zone = "Loch Modan", x = 23.2, y = 73.7 }, -- 12
-        { type = "KILL", quest = 224, questName = "In Defense of the King's Lands", npc = 1161, target = "Stonesplinter Trogg", map = 1432, zone = "Loch Modan", x = 30.1, y = 71.9 }, -- 13
-        { type = "COLLECT", quest = 267, questName = "The Trogg Threat", target = "Trogg Stone Tooth", map = 1432, zone = "Loch Modan", x = 30.1, y = 71.9 }, -- 14
-        { type = "KILL", quest = 224, questName = "In Defense of the King's Lands", npc = 1162, target = "Stonesplinter Scout", map = 1432, zone = "Loch Modan", x = 31, y = 71.7 }, -- 15
+        { type = "KILL", quest = 224, questName = "In Defense of the King's Lands", npc = 1161, target = "Stonesplinter Trogg", map = 1432, zone = "Loch Modan", x = 30.1, y = 71.9, near = true }, -- 13
+        { type = "COLLECT", quest = 267, questName = "The Trogg Threat", target = "Trogg Stone Tooth", map = 1432, zone = "Loch Modan", x = 30.1, y = 71.9, near = true }, -- 14
+        { type = "KILL", quest = 224, questName = "In Defense of the King's Lands", npc = 1162, target = "Stonesplinter Scout", map = 1432, zone = "Loch Modan", x = 31, y = 71.7, near = true }, -- 15
         { type = "TURNIN", quest = 267, questName = "The Trogg Threat", npc = 1092, npcName = "Captain Rugelfuss", map = 1432, zone = "Loch Modan", x = 23.2, y = 73.7 }, -- 16
         { type = "TURNIN", quest = 224, questName = "In Defense of the King's Lands", npc = 1089, npcName = "Mountaineer Cobbleflint", map = 1432, zone = "Loch Modan", x = 22.1, y = 73.1 }, -- 17
         { type = "ACCEPT", quest = 237, questName = "In Defense of the King's Lands", npc = 1091, npcName = "Mountaineer Gravelgaw", map = 1432, zone = "Loch Modan", x = 23.5, y = 76.4 }, -- 18
-        { type = "KILL", quest = 237, questName = "In Defense of the King's Lands", npc = 1163, target = "Stonesplinter Skullthumper / Stonesplinter Seer", map = 1432, zone = "Loch Modan", x = 28, y = 81.2 }, -- 19
+        { type = "KILL", quest = 237, questName = "In Defense of the King's Lands", npc = 1163, target = "Stonesplinter Skullthumper / Stonesplinter Seer", map = 1432, zone = "Loch Modan", x = 28, y = 81.2, near = true }, -- 19
         { type = "TURNIN", quest = 237, questName = "In Defense of the King's Lands", npc = 1091, npcName = "Mountaineer Gravelgaw", map = 1432, zone = "Loch Modan", x = 23.5, y = 76.4 }, -- 20
         { type = "ACCEPT", quest = 263, questName = "In Defense of the King's Lands", npc = 1090, npcName = "Mountaineer Wallbang", map = 1432, zone = "Loch Modan", x = 23.5, y = 74.5 }, -- 21
-        { type = "KILL", quest = 263, questName = "In Defense of the King's Lands", npc = 1164, target = "Stonesplinter Bonesnapper / Stonesplinter Shaman", map = 1432, zone = "Loch Modan", x = 33.3, y = 91 }, -- 22
+        { type = "KILL", quest = 263, questName = "In Defense of the King's Lands", npc = 1164, target = "Stonesplinter Bonesnapper / Stonesplinter Shaman", map = 1432, zone = "Loch Modan", x = 33.3, y = 91, near = true }, -- 22
         { type = "TURNIN", quest = 263, questName = "In Defense of the King's Lands", npc = 1090, npcName = "Mountaineer Wallbang", map = 1432, zone = "Loch Modan", x = 23.5, y = 74.5 }, -- 23
         { type = "ACCEPT", quest = 217, questName = "In Defense of the King's Lands", npc = 1092, npcName = "Captain Rugelfuss", map = 1432, zone = "Loch Modan", x = 23.2, y = 73.7 }, -- 24
         { type = "KILL", quest = 217, questName = "In Defense of the King's Lands", npc = 1205, target = "Grawmug / Brawler / Gnasher", map = 1432, zone = "Loch Modan", x = 34.8, y = 90.5 }, -- 25
@@ -40,15 +40,15 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 298, questName = "Excavation Progress Report", npc = 1344, npcName = "Prospector Ironband", map = 1432, zone = "Loch Modan", x = 65.9, y = 65.6 }, -- 27
         { type = "ACCEPT", quest = 385, questName = "Crocolisk Hunting", npc = 1154, npcName = "Marek Ironheart", map = 1432, zone = "Loch Modan", x = 81.8, y = 61.7 }, -- 28
         { type = "ACCEPT", quest = 257, questName = "A Hunter's Boast", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 29
-        { type = "KILL", quest = 257, questName = "A Hunter's Boast", npc = 1194, target = "Mountain Buzzard", map = 1432, zone = "Loch Modan", x = 79.3, y = 66.9 }, -- 30
-        { type = "COLLECT", quest = 385, questName = "Crocolisk Hunting", target = "Crocolisk Meat / Crocolisk Skin", map = 1432, zone = "Loch Modan", x = 58.8, y = 57.6 }, -- 31
+        { type = "KILL", quest = 257, questName = "A Hunter's Boast", npc = 1194, target = "Mountain Buzzard", map = 1432, zone = "Loch Modan", x = 79.3, y = 66.9, near = true }, -- 30
+        { type = "COLLECT", quest = 385, questName = "Crocolisk Hunting", target = "Crocolisk Meat / Crocolisk Skin", map = 1432, zone = "Loch Modan", x = 58.8, y = 57.6, near = true }, -- 31
         { type = "TURNIN", quest = 385, questName = "Crocolisk Hunting", npc = 1154, npcName = "Marek Ironheart", map = 1432, zone = "Loch Modan", x = 81.8, y = 61.7 }, -- 32
         { type = "TURNIN", quest = 257, questName = "A Hunter's Boast", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 33
         { type = "ACCEPT", quest = 258, questName = "A Hunter's Challenge", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 34
-        { type = "KILL", quest = 258, questName = "A Hunter's Challenge", npc = 1192, target = "Elder Mountain Boar", map = 1432, zone = "Loch Modan", x = 74.8, y = 50.7 }, -- 35
+        { type = "KILL", quest = 258, questName = "A Hunter's Challenge", npc = 1192, target = "Elder Mountain Boar", map = 1432, zone = "Loch Modan", x = 74.8, y = 50.7, near = true }, -- 35
         { type = "TURNIN", quest = 258, questName = "A Hunter's Challenge", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 36
         { type = "ACCEPT", quest = 297, questName = "Gathering Idols", npc = 1345, npcName = "Magmar Fellhew", map = 1432, zone = "Loch Modan", x = 64.9, y = 66.7 }, -- 37
-        { type = "COLLECT", quest = 297, questName = "Gathering Idols", target = "Carved Stone Idol", map = 1432, zone = "Loch Modan", x = 68, y = 66.1 }, -- 38
+        { type = "COLLECT", quest = 297, questName = "Gathering Idols", target = "Carved Stone Idol", map = 1432, zone = "Loch Modan", x = 68, y = 66.1, near = true }, -- 38
         { type = "TURNIN", quest = 297, questName = "Gathering Idols", npc = 1345, npcName = "Magmar Fellhew", map = 1432, zone = "Loch Modan", x = 64.9, y = 66.7 }, -- 39
         { type = "ACCEPT", quest = 2038, questName = "Bingles' Missing Supplies", npc = 6577, npcName = "Bingles Blastenheimer", map = 1432, zone = "Loch Modan", x = 63.6, y = 47.9 }, -- 40
         { type = "COLLECT", quest = 2038, questName = "Bingles' Missing Supplies", target = "Bingles' Wrench", map = 1432, zone = "Loch Modan", x = 48.7, y = 30.1 }, -- 41
@@ -57,7 +57,7 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 2038, questName = "Bingles' Missing Supplies", target = "Bingles' Screwdriver", map = 1432, zone = "Loch Modan", x = 48.4, y = 20.5 }, -- 44
         { type = "ACCEPT", quest = 1338, questName = "Stormpike's Order", npc = 1343, npcName = "Mountaineer Stormpike", map = 1432, zone = "Loch Modan", x = 24.8, y = 18.4 }, -- 45
         { type = "ACCEPT", quest = 307, questName = "Filthy Paws", npc = 1343, npcName = "Mountaineer Stormpike", map = 1432, zone = "Loch Modan", x = 24.8, y = 18.4 }, -- 46
-        { type = "COLLECT", quest = 307, questName = "Filthy Paws", target = "Miners' Gear", map = 1432, zone = "Loch Modan", x = 35.5, y = 19.9 }, -- 47
+        { type = "COLLECT", quest = 307, questName = "Filthy Paws", target = "Miners' Gear", map = 1432, zone = "Loch Modan", x = 35.5, y = 19.9, near = true }, -- 47
         { type = "TURNIN", quest = 307, questName = "Filthy Paws", npc = 1343, npcName = "Mountaineer Stormpike", map = 1432, zone = "Loch Modan", x = 24.8, y = 18.4 }, -- 48
         { type = "TURNIN", quest = 298, questName = "Excavation Progress Report", npc = 1105, npcName = "Jern Hornhelm", map = 1432, zone = "Loch Modan", x = 37.2, y = 47.4 }, -- 49
         { type = "ACCEPT", quest = 301, questName = "Report to Ironforge", npc = 1105, npcName = "Jern Hornhelm", map = 1432, zone = "Loch Modan", x = 37.2, y = 47.4 }, -- 50
@@ -71,20 +71,20 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 199, questName = "A Dark Threat Looms", map = 1432, zone = "Loch Modan", x = 56.1, y = 13.2 }, -- 58
         { type = "TURNIN", quest = 199, questName = "A Dark Threat Looms", npc = 1093, npcName = "Chief Engineer Hinderweir VII", map = 1432, zone = "Loch Modan", x = 46.1, y = 13.6 }, -- 59
         { type = "ACCEPT", quest = 161, questName = "A Dark Threat Looms", npc = 1093, npcName = "Chief Engineer Hinderweir VII", map = 1432, zone = "Loch Modan", x = 46.1, y = 13.6 }, -- 60
-        { type = "ACCEPT", quest = 255, questName = "Mercenaries", npc = 1139, npcName = "Magistrate Bluntnose", map = 1432, zone = "Loch Modan", x = 34.6, y = 44.5 }, -- 61
-        { type = "ACCEPT", quest = 271, questName = "Vyrin's Revenge", npc = 1156, npcName = "Vyrin Swiftwind", map = 1432, zone = "Loch Modan", x = 81.7, y = 64.1 }, -- 62
-        { type = "KILL", quest = 255, questName = "Mercenaries", npc = 1179, target = "Mo'grosh Enforcer", map = 1432, zone = "Loch Modan", x = 73.7, y = 33.4 }, -- 63
-        { type = "KILL", quest = 255, questName = "Mercenaries", npc = 1178, target = "Mo'grosh Ogre", map = 1432, zone = "Loch Modan", x = 75.7, y = 32.3 }, -- 64
-        { type = "KILL", quest = 255, questName = "Mercenaries", npc = 1180, target = "Mo'grosh Brute", map = 1432, zone = "Loch Modan", x = 74.7, y = 25.2 }, -- 65
-        { type = "TURNIN", quest = 255, questName = "Mercenaries", npc = 1139, npcName = "Magistrate Bluntnose", map = 1432, zone = "Loch Modan", x = 34.6, y = 44.5 }, -- 66
-        { type = "KILL", quest = 271, questName = "Vyrin's Revenge", npc = 1225, target = "Ol' Sooty", map = 1432, zone = "Loch Modan", x = 37.9, y = 63.4, note = "loot Ol' Sooty's Head" }, -- 67
-        { type = "TURNIN", quest = 271, questName = "Vyrin's Revenge", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 68
+        { type = "ACCEPT", quest = 255, questName = "Mercenaries", npc = 1139, npcName = "Magistrate Bluntnose", map = 1432, zone = "Loch Modan", x = 34.6, y = 44.5, optional = true, note = "elite target - bring a group (optional)" }, -- 61
+        { type = "ACCEPT", quest = 271, questName = "Vyrin's Revenge", npc = 1156, npcName = "Vyrin Swiftwind", map = 1432, zone = "Loch Modan", x = 81.7, y = 64.1, optional = true, note = "elite target - bring a group (optional)" }, -- 62
+        { type = "KILL", quest = 255, questName = "Mercenaries", npc = 1179, target = "Mo'grosh Enforcer", map = 1432, zone = "Loch Modan", x = 73.7, y = 33.4, optional = true, near = true, note = "ELITE -  (group quest, optional)" }, -- 63
+        { type = "KILL", quest = 255, questName = "Mercenaries", npc = 1178, target = "Mo'grosh Ogre", map = 1432, zone = "Loch Modan", x = 75.7, y = 32.3, optional = true, near = true, note = "ELITE -  (group quest, optional)" }, -- 64
+        { type = "KILL", quest = 255, questName = "Mercenaries", npc = 1180, target = "Mo'grosh Brute", map = 1432, zone = "Loch Modan", x = 74.7, y = 25.2, optional = true, near = true, note = "ELITE -  (group quest, optional)" }, -- 65
+        { type = "TURNIN", quest = 255, questName = "Mercenaries", npc = 1139, npcName = "Magistrate Bluntnose", map = 1432, zone = "Loch Modan", x = 34.6, y = 44.5, optional = true }, -- 66
+        { type = "KILL", quest = 271, questName = "Vyrin's Revenge", npc = 1225, target = "Ol' Sooty", map = 1432, zone = "Loch Modan", x = 37.9, y = 63.4, optional = true, note = "ELITE - loot Ol' Sooty's Head (group quest, optional)" }, -- 67
+        { type = "TURNIN", quest = 271, questName = "Vyrin's Revenge", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5, optional = true }, -- 68
         { type = "ACCEPT", quest = 531, questName = "Vyrin's Revenge", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 69
         { type = "TURNIN", quest = 531, questName = "Vyrin's Revenge", npc = 1156, npcName = "Vyrin Swiftwind", map = 1432, zone = "Loch Modan", x = 81.7, y = 64.1 }, -- 70
         { type = "TURNIN", quest = 161, questName = "A Dark Threat Looms", npc = 1073, npcName = "Ashlan Stonesmirk", map = 1437, zone = "Wetlands", x = 50.1, y = 18.2 }, -- 71
         { type = "GRIND", level = 17, note = "the next quests need level 17" }, -- 72
-        { type = "ACCEPT", quest = 256, questName = "WANTED: Chok'sul", map = 1432, zone = "Loch Modan", x = 37.3, y = 46.5 }, -- 73
-        { type = "KILL", quest = 256, questName = "WANTED: Chok'sul", npc = 1210, target = "Chok'sul", map = 1432, zone = "Loch Modan", x = 79.6, y = 14.7, note = "loot Chok'sul's Head" }, -- 74
-        { type = "TURNIN", quest = 256, questName = "WANTED: Chok'sul", npc = 1139, npcName = "Magistrate Bluntnose", map = 1432, zone = "Loch Modan", x = 34.6, y = 44.5 }, -- 75
+        { type = "ACCEPT", quest = 256, questName = "WANTED: Chok'sul", map = 1432, zone = "Loch Modan", x = 37.3, y = 46.5, optional = true, note = "elite target - bring a group (optional)" }, -- 73
+        { type = "KILL", quest = 256, questName = "WANTED: Chok'sul", npc = 1210, target = "Chok'sul", map = 1432, zone = "Loch Modan", x = 79.6, y = 14.7, optional = true, note = "ELITE - loot Chok'sul's Head (group quest, optional)" }, -- 74
+        { type = "TURNIN", quest = 256, questName = "WANTED: Chok'sul", npc = 1139, npcName = "Magistrate Bluntnose", map = 1432, zone = "Loch Modan", x = 34.6, y = 44.5, optional = true }, -- 75
     },
 })

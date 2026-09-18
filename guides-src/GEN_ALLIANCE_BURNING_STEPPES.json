@@ -10,18 +10,18 @@
   "notes": "Auto-generated from the quest database: 10 quests, 31 steps, model reaches level 52. Not a speedrun route - a sensible order; the engine adapts as you play.",
   "steps": [
     { "type": "ACCEPT", "quest": 3823, "questName": "Extinguish the Firegut", "npc": 9177, "npcName": "Oralius", "map": 1428, "zone": "Burning Steppes", "x": 84.6, "y": 68.7 },
-    { "type": "ACCEPT", "quest": 4182, "questName": "Dragonkin Menace", "npc": 9562, "npcName": "Helendis Riverhorn", "map": 1428, "zone": "Burning Steppes", "x": 85.8, "y": 69 },
+    { "type": "ACCEPT", "quest": 4182, "questName": "Dragonkin Menace", "npc": 9562, "npcName": "Helendis Riverhorn", "map": 1428, "zone": "Burning Steppes", "x": 85.8, "y": 69, "note": "elite target - bring a group (optional)", "optional": true },
     { "type": "ACCEPT", "quest": 4283, "questName": "FIFTY! YEP!", "npc": 9177, "npcName": "Oralius", "map": 1428, "zone": "Burning Steppes", "x": 84.6, "y": 68.7 },
-    { "type": "COLLECT", "quest": 4283, "questName": "FIFTY! YEP!", "target": "Blackrock Medallion", "map": 1428, "zone": "Burning Steppes", "x": 84.1, "y": 60.6 },
-    { "type": "KILL", "quest": 3823, "questName": "Extinguish the Firegut", "npc": 7033, "target": "Firegut Ogre", "map": 1428, "zone": "Burning Steppes", "x": 78.7, "y": 55.5 },
-    { "type": "KILL", "quest": 3823, "questName": "Extinguish the Firegut", "npc": 7034, "target": "Firegut Ogre Mage", "map": 1428, "zone": "Burning Steppes", "x": 77, "y": 51.2 },
-    { "type": "KILL", "quest": 3823, "questName": "Extinguish the Firegut", "npc": 7035, "target": "Firegut Brute", "map": 1428, "zone": "Burning Steppes", "x": 80.4, "y": 48.3 },
-    { "type": "KILL", "quest": 4182, "questName": "Dragonkin Menace", "npc": 7047, "target": "Black Broodling / Black Drake", "map": 1428, "zone": "Burning Steppes", "x": 89.5, "y": 43.9 },
-    { "type": "KILL", "quest": 4182, "questName": "Dragonkin Menace", "npc": 7041, "target": "Black Wyrmkin / Black Dragonspawn", "map": 1428, "zone": "Burning Steppes", "x": 88.4, "y": 40 },
+    { "type": "COLLECT", "quest": 4283, "questName": "FIFTY! YEP!", "target": "Blackrock Medallion", "map": 1428, "zone": "Burning Steppes", "x": 84.1, "y": 60.6, "near": true },
+    { "type": "KILL", "quest": 3823, "questName": "Extinguish the Firegut", "npc": 7033, "target": "Firegut Ogre", "map": 1428, "zone": "Burning Steppes", "x": 78.7, "y": 55.5, "near": true },
+    { "type": "KILL", "quest": 3823, "questName": "Extinguish the Firegut", "npc": 7034, "target": "Firegut Ogre Mage", "map": 1428, "zone": "Burning Steppes", "x": 77, "y": 51.2, "near": true },
+    { "type": "KILL", "quest": 3823, "questName": "Extinguish the Firegut", "npc": 7035, "target": "Firegut Brute", "map": 1428, "zone": "Burning Steppes", "x": 80.4, "y": 48.3, "near": true },
+    { "type": "KILL", "quest": 4182, "questName": "Dragonkin Menace", "npc": 7047, "target": "Black Broodling / Black Drake", "map": 1428, "zone": "Burning Steppes", "x": 89.5, "y": 43.9, "near": true, "note": " (group quest, optional)", "optional": true },
+    { "type": "KILL", "quest": 4182, "questName": "Dragonkin Menace", "npc": 7041, "target": "Black Wyrmkin / Black Dragonspawn", "map": 1428, "zone": "Burning Steppes", "x": 88.4, "y": 40, "near": true, "note": "ELITE -  (group quest, optional)", "optional": true },
     { "type": "TURNIN", "quest": 3823, "questName": "Extinguish the Firegut", "npc": 9177, "npcName": "Oralius", "map": 1428, "zone": "Burning Steppes", "x": 84.6, "y": 68.7 },
     { "type": "ACCEPT", "quest": 3824, "questName": "Gor'tesh the Brute Lord", "npc": 9177, "npcName": "Oralius", "map": 1428, "zone": "Burning Steppes", "x": 84.6, "y": 68.7 },
     { "type": "TURNIN", "quest": 4283, "questName": "FIFTY! YEP!", "npc": 9177, "npcName": "Oralius", "map": 1428, "zone": "Burning Steppes", "x": 84.6, "y": 68.7 },
-    { "type": "TURNIN", "quest": 4182, "questName": "Dragonkin Menace", "npc": 9562, "npcName": "Helendis Riverhorn", "map": 1428, "zone": "Burning Steppes", "x": 85.8, "y": 69 },
+    { "type": "TURNIN", "quest": 4182, "questName": "Dragonkin Menace", "npc": 9562, "npcName": "Helendis Riverhorn", "map": 1428, "zone": "Burning Steppes", "x": 85.8, "y": 69, "optional": true },
     { "type": "ACCEPT", "quest": 4183, "questName": "The True Masters", "npc": 9562, "npcName": "Helendis Riverhorn", "map": 1428, "zone": "Burning Steppes", "x": 85.8, "y": 69 },
     { "type": "ACCEPT", "quest": 4296, "questName": "Tablet of the Seven", "npc": 9536, "npcName": "Maxwort Uberglint", "map": 1428, "zone": "Burning Steppes", "x": 65.2, "y": 23.9 },
     { "type": "ACCEPT", "quest": 4726, "questName": "Broodling Essence", "npc": 10267, "npcName": "Tinkee Steamboil", "map": 1428, "zone": "Burning Steppes", "x": 65.2, "y": 24 },
@@ -37,8 +37,8 @@
     { "type": "TURNIN", "quest": 4808, "questName": "Felnok Steelspring", "npc": 10468, "npcName": "Felnok Steelspring", "map": 1452, "zone": "Winterspring", "x": 61.6, "y": 38.6 },
     { "type": "TURNIN", "quest": 4183, "questName": "The True Masters", "npc": 344, "npcName": "Magistrate Solomon", "map": 1433, "zone": "Redridge Mountains", "x": 30, "y": 44.5 },
     { "type": "GRIND", "note": "the next quests need level 52", "level": 52 },
-    { "type": "ACCEPT", "quest": 4023, "questName": "A Taste of Flame", "npc": 9459, "npcName": "Cyrus Therepentous", "map": 1428, "zone": "Burning Steppes", "x": 95.1, "y": 31.6 },
-    { "type": "KILL", "quest": 4023, "questName": "A Taste of Flame", "npc": 9461, "target": "Frenzied Black Drake", "map": 1428, "zone": "Burning Steppes", "x": 94.4, "y": 31.8, "note": "loot Black Dragonflight Molt" },
-    { "type": "TURNIN", "quest": 4023, "questName": "A Taste of Flame", "npc": 9459, "npcName": "Cyrus Therepentous", "map": 1428, "zone": "Burning Steppes", "x": 95.1, "y": 31.6 }
+    { "type": "ACCEPT", "quest": 4023, "questName": "A Taste of Flame", "npc": 9459, "npcName": "Cyrus Therepentous", "map": 1428, "zone": "Burning Steppes", "x": 95.1, "y": 31.6, "note": "elite target - bring a group (optional)", "optional": true },
+    { "type": "KILL", "quest": 4023, "questName": "A Taste of Flame", "npc": 9461, "target": "Frenzied Black Drake", "map": 1428, "zone": "Burning Steppes", "x": 94.4, "y": 31.8, "note": "ELITE - loot Black Dragonflight Molt (group quest, optional)", "optional": true },
+    { "type": "TURNIN", "quest": 4023, "questName": "A Taste of Flame", "npc": 9459, "npcName": "Cyrus Therepentous", "map": 1428, "zone": "Burning Steppes", "x": 95.1, "y": 31.6, "optional": true }
   ]
 }

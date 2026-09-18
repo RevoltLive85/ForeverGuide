@@ -63,6 +63,7 @@ function Nav:SetTarget(target)
         x = target.x,
         y = target.y,
         label = target.label,
+        owner = target.owner,
         radius = target.radius or (ns.db and ns.db.nav.arrivalRadius) or 15,
     }
     t.instanceID, t.worldX, t.worldY = self:MapToWorld(t.map, t.x, t.y)
@@ -76,11 +77,38 @@ function Nav:Clear()
     if not self.target then return end
     self.target = nil
     self.state = nil
-    if self.ownsWaypoint then
-        ns.Call("C_Map.ClearUserWaypoint")
-        self.ownsWaypoint = false
-    end
+    self:ClearBlizzardWaypoint()
     ns.Events:Fire("FG_NAV_TARGET_CHANGED", nil)
+end
+
+--- Turn the Blizzard map pin on/off and apply it to the current target right away.
+function Nav:SetBlizzardWaypointEnabled(on)
+    ns.db.nav.blizzardWaypoint = on and true or false
+    if on then
+        self:UpdateBlizzardWaypoint()
+    else
+        self:ClearBlizzardWaypoint()
+    end
+end
+
+--- Remove the Blizzard pin only if it is still the one we placed (the player
+--- may have set their own since).
+function Nav:ClearBlizzardWaypoint()
+    if not self.ownsWaypoint then return end
+    self.ownsWaypoint = false
+    local own = self.ownPoint
+    self.ownPoint = nil
+    local has = Plain(ns.Call("C_Map.HasUserWaypoint"))
+    if has == false then return end
+    local cur = ns.Call("C_Map.GetUserWaypoint")
+    if type(cur) == "table" and own then
+        local pos = cur.position
+        local cx, cy = pos and PlainNumber(pos.x), pos and PlainNumber(pos.y)
+        if PlainNumber(cur.uiMapID) ~= own.map or not cx or math.abs(cx - own.x) > 1e-3 or math.abs(cy - own.y) > 1e-3 then
+            return   -- not ours any more
+        end
+    end
+    ns.Call("C_Map.ClearUserWaypoint")
 end
 
 function Nav:UpdateBlizzardWaypoint()
@@ -95,6 +123,7 @@ function Nav:UpdateBlizzardWaypoint()
     local set = ns.Call("C_Map.SetUserWaypoint", point)
     if Plain(set) == true then
         self.ownsWaypoint = true
+        self.ownPoint = { map = t.map, x = t.x / 100, y = t.y / 100 }
         ns.Call("C_SuperTrack.SetSuperTrackedUserWaypoint", true)
     end
 end
@@ -105,12 +134,14 @@ end
 --- Returns a state table (also stored in Nav.state):
 ---   distance (yards or nil), angle (relative radians, nil if unknown),
 ---   sameContinent (bool), method ("world"|"map"|nil), arrived (bool)
-function Nav:Update()
+function Nav:Update(allowCached)
     local t = self.target
     if not t then
         self.state = nil
         return nil
     end
+    -- the window, the arrow and the poller all tick; with allowCached they share one result per 40 ms
+    if allowCached and self.state and self.stateTarget == t and ns.Now() - (self.stateAt or 0) < 0.04 then return self.state end
     local state = { distance = nil, angle = nil, sameContinent = true, method = nil, arrived = false }
 
     local px, py, pInstance = ns.Player:GetWorldPosition()
@@ -156,9 +187,24 @@ function Nav:Update()
     end
 
     state.arrived = state.distance ~= nil and state.distance <= (t.radius or 15)
-    self.state = state
+    self.state, self.stateAt, self.stateTarget = state, ns.Now(), t
+    if state.arrived and not t.arrivedFired then
+        t.arrivedFired = true
+        ns.Events:Fire("FG_NAV_ARRIVED", t)
+    end
     return state
 end
+
+-- arrival must be noticed even when the window and the arrow are hidden
+local poller = CreateFrame("Frame")
+poller.elapsed = 0
+poller:SetScript("OnUpdate", function(self, elapsed)
+    self.elapsed = self.elapsed + (elapsed or 0)
+    if self.elapsed < 0.25 or not Nav.target then return end
+    self.elapsed = 0
+    local ok, err = pcall(Nav.Update, Nav, true)
+    if not ok then ns.ReportOnce("nav:poll", err) end
+end)
 
 -- ------------------------------------------------------------
 -- Formatting
@@ -222,6 +268,12 @@ end
 
 function Nav:ResolveStep(step)
     if not step then return nil end
+    if ns.Editor then step = ns.Editor:Effective(step) end   -- in-game corrections win
+    if step.near and not step.edited then
+        -- objective with many spawns: the nearest known one beats the planned spot
+        local loc = self:DBLocationForStep(step)
+        if loc then return loc.map, loc.x, loc.y, step.text or loc.name, loc end
+    end
     if step.x and step.y then
         local mapID = step.map
         -- guide data may carry Classic-era map IDs; if Forever does not know
@@ -265,9 +317,10 @@ function Nav:DBLocationForStep(step)
         elseif ns.Guide.OBJECTIVE[t] then
             locs = {}
             local game = ns.Quest:GetObjectives(step.quest)
-            if step.objective then
-                local o = game and game[step.objective]
-                local dbo = DB:MatchObjective(step.quest, step.objective, o and o.text)
+            local objIdx = ns.Guide:StepObjectiveIndex(step)
+            if objIdx then
+                local o = game and game[objIdx]
+                local dbo = DB:MatchObjective(step.quest, objIdx, o and o.text)
                 if dbo then for _, l in ipairs(dbo.locations) do locs[#locs + 1] = l end end
             elseif game and #game > 0 then
                 for idx, o in ipairs(game) do

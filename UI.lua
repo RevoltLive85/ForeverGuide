@@ -133,12 +133,12 @@ function UI:Create()
 
     -- header
     f.title = NewText(f, fs + 1, "GameFontNormal", "LEFT", true)
-    f.title:SetWidth(w * 0.45)
+    f.title:SetWidth(104)
     f.title:SetTextColor(unpack(C.accent))
     f.title:SetText("FOREVERGUIDE")
 
     f.player = NewText(f, fs - 1, "GameFontHighlightSmall", "RIGHT", true)
-    f.player:SetWidth(w * 0.55)
+    f.player:SetWidth(w - 108)
     f.player:SetTextColor(unpack(C.next))
 
     f.mode = NewText(f, fs - 2, "GameFontHighlightSmall", "LEFT", true)
@@ -389,9 +389,13 @@ function UI:Refresh()
         f.progress:SetText(G:GetStepProgress(step))
         local _, _, _, _, loc = Nav:ResolveStep(step)
         f.where:SetText(loc and ns.DB:DescribeLocation(loc) or (step.note or ""))
-        if loc and step.note and step.note ~= "" then f.note:SetText(step.note) end
-        local grey = step.quest and ns.Quest:IsOnQuest(step.quest) and ns.Quest:GreyWarning(step.quest)
-        if grey then f.note:SetText("|cffff8040" .. grey .. "|r") end
+        local eff = ns.Editor and ns.Editor:Effective(step) or step
+        if eff.note and eff.note ~= "" then f.note:SetText(eff.note .. (eff.edited and "  (edited)" or "")) end
+        local grey = step.quest and ns.Quest:GreyWarning(step.quest)
+        if grey and ns.Quest:IsOnQuest(step.quest) then f.note:SetText("|cffff8040" .. grey .. "|r")
+        elseif grey and step.type == "ACCEPT" and ns.Quest:XPMultiplier(step.quest) <= 0.2 then
+            f.note:SetText("|cffff8040" .. grey .. " - /fg resync skips it|r")
+        end
         if G.note then f.note:SetText(G.note) end
     end
 
@@ -431,17 +435,13 @@ function UI:UpdateNavigation(force)
         arrow:Hide()
         return
     end
-    local s = Nav:Update()
+    local s = Nav:Update(true)
     frame.nav:SetText(Nav:Describe())
     if s and s.angle then
         arrow:Show()
         pcall(arrow.SetRotation, arrow, s.angle)
     else
         arrow:Hide()
-    end
-    if s and s.arrived and not Nav.target.arrivedFired then
-        Nav.target.arrivedFired = true
-        ns.Events:Fire("FG_NAV_ARRIVED", Nav.target)
     end
 end
 
@@ -458,6 +458,7 @@ function UI:CreatePicker()
     p:SetSize(ns.db.ui.width, 100)
     p:SetFrameStrata("DIALOG")
     p:EnableMouse(true)
+    p:SetClampedToScreen(true)
     ApplyBackdrop(p)
 
     p.title = NewText(p, (ns.db.ui.fontSize or 12) + 1, "GameFontNormal", "LEFT", true)
@@ -497,6 +498,15 @@ local function PickerRow(p, i)
     sub:SetWidth(120)
     sub:SetTextColor(unpack(C.dim))
     btn.sub = sub
+    -- left-aligned label that stops before the sub text instead of the template's centred one
+    local label = btn.GetFontString and btn:GetFontString()
+    if label then
+        label:ClearAllPoints()
+        label:SetPoint("LEFT", btn, "LEFT", 8, 0)
+        label:SetPoint("RIGHT", sub, "LEFT", -4, 0)
+        pcall(label.SetJustifyH, label, "LEFT")
+        pcall(label.SetMaxLines, label, 1)
+    end
     p.rows[i] = btn
     return btn
 end

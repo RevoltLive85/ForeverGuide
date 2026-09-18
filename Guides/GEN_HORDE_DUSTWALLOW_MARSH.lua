@@ -12,42 +12,42 @@ ns.RegisterGuide({
     notes = "Auto-generated from the quest database: 25 quests, 66 steps, model reaches level 38. Not a speedrun route - a sensible order; the engine adapts as you play.",
     steps = {
         { type = "ACCEPT", quest = 1201, questName = "Theramore Spies", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 1
-        { type = "KILL", quest = 1201, questName = "Theramore Spies", npc = 4834, target = "Theramore Infiltrator", map = 1445, zone = "Dustwallow Marsh", x = 38.1, y = 33.9 }, -- 2
+        { type = "KILL", quest = 1201, questName = "Theramore Spies", npc = 4834, target = "Theramore Infiltrator", map = 1445, zone = "Dustwallow Marsh", x = 38.1, y = 33.9, near = true }, -- 2
         { type = "ACCEPT", quest = 1177, questName = "Hungry!", npc = 4503, npcName = "Mudcrush Durtfeet", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 38.3 }, -- 3
         { type = "TURNIN", quest = 1201, questName = "Theramore Spies", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 4
         { type = "ACCEPT", quest = 1202, questName = "The Theramore Docks", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 5
-        { type = "COLLECT", quest = 1177, questName = "Hungry!", target = "Mirefin Head", map = 1445, zone = "Dustwallow Marsh", x = 56.2, y = 23 }, -- 6
+        { type = "COLLECT", quest = 1177, questName = "Hungry!", target = "Mirefin Head", map = 1445, zone = "Dustwallow Marsh", x = 56.2, y = 23, near = true }, -- 6
         { type = "ACCEPT", quest = 1238, questName = "The Lost Report", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 25.9 }, -- 7
         { type = "ACCEPT", quest = 1218, questName = "Soothing Spices", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.3 }, -- 8
         { type = "TURNIN", quest = 1218, questName = "Soothing Spices", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.3 }, -- 9
         { type = "ACCEPT", quest = 1206, questName = "Jarl Needs Eyes", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.3 }, -- 10
-        { type = "COLLECT", quest = 1206, questName = "Jarl Needs Eyes", target = "Unpopped Darkmist Eye", map = 1445, zone = "Dustwallow Marsh", x = 35.1, y = 22.5 }, -- 11
+        { type = "COLLECT", quest = 1206, questName = "Jarl Needs Eyes", target = "Unpopped Darkmist Eye", map = 1445, zone = "Dustwallow Marsh", x = 35.1, y = 22.5, near = true }, -- 11
         { type = "TURNIN", quest = 1206, questName = "Jarl Needs Eyes", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.3 }, -- 12
         { type = "ACCEPT", quest = 1203, questName = "Jarl Needs a Blade", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.3 }, -- 13
         { type = "TURNIN", quest = 1203, questName = "Jarl Needs a Blade", npc = 4792, npcName = "\"Swamp Eye\" Jarl", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 26.3 }, -- 14
-        { type = "TURNIN", quest = 1238, questName = "The Lost Report", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 15
-        { type = "TURNIN", quest = 1177, questName = "Hungry!", npc = 4503, npcName = "Mudcrush Durtfeet", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 38.3 }, -- 16
-        { type = "COLLECT", quest = 1202, questName = "The Theramore Docks", target = "Captain's Documents", map = 1445, zone = "Dustwallow Marsh", x = 71.5, y = 51.2 }, -- 17
-        { type = "TURNIN", quest = 1202, questName = "The Theramore Docks", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 18
-        { type = "ACCEPT", quest = 1268, questName = "Suspicious Hoofprints", map = 1445, zone = "Dustwallow Marsh", x = 29.7, y = 47.6 }, -- 19
-        { type = "ACCEPT", quest = 1251, questName = "The Black Shield", map = 1445, zone = "Dustwallow Marsh", x = 29.6, y = 48.6 }, -- 20
-        { type = "ACCEPT", quest = 1269, questName = "Lieutenant Paval Reethe", map = 1445, zone = "Dustwallow Marsh", x = 29.8, y = 48.2 }, -- 21
-        { type = "TURNIN", quest = 1251, questName = "The Black Shield", npc = 4926, npcName = "Krog", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 31.9 }, -- 22
-        { type = "ACCEPT", quest = 1321, questName = "The Black Shield", npc = 4926, npcName = "Krog", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 31.9 }, -- 23
-        { type = "TURNIN", quest = 1268, questName = "Suspicious Hoofprints", npc = 4926, npcName = "Krog", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 31.9 }, -- 24
-        { type = "TURNIN", quest = 1269, questName = "Lieutenant Paval Reethe", npc = 4926, npcName = "Krog", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 31.9 }, -- 25
-        { type = "TURNIN", quest = 1321, questName = "The Black Shield", npc = 5087, npcName = "Do'gol", map = 1445, zone = "Dustwallow Marsh", x = 36.5, y = 30.8 }, -- 26
-        { type = "ACCEPT", quest = 1322, questName = "The Black Shield", npc = 5087, npcName = "Do'gol", map = 1445, zone = "Dustwallow Marsh", x = 36.5, y = 30.8 }, -- 27
-        { type = "COLLECT", quest = 1322, questName = "The Black Shield", target = "Acidic Venom Sac", map = 1445, zone = "Dustwallow Marsh", x = 34.3, y = 28 }, -- 28
-        { type = "TURNIN", quest = 1322, questName = "The Black Shield", npc = 5087, npcName = "Do'gol", map = 1445, zone = "Dustwallow Marsh", x = 36.5, y = 30.8 }, -- 29
-        { type = "ACCEPT", quest = 1323, questName = "The Black Shield", npc = 5087, npcName = "Do'gol", map = 1445, zone = "Dustwallow Marsh", x = 36.5, y = 30.8 }, -- 30
-        { type = "TURNIN", quest = 1323, questName = "The Black Shield", npc = 4926, npcName = "Krog", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 31.9 }, -- 31
-        { type = "ACCEPT", quest = 1273, questName = "Questioning Reethe", npc = 4983, npcName = "Ogron", map = 1445, zone = "Dustwallow Marsh", x = 41, y = 36.7 }, -- 32
-        { type = "COMPLETE", quest = 1273, questName = "Questioning Reethe", target = "Question Reethe with Ogron", map = 1445, zone = "Dustwallow Marsh", x = 42.5, y = 38.1, note = "Question Reethe with Ogron" }, -- 33
-        { type = "TURNIN", quest = 1273, questName = "Questioning Reethe", npc = 4926, npcName = "Krog", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 31.9 }, -- 34
-        { type = "ACCEPT", quest = 1276, questName = "The Black Shield", npc = 4926, npcName = "Krog", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 31.9 }, -- 35
-        { type = "ACCEPT", quest = 1270, questName = "Stinky's Escape", npc = 4880, npcName = "\"Stinky\" Ignatz", map = 1445, zone = "Dustwallow Marsh", x = 46.9, y = 17.5 }, -- 36
-        { type = "COMPLETE", quest = 1270, questName = "Stinky's Escape", target = "Help Stinky find Bogbean Leaves", map = 1445, zone = "Dustwallow Marsh", x = 48.9, y = 24.6, note = "Help Stinky find Bogbean Leaves" }, -- 37
+        { type = "ACCEPT", quest = 1270, questName = "Stinky's Escape", npc = 4880, npcName = "\"Stinky\" Ignatz", map = 1445, zone = "Dustwallow Marsh", x = 46.9, y = 17.5 }, -- 15
+        { type = "COMPLETE", quest = 1270, questName = "Stinky's Escape", target = "Help Stinky find Bogbean Leaves", map = 1445, zone = "Dustwallow Marsh", x = 48.9, y = 24.6, note = "Help Stinky find Bogbean Leaves" }, -- 16
+        { type = "TURNIN", quest = 1238, questName = "The Lost Report", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 17
+        { type = "TURNIN", quest = 1177, questName = "Hungry!", npc = 4503, npcName = "Mudcrush Durtfeet", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 38.3 }, -- 18
+        { type = "COLLECT", quest = 1202, questName = "The Theramore Docks", target = "Captain's Documents", map = 1445, zone = "Dustwallow Marsh", x = 71.5, y = 51.2 }, -- 19
+        { type = "TURNIN", quest = 1202, questName = "The Theramore Docks", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 20
+        { type = "ACCEPT", quest = 1268, questName = "Suspicious Hoofprints", map = 1445, zone = "Dustwallow Marsh", x = 29.7, y = 47.6 }, -- 21
+        { type = "ACCEPT", quest = 1251, questName = "The Black Shield", map = 1445, zone = "Dustwallow Marsh", x = 29.6, y = 48.6 }, -- 22
+        { type = "ACCEPT", quest = 1269, questName = "Lieutenant Paval Reethe", map = 1445, zone = "Dustwallow Marsh", x = 29.8, y = 48.2 }, -- 23
+        { type = "TURNIN", quest = 1251, questName = "The Black Shield", npc = 4926, npcName = "Krog", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 31.9 }, -- 24
+        { type = "ACCEPT", quest = 1321, questName = "The Black Shield", npc = 4926, npcName = "Krog", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 31.9 }, -- 25
+        { type = "TURNIN", quest = 1268, questName = "Suspicious Hoofprints", npc = 4926, npcName = "Krog", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 31.9 }, -- 26
+        { type = "TURNIN", quest = 1269, questName = "Lieutenant Paval Reethe", npc = 4926, npcName = "Krog", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 31.9 }, -- 27
+        { type = "TURNIN", quest = 1321, questName = "The Black Shield", npc = 5087, npcName = "Do'gol", map = 1445, zone = "Dustwallow Marsh", x = 36.5, y = 30.8 }, -- 28
+        { type = "ACCEPT", quest = 1322, questName = "The Black Shield", npc = 5087, npcName = "Do'gol", map = 1445, zone = "Dustwallow Marsh", x = 36.5, y = 30.8 }, -- 29
+        { type = "COLLECT", quest = 1322, questName = "The Black Shield", target = "Acidic Venom Sac", map = 1445, zone = "Dustwallow Marsh", x = 34.3, y = 28, near = true }, -- 30
+        { type = "TURNIN", quest = 1322, questName = "The Black Shield", npc = 5087, npcName = "Do'gol", map = 1445, zone = "Dustwallow Marsh", x = 36.5, y = 30.8 }, -- 31
+        { type = "ACCEPT", quest = 1323, questName = "The Black Shield", npc = 5087, npcName = "Do'gol", map = 1445, zone = "Dustwallow Marsh", x = 36.5, y = 30.8 }, -- 32
+        { type = "TURNIN", quest = 1323, questName = "The Black Shield", npc = 4926, npcName = "Krog", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 31.9 }, -- 33
+        { type = "ACCEPT", quest = 1273, questName = "Questioning Reethe", npc = 4983, npcName = "Ogron", map = 1445, zone = "Dustwallow Marsh", x = 41, y = 36.7 }, -- 34
+        { type = "COMPLETE", quest = 1273, questName = "Questioning Reethe", target = "Question Reethe with Ogron", map = 1445, zone = "Dustwallow Marsh", x = 42.5, y = 38.1, note = "Question Reethe with Ogron" }, -- 35
+        { type = "TURNIN", quest = 1273, questName = "Questioning Reethe", npc = 4926, npcName = "Krog", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 31.9 }, -- 36
+        { type = "ACCEPT", quest = 1276, questName = "The Black Shield", npc = 4926, npcName = "Krog", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 31.9 }, -- 37
         { type = "ACCEPT", quest = 1239, questName = "The Severed Head", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 25.9 }, -- 38
         { type = "TURNIN", quest = 1239, questName = "The Severed Head", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 39
         { type = "ACCEPT", quest = 1240, questName = "The Troll Witchdoctor", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 40
@@ -58,11 +58,11 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1166, questName = "Overlord Mok'Morokk's Concern", npc = 4500, npcName = "Overlord Mok'Morokk", map = 1445, zone = "Dustwallow Marsh", x = 36.3, y = 31.4 }, -- 45
         { type = "ACCEPT", quest = 1168, questName = "Army of the Black Dragon", npc = 4502, npcName = "Tharg", map = 1445, zone = "Dustwallow Marsh", x = 37.4, y = 31.4 }, -- 46
         { type = "ACCEPT", quest = 1169, questName = "Identifying the Brood", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 33.1 }, -- 47
-        { type = "KILL", quest = 1168, questName = "Army of the Black Dragon", npc = 4329, target = "Firemane Scout / Firemane Ash Tail", map = 1445, zone = "Dustwallow Marsh", x = 39, y = 64.6 }, -- 48
+        { type = "KILL", quest = 1168, questName = "Army of the Black Dragon", npc = 4329, target = "Firemane Scout / Firemane Ash Tail", map = 1445, zone = "Dustwallow Marsh", x = 39, y = 64.6, near = true }, -- 48
         { type = "COLLECT", quest = 1166, questName = "Overlord Mok'Morokk's Concern", target = "Mok'Morokk's Grog", map = 1445, zone = "Dustwallow Marsh", x = 38.7, y = 65.6 }, -- 49
-        { type = "KILL", quest = 1168, questName = "Army of the Black Dragon", npc = 4328, target = "Firemane Scalebane", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 67.3 }, -- 50
+        { type = "KILL", quest = 1168, questName = "Army of the Black Dragon", npc = 4328, target = "Firemane Scalebane", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 67.3, near = true }, -- 50
         { type = "TURNIN", quest = 1168, questName = "Army of the Black Dragon", npc = 4502, npcName = "Tharg", map = 1445, zone = "Dustwallow Marsh", x = 37.4, y = 31.4 }, -- 51
-        { type = "COLLECT", quest = 1169, questName = "Identifying the Brood", target = "Searing Tongue / Searing Heart", map = 1445, zone = "Dustwallow Marsh", x = 43.6, y = 64.8 }, -- 52
+        { type = "COLLECT", quest = 1169, questName = "Identifying the Brood", target = "Searing Tongue / Searing Heart", map = 1445, zone = "Dustwallow Marsh", x = 43.6, y = 64.8, near = true }, -- 52
         { type = "TURNIN", quest = 1169, questName = "Identifying the Brood", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 33.1 }, -- 53
         { type = "ACCEPT", quest = 1170, questName = "The Brood of Onyxia", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 33.1 }, -- 54
         { type = "TURNIN", quest = 1170, questName = "The Brood of Onyxia", npc = 4500, npcName = "Overlord Mok'Morokk", map = 1445, zone = "Dustwallow Marsh", x = 36.3, y = 31.4 }, -- 55
@@ -70,7 +70,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 1171, questName = "The Brood of Onyxia", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 33.1 }, -- 57
         { type = "ACCEPT", quest = 1172, questName = "The Brood of Onyxia", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 33.1 }, -- 58
         { type = "COLLECT", quest = 1166, questName = "Overlord Mok'Morokk's Concern", target = "Mok'Morokk's Snuff", map = 1445, zone = "Dustwallow Marsh", x = 44.5, y = 66 }, -- 59
-        { type = "COMPLETE", quest = 1172, questName = "The Brood of Onyxia", target = "Egg of Onyxia", map = 1445, zone = "Dustwallow Marsh", x = 48.5, y = 73.6, note = "Egg of Onyxia destroyed" }, -- 60
+        { type = "COMPLETE", quest = 1172, questName = "The Brood of Onyxia", target = "Egg of Onyxia", map = 1445, zone = "Dustwallow Marsh", x = 48.5, y = 73.6, near = true, note = "Egg of Onyxia destroyed" }, -- 60
         { type = "TURNIN", quest = 1172, questName = "The Brood of Onyxia", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 33.1 }, -- 61
         { type = "ACCEPT", quest = 1173, questName = "Challenge Overlord Mok'Morokk", npc = 4500, npcName = "Overlord Mok'Morokk", map = 1445, zone = "Dustwallow Marsh", x = 36.3, y = 31.4 }, -- 62
         { type = "COMPLETE", quest = 1173, questName = "Challenge Overlord Mok'Morokk", target = "Drive Overlord Mok'Morokk from Brackenwall Village", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 31.4, note = "Drive Overlord Mok'Morokk from Brackenwall Village" }, -- 63

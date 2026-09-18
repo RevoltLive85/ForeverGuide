@@ -12,39 +12,39 @@ ns.RegisterGuide({
     notes = "Auto-generated from the quest database: 22 quests, 65 steps, model reaches level 35. Not a speedrun route - a sensible order; the engine adapts as you play.",
     steps = {
         { type = "ACCEPT", quest = 642, questName = "The Princess Trapped", map = 1417, zone = "Arathi Highlands", x = 62.5, y = 33.7 }, -- 1
-        { type = "COLLECT", quest = 642, questName = "The Princess Trapped", target = "Mote of Myzrael", map = 1417, zone = "Arathi Highlands", x = 78.5, y = 34.5 }, -- 2
+        { type = "COLLECT", quest = 642, questName = "The Princess Trapped", target = "Mote of Myzrael", map = 1417, zone = "Arathi Highlands", x = 78.5, y = 34.5, near = true }, -- 2
         { type = "TURNIN", quest = 642, questName = "The Princess Trapped", map = 1417, zone = "Arathi Highlands", x = 84.3, y = 31 }, -- 3
         { type = "ACCEPT", quest = 651, questName = "Stones of Binding", map = 1417, zone = "Arathi Highlands", x = 84.3, y = 31 }, -- 4
         { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Cresting Key", map = 1417, zone = "Arathi Highlands", x = 66.7, y = 29.7 }, -- 5
         { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Thundering Key", map = 1417, zone = "Arathi Highlands", x = 52, y = 50.7 }, -- 6
         { type = "ACCEPT", quest = 681, questName = "Northfold Manor", npc = 2700, npcName = "Captain Nials", map = 1417, zone = "Arathi Highlands", x = 45.8, y = 47.6 }, -- 7
         { type = "ACCEPT", quest = 691, questName = "Worth Its Weight in Gold", npc = 2788, npcName = "Apprentice Kryten", map = 1417, zone = "Arathi Highlands", x = 46.2, y = 47.8 }, -- 8
-        { type = "ACCEPT", quest = 684, questName = "Wanted!  Marez Cowl", map = 1417, zone = "Arathi Highlands", x = 46, y = 47.8 }, -- 9
-        { type = "ACCEPT", quest = 685, questName = "Wanted!  Otto and Falconcrest", map = 1417, zone = "Arathi Highlands", x = 46, y = 47.8 }, -- 10
-        { type = "KILL", quest = 681, questName = "Northfold Manor", npc = 2586, target = "Syndicate Highwayman / Syndicate Mercenary", map = 1417, zone = "Arathi Highlands", x = 33.9, y = 32.9 }, -- 11
-        { type = "COMPLETE", quest = 691, questName = "Worth Its Weight in Gold", npc = 2555, target = "Witherbark Witch Doctor / Witherbark Tusk", map = 1417, zone = "Arathi Highlands", x = 30.5, y = 43.6, note = "loot Witherbark Medicine Pouch" }, -- 12
-        { type = "KILL", quest = 684, questName = "Wanted!  Marez Cowl", npc = 2783, target = "Marez Cowl", map = 1417, zone = "Arathi Highlands", x = 29.6, y = 63, note = "loot Marez's Head" }, -- 13
+        { type = "ACCEPT", quest = 684, questName = "Wanted!  Marez Cowl", map = 1417, zone = "Arathi Highlands", x = 46, y = 47.8, optional = true, note = "elite target - bring a group (optional)" }, -- 9
+        { type = "ACCEPT", quest = 685, questName = "Wanted!  Otto and Falconcrest", map = 1417, zone = "Arathi Highlands", x = 46, y = 47.8, optional = true, note = "elite target - bring a group (optional)" }, -- 10
+        { type = "KILL", quest = 681, questName = "Northfold Manor", npc = 2586, target = "Syndicate Highwayman / Syndicate Mercenary", map = 1417, zone = "Arathi Highlands", x = 33.9, y = 32.9, near = true }, -- 11
+        { type = "COMPLETE", quest = 691, questName = "Worth Its Weight in Gold", npc = 2555, target = "Witherbark Witch Doctor / Witherbark Tusk", map = 1417, zone = "Arathi Highlands", x = 30.5, y = 43.6, near = true, note = "loot Witherbark Medicine Pouch" }, -- 12
+        { type = "KILL", quest = 684, questName = "Wanted!  Marez Cowl", npc = 2783, target = "Marez Cowl", map = 1417, zone = "Arathi Highlands", x = 29.6, y = 63, optional = true, near = true, note = "ELITE - loot Marez's Head (group quest, optional)" }, -- 13
         { type = "TURNIN", quest = 681, questName = "Northfold Manor", npc = 2700, npcName = "Captain Nials", map = 1417, zone = "Arathi Highlands", x = 45.8, y = 47.6 }, -- 14
         { type = "ACCEPT", quest = 682, questName = "Stromgarde Badges", npc = 2700, npcName = "Captain Nials", map = 1417, zone = "Arathi Highlands", x = 45.8, y = 47.6 }, -- 15
-        { type = "TURNIN", quest = 684, questName = "Wanted!  Marez Cowl", npc = 2700, npcName = "Captain Nials", map = 1417, zone = "Arathi Highlands", x = 45.8, y = 47.6 }, -- 16
-        { type = "COLLECT", quest = 682, questName = "Stromgarde Badges", target = "Stromgarde Badge", map = 1417, zone = "Arathi Highlands", x = 29.2, y = 61.3 }, -- 17
+        { type = "TURNIN", quest = 684, questName = "Wanted!  Marez Cowl", npc = 2700, npcName = "Captain Nials", map = 1417, zone = "Arathi Highlands", x = 45.8, y = 47.6, optional = true }, -- 16
+        { type = "COLLECT", quest = 682, questName = "Stromgarde Badges", target = "Stromgarde Badge", map = 1417, zone = "Arathi Highlands", x = 29.2, y = 61.3, near = true }, -- 17
         { type = "TURNIN", quest = 682, questName = "Stromgarde Badges", npc = 2700, npcName = "Captain Nials", map = 1417, zone = "Arathi Highlands", x = 45.8, y = 47.6 }, -- 18
         { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Burning Key", map = 1417, zone = "Arathi Highlands", x = 25.5, y = 30.1 }, -- 19
         { type = "TURNIN", quest = 651, questName = "Stones of Binding", map = 1417, zone = "Arathi Highlands", x = 36.2, y = 57.4 }, -- 20
-        { type = "ACCEPT", quest = 652, questName = "Breaking the Keystone", map = 1417, zone = "Arathi Highlands", x = 36.2, y = 57.4 }, -- 21
-        { type = "KILL", quest = 685, questName = "Wanted!  Otto and Falconcrest", npc = 2599, target = "Otto / Lord Falconcrest", map = 1417, zone = "Arathi Highlands", x = 26.2, y = 65.6, note = "loot Otto's Head" }, -- 22
-        { type = "TURNIN", quest = 685, questName = "Wanted!  Otto and Falconcrest", npc = 2700, npcName = "Captain Nials", map = 1417, zone = "Arathi Highlands", x = 45.8, y = 47.6 }, -- 23
-        { type = "KILL", quest = 691, questName = "Worth Its Weight in Gold", npc = 2557, target = "Witherbark Shadow Hunter", map = 1417, zone = "Arathi Highlands", x = 67.4, y = 78.7, note = "loot Shadow Hunter Knife" }, -- 24
+        { type = "ACCEPT", quest = 652, questName = "Breaking the Keystone", map = 1417, zone = "Arathi Highlands", x = 36.2, y = 57.4, optional = true, note = "elite target - bring a group (optional)" }, -- 21
+        { type = "KILL", quest = 685, questName = "Wanted!  Otto and Falconcrest", npc = 2599, target = "Otto / Lord Falconcrest", map = 1417, zone = "Arathi Highlands", x = 26.2, y = 65.6, optional = true, note = "ELITE - loot Otto's Head (group quest, optional)" }, -- 22
+        { type = "TURNIN", quest = 685, questName = "Wanted!  Otto and Falconcrest", npc = 2700, npcName = "Captain Nials", map = 1417, zone = "Arathi Highlands", x = 45.8, y = 47.6, optional = true }, -- 23
+        { type = "KILL", quest = 691, questName = "Worth Its Weight in Gold", npc = 2557, target = "Witherbark Shadow Hunter", map = 1417, zone = "Arathi Highlands", x = 67.4, y = 78.7, near = true, note = "loot Shadow Hunter Knife" }, -- 24
         { type = "TURNIN", quest = 691, questName = "Worth Its Weight in Gold", npc = 2788, npcName = "Apprentice Kryten", map = 1417, zone = "Arathi Highlands", x = 46.2, y = 47.8 }, -- 25
         { type = "ACCEPT", quest = 693, questName = "Wand over Fist", npc = 2789, npcName = "Skuerto", map = 1417, zone = "Arathi Highlands", x = 46.7, y = 47 }, -- 26
-        { type = "KILL", quest = 652, questName = "Breaking the Keystone", npc = 2611, target = "Fozruk", map = 1417, zone = "Arathi Highlands", x = 63.9, y = 30, note = "loot Rod of Order" }, -- 27
-        { type = "TURNIN", quest = 652, questName = "Breaking the Keystone", map = 1417, zone = "Arathi Highlands", x = 36.1, y = 58.1 }, -- 28
+        { type = "KILL", quest = 652, questName = "Breaking the Keystone", npc = 2611, target = "Fozruk", map = 1417, zone = "Arathi Highlands", x = 63.9, y = 30, optional = true, note = "ELITE - loot Rod of Order (group quest, optional)" }, -- 27
+        { type = "TURNIN", quest = 652, questName = "Breaking the Keystone", map = 1417, zone = "Arathi Highlands", x = 36.1, y = 58.1, optional = true }, -- 28
         { type = "ACCEPT", quest = 653, questName = "Myzrael's Allies", map = 1417, zone = "Arathi Highlands", x = 36.1, y = 58.1 }, -- 29
         { type = "KILL", quest = 693, questName = "Wand over Fist", npc = 2793, target = "Kor'gresh Coldrage", map = 1417, zone = "Arathi Highlands", x = 54.8, y = 81.9, note = "loot Trelane's Wand of Invocation" }, -- 30
         { type = "TURNIN", quest = 693, questName = "Wand over Fist", npc = 2789, npcName = "Skuerto", map = 1417, zone = "Arathi Highlands", x = 46.7, y = 47 }, -- 31
-        { type = "ACCEPT", quest = 694, questName = "Trelane's Defenses", npc = 2789, npcName = "Skuerto", map = 1417, zone = "Arathi Highlands", x = 46.7, y = 47 }, -- 32
-        { type = "KILL", quest = 694, questName = "Trelane's Defenses", npc = 2570, target = "Boulderfist Shaman", map = 1417, zone = "Arathi Highlands", x = 20.9, y = 65.7, note = "loot Azure Agate" }, -- 33
-        { type = "TURNIN", quest = 694, questName = "Trelane's Defenses", npc = 2788, npcName = "Apprentice Kryten", map = 1417, zone = "Arathi Highlands", x = 46.2, y = 47.8 }, -- 34
+        { type = "ACCEPT", quest = 694, questName = "Trelane's Defenses", npc = 2789, npcName = "Skuerto", map = 1417, zone = "Arathi Highlands", x = 46.7, y = 47, optional = true, note = "elite target - bring a group (optional)" }, -- 32
+        { type = "KILL", quest = 694, questName = "Trelane's Defenses", npc = 2570, target = "Boulderfist Shaman", map = 1417, zone = "Arathi Highlands", x = 20.9, y = 65.7, optional = true, near = true, note = "ELITE - loot Azure Agate (group quest, optional)" }, -- 33
+        { type = "TURNIN", quest = 694, questName = "Trelane's Defenses", npc = 2788, npcName = "Apprentice Kryten", map = 1417, zone = "Arathi Highlands", x = 46.2, y = 47.8, optional = true }, -- 34
         { type = "ACCEPT", quest = 695, questName = "An Apprentice's Enchantment", npc = 2788, npcName = "Apprentice Kryten", map = 1417, zone = "Arathi Highlands", x = 46.2, y = 47.8 }, -- 35
         { type = "TURNIN", quest = 695, questName = "An Apprentice's Enchantment", npc = 2789, npcName = "Skuerto", map = 1417, zone = "Arathi Highlands", x = 46.7, y = 47 }, -- 36
         { type = "ACCEPT", quest = 696, questName = "Attack on the Tower", npc = 2789, npcName = "Skuerto", map = 1417, zone = "Arathi Highlands", x = 46.7, y = 47 }, -- 37
@@ -64,9 +64,9 @@ ns.RegisterGuide({
         { type = "COMPLETE", quest = 665, questName = "Sunken Treasure", target = "Defend Professor Phizzlethorpe", map = 1417, zone = "Arathi Highlands", x = 33.9, y = 80.6, note = "Defend Professor Phizzlethorpe" }, -- 51
         { type = "TURNIN", quest = 665, questName = "Sunken Treasure", npc = 2774, npcName = "Doctor Draxlegauge", map = 1417, zone = "Arathi Highlands", x = 33.9, y = 80.5 }, -- 52
         { type = "ACCEPT", quest = 666, questName = "Sunken Treasure", npc = 2774, npcName = "Doctor Draxlegauge", map = 1417, zone = "Arathi Highlands", x = 33.9, y = 80.5 }, -- 53
-        { type = "KILL", quest = 664, questName = "Drowned Sorrows", npc = 2595, target = "Daggerspine Raider", map = 1417, zone = "Arathi Highlands", x = 25.5, y = 87.4 }, -- 54
-        { type = "COLLECT", quest = 666, questName = "Sunken Treasure", target = "Elven Gem", map = 1417, zone = "Arathi Highlands", x = 25, y = 87 }, -- 55
-        { type = "KILL", quest = 664, questName = "Drowned Sorrows", npc = 2596, target = "Daggerspine Sorceress", map = 1417, zone = "Arathi Highlands", x = 23.8, y = 84.8 }, -- 56
+        { type = "KILL", quest = 664, questName = "Drowned Sorrows", npc = 2595, target = "Daggerspine Raider", map = 1417, zone = "Arathi Highlands", x = 25.5, y = 87.4, near = true }, -- 54
+        { type = "COLLECT", quest = 666, questName = "Sunken Treasure", target = "Elven Gem", map = 1417, zone = "Arathi Highlands", x = 25, y = 87, near = true }, -- 55
+        { type = "KILL", quest = 664, questName = "Drowned Sorrows", npc = 2596, target = "Daggerspine Sorceress", map = 1417, zone = "Arathi Highlands", x = 23.8, y = 84.8, near = true }, -- 56
         { type = "COLLECT", quest = 662, questName = "Deep Sea Salvage", target = "Maiden's Folly Log / Maiden's Folly Charts", map = 1417, zone = "Arathi Highlands", x = 23.4, y = 85.1 }, -- 57
         { type = "COLLECT", quest = 662, questName = "Deep Sea Salvage", target = "Spirit of Silverpine Log / Spirit of Silverpine Charts", map = 1417, zone = "Arathi Highlands", x = 20.7, y = 85.1 }, -- 58
         { type = "TURNIN", quest = 662, questName = "Deep Sea Salvage", npc = 2767, npcName = "First Mate Nilzlix", map = 1417, zone = "Arathi Highlands", x = 32.8, y = 81.5 }, -- 59

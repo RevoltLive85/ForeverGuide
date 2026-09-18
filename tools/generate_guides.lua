@@ -103,6 +103,11 @@ local HUB = 4.0            -- map units: things this close count as "here"
 local HUB_RADIUS = tonumber(os.getenv("FG_HUBR") or "8")     -- givers / turn-ins this close together form one hub (a town, a camp)
 local OBJ_RADIUS = tonumber(os.getenv("FG_OBJR") or "22")    -- objectives this close to the current hub are done before leaving it
 local FAR_OBJ = tonumber(os.getenv("FG_FAR") or "25")  -- objectives farther than this from the hub wait until the route passes by
+local W_TURNIN = tonumber(os.getenv("FG_W_TURNIN") or "10")   -- hub score: a finished quest to hand in there
+local W_OBJ = tonumber(os.getenv("FG_W_OBJ") or "4")          -- an open objective there
+local W_ACCEPT = tonumber(os.getenv("FG_W_ACCEPT") or "6")    -- a quest giver waiting there
+local NEAR_TURNIN = tonumber(os.getenv("FG_NEAR_TURNIN") or "15") -- turn-ins this close are done before moving on
+local NEAR_PULL = tonumber(os.getenv("FG_NEAR_PULL") or "30")
 local DETOUR = tonumber(os.getenv("FG_DETOUR") or "8")         -- extra map units we accept to take something along on the way to the next hub
 local CROSS_ZONE = 300     -- cost of leaving the zone
 local LOG_CAP = 20
@@ -163,7 +168,8 @@ end
 local function questObjectives(q)
     local out = {}
     for _, e in ipairs(q.kill or {}) do
-        out[#out + 1] = { kind = "KILL", name = N[e[1]] and N[e[1]].n or ("npc " .. e[1]), text = e[2], locs = spawnLocs(N[e[1]], {}, "npc", e[1]) }
+        out[#out + 1] = { kind = "KILL", name = N[e[1]] and N[e[1]].n or ("npc " .. e[1]), text = e[2], locs = spawnLocs(N[e[1]], {}, "npc", e[1]),
+            elite = N[e[1]] and (N[e[1]].rank == 1 or N[e[1]].rank == 2 or N[e[1]].rank == 3) or false }
     end
     for _, e in ipairs(q.obj or {}) do
         out[#out + 1] = { kind = "COMPLETE", name = O[e[1]] and O[e[1]].n or ("object " .. e[1]), text = e[2], locs = spawnLocs(O[e[1]], {}, "object", e[1]) }
@@ -172,7 +178,9 @@ local function questObjectives(q)
         local it = I[e[1]]
         local itemName = it and it.n or ("item " .. e[1])
         if it and it.npc and #it.npc == 1 and (not it.obj or #it.obj == 0) and N[it.npc[1]] then
-            out[#out + 1] = { kind = "KILL", name = N[it.npc[1]].n, text = "loot " .. itemName, locs = spawnLocs(N[it.npc[1]], {}, "npc", it.npc[1]) }
+            local nn = N[it.npc[1]]
+            out[#out + 1] = { kind = "KILL", name = nn.n, text = "loot " .. itemName, locs = spawnLocs(nn, {}, "npc", it.npc[1]),
+                elite = (nn.rank == 1 or nn.rank == 2 or nn.rank == 3) or false }
         else
             out[#out + 1] = { kind = "COLLECT", name = itemName, text = e[2], locs = itemLocs(e[1], {}) }
         end
@@ -313,7 +321,10 @@ local function generate(zoneDef, faction)
             id = id, q = q, starts = questStarts(q), ends = questEnds(q), objs = questObjectives(q),
             accepted = false, done = false, turnedIn = false, classes = classesOf(q.classes),
         }
-        for _, o in ipairs(quests[id].objs) do o.done = (#o.locs == 0) end
+        for _, o in ipairs(quests[id].objs) do
+            o.done = (#o.locs == 0)
+            if o.elite then quests[id].elite = true end     -- group quest: routed as optional
+        end
     end
     local count = 0
     for _ in pairs(quests) do count = count + 1 end
@@ -415,6 +426,7 @@ local function generate(zoneDef, faction)
         local step = { type = "ACCEPT", quest = qq.id, questName = qq.q.n }
         if l and l.kind == "npc" then step.npc = l.id step.npcName = l.name end
         if qq.classes then step.class = qq.classes end
+        if qq.elite then step.optional = true step.note = "elite target - bring a group (optional)" end
         withLoc(step, l)
         emit(step)
         local allDone = true
@@ -432,6 +444,7 @@ local function generate(zoneDef, faction)
         if mult < 1 then step.note = string.format("reduced xp (%d%%) - you out-levelled it", math.floor(mult * 100 + 0.5)) end
         if l and l.kind == "npc" then step.npc = l.id step.npcName = l.name end
         if qq.classes then step.class = qq.classes end
+        if qq.elite then step.optional = true end
         withLoc(step, l)
         emit(step)
     end
@@ -441,6 +454,8 @@ local function generate(zoneDef, faction)
         if l and l.kind == "npc" and o.kind == "KILL" then step.npc = l.id end
         if o.text then step.note = o.text end
         if qq.classes then step.class = qq.classes end
+        if qq.elite then step.optional = true step.note = (o.elite and "ELITE - " or "") .. (step.note or "") .. " (group quest, optional)" end
+        if #o.locs > 1 then step.near = true end   -- many spawns: the addon points at the nearest one at runtime, x/y is only the planned spot
         withLoc(step, l)
         -- merge with a previous step of the same quest at the same spot
         local prev = steps[#steps]
@@ -496,7 +511,7 @@ local function generate(zoneDef, faction)
             --    (nearest-neighbour with grey-quest urgency, improved by 2-opt,
             --    turn-ins kept after their objectives)
             local L = level()
-            local function urgency(qq) return math.min(marginOf(L, qq.q.lvl), 8) * URGENCY end
+            local function urgency(qq) return math.min(marginOf(L, qq.q.lvl), 8) * URGENCY + (qq.elite and 10 or 0) end
             local function taskValid(t)
                 if t.kind == "obj" then return t.qq.accepted and not t.o.done end
                 if t.kind == "turnin" then return t.qq.accepted and t.qq.done end
@@ -537,20 +552,82 @@ local function generate(zoneDef, faction)
                     -- nothing left here: pick the next hub by what waits there, minus the walk
                     local hubScore = {}
                     local function bump(h, v) if h then hubScore[h] = (hubScore[h] or 0) + v end end
+                    local turninAt = {}
                     for id, qq in pairs(quests) do
-                        if qq.accepted and qq.done then bump(hubOfLocs(qq.ends, pos), 10)
+                        if qq.accepted and qq.done then
+                            local h = hubOfLocs(qq.ends, pos)
+                            bump(h, W_TURNIN)
+                            if h then turninAt[h] = true end
                         elseif qq.accepted and not qq.done then
                             for _, o in ipairs(qq.objs) do
-                                if not o.done then bump(hubOfLocs(o.locs, pos), 4) bump(hubOfLocs(qq.ends, pos), 2) end
+                                if not o.done then bump(hubOfLocs(o.locs, pos), W_OBJ) bump(hubOfLocs(qq.ends, pos), W_OBJ / 2) end
                             end
-                        elseif available(qq) and logCount < LOG_CAP then bump(hubOfLocs(qq.starts, pos), 6) end
+                        elseif available(qq) and logCount < LOG_CAP then bump(hubOfLocs(qq.starts, pos), W_ACCEPT) end
                     end
                     local target, targetCost
-                    for h, score in pairs(hubScore) do
-                        if h ~= here then
-                            local c = hubDist(h, pos) - score
-                            if not targetCost or c < targetCost or (c == targetCost and h.id < target.id) then target, targetCost = h, c end
+                    if os.getenv("FG_HUBTOUR") ~= "0" then
+                        -- plan the order in which the remaining hubs get visited (open path
+                        -- from here, nearest-neighbour + 2-opt) and take its first stop: a
+                        -- hub with a finished quest is never left behind for a long trip back
+                        local list = {}
+                        for h, score in pairs(hubScore) do if h ~= here and score > 0 then list[#list + 1] = h end end
+                        table.sort(list, function(a, b) return a.id < b.id end)
+                        if #list > 0 then
+                            local function hd(a, b) return math.sqrt((a.x - b.x) ^ 2 + (a.y - b.y) ^ 2) end
+                            local order, remaining, cur = {}, {}, { x = pos.x, y = pos.y }
+                            for _, h in ipairs(list) do remaining[#remaining + 1] = h end
+                            while #remaining > 0 do
+                                local bi, bd
+                                for i, h in ipairs(remaining) do
+                                    local d = hubDist(h, pos) >= CROSS_ZONE and CROSS_ZONE or hd(cur, h)
+                                    d = d - (turninAt[h] and NEAR_PULL or 0) * 0.2   -- slight preference for handing in
+                                    if not bd or d < bd then bi, bd = i, d end
+                                end
+                                local h = table.remove(remaining, bi)
+                                order[#order + 1] = h
+                                cur = h
+                            end
+                            local function plen(list2)
+                                local total, prev = 0, { x = pos.x, y = pos.y }
+                                for _, h in ipairs(list2) do
+                                    total = total + (hubDist(h, pos) >= CROSS_ZONE and CROSS_ZONE or hd(prev, h))
+                                    prev = h
+                                end
+                                return total
+                            end
+                            local improved, rounds = true, 0
+                            while improved and rounds < 30 do
+                                improved = false
+                                rounds = rounds + 1
+                                local base = plen(order)
+                                for i = 1, #order - 1 do
+                                    for j = i + 1, #order do
+                                        local cand = {}
+                                        for k = 1, i - 1 do cand[#cand + 1] = order[k] end
+                                        for k = j, i, -1 do cand[#cand + 1] = order[k] end
+                                        for k = j + 1, #order do cand[#cand + 1] = order[k] end
+                                        local len = plen(cand)
+                                        if len < base - 0.01 then order, base, improved = cand, len, true end
+                                    end
+                                end
+                            end
+                            target = order[1]
                         end
+                    else
+                        for h, score in pairs(hubScore) do
+                            if h ~= here then
+                                local d = hubDist(h, pos)
+                                if turninAt[h] and d <= NEAR_TURNIN then score = score + NEAR_PULL end
+                                local c = d - score
+                                if not targetCost or c < targetCost or (c == targetCost and h.id < target.id) then target, targetCost = h, c end
+                            end
+                        end
+                    end
+                    if os.getenv("FG_DEBUG") then
+                        local names = {}
+                        for h, score in pairs(hubScore) do names[#names + 1] = string.format("h%d(%.0f,%.0f) s=%.0f d=%.0f%s", h.id, h.x, h.y, score, hubDist(h, pos), turninAt[h] and " T" or "") end
+                        table.sort(names)
+                        io.stderr:write(string.format("[%d steps] at %.0f,%.0f here=%s -> %s | %s\n", #steps, pos.x, pos.y, here and here.id or "-", target and target.id or "-", table.concat(names, "  ")))
                     end
                     if target then
                         local straight = hubDist(target, pos)
@@ -696,7 +773,7 @@ local function generate(zoneDef, faction)
 end
 
 -- ---- JSON --------------------------------------------------------------------
-local KEY_ORDER = { "type", "quest", "questName", "npc", "npcName", "target", "class", "map", "zone", "x", "y", "note", "text", "optional" }
+local KEY_ORDER = { "type", "quest", "questName", "npc", "npcName", "target", "class", "map", "zone", "x", "y", "near", "note", "text", "optional" }
 local function jsonString(s)
     return '"' .. s:gsub('[%c"\\]', function(c)
         if c == '"' then return '\\"' elseif c == "\\" then return "\\\\" elseif c == "\n" then return "\\n" end

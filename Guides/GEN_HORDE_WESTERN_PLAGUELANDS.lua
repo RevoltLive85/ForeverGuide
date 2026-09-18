@@ -20,16 +20,16 @@ ns.RegisterGuide({
         { type = "KILL", quest = 5060, questName = "Locked Away", npc = 10836, target = "Farmer Dalson", map = 1422, zone = "Western Plaguelands", x = 48.2, y = 49.7, note = "loot Dalson Cabinet Key" }, -- 7
         { type = "TURNIN", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 8
         { type = "ACCEPT", quest = 4984, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 9
-        { type = "KILL", quest = 4984, questName = "The Wildlife Suffers Too", npc = 1817, target = "Diseased Wolf", map = 1422, zone = "Western Plaguelands", x = 52.5, y = 70.5 }, -- 10
+        { type = "KILL", quest = 4984, questName = "The Wildlife Suffers Too", npc = 1817, target = "Diseased Wolf", map = 1422, zone = "Western Plaguelands", x = 52.5, y = 70.5, near = true }, -- 10
         { type = "TURNIN", quest = 4984, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 11
         { type = "ACCEPT", quest = 4985, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 12
-        { type = "KILL", quest = 4985, questName = "The Wildlife Suffers Too", npc = 1816, target = "Diseased Grizzly", map = 1422, zone = "Western Plaguelands", x = 55.2, y = 64.5 }, -- 13
+        { type = "KILL", quest = 4985, questName = "The Wildlife Suffers Too", npc = 1816, target = "Diseased Grizzly", map = 1422, zone = "Western Plaguelands", x = 55.2, y = 64.5, near = true }, -- 13
         { type = "TURNIN", quest = 4985, questName = "The Wildlife Suffers Too", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 14
         { type = "ACCEPT", quest = 4987, questName = "Glyphed Oaken Branch", npc = 10739, npcName = "Mulgris Deepriver", map = 1422, zone = "Western Plaguelands", x = 53.7, y = 64.7 }, -- 15
         { type = "ACCEPT", quest = 6004, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 16
-        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1833, target = "Scarlet Knight", map = 1422, zone = "Western Plaguelands", x = 49.6, y = 33.2 }, -- 17
-        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1826, target = "Scarlet Mage", map = 1422, zone = "Western Plaguelands", x = 52.8, y = 36.7 }, -- 18
-        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1831, target = "Scarlet Hunter / Scarlet Medic", map = 1422, zone = "Western Plaguelands", x = 52.2, y = 44 }, -- 19
+        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1833, target = "Scarlet Knight", map = 1422, zone = "Western Plaguelands", x = 49.6, y = 33.2, near = true }, -- 17
+        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1826, target = "Scarlet Mage", map = 1422, zone = "Western Plaguelands", x = 52.8, y = 36.7, near = true }, -- 18
+        { type = "KILL", quest = 6004, questName = "Unfinished Business", npc = 1831, target = "Scarlet Hunter / Scarlet Medic", map = 1422, zone = "Western Plaguelands", x = 52.2, y = 44, near = true }, -- 19
         { type = "TURNIN", quest = 6004, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 20
         { type = "ACCEPT", quest = 6023, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 21
         { type = "KILL", quest = 6023, questName = "Unfinished Business", npc = 11611, target = "Cavalier Durgen", map = 1422, zone = "Western Plaguelands", x = 55.2, y = 23.6 }, -- 22
@@ -42,10 +42,10 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 4987, questName = "Glyphed Oaken Branch", npc = 5770, npcName = "Nara Wildmane", map = 1456, zone = "Thunder Bluff", x = 75.7, y = 31.6 }, -- 29
         { type = "GRIND", level = 53, note = "the next quests need level 53" }, -- 30
         { type = "ACCEPT", quest = 4971, questName = "A Matter of Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 31
-        { type = "KILL", quest = 4971, questName = "A Matter of Time", npc = 10717, target = "Temporal Parasite", map = 1422, zone = "Western Plaguelands", x = 45.2, y = 62.8 }, -- 32
+        { type = "KILL", quest = 4971, questName = "A Matter of Time", npc = 10717, target = "Temporal Parasite", map = 1422, zone = "Western Plaguelands", x = 45.2, y = 62.8, near = true }, -- 32
         { type = "TURNIN", quest = 4971, questName = "A Matter of Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 33
         { type = "ACCEPT", quest = 4972, questName = "Counting Out Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 34
-        { type = "COLLECT", quest = 4972, questName = "Counting Out Time", target = "Andorhal Watch", map = 1422, zone = "Western Plaguelands", x = 40.9, y = 67.1 }, -- 35
+        { type = "COLLECT", quest = 4972, questName = "Counting Out Time", target = "Andorhal Watch", map = 1422, zone = "Western Plaguelands", x = 40.9, y = 67.1, near = true }, -- 35
         { type = "TURNIN", quest = 4972, questName = "Counting Out Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 36
     },
 })

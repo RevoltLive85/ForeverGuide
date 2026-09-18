@@ -15,40 +15,40 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 4821, questName = "Alien Egg", npc = 10539, npcName = "Hagar Lightninghoof", map = 1441, zone = "Thousand Needles", x = 44.6, y = 50.3 }, -- 2
         { type = "ACCEPT", quest = 5147, questName = "Wanted - Arnak Grimtotem", map = 1441, zone = "Thousand Needles", x = 46, y = 50.9 }, -- 3
         { type = "ACCEPT", quest = 4767, questName = "Wind Rider", npc = 10377, npcName = "Elu", map = 1441, zone = "Thousand Needles", x = 44.9, y = 48.9 }, -- 4
-        { type = "COLLECT", quest = 4821, questName = "Alien Egg", target = "Alien Egg", map = 1441, zone = "Thousand Needles", x = 52.3, y = 55.3 }, -- 5
-        { type = "KILL", quest = 4841, questName = "Pacify the Centaur", npc = 4094, target = "Galak Scout / Galak Wrangler", map = 1441, zone = "Thousand Needles", x = 45.5, y = 43.5 }, -- 6
-        { type = "KILL", quest = 4841, questName = "Pacify the Centaur", npc = 4096, target = "Galak Windchaser", map = 1441, zone = "Thousand Needles", x = 44.5, y = 41.4 }, -- 7
+        { type = "COLLECT", quest = 4821, questName = "Alien Egg", target = "Alien Egg", map = 1441, zone = "Thousand Needles", x = 52.3, y = 55.3, near = true }, -- 5
+        { type = "KILL", quest = 4841, questName = "Pacify the Centaur", npc = 4094, target = "Galak Scout / Galak Wrangler", map = 1441, zone = "Thousand Needles", x = 45.5, y = 43.5, near = true }, -- 6
+        { type = "KILL", quest = 4841, questName = "Pacify the Centaur", npc = 4096, target = "Galak Windchaser", map = 1441, zone = "Thousand Needles", x = 44.5, y = 41.4, near = true }, -- 7
         { type = "KILL", quest = 5147, questName = "Wanted - Arnak Grimtotem", npc = 10896, target = "Arnak Grimtotem", map = 1441, zone = "Thousand Needles", x = 38.1, y = 26.9, note = "loot Arnak's Hoof" }, -- 8
         { type = "ACCEPT", quest = 4904, questName = "Free at Last", npc = 10646, npcName = "Lakota Windsong", map = 1441, zone = "Thousand Needles", x = 38, y = 26.5 }, -- 9
         { type = "COMPLETE", quest = 4904, questName = "Free at Last", target = "Escort Lakota Windsong from the Darkcloud Pinnacle.", map = 1441, zone = "Thousand Needles", x = 30.9, y = 37.1, note = "Escort Lakota Windsong from the Darkcloud Pinnacle." }, -- 10
-        { type = "TURNIN", quest = 4821, questName = "Alien Egg", npc = 10539, npcName = "Hagar Lightninghoof", map = 1441, zone = "Thousand Needles", x = 44.6, y = 50.3 }, -- 11
-        { type = "ACCEPT", quest = 4865, questName = "Serpent Wild", npc = 10539, npcName = "Hagar Lightninghoof", map = 1441, zone = "Thousand Needles", x = 44.6, y = 50.3 }, -- 12
-        { type = "TURNIN", quest = 4841, questName = "Pacify the Centaur", npc = 10537, npcName = "Cliffwatcher Longhorn", map = 1441, zone = "Thousand Needles", x = 45.7, y = 50.7 }, -- 13
-        { type = "TURNIN", quest = 5147, questName = "Wanted - Arnak Grimtotem", npc = 10537, npcName = "Cliffwatcher Longhorn", map = 1441, zone = "Thousand Needles", x = 45.7, y = 50.7 }, -- 14
-        { type = "TURNIN", quest = 4904, questName = "Free at Last", npc = 10645, npcName = "Thalia Amberhide", map = 1441, zone = "Thousand Needles", x = 46, y = 51.6 }, -- 15
-        { type = "ACCEPT", quest = 5064, questName = "Grimtotem Spying", npc = 10537, npcName = "Cliffwatcher Longhorn", map = 1441, zone = "Thousand Needles", x = 45.7, y = 50.7 }, -- 16
-        { type = "COLLECT", quest = 5064, questName = "Grimtotem Spying", target = "Secret Note #1 / Secret Note #2 / Secret Note #3", map = 1441, zone = "Thousand Needles", x = 39.3, y = 41.5 }, -- 17
-        { type = "TURNIN", quest = 5064, questName = "Grimtotem Spying", npc = 10537, npcName = "Cliffwatcher Longhorn", map = 1441, zone = "Thousand Needles", x = 45.7, y = 50.7 }, -- 18
-        { type = "ACCEPT", quest = 1149, questName = "Test of Faith", npc = 2986, npcName = "Dorn Plainstalker", map = 1441, zone = "Thousand Needles", x = 54, y = 41.5 }, -- 19
-        { type = "COLLECT", quest = 4767, questName = "Wind Rider", target = "Highperch Wyvern Egg", map = 1441, zone = "Thousand Needles", x = 18, y = 41.7 }, -- 20
-        { type = "ACCEPT", quest = 4770, questName = "Homeward Bound", npc = 10427, npcName = "Pao'ka Swiftmountain", map = 1441, zone = "Thousand Needles", x = 17.9, y = 40.6 }, -- 21
-        { type = "COMPLETE", quest = 1149, questName = "Test of Faith", target = "If you have faith, leap from the planks overlooking Thousand Needles.", map = 1441, zone = "Thousand Needles", x = 26.4, y = 32.9, note = "If you have faith, leap from the planks overlooking Thousand Needles." }, -- 22
-        { type = "COMPLETE", quest = 4770, questName = "Homeward Bound", target = "Escort Pao'ka from Highperch", map = 1441, zone = "Thousand Needles", x = 15.2, y = 32.6, note = "Escort Pao'ka from Highperch" }, -- 23
-        { type = "TURNIN", quest = 4865, questName = "Serpent Wild", npc = 10428, npcName = "Motega Firemane", map = 1441, zone = "Thousand Needles", x = 21.5, y = 32.4 }, -- 24
-        { type = "ACCEPT", quest = 5062, questName = "Sacred Fire", npc = 10428, npcName = "Motega Firemane", map = 1441, zone = "Thousand Needles", x = 21.5, y = 32.4 }, -- 25
-        { type = "ACCEPT", quest = 5151, questName = "Hypercapacitor Gizmo", npc = 10941, npcName = "Wizlo Bearingshiner", map = 1441, zone = "Thousand Needles", x = 21.4, y = 32.6 }, -- 26
-        { type = "TURNIN", quest = 4770, questName = "Homeward Bound", npc = 10428, npcName = "Motega Firemane", map = 1441, zone = "Thousand Needles", x = 21.5, y = 32.4 }, -- 27
-        { type = "KILL", quest = 5151, questName = "Hypercapacitor Gizmo", npc = 10992, target = "Enraged Panther", map = 1441, zone = "Thousand Needles", x = 22.8, y = 24.6, note = "loot Hypercapacitor Gizmo" }, -- 28
-        { type = "COLLECT", quest = 5062, questName = "Sacred Fire", target = "Incendia Agave", map = 1441, zone = "Thousand Needles", x = 33.4, y = 32.9 }, -- 29
-        { type = "TURNIN", quest = 5151, questName = "Hypercapacitor Gizmo", npc = 10941, npcName = "Wizlo Bearingshiner", map = 1441, zone = "Thousand Needles", x = 21.4, y = 32.6 }, -- 30
-        { type = "TURNIN", quest = 4767, questName = "Wind Rider", npc = 10377, npcName = "Elu", map = 1441, zone = "Thousand Needles", x = 44.9, y = 48.9 }, -- 31
+        { type = "ACCEPT", quest = 5151, questName = "Hypercapacitor Gizmo", npc = 10941, npcName = "Wizlo Bearingshiner", map = 1441, zone = "Thousand Needles", x = 21.4, y = 32.6, optional = true, note = "elite target - bring a group (optional)" }, -- 11
+        { type = "COLLECT", quest = 4767, questName = "Wind Rider", target = "Highperch Wyvern Egg", map = 1441, zone = "Thousand Needles", x = 17.2, y = 40.8, near = true }, -- 12
+        { type = "ACCEPT", quest = 4770, questName = "Homeward Bound", npc = 10427, npcName = "Pao'ka Swiftmountain", map = 1441, zone = "Thousand Needles", x = 17.9, y = 40.6 }, -- 13
+        { type = "COMPLETE", quest = 4770, questName = "Homeward Bound", target = "Escort Pao'ka from Highperch", map = 1441, zone = "Thousand Needles", x = 15.2, y = 32.6, note = "Escort Pao'ka from Highperch" }, -- 14
+        { type = "KILL", quest = 5151, questName = "Hypercapacitor Gizmo", npc = 10992, target = "Enraged Panther", map = 1441, zone = "Thousand Needles", x = 22.8, y = 24.6, optional = true, note = "ELITE - loot Hypercapacitor Gizmo (group quest, optional)" }, -- 15
+        { type = "TURNIN", quest = 4770, questName = "Homeward Bound", npc = 10428, npcName = "Motega Firemane", map = 1441, zone = "Thousand Needles", x = 21.5, y = 32.4 }, -- 16
+        { type = "TURNIN", quest = 5151, questName = "Hypercapacitor Gizmo", npc = 10941, npcName = "Wizlo Bearingshiner", map = 1441, zone = "Thousand Needles", x = 21.4, y = 32.6, optional = true }, -- 17
+        { type = "TURNIN", quest = 4821, questName = "Alien Egg", npc = 10539, npcName = "Hagar Lightninghoof", map = 1441, zone = "Thousand Needles", x = 44.6, y = 50.3 }, -- 18
+        { type = "ACCEPT", quest = 4865, questName = "Serpent Wild", npc = 10539, npcName = "Hagar Lightninghoof", map = 1441, zone = "Thousand Needles", x = 44.6, y = 50.3 }, -- 19
+        { type = "TURNIN", quest = 4841, questName = "Pacify the Centaur", npc = 10537, npcName = "Cliffwatcher Longhorn", map = 1441, zone = "Thousand Needles", x = 45.7, y = 50.7 }, -- 20
+        { type = "TURNIN", quest = 5147, questName = "Wanted - Arnak Grimtotem", npc = 10537, npcName = "Cliffwatcher Longhorn", map = 1441, zone = "Thousand Needles", x = 45.7, y = 50.7 }, -- 21
+        { type = "TURNIN", quest = 4767, questName = "Wind Rider", npc = 10377, npcName = "Elu", map = 1441, zone = "Thousand Needles", x = 44.9, y = 48.9 }, -- 22
+        { type = "TURNIN", quest = 4904, questName = "Free at Last", npc = 10645, npcName = "Thalia Amberhide", map = 1441, zone = "Thousand Needles", x = 46, y = 51.6 }, -- 23
+        { type = "ACCEPT", quest = 5064, questName = "Grimtotem Spying", npc = 10537, npcName = "Cliffwatcher Longhorn", map = 1441, zone = "Thousand Needles", x = 45.7, y = 50.7 }, -- 24
+        { type = "COLLECT", quest = 5064, questName = "Grimtotem Spying", target = "Secret Note #1 / Secret Note #2 / Secret Note #3", map = 1441, zone = "Thousand Needles", x = 39.3, y = 41.5, near = true }, -- 25
+        { type = "TURNIN", quest = 5064, questName = "Grimtotem Spying", npc = 10537, npcName = "Cliffwatcher Longhorn", map = 1441, zone = "Thousand Needles", x = 45.7, y = 50.7 }, -- 26
+        { type = "ACCEPT", quest = 1149, questName = "Test of Faith", npc = 2986, npcName = "Dorn Plainstalker", map = 1441, zone = "Thousand Needles", x = 54, y = 41.5 }, -- 27
+        { type = "COMPLETE", quest = 1149, questName = "Test of Faith", target = "If you have faith, leap from the planks overlooking Thousand Needles.", map = 1441, zone = "Thousand Needles", x = 26.4, y = 32.9, note = "If you have faith, leap from the planks overlooking Thousand Needles." }, -- 28
+        { type = "TURNIN", quest = 4865, questName = "Serpent Wild", npc = 10428, npcName = "Motega Firemane", map = 1441, zone = "Thousand Needles", x = 21.5, y = 32.4 }, -- 29
+        { type = "ACCEPT", quest = 5062, questName = "Sacred Fire", npc = 10428, npcName = "Motega Firemane", map = 1441, zone = "Thousand Needles", x = 21.5, y = 32.4 }, -- 30
+        { type = "COLLECT", quest = 5062, questName = "Sacred Fire", target = "Incendia Agave", map = 1441, zone = "Thousand Needles", x = 33.3, y = 33.5, near = true }, -- 31
         { type = "TURNIN", quest = 1149, questName = "Test of Faith", npc = 2986, npcName = "Dorn Plainstalker", map = 1441, zone = "Thousand Needles", x = 54, y = 41.5 }, -- 32
         { type = "ACCEPT", quest = 1150, questName = "Test of Endurance", npc = 2986, npcName = "Dorn Plainstalker", map = 1441, zone = "Thousand Needles", x = 54, y = 41.5 }, -- 33
-        { type = "KILL", quest = 1150, questName = "Test of Endurance", npc = 4490, target = "Grenka Bloodscreech", map = 1441, zone = "Thousand Needles", x = 26.8, y = 55.4, note = "loot Grenka's Claw" }, -- 34
+        { type = "KILL", quest = 1150, questName = "Test of Endurance", npc = 4490, target = "Grenka Bloodscreech", map = 1441, zone = "Thousand Needles", x = 26.8, y = 55.4, near = true, note = "loot Grenka's Claw" }, -- 34
         { type = "TURNIN", quest = 1150, questName = "Test of Endurance", npc = 2986, npcName = "Dorn Plainstalker", map = 1441, zone = "Thousand Needles", x = 54, y = 41.5 }, -- 35
-        { type = "ACCEPT", quest = 1151, questName = "Test of Strength", npc = 2986, npcName = "Dorn Plainstalker", map = 1441, zone = "Thousand Needles", x = 54, y = 41.5 }, -- 36
-        { type = "KILL", quest = 1151, questName = "Test of Strength", npc = 4499, target = "Rok'Alim the Pounder", map = 1441, zone = "Thousand Needles", x = 17.1, y = 38.1, note = "loot Fragments of Rok'Alim" }, -- 37
-        { type = "TURNIN", quest = 1151, questName = "Test of Strength", npc = 2986, npcName = "Dorn Plainstalker", map = 1441, zone = "Thousand Needles", x = 54, y = 41.5 }, -- 38
+        { type = "ACCEPT", quest = 1151, questName = "Test of Strength", npc = 2986, npcName = "Dorn Plainstalker", map = 1441, zone = "Thousand Needles", x = 54, y = 41.5, optional = true, note = "elite target - bring a group (optional)" }, -- 36
+        { type = "KILL", quest = 1151, questName = "Test of Strength", npc = 4499, target = "Rok'Alim the Pounder", map = 1441, zone = "Thousand Needles", x = 17.1, y = 38.1, optional = true, near = true, note = "ELITE - loot Fragments of Rok'Alim (group quest, optional)" }, -- 37
+        { type = "TURNIN", quest = 1151, questName = "Test of Strength", npc = 2986, npcName = "Dorn Plainstalker", map = 1441, zone = "Thousand Needles", x = 54, y = 41.5, optional = true }, -- 38
         { type = "ACCEPT", quest = 1152, questName = "Test of Lore", npc = 2986, npcName = "Dorn Plainstalker", map = 1441, zone = "Thousand Needles", x = 54, y = 41.5 }, -- 39
         { type = "TURNIN", quest = 5062, questName = "Sacred Fire", npc = 4046, npcName = "Magatha Grimtotem", map = 1456, zone = "Thunder Bluff", x = 69.9, y = 30.9 }, -- 40
         { type = "TURNIN", quest = 1152, questName = "Test of Lore", npc = 4489, npcName = "Braug Dimspirit", map = 1442, zone = "Stonetalon Mountains", x = 78.8, y = 45.7 }, -- 41
@@ -59,13 +59,13 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1105, questName = "Hardened Shells", npc = 4453, npcName = "Wizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78.1, y = 77.1 }, -- 46
         { type = "ACCEPT", quest = 1110, questName = "Rocket Car Parts", npc = 4452, npcName = "Kravel Koalbeard", map = 1441, zone = "Thousand Needles", x = 77.8, y = 77.3 }, -- 47
         { type = "ACCEPT", quest = 5762, questName = "Hemet Nesingwary", npc = 4452, npcName = "Kravel Koalbeard", map = 1441, zone = "Thousand Needles", x = 77.8, y = 77.3 }, -- 48
-        { type = "COLLECT", quest = 1104, questName = "Salt Flat Venom", target = "Salty Scorpid Venom", map = 1441, zone = "Thousand Needles", x = 82.8, y = 79.7 }, -- 49
-        { type = "COLLECT", quest = 1105, questName = "Hardened Shells", target = "Hardened Tortoise Shell", map = 1441, zone = "Thousand Needles", x = 84.8, y = 81.8 }, -- 50
-        { type = "KILL", quest = 1175, questName = "A Bump in the Road", npc = 4150, target = "Saltstone Gazer", map = 1441, zone = "Thousand Needles", x = 83.5, y = 78.8 }, -- 51
-        { type = "COLLECT", quest = 1176, questName = "Load Lightening", target = "Hollow Vulture Bone", map = 1441, zone = "Thousand Needles", x = 83, y = 70.7 }, -- 52
-        { type = "KILL", quest = 1175, questName = "A Bump in the Road", npc = 4151, target = "Saltstone Crystalhide", map = 1441, zone = "Thousand Needles", x = 80, y = 70.5 }, -- 53
-        { type = "KILL", quest = 1175, questName = "A Bump in the Road", npc = 4147, target = "Saltstone Basilisk", map = 1441, zone = "Thousand Needles", x = 80.6, y = 64.2 }, -- 54
-        { type = "COLLECT", quest = 1110, questName = "Rocket Car Parts", target = "Rocket Car Parts", map = 1441, zone = "Thousand Needles", x = 87.6, y = 62.9 }, -- 55
+        { type = "COLLECT", quest = 1104, questName = "Salt Flat Venom", target = "Salty Scorpid Venom", map = 1441, zone = "Thousand Needles", x = 82.8, y = 79.7, near = true }, -- 49
+        { type = "COLLECT", quest = 1105, questName = "Hardened Shells", target = "Hardened Tortoise Shell", map = 1441, zone = "Thousand Needles", x = 84.8, y = 81.8, near = true }, -- 50
+        { type = "KILL", quest = 1175, questName = "A Bump in the Road", npc = 4150, target = "Saltstone Gazer", map = 1441, zone = "Thousand Needles", x = 83.5, y = 78.8, near = true }, -- 51
+        { type = "COLLECT", quest = 1176, questName = "Load Lightening", target = "Hollow Vulture Bone", map = 1441, zone = "Thousand Needles", x = 83, y = 70.7, near = true }, -- 52
+        { type = "KILL", quest = 1175, questName = "A Bump in the Road", npc = 4151, target = "Saltstone Crystalhide", map = 1441, zone = "Thousand Needles", x = 80, y = 70.5, near = true }, -- 53
+        { type = "KILL", quest = 1175, questName = "A Bump in the Road", npc = 4147, target = "Saltstone Basilisk", map = 1441, zone = "Thousand Needles", x = 80.6, y = 64.2, near = true }, -- 54
+        { type = "COLLECT", quest = 1110, questName = "Rocket Car Parts", target = "Rocket Car Parts", map = 1441, zone = "Thousand Needles", x = 87.6, y = 62.9, near = true }, -- 55
         { type = "TURNIN", quest = 1176, questName = "Load Lightening", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80.2, y = 75.9 }, -- 56
         { type = "ACCEPT", quest = 1178, questName = "Goblin Sponsorship", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80.2, y = 75.9 }, -- 57
         { type = "TURNIN", quest = 1104, questName = "Salt Flat Venom", npc = 4454, npcName = "Fizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78.1, y = 77.1 }, -- 58

@@ -31,7 +31,7 @@ STEP_FIELDS = {
     "type": str, "text": str, "note": str, "quest": int, "questName": str, "objective": int,
     "npc": int, "npcName": str, "target": str, "count": int, "item": int, "itemName": str,
     "spell": int, "spellName": str, "level": int, "map": int, "zone": str, "x": (int, float),
-    "y": (int, float), "radius": (int, float), "optional": bool, "faction": str,
+    "y": (int, float), "radius": (int, float), "optional": bool, "near": bool, "faction": str,
     "class": list, "race": list,
 }
 GUIDE_FIELDS = {
@@ -111,7 +111,7 @@ def validate(guide, filename):
 # Lua serialisation
 # ------------------------------------------------------------
 KEY_ORDER = ["type", "quest", "questName", "objective", "npc", "npcName", "target", "count", "item",
-             "itemName", "spell", "spellName", "level", "map", "zone", "x", "y", "radius", "optional",
+             "itemName", "spell", "spellName", "level", "map", "zone", "x", "y", "radius", "optional", "near",
              "faction", "class", "race", "text", "note"]
 
 

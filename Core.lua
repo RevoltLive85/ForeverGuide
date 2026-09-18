@@ -73,11 +73,12 @@ end
 ns.PlainBool = PlainBool
 
 --- pcall a game function; returns its results, or nil on error/missing.
+local function pack(...) return { n = select("#", ...), ... } end
 local function Safe(fn, ...)
     if type(fn) ~= "function" then return nil end
-    local results = { pcall(fn, ...) }
-    if not results[1] then return nil end
-    return select(2, unpack(results))
+    local r = pack(pcall(fn, ...))
+    if not r[1] then return nil end
+    return unpack(r, 2, r.n)     -- explicit count: results with nils in the middle survive
 end
 ns.Safe = Safe
 

@@ -39,6 +39,7 @@ Quest.log = {}            -- questID -> entry (see Refresh)
 Quest.order = {}          -- questIDs in log order
 Quest.titles = {}         -- questID -> title cache (also for quests not in the log)
 Quest.recentTurnIns = {}  -- questID -> time
+Quest.requested = {}      -- questID -> true once RequestLoadQuestByID was sent
 
 -- ------------------------------------------------------------
 -- Reading the log
@@ -73,6 +74,11 @@ function Quest:Refresh()
         if type(info) == "table" then
             if PlainBool(info.isHeader) then
                 header = PlainString(info.title)
+                if PlainBool(info.isCollapsed) and not self.warnedCollapsed then
+                    -- entries under a collapsed header are not listed by GetInfo
+                    self.warnedCollapsed = true
+                    ns.Warn("a collapsed header in your quest log hides its quests from ForeverGuide - expand it (auto mode and objective tracking need the full list).")
+                end
             else
                 local questID = PlainNumber(info.questID)
                 if questID and questID > 0 then
@@ -130,6 +136,8 @@ end
 
 --- Quest has been turned in at some point (server-side completion flag).
 function Quest:IsCompleted(questID)
+    local t = self.recentTurnIns[questID]
+    if t and ns.Now() - t < 30 then return true end     -- the server flag can lag the QUEST_TURNED_IN event
     return Plain(ns.Call("C_QuestLog.IsQuestFlaggedCompleted", questID)) == true
 end
 
@@ -205,7 +213,10 @@ function Quest:GetTitle(questID)
     end
     local dbName = ns.DB and ns.DB:QuestName(questID)
     if dbName then return dbName end
-    ns.Call("C_QuestLog.RequestLoadQuestByID", questID)
+    if not self.requested[questID] then
+        self.requested[questID] = true       -- ask the server once per session
+        ns.Call("C_QuestLog.RequestLoadQuestByID", questID)
+    end
     return nil
 end
 
@@ -345,6 +356,7 @@ function Quest:OnInit()
     ns.Events:Register("QUEST_DATA_LOAD_RESULT", function(_, questID, success)
         questID = PlainNumber(questID)
         if questID and PlainBool(success) then
+            self.requested[questID] = nil
             local title = PlainString(ns.Call("C_QuestLog.GetTitleForQuestID", questID))
             if title and title ~= "" then
                 self.titles[questID] = title

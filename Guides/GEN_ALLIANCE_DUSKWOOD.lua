@@ -13,32 +13,32 @@ ns.RegisterGuide({
     steps = {
         { type = "ACCEPT", quest = 5, questName = "Jitters' Growling Gut", npc = 288, npcName = "Jitters", map = 1431, zone = "Duskwood", x = 18.4, y = 56.4 }, -- 1
         { type = "ACCEPT", quest = 226, questName = "Wolves at Our Heels", npc = 893, npcName = "Lars", map = 1431, zone = "Duskwood", x = 7.7, y = 33.2 }, -- 2
-        { type = "KILL", quest = 226, questName = "Wolves at Our Heels", npc = 565, target = "Rabid Dire Wolf", map = 1431, zone = "Duskwood", x = 13.2, y = 30.5 }, -- 3
-        { type = "KILL", quest = 226, questName = "Wolves at Our Heels", npc = 213, target = "Starving Dire Wolf", map = 1431, zone = "Duskwood", x = 12.6, y = 28.3 }, -- 4
+        { type = "KILL", quest = 226, questName = "Wolves at Our Heels", npc = 565, target = "Rabid Dire Wolf", map = 1431, zone = "Duskwood", x = 13.2, y = 30.5, near = true }, -- 3
+        { type = "KILL", quest = 226, questName = "Wolves at Our Heels", npc = 213, target = "Starving Dire Wolf", map = 1431, zone = "Duskwood", x = 12.6, y = 28.3, near = true }, -- 4
         { type = "TURNIN", quest = 226, questName = "Wolves at Our Heels", npc = 893, npcName = "Lars", map = 1431, zone = "Duskwood", x = 7.7, y = 33.2 }, -- 5
         { type = "ACCEPT", quest = 245, questName = "Eight-Legged Menaces", npc = 888, npcName = "Watcher Dodds", map = 1431, zone = "Duskwood", x = 45.1, y = 67 }, -- 6
-        { type = "TURNIN", quest = 5, questName = "Jitters' Growling Gut", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.5 }, -- 7
-        { type = "ACCEPT", quest = 93, questName = "Dusky Crab Cakes", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.5 }, -- 8
-        { type = "ACCEPT", quest = 56, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 9
-        { type = "ACCEPT", quest = 101, questName = "The Totem of Infliction", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 10
-        { type = "COLLECT", quest = 93, questName = "Dusky Crab Cakes", target = "Gooey Spider Leg", map = 1431, zone = "Duskwood", x = 79.3, y = 51.4 }, -- 11
-        { type = "COLLECT", quest = 101, questName = "The Totem of Infliction", target = "Vial of Spider Venom", map = 1431, zone = "Duskwood", x = 79.3, y = 51.4 }, -- 12
-        { type = "COLLECT", quest = 101, questName = "The Totem of Infliction", target = "Skeleton Finger", map = 1431, zone = "Duskwood", x = 81.1, y = 56.2 }, -- 13
-        { type = "KILL", quest = 56, questName = "The Night Watch", npc = 48, target = "Skeletal Warrior / Skeletal Mage", map = 1431, zone = "Duskwood", x = 80.6, y = 66.7 }, -- 14
-        { type = "COLLECT", quest = 101, questName = "The Totem of Infliction", target = "Ghoul Fang", map = 1431, zone = "Duskwood", x = 76.3, y = 37.2 }, -- 15
-        { type = "TURNIN", quest = 93, questName = "Dusky Crab Cakes", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.5 }, -- 16
-        { type = "ACCEPT", quest = 240, questName = "Return to Jitters", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.5 }, -- 17
-        { type = "TURNIN", quest = 101, questName = "The Totem of Infliction", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 18
-        { type = "TURNIN", quest = 56, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 19
-        { type = "ACCEPT", quest = 57, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 20
-        { type = "KILL", quest = 57, questName = "The Night Watch", npc = 202, target = "Skeletal Horror", map = 1431, zone = "Duskwood", x = 81.1, y = 56.2 }, -- 21
-        { type = "KILL", quest = 245, questName = "Eight-Legged Menaces", npc = 539, target = "Pygmy Venom Web Spider", map = 1431, zone = "Duskwood", x = 72.1, y = 19 }, -- 22
-        { type = "TURNIN", quest = 245, questName = "Eight-Legged Menaces", npc = 888, npcName = "Watcher Dodds", map = 1431, zone = "Duskwood", x = 45.1, y = 67 }, -- 23
+        { type = "KILL", quest = 245, questName = "Eight-Legged Menaces", npc = 539, target = "Pygmy Venom Web Spider", map = 1431, zone = "Duskwood", x = 11.6, y = 62.7, near = true }, -- 7
+        { type = "TURNIN", quest = 245, questName = "Eight-Legged Menaces", npc = 888, npcName = "Watcher Dodds", map = 1431, zone = "Duskwood", x = 45.1, y = 67 }, -- 8
+        { type = "TURNIN", quest = 5, questName = "Jitters' Growling Gut", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.5 }, -- 9
+        { type = "ACCEPT", quest = 93, questName = "Dusky Crab Cakes", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.5 }, -- 10
+        { type = "ACCEPT", quest = 56, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 11
+        { type = "ACCEPT", quest = 101, questName = "The Totem of Infliction", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 12
+        { type = "COLLECT", quest = 93, questName = "Dusky Crab Cakes", target = "Gooey Spider Leg", map = 1431, zone = "Duskwood", x = 79.3, y = 51.4, near = true }, -- 13
+        { type = "COLLECT", quest = 101, questName = "The Totem of Infliction", target = "Vial of Spider Venom", map = 1431, zone = "Duskwood", x = 79.3, y = 51.4, near = true }, -- 14
+        { type = "COLLECT", quest = 101, questName = "The Totem of Infliction", target = "Skeleton Finger", map = 1431, zone = "Duskwood", x = 81.1, y = 56.2, near = true }, -- 15
+        { type = "KILL", quest = 56, questName = "The Night Watch", npc = 48, target = "Skeletal Warrior / Skeletal Mage", map = 1431, zone = "Duskwood", x = 80.6, y = 66.7, near = true }, -- 16
+        { type = "COLLECT", quest = 101, questName = "The Totem of Infliction", target = "Ghoul Fang", map = 1431, zone = "Duskwood", x = 76.3, y = 37.2, near = true }, -- 17
+        { type = "TURNIN", quest = 93, questName = "Dusky Crab Cakes", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.5 }, -- 18
+        { type = "ACCEPT", quest = 240, questName = "Return to Jitters", npc = 272, npcName = "Chef Grual", map = 1431, zone = "Duskwood", x = 73.8, y = 43.5 }, -- 19
+        { type = "TURNIN", quest = 101, questName = "The Totem of Infliction", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 20
+        { type = "TURNIN", quest = 56, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 21
+        { type = "ACCEPT", quest = 57, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 22
+        { type = "KILL", quest = 57, questName = "The Night Watch", npc = 202, target = "Skeletal Horror", map = 1431, zone = "Duskwood", x = 81.1, y = 56.2, near = true }, -- 23
         { type = "TURNIN", quest = 240, questName = "Return to Jitters", npc = 288, npcName = "Jitters", map = 1431, zone = "Duskwood", x = 18.4, y = 56.4 }, -- 24
-        { type = "KILL", quest = 57, questName = "The Night Watch", npc = 531, target = "Skeletal Fiend", map = 1431, zone = "Duskwood", x = 16.8, y = 47.1 }, -- 25
+        { type = "KILL", quest = 57, questName = "The Night Watch", npc = 531, target = "Skeletal Fiend", map = 1431, zone = "Duskwood", x = 16.8, y = 47.1, near = true }, -- 25
         { type = "TURNIN", quest = 57, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 26
         { type = "ACCEPT", quest = 58, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 27
-        { type = "KILL", quest = 58, questName = "The Night Watch", npc = 604, target = "Plague Spreader", map = 1431, zone = "Duskwood", x = 25.9, y = 35.2 }, -- 28
+        { type = "KILL", quest = 58, questName = "The Night Watch", npc = 604, target = "Plague Spreader", map = 1431, zone = "Duskwood", x = 25.9, y = 35.2, near = true }, -- 28
         { type = "TURNIN", quest = 58, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 29
         { type = "ACCEPT", quest = 148, questName = "Supplies from Darkshire", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 30
         { type = "ACCEPT", quest = 95, questName = "Sven's Revenge", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34.1 }, -- 31
@@ -62,22 +62,22 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 266, questName = "Inquire at the Inn", npc = 267, npcName = "Clerk Daltry", map = 1431, zone = "Duskwood", x = 72.5, y = 46.9 }, -- 49
         { type = "TURNIN", quest = 266, questName = "Inquire at the Inn", npc = 273, npcName = "Tavernkeep Smitts", map = 1431, zone = "Duskwood", x = 73.8, y = 44.5 }, -- 50
         { type = "ACCEPT", quest = 453, questName = "Finding the Shadowy Figure", npc = 273, npcName = "Tavernkeep Smitts", map = 1431, zone = "Duskwood", x = 73.8, y = 44.5 }, -- 51
-        { type = "COLLECT", quest = 156, questName = "Gather Rot Blossoms", target = "Rot Blossom", map = 1431, zone = "Duskwood", x = 81.1, y = 56.2 }, -- 52
+        { type = "COLLECT", quest = 156, questName = "Gather Rot Blossoms", target = "Rot Blossom", map = 1431, zone = "Duskwood", x = 81.1, y = 56.2, near = true }, -- 52
         { type = "TURNIN", quest = 156, questName = "Gather Rot Blossoms", npc = 273, npcName = "Tavernkeep Smitts", map = 1431, zone = "Duskwood", x = 73.8, y = 44.5 }, -- 53
         { type = "ACCEPT", quest = 159, questName = "Juice Delivery", npc = 273, npcName = "Tavernkeep Smitts", map = 1431, zone = "Duskwood", x = 73.8, y = 44.5 }, -- 54
         { type = "TURNIN", quest = 159, questName = "Juice Delivery", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 55
         { type = "ACCEPT", quest = 133, questName = "Ghoulish Effigy", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 56
-        { type = "COLLECT", quest = 133, questName = "Ghoulish Effigy", target = "Ghoul Rib", map = 1431, zone = "Duskwood", x = 25.8, y = 32.9 }, -- 57
+        { type = "COLLECT", quest = 133, questName = "Ghoulish Effigy", target = "Ghoul Rib", map = 1431, zone = "Duskwood", x = 25.8, y = 32.9, near = true }, -- 57
         { type = "TURNIN", quest = 133, questName = "Ghoulish Effigy", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 58
         { type = "ACCEPT", quest = 134, questName = "Ogre Thieves", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 59
         { type = "TURNIN", quest = 453, questName = "Finding the Shadowy Figure", npc = 288, npcName = "Jitters", map = 1431, zone = "Duskwood", x = 18.4, y = 56.4 }, -- 60
         { type = "ACCEPT", quest = 268, questName = "Return to Sven", npc = 288, npcName = "Jitters", map = 1431, zone = "Duskwood", x = 18.4, y = 56.4 }, -- 61
         { type = "TURNIN", quest = 268, questName = "Return to Sven", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34.1 }, -- 62
         { type = "ACCEPT", quest = 323, questName = "Proving Your Worth", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34.1 }, -- 63
-        { type = "KILL", quest = 323, questName = "Proving Your Worth", npc = 1110, target = "Skeletal Raider / Skeletal Warder / Skeletal Healer", map = 1431, zone = "Duskwood", x = 13.7, y = 33.4 }, -- 64
+        { type = "KILL", quest = 323, questName = "Proving Your Worth", npc = 1110, target = "Skeletal Raider / Skeletal Warder / Skeletal Healer", map = 1431, zone = "Duskwood", x = 13.7, y = 33.4, near = true }, -- 64
         { type = "TURNIN", quest = 323, questName = "Proving Your Worth", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34.1 }, -- 65
         { type = "ACCEPT", quest = 269, questName = "Seeking Wisdom", npc = 311, npcName = "Sven Yorgen", map = 1431, zone = "Duskwood", x = 7.8, y = 34.1 }, -- 66
-        { type = "COLLECT", quest = 134, questName = "Ogre Thieves", target = "Abercrombie's Crate", map = 1431, zone = "Duskwood", x = 33.4, y = 76.4 }, -- 67
+        { type = "COLLECT", quest = 134, questName = "Ogre Thieves", target = "Abercrombie's Crate", map = 1431, zone = "Duskwood", x = 33.4, y = 76.4, near = true }, -- 67
         { type = "TURNIN", quest = 134, questName = "Ogre Thieves", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 68
         { type = "ACCEPT", quest = 160, questName = "Note to the Mayor", npc = 289, npcName = "Abercrombie", map = 1431, zone = "Duskwood", x = 28.1, y = 31.5 }, -- 69
         { type = "TURNIN", quest = 160, questName = "Note to the Mayor", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4 }, -- 70
@@ -87,23 +87,23 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 401, questName = "Wait for Sirra to Finish", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 74
         { type = "ACCEPT", quest = 252, questName = "Translation to Ello", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 75
         { type = "TURNIN", quest = 252, questName = "Translation to Ello", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4 }, -- 76
-        { type = "ACCEPT", quest = 253, questName = "Bride of the Embalmer", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4 }, -- 77
-        { type = "KILL", quest = 253, questName = "Bride of the Embalmer", npc = 314, target = "Eliza", map = 1431, zone = "Duskwood", x = 28.8, y = 30.9, note = "loot The Embalmer's Heart" }, -- 78
-        { type = "TURNIN", quest = 253, questName = "Bride of the Embalmer", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4 }, -- 79
+        { type = "ACCEPT", quest = 253, questName = "Bride of the Embalmer", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4, optional = true, note = "elite target - bring a group (optional)" }, -- 77
+        { type = "KILL", quest = 253, questName = "Bride of the Embalmer", npc = 314, target = "Eliza", map = 1431, zone = "Duskwood", x = 28.8, y = 30.9, optional = true, note = "ELITE - loot The Embalmer's Heart (group quest, optional)" }, -- 78
+        { type = "TURNIN", quest = 253, questName = "Bride of the Embalmer", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4, optional = true }, -- 79
         { type = "TURNIN", quest = 269, questName = "Seeking Wisdom", npc = 1212, npcName = "Bishop Farthing", map = 1453, zone = "Stormwind City", x = 39.1, y = 27.9 }, -- 80
         { type = "GRIND", level = 22, note = "the next quests need level 22" }, -- 81
         { type = "ACCEPT", quest = 66, questName = "The Legend of Stalvan", npc = 265, npcName = "Madame Eva", map = 1431, zone = "Duskwood", x = 75.8, y = 45.3 }, -- 82
         { type = "ACCEPT", quest = 173, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 83
         { type = "TURNIN", quest = 66, questName = "The Legend of Stalvan", npc = 267, npcName = "Clerk Daltry", map = 1431, zone = "Duskwood", x = 72.5, y = 46.9 }, -- 84
         { type = "ACCEPT", quest = 67, questName = "The Legend of Stalvan", npc = 267, npcName = "Clerk Daltry", map = 1431, zone = "Duskwood", x = 72.5, y = 46.9 }, -- 85
-        { type = "KILL", quest = 173, questName = "Worgen in the Woods", npc = 533, target = "Nightbane Shadow Weaver", map = 1431, zone = "Duskwood", x = 64.7, y = 42.9 }, -- 86
+        { type = "KILL", quest = 173, questName = "Worgen in the Woods", npc = 533, target = "Nightbane Shadow Weaver", map = 1431, zone = "Duskwood", x = 64.7, y = 42.9, near = true }, -- 86
         { type = "TURNIN", quest = 173, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 87
         { type = "ACCEPT", quest = 221, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 88
-        { type = "KILL", quest = 221, questName = "Worgen in the Woods", npc = 205, target = "Nightbane Dark Runner", map = 1431, zone = "Duskwood", x = 64.7, y = 51.9 }, -- 89
+        { type = "KILL", quest = 221, questName = "Worgen in the Woods", npc = 205, target = "Nightbane Dark Runner", map = 1431, zone = "Duskwood", x = 64.7, y = 51.9, near = true }, -- 89
         { type = "TURNIN", quest = 221, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 90
         { type = "ACCEPT", quest = 222, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 91
-        { type = "KILL", quest = 222, questName = "Worgen in the Woods", npc = 206, target = "Nightbane Vile Fang", map = 1431, zone = "Duskwood", x = 73.5, y = 68.5 }, -- 92
-        { type = "KILL", quest = 222, questName = "Worgen in the Woods", npc = 920, target = "Nightbane Tainted One", map = 1431, zone = "Duskwood", x = 73.5, y = 77 }, -- 93
+        { type = "KILL", quest = 222, questName = "Worgen in the Woods", npc = 206, target = "Nightbane Vile Fang", map = 1431, zone = "Duskwood", x = 73.5, y = 68.5, near = true }, -- 92
+        { type = "KILL", quest = 222, questName = "Worgen in the Woods", npc = 920, target = "Nightbane Tainted One", map = 1431, zone = "Duskwood", x = 73.5, y = 77, near = true }, -- 93
         { type = "TURNIN", quest = 222, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 94
         { type = "ACCEPT", quest = 223, questName = "Worgen in the Woods", npc = 663, npcName = "Calor", map = 1431, zone = "Duskwood", x = 75.8, y = 47.6 }, -- 95
         { type = "TURNIN", quest = 223, questName = "Worgen in the Woods", npc = 661, npcName = "Jonathan Carevin", map = 1431, zone = "Duskwood", x = 75.3, y = 49 }, -- 96
@@ -113,9 +113,9 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 225, questName = "The Weathered Grave", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 100
         { type = "ACCEPT", quest = 227, questName = "Morgan Ladimore", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 101
         { type = "TURNIN", quest = 227, questName = "Morgan Ladimore", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 102
-        { type = "ACCEPT", quest = 228, questName = "Mor'Ladim", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 103
-        { type = "KILL", quest = 228, questName = "Mor'Ladim", npc = 522, target = "Mor'Ladim", map = 1431, zone = "Duskwood", x = 16.7, y = 37.4, note = "loot Mor'Ladim's Skull" }, -- 104
-        { type = "TURNIN", quest = 228, questName = "Mor'Ladim", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 105
+        { type = "ACCEPT", quest = 228, questName = "Mor'Ladim", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8, optional = true, note = "elite target - bring a group (optional)" }, -- 103
+        { type = "KILL", quest = 228, questName = "Mor'Ladim", npc = 522, target = "Mor'Ladim", map = 1431, zone = "Duskwood", x = 16.7, y = 37.4, optional = true, note = "ELITE - loot Mor'Ladim's Skull (group quest, optional)" }, -- 104
+        { type = "TURNIN", quest = 228, questName = "Mor'Ladim", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8, optional = true }, -- 105
         { type = "ACCEPT", quest = 229, questName = "The Daughter Who Lived", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 106
         { type = "TURNIN", quest = 229, questName = "The Daughter Who Lived", npc = 576, npcName = "Watcher Ladimore", map = 1431, zone = "Duskwood", x = 74, y = 47.8 }, -- 107
         { type = "ACCEPT", quest = 231, questName = "A Daughter's Love", npc = 576, npcName = "Watcher Ladimore", map = 1431, zone = "Duskwood", x = 74, y = 47.8 }, -- 108

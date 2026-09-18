@@ -234,8 +234,8 @@ local function Judge(id, info, now)
 end
 
 local lastReport = 0
-local function Tick()
-    if not Scanner.running then return end
+local function Tick(gen)
+    if gen ~= Scanner.gen or not Scanner.running then return end   -- a stale chain (stop + quick restart) dies here
     local s = Store()
     local now = ns.Now()
     local dt = math.min(1, now - (Scanner.lastTick or now))
@@ -291,7 +291,7 @@ local function Tick()
         ns.Printf("scan: at id %s | %d exist (%d cached), %d silent | canaries %d ok / %d silent, throttled %dx | %.1f req/s",
             tostring(s.cursor and s.cursor[2]), st.found, st.cached, st.silent, st.canaryOK, st.canarySilent, st.throttles, Scanner.rate)
     end
-    C_Timer.After(TICK, Tick)
+    C_Timer.After(TICK, function() Tick(gen) end)
 end
 
 -- ------------------------------------------------------------
@@ -322,6 +322,7 @@ end
 
 function Scanner:Begin(retryQueue)
     local s = Store()
+    self.gen = (self.gen or 0) + 1
     self.running = true
     self.pausedUntil = nil
     self.inflight, self.inflightCount = {}, 0
@@ -334,7 +335,7 @@ function Scanner:Begin(retryQueue)
     self.startedAt = ns.Now()
     lastReport = ns.Now()
     BuildCanaryPool(s)
-    Tick()
+    Tick(self.gen)
 end
 
 function Scanner:Start(from, to)

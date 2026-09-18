@@ -103,7 +103,9 @@ end
 -- world -> map conversion for Forever points stored as world coordinates (spw),
 -- cached because C_Map.GetMapPosFromWorldPos is not free.
 local mapPosCache = {}
+local objCache = {}   -- questID -> objective list; the database is static after ApplyOverlay
 local function WorldToMap(map, inst, wx, wy)
+    if type(map) ~= "number" or type(inst) ~= "number" or type(wx) ~= "number" or type(wy) ~= "number" then return nil end
     local key = map .. ":" .. inst .. ":" .. wx .. ":" .. wy
     local c = mapPosCache[key]
     if c == nil then
@@ -111,7 +113,8 @@ local function WorldToMap(map, inst, wx, wy)
         local C_Map = rawget(_G, "C_Map")
         if C_Map and C_Map.GetMapPosFromWorldPos and rawget(_G, "CreateVector2D") then
             local ok, _, pos = pcall(C_Map.GetMapPosFromWorldPos, inst, CreateVector2D(wx, wy), map)
-            if ok and pos and pos.x then c = { x = pos.x * 100, y = pos.y * 100 } end
+            local x, y = type(pos) == "table" and ns.PlainNumber(pos.x), type(pos) == "table" and ns.PlainNumber(pos.y)
+            if ok and x and y then c = { x = x * 100, y = y * 100 } end
         end
         mapPosCache[key] = c
     end
@@ -183,6 +186,7 @@ function DB:ApplyOverlay(overlay)
     overlay = overlay or ns.ForeverDB
     if not overlay or self.overlayApplied then return 0 end
     self.overlayApplied = true
+    objCache = {}
     ns.QuestDB = ns.QuestDB or {}
     ns.NpcDB = ns.NpcDB or {}
     ns.ObjectDB = ns.ObjectDB or {}
@@ -298,6 +302,8 @@ end
 --- The quest's objectives as the database knows them, in Questie order:
 --- { { kind = "kill"|"object"|"item"|"event"|"credit", id, name, text, locations = {...} }, ... }
 function DB:QuestObjectives(questID)
+    local cached = objCache[questID]
+    if cached then return cached end
     local q = self:GetQuest(questID)
     local out = {}
     if not q then return out end
@@ -346,6 +352,7 @@ function DB:QuestObjectives(questID)
             end
         end
     end
+    objCache[questID] = out
     return out
 end
 
@@ -355,6 +362,9 @@ function DB:MatchObjective(questID, index, text)
     local objs = self:QuestObjectives(questID)
     if text then
         local lower = string.lower(text)
+        -- the objective at the same position wins when its name appears in the text
+        local pos = index and objs[index]
+        if pos and pos.name and pos.name ~= "" and string.find(lower, string.lower(pos.name), 1, true) then return pos end
         for _, o in ipairs(objs) do
             local name = o.name or o.text
             if name and name ~= "" and string.find(lower, string.lower(name), 1, true) then return o end

@@ -13,27 +13,27 @@ ns.RegisterGuide({
     steps = {
         { type = "ACCEPT", quest = 2521, questName = "To Serve Kum'isha", npc = 7363, npcName = "Kum'isha the Collector", map = 1419, zone = "Blasted Lands", x = 52, y = 35.7 }, -- 1
         { type = "ACCEPT", quest = 3501, questName = "Everything Counts In Large Amounts", npc = 7363, npcName = "Kum'isha the Collector", map = 1419, zone = "Blasted Lands", x = 52, y = 35.7 }, -- 2
-        { type = "COLLECT", quest = 2521, questName = "To Serve Kum'isha", target = "Flawless Draenethyst Sphere", map = 1419, zone = "Blasted Lands", x = 51, y = 36.5 }, -- 3
+        { type = "COLLECT", quest = 2521, questName = "To Serve Kum'isha", target = "Flawless Draenethyst Sphere", map = 1419, zone = "Blasted Lands", x = 51, y = 36.5, near = true }, -- 3
         { type = "TURNIN", quest = 2521, questName = "To Serve Kum'isha", npc = 7363, npcName = "Kum'isha the Collector", map = 1419, zone = "Blasted Lands", x = 52, y = 35.7 }, -- 4
-        { type = "COLLECT", quest = 3501, questName = "Everything Counts In Large Amounts", target = "Imperfect Draenethyst Fragment", map = 1419, zone = "Blasted Lands", x = 51, y = 36.5 }, -- 5
+        { type = "COLLECT", quest = 3501, questName = "Everything Counts In Large Amounts", target = "Imperfect Draenethyst Fragment", map = 1419, zone = "Blasted Lands", x = 51, y = 36.5, near = true }, -- 5
         { type = "TURNIN", quest = 3501, questName = "Everything Counts In Large Amounts", npc = 7363, npcName = "Kum'isha the Collector", map = 1419, zone = "Blasted Lands", x = 52, y = 35.7 }, -- 6
         { type = "ACCEPT", quest = 2601, questName = "The Basilisk's Bite", npc = 7506, npcName = "Bloodmage Lynnore", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.3 }, -- 7
         { type = "ACCEPT", quest = 2603, questName = "Vulture's Vigor", npc = 7506, npcName = "Bloodmage Lynnore", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.3 }, -- 8
         { type = "ACCEPT", quest = 2581, questName = "Snickerfang Jowls", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 9
         { type = "ACCEPT", quest = 2583, questName = "A Boar's Vitality", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 10
         { type = "ACCEPT", quest = 2585, questName = "The Decisive Striker", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 11
-        { type = "COLLECT", quest = 2581, questName = "Snickerfang Jowls", target = "Scorpok Pincer", map = 1419, zone = "Blasted Lands", x = 49.6, y = 16.4 }, -- 12
-        { type = "COLLECT", quest = 2583, questName = "A Boar's Vitality", target = "Scorpok Pincer", map = 1419, zone = "Blasted Lands", x = 49.6, y = 16.4 }, -- 13
-        { type = "COLLECT", quest = 2585, questName = "The Decisive Striker", target = "Scorpok Pincer / Vulture Gizzard", map = 1419, zone = "Blasted Lands", x = 49.6, y = 16.4 }, -- 14
-        { type = "COLLECT", quest = 2601, questName = "The Basilisk's Bite", target = "Vulture Gizzard", map = 1419, zone = "Blasted Lands", x = 50.2, y = 17.2 }, -- 15
-        { type = "COLLECT", quest = 2603, questName = "Vulture's Vigor", target = "Vulture Gizzard", map = 1419, zone = "Blasted Lands", x = 50.2, y = 17.2 }, -- 16
-        { type = "COLLECT", quest = 2581, questName = "Snickerfang Jowls", target = "Snickerfang Jowl", map = 1419, zone = "Blasted Lands", x = 48.3, y = 17.8 }, -- 17
-        { type = "COLLECT", quest = 2603, questName = "Vulture's Vigor", target = "Snickerfang Jowl", map = 1419, zone = "Blasted Lands", x = 48.3, y = 17.8 }, -- 18
-        { type = "COLLECT", quest = 2583, questName = "A Boar's Vitality", target = "Basilisk Brain", map = 1419, zone = "Blasted Lands", x = 46, y = 17.8 }, -- 19
-        { type = "COLLECT", quest = 2601, questName = "The Basilisk's Bite", target = "Basilisk Brain", map = 1419, zone = "Blasted Lands", x = 46, y = 17.8 }, -- 20
-        { type = "COLLECT", quest = 2581, questName = "Snickerfang Jowls", target = "Blasted Boar Lung", map = 1419, zone = "Blasted Lands", x = 52.4, y = 28.9 }, -- 21
-        { type = "COLLECT", quest = 2583, questName = "A Boar's Vitality", target = "Blasted Boar Lung", map = 1419, zone = "Blasted Lands", x = 52.4, y = 28.9 }, -- 22
-        { type = "COLLECT", quest = 2585, questName = "The Decisive Striker", target = "Blasted Boar Lung", map = 1419, zone = "Blasted Lands", x = 52.4, y = 28.9 }, -- 23
+        { type = "COLLECT", quest = 2581, questName = "Snickerfang Jowls", target = "Scorpok Pincer", map = 1419, zone = "Blasted Lands", x = 49.6, y = 16.4, near = true }, -- 12
+        { type = "COLLECT", quest = 2583, questName = "A Boar's Vitality", target = "Scorpok Pincer", map = 1419, zone = "Blasted Lands", x = 49.6, y = 16.4, near = true }, -- 13
+        { type = "COLLECT", quest = 2585, questName = "The Decisive Striker", target = "Scorpok Pincer / Vulture Gizzard", map = 1419, zone = "Blasted Lands", x = 49.6, y = 16.4, near = true }, -- 14
+        { type = "COLLECT", quest = 2601, questName = "The Basilisk's Bite", target = "Vulture Gizzard", map = 1419, zone = "Blasted Lands", x = 50.2, y = 17.2, near = true }, -- 15
+        { type = "COLLECT", quest = 2603, questName = "Vulture's Vigor", target = "Vulture Gizzard", map = 1419, zone = "Blasted Lands", x = 50.2, y = 17.2, near = true }, -- 16
+        { type = "COLLECT", quest = 2581, questName = "Snickerfang Jowls", target = "Snickerfang Jowl", map = 1419, zone = "Blasted Lands", x = 48.3, y = 17.8, near = true }, -- 17
+        { type = "COLLECT", quest = 2603, questName = "Vulture's Vigor", target = "Snickerfang Jowl", map = 1419, zone = "Blasted Lands", x = 48.3, y = 17.8, near = true }, -- 18
+        { type = "COLLECT", quest = 2583, questName = "A Boar's Vitality", target = "Basilisk Brain", map = 1419, zone = "Blasted Lands", x = 46, y = 17.8, near = true }, -- 19
+        { type = "COLLECT", quest = 2601, questName = "The Basilisk's Bite", target = "Basilisk Brain", map = 1419, zone = "Blasted Lands", x = 46, y = 17.8, near = true }, -- 20
+        { type = "COLLECT", quest = 2581, questName = "Snickerfang Jowls", target = "Blasted Boar Lung", map = 1419, zone = "Blasted Lands", x = 52.4, y = 28.9, near = true }, -- 21
+        { type = "COLLECT", quest = 2583, questName = "A Boar's Vitality", target = "Blasted Boar Lung", map = 1419, zone = "Blasted Lands", x = 52.4, y = 28.9, near = true }, -- 22
+        { type = "COLLECT", quest = 2585, questName = "The Decisive Striker", target = "Blasted Boar Lung", map = 1419, zone = "Blasted Lands", x = 52.4, y = 28.9, near = true }, -- 23
         { type = "TURNIN", quest = 2601, questName = "The Basilisk's Bite", npc = 7506, npcName = "Bloodmage Lynnore", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.3 }, -- 24
         { type = "TURNIN", quest = 2603, questName = "Vulture's Vigor", npc = 7506, npcName = "Bloodmage Lynnore", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.3 }, -- 25
         { type = "TURNIN", quest = 2581, questName = "Snickerfang Jowls", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 26

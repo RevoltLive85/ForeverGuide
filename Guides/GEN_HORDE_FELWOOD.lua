@@ -14,15 +14,15 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 8460, questName = "Timbermaw Ally", npc = 11554, npcName = "Grazle", map = 1448, zone = "Felwood", x = 50.9, y = 85 }, -- 1
         { type = "ACCEPT", quest = 5155, questName = "Forces of Jaedenar", npc = 10922, npcName = "Greta Mosshoof", map = 1448, zone = "Felwood", x = 51.2, y = 82.1 }, -- 2
         { type = "ACCEPT", quest = 5156, questName = "Verifying the Corruption", npc = 10921, npcName = "Taronn Redfeather", map = 1448, zone = "Felwood", x = 50.9, y = 81.6 }, -- 3
-        { type = "KILL", quest = 8460, questName = "Timbermaw Ally", npc = 7153, target = "Deadwood Warrior / Deadwood Gardener / Deadwood Pathfinder", map = 1448, zone = "Felwood", x = 49.7, y = 88.2 }, -- 4
+        { type = "KILL", quest = 8460, questName = "Timbermaw Ally", npc = 7153, target = "Deadwood Warrior / Deadwood Gardener / Deadwood Pathfinder", map = 1448, zone = "Felwood", x = 49.7, y = 88.2, near = true }, -- 4
         { type = "ACCEPT", quest = 4102, questName = "Cleansing Felwood", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83.1 }, -- 5
-        { type = "KILL", quest = 5155, questName = "Forces of Jaedenar", npc = 7112, target = "Jaedenar Cultist / Jaedenar Adept / Jaedenar Hound / Jaedenar Guardian", map = 1448, zone = "Felwood", x = 39, y = 62.2 }, -- 6
+        { type = "KILL", quest = 5155, questName = "Forces of Jaedenar", npc = 7112, target = "Jaedenar Cultist / Jaedenar Adept / Jaedenar Hound / Jaedenar Guardian", map = 1448, zone = "Felwood", x = 39, y = 62.2, near = true }, -- 6
         { type = "TURNIN", quest = 8460, questName = "Timbermaw Ally", npc = 11554, npcName = "Grazle", map = 1448, zone = "Felwood", x = 50.9, y = 85 }, -- 7
         { type = "ACCEPT", quest = 8462, questName = "Speak to Nafien", npc = 11554, npcName = "Grazle", map = 1448, zone = "Felwood", x = 50.9, y = 85 }, -- 8
         { type = "TURNIN", quest = 5155, questName = "Forces of Jaedenar", npc = 10922, npcName = "Greta Mosshoof", map = 1448, zone = "Felwood", x = 51.2, y = 82.1 }, -- 9
         { type = "ACCEPT", quest = 5157, questName = "Collection of the Corrupt Water", npc = 10922, npcName = "Greta Mosshoof", map = 1448, zone = "Felwood", x = 51.2, y = 82.1 }, -- 10
         { type = "COLLECT", quest = 5157, questName = "Collection of the Corrupt Water", target = "Corrupt Moonwell Water", map = 1448, zone = "Felwood", x = 35.2, y = 59.8 }, -- 11
-        { type = "KILL", quest = 5156, questName = "Verifying the Corruption", npc = 9878, target = "Entropic Beast / Entropic Horror", map = 1448, zone = "Felwood", x = 41.3, y = 43.8 }, -- 12
+        { type = "KILL", quest = 5156, questName = "Verifying the Corruption", npc = 9878, target = "Entropic Beast / Entropic Horror", map = 1448, zone = "Felwood", x = 41.3, y = 43.8, near = true }, -- 12
         { type = "ACCEPT", quest = 6162, questName = "A Husband's Last Battle", npc = 9620, npcName = "Dreka'Sur", map = 1448, zone = "Felwood", x = 34.8, y = 52.7 }, -- 13
         { type = "ACCEPT", quest = 4505, questName = "Well of Corruption", npc = 9996, npcName = "Winna Hazzard", map = 1448, zone = "Felwood", x = 34.2, y = 52.3 }, -- 14
         { type = "COMPLETE", quest = 5156, questName = "Verifying the Corruption", target = "Explore the craters in Shatter Scar Vale", map = 1448, zone = "Felwood", x = 41.0, y = 42.0, note = "Explore the craters in Shatter Scar Vale" }, -- 15
@@ -31,19 +31,19 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 4506, questName = "Corrupted Sabers", npc = 9996, npcName = "Winna Hazzard", map = 1448, zone = "Felwood", x = 34.2, y = 52.3 }, -- 18
         { type = "COMPLETE", quest = 4506, questName = "Corrupted Sabers", target = "Return the corrupted cat to Winna Hazzard", map = 1448, zone = "Felwood", x = 34.3, y = 52.3, note = "Return the corrupted cat to Winna Hazzard" }, -- 19
         { type = "TURNIN", quest = 4506, questName = "Corrupted Sabers", npc = 9996, npcName = "Winna Hazzard", map = 1448, zone = "Felwood", x = 34.2, y = 52.3 }, -- 20
-        { type = "COLLECT", quest = 4102, questName = "Cleansing Felwood", target = "Blood Amber", map = 1448, zone = "Felwood", x = 57.2, y = 21.9 }, -- 21
+        { type = "COLLECT", quest = 4102, questName = "Cleansing Felwood", target = "Blood Amber", map = 1448, zone = "Felwood", x = 57.2, y = 21.9, near = true }, -- 21
         { type = "TURNIN", quest = 5156, questName = "Verifying the Corruption", npc = 10921, npcName = "Taronn Redfeather", map = 1448, zone = "Felwood", x = 50.9, y = 81.6 }, -- 22
         { type = "TURNIN", quest = 5157, questName = "Collection of the Corrupt Water", npc = 10922, npcName = "Greta Mosshoof", map = 1448, zone = "Felwood", x = 51.2, y = 82.1 }, -- 23
         { type = "ACCEPT", quest = 5158, questName = "Seeking Spiritual Aid", npc = 10922, npcName = "Greta Mosshoof", map = 1448, zone = "Felwood", x = 51.2, y = 82.1 }, -- 24
         { type = "TURNIN", quest = 4102, questName = "Cleansing Felwood", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83.1 }, -- 25
         { type = "ACCEPT", quest = 5887, questName = "Salve via Hunting", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83.1 }, -- 26
-        { type = "COLLECT", quest = 5887, questName = "Salve via Hunting", target = "Corrupted Soul Shard", map = 1448, zone = "Felwood", x = 47.1, y = 84 }, -- 27
+        { type = "COLLECT", quest = 5887, questName = "Salve via Hunting", target = "Corrupted Soul Shard", map = 1448, zone = "Felwood", x = 47.1, y = 84, near = true }, -- 27
         { type = "TURNIN", quest = 5887, questName = "Salve via Hunting", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83.1 }, -- 28
         { type = "KILL", quest = 6162, questName = "A Husband's Last Battle", npc = 9464, target = "Overlord Ror", map = 1448, zone = "Felwood", x = 48.2, y = 94.3, note = "loot Overlord Ror's Claw" }, -- 29
         { type = "TURNIN", quest = 6162, questName = "A Husband's Last Battle", npc = 9620, npcName = "Dreka'Sur", map = 1448, zone = "Felwood", x = 34.8, y = 52.7 }, -- 30
         { type = "TURNIN", quest = 8462, questName = "Speak to Nafien", npc = 15395, npcName = "Nafien", map = 1448, zone = "Felwood", x = 64.8, y = 8.1 }, -- 31
         { type = "ACCEPT", quest = 8461, questName = "Deadwood of the North", npc = 15395, npcName = "Nafien", map = 1448, zone = "Felwood", x = 64.8, y = 8.1 }, -- 32
-        { type = "KILL", quest = 8461, questName = "Deadwood of the North", npc = 7157, target = "Deadwood Avenger / Deadwood Den Watcher / Deadwood Shaman", map = 1448, zone = "Felwood", x = 63.7, y = 8.2 }, -- 33
+        { type = "KILL", quest = 8461, questName = "Deadwood of the North", npc = 7157, target = "Deadwood Avenger / Deadwood Den Watcher / Deadwood Shaman", map = 1448, zone = "Felwood", x = 63.7, y = 8.2, near = true }, -- 33
         { type = "TURNIN", quest = 8461, questName = "Deadwood of the North", npc = 15395, npcName = "Nafien", map = 1448, zone = "Felwood", x = 64.8, y = 8.1 }, -- 34
         { type = "ACCEPT", quest = 8465, questName = "Speak to Salfa", npc = 15395, npcName = "Nafien", map = 1448, zone = "Felwood", x = 64.8, y = 8.1 }, -- 35
         { type = "ACCEPT", quest = 8481, questName = "The Root of All Evil", npc = 11555, npcName = "Gorn One Eye", map = 1448, zone = "Felwood", x = 65.2, y = 2.7 }, -- 36

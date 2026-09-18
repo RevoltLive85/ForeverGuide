@@ -14,10 +14,10 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 6028, questName = "The Everlook Report", npc = 10431, npcName = "Gregor Greystone", map = 1452, zone = "Winterspring", x = 61.4, y = 39 }, -- 1
         { type = "ACCEPT", quest = 6030, questName = "Duke Nicholas Zverenhoff", npc = 10431, npcName = "Gregor Greystone", map = 1452, zone = "Winterspring", x = 61.4, y = 39 }, -- 2
         { type = "ACCEPT", quest = 3783, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 3
-        { type = "COLLECT", quest = 3783, questName = "Are We There, Yeti?", target = "Thick Yeti Fur", map = 1452, zone = "Winterspring", x = 65.9, y = 41.7 }, -- 4
+        { type = "COLLECT", quest = 3783, questName = "Are We There, Yeti?", target = "Thick Yeti Fur", map = 1452, zone = "Winterspring", x = 65.9, y = 41.7, near = true }, -- 4
         { type = "TURNIN", quest = 3783, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 5
         { type = "ACCEPT", quest = 977, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 6
-        { type = "COLLECT", quest = 977, questName = "Are We There, Yeti?", target = "Pristine Yeti Horn", map = 1452, zone = "Winterspring", x = 64.7, y = 40.6 }, -- 7
+        { type = "COLLECT", quest = 977, questName = "Are We There, Yeti?", target = "Pristine Yeti Horn", map = 1452, zone = "Winterspring", x = 64.7, y = 40.6, near = true }, -- 7
         { type = "TURNIN", quest = 977, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 8
         { type = "ACCEPT", quest = 4861, questName = "Enraged Wildkin", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52.1, y = 30.4 }, -- 9
         { type = "ACCEPT", quest = 5244, questName = "The Ruins of Kel'Theril", npc = 11079, npcName = "Wynd Nightchaser", map = 1452, zone = "Winterspring", x = 52, y = 30.4 }, -- 10
@@ -29,19 +29,19 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 4863, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 59, y = 59.8 }, -- 16
         { type = "TURNIN", quest = 4863, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7 }, -- 17
         { type = "ACCEPT", quest = 4864, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7 }, -- 18
-        { type = "COLLECT", quest = 4864, questName = "Enraged Wildkin", target = "Blue-feathered Amulet", map = 1452, zone = "Winterspring", x = 59.1, y = 59.7 }, -- 19
-        { type = "COLLECT", quest = 4864, questName = "Enraged Wildkin", target = "Jaron's Supplies", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7 }, -- 20
+        { type = "COLLECT", quest = 4864, questName = "Enraged Wildkin", target = "Blue-feathered Amulet", map = 1452, zone = "Winterspring", x = 59.1, y = 59.7, near = true }, -- 19
+        { type = "COLLECT", quest = 4864, questName = "Enraged Wildkin", target = "Jaron's Supplies", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7, near = true }, -- 20
         { type = "TURNIN", quest = 4864, questName = "Enraged Wildkin", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52.1, y = 30.4 }, -- 21
         { type = "ACCEPT", quest = 5082, questName = "Threat of the Winterfall", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.3, y = 45.2 }, -- 22
-        { type = "KILL", quest = 5082, questName = "Threat of the Winterfall", npc = 7442, target = "Winterfall Pathfinder / Winterfall Totemic", map = 1452, zone = "Winterspring", x = 33.4, y = 37.7 }, -- 23
-        { type = "KILL", quest = 5082, questName = "Threat of the Winterfall", npc = 7440, target = "Winterfall Den Watcher", map = 1452, zone = "Winterspring", x = 30.5, y = 36.9 }, -- 24
+        { type = "KILL", quest = 5082, questName = "Threat of the Winterfall", npc = 7442, target = "Winterfall Pathfinder / Winterfall Totemic", map = 1452, zone = "Winterspring", x = 33.4, y = 37.7, near = true }, -- 23
+        { type = "KILL", quest = 5082, questName = "Threat of the Winterfall", npc = 7440, target = "Winterfall Den Watcher", map = 1452, zone = "Winterspring", x = 30.5, y = 36.9, near = true }, -- 24
         { type = "TURNIN", quest = 5082, questName = "Threat of the Winterfall", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.3, y = 45.2 }, -- 25
         { type = "TURNIN", quest = 6028, questName = "The Everlook Report", npc = 10840, npcName = "Argent Officer Pureheart", map = 1422, zone = "Western Plaguelands", x = 43, y = 83.6 }, -- 26
         { type = "TURNIN", quest = 6030, questName = "Duke Nicholas Zverenhoff", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8 }, -- 27
         { type = "TURNIN", quest = 5245, questName = "Troubled Spirits of Kel'Theril", npc = 10304, npcName = "Aurora Skycaller", map = 1423, zone = "Eastern Plaguelands", x = 53.5, y = 22 }, -- 28
         { type = "GRIND", level = 55, note = "the next quests need level 55" }, -- 29
         { type = "ACCEPT", quest = 969, questName = "Luck Be With You", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 30
-        { type = "COLLECT", quest = 969, questName = "Luck Be With You", target = "Frostmaul Shards", map = 1452, zone = "Winterspring", x = 58.7, y = 63.6 }, -- 31
+        { type = "COLLECT", quest = 969, questName = "Luck Be With You", target = "Frostmaul Shards", map = 1452, zone = "Winterspring", x = 58.7, y = 63.6, near = true }, -- 31
         { type = "TURNIN", quest = 969, questName = "Luck Be With You", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 32
         { type = "ACCEPT", quest = 975, questName = "Cache of Mau'ari", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 33
         { type = "TURNIN", quest = 975, questName = "Cache of Mau'ari", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 34

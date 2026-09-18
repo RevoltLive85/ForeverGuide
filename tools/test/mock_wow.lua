@@ -77,6 +77,12 @@ local function NewRegion(kind)
     function r:SetHighlightFontObject() end
     function r:SetNormalTexture() end
     function r:SetHighlightTexture() end
+    function r:SetChecked(v) self.checked = v and true or false end
+    function r:GetChecked() return self.checked or false end
+    function r:GetID() return 1 end
+    function r:GetName() return self.name end
+    function r:GetParent() return self.parent end
+    function r:IsVisible() return self.shown end
     function r:CreateTexture() return NewRegion("Texture") end
     function r:CreateFontString() return NewRegion("FontString") end
     return r
@@ -84,7 +90,7 @@ end
 
 function _G.CreateFrame(kind, name, parent, template)
     local f = NewRegion(kind)
-    f.name, f.template = name, template
+    f.name, f.template, f.parent = name, template, parent
     if name then _G[name] = f end
     frames[#frames + 1] = f
     return f
@@ -124,6 +130,11 @@ _G.C_Timer = {
 }
 function _G.MOCK_ADVANCE(seconds)
     world.time = world.time + (seconds or 1)
+    -- every shown frame gets one OnUpdate per advance (the client would give it many)
+    for _, f in ipairs(frames) do
+        local fn = f.scripts.OnUpdate
+        if fn and f.shown then fn(f, seconds or 1) end
+    end
     local due = {}
     for i = #timers, 1, -1 do
         if timers[i].at <= world.time then due[#due + 1] = table.remove(timers, i) end
@@ -159,7 +170,7 @@ _G.UnitGUID = function(unit)
     local u = unit == "npc" and world.npc or world.target
     return u and ("Creature-0-1-1-1-" .. u.npcID .. "-0000000001")
 end
-_G.UnitIsPlayer = function() return false end
+_G.UnitIsPlayer = function(unit) if unit == "questnpc" or unit == "npc" then return world.offerFromPlayer == true end return false end
 _G.UnitIsDead = function() return false end
 _G.UnitReaction = function(_, unit)
     local u = unit == "npc" and world.npc or world.target
@@ -196,6 +207,8 @@ _G.C_SuperTrack = { SetSuperTrackedUserWaypoint = function(v) world.superTrack =
 
 -- ---- quests -----------------------------------------------------------------
 _G.C_QuestLog = {
+    IsQuestTrivial = function(id) return world.trivial and world.trivial[id] == true end,
+    IsRepeatableQuest = function(id) return world.repeatable and world.repeatable[id] == true end,
     GetNumQuestLogEntries = function() return #world.logOrder + 1, #world.logOrder end,
     GetInfo = function(i)
         if i == 1 then return { isHeader = true, title = "Elwynn Forest" } end
@@ -290,5 +303,25 @@ function _G.MOCK_MOVE(mapX, mapY)
     world.mapX, world.mapY = mapX / 100, mapY / 100
     world.worldX, world.worldY = -world.mapY * 1000, -world.mapX * 1000
 end
+
+
+-- ---- Retail settings API (as on Forever's 12.x engine) ----------------------
+_G.Settings = {
+    RegisterCanvasLayoutCategory = function(frame, name)
+        local cat = { name = name, frame = frame }
+        function cat:GetID() return name end
+        return cat
+    end,
+    RegisterAddOnCategory = function(cat) world.settingsCategory = cat end,
+    OpenToCategory = function(id) world.settingsOpened = id end,
+}
+
+-- ---- strict globals: any read of an undefined global is a bug (the addon
+-- probes optional ones with rawget, which bypasses this) --------------------
+local NIL_OK = { ForeverGuideDB = true, ForeverGuideCharDB = true }   -- SavedVariables do not exist on a first login
+setmetatable(_G, { __index = function(_, k)
+    if NIL_OK[k] then return nil end
+    error("read of undefined global '" .. tostring(k) .. "'", 2)
+end })
 
 return world

@@ -121,8 +121,10 @@ function Harvest:AllZoneMaps()
 end
 
 function Harvest:HarvestAllMaps()
+    if self.harvesting then ns.Print("harvest: already running.") return end
     local maps = self:AllZoneMaps()
     if #maps == 0 then ns.Warn("harvest: no maps found (C_Map.GetMapChildrenInfo returned nothing)") return end
+    self.harvesting = true
     ns.Printf("harvest: requesting quest lines for %d maps...", #maps)
     local i = 0
     local totalLines, totalNew = 0, 0
@@ -142,6 +144,7 @@ function Harvest:HarvestAllMaps()
                     for _ in pairs(s.quests) do total = total + 1 end
                     ns.Printf("harvest: %d quest-line entries across %d maps, %d quests new; %d quests known in total. /reload to save, then tools/scan_diff.py.",
                         totalLines, #maps, totalNew, total)
+                    Harvest.harvesting = nil
                 end)
                 return
             end

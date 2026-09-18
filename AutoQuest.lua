@@ -28,6 +28,7 @@ local function Cfg()
     if a.announce == nil then a.announce = true end
     return a
 end
+Auto.Cfg = Cfg
 
 local function Bypass()
     return Safe(rawget(_G, "IsShiftKeyDown")) == true
@@ -105,11 +106,13 @@ local function HandleGreeting()
         local n = PlainNumber(Safe(rawget(_G, "GetNumAvailableQuests"))) or 0
         for i = 1, n do
             local title = PlainString(Safe(rawget(_G, "GetAvailableTitle"), i))
-            local isTrivial, frequency, isRepeatable = Safe(rawget(_G, "GetAvailableQuestInfo"), i)
-            -- no quest id in the greeting API: match the guide by title
-            local questID
+            local info = { Safe(rawget(_G, "GetAvailableQuestInfo"), i) }
+            local isTrivial, frequency, isRepeatable = info[1], info[2], info[3]
+            -- Retail returns the quest id as the trailing value; fall back to a title match against the guide
+            local questID = PlainNumber(info[#info])
+            if questID and questID <= 0 then questID = nil end
             local g = ns.Guide.active
-            if g and title then
+            if not questID and g and title then
                 for _, s in ipairs(g.steps) do
                     if s.quest and (s.questName == title or ns.DB:QuestName(s.quest) == title) then questID = s.quest break end
                 end
@@ -128,8 +131,14 @@ end
 local function HandleDetail()
     if Bypass() then return end
     local questID = PlainNumber(Safe(rawget(_G, "GetQuestID")))
+    if not questID or questID == 0 then return end            -- the window is already gone
+    -- a quest shared by another player (or an escort started by one) is never auto-accepted
+    local UnitIsPlayer = rawget(_G, "UnitIsPlayer")
+    if Safe(UnitIsPlayer, "questnpc") == true or Safe(UnitIsPlayer, "npc") == true then return end
     local title = PlainString(Safe(rawget(_G, "GetTitleText")))
-    if not WantAccept(questID, title, false, false) then return end
+    local trivial = PlainBool(ns.Call("C_QuestLog.IsQuestTrivial", questID)) == true
+    local repeatable = PlainBool(ns.Call("C_QuestLog.IsRepeatableQuest", questID)) == true
+    if not WantAccept(questID, title, trivial, repeatable) then return end
     if Safe(rawget(_G, "QuestGetAutoAccept")) == true then
         Safe(rawget(_G, "AcknowledgeAutoAcceptQuest"))
     else
@@ -149,6 +158,7 @@ local function HandleComplete()
     if Bypass() or not Cfg().turnin then return end
     local choices = PlainNumber(Safe(rawget(_G, "GetNumQuestChoices"))) or 0
     local questID = PlainNumber(Safe(rawget(_G, "GetQuestID")))
+    if not questID or questID == 0 then return end            -- the window is already gone
     local title = PlainString(Safe(rawget(_G, "GetTitleText")))
     if choices > 1 then
         Announce("%s - choose your reward", ns.Quest:TitleWithLevel(questID, title))
@@ -159,6 +169,7 @@ local function HandleComplete()
 end
 
 function Auto:OnInit()
+    Cfg()   -- materialise the defaults so the options panel shows the real state
     local E = ns.Events
     E:Register("GOSSIP_SHOW", function() E:After(0.05, HandleGossip) end)
     E:Register("QUEST_GREETING", function() E:After(0.05, HandleGreeting) end)

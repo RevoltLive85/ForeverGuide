@@ -33,6 +33,14 @@ for line in io.lines(root .. "ForeverGuide.toc") do
 end
 for _, f in ipairs(order) do loadAddonFile(f) end
 
+-- every error the addon swallows and reports must surface here
+local reportedErrors = {}
+do
+    local realReport, realError = ns.ReportOnce, ns.Error
+    ns.ReportOnce = function(key, err) reportedErrors[#reportedErrors + 1] = tostring(key) .. ": " .. tostring(err) realReport(key, err) end
+    ns.Error = function(msg) reportedErrors[#reportedErrors + 1] = tostring(msg) realError(msg) end
+end
+
 -- ---- run lifecycle ------------------------------------------------------------
 MOCK_FIRE("ADDON_LOADED", "ForeverGuide")
 MOCK_FIRE("PLAYER_ENTERING_WORLD", true, false)
@@ -247,8 +255,67 @@ do
     MOCK_FIRE("QUEST_DETAIL"); settle()
     check(MOCK.acceptedViaFrame == nil, "accept=guide ignores quests outside the guide")
     ns.AutoQuest:Set("accept", "on")
+    -- direct QUEST_DETAIL path: grey / repeatable / player-shared quests are not auto-accepted
+    MOCK.trivial = { [5002] = true }
+    MOCK.offeredQuest = 5002
+    MOCK.log[5002] = { title = "Grey Quest", level = 1, objectives = {} }
+    MOCK.acceptedViaFrame = nil
+    MOCK_FIRE("QUEST_DETAIL"); settle()
+    check(MOCK.acceptedViaFrame == nil, "trivial (grey) quest offered directly is not auto-accepted")
+    MOCK.repeatable = { [5003] = true }
+    MOCK.offeredQuest = 5003
+    MOCK.log[5003] = { title = "Repeatable", level = 10, objectives = {} }
+    MOCK_FIRE("QUEST_DETAIL"); settle()
+    check(MOCK.acceptedViaFrame == nil, "repeatable quest offered directly is not auto-accepted")
+    MOCK.offerFromPlayer = true
+    MOCK.offeredQuest = 5004
+    MOCK.log[5004] = { title = "Shared", level = 10, objectives = {} }
+    MOCK_FIRE("QUEST_DETAIL"); settle()
+    check(MOCK.acceptedViaFrame == nil, "quest shared by another player is not auto-accepted")
+    MOCK.offerFromPlayer = false
+    MOCK.offeredQuest = 0
+    MOCK_FIRE("QUEST_DETAIL"); settle()
+    check(MOCK.acceptedViaFrame == nil, "closed quest window (id 0) is ignored")
+    MOCK.offeredQuest = 5004
+    MOCK_FIRE("QUEST_DETAIL"); settle()
+    check(MOCK.acceptedViaFrame == 5004, "a normal directly-offered quest is still auto-accepted")
     ns.Commands:Run("auto")
-    MOCK.log[60], MOCK.log[62], MOCK.log[5001] = nil, nil, nil
+    MOCK.log[60], MOCK.log[62], MOCK.log[5001], MOCK.log[5002], MOCK.log[5003], MOCK.log[5004] = nil, nil, nil, nil, nil, nil
+    MOCK.trivial, MOCK.repeatable = nil, nil
+end
+
+-- ---- multi-objective steps: each KILL/COLLECT step tracks its own objective ----
+do
+    G:Activate("GEN_ALLIANCE_ELWYNN_FOREST", true); settle()
+    local steps = G.active.steps
+    local a, b
+    for i, s in ipairs(steps) do
+        if s.quest == 52 and (s.type == "KILL" or s.type == "COLLECT") then
+            if not a then a = i elseif not b then b = i end
+        end
+    end
+    check(a and b, "Elwynn guide has two objective steps for quest 52 (" .. tostring(a) .. "," .. tostring(b) .. ")")
+    if a and b then
+        MOCK_ACCEPT(52, "Young Forest Bear... no: Rolf and Malakai", {
+            { text = "Young Forest Bear slain: 0/8", finished = false, numFulfilled = 0, numRequired = 8 },
+            { text = "Prowler slain: 0/8", finished = false, numFulfilled = 0, numRequired = 8 },
+        }); settle()
+        G:SetStep(a); settle()
+        check(G:StepObjectiveIndex(steps[a]) == 1 and G:StepObjectiveIndex(steps[b]) == 2,
+            "steps map to objectives 1 and 2 by target name (" .. tostring(G:StepObjectiveIndex(steps[a])) .. "," .. tostring(G:StepObjectiveIndex(steps[b])) .. ")")
+        check(cur() == a, "current step is the first objective step (" .. tostring(cur()) .. ")")
+        MOCK.log[52].objectives[1] = { text = "Young Forest Bear slain: 8/8", finished = true, numFulfilled = 8, numRequired = 8 }
+        MOCK_FIRE("QUEST_LOG_UPDATE"); settle()
+        check(cur() == b, "first objective done -> second objective step is current (" .. tostring(cur()) .. ")")
+        check(G:GetStepProgress(steps[b]) == "0 / 8", "progress shows the second objective's own count: " .. G:GetStepProgress(steps[b]))
+        -- /fg back holds the previous (already finished) step
+        G:Back(); settle()
+        check(cur() == a, "back holds the finished step (" .. tostring(cur()) .. ")")
+        G:Skip(); settle()
+        check(cur() == b, "skip releases the hold (" .. tostring(cur()) .. ")")
+        MOCK.log[52] = nil
+        for i, id in ipairs(MOCK.logOrder) do if id == 52 then table.remove(MOCK.logOrder, i) break end end
+    end
 end
 
 -- ---- scanner: simulated server with silence for unknown ids and a throttle ----
@@ -314,6 +381,98 @@ do
     local fq = ns.QuestDB[99128]
     check(fq and fq.forever and fq.n == "Slimy Menace", "Forever-only quest 99128 exists with its title")
     check(ns.Quest:XPMultiplier(783, 1) == 1 and ns.Quest:XPMultiplier(783, 7) == 0.8 and ns.Quest:XPMultiplier(783, 12) == 0.1, "xp multiplier follows the Classic reduction table")
+end
+
+-- ---- editor + resync -------------------------------------------------------------------
+do
+    G:Activate("GEN_ALLIANCE_ELWYNN_FOREST", true); G:SetStep(1); settle()
+    local step = G:GetCurrentStep()
+    MOCK_MOVE(33.3, 44.4)
+    ns.Commands:Run("edit here")
+    local map, x, y = ns.Navigation:ResolveStep(step)
+    check(map == 1429 and math.abs(x - 33.3) < 0.01 and math.abs(y - 44.4) < 0.01, "/fg edit here overrides the step location (" .. tostring(x) .. "," .. tostring(y) .. ")")
+    check(ns.db.edits and ns.db.edits.GEN_ALLIANCE_ELWYNN_FOREST and ns.db.edits.GEN_ALLIANCE_ELWYNN_FOREST[step.index] ~= nil, "edit persisted in ForeverGuideDB.edits")
+    ns.Commands:Run("edit note test note")
+    check(ns.Editor:Effective(step).note == "test note", "/fg edit note sets the note")
+    ns.Commands:Run("edits")
+    ns.Commands:Run("edit clear")
+    local map2, x2 = ns.Navigation:ResolveStep(step)
+    check(not (map2 == 1429 and x2 and math.abs(x2 - 33.3) < 0.01), "/fg edit clear restores the original location")
+    -- resync: a level-20 character skips out-levelled quests
+    MOCK_LEVEL(20); settle()
+    local n = G:Resync(); settle()
+    check(n > 10, "resync skipped the out-levelled quests (" .. n .. ")")
+    local cs = G:GetCurrentStep()
+    check(cs == nil or not cs.quest or ns.Quest:XPMultiplier(cs.quest) > 0.2 or ns.Quest:IsOnQuest(cs.quest), "current step after resync is not a grey quest")
+    MOCK_LEVEL(5); settle()
+    G:Reset(); settle()
+end
+
+-- ---- sweep: every command, every UI script, options, keybinds ------------------------
+do
+    local before = #reportedErrors
+    local cmds = {
+        "", "help", "show", "hide", "toggle", "show", "guides", "guide GEN_ALLIANCE_ELWYNN_FOREST", "skip", "back", "next", "step 3",
+        "quests", "mode auto", "track", "mode guide", "quest 783", "quest kobold", "avail", "avail 5", "pos", "target", "nav",
+        "way 40 60", "lock", "unlock", "resetpos", "auto", "auto accept guide", "auto turnin off", "auto accept on", "auto turnin on",
+        "minimap off", "minimap on", "arrow off", "arrow on", "scale 1.2", "scale 1", "rec status", "rec dump 3", "scan status",
+        "harvest status", "bliz off", "bliz on", "wrong", "wrong test text", "reports", "options", "debug", "debug", "eval",
+        "reports clear", "bogus", "reset",
+    }
+    for _, c in ipairs(cmds) do ns.Commands:Run(c) end
+    -- UI window scripts
+    local w = rawget(_G, "ForeverGuideFrame") or rawget(_G, "ForeverGuideWindow")
+    for name, f in pairs(_G) do
+        if type(name) == "string" and name:find("^ForeverGuide") and type(f) == "table" and type(rawget(f, "scripts")) == "table" then
+            for sname, fn in pairs(f.scripts) do
+                if sname == "OnUpdate" then fn(f, 0.5) fn(f, 0.5)
+                elseif sname == "OnClick" then fn(f, "LeftButton") fn(f, "RightButton")
+                elseif sname == "OnEnter" or sname == "OnLeave" or sname == "OnShow" or sname == "OnHide" then fn(f)
+                elseif sname == "OnDragStart" or sname == "OnDragStop" then fn(f)
+                end
+            end
+        end
+    end
+    -- options panel: flip every checkbox both ways
+    local panel = rawget(_G, "ForeverGuideOptionsPanel")
+    check(panel ~= nil and MOCK.settingsCategory ~= nil, "options panel registered with the Settings API")
+    if panel then
+        panel.scripts.OnShow(panel)
+        ns.Options:Refresh()
+    end
+    for _, fname in ipairs({ "ForeverGuide_ToggleWindow", "ForeverGuide_TogglePicker", "ForeverGuide_ToggleArrow", "ForeverGuide_Skip",
+        "ForeverGuide_Back", "ForeverGuide_ToggleMode", "ForeverGuide_ReportWrong", "ForeverGuide_ToggleWindow", "ForeverGuide_TogglePicker",
+        "ForeverGuide_ToggleArrow", "ForeverGuide_ToggleMode" }) do _G[fname]() end
+    -- hide in combat
+    ns.db.ui.hideInCombat = true
+    ns.UI:Show()
+    MOCK_FIRE("PLAYER_REGEN_DISABLED")
+    check(not ForeverGuideFrame:IsShown(), "window hidden when combat starts")
+    MOCK_FIRE("PLAYER_REGEN_ENABLED")
+    check(ForeverGuideFrame:IsShown(), "window restored after combat")
+    ns.db.ui.hideInCombat = false
+    -- minimap tooltip / clicks
+    local mb = rawget(_G, "ForeverGuideMinimapButton")
+    check(mb ~= nil, "minimap button exists")
+    if mb then mb.scripts.OnEnter(mb) mb.scripts.OnLeave(mb) mb.scripts.OnClick(mb, "LeftButton") mb.scripts.OnClick(mb, "RightButton") mb.scripts.OnClick(mb, "LeftButton") end
+    ns.UI:RefreshPicker()
+    ns.Tracker:SetMode("auto") ns.Tracker:Rethink() ns.UI:Refresh() ns.Tracker:SetMode("guide")
+    local unexpected = 0
+    for i = before + 1, #reportedErrors do
+        local e = reportedErrors[i]
+        if not e:find("unknown command", 1, true) then unexpected = unexpected + 1 end
+    end
+    check(unexpected == 0, "command / UI sweep produced no errors (" .. unexpected .. ")")
+end
+
+-- ---- no swallowed errors anywhere -------------------------------------------------
+do
+    local expected = 0
+    for _, e in ipairs(reportedErrors) do
+        if e:find("command failed", 1, true) and e:find("expected", 1, true) then expected = expected + 1 end
+    end
+    check(#reportedErrors == expected, "no errors were reported by any module (" .. #reportedErrors .. ")")
+    for _, e in ipairs(reportedErrors) do print("   reported: " .. e) end
 end
 
 print(string.format("\n%d passed, %d failed", passed, failed))

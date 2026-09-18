@@ -93,10 +93,15 @@ function Arrow:Create()
     return f
 end
 
+-- The placeholder ("no destination - drag me") only shows while the player
+-- explicitly unlocked the UI this session (/fg unlock or the option), not just
+-- because the saved setting is unlocked - a fresh install must not show it.
+Arrow.dragMode = false
+
 function Arrow:Tick()
     local f = frame
     local Nav = ns.Navigation
-    local unlocked = not ns.db.ui.locked
+    local unlocked = Arrow.dragMode
     f:EnableMouse(unlocked)
     f.hint:SetShown(unlocked)
     local t = Nav.target
@@ -111,7 +116,7 @@ function Arrow:Tick()
         end
         return
     end
-    local s = Nav:Update()
+    local s = Nav:Update(true)
     f.label:SetText(t.label or "")
     if not s or not s.distance then
         f.tex:SetRotation(0)
@@ -119,7 +124,14 @@ function Arrow:Tick()
         f.dist:SetText(Nav:Describe())
         return
     end
-    local angle = s.angle or 0
+    if not s.angle then
+        -- distance known but no facing (indoors / instances): grey, no direction claim
+        f.tex:SetRotation(0)
+        f.tex:SetVertexColor(0.6, 0.6, 0.6)
+        f.dist:SetText(Nav:FormatDistance(s.distance) .. (s.arrived and "  - here" or ""))
+        return
+    end
+    local angle = s.angle
     f.tex:SetRotation(angle)
     local a = math.abs(angle)
     if a < math.pi / 8 then
@@ -147,7 +159,7 @@ end
 function Arrow:Refresh()
     if not frame then return end
     local c = Cfg()
-    if c.enabled and not suppressed and (ns.Navigation.target or not ns.db.ui.locked) then
+    if c.enabled and not suppressed and (ns.Navigation.target or Arrow.dragMode) then
         frame:Show()
         self:Tick()
     else
@@ -170,8 +182,12 @@ function Arrow:ResetPosition()
 end
 
 function Arrow:OnInit()
-    ns.Events:RegisterMany({ "FG_NAV_TARGET_CHANGED", "FG_STEP_CHANGED", "FG_TRACKER_CHANGED", "FG_MODE_CHANGED", "FG_LOCK_CHANGED" },
+    ns.Events:RegisterMany({ "FG_NAV_TARGET_CHANGED", "FG_STEP_CHANGED", "FG_TRACKER_CHANGED", "FG_MODE_CHANGED" },
         function() Arrow:Refresh() end)
+    ns.Events:Register("FG_LOCK_CHANGED", function(_, locked)
+        Arrow.dragMode = (locked == false)
+        Arrow:Refresh()
+    end)
 end
 
 function Arrow:OnEnable()

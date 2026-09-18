@@ -142,3 +142,31 @@ Questie 11.21.7 source is at `_classic_beta_\Interface\Questie-11.21.7` (read-on
 
 **Still open**: terrain-aware distances (roads/cliffs) — deferred; the DB2 import needs real CSVs to validate; recorder-only quests have
 no `zone`, so `AvailableInZone` skips them (could derive from spm map); Forever's real quest XP is unknown (vanilla values assumed).
+
+## Update 2026-09-18 (late) — full recheck, review fixes, editor, GitHub
+
+**Verification**: every global / C_ API / template / texture / event the addon uses was checked against the live 1.60.1
+function list (all present); the mock is now strict (undefined global reads error, Settings API mocked, OnUpdate ticked)
+and the test suite fails on any swallowed error. Two subagent code reviews (engine + UI/automation) -> 30 findings, all fixed:
+- Guide: `StepObjectiveIndex` (multi-objective quests: each KILL/COLLECT step tracks its own objective by target name),
+  `/fg back` holds, recovery note persists, chained-guide event order, optional steps self-complete, `Resync()`.
+- Tracker ticker pcall'd + always re-armed; rethink only when active; no writes into cached DB location tables.
+- Navigation: arrival detection moved into `Nav:Update` + an invisible poller (works with the window hidden); target `owner`
+  (guide vs tracker) so the tracker's arrivals do not complete guide TRAVEL steps; Blizzard pin only cleared if still ours;
+  `SetBlizzardWaypointEnabled`; `Update(true)` shares one result per 40 ms across window/arrow/poller.
+- Quest: `IsCompleted` trusts a turn-in for 30 s (flag lag), `RequestLoadQuestByID` once per id, collapsed-header warning.
+- DB: `QuestObjectives` cached (rebuilt after ApplyOverlay), `MatchObjective` positional-first, `WorldToMap` guarded.
+- Core `Safe` hole-safe (`select("#")`), Events error keys per handler.
+- AutoQuest: direct QUEST_DETAIL path now filters trivial/repeatable (`C_QuestLog.IsQuestTrivial/IsRepeatableQuest`) and
+  player-shared quests (`UnitIsPlayer("questnpc")`), ignores a closed window (id 0); greeting path uses the quest id
+  returned by `GetAvailableQuestInfo`; defaults materialised at load (options panel shows the truth).
+- Arrow: placeholder only in explicit drag mode (`FG_LOCK_CHANGED` carries the boolean), grey when facing unknown.
+- Scanner tick generation, Harvest re-entrancy, picker label layout + clamp, header widths, TOC note wording.
+**Routing**: hub visiting order is itself a tour (NN + 2-opt over hubs with pending work) -> no trailing treks (Dun Morogh
+now: Coldridge -> Kharanos -> Brewnall -> Rumbleshot -> Kharanos -> east -> Ironforge/Loch Modan hand-ins). Elite/group
+quests are routed as `optional`; objective steps with many spawns carry `near` (runtime picks the nearest DB spawn).
+**Editor** (`Editor.lua`): `/fg edit here|npc|note|radius|clear`, `/fg edits`, applied at runtime via `Editor:Effective`,
+folded into guides-src by `tools/apply_edits.py`. `/fg resync` skips out-levelled quests.
+**GitHub**: the AddOns folder is a git checkout of https://github.com/RevoltLive85/ForeverGuide (initialised and pushed from
+the PC through the cc-shell tool, `core.autocrlf=false`); `tools/sync_to_github.cmd` for manual edits. Claude commits + pushes
+after every install via `cc_run` in that folder. Tests: 96 checks.

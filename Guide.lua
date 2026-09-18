@@ -163,9 +163,24 @@ function Guide:IsStepDone(step, idx)
     elseif OBJECTIVE[t] then
         if not Q:IsOnQuest(step.quest) then return false, nil end
         if Q:IsReadyForTurnIn(step.quest) then return true, "ready" end
-        if step.objective then
-            local o = Q:GetObjective(step.quest, step.objective)
-            return o ~= nil and o.finished, nil
+        local objIdx = self:StepObjectiveIndex(step)
+        if objIdx then
+            -- every objective this step covers must be finished
+            local allCovered = true
+            local objs = Q:GetObjectives(step.quest) or {}
+            local keys = step.target and string.gmatch(step.target, "[^/]+")
+            if keys then
+                for part in keys do
+                    local lower = string.lower(ns.Trim(part))
+                    for _, o in ipairs(objs) do
+                        if o.text and string.find(string.lower(o.text), lower, 1, true) and not o.finished then allCovered = false end
+                    end
+                end
+            else
+                local o = Q:GetObjective(step.quest, objIdx)
+                allCovered = o ~= nil and o.finished == true
+            end
+            return allCovered, nil
         end
         local _, _, allDone = Q:GetProgress(step.quest)
         return allDone == true, nil
@@ -181,6 +196,39 @@ function Guide:IsStepDone(step, idx)
         return false, nil
     end
     return false, nil   -- manual types
+end
+
+--- Which live objective a KILL/COLLECT/COMPLETE step refers to: the explicit
+--- `objective` index, else the objective whose text names the step's target
+--- (guides generated from the database emit one step per objective).
+function Guide:StepObjectiveIndex(step)
+    if step.objective then return step.objective end
+    if not step.quest then return nil end
+    local objs = ns.Quest:GetObjectives(step.quest)
+    if not objs or #objs <= 1 then return nil end
+    local keys = {}
+    if step.target then
+        for part in string.gmatch(step.target, "[^/]+") do keys[#keys + 1] = ns.Trim(part) end
+    end
+    if ns.DB and ns.DB:IsLoaded() then
+        if step.npc then keys[#keys + 1] = ns.DB:NPCName(step.npc) end
+        if step.item then keys[#keys + 1] = ns.DB:ItemName(step.item) end
+    end
+    if #keys == 0 then return nil end
+    -- several targets merged into one step ("A / B"): the first unfinished one wins
+    local firstMatch
+    for _, key in ipairs(keys) do
+        if key and key ~= "" then
+            local lower = string.lower(key)
+            for idx, o in ipairs(objs) do
+                if o.text and o.text ~= "" and string.find(string.lower(o.text), lower, 1, true) then
+                    if not o.finished then return idx end
+                    firstMatch = firstMatch or idx
+                end
+            end
+        end
+    end
+    return firstMatch
 end
 
 --- A quest step that cannot progress because the quest is not in the log.
@@ -208,16 +256,20 @@ function Guide:Evaluate(reason)
     if not g or not p then return end
     local steps = g.steps
     local i = p.step
-    self.note, self.blocked = nil, false
+    self.blocked = false
+    if self.recovery and (self.recovery.step ~= i or ns.Quest:IsOnQuest(self.recovery.quest)) then self.recovery = nil end
+    self.note = self.recovery and self.recovery.note or nil
 
     -- 1. advance over done steps; auto-complete manual steps when the next
     --    automatic step is already done
     local guard = 0
-    while steps[i] and guard < #steps + 5 do
+    if self.hold and self.hold ~= p.step then self.hold = nil end
+    while steps[i] and i ~= self.hold and guard < #steps + 5 do
         guard = guard + 1
         local step = steps[i]
         local done = self:IsStepDone(step, i)
-        if not done and MANUAL[step.type] then
+        -- manual steps and optional (group) steps complete themselves once the player is past them
+        if not done and (MANUAL[step.type] or step.optional) then
             local k = i + 1
             while steps[k] and (MANUAL[steps[k].type] or not self:StepApplies(steps[k])) do k = k + 1 end
             if steps[k] and self:IsStepDone(steps[k], k) then
@@ -235,6 +287,7 @@ function Guide:Evaluate(reason)
         if acceptIdx and not p.done[acceptIdx] then
             local title = ns.Quest:GetTitle(steps[i].quest) or ("quest " .. steps[i].quest)
             self.note = string.format("%s is not in your quest log - back to accepting it.", title)
+            self.recovery = { step = acceptIdx, quest = steps[i].quest, note = self.note }
             i = acceptIdx
         else
             self.blocked = true
@@ -256,7 +309,7 @@ function Guide:Evaluate(reason)
             self.chainDepth = self.chainDepth - 1
             return
         end
-        ns.Navigation:Clear()
+        if not (ns.Tracker and ns.Tracker:IsActive()) then ns.Navigation:Clear() end
         if changed then ns.Events:Fire("FG_STEP_CHANGED", nil, g) end
         return
     end
@@ -270,14 +323,15 @@ function Guide:Evaluate(reason)
 end
 
 function Guide:UpdateNavigation()
-    if ns.Tracker and ns.Tracker:IsActive() and ns.char.mode == "auto" then return end   -- tracker drives navigation
+    if ns.Tracker and ns.Tracker:IsActive() then return end   -- tracker drives navigation (auto mode, or no guide)
     local step = self:GetCurrentStep()
     if not step then ns.Navigation:Clear() return end
     local mapID, x, y = ns.Navigation:ResolveStep(step)
     if mapID then
         local t = ns.Navigation.target
         if not (t and t.map == mapID and t.x == x and t.y == y) then
-            ns.Navigation:SetTarget({ map = mapID, x = x, y = y, label = self:GetStepText(step), radius = step.radius })
+            local eff = ns.Editor and ns.Editor:Effective(step) or step
+            ns.Navigation:SetTarget({ map = mapID, x = x, y = y, label = self:GetStepText(step), radius = eff.radius, owner = "guide" })
         end
     else
         ns.Navigation:Clear()
@@ -296,9 +350,11 @@ function Guide:Activate(id, silent)
     self.active = g
     self.progress = ns.Database:GuideProgress(g.id, g.version)
     self.current = nil
+    self.hold, self.recovery = nil, nil
     ns.char.activeGuide = g.id
     if not silent then ns.Printf("Guide: %s%s%s (%d steps)", ns.COLOR_OK, g.name or g.id, ns.COLOR_END, #g.steps) end
     self:Evaluate("activate")
+    if self.active ~= g then return true end   -- finished instantly and chained into the next guide
     ns.Events:Fire("FG_GUIDE_CHANGED", g)
     return true
 end
@@ -315,6 +371,7 @@ function Guide:MarkDone(idx, reason)
     local step = self.active.steps[idx]
     if not step then return end
     self.progress.done[idx] = true
+    if self.hold == idx then self.hold = nil end
     -- skipping an ACCEPT step means skipping that quest entirely
     if step.type == "ACCEPT" and step.quest and reason == "skip" then
         for j, s in ipairs(self.active.steps) do
@@ -339,16 +396,55 @@ function Guide:Back()
     self.progress.done[i] = nil
     self.progress.step = i
     self.current = nil
+    self.hold = i        -- stay here even if the game says it is done (until /fg skip or a real change)
     self:Evaluate("back")
+    if self.current == i then ns.Printf("Back to step %d (held; /fg skip to move on).", i) end
 end
 
 function Guide:SetStep(n)
     if not self.active or not self.progress then return end
     n = math.max(1, math.min(#self.active.steps, math.floor(n)))
+    self.hold = nil
     for j = n, #self.active.steps do self.progress.done[j] = nil end
     self.progress.step = n
     self.current = nil
     self:Evaluate("jump")
+end
+
+--- Level-aware resync (recovery when the player levelled elsewhere or
+--- skipped around): jump to the first step that is not done, skipping
+--- whole quests that would give almost no xp any more (unless a later step
+--- of the guide needs them). Returns the number of quests skipped.
+function Guide:Resync()
+    if not self.active or not self.progress then return 0 end
+    local steps, p, Q = self.active.steps, self.progress, ns.Quest
+    local needed = {}
+    if ns.DB and ns.DB:IsLoaded() then
+        for _, s in ipairs(steps) do
+            local q = s.quest and ns.DB:GetQuest(s.quest)
+            if q then
+                for _, pre in ipairs(q.pregroup or {}) do needed[pre] = true end
+                for _, pre in ipairs(q.pre or {}) do needed[pre] = true end
+                if q.parent then needed[q.parent] = true end
+            end
+        end
+    end
+    local skipped, skippedQuests = 0, {}
+    for i, s in ipairs(steps) do
+        if s.quest and not skippedQuests[s.quest] and not p.done[i] and self:StepApplies(s)
+            and not Q:IsCompleted(s.quest) and not Q:IsOnQuest(s.quest) and not needed[s.quest]
+            and Q:XPMultiplier(s.quest) <= 0.2 then
+            skippedQuests[s.quest] = true
+            skipped = skipped + 1
+        end
+    end
+    for i, s in ipairs(steps) do
+        if s.quest and skippedQuests[s.quest] then p.done[i] = true end
+    end
+    self.hold = nil
+    self.current = nil
+    self:Evaluate("resync")
+    return skipped
 end
 
 function Guide:Reset()
@@ -416,7 +512,7 @@ function Guide:GetStepProgress(step)
         if not Q:IsOnQuest(step.quest) then return "not in quest log" end
         if Q:IsReadyForTurnIn(step.quest) then return "ready to turn in" end
         if t == "TURNIN" then return "objectives not finished" end
-        local f, r = Q:GetProgress(step.quest, step.objective)
+        local f, r = Q:GetProgress(step.quest, self:StepObjectiveIndex(step))
         if r > 0 then return string.format("%d / %d", f, r) end
         return "in progress"
     elseif t == "GRIND" then
@@ -460,7 +556,8 @@ function Guide:OnInit()
         end)
 
     -- TRAVEL/FLY steps complete on arrival (Navigation is polled by the UI)
-    ns.Events:Register("FG_NAV_ARRIVED", function()
+    ns.Events:Register("FG_NAV_ARRIVED", function(_, target)
+        if not target or target.owner ~= "guide" then return end
         local step = Guide:GetCurrentStep()
         if step and (step.type == "TRAVEL" or step.type == "FLY") then
             Guide:MarkDone(step.index, "arrived")

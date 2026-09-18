@@ -18,8 +18,8 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 1054, questName = "Culling the Threat", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 5
         { type = "TURNIN", quest = 991, questName = "Raene's Cleansing", npc = 3891, npcName = "Teronis' Corpse", map = 1440, zone = "Ashenvale", x = 20.3, y = 42.3 }, -- 6
         { type = "ACCEPT", quest = 1023, questName = "Raene's Cleansing", npc = 3891, npcName = "Teronis' Corpse", map = 1440, zone = "Ashenvale", x = 20.3, y = 42.3 }, -- 7
-        { type = "COLLECT", quest = 1023, questName = "Raene's Cleansing", target = "Glowing Gem", map = 1440, zone = "Ashenvale", x = 20.6, y = 42.2 }, -- 8
-        { type = "COLLECT", quest = 1008, questName = "The Zoram Strand", target = "Wrathtail Head", map = 1440, zone = "Ashenvale", x = 13.7, y = 30.9 }, -- 9
+        { type = "COLLECT", quest = 1023, questName = "Raene's Cleansing", target = "Glowing Gem", map = 1440, zone = "Ashenvale", x = 20.6, y = 42.2, near = true }, -- 8
+        { type = "COLLECT", quest = 1008, questName = "The Zoram Strand", target = "Wrathtail Head", map = 1440, zone = "Ashenvale", x = 13.7, y = 30.9, near = true }, -- 9
         { type = "ACCEPT", quest = 1007, questName = "The Ancient Statuette", npc = 3846, npcName = "Talen", map = 1440, zone = "Ashenvale", x = 14.8, y = 31.3 }, -- 10
         { type = "COLLECT", quest = 1007, questName = "The Ancient Statuette", target = "Ancient Statuette", map = 1440, zone = "Ashenvale", x = 14.2, y = 20.6 }, -- 11
         { type = "TURNIN", quest = 1007, questName = "The Ancient Statuette", npc = 3846, npcName = "Talen", map = 1440, zone = "Ashenvale", x = 14.8, y = 31.3 }, -- 12
@@ -27,7 +27,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 1023, questName = "Raene's Cleansing", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 14
         { type = "ACCEPT", quest = 1024, questName = "Raene's Cleansing", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 15
         { type = "ACCEPT", quest = 1025, questName = "An Aggressive Defense", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 16
-        { type = "KILL", quest = 1025, questName = "An Aggressive Defense", npc = 3743, target = "Foulweald Warrior / Foulweald Ursa / Foulweald Den Watcher / Foulweald Totemic", map = 1440, zone = "Ashenvale", x = 49.3, y = 60.5 }, -- 17
+        { type = "KILL", quest = 1025, questName = "An Aggressive Defense", npc = 3743, target = "Foulweald Warrior / Foulweald Ursa / Foulweald Den Watcher / Foulweald Totemic", map = 1440, zone = "Ashenvale", x = 49.3, y = 60.5, near = true }, -- 17
         { type = "TURNIN", quest = 1025, questName = "An Aggressive Defense", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 18
         { type = "TURNIN", quest = 1024, questName = "Raene's Cleansing", npc = 3916, npcName = "Shael'dryn", map = 1440, zone = "Ashenvale", x = 53.5, y = 46.2 }, -- 19
         { type = "ACCEPT", quest = 1026, questName = "Raene's Cleansing", npc = 3916, npcName = "Shael'dryn", map = 1440, zone = "Ashenvale", x = 53.5, y = 46.2 }, -- 20
@@ -36,7 +36,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1027, questName = "Raene's Cleansing", npc = 3916, npcName = "Shael'dryn", map = 1440, zone = "Ashenvale", x = 53.5, y = 46.2 }, -- 23
         { type = "ACCEPT", quest = 1016, questName = "Elemental Bracers", npc = 3885, npcName = "Sentinel Velene Starstrike", map = 1440, zone = "Ashenvale", x = 49.8, y = 67.2 }, -- 24
         { type = "TURNIN", quest = 1016, questName = "Elemental Bracers", npc = 3885, npcName = "Sentinel Velene Starstrike", map = 1440, zone = "Ashenvale", x = 49.8, y = 67.2 }, -- 25
-        { type = "COLLECT", quest = 1027, questName = "Raene's Cleansing", target = "Iron Pommel", map = 1440, zone = "Ashenvale", x = 69.9, y = 74.1 }, -- 26
+        { type = "COLLECT", quest = 1027, questName = "Raene's Cleansing", target = "Iron Pommel", map = 1440, zone = "Ashenvale", x = 69.9, y = 74.1, near = true }, -- 26
         { type = "TURNIN", quest = 1027, questName = "Raene's Cleansing", npc = 3916, npcName = "Shael'dryn", map = 1440, zone = "Ashenvale", x = 53.5, y = 46.2 }, -- 27
         { type = "ACCEPT", quest = 1028, questName = "Raene's Cleansing", npc = 3916, npcName = "Shael'dryn", map = 1440, zone = "Ashenvale", x = 53.5, y = 46.2 }, -- 28
         { type = "TURNIN", quest = 1028, questName = "Raene's Cleansing", map = 1440, zone = "Ashenvale", x = 56.4, y = 49.2 }, -- 29
@@ -46,37 +46,37 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 1029, questName = "Raene's Cleansing", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 33
         { type = "ACCEPT", quest = 1030, questName = "Raene's Cleansing", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 34
         { type = "ACCEPT", quest = 1010, questName = "Bathran's Hair", npc = 3847, npcName = "Orendil Broadleaf", map = 1440, zone = "Ashenvale", x = 26.4, y = 38.6 }, -- 35
-        { type = "COLLECT", quest = 1010, questName = "Bathran's Hair", target = "Bathran's Hair", map = 1440, zone = "Ashenvale", x = 30.4, y = 25.5 }, -- 36
+        { type = "COLLECT", quest = 1010, questName = "Bathran's Hair", target = "Bathran's Hair", map = 1440, zone = "Ashenvale", x = 30.4, y = 25.5, near = true }, -- 36
         { type = "TURNIN", quest = 1010, questName = "Bathran's Hair", npc = 3847, npcName = "Orendil Broadleaf", map = 1440, zone = "Ashenvale", x = 26.4, y = 38.6 }, -- 37
         { type = "ACCEPT", quest = 1020, questName = "Orendil's Cure", npc = 3847, npcName = "Orendil Broadleaf", map = 1440, zone = "Ashenvale", x = 26.4, y = 38.6 }, -- 38
-        { type = "TURNIN", quest = 1020, questName = "Orendil's Cure", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 39
-        { type = "ACCEPT", quest = 1033, questName = "Elune's Tear", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 40
-        { type = "COLLECT", quest = 1033, questName = "Elune's Tear", target = "Elune's Tear", map = 1440, zone = "Ashenvale", x = 46.1, y = 46.6 }, -- 41
-        { type = "TURNIN", quest = 1033, questName = "Elune's Tear", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 42
-        { type = "ACCEPT", quest = 1034, questName = "The Ruins of Stardust", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 43
-        { type = "COLLECT", quest = 1034, questName = "The Ruins of Stardust", target = "Handful of Stardust", map = 1440, zone = "Ashenvale", x = 33.9, y = 66.6 }, -- 44
-        { type = "TURNIN", quest = 1034, questName = "The Ruins of Stardust", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 45
-        { type = "ACCEPT", quest = 1035, questName = "Fallen Sky Lake", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 46
-        { type = "TURNIN", quest = 1030, questName = "Raene's Cleansing", npc = 3897, npcName = "Krolg", map = 1440, zone = "Ashenvale", x = 50.8, y = 75.1 }, -- 47
-        { type = "ACCEPT", quest = 1045, questName = "Raene's Cleansing", npc = 3897, npcName = "Krolg", map = 1440, zone = "Ashenvale", x = 50.8, y = 75.1 }, -- 48
-        { type = "KILL", quest = 1045, questName = "Raene's Cleansing", npc = 3932, target = "Bloodtooth Guard", map = 1440, zone = "Ashenvale", x = 54.9, y = 76 }, -- 49
-        { type = "KILL", quest = 1045, questName = "Raene's Cleansing", npc = 3696, target = "Ran Bloodtooth", map = 1440, zone = "Ashenvale", x = 54.8, y = 79.6 }, -- 50
-        { type = "KILL", quest = 1035, questName = "Fallen Sky Lake", npc = 3931, target = "Shadethicket Oracle", map = 1440, zone = "Ashenvale", x = 66.7, y = 82.2, note = "loot Fallen Moonstone" }, -- 51
-        { type = "TURNIN", quest = 1045, questName = "Raene's Cleansing", npc = 3897, npcName = "Krolg", map = 1440, zone = "Ashenvale", x = 50.8, y = 75.1 }, -- 52
-        { type = "ACCEPT", quest = 1046, questName = "Raene's Cleansing", npc = 3897, npcName = "Krolg", map = 1440, zone = "Ashenvale", x = 50.8, y = 75.1 }, -- 53
-        { type = "KILL", quest = 1046, questName = "Raene's Cleansing", npc = 3696, target = "Ran Bloodtooth", map = 1440, zone = "Ashenvale", x = 54.8, y = 79.6, note = "loot Ran Bloodtooth's Skull" }, -- 54
-        { type = "TURNIN", quest = 1035, questName = "Fallen Sky Lake", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 55
-        { type = "TURNIN", quest = 1046, questName = "Raene's Cleansing", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 56
-        { type = "ACCEPT", quest = 1009, questName = "Ruuzel", npc = 3846, npcName = "Talen", map = 1440, zone = "Ashenvale", x = 14.8, y = 31.3 }, -- 57
-        { type = "KILL", quest = 1009, questName = "Ruuzel", npc = 3943, target = "Ruuzel", map = 1440, zone = "Ashenvale", x = 7.2, y = 13.1, note = "loot Ring of Zoram" }, -- 58
-        { type = "TURNIN", quest = 1009, questName = "Ruuzel", npc = 3846, npcName = "Talen", map = 1440, zone = "Ashenvale", x = 14.8, y = 31.3 }, -- 59
+        { type = "ACCEPT", quest = 1009, questName = "Ruuzel", npc = 3846, npcName = "Talen", map = 1440, zone = "Ashenvale", x = 14.8, y = 31.3 }, -- 39
+        { type = "KILL", quest = 1009, questName = "Ruuzel", npc = 3943, target = "Ruuzel", map = 1440, zone = "Ashenvale", x = 7.2, y = 13.1, note = "loot Ring of Zoram" }, -- 40
+        { type = "TURNIN", quest = 1009, questName = "Ruuzel", npc = 3846, npcName = "Talen", map = 1440, zone = "Ashenvale", x = 14.8, y = 31.3 }, -- 41
+        { type = "TURNIN", quest = 1020, questName = "Orendil's Cure", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 42
+        { type = "ACCEPT", quest = 1033, questName = "Elune's Tear", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 43
+        { type = "COLLECT", quest = 1033, questName = "Elune's Tear", target = "Elune's Tear", map = 1440, zone = "Ashenvale", x = 46.1, y = 46.6, near = true }, -- 44
+        { type = "TURNIN", quest = 1033, questName = "Elune's Tear", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 45
+        { type = "ACCEPT", quest = 1034, questName = "The Ruins of Stardust", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 46
+        { type = "COLLECT", quest = 1034, questName = "The Ruins of Stardust", target = "Handful of Stardust", map = 1440, zone = "Ashenvale", x = 33.9, y = 66.6, near = true }, -- 47
+        { type = "TURNIN", quest = 1034, questName = "The Ruins of Stardust", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 48
+        { type = "ACCEPT", quest = 1035, questName = "Fallen Sky Lake", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 49
+        { type = "TURNIN", quest = 1030, questName = "Raene's Cleansing", npc = 3897, npcName = "Krolg", map = 1440, zone = "Ashenvale", x = 50.8, y = 75.1 }, -- 50
+        { type = "ACCEPT", quest = 1045, questName = "Raene's Cleansing", npc = 3897, npcName = "Krolg", map = 1440, zone = "Ashenvale", x = 50.8, y = 75.1 }, -- 51
+        { type = "KILL", quest = 1045, questName = "Raene's Cleansing", npc = 3932, target = "Bloodtooth Guard", map = 1440, zone = "Ashenvale", x = 54.9, y = 76, near = true }, -- 52
+        { type = "KILL", quest = 1045, questName = "Raene's Cleansing", npc = 3696, target = "Ran Bloodtooth", map = 1440, zone = "Ashenvale", x = 54.8, y = 79.6 }, -- 53
+        { type = "KILL", quest = 1035, questName = "Fallen Sky Lake", npc = 3931, target = "Shadethicket Oracle", map = 1440, zone = "Ashenvale", x = 66.7, y = 82.2, note = "loot Fallen Moonstone" }, -- 54
+        { type = "TURNIN", quest = 1045, questName = "Raene's Cleansing", npc = 3897, npcName = "Krolg", map = 1440, zone = "Ashenvale", x = 50.8, y = 75.1 }, -- 55
+        { type = "ACCEPT", quest = 1046, questName = "Raene's Cleansing", npc = 3897, npcName = "Krolg", map = 1440, zone = "Ashenvale", x = 50.8, y = 75.1 }, -- 56
+        { type = "KILL", quest = 1046, questName = "Raene's Cleansing", npc = 3696, target = "Ran Bloodtooth", map = 1440, zone = "Ashenvale", x = 54.8, y = 79.6, note = "loot Ran Bloodtooth's Skull" }, -- 57
+        { type = "TURNIN", quest = 1035, questName = "Fallen Sky Lake", npc = 3894, npcName = "Pelturas Whitemoon", map = 1440, zone = "Ashenvale", x = 37.4, y = 51.8 }, -- 58
+        { type = "TURNIN", quest = 1046, questName = "Raene's Cleansing", npc = 3691, npcName = "Raene Wolfrunner", map = 1440, zone = "Ashenvale", x = 36.6, y = 49.6 }, -- 59
         { type = "GRIND", level = 24, note = "the next quests need level 24" }, -- 60
         { type = "ACCEPT", quest = 1022, questName = "The Howling Vale", npc = 3880, npcName = "Sentinel Melyria Frostshadow", map = 1440, zone = "Ashenvale", x = 22.2, y = 53 }, -- 61
         { type = "COMPLETE", quest = 1022, questName = "The Howling Vale", target = "Tome of Mel'Thandris", map = 1440, zone = "Ashenvale", x = 50.5, y = 39.1, note = "View the Tome of Mel'Thandris" }, -- 62
         { type = "TURNIN", quest = 1022, questName = "The Howling Vale", npc = 3880, npcName = "Sentinel Melyria Frostshadow", map = 1440, zone = "Ashenvale", x = 22.2, y = 53 }, -- 63
         { type = "ACCEPT", quest = 1037, questName = "Velinde Starsong", npc = 3880, npcName = "Sentinel Melyria Frostshadow", map = 1440, zone = "Ashenvale", x = 22.2, y = 53 }, -- 64
         { type = "ACCEPT", quest = 1011, questName = "Forsaken Diseases", npc = 3848, npcName = "Kayneth Stillwind", map = 1440, zone = "Ashenvale", x = 85.2, y = 44.7 }, -- 65
-        { type = "COLLECT", quest = 1011, questName = "Forsaken Diseases", target = "Bottle of Disease", map = 1440, zone = "Ashenvale", x = 75.3, y = 71.8 }, -- 66
+        { type = "COLLECT", quest = 1011, questName = "Forsaken Diseases", target = "Bottle of Disease", map = 1440, zone = "Ashenvale", x = 75.3, y = 71.8, near = true }, -- 66
         { type = "TURNIN", quest = 1011, questName = "Forsaken Diseases", npc = 3848, npcName = "Kayneth Stillwind", map = 1440, zone = "Ashenvale", x = 85.2, y = 44.7 }, -- 67
         { type = "ACCEPT", quest = 1012, questName = "Insane Druids", npc = 3848, npcName = "Kayneth Stillwind", map = 1440, zone = "Ashenvale", x = 85.2, y = 44.7 }, -- 68
         { type = "KILL", quest = 1012, questName = "Insane Druids", npc = 3941, target = "Uthil Mooncall / Taneel Darkwood", map = 1440, zone = "Ashenvale", x = 78, y = 72.7 }, -- 69
@@ -90,7 +90,7 @@ ns.RegisterGuide({
         { type = "KILL", quest = 1031, questName = "The Branch of Cenarius", npc = 4619, target = "Geltharis", map = 1440, zone = "Ashenvale", x = 78, y = 42.4, note = "loot Branch of Cenarius" }, -- 77
         { type = "TURNIN", quest = 1031, questName = "The Branch of Cenarius", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 78
         { type = "ACCEPT", quest = 1032, questName = "Satyr Slaying!", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 79
-        { type = "COLLECT", quest = 1032, questName = "Satyr Slaying!", target = "Satyr Horns", map = 1440, zone = "Ashenvale", x = 66.1, y = 53.4 }, -- 80
+        { type = "COLLECT", quest = 1032, questName = "Satyr Slaying!", target = "Satyr Horns", map = 1440, zone = "Ashenvale", x = 66.1, y = 53.4, near = true }, -- 80
         { type = "TURNIN", quest = 1032, questName = "Satyr Slaying!", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 81
     },
 })

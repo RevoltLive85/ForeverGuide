@@ -9,7 +9,7 @@ ns.RegisterGuide({
     maxLevel = 40,
     next = "GEN_HORDE_DUSTWALLOW_MARSH",
     author = "ForeverGuide route generator",
-    notes = "Auto-generated from the quest database: 24 quests, 71 steps, model reaches level 34. Not a speedrun route - a sensible order; the engine adapts as you play.",
+    notes = "Auto-generated from the quest database: 24 quests, 72 steps, model reaches level 34. Not a speedrun route - a sensible order; the engine adapts as you play.",
     steps = {
         { type = "ACCEPT", quest = 5763, questName = "Hunting in Stranglethorn", npc = 11877, npcName = "Roon Wildmane", map = 1443, zone = "Desolace", x = 25.1, y = 72.3 }, -- 1
         { type = "ACCEPT", quest = 6142, questName = "Clam Bait", npc = 12031, npcName = "Mai'Lahii", map = 1443, zone = "Desolace", x = 22.6, y = 72 }, -- 2
@@ -17,70 +17,71 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1367, questName = "Magram Alliance", npc = 5412, npcName = "Gurda Wildmane", map = 1443, zone = "Desolace", x = 56.3, y = 59.7 }, -- 4
         { type = "ACCEPT", quest = 1368, questName = "Gelkis Alliance", npc = 5412, npcName = "Gurda Wildmane", map = 1443, zone = "Desolace", x = 56.3, y = 59.7 }, -- 5
         { type = "ACCEPT", quest = 5561, questName = "Kodo Roundup", npc = 11596, npcName = "Smeed Scrabblescrew", map = 1443, zone = "Desolace", x = 60.9, y = 61.9 }, -- 6
-        { type = "KILL", quest = 1365, questName = "Khan Dez'hepah", npc = 5600, target = "Khan Dez'hepah", map = 1443, zone = "Desolace", x = 73, y = 47.8, note = "loot Khan Dez'hepah's Head" }, -- 7
+        { type = "KILL", quest = 1365, questName = "Khan Dez'hepah", npc = 5600, target = "Khan Dez'hepah", map = 1443, zone = "Desolace", x = 73, y = 47.8, near = true, note = "loot Khan Dez'hepah's Head" }, -- 7
         { type = "TURNIN", quest = 1365, questName = "Khan Dez'hepah", npc = 5395, npcName = "Felgur Twocuts", map = 1443, zone = "Desolace", x = 56.2, y = 59.6 }, -- 8
         { type = "ACCEPT", quest = 1366, questName = "Centaur Bounty", npc = 5395, npcName = "Felgur Twocuts", map = 1443, zone = "Desolace", x = 56.2, y = 59.6 }, -- 9
-        { type = "KILL", quest = 5561, questName = "Kodo Roundup", npc = 4700, target = "targets", map = 1443, zone = "Desolace", x = 53.7, y = 56.7 }, -- 10
-        { type = "COLLECT", quest = 1366, questName = "Centaur Bounty", target = "Centaur Ear", map = 1443, zone = "Desolace", x = 67.7, y = 52 }, -- 11
+        { type = "KILL", quest = 5561, questName = "Kodo Roundup", npc = 4700, target = "targets", map = 1443, zone = "Desolace", x = 53.7, y = 56.7, near = true }, -- 10
+        { type = "COLLECT", quest = 1366, questName = "Centaur Bounty", target = "Centaur Ear", map = 1443, zone = "Desolace", x = 67.7, y = 52, near = true }, -- 11
         { type = "TURNIN", quest = 1366, questName = "Centaur Bounty", npc = 5395, npcName = "Felgur Twocuts", map = 1443, zone = "Desolace", x = 56.2, y = 59.6 }, -- 12
         { type = "TURNIN", quest = 5561, questName = "Kodo Roundup", npc = 11596, npcName = "Smeed Scrabblescrew", map = 1443, zone = "Desolace", x = 60.9, y = 61.9 }, -- 13
         { type = "TURNIN", quest = 1367, questName = "Magram Alliance", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 14
         { type = "ACCEPT", quest = 1369, questName = "Broken Tears", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 15
         { type = "ACCEPT", quest = 5821, questName = "Bodyguard for Hire", npc = 11625, npcName = "Cork Gizelton", map = 1443, zone = "Desolace", x = 66.5, y = 37.5 }, -- 16
         { type = "COMPLETE", quest = 5821, questName = "Bodyguard for Hire", target = "Escort Gizelton Caravan past Kolkar Centaur Village", map = 1443, zone = "Desolace", x = 67.2, y = 56.6, note = "Escort Gizelton Caravan past Kolkar Centaur Village" }, -- 17
-        { type = "TURNIN", quest = 5821, questName = "Bodyguard for Hire", npc = 11596, npcName = "Smeed Scrabblescrew", map = 1443, zone = "Desolace", x = 60.9, y = 61.9 }, -- 18
-        { type = "COLLECT", quest = 1369, questName = "Broken Tears", target = "Broken Tears", map = 1443, zone = "Desolace", x = 40.5, y = 91.9 }, -- 19
-        { type = "TURNIN", quest = 1369, questName = "Broken Tears", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 20
-        { type = "ACCEPT", quest = 1371, questName = "Gizmo for Warug", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 21
-        { type = "TURNIN", quest = 1371, questName = "Gizmo for Warug", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 22
-        { type = "ACCEPT", quest = 1375, questName = "Khan Shaka", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 23
-        { type = "TURNIN", quest = 1368, questName = "Gelkis Alliance", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 24
-        { type = "ACCEPT", quest = 1370, questName = "Stealing Supplies", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 25
-        { type = "KILL", quest = 1375, questName = "Khan Shaka", npc = 5602, target = "Khan Shaka", map = 1443, zone = "Desolace", x = 40.5, y = 95.5, note = "loot Khan Shaka's Head" }, -- 26
-        { type = "COLLECT", quest = 6142, questName = "Clam Bait", target = "Soft-shelled Clam Meat", map = 1443, zone = "Desolace", x = 24.6, y = 44.1 }, -- 27
-        { type = "TURNIN", quest = 6142, questName = "Clam Bait", npc = 12031, npcName = "Mai'Lahii", map = 1443, zone = "Desolace", x = 22.6, y = 72 }, -- 28
-        { type = "COLLECT", quest = 1370, questName = "Stealing Supplies", target = "Crudely Dried Meat", map = 1443, zone = "Desolace", x = 65.8, y = 80.5 }, -- 29
-        { type = "TURNIN", quest = 1370, questName = "Stealing Supplies", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 30
-        { type = "TURNIN", quest = 1375, questName = "Khan Shaka", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 31
-        { type = "ACCEPT", quest = 1381, questName = "Khan Hratha", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 32
-        { type = "KILL", quest = 1381, questName = "Khan Hratha", npc = 5402, target = "Khan Hratha", map = 1443, zone = "Desolace", x = 29.6, y = 52, note = "loot Maraudine Key Fragment" }, -- 33
-        { type = "ACCEPT", quest = 6161, questName = "Claim Rackmore's Treasure!", map = 1443, zone = "Desolace", x = 36.1, y = 30.4 }, -- 34
-        { type = "ACCEPT", quest = 5741, questName = "Sceptre of Light", npc = 11863, npcName = "Azore Aldamort", map = 1443, zone = "Desolace", x = 38.9, y = 27.2 }, -- 35
-        { type = "COLLECT", quest = 6161, questName = "Claim Rackmore's Treasure!", target = "Rackmore's Golden Key", map = 1443, zone = "Desolace", x = 36.9, y = 26.3 }, -- 36
-        { type = "COLLECT", quest = 6161, questName = "Claim Rackmore's Treasure!", target = "Rackmore's Silver Key", map = 1443, zone = "Desolace", x = 32, y = 27.9 }, -- 37
-        { type = "KILL", quest = 5741, questName = "Sceptre of Light", npc = 13019, target = "Burning Blade Seer", map = 1443, zone = "Desolace", x = 55.2, y = 30.2, note = "loot Sceptre of Light" }, -- 38
-        { type = "TURNIN", quest = 5741, questName = "Sceptre of Light", npc = 11863, npcName = "Azore Aldamort", map = 1443, zone = "Desolace", x = 38.9, y = 27.2 }, -- 39
-        { type = "ACCEPT", quest = 6027, questName = "Book of the Ancients", npc = 11863, npcName = "Azore Aldamort", map = 1443, zone = "Desolace", x = 38.9, y = 27.2 }, -- 40
-        { type = "KILL", quest = 6027, questName = "Book of the Ancients", npc = 12369, target = "Lord Kragaru", map = 1443, zone = "Desolace", x = 28.2, y = 6.7, note = "loot Book of the Ancients" }, -- 41
-        { type = "TURNIN", quest = 6161, questName = "Claim Rackmore's Treasure!", map = 1443, zone = "Desolace", x = 30, y = 8.7 }, -- 42
-        { type = "TURNIN", quest = 6027, questName = "Book of the Ancients", npc = 11863, npcName = "Azore Aldamort", map = 1443, zone = "Desolace", x = 38.9, y = 27.2 }, -- 43
-        { type = "ACCEPT", quest = 5386, questName = "Catch of the Day", npc = 11259, npcName = "Nataka Longhorn", map = 1443, zone = "Desolace", x = 55.4, y = 55.8 }, -- 44
-        { type = "TURNIN", quest = 1381, questName = "Khan Hratha", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 45
-        { type = "KILL", quest = 5386, questName = "Catch of the Day", npc = 11317, target = "Jinar'Zillen", map = 1443, zone = "Desolace", x = 22.5, y = 73.1, note = "loot Bloodbelly Fish" }, -- 46
-        { type = "ACCEPT", quest = 6143, questName = "Other Fish to Fry", npc = 12340, npcName = "Drulzegar Skraghook", map = 1443, zone = "Desolace", x = 23.3, y = 72.9 }, -- 47
-        { type = "ACCEPT", quest = 5381, questName = "Hand of Iruxos", npc = 11624, npcName = "Taiga Wisemane", map = 1443, zone = "Desolace", x = 25.8, y = 68.2 }, -- 48
-        { type = "ACCEPT", quest = 5943, questName = "Gizelton Caravan", npc = 11626, npcName = "Rigger Gizelton", map = 1443, zone = "Desolace", x = 45.4, y = 75.3 }, -- 49
-        { type = "COMPLETE", quest = 5943, questName = "Gizelton Caravan", target = "Escort Gizelton Caravan past Mannoroc Coven", map = 1443, zone = "Desolace", x = 55.7, y = 67.8, note = "Escort Gizelton Caravan past Mannoroc Coven" }, -- 50
-        { type = "TURNIN", quest = 5943, questName = "Gizelton Caravan", npc = 11596, npcName = "Smeed Scrabblescrew", map = 1443, zone = "Desolace", x = 60.9, y = 61.9 }, -- 51
-        { type = "TURNIN", quest = 5386, questName = "Catch of the Day", npc = 11259, npcName = "Nataka Longhorn", map = 1443, zone = "Desolace", x = 55.4, y = 55.8 }, -- 52
-        { type = "KILL", quest = 6143, questName = "Other Fish to Fry", npc = 4712, target = "Slitherblade Sorceress / Slitherblade Naga", map = 1443, zone = "Desolace", x = 35.9, y = 28.8 }, -- 53
-        { type = "KILL", quest = 6143, questName = "Other Fish to Fry", npc = 4714, target = "Slitherblade Myrmidon", map = 1443, zone = "Desolace", x = 32.2, y = 23.4 }, -- 54
-        { type = "KILL", quest = 5381, questName = "Hand of Iruxos", npc = 11876, target = "Demon Spirit", map = 1443, zone = "Desolace", x = 55, y = 26.6, note = "loot Demon Box" }, -- 55
-        { type = "TURNIN", quest = 5381, questName = "Hand of Iruxos", npc = 11624, npcName = "Taiga Wisemane", map = 1443, zone = "Desolace", x = 25.8, y = 68.2 }, -- 56
-        { type = "ACCEPT", quest = 5581, questName = "Portals of the Legion", npc = 11624, npcName = "Taiga Wisemane", map = 1443, zone = "Desolace", x = 25.8, y = 68.2 }, -- 57
-        { type = "TURNIN", quest = 6143, questName = "Other Fish to Fry", npc = 12340, npcName = "Drulzegar Skraghook", map = 1443, zone = "Desolace", x = 23.3, y = 72.9 }, -- 58
-        { type = "KILL", quest = 5581, questName = "Portals of the Legion", npc = 11937, target = "Demon Portal Guardian", map = 1443, zone = "Desolace", x = 49.4, y = 76, note = "Portals Banished" }, -- 59
-        { type = "TURNIN", quest = 5581, questName = "Portals of the Legion", npc = 11624, npcName = "Taiga Wisemane", map = 1443, zone = "Desolace", x = 25.8, y = 68.2 }, -- 60
-        { type = "TURNIN", quest = 5763, questName = "Hunting in Stranglethorn", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 61
-        { type = "ACCEPT", quest = 5501, questName = "Bone Collector", npc = 11438, npcName = "Bibbly F'utzbuckle", map = 1443, zone = "Desolace", x = 62.3, y = 39 }, -- 62
-        { type = "COLLECT", quest = 5501, questName = "Bone Collector", target = "Kodo Bone", map = 1443, zone = "Desolace", x = 52.9, y = 57.1 }, -- 63
-        { type = "TURNIN", quest = 5501, questName = "Bone Collector", npc = 11438, npcName = "Bibbly F'utzbuckle", map = 1443, zone = "Desolace", x = 62.3, y = 39 }, -- 64
-        { type = "GRIND", level = 34, note = "the next quests need level 34" }, -- 65
-        { type = "ACCEPT", quest = 6134, questName = "Ghost-o-plasm Round Up", npc = 6019, npcName = "Hornizz Brimbuzzle", map = 1443, zone = "Desolace", x = 47.8, y = 61.8 }, -- 66
-        { type = "ACCEPT", quest = 6132, questName = "Get Me Out of Here!", npc = 12277, npcName = "Melizza Brimbuzzle", map = 1443, zone = "Desolace", x = 34, y = 53.5 }, -- 67
-        { type = "COMPLETE", quest = 6132, questName = "Get Me Out of Here!", target = "Melizza Brimbuzzle escorted to safety", map = 1443, zone = "Desolace", x = 40.1, y = 61.6, note = "Melizza Brimbuzzle escorted to safety" }, -- 68
-        { type = "TURNIN", quest = 6132, questName = "Get Me Out of Here!", npc = 6019, npcName = "Hornizz Brimbuzzle", map = 1443, zone = "Desolace", x = 47.8, y = 61.8 }, -- 69
-        { type = "KILL", quest = 6134, questName = "Ghost-o-plasm Round Up", npc = 11560, target = "Magrami Spectre", map = 1443, zone = "Desolace", x = 64.2, y = 91.6, note = "loot Ghost-o-plasm" }, -- 70
-        { type = "TURNIN", quest = 6134, questName = "Ghost-o-plasm Round Up", npc = 6019, npcName = "Hornizz Brimbuzzle", map = 1443, zone = "Desolace", x = 47.8, y = 61.8 }, -- 71
+        { type = "COLLECT", quest = 1369, questName = "Broken Tears", target = "Broken Tears", map = 1443, zone = "Desolace", x = 40.5, y = 91.9, near = true }, -- 18
+        { type = "TURNIN", quest = 1369, questName = "Broken Tears", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 19
+        { type = "ACCEPT", quest = 1371, questName = "Gizmo for Warug", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 20
+        { type = "TURNIN", quest = 1371, questName = "Gizmo for Warug", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 21
+        { type = "ACCEPT", quest = 1375, questName = "Khan Shaka", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 22
+        { type = "TURNIN", quest = 5821, questName = "Bodyguard for Hire", npc = 11596, npcName = "Smeed Scrabblescrew", map = 1443, zone = "Desolace", x = 60.9, y = 61.9 }, -- 23
+        { type = "KILL", quest = 1375, questName = "Khan Shaka", npc = 5602, target = "Khan Shaka", map = 1443, zone = "Desolace", x = 40.5, y = 95.5, note = "loot Khan Shaka's Head" }, -- 24
+        { type = "TURNIN", quest = 1375, questName = "Khan Shaka", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 25
+        { type = "ACCEPT", quest = 1381, questName = "Khan Hratha", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2, optional = true, note = "elite target - bring a group (optional)" }, -- 26
+        { type = "TURNIN", quest = 1368, questName = "Gelkis Alliance", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 27
+        { type = "ACCEPT", quest = 1370, questName = "Stealing Supplies", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 28
+        { type = "COLLECT", quest = 6142, questName = "Clam Bait", target = "Soft-shelled Clam Meat", map = 1443, zone = "Desolace", x = 24.6, y = 44.1, near = true }, -- 29
+        { type = "KILL", quest = 1381, questName = "Khan Hratha", npc = 5402, target = "Khan Hratha", map = 1443, zone = "Desolace", x = 29.6, y = 52, optional = true, note = "ELITE - loot Maraudine Key Fragment (group quest, optional)" }, -- 30
+        { type = "TURNIN", quest = 6142, questName = "Clam Bait", npc = 12031, npcName = "Mai'Lahii", map = 1443, zone = "Desolace", x = 22.6, y = 72 }, -- 31
+        { type = "COLLECT", quest = 1370, questName = "Stealing Supplies", target = "Crudely Dried Meat", map = 1443, zone = "Desolace", x = 65.8, y = 80.5, near = true }, -- 32
+        { type = "TURNIN", quest = 1370, questName = "Stealing Supplies", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 33
+        { type = "TURNIN", quest = 1381, questName = "Khan Hratha", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2, optional = true }, -- 34
+        { type = "ACCEPT", quest = 5386, questName = "Catch of the Day", npc = 11259, npcName = "Nataka Longhorn", map = 1443, zone = "Desolace", x = 55.4, y = 55.8 }, -- 35
+        { type = "ACCEPT", quest = 5943, questName = "Gizelton Caravan", npc = 11626, npcName = "Rigger Gizelton", map = 1443, zone = "Desolace", x = 45.4, y = 75.3 }, -- 36
+        { type = "COMPLETE", quest = 5943, questName = "Gizelton Caravan", target = "Escort Gizelton Caravan past Mannoroc Coven", map = 1443, zone = "Desolace", x = 55.7, y = 67.8, note = "Escort Gizelton Caravan past Mannoroc Coven" }, -- 37
+        { type = "TURNIN", quest = 5943, questName = "Gizelton Caravan", npc = 11596, npcName = "Smeed Scrabblescrew", map = 1443, zone = "Desolace", x = 60.9, y = 61.9 }, -- 38
+        { type = "KILL", quest = 5386, questName = "Catch of the Day", npc = 11317, target = "Jinar'Zillen", map = 1443, zone = "Desolace", x = 22.5, y = 73.1, note = "loot Bloodbelly Fish" }, -- 39
+        { type = "ACCEPT", quest = 6143, questName = "Other Fish to Fry", npc = 12340, npcName = "Drulzegar Skraghook", map = 1443, zone = "Desolace", x = 23.3, y = 72.9 }, -- 40
+        { type = "ACCEPT", quest = 5381, questName = "Hand of Iruxos", npc = 11624, npcName = "Taiga Wisemane", map = 1443, zone = "Desolace", x = 25.8, y = 68.2 }, -- 41
+        { type = "TURNIN", quest = 5386, questName = "Catch of the Day", npc = 11259, npcName = "Nataka Longhorn", map = 1443, zone = "Desolace", x = 55.4, y = 55.8 }, -- 42
+        { type = "KILL", quest = 6143, questName = "Other Fish to Fry", npc = 4712, target = "Slitherblade Sorceress", map = 1443, zone = "Desolace", x = 35.9, y = 28.8, near = true }, -- 43
+        { type = "ACCEPT", quest = 5741, questName = "Sceptre of Light", npc = 11863, npcName = "Azore Aldamort", map = 1443, zone = "Desolace", x = 38.9, y = 27.2 }, -- 44
+        { type = "ACCEPT", quest = 6161, questName = "Claim Rackmore's Treasure!", map = 1443, zone = "Desolace", x = 36.1, y = 30.4 }, -- 45
+        { type = "COLLECT", quest = 6161, questName = "Claim Rackmore's Treasure!", target = "Rackmore's Golden Key", map = 1443, zone = "Desolace", x = 35.9, y = 28.8, near = true }, -- 46
+        { type = "KILL", quest = 6143, questName = "Other Fish to Fry", npc = 4711, target = "Slitherblade Naga", map = 1443, zone = "Desolace", x = 35.2, y = 27.8, near = true }, -- 47
+        { type = "COLLECT", quest = 6161, questName = "Claim Rackmore's Treasure!", target = "Rackmore's Silver Key", map = 1443, zone = "Desolace", x = 32, y = 27.9, near = true }, -- 48
+        { type = "KILL", quest = 6143, questName = "Other Fish to Fry", npc = 4714, target = "Slitherblade Myrmidon", map = 1443, zone = "Desolace", x = 32.2, y = 23.4, near = true }, -- 49
+        { type = "KILL", quest = 5381, questName = "Hand of Iruxos", npc = 11876, target = "Demon Spirit", map = 1443, zone = "Desolace", x = 55, y = 26.6, note = "loot Demon Box" }, -- 50
+        { type = "KILL", quest = 5741, questName = "Sceptre of Light", npc = 13019, target = "Burning Blade Seer", map = 1443, zone = "Desolace", x = 55.2, y = 30.2, note = "loot Sceptre of Light" }, -- 51
+        { type = "TURNIN", quest = 5741, questName = "Sceptre of Light", npc = 11863, npcName = "Azore Aldamort", map = 1443, zone = "Desolace", x = 38.9, y = 27.2 }, -- 52
+        { type = "ACCEPT", quest = 6027, questName = "Book of the Ancients", npc = 11863, npcName = "Azore Aldamort", map = 1443, zone = "Desolace", x = 38.9, y = 27.2 }, -- 53
+        { type = "KILL", quest = 6027, questName = "Book of the Ancients", npc = 12369, target = "Lord Kragaru", map = 1443, zone = "Desolace", x = 28.2, y = 6.7, note = "loot Book of the Ancients" }, -- 54
+        { type = "TURNIN", quest = 6161, questName = "Claim Rackmore's Treasure!", map = 1443, zone = "Desolace", x = 30, y = 8.7 }, -- 55
+        { type = "TURNIN", quest = 6027, questName = "Book of the Ancients", npc = 11863, npcName = "Azore Aldamort", map = 1443, zone = "Desolace", x = 38.9, y = 27.2 }, -- 56
+        { type = "TURNIN", quest = 5381, questName = "Hand of Iruxos", npc = 11624, npcName = "Taiga Wisemane", map = 1443, zone = "Desolace", x = 25.8, y = 68.2 }, -- 57
+        { type = "ACCEPT", quest = 5581, questName = "Portals of the Legion", npc = 11624, npcName = "Taiga Wisemane", map = 1443, zone = "Desolace", x = 25.8, y = 68.2 }, -- 58
+        { type = "TURNIN", quest = 6143, questName = "Other Fish to Fry", npc = 12340, npcName = "Drulzegar Skraghook", map = 1443, zone = "Desolace", x = 23.3, y = 72.9 }, -- 59
+        { type = "KILL", quest = 5581, questName = "Portals of the Legion", npc = 11937, target = "Demon Portal Guardian", map = 1443, zone = "Desolace", x = 49.4, y = 76, near = true, note = "Portals Banished" }, -- 60
+        { type = "TURNIN", quest = 5581, questName = "Portals of the Legion", npc = 11624, npcName = "Taiga Wisemane", map = 1443, zone = "Desolace", x = 25.8, y = 68.2 }, -- 61
+        { type = "TURNIN", quest = 5763, questName = "Hunting in Stranglethorn", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 62
+        { type = "ACCEPT", quest = 5501, questName = "Bone Collector", npc = 11438, npcName = "Bibbly F'utzbuckle", map = 1443, zone = "Desolace", x = 62.3, y = 39 }, -- 63
+        { type = "COLLECT", quest = 5501, questName = "Bone Collector", target = "Kodo Bone", map = 1443, zone = "Desolace", x = 52.9, y = 57.1, near = true }, -- 64
+        { type = "TURNIN", quest = 5501, questName = "Bone Collector", npc = 11438, npcName = "Bibbly F'utzbuckle", map = 1443, zone = "Desolace", x = 62.3, y = 39 }, -- 65
+        { type = "GRIND", level = 34, note = "the next quests need level 34" }, -- 66
+        { type = "ACCEPT", quest = 6134, questName = "Ghost-o-plasm Round Up", npc = 6019, npcName = "Hornizz Brimbuzzle", map = 1443, zone = "Desolace", x = 47.8, y = 61.8 }, -- 67
+        { type = "ACCEPT", quest = 6132, questName = "Get Me Out of Here!", npc = 12277, npcName = "Melizza Brimbuzzle", map = 1443, zone = "Desolace", x = 34, y = 53.5 }, -- 68
+        { type = "COMPLETE", quest = 6132, questName = "Get Me Out of Here!", target = "Melizza Brimbuzzle escorted to safety", map = 1443, zone = "Desolace", x = 40.1, y = 61.6, note = "Melizza Brimbuzzle escorted to safety" }, -- 69
+        { type = "TURNIN", quest = 6132, questName = "Get Me Out of Here!", npc = 6019, npcName = "Hornizz Brimbuzzle", map = 1443, zone = "Desolace", x = 47.8, y = 61.8 }, -- 70
+        { type = "KILL", quest = 6134, questName = "Ghost-o-plasm Round Up", npc = 11560, target = "Magrami Spectre", map = 1443, zone = "Desolace", x = 64.2, y = 91.6, note = "loot Ghost-o-plasm" }, -- 71
+        { type = "TURNIN", quest = 6134, questName = "Ghost-o-plasm Round Up", npc = 6019, npcName = "Hornizz Brimbuzzle", map = 1443, zone = "Desolace", x = 47.8, y = 61.8 }, -- 72
     },
 })

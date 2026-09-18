@@ -12,32 +12,32 @@ ns.RegisterGuide({
     steps = {
         { type = "ACCEPT", quest = 8280, questName = "Securing the Supply Lines", npc = 15191, npcName = "Windcaller Proudhorn", map = 1451, zone = "Silithus", x = 51.2, y = 38.3 }, -- 1
         { type = "ACCEPT", quest = 8284, questName = "The Twilight Mystery", npc = 15183, npcName = "Geologist Larksbane", map = 1451, zone = "Silithus", x = 49.7, y = 37.5 }, -- 2
-        { type = "ACCEPT", quest = 8283, questName = "Wanted - Deathclasp, Terror of the Sands", map = 1451, zone = "Silithus", x = 51.4, y = 38.3 }, -- 3
+        { type = "ACCEPT", quest = 8283, questName = "Wanted - Deathclasp, Terror of the Sands", map = 1451, zone = "Silithus", x = 51.4, y = 38.3, optional = true, note = "elite target - bring a group (optional)" }, -- 3
         { type = "ACCEPT", quest = 9415, questName = "Report to Marshal Bluewall", npc = 17082, npcName = "Rifleman Torrig", map = 1451, zone = "Silithus", x = 50.7, y = 34.7 }, -- 4
         { type = "ACCEPT", quest = 8277, questName = "Deadly Desert Venom", npc = 15189, npcName = "Beetix Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.6 }, -- 5
-        { type = "KILL", quest = 8280, questName = "Securing the Supply Lines", npc = 11740, target = "Dredge Striker", map = 1451, zone = "Silithus", x = 57.2, y = 25.7 }, -- 6
-        { type = "KILL", quest = 8277, questName = "Deadly Desert Venom", npc = 11735, target = "Stonelash Scorpid", map = 1451, zone = "Silithus", x = 58.7, y = 26.9, note = "loot Stonelash Scorpid Stinger" }, -- 7
-        { type = "KILL", quest = 8277, questName = "Deadly Desert Venom", npc = 11738, target = "Sand Skitterer", map = 1451, zone = "Silithus", x = 53.4, y = 28.4, note = "loot Sand Skitterer Fang" }, -- 8
+        { type = "KILL", quest = 8280, questName = "Securing the Supply Lines", npc = 11740, target = "Dredge Striker", map = 1451, zone = "Silithus", x = 57.2, y = 25.7, near = true }, -- 6
+        { type = "KILL", quest = 8277, questName = "Deadly Desert Venom", npc = 11735, target = "Stonelash Scorpid", map = 1451, zone = "Silithus", x = 58.7, y = 26.9, near = true, note = "loot Stonelash Scorpid Stinger" }, -- 7
+        { type = "KILL", quest = 8277, questName = "Deadly Desert Venom", npc = 11738, target = "Sand Skitterer", map = 1451, zone = "Silithus", x = 53.4, y = 28.4, near = true, note = "loot Sand Skitterer Fang" }, -- 8
         { type = "TURNIN", quest = 8280, questName = "Securing the Supply Lines", npc = 15191, npcName = "Windcaller Proudhorn", map = 1451, zone = "Silithus", x = 51.2, y = 38.3 }, -- 9
         { type = "ACCEPT", quest = 8281, questName = "Stepping Up Security", npc = 15191, npcName = "Windcaller Proudhorn", map = 1451, zone = "Silithus", x = 51.2, y = 38.3 }, -- 10
         { type = "TURNIN", quest = 8277, questName = "Deadly Desert Venom", npc = 15189, npcName = "Beetix Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.6 }, -- 11
         { type = "ACCEPT", quest = 8278, questName = "Noggle's Last Hope", npc = 15189, npcName = "Beetix Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.6 }, -- 12
-        { type = "KILL", quest = 8281, questName = "Stepping Up Security", npc = 11741, target = "Dredge Crusher", map = 1451, zone = "Silithus", x = 40.9, y = 49.3 }, -- 13
-        { type = "KILL", quest = 8278, questName = "Noggle's Last Hope", npc = 11736, target = "Stonelash Pincer", map = 1451, zone = "Silithus", x = 38, y = 52.3, note = "loot Stonelash Pincer Stinger" }, -- 14
+        { type = "KILL", quest = 8281, questName = "Stepping Up Security", npc = 11741, target = "Dredge Crusher", map = 1451, zone = "Silithus", x = 40.9, y = 49.3, near = true }, -- 13
+        { type = "KILL", quest = 8278, questName = "Noggle's Last Hope", npc = 11736, target = "Stonelash Pincer", map = 1451, zone = "Silithus", x = 38, y = 52.3, near = true, note = "loot Stonelash Pincer Stinger" }, -- 14
         { type = "TURNIN", quest = 8281, questName = "Stepping Up Security", npc = 15191, npcName = "Windcaller Proudhorn", map = 1451, zone = "Silithus", x = 51.2, y = 38.3 }, -- 15
         { type = "TURNIN", quest = 9415, questName = "Report to Marshal Bluewall", npc = 17080, npcName = "Marshal Bluewall", map = 1451, zone = "Silithus", x = 33.3, y = 51.1 }, -- 16
         { type = "ACCEPT", quest = 9419, questName = "Scouring the Desert", npc = 17080, npcName = "Marshal Bluewall", map = 1451, zone = "Silithus", x = 33.3, y = 51.1 }, -- 17
         { type = "KILL", quest = 9419, questName = "Scouring the Desert", npc = 17090, target = "Silithus Dust Turnin Quest Doodad", map = 1451, zone = "Silithus", x = 33, y = 50.8 }, -- 18
         { type = "TURNIN", quest = 9419, questName = "Scouring the Desert", npc = 17080, npcName = "Marshal Bluewall", map = 1451, zone = "Silithus", x = 33.3, y = 51.1 }, -- 19
-        { type = "KILL", quest = 8278, questName = "Noggle's Last Hope", npc = 11737, target = "Stonelash Flayer", map = 1451, zone = "Silithus", x = 36, y = 68.7, note = "loot Stonelash Flayer Stinger" }, -- 20
-        { type = "KILL", quest = 8278, questName = "Noggle's Last Hope", npc = 11739, target = "Rock Stalker", map = 1451, zone = "Silithus", x = 34.1, y = 72.5, note = "loot Rock Stalker Fang" }, -- 21
-        { type = "KILL", quest = 8283, questName = "Wanted - Deathclasp, Terror of the Sands", npc = 15196, target = "Deathclasp", map = 1451, zone = "Silithus", x = 45.1, y = 92.3, note = "loot Deathclasp's Pincer" }, -- 22
+        { type = "KILL", quest = 8278, questName = "Noggle's Last Hope", npc = 11737, target = "Stonelash Flayer", map = 1451, zone = "Silithus", x = 36, y = 68.7, near = true, note = "loot Stonelash Flayer Stinger" }, -- 20
+        { type = "KILL", quest = 8278, questName = "Noggle's Last Hope", npc = 11739, target = "Rock Stalker", map = 1451, zone = "Silithus", x = 34.1, y = 72.5, near = true, note = "loot Rock Stalker Fang" }, -- 21
+        { type = "KILL", quest = 8283, questName = "Wanted - Deathclasp, Terror of the Sands", npc = 15196, target = "Deathclasp", map = 1451, zone = "Silithus", x = 45.1, y = 92.3, optional = true, note = "ELITE - loot Deathclasp's Pincer (group quest, optional)" }, -- 22
         { type = "TURNIN", quest = 8278, questName = "Noggle's Last Hope", npc = 15189, npcName = "Beetix Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.6 }, -- 23
         { type = "ACCEPT", quest = 8282, questName = "Noggle's Lost Satchel", npc = 15190, npcName = "Noggle Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.5 }, -- 24
-        { type = "TURNIN", quest = 8283, questName = "Wanted - Deathclasp, Terror of the Sands", npc = 15182, npcName = "Vish Kozus", map = 1451, zone = "Silithus", x = 50.8, y = 33.7 }, -- 25
+        { type = "TURNIN", quest = 8283, questName = "Wanted - Deathclasp, Terror of the Sands", npc = 15182, npcName = "Vish Kozus", map = 1451, zone = "Silithus", x = 50.8, y = 33.7, optional = true }, -- 25
         { type = "COLLECT", quest = 8282, questName = "Noggle's Lost Satchel", target = "Noggle's Satchel", map = 1451, zone = "Silithus", x = 44.6, y = 91.4 }, -- 26
         { type = "TURNIN", quest = 8282, questName = "Noggle's Lost Satchel", npc = 15190, npcName = "Noggle Ficklespragg", map = 1451, zone = "Silithus", x = 51.6, y = 38.5 }, -- 27
-        { type = "COLLECT", quest = 8284, questName = "The Twilight Mystery", target = "Twilight Tablet Fragment", map = 1451, zone = "Silithus", x = 26.4, y = 15.9 }, -- 28
+        { type = "COLLECT", quest = 8284, questName = "The Twilight Mystery", target = "Twilight Tablet Fragment", map = 1451, zone = "Silithus", x = 26.4, y = 15.9, near = true }, -- 28
         { type = "TURNIN", quest = 8284, questName = "The Twilight Mystery", npc = 15183, npcName = "Geologist Larksbane", map = 1451, zone = "Silithus", x = 49.7, y = 37.5 }, -- 29
         { type = "ACCEPT", quest = 8285, questName = "The Deserter", npc = 15183, npcName = "Geologist Larksbane", map = 1451, zone = "Silithus", x = 49.7, y = 37.5 }, -- 30
         { type = "TURNIN", quest = 8285, questName = "The Deserter", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 31
@@ -50,39 +50,39 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 8287, questName = "A Terrible Purpose", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 38
         { type = "TURNIN", quest = 8287, questName = "A Terrible Purpose", npc = 15181, npcName = "Commander Mar'alith", map = 1451, zone = "Silithus", x = 49.2, y = 34.2 }, -- 39
         { type = "ACCEPT", quest = 8318, questName = "Secret Communication", npc = 15306, npcName = "Bor Wildmane", map = 1451, zone = "Silithus", x = 48.6, y = 37.8 }, -- 40
-        { type = "COLLECT", quest = 8318, questName = "Secret Communication", target = "Encrypted Twilight Text", map = 1451, zone = "Silithus", x = 40.9, y = 42.2 }, -- 41
-        { type = "COLLECT", quest = 8323, questName = "True Believers", target = "Encrypted Twilight Text", map = 1451, zone = "Silithus", x = 40.9, y = 42.2 }, -- 42
+        { type = "COLLECT", quest = 8318, questName = "Secret Communication", target = "Encrypted Twilight Text", map = 1451, zone = "Silithus", x = 40.9, y = 42.2, near = true }, -- 41
+        { type = "COLLECT", quest = 8323, questName = "True Believers", target = "Encrypted Twilight Text", map = 1451, zone = "Silithus", x = 40.9, y = 42.2, near = true }, -- 42
         { type = "TURNIN", quest = 8318, questName = "Secret Communication", npc = 15306, npcName = "Bor Wildmane", map = 1451, zone = "Silithus", x = 48.6, y = 37.8 }, -- 43
         { type = "TURNIN", quest = 8323, questName = "True Believers", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 44
         { type = "GRIND", level = 58, note = "the next quests need level 58" }, -- 45
         { type = "ACCEPT", quest = 9248, questName = "A Humble Offering", npc = 15282, npcName = "Aurel Goldleaf", map = 1451, zone = "Silithus", x = 52, y = 38.2 }, -- 46
         { type = "ACCEPT", quest = 8304, questName = "Dearest Natalia", npc = 15181, npcName = "Commander Mar'alith", map = 1451, zone = "Silithus", x = 49.2, y = 34.2 }, -- 47
-        { type = "COLLECT", quest = 9248, questName = "A Humble Offering", target = "Abyssal Scepter", map = 1451, zone = "Silithus", x = 39.6, y = 45.1 }, -- 48
+        { type = "COLLECT", quest = 9248, questName = "A Humble Offering", target = "Abyssal Scepter", map = 1451, zone = "Silithus", x = 39.6, y = 45.1, near = true }, -- 48
         { type = "TURNIN", quest = 9248, questName = "A Humble Offering", npc = 15282, npcName = "Aurel Goldleaf", map = 1451, zone = "Silithus", x = 52, y = 38.2 }, -- 49
         { type = "KILL", quest = 8304, questName = "Dearest Natalia", npc = 15170, target = "Rutgar Glyphshaper / Frankal Stonebridge", map = 1451, zone = "Silithus", x = 41.3, y = 88.5 }, -- 50
         { type = "TURNIN", quest = 8304, questName = "Dearest Natalia", npc = 15181, npcName = "Commander Mar'alith", map = 1451, zone = "Silithus", x = 49.2, y = 34.2 }, -- 51
         { type = "ACCEPT", quest = 8310, questName = "Breaking the Code", npc = 15171, npcName = "Frankal Stonebridge", map = 1451, zone = "Silithus", x = 40.8, y = 88.9 }, -- 52
-        { type = "COLLECT", quest = 8310, questName = "Breaking the Code", target = "Hive'Regal Silithid Brain", map = 1451, zone = "Silithus", x = 50.6, y = 89.5 }, -- 53
-        { type = "COLLECT", quest = 8310, questName = "Breaking the Code", target = "Hive'Zora Silithid Brain", map = 1451, zone = "Silithus", x = 37.1, y = 63.7 }, -- 54
-        { type = "COLLECT", quest = 8310, questName = "Breaking the Code", target = "Hive'Ashi Silithid Brain", map = 1451, zone = "Silithus", x = 52.1, y = 52.6 }, -- 55
+        { type = "COLLECT", quest = 8310, questName = "Breaking the Code", target = "Hive'Regal Silithid Brain", map = 1451, zone = "Silithus", x = 50.6, y = 89.5, near = true }, -- 53
+        { type = "COLLECT", quest = 8310, questName = "Breaking the Code", target = "Hive'Zora Silithid Brain", map = 1451, zone = "Silithus", x = 37.1, y = 63.7, near = true }, -- 54
+        { type = "COLLECT", quest = 8310, questName = "Breaking the Code", target = "Hive'Ashi Silithid Brain", map = 1451, zone = "Silithus", x = 52.1, y = 52.6, near = true }, -- 55
         { type = "TURNIN", quest = 8310, questName = "Breaking the Code", npc = 15171, npcName = "Frankal Stonebridge", map = 1451, zone = "Silithus", x = 40.8, y = 88.9 }, -- 56
         { type = "GRIND", level = 60, note = "the next quests need level 60" }, -- 57
-        { type = "ACCEPT", quest = 9023, questName = "The Perfect Poison", npc = 16091, npcName = "Dirk Thunderwood", map = 1451, zone = "Silithus", x = 52.1, y = 39.1 }, -- 58
-        { type = "ACCEPT", quest = 8332, questName = "Dukes of the Council", npc = 15282, npcName = "Aurel Goldleaf", map = 1451, zone = "Silithus", x = 52, y = 38.2 }, -- 59
-        { type = "ACCEPT", quest = 8341, questName = "Lords of the Council", npc = 15282, npcName = "Aurel Goldleaf", map = 1451, zone = "Silithus", x = 52, y = 38.2 }, -- 60
-        { type = "ACCEPT", quest = 8800, questName = "Cenarion Battlegear", npc = 15540, npcName = "Windcaller Kaldon", map = 1451, zone = "Silithus", x = 50, y = 36.4 }, -- 61
-        { type = "ACCEPT", quest = 8320, questName = "Twilight Geolords", npc = 15270, npcName = "Huum Wildmane", map = 1451, zone = "Silithus", x = 48.6, y = 37.9 }, -- 62
-        { type = "ACCEPT", quest = 8348, questName = "Signet of the Dukes", npc = 15306, npcName = "Bor Wildmane", map = 1451, zone = "Silithus", x = 48.6, y = 37.8 }, -- 63
-        { type = "ACCEPT", quest = 8352, questName = "Scepter of the Council", npc = 15306, npcName = "Bor Wildmane", map = 1451, zone = "Silithus", x = 48.6, y = 37.8 }, -- 64
-        { type = "ACCEPT", quest = 8361, questName = "Abyssal Contacts", npc = 15306, npcName = "Bor Wildmane", map = 1451, zone = "Silithus", x = 48.6, y = 37.8 }, -- 65
-        { type = "TURNIN", quest = 9023, questName = "The Perfect Poison", npc = 16091, npcName = "Dirk Thunderwood", map = 1451, zone = "Silithus", x = 52.1, y = 39.1 }, -- 66
-        { type = "TURNIN", quest = 8800, questName = "Cenarion Battlegear", npc = 15176, npcName = "Vargus", map = 1451, zone = "Silithus", x = 51.2, y = 38.9 }, -- 67
-        { type = "KILL", quest = 8320, questName = "Twilight Geolords", npc = 11881, target = "Twilight Geolord", map = 1451, zone = "Silithus", x = 41.1, y = 44 }, -- 68
-        { type = "COLLECT", quest = 8352, questName = "Scepter of the Council", target = "Abyssal Scepter", map = 1451, zone = "Silithus", x = 39.6, y = 45.1 }, -- 69
-        { type = "COLLECT", quest = 8332, questName = "Dukes of the Council", target = "Abyssal Crest", map = 1451, zone = "Silithus", x = 38.3, y = 46.5 }, -- 70
-        { type = "COLLECT", quest = 8361, questName = "Abyssal Contacts", target = "Abyssal Crest", map = 1451, zone = "Silithus", x = 38.3, y = 46.5 }, -- 71
-        { type = "COLLECT", quest = 8341, questName = "Lords of the Council", target = "Abyssal Signet", map = 1451, zone = "Silithus", x = 37.6, y = 44.8 }, -- 72
-        { type = "COLLECT", quest = 8348, questName = "Signet of the Dukes", target = "Abyssal Signet", map = 1451, zone = "Silithus", x = 37.6, y = 44.8 }, -- 73
+        { type = "ACCEPT", quest = 8320, questName = "Twilight Geolords", npc = 15270, npcName = "Huum Wildmane", map = 1451, zone = "Silithus", x = 48.6, y = 37.9 }, -- 58
+        { type = "ACCEPT", quest = 8348, questName = "Signet of the Dukes", npc = 15306, npcName = "Bor Wildmane", map = 1451, zone = "Silithus", x = 48.6, y = 37.8 }, -- 59
+        { type = "ACCEPT", quest = 8352, questName = "Scepter of the Council", npc = 15306, npcName = "Bor Wildmane", map = 1451, zone = "Silithus", x = 48.6, y = 37.8 }, -- 60
+        { type = "ACCEPT", quest = 8361, questName = "Abyssal Contacts", npc = 15306, npcName = "Bor Wildmane", map = 1451, zone = "Silithus", x = 48.6, y = 37.8 }, -- 61
+        { type = "ACCEPT", quest = 8800, questName = "Cenarion Battlegear", npc = 15540, npcName = "Windcaller Kaldon", map = 1451, zone = "Silithus", x = 50, y = 36.4 }, -- 62
+        { type = "ACCEPT", quest = 8332, questName = "Dukes of the Council", npc = 15282, npcName = "Aurel Goldleaf", map = 1451, zone = "Silithus", x = 52, y = 38.2 }, -- 63
+        { type = "ACCEPT", quest = 8341, questName = "Lords of the Council", npc = 15282, npcName = "Aurel Goldleaf", map = 1451, zone = "Silithus", x = 52, y = 38.2 }, -- 64
+        { type = "ACCEPT", quest = 9023, questName = "The Perfect Poison", npc = 16091, npcName = "Dirk Thunderwood", map = 1451, zone = "Silithus", x = 52.1, y = 39.1, optional = true, note = "elite target - bring a group (optional)" }, -- 65
+        { type = "TURNIN", quest = 8800, questName = "Cenarion Battlegear", npc = 15176, npcName = "Vargus", map = 1451, zone = "Silithus", x = 51.2, y = 38.9 }, -- 66
+        { type = "TURNIN", quest = 9023, questName = "The Perfect Poison", npc = 16091, npcName = "Dirk Thunderwood", map = 1451, zone = "Silithus", x = 52.1, y = 39.1, optional = true }, -- 67
+        { type = "KILL", quest = 8320, questName = "Twilight Geolords", npc = 11881, target = "Twilight Geolord", map = 1451, zone = "Silithus", x = 41.1, y = 44, near = true }, -- 68
+        { type = "COLLECT", quest = 8352, questName = "Scepter of the Council", target = "Abyssal Scepter", map = 1451, zone = "Silithus", x = 39.6, y = 45.1, near = true }, -- 69
+        { type = "COLLECT", quest = 8332, questName = "Dukes of the Council", target = "Abyssal Crest", map = 1451, zone = "Silithus", x = 38.3, y = 46.5, near = true }, -- 70
+        { type = "COLLECT", quest = 8361, questName = "Abyssal Contacts", target = "Abyssal Crest", map = 1451, zone = "Silithus", x = 38.3, y = 46.5, near = true }, -- 71
+        { type = "COLLECT", quest = 8341, questName = "Lords of the Council", target = "Abyssal Signet", map = 1451, zone = "Silithus", x = 37.6, y = 44.8, near = true }, -- 72
+        { type = "COLLECT", quest = 8348, questName = "Signet of the Dukes", target = "Abyssal Signet", map = 1451, zone = "Silithus", x = 37.6, y = 44.8, near = true }, -- 73
         { type = "TURNIN", quest = 8320, questName = "Twilight Geolords", npc = 15270, npcName = "Huum Wildmane", map = 1451, zone = "Silithus", x = 48.6, y = 37.9 }, -- 74
         { type = "ACCEPT", quest = 8321, questName = "Vyral the Vile", npc = 15270, npcName = "Huum Wildmane", map = 1451, zone = "Silithus", x = 48.6, y = 37.9 }, -- 75
         { type = "TURNIN", quest = 8348, questName = "Signet of the Dukes", npc = 15306, npcName = "Bor Wildmane", map = 1451, zone = "Silithus", x = 48.6, y = 37.8 }, -- 76

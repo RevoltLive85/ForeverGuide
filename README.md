@@ -10,8 +10,11 @@ ForeverGuide DB (JSON)  ->  tools/compile_guides.py  ->  Guides/*.lua  ->  addon
 
 ## Install / test
 
-The folder is already in `_classic_beta_\Interface\AddOns\ForeverGuide`. Log in, enable it on the
-AddOns screen, then:
+The folder is already in `_classic_beta_\Interface\AddOns\ForeverGuide` and is a git checkout of
+https://github.com/RevoltLive85/ForeverGuide - after editing anything, double-click
+`tools\sync_to_github.cmd` (or `git add -A && git commit && git push`) so the repo stays current.
+Anyone else: clone the repo into `Interface\AddOns\` (or unzip a release from `python tools/package.py`).
+Log in, enable it on the AddOns screen, then:
 
 | command | what |
 |---|---|
@@ -31,6 +34,8 @@ AddOns screen, then:
 | `/fg scan` | ask the server about every quest id 1-100000; log out, then `python tools/scan_diff.py` lists Forever's new quests vs Questie |
 | `/fg wrong <text>` / `/fg reports` | report the current step as wrong (saved with your position + target); `python tools/collect_reports.py` turns the reports into a review list |
 | `/fg options` | options panel (also Esc -> Options -> AddOns -> ForeverGuide); key bindings under Key Bindings -> AddOns |
+| `/fg resync` | levelled elsewhere? skips the quests that would give 20% xp or less and continues from the first open step |
+| `/fg edit here` / `npc` / `note <text>` / `radius <yd>` / `clear`, `/fg edits` | fix the current step in place (position = where you stand, npc = your target); saved per guide, `python tools/apply_edits.py` folds the edits into the guide source |
 
 The window and the floating arrow are draggable while unlocked (`/fg unlock` / `/fg lock`); `/fg arrow off` hides the arrow, `/fg bliz off` disables the Blizzard map-pin arrow. The **Guides** button opens a picker (auto mode or any installed guide); **Auto**/**Guide** switches modes.
 
@@ -55,6 +60,7 @@ ForeverGuide/
   AutoQuest.lua     auto-accept / auto-turn-in through the normal quest windows
   Minimap.lua       minimap button
   Options.lua       options panel (Settings canvas category)
+  Editor.lua        in-game step corrections (/fg edit) applied over the guide data
   Keybinds.lua      key binding names + functions for Bindings.xml
   Commands.lua      /fg
   Init.lua          boots the lifecycle (last in the TOC)
@@ -72,6 +78,8 @@ ForeverGuide/
     merge_recorded.py   SavedVariables (recorder/harvest/scan, incl. .bak, every account) -> data-src/forever.json -> Data/ForeverDB.lua
     import_db2.py       wago.tools CSV exports of Forever's own quest tables (QuestV2, QuestObjective, QuestPOI*) -> same overlay
     collect_reports.py  "/fg wrong" reports -> data-src/reports.json + review list
+    apply_edits.py      "/fg edit" corrections -> guides-src/*.json (then compile_guides.py)
+    sync_to_github.cmd  commit + push this folder to github.com/RevoltLive85/ForeverGuide (double-click after editing)
     package.py          dist/ForeverGuide-<version>.zip (--dev includes tools and sources)
     test/               headless engine test: lua5.1 tools/test/run_tests.lua
 ```
@@ -99,6 +107,11 @@ The generator thinks in hubs (clusters of givers / turn-ins): everything tied to
 finished before the route moves on - objectives of quests that turn in there, turn-ins, givers,
 objectives close by - planned as one tour (nearest-neighbour + 2-opt). When a hub is exhausted the
 next one is the hub with the most waiting, and givers / objectives on the way are taken along.
+The order the hubs themselves are visited is planned as a tour too (nearest-neighbour + 2-opt over
+the hubs with something waiting), so a finished quest is never left behind for a long trip back.
+Quests with an elite / group target are kept in the route but marked optional (dimmed, they
+complete themselves once you move past them); objectives with many spawn points carry `near`, so
+in game the arrow points at the nearest known spawn instead of the planned spot.
 Quest XP is the real reward (Questie's XP table) with the Classic reduction for out-levelled quests,
 so lower-level quests are ordered first and never left to turn grey; quests that would give 20% or
 less are skipped unless a chain needs them. In game, auto mode ranks the quest log the same way

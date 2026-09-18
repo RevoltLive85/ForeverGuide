@@ -13,23 +13,23 @@ ns.RegisterGuide({
     steps = {
         { type = "ACCEPT", quest = 469, questName = "Daily Delivery", npc = 2093, npcName = "Einar Stonegrip", map = 1437, zone = "Wetlands", x = 49.9, y = 39.4 }, -- 1
         { type = "ACCEPT", quest = 276, questName = "Tramping Paws", npc = 1244, npcName = "Rethiel the Greenwarden", map = 1437, zone = "Wetlands", x = 56.4, y = 40.4 }, -- 2
-        { type = "KILL", quest = 276, questName = "Tramping Paws", npc = 1008, target = "Mosshide Mongrel", map = 1437, zone = "Wetlands", x = 61.2, y = 55.6 }, -- 3
-        { type = "KILL", quest = 276, questName = "Tramping Paws", npc = 1007, target = "Mosshide Gnoll", map = 1437, zone = "Wetlands", x = 60.5, y = 63.7 }, -- 4
+        { type = "KILL", quest = 276, questName = "Tramping Paws", npc = 1008, target = "Mosshide Mongrel", map = 1437, zone = "Wetlands", x = 61.2, y = 55.6, near = true }, -- 3
+        { type = "KILL", quest = 276, questName = "Tramping Paws", npc = 1007, target = "Mosshide Gnoll", map = 1437, zone = "Wetlands", x = 60.5, y = 63.7, near = true }, -- 4
         { type = "TURNIN", quest = 276, questName = "Tramping Paws", npc = 1244, npcName = "Rethiel the Greenwarden", map = 1437, zone = "Wetlands", x = 56.4, y = 40.4 }, -- 5
         { type = "ACCEPT", quest = 277, questName = "Fire Taboo", npc = 1244, npcName = "Rethiel the Greenwarden", map = 1437, zone = "Wetlands", x = 56.4, y = 40.4 }, -- 6
-        { type = "COLLECT", quest = 277, questName = "Fire Taboo", target = "Crude Flint", map = 1437, zone = "Wetlands", x = 51.5, y = 31 }, -- 7
+        { type = "COLLECT", quest = 277, questName = "Fire Taboo", target = "Crude Flint", map = 1437, zone = "Wetlands", x = 51.5, y = 31, near = true }, -- 7
         { type = "TURNIN", quest = 277, questName = "Fire Taboo", npc = 1244, npcName = "Rethiel the Greenwarden", map = 1437, zone = "Wetlands", x = 56.4, y = 40.4 }, -- 8
         { type = "ACCEPT", quest = 275, questName = "Blisters on The Land", npc = 1244, npcName = "Rethiel the Greenwarden", map = 1437, zone = "Wetlands", x = 56.4, y = 40.4 }, -- 9
-        { type = "KILL", quest = 275, questName = "Blisters on The Land", npc = 1040, target = "Fen Creeper", map = 1437, zone = "Wetlands", x = 55, y = 37.2 }, -- 10
+        { type = "KILL", quest = 275, questName = "Blisters on The Land", npc = 1040, target = "Fen Creeper", map = 1437, zone = "Wetlands", x = 55, y = 37.2, near = true }, -- 10
         { type = "TURNIN", quest = 275, questName = "Blisters on The Land", npc = 1244, npcName = "Rethiel the Greenwarden", map = 1437, zone = "Wetlands", x = 56.4, y = 40.4 }, -- 11
         { type = "TURNIN", quest = 469, questName = "Daily Delivery", npc = 2094, npcName = "James Halloran", map = 1437, zone = "Wetlands", x = 8.6, y = 55.7 }, -- 12
         { type = "ACCEPT", quest = 484, questName = "Young Crocolisk Skins", npc = 2094, npcName = "James Halloran", map = 1437, zone = "Wetlands", x = 8.6, y = 55.7 }, -- 13
         { type = "ACCEPT", quest = 279, questName = "Claws from the Deep", npc = 1242, npcName = "Karl Boran", map = 1437, zone = "Wetlands", x = 8.3, y = 58.6 }, -- 14
         { type = "ACCEPT", quest = 470, questName = "Digging Through the Ooze", npc = 2111, npcName = "Sida", map = 1437, zone = "Wetlands", x = 11.8, y = 58 }, -- 15
-        { type = "KILL", quest = 279, questName = "Claws from the Deep", npc = 1024, target = "Bluegill Murloc", map = 1437, zone = "Wetlands", x = 12.7, y = 42.3 }, -- 16
-        { type = "KILL", quest = 279, questName = "Claws from the Deep", npc = 1259, target = "Gobbler", map = 1437, zone = "Wetlands", x = 15.2, y = 41.5, note = "loot Gobbler's Head" }, -- 17
-        { type = "COLLECT", quest = 470, questName = "Digging Through the Ooze", target = "Sida's Bag", map = 1437, zone = "Wetlands", x = 23.9, y = 48.4 }, -- 18
-        { type = "KILL", quest = 484, questName = "Young Crocolisk Skins", npc = 1417, target = "Young Wetlands Crocolisk", map = 1437, zone = "Wetlands", x = 15.4, y = 52.2, note = "loot Young Crocolisk Skin" }, -- 19
+        { type = "KILL", quest = 279, questName = "Claws from the Deep", npc = 1024, target = "Bluegill Murloc", map = 1437, zone = "Wetlands", x = 12.7, y = 42.3, near = true }, -- 16
+        { type = "KILL", quest = 279, questName = "Claws from the Deep", npc = 1259, target = "Gobbler", map = 1437, zone = "Wetlands", x = 15.2, y = 41.5, near = true, note = "loot Gobbler's Head" }, -- 17
+        { type = "COLLECT", quest = 470, questName = "Digging Through the Ooze", target = "Sida's Bag", map = 1437, zone = "Wetlands", x = 23.9, y = 48.4, near = true }, -- 18
+        { type = "KILL", quest = 484, questName = "Young Crocolisk Skins", npc = 1417, target = "Young Wetlands Crocolisk", map = 1437, zone = "Wetlands", x = 15.4, y = 52.2, near = true, note = "loot Young Crocolisk Skin" }, -- 19
         { type = "ACCEPT", quest = 305, questName = "In Search of The Excavation Team", npc = 2096, npcName = "Tarrel Rockweaver", map = 1437, zone = "Wetlands", x = 11.5, y = 52.2 }, -- 20
         { type = "TURNIN", quest = 484, questName = "Young Crocolisk Skins", npc = 2094, npcName = "James Halloran", map = 1437, zone = "Wetlands", x = 8.6, y = 55.7 }, -- 21
         { type = "ACCEPT", quest = 471, questName = "Apprentice's Duties", npc = 2094, npcName = "James Halloran", map = 1437, zone = "Wetlands", x = 8.6, y = 55.7 }, -- 22
@@ -42,7 +42,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 285, questName = "Search More Hovels", map = 1437, zone = "Wetlands", x = 13.6, y = 38.2 }, -- 29
         { type = "TURNIN", quest = 285, questName = "Search More Hovels", map = 1437, zone = "Wetlands", x = 13.9, y = 34.8 }, -- 30
         { type = "ACCEPT", quest = 286, questName = "Return the Statuette", map = 1437, zone = "Wetlands", x = 13.9, y = 34.8 }, -- 31
-        { type = "KILL", quest = 471, questName = "Apprentice's Duties", npc = 2089, target = "Giant Wetlands Crocolisk", map = 1437, zone = "Wetlands", x = 15.3, y = 29.2, note = "loot Giant Crocolisk Skin" }, -- 32
+        { type = "KILL", quest = 471, questName = "Apprentice's Duties", npc = 2089, target = "Giant Wetlands Crocolisk", map = 1437, zone = "Wetlands", x = 15.3, y = 29.2, near = true, note = "loot Giant Crocolisk Skin" }, -- 32
         { type = "TURNIN", quest = 471, questName = "Apprentice's Duties", npc = 2094, npcName = "James Halloran", map = 1437, zone = "Wetlands", x = 8.6, y = 55.7 }, -- 33
         { type = "TURNIN", quest = 286, questName = "Return the Statuette", npc = 1242, npcName = "Karl Boran", map = 1437, zone = "Wetlands", x = 8.3, y = 58.6 }, -- 34
         { type = "ACCEPT", quest = 288, questName = "The Third Fleet", npc = 1239, npcName = "First Mate Fitzsimmons", map = 1437, zone = "Wetlands", x = 10.9, y = 59.6 }, -- 35
@@ -51,22 +51,22 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 305, questName = "In Search of The Excavation Team", npc = 1076, npcName = "Merrin Rockweaver", map = 1437, zone = "Wetlands", x = 38.9, y = 52.3 }, -- 38
         { type = "ACCEPT", quest = 306, questName = "In Search of The Excavation Team", npc = 1076, npcName = "Merrin Rockweaver", map = 1437, zone = "Wetlands", x = 38.9, y = 52.3 }, -- 39
         { type = "ACCEPT", quest = 294, questName = "Ormer's Revenge", npc = 1078, npcName = "Ormer Ironbraid", map = 1437, zone = "Wetlands", x = 38.2, y = 50.9 }, -- 40
-        { type = "KILL", quest = 294, questName = "Ormer's Revenge", npc = 1020, target = "Mottled Raptor", map = 1437, zone = "Wetlands", x = 37.1, y = 42.2 }, -- 41
-        { type = "KILL", quest = 294, questName = "Ormer's Revenge", npc = 1021, target = "Mottled Screecher", map = 1437, zone = "Wetlands", x = 30.2, y = 44.1 }, -- 42
+        { type = "KILL", quest = 294, questName = "Ormer's Revenge", npc = 1020, target = "Mottled Raptor", map = 1437, zone = "Wetlands", x = 37.1, y = 42.2, near = true }, -- 41
+        { type = "KILL", quest = 294, questName = "Ormer's Revenge", npc = 1021, target = "Mottled Screecher", map = 1437, zone = "Wetlands", x = 30.2, y = 44.1, near = true }, -- 42
         { type = "TURNIN", quest = 294, questName = "Ormer's Revenge", npc = 1078, npcName = "Ormer Ironbraid", map = 1437, zone = "Wetlands", x = 38.2, y = 50.9 }, -- 43
         { type = "ACCEPT", quest = 295, questName = "Ormer's Revenge", npc = 1078, npcName = "Ormer Ironbraid", map = 1437, zone = "Wetlands", x = 38.2, y = 50.9 }, -- 44
-        { type = "KILL", quest = 295, questName = "Ormer's Revenge", npc = 1022, target = "Mottled Scytheclaw", map = 1437, zone = "Wetlands", x = 35.6, y = 51.9 }, -- 45
-        { type = "KILL", quest = 295, questName = "Ormer's Revenge", npc = 1023, target = "Mottled Razormaw", map = 1437, zone = "Wetlands", x = 34.3, y = 49.6 }, -- 46
+        { type = "KILL", quest = 295, questName = "Ormer's Revenge", npc = 1022, target = "Mottled Scytheclaw", map = 1437, zone = "Wetlands", x = 35.6, y = 51.9, near = true }, -- 45
+        { type = "KILL", quest = 295, questName = "Ormer's Revenge", npc = 1023, target = "Mottled Razormaw", map = 1437, zone = "Wetlands", x = 34.3, y = 49.6, near = true }, -- 46
         { type = "TURNIN", quest = 295, questName = "Ormer's Revenge", npc = 1078, npcName = "Ormer Ironbraid", map = 1437, zone = "Wetlands", x = 38.2, y = 50.9 }, -- 47
         { type = "ACCEPT", quest = 296, questName = "Ormer's Revenge", npc = 1078, npcName = "Ormer Ironbraid", map = 1437, zone = "Wetlands", x = 38.2, y = 50.9 }, -- 48
         { type = "KILL", quest = 296, questName = "Ormer's Revenge", npc = 1353, target = "Sarltooth", map = 1437, zone = "Wetlands", x = 33.3, y = 51.5, note = "loot Sarltooth's Talon" }, -- 49
         { type = "TURNIN", quest = 296, questName = "Ormer's Revenge", npc = 1078, npcName = "Ormer Ironbraid", map = 1437, zone = "Wetlands", x = 38.2, y = 50.9 }, -- 50
         { type = "TURNIN", quest = 306, questName = "In Search of The Excavation Team", npc = 2096, npcName = "Tarrel Rockweaver", map = 1437, zone = "Wetlands", x = 11.5, y = 52.2 }, -- 51
-        { type = "KILL", quest = 289, questName = "The Cursed Crew", npc = 1157, target = "Cursed Sailor / First Mate Snellig / Cursed Marine", map = 1437, zone = "Wetlands", x = 13.8, y = 30.8 }, -- 52
+        { type = "KILL", quest = 289, questName = "The Cursed Crew", npc = 1157, target = "Cursed Sailor / First Mate Snellig / Cursed Marine", map = 1437, zone = "Wetlands", x = 13.8, y = 30.8, near = true }, -- 52
         { type = "TURNIN", quest = 289, questName = "The Cursed Crew", npc = 1239, npcName = "First Mate Fitzsimmons", map = 1437, zone = "Wetlands", x = 10.9, y = 59.6 }, -- 53
         { type = "ACCEPT", quest = 464, questName = "War Banners", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.9, y = 57.5 }, -- 54
         { type = "ACCEPT", quest = 290, questName = "Lifting the Curse", npc = 1239, npcName = "First Mate Fitzsimmons", map = 1437, zone = "Wetlands", x = 10.9, y = 59.6 }, -- 55
-        { type = "COLLECT", quest = 464, questName = "War Banners", target = "Dragonmaw War Banner", map = 1437, zone = "Wetlands", x = 38.2, y = 45.9 }, -- 56
+        { type = "COLLECT", quest = 464, questName = "War Banners", target = "Dragonmaw War Banner", map = 1437, zone = "Wetlands", x = 38.2, y = 45.9, near = true }, -- 56
         { type = "TURNIN", quest = 464, questName = "War Banners", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.9, y = 57.5 }, -- 57
         { type = "ACCEPT", quest = 465, questName = "Nek'rosh's Gambit", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.9, y = 57.5 }, -- 58
         { type = "KILL", quest = 290, questName = "Lifting the Curse", npc = 1160, target = "Captain Halyndor", map = 1437, zone = "Wetlands", x = 15.5, y = 23.6, note = "loot Intrepid Strongbox Key" }, -- 59
@@ -75,22 +75,22 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 292, questName = "The Eye of Paleth", npc = 1217, npcName = "Glorin Steelbrow", map = 1437, zone = "Wetlands", x = 10.6, y = 60.6 }, -- 62
         { type = "ACCEPT", quest = 293, questName = "Cleansing the Eye", npc = 1217, npcName = "Glorin Steelbrow", map = 1437, zone = "Wetlands", x = 10.6, y = 60.6 }, -- 63
         { type = "TURNIN", quest = 465, questName = "Nek'rosh's Gambit", map = 1437, zone = "Wetlands", x = 47.5, y = 47 }, -- 64
-        { type = "ACCEPT", quest = 474, questName = "Defeat Nek'rosh", map = 1437, zone = "Wetlands", x = 47.5, y = 47 }, -- 65
-        { type = "KILL", quest = 474, questName = "Defeat Nek'rosh", npc = 2091, target = "Chieftain Nek'rosh", map = 1437, zone = "Wetlands", x = 53.5, y = 54.7, note = "loot Nek'rosh's Head" }, -- 66
-        { type = "TURNIN", quest = 474, questName = "Defeat Nek'rosh", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.9, y = 57.5 }, -- 67
+        { type = "ACCEPT", quest = 474, questName = "Defeat Nek'rosh", map = 1437, zone = "Wetlands", x = 47.5, y = 47, optional = true, note = "elite target - bring a group (optional)" }, -- 65
+        { type = "KILL", quest = 474, questName = "Defeat Nek'rosh", npc = 2091, target = "Chieftain Nek'rosh", map = 1437, zone = "Wetlands", x = 53.5, y = 54.7, optional = true, note = "ELITE - loot Nek'rosh's Head (group quest, optional)" }, -- 66
+        { type = "TURNIN", quest = 474, questName = "Defeat Nek'rosh", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.9, y = 57.5, optional = true }, -- 67
         { type = "TURNIN", quest = 293, questName = "Cleansing the Eye", npc = 1284, npcName = "Archbishop Benedictus", map = 1453, zone = "Stormwind City", x = 39.6, y = 27.2 }, -- 68
         { type = "GRIND", level = 25, note = "the next quests need level 25" }, -- 69
         { type = "ACCEPT", quest = 472, questName = "Fall of Dun Modr", npc = 2097, npcName = "Harlo Barnaby", map = 1437, zone = "Wetlands", x = 10.9, y = 55.9 }, -- 70
         { type = "ACCEPT", quest = 299, questName = "Uncovering the Past", npc = 1077, npcName = "Prospector Whelgar", map = 1437, zone = "Wetlands", x = 38.8, y = 52.4 }, -- 71
-        { type = "COLLECT", quest = 299, questName = "Uncovering the Past", target = "Ados Fragment / Modr Fragment / Golm Fragment / Neru Fragment", map = 1437, zone = "Wetlands", x = 36.1, y = 50 }, -- 72
+        { type = "COLLECT", quest = 299, questName = "Uncovering the Past", target = "Ados Fragment / Modr Fragment / Golm Fragment / Neru Fragment", map = 1437, zone = "Wetlands", x = 36.1, y = 50, near = true }, -- 72
         { type = "TURNIN", quest = 299, questName = "Uncovering the Past", npc = 1077, npcName = "Prospector Whelgar", map = 1437, zone = "Wetlands", x = 38.8, y = 52.4 }, -- 73
         { type = "TURNIN", quest = 472, questName = "Fall of Dun Modr", npc = 1071, npcName = "Longbraid the Grim", map = 1437, zone = "Wetlands", x = 49.8, y = 18.3 }, -- 74
-        { type = "ACCEPT", quest = 303, questName = "The Dark Iron War", npc = 1074, npcName = "Motley Garmason", map = 1437, zone = "Wetlands", x = 49.7, y = 18.2 }, -- 75
-        { type = "ACCEPT", quest = 304, questName = "A Grim Task", npc = 1071, npcName = "Longbraid the Grim", map = 1437, zone = "Wetlands", x = 49.8, y = 18.3 }, -- 76
-        { type = "KILL", quest = 303, questName = "The Dark Iron War", npc = 1051, target = "Dark Iron Dwarf / Dark Iron Saboteur / Dark Iron Demolitionist / Dark Iron Tunneler", map = 1437, zone = "Wetlands", x = 48.2, y = 17.7 }, -- 77
-        { type = "TURNIN", quest = 303, questName = "The Dark Iron War", npc = 1074, npcName = "Motley Garmason", map = 1437, zone = "Wetlands", x = 49.7, y = 18.2 }, -- 78
-        { type = "KILL", quest = 304, questName = "A Grim Task", npc = 1364, target = "Balgaras the Foul", map = 1437, zone = "Wetlands", x = 47, y = 17, note = "loot Ear of Balgaras" }, -- 79
-        { type = "TURNIN", quest = 304, questName = "A Grim Task", npc = 1071, npcName = "Longbraid the Grim", map = 1437, zone = "Wetlands", x = 49.8, y = 18.3 }, -- 80
+        { type = "ACCEPT", quest = 303, questName = "The Dark Iron War", npc = 1074, npcName = "Motley Garmason", map = 1437, zone = "Wetlands", x = 49.7, y = 18.2, optional = true, note = "elite target - bring a group (optional)" }, -- 75
+        { type = "ACCEPT", quest = 304, questName = "A Grim Task", npc = 1071, npcName = "Longbraid the Grim", map = 1437, zone = "Wetlands", x = 49.8, y = 18.3, optional = true, note = "elite target - bring a group (optional)" }, -- 76
+        { type = "KILL", quest = 303, questName = "The Dark Iron War", npc = 1051, target = "Dark Iron Dwarf / Dark Iron Saboteur / Dark Iron Demolitionist / Dark Iron Tunneler", map = 1437, zone = "Wetlands", x = 48.2, y = 17.7, optional = true, near = true, note = "ELITE -  (group quest, optional)" }, -- 77
+        { type = "TURNIN", quest = 303, questName = "The Dark Iron War", npc = 1074, npcName = "Motley Garmason", map = 1437, zone = "Wetlands", x = 49.7, y = 18.2, optional = true }, -- 78
+        { type = "KILL", quest = 304, questName = "A Grim Task", npc = 1364, target = "Balgaras the Foul", map = 1437, zone = "Wetlands", x = 47, y = 17, optional = true, near = true, note = "ELITE - loot Ear of Balgaras (group quest, optional)" }, -- 79
+        { type = "TURNIN", quest = 304, questName = "A Grim Task", npc = 1071, npcName = "Longbraid the Grim", map = 1437, zone = "Wetlands", x = 49.8, y = 18.3, optional = true }, -- 80
         { type = "GRIND", level = 28, note = "the next quests need level 28" }, -- 81
         { type = "ACCEPT", quest = 631, questName = "The Thandol Span", npc = 1075, npcName = "Rhag Garmason", map = 1437, zone = "Wetlands", x = 49.9, y = 18.2 }, -- 82
         { type = "TURNIN", quest = 631, questName = "The Thandol Span", map = 1437, zone = "Wetlands", x = 51.3, y = 8 }, -- 83

@@ -57,7 +57,7 @@ function Events:Fire(event, ...)
     if not list then return end
     for i = 1, #list do
         local ok, err = pcall(list[i], event, ...)
-        if not ok then ns.ReportOnce(event, err) end
+        if not ok then ns.ReportOnce(event .. "#" .. i, err) end
     end
 end
 

@@ -1,8 +1,8 @@
 ## Interface: 16001
 ## Title: ForeverGuide
-## Notes: Free, data-driven leveling guide engine for WoW Forever. Reads game state and shows you the next step. Never automates anything.
+## Notes: Free, data-driven leveling guide engine for WoW Forever. Reads game state and shows you the next step. Never automates combat, movement or chat (quest accept / turn-in is optional).
 ## Author: Ilya
-## Version: 0.2.0
+## Version: 0.2.1
 ## SavedVariables: ForeverGuideDB
 ## SavedVariablesPerCharacter: ForeverGuideCharDB
 ## IconTexture: Interface\Icons\INV_Misc_Map_01
@@ -38,6 +38,7 @@ Arrow.lua
 AutoQuest.lua
 Minimap.lua
 Options.lua
+Editor.lua
 Keybinds.lua
 Commands.lua
 

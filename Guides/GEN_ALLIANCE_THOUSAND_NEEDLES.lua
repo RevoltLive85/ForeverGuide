@@ -18,13 +18,13 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1110, questName = "Rocket Car Parts", npc = 4452, npcName = "Kravel Koalbeard", map = 1441, zone = "Thousand Needles", x = 77.8, y = 77.3 }, -- 5
         { type = "ACCEPT", quest = 5762, questName = "Hemet Nesingwary", npc = 4452, npcName = "Kravel Koalbeard", map = 1441, zone = "Thousand Needles", x = 77.8, y = 77.3 }, -- 6
         { type = "ACCEPT", quest = 1175, questName = "A Bump in the Road", npc = 4629, npcName = "Trackmaster Zherin", map = 1441, zone = "Thousand Needles", x = 81.6, y = 78 }, -- 7
-        { type = "COLLECT", quest = 1105, questName = "Hardened Shells", target = "Hardened Tortoise Shell", map = 1441, zone = "Thousand Needles", x = 78.2, y = 72.1 }, -- 8
-        { type = "COLLECT", quest = 1104, questName = "Salt Flat Venom", target = "Salty Scorpid Venom", map = 1441, zone = "Thousand Needles", x = 73.7, y = 70.1 }, -- 9
-        { type = "COLLECT", quest = 1176, questName = "Load Lightening", target = "Hollow Vulture Bone", map = 1441, zone = "Thousand Needles", x = 70.4, y = 69 }, -- 10
-        { type = "KILL", quest = 1175, questName = "A Bump in the Road", npc = 4147, target = "Saltstone Basilisk", map = 1441, zone = "Thousand Needles", x = 70.7, y = 67.7 }, -- 11
-        { type = "COLLECT", quest = 1110, questName = "Rocket Car Parts", target = "Rocket Car Parts", map = 1441, zone = "Thousand Needles", x = 71.7, y = 68.7 }, -- 12
-        { type = "KILL", quest = 1175, questName = "A Bump in the Road", npc = 4151, target = "Saltstone Crystalhide", map = 1441, zone = "Thousand Needles", x = 79.1, y = 70.1 }, -- 13
-        { type = "KILL", quest = 1175, questName = "A Bump in the Road", npc = 4150, target = "Saltstone Gazer", map = 1441, zone = "Thousand Needles", x = 83.5, y = 78.8 }, -- 14
+        { type = "COLLECT", quest = 1105, questName = "Hardened Shells", target = "Hardened Tortoise Shell", map = 1441, zone = "Thousand Needles", x = 78.2, y = 72.1, near = true }, -- 8
+        { type = "COLLECT", quest = 1104, questName = "Salt Flat Venom", target = "Salty Scorpid Venom", map = 1441, zone = "Thousand Needles", x = 73.7, y = 70.1, near = true }, -- 9
+        { type = "COLLECT", quest = 1176, questName = "Load Lightening", target = "Hollow Vulture Bone", map = 1441, zone = "Thousand Needles", x = 70.4, y = 69, near = true }, -- 10
+        { type = "KILL", quest = 1175, questName = "A Bump in the Road", npc = 4147, target = "Saltstone Basilisk", map = 1441, zone = "Thousand Needles", x = 70.7, y = 67.7, near = true }, -- 11
+        { type = "COLLECT", quest = 1110, questName = "Rocket Car Parts", target = "Rocket Car Parts", map = 1441, zone = "Thousand Needles", x = 71.7, y = 68.7, near = true }, -- 12
+        { type = "KILL", quest = 1175, questName = "A Bump in the Road", npc = 4151, target = "Saltstone Crystalhide", map = 1441, zone = "Thousand Needles", x = 79.1, y = 70.1, near = true }, -- 13
+        { type = "KILL", quest = 1175, questName = "A Bump in the Road", npc = 4150, target = "Saltstone Gazer", map = 1441, zone = "Thousand Needles", x = 83.5, y = 78.8, near = true }, -- 14
         { type = "TURNIN", quest = 1175, questName = "A Bump in the Road", npc = 4629, npcName = "Trackmaster Zherin", map = 1441, zone = "Thousand Needles", x = 81.6, y = 78 }, -- 15
         { type = "TURNIN", quest = 1176, questName = "Load Lightening", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80.2, y = 75.9 }, -- 16
         { type = "ACCEPT", quest = 1178, questName = "Goblin Sponsorship", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80.2, y = 75.9 }, -- 17
