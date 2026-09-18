@@ -1,0 +1,7 @@
+# build output
+dist/
+__pycache__/
+*.pyc
+# scratch
+*.bak
+*.tmp

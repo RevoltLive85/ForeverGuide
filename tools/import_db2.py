@@ -1,0 +1,212 @@
+#!/usr/bin/env python3
+"""
+Import Forever's quest tables from the client's own DB2 data (CSV exports)
+into the Forever data overlay (data-src/forever.json -> Data/ForeverDB.lua).
+
+Where to get the CSVs (2 minutes, no tools on the PC):
+    https://wago.tools/db2/QuestV2?build=1.60.1.69913           -> Export CSV
+    https://wago.tools/db2/QuestV2CliTask?build=1.60.1.69913    -> quest titles
+    https://wago.tools/db2/QuestObjective?build=1.60.1.69913    -> objectives (type, target id, amount, text)
+    https://wago.tools/db2/QuestPOIBlob?build=1.60.1.69913      -> which map each objective's POI is on
+    https://wago.tools/db2/QuestPOIPoint?build=1.60.1.69913     -> objective positions (world coordinates)
+    https://wago.tools/db2/QuestXP?build=1.60.1.69913           -> (optional) xp table
+  (pick the build that matches `/fg` -> "build NNNNN"; any newer beta build works the same way)
+Put them in a folder and run:
+    python tools/import_db2.py <folder>
+
+Column names differ a little between builds, so every lookup below is by
+candidate names, case-insensitively. Anything missing is simply skipped.
+Titles are only in QuestV2CliTask; without it the quests are imported by id
+and titled by the in-game recorder / harvester as you play.
+
+Objective positions are world coordinates; the addon converts them to map
+coordinates in-game with C_Map.GetMapPosFromWorldPos (stored as spw).
+"""
+
+import csv
+import os
+import re
+import sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import foreverdb  # noqa: E402
+
+# QuestObjective.Type (QuestObjectiveType)
+OBJ_TYPES = {0: "kill", 1: "item", 2: "object", 3: "talk", 4: "currency", 5: "spell", 6: "reputation", 7: "money",
+             8: "playerkill", 9: "area", 10: "aoe", 11: "criteria", 12: "progressbar", 13: "kill"}
+
+
+def read_csv(folder, *names):
+    for name in names:
+        for fn in os.listdir(folder):
+            if fn.lower() in (name.lower() + ".csv", name.lower() + ".db2.csv"):
+                path = os.path.join(folder, fn)
+                with open(path, "r", encoding="utf-8-sig", newline="") as fh:
+                    rows = list(csv.DictReader(fh))
+                print("  %-22s %6d rows" % (fn, len(rows)))
+                return rows
+    return None
+
+
+def col(row, *names, default=None):
+    lower = {k.lower(): k for k in row.keys()}
+    for n in names:
+        k = lower.get(n.lower())
+        if k is not None and row[k] not in ("", None):
+            return row[k]
+    return default
+
+
+def num(v, default=None):
+    try:
+        return int(float(v))
+    except (TypeError, ValueError):
+        return default
+
+
+def flt(v, default=None):
+    try:
+        return float(v)
+    except (TypeError, ValueError):
+        return default
+
+
+def main():
+    if len(sys.argv) < 2 or not os.path.isdir(sys.argv[1]):
+        print(__doc__)
+        return 1
+    folder = sys.argv[1]
+    db = foreverdb.load()
+    print("reading CSVs from", folder)
+
+    quests = read_csv(folder, "QuestV2") or []
+    titles = read_csv(folder, "QuestV2CliTask") or []
+    objectives = read_csv(folder, "QuestObjective") or []
+    blobs = read_csv(folder, "QuestPOIBlob") or []
+    points = read_csv(folder, "QuestPOIPoint") or []
+    xp = read_csv(folder, "QuestXP") or []
+
+    n_new = 0
+    for r in quests:
+        qid = num(col(r, "ID"))
+        if not qid:
+            continue
+        q = db["quests"].setdefault(str(qid), {})
+        foreverdb.note_source(q, "db2")
+        sort = num(col(r, "QuestSortID", "QuestSort"))
+        if sort is not None:
+            q["zone"] = sort
+        lvl = num(col(r, "QuestLevel", "Level"))
+        if lvl is not None and lvl > 0:
+            q["lvl"] = lvl
+        req = num(col(r, "MinLevel", "RequiredLevel"))
+        if req is not None and req > 0:
+            q["req"] = req
+        ct = num(col(r, "ContentTuningID"))
+        if ct:
+            q["ct"] = ct
+        flags = num(col(r, "Flags"))
+        if flags is not None:
+            q["flags"] = flags
+        n_new += 1
+
+    n_titles = 0
+    for r in titles:
+        qid = num(col(r, "ID"))
+        title = col(r, "QuestTitle_lang", "QuestTitle", "Title_lang", "Title")
+        if qid and title:
+            q = db["quests"].setdefault(str(qid), {})
+            q["n"] = title
+            foreverdb.note_source(q, "db2")
+            n_titles += 1
+
+    # objectives: QuestObjective rows -> per quest list ordered by OrderIndex
+    per_quest = {}
+    obj_by_id = {}
+    for r in objectives:
+        oid = num(col(r, "ID"))
+        qid = num(col(r, "QuestID"))
+        if not qid:
+            continue
+        o = {
+            "kind": OBJ_TYPES.get(num(col(r, "Type"), -1), "other"),
+            "id": num(col(r, "ObjectID")),
+            "amount": num(col(r, "Amount")),
+            "text": col(r, "Description_lang", "Description") or None,
+            "order": num(col(r, "OrderIndex"), 0),
+            "oid": oid,
+        }
+        per_quest.setdefault(qid, []).append(o)
+        if oid:
+            obj_by_id[oid] = (qid, o)
+    for qid, objs in per_quest.items():
+        objs.sort(key=lambda o: (o["order"] or 0, o["oid"] or 0))
+        q = db["quests"].setdefault(str(qid), {})
+        out = []
+        for o in objs:
+            entry = {"kind": o["kind"]}
+            if o["id"]:
+                entry["id"] = o["id"]
+            if o["amount"]:
+                entry["amount"] = o["amount"]
+            if o["text"]:
+                entry["text"] = o["text"]
+            out.append(entry)
+        q["obj"] = out
+        foreverdb.note_source(q, "db2")
+
+    # POI: blob -> (quest, objective index, uiMapID, mapID); points -> blob
+    blob_info = {}
+    for r in blobs:
+        bid = num(col(r, "ID"))
+        qid = num(col(r, "QuestID"))
+        if not bid or not qid:
+            continue
+        blob_info[bid] = {
+            "quest": qid,
+            "objective": num(col(r, "ObjectiveIndex", "ObjIndex"), -1),
+            "uimap": num(col(r, "UiMapID")),
+            "map": num(col(r, "MapID")),
+        }
+    n_points = 0
+    for r in points:
+        bid = num(col(r, "QuestPOIBlobID", "BlobID"))
+        info = blob_info.get(bid)
+        if not info or not info["uimap"]:
+            continue
+        x, y = flt(col(r, "X")), flt(col(r, "Y"))
+        if x is None or y is None:
+            continue
+        q = db["quests"].setdefault(str(info["quest"]), {})
+        idx = info["objective"]
+        if idx is None or idx < 0:
+            target = q.setdefault("start", {})       # -1 = quest giver / general blob
+        else:
+            objs = q.setdefault("obj", [])
+            while len(objs) <= idx:
+                objs.append({"kind": "other"})
+            target = objs[idx]
+        # world coordinates: X,Y as the client gives them (X north, Y west), plus the instance map
+        if foreverdb.add_point(target.setdefault("spw", {}), info["uimap"], [info["map"] or 0, x, y], limit=24, tol=3.0):
+            n_points += 1
+        foreverdb.note_source(q, "db2")
+
+    n_xp = 0
+    for r in xp:
+        lvl = num(col(r, "ID"))
+        # QuestXP rows are per level with Difficulty[0..9]; keep as-is for the generator
+        if lvl:
+            db.setdefault("questxp", {})[str(lvl)] = [num(col(r, "Difficulty[%d]" % i, "Difficulty_%d" % i, "Difficulty%d" % i), 0) for i in range(10)]
+            n_xp += 1
+
+    foreverdb.save(db)
+    counts = foreverdb.emit_lua(db)
+    print("imported %d quests, %d titles, %d objective lists, %d POI points, %d xp rows" % (n_new, n_titles, len(per_quest), n_points, n_xp))
+    print("overlay now: %d quests, %d npcs, %d objects, %d maps -> Data/ForeverDB.lua" % (
+        counts["quests"], counts["npcs"], counts["objects"], counts["maps"]))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

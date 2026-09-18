@@ -1,0 +1,180 @@
+-- ============================================================
+-- ForeverGuide / Arrow.lua
+-- The floating direction arrow (TomTom style): a big arrow above the
+-- character that rotates towards the current destination, with the
+-- destination name and distance under it. Green when you face it,
+-- yellow when it is to the side, red when it is behind you.
+--
+--   /fg arrow on|off      show / hide
+--   /fg unlock            drag it (and the window) somewhere else
+-- ============================================================
+
+local _, ns = ...
+local Arrow = ns:NewModule("Arrow")
+
+local TEXTURE = "Interface\\AddOns\\ForeverGuide\\Textures\\arrow.tga"
+local FONT = rawget(_G, "STANDARD_TEXT_FONT") or "Fonts\\FRIZQT__.TTF"
+local SIZE = 56
+local frame
+
+local function Cfg()
+    local ui = ns.db.ui
+    ui.arrow = ui.arrow or {}
+    local a = ui.arrow
+    if a.enabled == nil then a.enabled = true end
+    a.point = a.point or "CENTER"
+    a.x = a.x or 0
+    a.y = a.y or 170
+    a.scale = a.scale or 1
+    return a
+end
+
+function Arrow:Create()
+    if frame then return frame end
+    local a = Cfg()
+    local f = CreateFrame("Frame", "ForeverGuideArrowFrame", UIParent)
+    frame = f
+    f:SetSize(160, SIZE + 40)
+    f:SetPoint(a.point, UIParent, a.point, a.x, a.y)
+    f:SetScale(a.scale)
+    f:SetFrameStrata("MEDIUM")
+    f:SetMovable(true)
+    f:SetClampedToScreen(true)
+    f:EnableMouse(false)
+    f:RegisterForDrag("LeftButton")
+    f:SetScript("OnDragStart", function(self) if not ns.db.ui.locked then self:StartMoving() end end)
+    f:SetScript("OnDragStop", function(self)
+        self:StopMovingOrSizing()
+        local point, _, _, x, y = self:GetPoint(1)
+        local c = Cfg()
+        c.point, c.x, c.y = point or "CENTER", x or 0, y or 0
+    end)
+
+    local tex = f:CreateTexture(nil, "ARTWORK")
+    tex:SetSize(SIZE, SIZE)
+    tex:SetPoint("TOP", 0, 0)
+    pcall(tex.SetTexture, tex, TEXTURE)
+    f.tex = tex
+
+    local label = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    label:SetFont(FONT, 12, "OUTLINE")
+    label:SetPoint("TOP", tex, "BOTTOM", 0, -2)
+    label:SetWidth(220)
+    label:SetJustifyH("CENTER")
+    pcall(label.SetWordWrap, label, true)
+    pcall(label.SetMaxLines, label, 1)
+    label:SetTextColor(1, 1, 1)
+    f.label = label
+
+    local dist = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    dist:SetFont(FONT, 11, "OUTLINE")
+    dist:SetPoint("TOP", label, "BOTTOM", 0, -1)
+    dist:SetJustifyH("CENTER")
+    dist:SetTextColor(0.85, 0.85, 0.85)
+    f.dist = dist
+
+    local hint = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    hint:SetFont(FONT, 10, "OUTLINE")
+    hint:SetPoint("BOTTOM", tex, "TOP", 0, 2)
+    hint:SetText("drag me  (/fg lock)")
+    hint:SetTextColor(1, 0.8, 0.3)
+    hint:Hide()
+    f.hint = hint
+
+    f.elapsed = 0
+    f:SetScript("OnUpdate", function(self, elapsed)
+        self.elapsed = self.elapsed + elapsed
+        if self.elapsed < 0.05 then return end
+        self.elapsed = 0
+        local ok, err = pcall(Arrow.Tick, Arrow)
+        if not ok then ns.ReportOnce("arrow", err) end
+    end)
+    f:Hide()
+    return f
+end
+
+function Arrow:Tick()
+    local f = frame
+    local Nav = ns.Navigation
+    local unlocked = not ns.db.ui.locked
+    f:EnableMouse(unlocked)
+    f.hint:SetShown(unlocked)
+    local t = Nav.target
+    if not t then
+        if unlocked then
+            f.tex:SetRotation(0)
+            f.tex:SetVertexColor(0.6, 0.6, 0.6)
+            f.label:SetText("no destination")
+            f.dist:SetText("")
+        else
+            f:Hide()
+        end
+        return
+    end
+    local s = Nav:Update()
+    f.label:SetText(t.label or "")
+    if not s or not s.distance then
+        f.tex:SetRotation(0)
+        f.tex:SetVertexColor(0.6, 0.6, 0.6)
+        f.dist:SetText(Nav:Describe())
+        return
+    end
+    local angle = s.angle or 0
+    f.tex:SetRotation(angle)
+    local a = math.abs(angle)
+    if a < math.pi / 8 then
+        f.tex:SetVertexColor(0.35, 1, 0.35)
+    elseif a < math.pi / 2 then
+        local k = (a - math.pi / 8) / (math.pi / 2 - math.pi / 8)
+        f.tex:SetVertexColor(0.35 + 0.65 * k, 1, 0.35 * (1 - k))
+    else
+        local k = (a - math.pi / 2) / (math.pi / 2)
+        f.tex:SetVertexColor(1, 1 - k, 0)
+    end
+    f.dist:SetText(Nav:FormatDistance(s.distance) .. (s.arrived and "  - here" or ""))
+end
+
+local suppressed = false
+function Arrow:HideTemporarily(on)
+    suppressed = on and true or false
+    self:Refresh()
+end
+
+function Arrow:IsShown()
+    return frame and frame:IsShown() or false
+end
+
+function Arrow:Refresh()
+    if not frame then return end
+    local c = Cfg()
+    if c.enabled and not suppressed and (ns.Navigation.target or not ns.db.ui.locked) then
+        frame:Show()
+        self:Tick()
+    else
+        frame:Hide()
+    end
+end
+
+function Arrow:SetEnabled(on)
+    Cfg().enabled = on
+    self:Refresh()
+end
+
+function Arrow:ResetPosition()
+    local c = Cfg()
+    c.point, c.x, c.y = "CENTER", 0, 170
+    if frame then
+        frame:ClearAllPoints()
+        frame:SetPoint(c.point, UIParent, c.point, c.x, c.y)
+    end
+end
+
+function Arrow:OnInit()
+    ns.Events:RegisterMany({ "FG_NAV_TARGET_CHANGED", "FG_STEP_CHANGED", "FG_TRACKER_CHANGED", "FG_MODE_CHANGED", "FG_LOCK_CHANGED" },
+        function() Arrow:Refresh() end)
+end
+
+function Arrow:OnEnable()
+    self:Create()
+    self:Refresh()
+end

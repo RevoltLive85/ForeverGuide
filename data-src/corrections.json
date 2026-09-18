@@ -1,0 +1,7 @@
+{
+ "_comment": "Hand-written fixes for WoW Forever data. Applied last, so they win over recorded / imported values. See tools/foreverdb.py apply_corrections() for the shape. Keys are ids as strings.",
+ "quests": {},
+ "npcs": {},
+ "objects": {},
+ "maps": {}
+}

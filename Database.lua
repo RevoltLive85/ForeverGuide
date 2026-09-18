@@ -1,0 +1,92 @@
+-- ============================================================
+-- ForeverGuide / Database.lua
+-- Saved variables.
+--   ForeverGuideDB      account-wide: settings, UI position, recorder data
+--   ForeverGuideCharDB  per character: active guide + progress per guide
+--
+-- Beta note (1.60.1): SavedVariables are written on logout; public
+-- reports say they are sometimes not read back on login. Everything
+-- here therefore works from defaults when the DB comes back empty.
+-- ============================================================
+
+local _, ns = ...
+local Database = ns:NewModule("Database")
+
+local DB_VERSION = 1
+
+local DEFAULTS = {
+    version = DB_VERSION,
+    debug = false,
+    ui = {
+        shown = true,
+        locked = false,
+        scale = 1.0,
+        width = 280,
+        point = "TOPRIGHT",
+        x = -40,
+        y = -200,
+        fontSize = 12,
+        showPrevious = 2,     -- completed steps shown above the current one
+        showUpcoming = 4,     -- upcoming steps shown below the current one
+    },
+    nav = {
+        blizzardWaypoint = true,  -- also set Blizzard's own map pin / super-track arrow
+        arrivalRadius = 15,       -- yards: TRAVEL steps complete within this distance
+        updateInterval = 0.1,     -- seconds between distance/arrow updates
+    },
+    recorder = {
+        enabled = true,           -- Phase 10: quietly record quest/NPC/coordinate data
+        maxEntries = 4000,
+        entries = {},
+        maps = {},                -- [uiMapID] = { name = ..., zone = ... } seen during play
+    },
+}
+
+local CHAR_DEFAULTS = {
+    version = DB_VERSION,
+    activeGuide = nil,            -- guide id
+    autoPickGuide = true,
+    guides = {},                  -- [guideID] = { step = n, done = { [idx] = true }, version = n }
+}
+
+function Database:Init()
+    ForeverGuideDB = ns.CopyDefaults(DEFAULTS, ForeverGuideDB)
+    ForeverGuideCharDB = ns.CopyDefaults(CHAR_DEFAULTS, ForeverGuideCharDB)
+    ns.db = ForeverGuideDB
+    ns.char = ForeverGuideCharDB
+
+    -- migrations go here when DB_VERSION changes
+    ns.db.version = DB_VERSION
+    ns.char.version = DB_VERSION
+end
+
+--- Progress table for a guide (created on first use).
+function Database:GuideProgress(guideID, guideVersion)
+    local p = ns.char.guides[guideID]
+    if not p then
+        p = { step = 1, done = {}, version = guideVersion or 1 }
+        ns.char.guides[guideID] = p
+    elseif guideVersion and p.version ~= guideVersion then
+        -- step indices may have shifted between guide versions: keep the
+        -- step number (best effort) but drop manual completions.
+        p.done = {}
+        p.version = guideVersion
+    end
+    if type(p.done) ~= "table" then p.done = {} end
+    if type(p.step) ~= "number" or p.step < 1 then p.step = 1 end
+    return p
+end
+
+function Database:ResetGuide(guideID)
+    ns.char.guides[guideID] = nil
+end
+
+function Database:ResetAll()
+    for k in pairs(ns.db) do ns.db[k] = nil end
+    ns.CopyDefaults(DEFAULTS, ns.db)
+    for k in pairs(ns.char) do ns.char[k] = nil end
+    ns.CopyDefaults(CHAR_DEFAULTS, ns.char)
+end
+
+Database.DEFAULTS = DEFAULTS
+Database.CHAR_DEFAULTS = CHAR_DEFAULTS

@@ -1,0 +1,167 @@
+{
+ "maps": {
+  "1426": {
+   "name": "Dun Morogh",
+   "parent": 1415
+  }
+ },
+ "npcs": {
+  "1131": {
+   "n": "Winter Wolf",
+   "spm": {
+    "1426": [
+     [
+      47.81,
+      49.55
+     ]
+    ]
+   },
+   "src": [
+    "rec"
+   ]
+  },
+  "1378": {
+   "ends": [
+    317
+   ],
+   "lvl": 18,
+   "n": "Pilot Bellowfiz",
+   "spm": {
+    "1426": [
+     [
+      49.4,
+      48.39
+     ]
+    ]
+   },
+   "src": [
+    "rec"
+   ]
+  }
+ },
+ "objects": {},
+ "quests": {
+  "109": {
+   "n": "Report to Gryan Stoutmantle",
+   "src": [
+    "scan"
+   ]
+  },
+  "239": {
+   "n": "Westbrook Garrison Needs Help!",
+   "src": [
+    "scan"
+   ]
+  },
+  "287": {
+   "n": "Frostmane Hold",
+   "src": [
+    "scan"
+   ]
+  },
+  "317": {
+   "enpc": [
+    1378
+   ],
+   "n": "Stocking Jetsteam",
+   "obj": [
+    {
+     "kind": "item",
+     "near": [
+      1131
+     ],
+     "spm": {
+      "1426": [
+       [
+        45.37,
+        41.36
+       ],
+       [
+        47.81,
+        49.55
+       ]
+      ]
+     },
+     "text": "Chunk of Boar Meat"
+    }
+   ],
+   "seen": 6,
+   "src": [
+    "rec",
+    "scan"
+   ]
+  },
+  "35": {
+   "n": "Further Concerns",
+   "src": [
+    "scan"
+   ]
+  },
+  "353": {
+   "n": "Stormpike's Delivery",
+   "src": [
+    "scan"
+   ]
+  },
+  "384": {
+   "n": "Beer Basted Boar Ribs",
+   "src": [
+    "scan"
+   ]
+  },
+  "432": {
+   "n": "Those Blasted Troggs!",
+   "src": [
+    "scan"
+   ]
+  },
+  "433": {
+   "n": "The Public Servant",
+   "src": [
+    "scan"
+   ]
+  },
+  "88": {
+   "n": "Princess Must Die!",
+   "src": [
+    "scan"
+   ]
+  },
+  "91751": {
+   "n": "Rough Wolf Pelts",
+   "src": [
+    "scan"
+   ]
+  },
+  "94466": {
+   "n": "Call of Fire",
+   "src": [
+    "scan"
+   ]
+  },
+  "96390": {
+   "n": "Nip 'Em in the Bud",
+   "src": [
+    "scan"
+   ]
+  },
+  "97920": {
+   "n": "Camping 101: Fishing",
+   "src": [
+    "scan"
+   ]
+  },
+  "99128": {
+   "n": "Slimy Menace",
+   "src": [
+    "scan"
+   ]
+  },
+  "99159": {
+   "n": "Finding Warmth",
+   "src": [
+    "scan"
+   ]
+  }
+ }
+}

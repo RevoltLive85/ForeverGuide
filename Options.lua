@@ -1,0 +1,164 @@
+-- ============================================================
+-- ForeverGuide / Options.lua
+-- Options panel (Esc -> Options -> AddOns -> ForeverGuide, or /fg options).
+-- Plain checkboxes on a canvas category; everything here also has a slash
+-- command, the panel just makes it discoverable.
+-- ============================================================
+
+local _, ns = ...
+local Options = ns:NewModule("Options")
+
+local panel, category
+local widgets = {}
+
+local function Bool(v) return v and true or false end
+
+-- ---- the settings this panel edits: get/set pairs ---------------------------------
+local ITEMS = {
+    { key = "window", label = "Show the guide window",
+      get = function() return Bool(ns.db.ui.shown) end,
+      set = function(v) if v then ns.UI:Show() else ns.UI:Hide() end end },
+    { key = "arrow", label = "Show the floating direction arrow",
+      get = function() return Bool(ns.db.ui.arrow and ns.db.ui.arrow.enabled ~= false) end,
+      set = function(v) ns.Arrow:SetEnabled(v) end },
+    { key = "minimap", label = "Show the minimap button",
+      get = function() return Bool(ns.db.minimap == nil or ns.db.minimap.shown ~= false) end,
+      set = function(v) ns.Minimap:SetShown(v) end },
+    { key = "lock", label = "Lock the window and the arrow (no dragging)",
+      get = function() return Bool(ns.db.ui.locked) end,
+      set = function(v) ns.db.ui.locked = v ns.Events:Fire("FG_LOCK_CHANGED", v) end },
+    { key = "combat", label = "Hide the window and arrow while in combat",
+      get = function() return Bool(ns.db.ui.hideInCombat) end,
+      set = function(v) ns.db.ui.hideInCombat = v end },
+    { key = "bliz", label = "Also use Blizzard's own map pin / super-track arrow",
+      get = function() return Bool(ns.db.nav.blizzardWaypoint) end,
+      set = function(v) ns.db.nav.blizzardWaypoint = v ns.Guide:UpdateNavigation() end },
+    { header = "Quests" },
+    { key = "acceptAll", label = "Auto-accept every quest an NPC offers",
+      get = function() return ns.db.auto and ns.db.auto.accept == "on" end,
+      set = function(v) ns.AutoQuest:Set("accept", v and "on" or "guide") end,
+      refresh = { "acceptGuide" } },
+    { key = "acceptGuide", label = "Auto-accept only quests of the active guide",
+      get = function() return ns.db.auto and ns.db.auto.accept == "guide" end,
+      set = function(v) ns.AutoQuest:Set("accept", v and "guide" or "off") end,
+      refresh = { "acceptAll" } },
+    { key = "turnin", label = "Auto-turn-in finished quests (a reward choice is left to you)",
+      get = function() return Bool(ns.db.auto and ns.db.auto.turnin) end,
+      set = function(v) ns.AutoQuest:Set("turnin", v and "on" or "off") end },
+    { key = "announce", label = "Announce auto-accepted / turned-in quests in chat",
+      get = function() return Bool(ns.db.auto and ns.db.auto.announce) end,
+      set = function(v) ns.db.auto = ns.db.auto or {} ns.db.auto.announce = v end },
+    { key = "autopick", label = "Pick a fitting guide automatically when none is active",
+      get = function() return Bool(ns.char.autoPickGuide) end,
+      set = function(v) ns.char.autoPickGuide = v end },
+    { header = "Data" },
+    { key = "recorder", label = "Record quest / NPC / coordinate data while playing (helps map WoW Forever's new quests)",
+      get = function() return Bool(ns.db.recorder.enabled) end,
+      set = function(v) ns.db.recorder.enabled = v end },
+}
+
+-- ---- widgets --------------------------------------------------------------------------
+local function MakeCheck(parent, item, y)
+    local cb = CreateFrame("CheckButton", nil, parent, "UICheckButtonTemplate")
+    cb:SetSize(24, 24)
+    cb:SetPoint("TOPLEFT", parent, "TOPLEFT", 16, y)
+    local label = cb:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
+    label:SetPoint("LEFT", cb, "RIGHT", 4, 0)
+    label:SetText(item.label)
+    cb.label = label
+    cb:SetScript("OnClick", function(self)
+        local ok, err = pcall(item.set, self:GetChecked() and true or false)
+        if not ok then ns.ReportOnce("options:" .. item.key, err) end
+        Options:Refresh()
+    end)
+    return cb
+end
+
+local function MakeButton(parent, text, x, y, onClick)
+    local b = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
+    b:SetSize(150, 22)
+    b:SetPoint("TOPLEFT", parent, "TOPLEFT", x, y)
+    b:SetText(text)
+    b:SetScript("OnClick", function()
+        local ok, err = pcall(onClick)
+        if not ok then ns.ReportOnce("options:button", err) end
+    end)
+    return b
+end
+
+function Options:Refresh()
+    for key, cb in pairs(widgets) do
+        local item = cb.item
+        local ok, v = pcall(item.get)
+        cb:SetChecked(ok and v and true or false)
+    end
+end
+
+function Options:Create()
+    if panel then return panel end
+    panel = CreateFrame("Frame", "ForeverGuideOptionsPanel")
+    panel.name = "ForeverGuide"
+    local title = panel:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
+    title:SetPoint("TOPLEFT", 16, -16)
+    title:SetText("ForeverGuide")
+    local sub = panel:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+    sub:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -4)
+    sub:SetText("Free leveling guide engine for WoW Forever. Everything here is also available as /fg commands (/fg help).")
+
+    local y = -64
+    for _, item in ipairs(ITEMS) do
+        if item.header then
+            local h = panel:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+            h:SetPoint("TOPLEFT", 16, y - 6)
+            h:SetText(item.header)
+            y = y - 26
+        else
+            local cb = MakeCheck(panel, item, y)
+            cb.item = item
+            widgets[item.key] = cb
+            y = y - 26
+        end
+    end
+    y = y - 10
+    MakeButton(panel, "Reset positions", 16, y, function() ns.UI:ResetPosition() ns.Arrow:ResetPosition() end)
+    MakeButton(panel, "Pick a guide", 176, y, function() ns.UI:TogglePicker() end)
+    MakeButton(panel, "Show reports", 336, y, function() ns.Commands:Run("reports") end)
+    y = y - 34
+    local hint = panel:CreateFontString(nil, "ARTWORK", "GameFontDisableSmall")
+    hint:SetPoint("TOPLEFT", 16, y)
+    hint:SetWidth(560)
+    hint:SetJustifyH("LEFT")
+    hint:SetText("Something wrong with a step? Stand where it should be and type  /fg wrong <what is wrong>  - the report is saved with your position and turned into a correction by tools/collect_reports.py.\nKey bindings: Esc -> Options -> Key Bindings -> AddOns -> ForeverGuide.")
+
+    panel:SetScript("OnShow", function() Options:Refresh() end)
+
+    -- register with whichever settings API this client has
+    local S = rawget(_G, "Settings")
+    if S and S.RegisterCanvasLayoutCategory and S.RegisterAddOnCategory then
+        local ok, cat = pcall(S.RegisterCanvasLayoutCategory, panel, panel.name)
+        if ok and cat then
+            category = cat
+            pcall(S.RegisterAddOnCategory, cat)
+        end
+    elseif rawget(_G, "InterfaceOptions_AddCategory") then
+        pcall(InterfaceOptions_AddCategory, panel)
+    end
+    return panel
+end
+
+function Options:Open()
+    self:Create()
+    local S = rawget(_G, "Settings")
+    if category and S and S.OpenToCategory then
+        pcall(S.OpenToCategory, category:GetID())
+    elseif rawget(_G, "InterfaceOptionsFrame_OpenToCategory") then
+        pcall(InterfaceOptionsFrame_OpenToCategory, panel)
+        pcall(InterfaceOptionsFrame_OpenToCategory, panel)
+    else
+        ns.Print("options panel could not be opened on this client; use /fg commands.")
+    end
+end
+
+function Options:OnEnable()
+    self:Create()
+end
