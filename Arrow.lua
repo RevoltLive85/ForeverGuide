@@ -146,10 +146,16 @@ function Arrow:Tick()
     f.dist:SetText(Nav:FormatDistance(s.distance) .. (s.arrived and "  - here" or ""))
 end
 
-local suppressed = false
-function Arrow:HideTemporarily(on)
-    suppressed = on and true or false
+-- Suppression has channels so that two reasons to hide the arrow (combat, and the
+-- alt-click "hide everything" switch) cannot undo each other.
+local suppressed = {}
+function Arrow:HideTemporarily(on, reason)
+    suppressed[reason or "combat"] = on and true or nil
     self:Refresh()
+end
+
+function Arrow:IsSuppressed()
+    return next(suppressed) ~= nil
 end
 
 function Arrow:IsShown()
@@ -159,7 +165,7 @@ end
 function Arrow:Refresh()
     if not frame then return end
     local c = Cfg()
-    if c.enabled and not suppressed and (ns.Navigation.target or Arrow.dragMode) then
+    if c.enabled and not self:IsSuppressed() and (ns.Navigation.target or Arrow.dragMode) then
         frame:Show()
         self:Tick()
     else

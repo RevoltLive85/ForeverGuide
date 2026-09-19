@@ -580,6 +580,7 @@ end
 -- ------------------------------------------------------------
 function UI:Show()
     self:Create()
+    if ns.db.ui.hiddenAll then self:SetAllHidden(false, true) end
     frame:Show()
     ns.db.ui.shown = true
     self:Refresh()
@@ -592,6 +593,44 @@ end
 
 function UI:Toggle()
     if frame and frame:IsShown() then self:Hide() else self:Show() end
+end
+
+-- ------------------------------------------------------------
+-- "Hide everything" (alt-click the minimap button, /fg hideall)
+-- One switch that takes the window and the arrow off the screen and puts them
+-- back exactly as they were. The addon keeps working while hidden - steps still
+-- advance, auto-accept still fires - it is only not drawing anything.
+-- ------------------------------------------------------------
+function UI:AllHidden()
+    return ns.db.ui.hiddenAll and true or false
+end
+
+--- Hide / show window + arrow together. `keepWindow` leaves the window to the
+--- caller (used by UI:Show, which is about to show it anyway).
+function UI:SetAllHidden(on, keepWindow)
+    on = on and true or false
+    local u = ns.db.ui
+    if on == (u.hiddenAll and true or false) then return on end
+    if on then
+        u.hiddenAllPrev = { window = (frame and frame:IsShown()) and true or false }
+        u.hiddenAll = true
+        if frame then frame:Hide() end
+        if ns.Arrow and ns.Arrow.HideTemporarily then ns.Arrow:HideTemporarily(true, "hideall") end
+    else
+        local prev = u.hiddenAllPrev or { window = true }
+        u.hiddenAll = false
+        u.hiddenAllPrev = nil
+        if ns.Arrow and ns.Arrow.HideTemporarily then ns.Arrow:HideTemporarily(false, "hideall") end
+        if not keepWindow then
+            if prev.window then self:Show() else self:Hide() end
+        end
+    end
+    ns.Events:Fire("FG_HIDDEN_ALL_CHANGED", on)
+    return on
+end
+
+function UI:ToggleAll()
+    return self:SetAllHidden(not self:AllHidden())
 end
 
 function UI:SetScale(scale)
@@ -621,12 +660,12 @@ end
 local combatHidden
 function UI:OnCombat(inCombat)
     if inCombat then
-        if not ns.db.ui.hideInCombat then return end
+        if not ns.db.ui.hideInCombat or ns.db.ui.hiddenAll then return end
         combatHidden = { window = frame and frame:IsShown(), arrow = ns.Arrow and ns.Arrow.IsShown and ns.Arrow:IsShown() }
         if frame then frame:Hide() end
         if ns.Arrow and ns.Arrow.HideTemporarily then ns.Arrow:HideTemporarily(true) end
     elseif combatHidden then
-        if combatHidden.window and frame then frame:Show() end
+        if combatHidden.window and frame and not ns.db.ui.hiddenAll then frame:Show() end
         if ns.Arrow and ns.Arrow.HideTemporarily then ns.Arrow:HideTemporarily(false) end
         combatHidden = nil
         self:Refresh()
@@ -635,7 +674,12 @@ end
 
 function UI:OnEnable()
     self:Create()
-    if ns.db.ui.shown then frame:Show() end
+    if ns.db.ui.hiddenAll then
+        frame:Hide()
+        if ns.Arrow and ns.Arrow.HideTemporarily then ns.Arrow:HideTemporarily(true, "hideall") end
+    elseif ns.db.ui.shown then
+        frame:Show()
+    end
     self:Refresh()
     ns.Events:Register("PLAYER_REGEN_DISABLED", function() UI:OnCombat(true) end)
     ns.Events:Register("PLAYER_REGEN_ENABLED", function() UI:OnCombat(false) end)

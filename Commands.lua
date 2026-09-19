@@ -10,7 +10,7 @@ local C, D, OK, END = ns.COLOR, ns.COLOR_DIM, ns.COLOR_OK, ns.COLOR_END
 
 local HELP = {
     "/fg                 status readout (level, zone, coords, quests, current step)",
-    "/fg show|hide|toggle   guide window",
+    "/fg show|hide|toggle   guide window  |  /fg hideall  hide window + arrow (alt-click the minimap button)",
     "/fg guides          list guides   |  /fg guide <name>   start a guide",
     "/fg skip | back | step <n> | reset     move through the guide",
     "/fg quests          quest log with objectives and states",
@@ -114,6 +114,15 @@ end
 function handlers.show() ns.UI:Show() end
 function handlers.hide() ns.UI:Hide() end
 function handlers.toggle() ns.UI:Toggle() end
+
+function handlers.hideall(rest)
+    rest = (rest or ""):lower()
+    local on
+    if rest == "on" then on = true elseif rest == "off" then on = false else on = not ns.UI:AllHidden() end
+    ns.UI:SetAllHidden(on)
+    ns.Printf("everything %s%s", on and "hidden" or "back",
+        on and " - the guide keeps running; /fg hideall or alt-click the minimap button to bring it back." or ".")
+end
 
 function handlers.guides()
     local G = ns.Guide

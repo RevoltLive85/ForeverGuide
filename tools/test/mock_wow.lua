@@ -104,6 +104,7 @@ _G.GameTooltip = NewRegion("GameTooltip")
 function _G.GameTooltip:SetOwner() end
 function _G.GameTooltip:AddLine() end
 _G.IsShiftKeyDown = function() return world.shift == true end
+_G.IsAltKeyDown = function() return world.alt == true end
 _G.GetNumQuestChoices = function() return world.questChoices or 0 end
 _G.IsQuestCompletable = function() return true end
 _G.QuestGetAutoAccept = function() return false end

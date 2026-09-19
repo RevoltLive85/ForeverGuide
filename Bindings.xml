@@ -2,6 +2,7 @@
     <Binding name="FOREVERGUIDE_TOGGLE" header="FOREVERGUIDE" category="ADDONS">ForeverGuide_ToggleWindow()</Binding>
     <Binding name="FOREVERGUIDE_PICKER" category="ADDONS">ForeverGuide_TogglePicker()</Binding>
     <Binding name="FOREVERGUIDE_ARROW" category="ADDONS">ForeverGuide_ToggleArrow()</Binding>
+    <Binding name="FOREVERGUIDE_HIDEALL" category="ADDONS">ForeverGuide_ToggleAll()</Binding>
     <Binding name="FOREVERGUIDE_SKIP" category="ADDONS">ForeverGuide_Skip()</Binding>
     <Binding name="FOREVERGUIDE_BACK" category="ADDONS">ForeverGuide_Back()</Binding>
     <Binding name="FOREVERGUIDE_MODE" category="ADDONS">ForeverGuide_ToggleMode()</Binding>

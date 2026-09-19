@@ -216,3 +216,14 @@ after every install via `cc_run` in that folder. Tests: 96 checks.
   the recorder (on by default) collects them while playing, `tools/sync_to_github.cmd` folds them in. Until then the new
   quests show up in auto mode / objective tracking by title and level, but the shipped guides don't include them.
 - Tests: 104.
+
+## Update 2026-09-19 — "hide everything" switch (v0.2.4)
+- **Alt-click the minimap button** hides the guide window *and* the arrow in one go; alt-click again puts back exactly
+  what was showing. Also `/fg hideall [on|off]`, a key binding ("Hide / show everything"), and an Options checkbox.
+- The addon keeps running while hidden (steps advance, auto-accept/turn-in still fire, the tracker still thinks) - it
+  just draws nothing. The minimap icon is desaturated/dimmed while hidden, and the tooltip says "hidden (still tracking)".
+- `Arrow:HideTemporarily(on, reason)` now takes a channel, so combat-hide and the hide-all switch cannot undo each
+  other; `UI:OnCombat` skips both hide and restore while the switch is on.
+- State lives in `ns.db.ui.hiddenAll` (+ `hiddenAllPrev.window`), mirrored in the cvar workaround as `ha`, so it
+  survives the beta's SavedVariables bug. `UI:Show()` (any explicit show path) clears the switch.
+- Tests: 119 (15 new: alt-click hide/restore, combat interaction, command, cvar round-trip).

@@ -4,6 +4,7 @@
 --   left click        show / hide the guide window
 --   right click       open the guide picker
 --   shift-left click  toggle the floating arrow
+--   alt-left click    hide / show everything (window + arrow) at once
 --   drag              move it around the minimap edge
 -- ============================================================
 
@@ -88,6 +89,10 @@ function MM:Create()
         local ok, err = pcall(function()
             if mouse == "RightButton" then
                 ns.UI:TogglePicker()
+            elseif rawget(_G, "IsAltKeyDown") and IsAltKeyDown() then
+                local hidden = ns.UI:ToggleAll()
+                ns.Printf("everything %s - alt-click the minimap button again to bring it back.",
+                    hidden and "hidden" or "back")
             elseif rawget(_G, "IsShiftKeyDown") and IsShiftKeyDown() then
                 ns.Arrow:SetEnabled(not (ns.db.ui.arrow and ns.db.ui.arrow.enabled))
             else
@@ -101,6 +106,7 @@ function MM:Create()
         if not tt then return end
         tt:SetOwner(self, "ANCHOR_LEFT")
         tt:AddLine("ForeverGuide", 0.31, 0.82, 0.77)
+        if ns.UI:AllHidden() then tt:AddLine("hidden (still tracking)", 1, 0.82, 0.2) end
         local G = ns.Guide
         if ns.Tracker and ns.Tracker:IsActive() and (not G.active or ns.char.mode == "auto") then
             tt:AddLine("auto mode - quest log", 0.9, 0.9, 0.9)
@@ -117,6 +123,7 @@ function MM:Create()
         tt:AddLine("Left click: guide window", 0.6, 0.6, 0.6)
         tt:AddLine("Right click: pick a guide / auto mode", 0.6, 0.6, 0.6)
         tt:AddLine("Shift-click: toggle the arrow", 0.6, 0.6, 0.6)
+        tt:AddLine(ns.UI:AllHidden() and "Alt-click: show everything again" or "Alt-click: hide everything (window + arrow)", 0.6, 0.6, 0.6)
         tt:AddLine("Drag: move the button", 0.6, 0.6, 0.6)
         tt:Show()
     end)
@@ -125,8 +132,17 @@ function MM:Create()
         if tt then tt:Hide() end
     end)
     Reposition()
+    MM:UpdateIcon()
     if not Cfg().shown then b:Hide() end
     return b
+end
+
+--- Dim the button while everything is hidden, so the state is visible.
+function MM:UpdateIcon()
+    if not button or not button.icon then return end
+    local hidden = ns.UI.AllHidden and ns.UI:AllHidden()
+    pcall(button.icon.SetDesaturated, button.icon, hidden and true or false)
+    button.icon:SetAlpha(hidden and 0.5 or 1)
 end
 
 function MM:SetShown(shown)
@@ -136,4 +152,5 @@ end
 
 function MM:OnEnable()
     self:Create()
+    ns.Events:Register("FG_HIDDEN_ALL_CHANGED", function() MM:UpdateIcon() end)
 end

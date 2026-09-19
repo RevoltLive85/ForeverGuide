@@ -30,7 +30,8 @@ Log in, enable it on the AddOns screen, then:
 | `/fg quest 783` / `/fg quest kobold` | everything the database knows: giver, objectives with coordinates, turn-in, prerequisites |
 | `/fg avail` | quests you could pick up in the current zone, with their givers and distances |
 | `/fg auto accept on\|off\|guide`, `/fg auto turnin on\|off` | auto-accept / auto-turn-in at NPCs (on by default; hold SHIFT to do it by hand; multi-choice rewards are left to you) |
-| `/fg minimap on\|off` | minimap button: left click window, right click guide picker, shift-click arrow, drag to move |
+| `/fg minimap on\|off` | minimap button: left click window, right click guide picker, shift-click arrow, **alt-click hide everything**, drag to move |
+| `/fg hideall [on\|off]` | hide the window *and* the arrow at once (same as alt-clicking the minimap button); the guide keeps running in the background |
 | `/fg scan` | ask the server about every quest id 1-100000; log out, then `python tools/scan_diff.py` lists Forever's new quests vs Questie |
 | `/fg wrong <text>` / `/fg reports` | report the current step as wrong (saved with your position + target); `python tools/collect_reports.py` turns the reports into a review list |
 | `/fg options` | options panel (also Esc -> Options -> AddOns -> ForeverGuide); key bindings under Key Bindings -> AddOns |

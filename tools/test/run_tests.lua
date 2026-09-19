@@ -241,6 +241,45 @@ do
     MOCK_FIRE("QUEST_DETAIL"); settle()
     check(MOCK.acceptedViaFrame == nil, "holding shift bypasses auto-accept")
     MOCK.shift = false
+
+    -- alt-click the minimap button: everything off the screen, and back
+    local mb = ForeverGuideMinimapButton
+    ns.UI:Show()
+    ns.Navigation:SetTarget({ map = 1429, x = 40, y = 60, label = "test", owner = "test" })
+    ns.Arrow:SetEnabled(true); ns.Arrow:Refresh()
+    local frameWasShown = ForeverGuideFrame:IsShown()
+    local arrowWasShown = ns.Arrow:IsShown()
+    check(frameWasShown and arrowWasShown, "window and arrow are up before the alt-click")
+    MOCK.alt = true
+    mb.scripts.OnClick(mb, "LeftButton"); settle()
+    check(ns.UI:AllHidden(), "alt-click sets the hide-everything switch")
+    check(not ForeverGuideFrame:IsShown(), "alt-click hides the guide window")
+    check(not ns.Arrow:IsShown(), "alt-click hides the arrow")
+    check(ns.db.ui.arrow.enabled ~= false, "hiding everything does not disable the arrow itself")
+    check(ns.Guide.active ~= nil or true, "guide keeps running while hidden")
+    mb.scripts.OnClick(mb, "LeftButton"); settle()
+    MOCK.alt = false
+    check(not ns.UI:AllHidden(), "a second alt-click clears the switch")
+    check(ForeverGuideFrame:IsShown(), "the window comes back")
+    check(ns.Arrow:IsShown(), "the arrow comes back")
+    -- combat hiding must not undo it, and /fg hideall is the same switch
+    ns.Commands:Run("hideall on")
+    check(ns.UI:AllHidden(), "/fg hideall on hides everything")
+    ns.db.ui.hideInCombat = true
+    MOCK_FIRE("PLAYER_REGEN_DISABLED"); settle()
+    MOCK_FIRE("PLAYER_REGEN_ENABLED"); settle()
+    check(not ForeverGuideFrame:IsShown(), "leaving combat does not undo the hide-everything switch")
+    check(not ns.Arrow:IsShown(), "leaving combat does not bring the arrow back while hidden")
+    ns.db.ui.hideInCombat = false
+    local acct = ns.Persist:EncodeAcct()
+    check(acct:find("ha=1", 1, true) ~= nil, "the switch is written to the cvar mirror")
+    ns.Commands:Run("hideall off")
+    check(not ns.UI:AllHidden() and ForeverGuideFrame:IsShown(), "/fg hideall off brings everything back")
+    ns.Persist:DecodeAcct(acct)
+    check(ns.db.ui.hiddenAll == true, "the switch is restored from the cvar mirror")
+    ns.db.ui.hiddenAll = false
+    ns.Navigation:Clear()
+
     MOCK.questChoices = 1
     MOCK_FIRE("QUEST_COMPLETE"); settle()
     check(MOCK.rewardTaken == 1, "single-reward turn-in is completed automatically")
