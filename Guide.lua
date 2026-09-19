@@ -147,6 +147,7 @@ end
 -- Step evaluation
 -- ------------------------------------------------------------
 function Guide:StepApplies(step)
+    if step.quest and ns.DB and ns.DB:IsRemoved(step.quest) then return false end   -- quest gone from Forever
     if step.faction then
         local f = ns.Player:GetFaction()
         if f and string.upper(step.faction) ~= string.upper(f) then return false end

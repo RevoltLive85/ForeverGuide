@@ -27,7 +27,7 @@ local HELP = {
     "/fg minimap on|off  the minimap button",
     "/fg auto [accept on|off|guide] [turnin on|off]   auto-accept / auto-turn-in quests (hold SHIFT at an NPC to do it by hand)",
     "/fg rec on|off|status|dump [n]|clear   data recorder (Phase 10)",
-    "/fg scan [from] [to] | stop | resume | status   find every quest id the server knows (diff vs Questie with tools/scan_diff.py)",
+    "/fg scan new | [from] [to] | stop | resume | status   ask the server for Forever's own quests (new = exactly the ids Questie lacks; titles, levels, objectives)",
     "/fg harvest [sweep [from to] | status]   passive quest discovery: quest lines of every zone map / client cache sweep",
     "/fg bliz on|off     also use Blizzard's own waypoint arrow",
     "/fg resync          skip quests you out-levelled (<=20% xp) and continue from the first open step",
@@ -343,6 +343,7 @@ function handlers.scan(rest)
     if a == "stop" then S:Stop()
     elseif a == "status" then S:Status()
     elseif a == "resume" then S:Resume()
+    elseif a == "new" then S:Start("new")
     else S:Start(tonumber(a), tonumber(b)) end
 end
 

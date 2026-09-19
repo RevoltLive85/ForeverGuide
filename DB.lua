@@ -158,6 +158,12 @@ local function SpawnLocations(kind, id, rec, out, name)
     return out
 end
 
+--- A vanilla quest the Forever client no longer has (later-phase content, battlegrounds, ...).
+function DB:IsRemoved(id)
+    local q = self:GetQuest(id)
+    return q and q.removed or false
+end
+
 --- Does the Forever overlay know this quest / npc (i.e. it is not in the vanilla data)?
 function DB:IsForeverQuest(id)
     local q = self:GetQuest(id)
@@ -184,9 +190,18 @@ end
 
 function DB:ApplyOverlay(overlay)
     overlay = overlay or ns.ForeverDB
-    if not overlay or self.overlayApplied then return 0 end
+    if self.overlayApplied then return 0 end
     self.overlayApplied = true
     objCache = {}
+    -- the client's own quest id list (Data/ForeverQuestIDs.lua): vanilla quests it lacks are gone
+    if ns.ForeverQuestIDs and ns.QuestDB then
+        local gone = 0
+        for id, q in pairs(ns.QuestDB) do
+            if not ns.ForeverQuestIDs[id] then q.removed = true gone = gone + 1 end
+        end
+        self.removedCount = gone
+    end
+    if not overlay then return 0 end
     ns.QuestDB = ns.QuestDB or {}
     ns.NpcDB = ns.NpcDB or {}
     ns.ObjectDB = ns.ObjectDB or {}
@@ -435,6 +450,7 @@ function DB:IsAvailable(questID)
     local q = self:GetQuest(questID)
     if not q then return false, "unknown quest" end
     if q.hidden then return false, "not obtainable" end
+    if q.removed then return false, "not in WoW Forever" end
     local level = ns.Player:GetLevel()
     if q.req and level < q.req then return false, "requires level " .. q.req end
     if q.maxlvl and level > q.maxlvl then return false, "too high level" end

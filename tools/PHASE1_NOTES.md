@@ -188,3 +188,17 @@ after every install via `cc_run` in that folder. Tests: 96 checks.
 - Recorder / reports data is still SV-file-only (overwritten every reload, one generation in .bak):
   `tools\sync_to_github.cmd` now runs merge_recorded.py + collect_reports.py before committing.
 - Tests: 103 checks (mock C_CVar + a simulated empty-SV login).
+
+## Update 2026-09-19 — client quest tables imported (v0.2.3)
+- Ilya exported QuestV2 / QuestPOIBlob / QuestPOIPoint / QuestInfo / QuestLabel from wago.tools for build 1.60.1.69913 (no
+  QuestV2CliTask / QuestObjective offered). On this build QuestV2 = ids only (6600 rows: ID, UniqueBitFlag, UiQuestDetailsThemeID);
+  POI tables hold 54 blobs / 99 points (Mount Hyjal 2482 etc). Files kept in data-src/db2/.
+- Result: 3546 ids shared with Questie, **3054 Forever-only ids** (1742 in 90104-99234, ~1100 in 60000-89999, 217 low ids Questie
+  blacklists), **711 Questie quests absent from the client** (Naxx 72, Silithus 61, AQ 49, EPL 44, BGs, mount exchanges, hidden).
+  The shipped routes already contained none of the 711 (other filters caught them) - verified.
+- `Data/ForeverQuestIDs.lua` (ranges -> `ns.ForeverQuestIDs`, `ns.ForeverNewQuestIDRanges`, counts). `DB:ApplyOverlay` flags
+  vanilla quests missing from it `removed`; `IsAvailable` -> "not in WoW Forever"; `Guide:StepApplies` skips them; generator skips them.
+- `/fg scan new`: scans exactly the Forever-only id ranges; on QUEST_DATA_LOAD_RESULT also stores `scan.info[id] = { lvl, obj }`
+  via `C_QuestLog.GetQuestDifficultyLevel` / `GetQuestObjectives`; `merge_recorded.py` folds level + objective texts into the overlay.
+- `import_db2.py` matches wago's `Table.<build>.csv` names and no longer creates empty quest stubs from id-only rows.
+- Tests: 104.

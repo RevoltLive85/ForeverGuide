@@ -68,7 +68,8 @@ ForeverGuide/
   Init.lua          boots the lifecycle (last in the TOC)
   Data/             bundled quest database built from Questie's Classic data (see Data/README.md)
                     + ForeverDB.lua: WoW Forever additions (recorded in-game / client tables), merged at load
-  data-src/         forever.json (collected Forever data), corrections.json (hand fixes, win over everything)
+  data-src/         forever.json (collected Forever data), corrections.json (hand fixes, win over everything),
+                    db2/ (the wago.tools CSV exports of the client's quest tables)
   Guides/           compiled guides (generated - do not edit)
   guides-src/       guide sources in JSON (SCHEMA.md documents the format)
   tools/
@@ -102,6 +103,16 @@ records only gain what they lack; unknown ids become new records flagged `foreve
 
 Hand fixes go into `data-src/corrections.json` (applied last). Player reports (`/fg wrong`) are
 collected with `tools/collect_reports.py`. Rebuild the guides after the data changes.
+
+What the client's tables actually contain on build 69913: `QuestV2` is only the **list of quest ids**
+(6600 - no titles, levels or zones; those are server-side), and the POI tables hold ~50 static
+points. The id list is still gold: it is shipped as `Data/ForeverQuestIDs.lua` and tells the addon
+which vanilla quests are gone from Forever (711 - later-phase content, battlegrounds, mount
+exchanges; they are excluded from routes and `/fg avail`) and which ids are Forever's own (3054).
+**`/fg scan new`** asks the server for exactly those ids and records title, level and objective texts
+as they arrive (the server throttles; run it in the background over a few sessions, `/fg scan status`
+shows progress), then `tools\sync_to_github.cmd` / `merge_recorded.py` folds them in. Positions of
+the new quests come from the recorder while you play them.
 
 ## Route logic
 

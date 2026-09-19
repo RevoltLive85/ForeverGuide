@@ -133,7 +133,7 @@ def merge_file(path, db, known, stats):
                 q.setdefault("start", {})
                 foreverdb.add_point(q["start"].setdefault("spm", {}), int(info["map"]), [info["x"], info["y"]])
             foreverdb.note_source(q, "harvest")
-    # scan / harvest quest titles
+    # scan / harvest quest titles (+ level and objective texts when the scanner saw the data)
     scan = sv.get("scan") or {}
     for qid, title in (scan.get("quests") or {}).items():
         if isinstance(qid, (int, float)) and isinstance(title, str) and title and not PLACEHOLDER.match(title):
@@ -141,6 +141,20 @@ def merge_file(path, db, known, stats):
             q.setdefault("n", title)
             foreverdb.note_source(q, "scan")
             stats["titles"] += 1
+    for qid, info in (scan.get("info") or {}).items():
+        if isinstance(qid, (int, float)) and isinstance(info, dict):
+            q = db["quests"].setdefault(str(int(qid)), {})
+            if info.get("lvl"):
+                q["lvl"] = int(info["lvl"])
+            texts = foreverdb.as_list(info.get("obj"))
+            if texts:
+                objs = q.setdefault("obj", [])
+                for i, t in enumerate(texts):
+                    while len(objs) <= i:
+                        objs.append({})
+                    objs[i].setdefault("kind", "event")
+                    objs[i]["text"] = str(t)
+            foreverdb.note_source(q, "scan")
 
 
 def main():

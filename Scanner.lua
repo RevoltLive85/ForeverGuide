@@ -81,7 +81,24 @@ local function Store()
     s.quests = type(s.quests) == "table" and s.quests or {}
     s.missing = type(s.missing) == "table" and s.missing or {}
     s.unanswered = type(s.unanswered) == "table" and s.unanswered or {}
+    s.info = type(s.info) == "table" and s.info or {}       -- id -> { lvl, obj = { texts } } once the data is loaded
     return s
+end
+
+-- everything the client hands us once a quest's data is loaded
+local function Details(s, id)
+    local lvl = PlainNumber(ns.Call("C_QuestLog.GetQuestDifficultyLevel", id))
+    local objs = ns.Call("C_QuestLog.GetQuestObjectives", id)
+    local texts = {}
+    if type(objs) == "table" then
+        for _, o in ipairs(objs) do
+            local t = type(o) == "table" and PlainString(o.text) or nil
+            if t and t ~= "" then texts[#texts + 1] = t end
+        end
+    end
+    if (lvl and lvl > 0) or #texts > 0 then
+        s.info[id] = { lvl = (lvl and lvl > 0) and lvl or nil, obj = #texts > 0 and texts or nil }
+    end
 end
 
 local function Known(s, id)
@@ -341,7 +358,13 @@ end
 function Scanner:Start(from, to)
     if self.running then ns.Print("scan already running (/fg scan stop)") return end
     local s = Store()
-    if from then
+    if from == "new" then
+        -- exactly the ids the client knows and Questie does not (Data/ForeverQuestIDs.lua)
+        local src = ns.ForeverNewQuestIDRanges
+        if not src or #src == 0 then ns.Warn("no Forever quest id list bundled (Data/ForeverQuestIDs.lua) - run tools/import_db2.py first.") return end
+        s.ranges = {}
+        for i, r in ipairs(src) do s.ranges[i] = { r[1], r[2] } end
+    elseif from then
         from, to = tonumber(from), tonumber(to) or tonumber(from)
         if from > to then from, to = to, from end
         s.ranges = { { from, to } }
@@ -353,9 +376,10 @@ function Scanner:Start(from, to)
     s.done = false
     s.build = PlainString(select(2, ns.Safe(GetBuildInfo)))
     s.unanswered = {}
-    local desc = {}
-    for _, r in ipairs(s.ranges) do desc[#desc + 1] = r[1] .. "-" .. r[2] end
-    ns.Printf("scanning quest ids %s (ids already known are skipped). /fg scan status | stop | resume", table.concat(desc, ", "))
+    local desc, total = {}, 0
+    for _, r in ipairs(s.ranges) do total = total + (r[2] - r[1] + 1) if #desc < 6 then desc[#desc + 1] = r[1] .. "-" .. r[2] end end
+    if #s.ranges > 6 then desc[#desc + 1] = "... (" .. #s.ranges .. " ranges)" end
+    ns.Printf("scanning %d quest ids: %s (ids already known are skipped). /fg scan status | stop | resume", total, table.concat(desc, ", "))
     self:Begin()
 end
 
@@ -441,6 +465,7 @@ function Scanner:OnInit()
         local s = Store()
         if PlainBool(success) then
             Record(s, questID, PlainString(ns.Call("C_QuestLog.GetTitleForQuestID", questID)) or "")
+            Details(s, questID)
             self.stats.found = self.stats.found + 1
             if info.canary then CanaryOutcome(true) end
         else

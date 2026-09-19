@@ -359,6 +359,18 @@ do
     for _ in pairs(sc.unanswered) do un = un + 1 end
     check(silent + un == 60 - 38, "the other " .. (60 - 38) .. " ids are silent or unanswered (" .. silent .. " + " .. un .. ")")
     ns.Commands:Run("scan status")
+    -- "/fg scan new": exactly the bundled Forever-only id ranges, with level + objectives captured
+    C_QuestLog.GetQuestDifficultyLevel = function(id) return server[id] and 7 or 0 end
+    C_QuestLog.GetQuestObjectives = function(id) return server[id] and { { text = "Dark Iron Spy slain: 0/10", type = "monster" } } or {} end
+    server[90104] = true
+    local savedRanges = ns.ForeverNewQuestIDRanges
+    ns.ForeverNewQuestIDRanges = { { 90001, 90001 }, { 90104, 90104 } }
+    throttleUntil = nil
+    ns.Scanner:Start("new")
+    for i = 1, 400 do MOCK_ADVANCE(0.25) if not ns.Scanner.running then break end end
+    check(sc.quests[90104] == "Quest 90104" and sc.info[90104] and sc.info[90104].lvl == 7 and sc.info[90104].obj[1] == "Dark Iron Spy slain: 0/10",
+        "scan new records title, level and objectives of a Forever quest")
+    ns.ForeverNewQuestIDRanges = savedRanges
     C_QuestLog.GetTitleForQuestID = realTitle
 end
 

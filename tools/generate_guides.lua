@@ -45,6 +45,19 @@ local function loadData(file)
 end
 loadData("ZoneDB.lua") loadData("QuestDB.lua") loadData("NpcDB.lua") loadData("ObjectDB.lua") loadData("ItemDB.lua")
 local Q, N, O, I, Z = ns.QuestDB, ns.NpcDB, ns.ObjectDB, ns.ItemDB, ns.ZoneDB
+-- the Forever client's own quest id list (optional): vanilla quests it lacks are not routed
+do
+    local f = io.open(root .. "Data/ForeverQuestIDs.lua", "r")
+    if f then
+        f:close()
+        loadData("ForeverQuestIDs.lua")
+        local gone = 0
+        for id, q in pairs(Q) do
+            if not ns.ForeverQuestIDs[id] then q.removed = true gone = gone + 1 end
+        end
+        io.stderr:write(string.format("Forever quest id list: %d vanilla quests are not in the client and are skipped\n", gone))
+    end
+end
 
 -- ---- zones -----------------------------------------------------------------
 -- areaID, min, max, races (starting zones), next zone per faction
@@ -262,7 +275,7 @@ end
 local function candidates(zone, factionMask, minL, maxL)
     local set = {}
     for id, q in pairs(Q) do
-        local ok = q.zone and q.zone > 0 and parentZone(q.zone) == zone and not q.hidden
+        local ok = q.zone and q.zone > 0 and parentZone(q.zone) == zone and not q.hidden and not q.removed
         if ok and q.races and q.races ~= 0 and band(q.races, factionMask) == 0 then ok = false end
         if ok and q.special and band(q.special, 1) ~= 0 then ok = false end                 -- repeatable
         if ok and q.flags and (band(q.flags, 4096) ~= 0 or band(q.flags, 32768) ~= 0) then ok = false end -- daily / weekly
