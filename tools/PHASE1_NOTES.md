@@ -202,3 +202,17 @@ after every install via `cc_run` in that folder. Tests: 96 checks.
   via `C_QuestLog.GetQuestDifficultyLevel` / `GetQuestObjectives`; `merge_recorded.py` folds level + objective texts into the overlay.
 - `import_db2.py` matches wago's `Table.<build>.csv` names and no longer creates empty quest stubs from id-only rows.
 - Tests: 104.
+
+## Update 2026-09-19 (later) — `/fg scan new` results folded in
+- Ilya ran `/fg scan new`: 372 s, **800 of the 3064 Forever-only ids answered** (title + level + objective texts), 2264 silent
+  (never load => treated as not existing on this build). Because the beta client never reads SavedVariables back, the scan
+  survived only in `ForeverGuide.lua.bak` (one reload older); copy kept as `data-src/sv/ForeverGuide.scan-new.2026-09-19.lua`.
+- Overlay now: **769 quests (754 Forever-only), 756 titled, 705 with level, 128 with real objective wording**. Level spread
+  is mostly 60 (162), 6 (111), 10 (70), 11, 20, ... - the new content sits at the level-60 end plus the starter zones.
+- `merge_recorded.py`: PLACEHOLDER now also drops `[Never used]`, `[DNT] ...`, `[PH]`, `[NYI]`, `[TEMP]`, `UNUSED...`;
+  `clean_objective()` strips progress counters and drops objective texts that are only a counter (`0/5`) - the client
+  gives no wording for ~300 of the scanned quests until the quest is in the log, so those slots stay without text.
+- Still missing for routing: **positions**. None of the 754 new quests has a giver / turn-in / objective location yet;
+  the recorder (on by default) collects them while playing, `tools/sync_to_github.cmd` folds them in. Until then the new
+  quests show up in auto mode / objective tracking by title and level, but the shipped guides don't include them.
+- Tests: 104.

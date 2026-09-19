@@ -26,7 +26,17 @@ sys.path.insert(0, HERE)
 import foreverdb  # noqa: E402
 
 DEFAULT_WTF = r"C:\Program Files (x86)\World of Warcraft\_classic_beta_\WTF\Account"
-PLACEHOLDER = re.compile(r"^\s*(None|<[^>]*>.*|REUSE|reuse|.*\(\d+\)aa|\[DEPRECATED\].*)\s*$", re.I)
+PLACEHOLDER = re.compile(r"^\s*(None|<[^>]*>.*|REUSE|reuse|.*\(\d+\)aa|\[(DEPRECATED|DNT|Never used|PH|NYI|TEMP)\b[^\]]*\].*|UNUSED.*|z*test.*|DEPRECATED.*)\s*$", re.I)
+
+
+def clean_objective(txt):
+    """Objective text without its progress counter ("Wolves slain: 3/10" -> "Wolves slain",
+    "4/4 Chunk of Boar Meat" -> "Chunk of Boar Meat"). Returns "" when nothing is left."""
+    if not isinstance(txt, str):
+        return ""
+    clean = re.sub(r"[:\s]*\d+\s*/\s*\d+\s*$", "", txt)
+    clean = re.sub(r"^\s*\d+\s*/\s*\d+\s*", "", clean)
+    return clean.strip(" :\t")
 
 
 def vanilla_ids():
@@ -96,10 +106,9 @@ def merge_file(path, db, known, stats):
                     objs.append({})
                 o = objs[idx - 1]
                 txt = e.get("txt")
-                if txt:
-                    clean = re.sub(r"[:\s]*\d+\s*/\s*\d+\s*$", "", txt)      # "Wolves slain: 3/10"
-                    clean = re.sub(r"^\s*\d+\s*/\s*\d+\s*", "", clean)        # "4/4 Chunk of Boar Meat"
-                    o["text"] = clean.strip() or txt
+                clean = clean_objective(txt)
+                if clean:
+                    o["text"] = clean
                 # the npc is the last hostile target when progress happened; only trust it as
                 # the kill target when the objective text names it (else it is just a hint)
                 npc_name = e.get("npcName")
@@ -146,14 +155,17 @@ def merge_file(path, db, known, stats):
             q = db["quests"].setdefault(str(int(qid)), {})
             if info.get("lvl"):
                 q["lvl"] = int(info["lvl"])
-            texts = foreverdb.as_list(info.get("obj"))
-            if texts:
+            texts = [clean_objective(t) for t in foreverdb.as_list(info.get("obj"))]
+            if any(texts):
                 objs = q.setdefault("obj", [])
                 for i, t in enumerate(texts):
                     while len(objs) <= i:
                         objs.append({})
                     objs[i].setdefault("kind", "event")
-                    objs[i]["text"] = str(t)
+                    if t:
+                        objs[i]["text"] = t      # a bare counter ("0/5") carries no wording: keep the slot, no text
+                if not any(o.get("text") for o in objs):
+                    del q["obj"]
             foreverdb.note_source(q, "scan")
 
 
