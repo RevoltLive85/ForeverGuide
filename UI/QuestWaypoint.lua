@@ -197,7 +197,7 @@ end
 -- guess did over Lake Everstill. HORIZON caps far targets for the same reason.
 local PITCH = math.rad(17)
 local HORIZON = 0.74
-local EDGE_X, EDGE_LO, EDGE_HI = 0.06, 0.10, HORIZON
+local EDGE_X, EDGE_LO, EDGE_HI = 0.06, 0.21, HORIZON   -- bottom edge sits above the action bars
 local function screenSize()
     local ui = rawget(_G, "UIParent")
     local w, h = ui and ui:GetWidth() or 1024, ui and ui:GetHeight() or 768
