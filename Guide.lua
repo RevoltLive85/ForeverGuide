@@ -279,6 +279,17 @@ function Guide:FindAcceptStep(questID, before)
 end
 
 --- Recompute the current step from the persisted position and game state.
+--- The level an ACCEPT step's quest needs above the player's (nil when it can be taken).
+function Guide:LevelGate(step)
+    if not step or step.type ~= "ACCEPT" or not step.quest or not ns.DB or not ns.DB:IsLoaded() then return nil end
+    local Q = ns.Quest
+    if Q:IsOnQuest(step.quest) or Q:IsCompleted(step.quest) then return nil end
+    local q = ns.DB:GetQuest(step.quest)
+    local level = ns.Player:GetLevel()
+    if q and q.req and level < q.req then return q.req end
+    return nil
+end
+
 function Guide:Evaluate(reason)
     local g, p = self.active, self.progress
     if not g or not p then return end
@@ -287,15 +298,40 @@ function Guide:Evaluate(reason)
     self.blocked = false
     if self.recovery and (self.recovery.step ~= i or ns.Quest:IsOnQuest(self.recovery.quest)) then self.recovery = nil end
     self.note = self.recovery and self.recovery.note or nil
+    p.deferred = p.deferred or {}
+
+    -- 0. quests skipped earlier because the level was too low: back to them once it is reached
+    for quest, acceptIdx in pairs(p.deferred) do
+        local s = steps[acceptIdx]
+        if not s or s.quest ~= quest or p.done[acceptIdx] or ns.Quest:IsOnQuest(quest) or ns.Quest:IsCompleted(quest) then
+            p.deferred[quest] = nil
+        elseif not self:LevelGate(s) then
+            p.deferred[quest] = nil
+            if acceptIdx < i then
+                i = acceptIdx
+                self.note = string.format("level reached - back to %s.", ns.Quest:GetTitle(quest) or ("quest " .. quest))
+            end
+        end
+    end
 
     -- 1. advance over done steps; auto-complete manual steps when the next
-    --    automatic step is already done
+    --    automatic step is already done; skip quests the level does not allow yet
     local guard = 0
     if self.hold and self.hold ~= p.step then self.hold = nil end
     while steps[i] and i ~= self.hold and guard < #steps + 5 do
         guard = guard + 1
         local step = steps[i]
         local done = self:IsStepDone(step, i)
+        if not done and step.quest then
+            local need = self:LevelGate(step)
+            if need then
+                p.deferred[step.quest] = i
+                self.note = string.format("%s needs level %d - skipped until then.", ns.Quest:GetTitle(step.quest) or ("quest " .. step.quest), need)
+                done = true      -- passed over for now, not marked done
+            elseif p.deferred[step.quest] and not ns.Quest:IsOnQuest(step.quest) then
+                done = true      -- an objective / turn-in of a quest we could not take yet
+            end
+        end
         -- manual steps and optional (group) steps complete themselves once the player is past them
         if not done and (MANUAL[step.type] or step.optional) then
             local k = i + 1
@@ -307,6 +343,17 @@ function Guide:Evaluate(reason)
         end
         if not done then break end
         i = i + 1
+    end
+
+    -- a standing reminder while something is skipped for level
+    if not self.note and next(p.deferred) then
+        for quest in pairs(p.deferred) do
+            local q = ns.DB and ns.DB:GetQuest(quest)
+            if q and q.req then
+                self.note = string.format("%s needs level %d - skipped until then.", ns.Quest:GetTitle(quest) or q.n or ("quest " .. quest), q.req)
+                break
+            end
+        end
     end
 
     -- 2. recovery: quest missing from the log

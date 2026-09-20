@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Durotar",
     next = "GEN_HORDE_ORC_02_THE_BARRENS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 1 of the Orc route: level 1 to 10, 76 steps, ~146 min of play in the model (13363 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 1 of the Orc route: level 1 to 10, 76 steps, ~145 min of play in the model (13465 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "NOTE", map = 1411, zone = "Durotar", x = 42.6, y = 67.4, text = "set your hearthstone at the inn in Durotar (if there is one)" }, -- 1
         { type = "ACCEPT", quest = 788, questName = "Cutting Teeth", npc = 3143, npcName = "Gornek", map = 1411, zone = "Durotar", x = 42.1, y = 68.3 }, -- 2
@@ -20,21 +20,21 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 788, questName = "Cutting Teeth", npc = 3143, npcName = "Gornek", map = 1411, zone = "Durotar", x = 42.1, y = 68.3 }, -- 4
         { type = "ACCEPT", quest = 789, questName = "Sting of the Scorpid", npc = 3143, npcName = "Gornek", map = 1411, zone = "Durotar", x = 42.1, y = 68.3 }, -- 5
         { type = "ACCEPT", quest = 4402, questName = "Galgar's Cactus Apple Surprise", npc = 9796, npcName = "Galgar", map = 1411, zone = "Durotar", x = 42.7, y = 67.2 }, -- 6
-        { type = "ACCEPT", quest = 5441, questName = "Lazy Peons", npc = 11378, npcName = "Foreman Thazz'ril", map = 1411, zone = "Durotar", x = 44.6, y = 68.7 }, -- 7
-        { type = "COLLECT", quest = 4402, questName = "Galgar's Cactus Apple Surprise", target = "Cactus Apple", count = 10, map = 1411, zone = "Durotar", x = 44.2, y = 70.4, near = true }, -- 8
-        { type = "TURNIN", quest = 4402, questName = "Galgar's Cactus Apple Surprise", npc = 9796, npcName = "Galgar", map = 1411, zone = "Durotar", x = 42.7, y = 67.2 }, -- 9
-        { type = "COLLECT", quest = 789, questName = "Sting of the Scorpid", target = "Scorpid Worker Tail", count = 10, map = 1411, zone = "Durotar", x = 41.8, y = 65.8, near = true }, -- 10
-        { type = "ACCEPT", quest = 790, questName = "Sarkoth", npc = 3287, npcName = "Hana'zua", map = 1411, zone = "Durotar", x = 40.6, y = 62.6 }, -- 11
-        { type = "KILL", quest = 5441, questName = "Lazy Peons", npc = 10556, target = "Lazy Peon", map = 1411, zone = "Durotar", x = 40.9, y = 60.4, near = true }, -- 12
-        { type = "KILL", quest = 790, questName = "Sarkoth", npc = 3281, target = "Sarkoth", map = 1411, zone = "Durotar", x = 40.5, y = 66.8, note = "loot Sarkoth's Mangled Claw" }, -- 13
-        { type = "TURNIN", quest = 789, questName = "Sting of the Scorpid", npc = 3143, npcName = "Gornek", map = 1411, zone = "Durotar", x = 42.1, y = 68.3 }, -- 14
-        { type = "TURNIN", quest = 790, questName = "Sarkoth", npc = 3287, npcName = "Hana'zua", map = 1411, zone = "Durotar", x = 40.6, y = 62.6 }, -- 15
-        { type = "ACCEPT", quest = 804, questName = "Sarkoth", npc = 3287, npcName = "Hana'zua", map = 1411, zone = "Durotar", x = 40.6, y = 62.6 }, -- 16
-        { type = "TURNIN", quest = 5441, questName = "Lazy Peons", npc = 11378, npcName = "Foreman Thazz'ril", map = 1411, zone = "Durotar", x = 44.6, y = 68.7 }, -- 17
-        { type = "ACCEPT", quest = 6394, questName = "Thazz'ril's Pick", npc = 11378, npcName = "Foreman Thazz'ril", map = 1411, zone = "Durotar", x = 44.6, y = 68.7 }, -- 18
-        { type = "TURNIN", quest = 804, questName = "Sarkoth", npc = 3143, npcName = "Gornek", map = 1411, zone = "Durotar", x = 42.1, y = 68.3 }, -- 19
-        { type = "COLLECT", quest = 6394, questName = "Thazz'ril's Pick", target = "Thazz'ril's Pick", map = 1411, zone = "Durotar", x = 43.7, y = 53.8 }, -- 20
-        { type = "TURNIN", quest = 6394, questName = "Thazz'ril's Pick", npc = 11378, npcName = "Foreman Thazz'ril", map = 1411, zone = "Durotar", x = 44.6, y = 68.7 }, -- 21
+        { type = "COLLECT", quest = 789, questName = "Sting of the Scorpid", target = "Scorpid Worker Tail", count = 10, map = 1411, zone = "Durotar", x = 41.8, y = 65.8, near = true }, -- 7
+        { type = "ACCEPT", quest = 790, questName = "Sarkoth", npc = 3287, npcName = "Hana'zua", map = 1411, zone = "Durotar", x = 40.6, y = 62.6 }, -- 8
+        { type = "COLLECT", quest = 4402, questName = "Galgar's Cactus Apple Surprise", target = "Cactus Apple", count = 10, map = 1411, zone = "Durotar", x = 40.9, y = 63.9, near = true }, -- 9
+        { type = "TURNIN", quest = 4402, questName = "Galgar's Cactus Apple Surprise", npc = 9796, npcName = "Galgar", map = 1411, zone = "Durotar", x = 42.7, y = 67.2 }, -- 10
+        { type = "TURNIN", quest = 789, questName = "Sting of the Scorpid", npc = 3143, npcName = "Gornek", map = 1411, zone = "Durotar", x = 42.1, y = 68.3 }, -- 11
+        { type = "ACCEPT", quest = 5441, questName = "Lazy Peons", npc = 11378, npcName = "Foreman Thazz'ril", map = 1411, zone = "Durotar", x = 44.6, y = 68.7 }, -- 12
+        { type = "KILL", quest = 5441, questName = "Lazy Peons", npc = 10556, target = "Lazy Peon", map = 1411, zone = "Durotar", x = 45, y = 69.1, near = true }, -- 13
+        { type = "TURNIN", quest = 5441, questName = "Lazy Peons", npc = 11378, npcName = "Foreman Thazz'ril", map = 1411, zone = "Durotar", x = 44.6, y = 68.7 }, -- 14
+        { type = "ACCEPT", quest = 6394, questName = "Thazz'ril's Pick", npc = 11378, npcName = "Foreman Thazz'ril", map = 1411, zone = "Durotar", x = 44.6, y = 68.7 }, -- 15
+        { type = "KILL", quest = 790, questName = "Sarkoth", npc = 3281, target = "Sarkoth", map = 1411, zone = "Durotar", x = 40.5, y = 66.8, note = "loot Sarkoth's Mangled Claw" }, -- 16
+        { type = "TURNIN", quest = 790, questName = "Sarkoth", npc = 3287, npcName = "Hana'zua", map = 1411, zone = "Durotar", x = 40.6, y = 62.6 }, -- 17
+        { type = "ACCEPT", quest = 804, questName = "Sarkoth", npc = 3287, npcName = "Hana'zua", map = 1411, zone = "Durotar", x = 40.6, y = 62.6 }, -- 18
+        { type = "COLLECT", quest = 6394, questName = "Thazz'ril's Pick", target = "Thazz'ril's Pick", map = 1411, zone = "Durotar", x = 43.7, y = 53.8 }, -- 19
+        { type = "TURNIN", quest = 6394, questName = "Thazz'ril's Pick", npc = 11378, npcName = "Foreman Thazz'ril", map = 1411, zone = "Durotar", x = 44.6, y = 68.7 }, -- 20
+        { type = "TURNIN", quest = 804, questName = "Sarkoth", npc = 3143, npcName = "Gornek", map = 1411, zone = "Durotar", x = 42.1, y = 68.3 }, -- 21
         { type = "ACCEPT", quest = 818, questName = "A Solvent Spirit", npc = 3304, npcName = "Master Vornal", map = 1411, zone = "Durotar", x = 55.9, y = 74.4 }, -- 22
         { type = "ACCEPT", quest = 823, questName = "Report to Orgnil", npc = 3188, npcName = "Master Gadrin", map = 1411, zone = "Durotar", x = 56, y = 74.7 }, -- 23
         { type = "ACCEPT", quest = 817, questName = "Practical Prey", npc = 3194, npcName = "Vel'rin Fang", map = 1411, zone = "Durotar", x = 56, y = 73.9 }, -- 24

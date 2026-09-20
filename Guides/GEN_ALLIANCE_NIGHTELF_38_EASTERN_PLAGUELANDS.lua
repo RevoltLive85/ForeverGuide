@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_38_EASTERN_PLAGUELANDS",
-    name = "38. Eastern Plaguelands 51-51 (Night Elf)",
+    name = "38. Eastern Plaguelands 51-52 (Night Elf)",
     version = 2,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 51,
-    maxLevel = 51,
+    maxLevel = 52,
     map = 1423,
     zone = "Eastern Plaguelands",
-    next = "GEN_ALLIANCE_NIGHTELF_39_WINTERSPRING",
+    next = "GEN_ALLIANCE_NIGHTELF_39_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 38 of the NightElf route: level 51 to 51, 20 steps, ~103 min of play in the model (37972 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 38 of the NightElf route: level 51 to 52, 20 steps, ~122 min of play in the model (31392 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.0, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 1
         { type = "TURNIN", quest = 5210, questName = "Brother Carlin", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 2

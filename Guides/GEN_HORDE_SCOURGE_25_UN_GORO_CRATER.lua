@@ -10,22 +10,56 @@ ns.RegisterGuide({
     maxLevel = 48,
     map = 1449,
     zone = "Un'Goro Crater",
-    next = "GEN_HORDE_SCOURGE_26_FELWOOD",
+    next = "GEN_HORDE_SCOURGE_26_TANARIS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 25 of the Scourge route: level 48 to 48, 13 steps, ~48 min of play in the model (47134 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 25 of the Scourge route: level 48 to 48, 47 steps, ~98 min of play in the model (48707 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
-        { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 6.6, radius = 60, note = "use your hearthstone (Un'Goro Crater)" }, -- 1
-        { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 44.0, y = 8.0, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 2
-        { type = "ACCEPT", quest = 3882, questName = "Roll the Bones", npc = 9272, npcName = "Spark Nilminer", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 7.4 }, -- 3
-        { type = "ACCEPT", quest = 4503, questName = "Shizzle's Flyer", npc = 9998, npcName = "Shizzle", map = 1449, zone = "Un'Goro Crater", x = 44.2, y = 11.6 }, -- 4
-        { type = "ACCEPT", quest = 4501, questName = "Beware of Pterrordax", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 8.4 }, -- 5
-        { type = "KILL", quest = 4501, questName = "Beware of Pterrordax", npc = 9166, target = "Pterrordax", count = 10, map = 1449, zone = "Un'Goro Crater", x = 50.6, y = 12, near = true }, -- 6
-        { type = "COLLECT", quest = 4503, questName = "Shizzle's Flyer", target = "Webbed Pterrordax Scale", count = 8, map = 1449, zone = "Un'Goro Crater", x = 50.6, y = 12, near = true }, -- 7
-        { type = "COLLECT", quest = 3882, questName = "Roll the Bones", target = "Dinosaur Bone", count = 8, map = 1449, zone = "Un'Goro Crater", x = 58.1, y = 33.9, near = true }, -- 8
-        { type = "COLLECT", quest = 4503, questName = "Shizzle's Flyer", target = "Webbed Diemetradon Scale", count = 8, map = 1449, zone = "Un'Goro Crater", x = 58.1, y = 33.9, near = true }, -- 9
-        { type = "KILL", quest = 4501, questName = "Beware of Pterrordax", npc = 9167, target = "Frenzied Pterrordax", count = 10, map = 1449, zone = "Un'Goro Crater", x = 37.4, y = 40.4, near = true }, -- 10
-        { type = "TURNIN", quest = 4503, questName = "Shizzle's Flyer", npc = 9998, npcName = "Shizzle", map = 1449, zone = "Un'Goro Crater", x = 44.2, y = 11.6 }, -- 11
-        { type = "TURNIN", quest = 4501, questName = "Beware of Pterrordax", npc = 9997, npcName = "Spraggle Frock", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 8.5 }, -- 12
-        { type = "TURNIN", quest = 3882, questName = "Roll the Bones", npc = 9272, npcName = "Spark Nilminer", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 7.4 }, -- 13
+        { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 6.6, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 1
+        { type = "NOTE", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 6.6, text = "set your hearthstone at the inn in Un'Goro Crater (if there is one)" }, -- 2
+        { type = "ACCEPT", quest = 3883, questName = "Alien Ecology", npc = 9271, npcName = "Hol'anyee Marshal", map = 1449, zone = "Un'Goro Crater", x = 43.9, y = 7.2 }, -- 3
+        { type = "ACCEPT", quest = 4145, questName = "Larion and Muigin", npc = 9118, npcName = "Larion", map = 1449, zone = "Un'Goro Crater", x = 45.5, y = 8.7 }, -- 4
+        { type = "ACCEPT", quest = 3881, questName = "Expedition Salvation", npc = 9270, npcName = "Williden Marshal", map = 1449, zone = "Un'Goro Crater", x = 44, y = 7.1 }, -- 5
+        { type = "ACCEPT", quest = 4284, questName = "Crystals of Power", npc = 9117, npcName = "J.D. Collie", map = 1449, zone = "Un'Goro Crater", x = 41.9, y = 2.7 }, -- 6
+        { type = "ACCEPT", quest = 4243, questName = "Chasing A-Me 01", npc = 9618, npcName = "Karna Remtravel", map = 1449, zone = "Un'Goro Crater", x = 46.4, y = 13.4 }, -- 7
+        { type = "KILL", quest = 4145, questName = "Larion and Muigin", npc = 6512, target = "Bloodpetal Trapper", count = 5, map = 1449, zone = "Un'Goro Crater", x = 40.3, y = 23.3, near = true }, -- 8
+        { type = "KILL", quest = 4145, questName = "Larion and Muigin", npc = 6510, target = "Bloodpetal Flayer", count = 5, map = 1449, zone = "Un'Goro Crater", x = 44.6, y = 30.6, near = true }, -- 9
+        { type = "COLLECT", quest = 4284, questName = "Crystals of Power", target = "Red Power Crystal / Yellow Power Crystal / Green Power Crystal / Blue Power Crystal", count = 7, map = 1449, zone = "Un'Goro Crater", x = 43, y = 45.4, near = true }, -- 10
+        { type = "COLLECT", quest = 3881, questName = "Expedition Salvation", target = "Research Equipment", map = 1449, zone = "Un'Goro Crater", x = 38.5, y = 66.1 }, -- 11
+        { type = "COLLECT", quest = 3883, questName = "Alien Ecology", target = "Hive Wall Sample", map = 1449, zone = "Un'Goro Crater", x = 48.7, y = 85.3 }, -- 12
+        { type = "KILL", quest = 4145, questName = "Larion and Muigin", npc = 6511, target = "Bloodpetal Thresher", count = 5, map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 64, near = true }, -- 13
+        { type = "KILL", quest = 4145, questName = "Larion and Muigin", npc = 6509, target = "Bloodpetal Lasher", count = 5, map = 1449, zone = "Un'Goro Crater", x = 75, y = 44.7, near = true }, -- 14
+        { type = "COLLECT", quest = 3881, questName = "Expedition Salvation", target = "Crate of Foodstuffs", map = 1449, zone = "Un'Goro Crater", x = 68.5, y = 36.5 }, -- 15
+        { type = "TURNIN", quest = 4145, questName = "Larion and Muigin", npc = 9118, npcName = "Larion", map = 1449, zone = "Un'Goro Crater", x = 45.5, y = 8.7 }, -- 16
+        { type = "TURNIN", quest = 3881, questName = "Expedition Salvation", npc = 9270, npcName = "Williden Marshal", map = 1449, zone = "Un'Goro Crater", x = 44, y = 7.1 }, -- 17
+        { type = "TURNIN", quest = 3883, questName = "Alien Ecology", npc = 9271, npcName = "Hol'anyee Marshal", map = 1449, zone = "Un'Goro Crater", x = 43.9, y = 7.2 }, -- 18
+        { type = "TURNIN", quest = 4284, questName = "Crystals of Power", npc = 9117, npcName = "J.D. Collie", map = 1449, zone = "Un'Goro Crater", x = 41.9, y = 2.7 }, -- 19
+        { type = "ACCEPT", quest = 4285, questName = "The Northern Pylon", npc = 9117, npcName = "J.D. Collie", map = 1449, zone = "Un'Goro Crater", x = 41.9, y = 2.7 }, -- 20
+        { type = "ACCEPT", quest = 4287, questName = "The Eastern Pylon", npc = 9117, npcName = "J.D. Collie", map = 1449, zone = "Un'Goro Crater", x = 41.9, y = 2.7 }, -- 21
+        { type = "ACCEPT", quest = 4288, questName = "The Western Pylon", npc = 9117, npcName = "J.D. Collie", map = 1449, zone = "Un'Goro Crater", x = 41.9, y = 2.7 }, -- 22
+        { type = "COMPLETE", quest = 4285, questName = "The Northern Pylon", target = "Discover and examine the Northern Crystal Pylon", map = 1449, zone = "Un'Goro Crater", x = 56, y = 12, note = "Discover and examine the Northern Crystal Pylon" }, -- 23
+        { type = "COMPLETE", quest = 4287, questName = "The Eastern Pylon", target = "Discover and examine the Eastern Crystal Pylon", map = 1449, zone = "Un'Goro Crater", x = 77, y = 50, note = "Discover and examine the Eastern Crystal Pylon" }, -- 24
+        { type = "COMPLETE", quest = 4288, questName = "The Western Pylon", target = "Discover and examine the Western Crystal Pylon", map = 1449, zone = "Un'Goro Crater", x = 23, y = 59, note = "Discover and examine the Western Crystal Pylon" }, -- 25
+        { type = "TURNIN", quest = 4285, questName = "The Northern Pylon", npc = 9117, npcName = "J.D. Collie", map = 1449, zone = "Un'Goro Crater", x = 41.9, y = 2.7 }, -- 26
+        { type = "TURNIN", quest = 4287, questName = "The Eastern Pylon", npc = 9117, npcName = "J.D. Collie", map = 1449, zone = "Un'Goro Crater", x = 41.9, y = 2.7 }, -- 27
+        { type = "TURNIN", quest = 4288, questName = "The Western Pylon", npc = 9117, npcName = "J.D. Collie", map = 1449, zone = "Un'Goro Crater", x = 41.9, y = 2.7 }, -- 28
+        { type = "ACCEPT", quest = 4321, questName = "Making Sense of It", npc = 9117, npcName = "J.D. Collie", map = 1449, zone = "Un'Goro Crater", x = 41.9, y = 2.7 }, -- 29
+        { type = "TURNIN", quest = 4321, questName = "Making Sense of It", npc = 9117, npcName = "J.D. Collie", map = 1449, zone = "Un'Goro Crater", x = 41.9, y = 2.7 }, -- 30
+        { type = "TURNIN", quest = 4243, questName = "Chasing A-Me 01", npc = 9623, npcName = "A-Me 01", map = 1449, zone = "Un'Goro Crater", x = 67.7, y = 16.8 }, -- 31
+        { type = "ACCEPT", quest = 3844, questName = "It's a Secret to Everybody", map = 1449, zone = "Un'Goro Crater", x = 63, y = 68.6 }, -- 32
+        { type = "TURNIN", quest = 3844, questName = "It's a Secret to Everybody", map = 1449, zone = "Un'Goro Crater", x = 63.1, y = 69.1 }, -- 33
+        { type = "ACCEPT", quest = 3845, questName = "It's a Secret to Everybody", map = 1449, zone = "Un'Goro Crater", x = 63.1, y = 69.1 }, -- 34
+        { type = "ACCEPT", quest = 4289, questName = "The Apes of Un'Goro", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 35
+        { type = "ACCEPT", quest = 4290, questName = "The Fare of Lar'korwi", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 36
+        { type = "COLLECT", quest = 4290, questName = "The Fare of Lar'korwi", target = "Piece of Threshadon Carcass", map = 1449, zone = "Un'Goro Crater", x = 68.7, y = 56.7 }, -- 37
+        { type = "KILL", quest = 4289, questName = "The Apes of Un'Goro", npc = 6514, target = "Un'Goro Gorilla / Un'Goro Stomper / Un'Goro Thunderer", count = 2, map = 1449, zone = "Un'Goro Crater", x = 62.6, y = 19.7, near = true, note = "loot Un'Goro Gorilla Pelt" }, -- 38
+        { type = "TURNIN", quest = 4289, questName = "The Apes of Un'Goro", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 39
+        { type = "TURNIN", quest = 4290, questName = "The Fare of Lar'korwi", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 40
+        { type = "ACCEPT", quest = 4291, questName = "The Scent of Lar'korwi", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 41
+        { type = "KILL", quest = 4291, questName = "The Scent of Lar'korwi", npc = 9683, target = "Lar'korwi Mate", count = 2, map = 1449, zone = "Un'Goro Crater", x = 67, y = 73, near = true, note = "loot Ravasaur Pheromone Gland" }, -- 42
+        { type = "TURNIN", quest = 4291, questName = "The Scent of Lar'korwi", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 43
+        { type = "ACCEPT", quest = 4292, questName = "The Bait for Lar'korwi", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 44
+        { type = "KILL", quest = 4292, questName = "The Bait for Lar'korwi", npc = 9684, target = "Lar'korwi", map = 1449, zone = "Un'Goro Crater", x = 79.7, y = 49.8, note = "loot Lar'korwi's Head" }, -- 45
+        { type = "TURNIN", quest = 4292, questName = "The Bait for Lar'korwi", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 46
+        { type = "TURNIN", quest = 3845, questName = "It's a Secret to Everybody", npc = 8737, npcName = "Linken", map = 1449, zone = "Un'Goro Crater", x = 44.7, y = 8.1 }, -- 47
     },
 })

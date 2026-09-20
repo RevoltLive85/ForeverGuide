@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Stonetalon Mountains",
     next = "GEN_HORDE_SKYBORNE_05_ASHENVALE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 4 of the Skyborne route: level 25 to 26, 39 steps, ~138 min of play in the model (22378 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 4 of the Skyborne route: level 25 to 26, 39 steps, ~138 min of play in the model (22489 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1442, zone = "Stonetalon Mountains", x = 46.9, y = 61.0, radius = 60, note = "travel to Stonetalon Mountains (Stonetalon Mountains)" }, -- 1
         { type = "NOTE", map = 1442, zone = "Stonetalon Mountains", x = 46.9, y = 61.0, text = "set your hearthstone at the inn in Stonetalon Mountains (if there is one)" }, -- 2
@@ -37,7 +37,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1058, questName = "Jin'Zil's Forest Magic", npc = 3995, npcName = "Witch Doctor Jin'Zil", map = 1442, zone = "Stonetalon Mountains", x = 74.5, y = 97.9 }, -- 21
         { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4005, target = "Deepmoss Creeper", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 67.3, y = 87.7, near = true }, -- 22
         { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4007, target = "Deepmoss Venomspitter", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 61.6, y = 66.4, near = true }, -- 23
-        { type = "TURNIN", quest = 6461, questName = "Blood Feeders", npc = 12816, npcName = "Xen'Zilla", map = 1442, zone = "Stonetalon Mountains", x = 71.3, y = 95, note = "reduced xp (60%) - you out-levelled it" }, -- 24
+        { type = "TURNIN", quest = 6461, questName = "Blood Feeders", npc = 12816, npcName = "Xen'Zilla", map = 1442, zone = "Stonetalon Mountains", x = 71.3, y = 95, note = "reduced xp (80%) - you out-levelled it" }, -- 24
         { type = "KILL", quest = 1093, questName = "Super Reaper 6000", npc = 3988, target = "Venture Co. Operator", map = 1442, zone = "Stonetalon Mountains", x = 75.7, y = 56.6, near = true, note = "loot Super Reaper 6000 Blueprints" }, -- 25
         { type = "ACCEPT", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 26
         { type = "KILL", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, target = "Piznik", count = 1, map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 27

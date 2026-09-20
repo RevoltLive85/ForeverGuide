@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_37_BURNING_STEPPES",
-    name = "37. Burning Steppes 50-51 (Human)",
+    name = "37. Burning Steppes 51-52 (Human)",
     version = 2,
     faction = "Alliance",
     race = { "Human" },
-    minLevel = 50,
-    maxLevel = 51,
+    minLevel = 51,
+    maxLevel = 52,
     map = 1428,
     zone = "Burning Steppes",
     next = "GEN_ALLIANCE_HUMAN_38_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 37 of the Human route: level 50 to 51, 27 steps, ~134 min of play in the model (42276 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 37 of the Human route: level 51 to 52, 25 steps, ~123 min of play in the model (44930 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1428, zone = "Burning Steppes", x = 65.3, y = 23.5, radius = 60, note = "travel to Burning Steppes (Burning Steppes)" }, -- 1
         { type = "NOTE", map = 1428, zone = "Burning Steppes", x = 65.3, y = 23.5, text = "set your hearthstone at the inn in Burning Steppes (if there is one)" }, -- 2
@@ -39,7 +39,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 3825, questName = "Ogre Head On A Stick = Party", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 23
         { type = "COMPLETE", quest = 3825, questName = "Ogre Head On A Stick = Party", target = "Soft Dirt Mound", map = 1428, zone = "Burning Steppes", x = 81, y = 46.8, note = "Gor'tesh Head Planted" }, -- 24
         { type = "TURNIN", quest = 3825, questName = "Ogre Head On A Stick = Party", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 25
-        { type = "ACCEPT", quest = 3801, questName = "Dark Iron Legacy", npc = 8888, npcName = "Franclorn Forgewright", map = 1428, zone = "Burning Steppes", x = 29, y = 28.9 }, -- 26
-        { type = "TURNIN", quest = 3801, questName = "Dark Iron Legacy", npc = 8888, npcName = "Franclorn Forgewright", map = 1428, zone = "Burning Steppes", x = 29, y = 28.9 }, -- 27
     },
 })

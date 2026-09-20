@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_40_EASTERN_PLAGUELANDS",
-    name = "40. Eastern Plaguelands 53-53 (Orc)",
+    name = "40. Eastern Plaguelands 54-54 (Orc)",
     version = 2,
     faction = "Horde",
     race = { "Orc", "Troll" },
-    minLevel = 53,
-    maxLevel = 53,
+    minLevel = 54,
+    maxLevel = 54,
     map = 1423,
     zone = "Eastern Plaguelands",
     next = "GEN_HORDE_ORC_41_SILITHUS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 40 of the Orc route: level 53 to 53, 19 steps, ~91 min of play in the model (44965 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 40 of the Orc route: level 54 to 54, 19 steps, ~87 min of play in the model (46505 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.8, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 1
         { type = "ACCEPT", quest = 6026, questName = "That's Asking A Lot", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 2

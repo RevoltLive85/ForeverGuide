@@ -1,0 +1,33 @@
+{
+  "id": "GEN_HORDE_ORC_20_FERALAS",
+  "name": "20. Feralas 46-47 (Orc)",
+  "version": 2,
+  "faction": "Horde",
+  "race": ["Orc", "Troll"],
+  "minLevel": 46,
+  "maxLevel": 47,
+  "map": 1444,
+  "zone": "Feralas",
+  "next": "GEN_HORDE_ORC_21_UN_GORO_CRATER",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 20 of the Orc route: level 46 to 47, 17 steps, ~136 min of play in the model (31503 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1444, "zone": "Feralas", "x": 74.9, "y": 43.5, "radius": 60, "note": "travel to Feralas (Feralas)"},
+    {"type": "ACCEPT", "quest": 3063, "questName": "Vengeance on the Northspring", "npc": 7776, "npcName": "Talo Thornhoof", "map": 1444, "zone": "Feralas", "x": 76.2, "y": 43.8},
+    {"type": "ACCEPT", "quest": 3380, "questName": "The Sunken Temple", "npc": 8115, "npcName": "Witch Doctor Uzer'i", "map": 1444, "zone": "Feralas", "x": 74.4, "y": 43.4},
+    {"type": "TURNIN", "quest": 3122, "questName": "Return to Witch Doctor Uzer'i", "npc": 8115, "npcName": "Witch Doctor Uzer'i", "map": 1444, "zone": "Feralas", "x": 74.4, "y": 43.4},
+    {"type": "ACCEPT", "quest": 3128, "questName": "Natural Materials", "npc": 8115, "npcName": "Witch Doctor Uzer'i", "map": 1444, "zone": "Feralas", "x": 74.4, "y": 43.4},
+    {"type": "COMPLETE", "quest": 3128, "questName": "Natural Materials", "npc": 7584, "target": "Wandering Forest Walker / Metallic Fragments", "count": 2, "map": 1444, "zone": "Feralas", "x": 73.9, "y": 38.8, "near": true, "note": "loot Splintered Log"},
+    {"type": "COLLECT", "quest": 3128, "questName": "Natural Materials", "target": "Encrusted Minerals", "count": 6, "map": 1444, "zone": "Feralas", "x": 70.2, "y": 46.6, "near": true},
+    {"type": "COLLECT", "quest": 3128, "questName": "Natural Materials", "target": "Resilient Sinew", "count": 20, "map": 1444, "zone": "Feralas", "x": 58, "y": 62.8, "near": true},
+    {"type": "TURNIN", "quest": 3128, "questName": "Natural Materials", "npc": 8115, "npcName": "Witch Doctor Uzer'i", "map": 1444, "zone": "Feralas", "x": 74.4, "y": 43.4},
+    {"type": "ACCEPT", "quest": 7003, "questName": "Zapped Giants", "npc": 14637, "npcName": "Zorbin Fandazzle", "map": 1444, "zone": "Feralas", "x": 44.8, "y": 43.4},
+    {"type": "ACCEPT", "quest": 7721, "questName": "Fuel for the Zapping", "npc": 14637, "npcName": "Zorbin Fandazzle", "map": 1444, "zone": "Feralas", "x": 44.8, "y": 43.4},
+    {"type": "COLLECT", "quest": 7721, "questName": "Fuel for the Zapping", "target": "Water Elemental Core", "count": 10, "map": 1444, "zone": "Feralas", "x": 45, "y": 46.3, "near": true},
+    {"type": "TURNIN", "quest": 7721, "questName": "Fuel for the Zapping", "npc": 14637, "npcName": "Zorbin Fandazzle", "map": 1444, "zone": "Feralas", "x": 44.8, "y": 43.4},
+    {"type": "COLLECT", "quest": 7003, "questName": "Zapped Giants", "target": "Miniaturization Residue", "count": 15, "map": 1444, "zone": "Feralas", "x": 44.3, "y": 46.6, "near": true},
+    {"type": "TURNIN", "quest": 7003, "questName": "Zapped Giants", "npc": 14637, "npcName": "Zorbin Fandazzle", "map": 1444, "zone": "Feralas", "x": 44.8, "y": 43.4},
+    {"type": "KILL", "quest": 3063, "questName": "Vengeance on the Northspring", "npc": 5362, "target": "Northspring Harpy / Northspring Windcaller / Northspring Slayer / Northspring Roguefeather", "count": 4, "map": 1444, "zone": "Feralas", "x": 40.1, "y": 15.5, "near": true},
+    {"type": "TURNIN", "quest": 3063, "questName": "Vengeance on the Northspring", "npc": 7776, "npcName": "Talo Thornhoof", "map": 1444, "zone": "Feralas", "x": 76.2, "y": 43.8}
+  ]
+}

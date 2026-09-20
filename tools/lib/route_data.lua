@@ -24,6 +24,7 @@ function M.load(root)
         end
     end
     M.Q, M.N, M.O, M.I, M.Z, M.removed = Q, N, O, I, Z, gone
+    M.loadMapBounds(root)
     M.applyOverlay(root, ns)
     return M
 end
@@ -70,10 +71,19 @@ function M.applyOverlay(root, ns)
         if info.name and not Z.names[area] then Z.names[area] = info.name end
     end
     for id, n in pairs(F.npcs or {}) do
+        local pts = n.spm and next(n.spm) and spmToSp(n.spm) or nil
+        if pts and M.mapBounds then
+            -- nothing: map points already usable
+        end
+        local wpts = n.spw and M.worldToMapPoints(n.spw) or nil
+        if wpts then
+            pts = pts or {}
+            for area, list in pairs(wpts) do pts[area] = pts[area] or {} for _, p in ipairs(list) do table.insert(pts[area], p) end end
+        end
         if not N[id] then
-            N[id] = { n = n.n, min = n.lvl, max = n.lvl, rank = 0, sp = spmToSp(n.spm), forever = true }
-        elseif n.spm and not N[id].sp then
-            N[id].sp = spmToSp(n.spm)
+            N[id] = { n = n.n, min = n.lvl, max = n.lvl, rank = 0, sp = pts or {}, forever = true }
+        elseif pts then
+            N[id].fsp = pts
         end
     end
     local added = 0
@@ -200,6 +210,42 @@ M.MAP_SIZE = {
     [1458] = { 959.4, 640.6 },
     [2521] = { 3500, 2333.3 },   -- Zephras Isle (Forever): size unknown, assumed Westfall-like
 }
+--- World -> map conversion offline, from map bounds the recorder logged in-game
+--- (data-src/mapbounds.json). Returns { [areaID] = { {x,y}, ... } } or nil.
+function M.worldToMapPoints(spw)
+    if not M.mapBounds then return nil end
+    local out
+    for mp, pts in pairs(spw or {}) do
+        local b = M.mapBounds[tonumber(mp) or mp]
+        if b then
+            local area = M.mapToArea(tonumber(mp) or mp)
+            for _, p in ipairs(pts) do
+                local inst, wx, wy = p[1], p[2], p[3]
+                -- top-left corner (x0,y0) is world (maxX, maxY); x grows north (up), y grows west (left)
+                local mx = (b.y0 - wy) / (b.y0 - b.y1) * 100
+                local my = (b.x0 - wx) / (b.x0 - b.x1) * 100
+                if mx >= -5 and mx <= 105 and my >= -5 and my <= 105 then
+                    out = out or {}
+                    out[area] = out[area] or {}
+                    table.insert(out[area], { mx, my })
+                end
+            end
+        end
+    end
+    return out
+end
+function M.loadMapBounds(root)
+    local f = io.open(root .. "data-src/mapbounds.json", "r")
+    if not f then return end
+    local s = f:read("*a") f:close()
+    M.mapBounds = {}
+    for id, body in s:gmatch('"(%d+)"%s*:%s*(%b{})') do
+        local b = {}
+        for k, v in body:gmatch('"(%w+)"%s*:%s*(-?[%d%.]+)') do b[k] = tonumber(v) end
+        if b.x0 and b.x1 and b.y0 and b.y1 then M.mapBounds[tonumber(id)] = b end
+    end
+end
+
 -- optional override recorded in-game (tools/merge_recorded.py writes data-src/mapsizes.json)
 function M.loadMapSizes(root)
     local f = io.open(root .. "data-src/mapsizes.json", "r")
@@ -282,7 +328,18 @@ function M.band(a, b)
 end
 
 function M.spawnLocs(rec, out, kind, id)
-    if not rec or not rec.sp then return out end
+    if not rec then return out end
+    if rec.fsp then
+        -- Forever positions (recorded / RestedXP) replace the vanilla spawn points
+        for area, pts in pairs(rec.fsp) do
+            local zone = M.parentZone(area)
+            for _, p in ipairs(pts) do
+                out[#out + 1] = { zone = zone, area = area, map = M.Z.areaToMap[area], x = p[1], y = p[2], name = rec.n, kind = kind, id = id, forever = true }
+            end
+        end
+        return out
+    end
+    if not rec.sp then return out end
     for area, pts in pairs(rec.sp) do
         local zone = M.parentZone(area)
         for _, p in ipairs(pts) do

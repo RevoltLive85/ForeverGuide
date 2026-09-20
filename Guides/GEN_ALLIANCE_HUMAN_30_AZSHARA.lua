@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_30_AZSHARA",
-    name = "30. Azshara 46-47 (Human)",
+    name = "30. Azshara 47-48 (Human)",
     version = 2,
     faction = "Alliance",
     race = { "Human" },
-    minLevel = 46,
-    maxLevel = 47,
+    minLevel = 47,
+    maxLevel = 48,
     map = 1447,
     zone = "Azshara",
     next = "GEN_ALLIANCE_HUMAN_31_FELWOOD",
     author = "ForeverGuide route planner",
-    notes = "Chapter 30 of the Human route: level 46 to 47, 14 steps, ~61 min of play in the model (33140 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 30 of the Human route: level 47 to 48, 15 steps, ~69 min of play in the model (29299 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1447, zone = "Azshara", x = 60.8, y = 66.4, radius = 60, note = "travel to Azshara (Azshara)" }, -- 1
         { type = "NOTE", map = 1447, zone = "Azshara", x = 60.8, y = 66.4, text = "set your hearthstone at the inn in Azshara (if there is one)" }, -- 2
@@ -28,5 +28,6 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 5535, questName = "Spiritual Unrest", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 12
         { type = "KILL", quest = 5536, questName = "A Land Filled with Hatred", npc = 6127, target = "Haldarr Felsworn / Haldarr Trickster / Haldarr Satyr", count = 6, map = 1447, zone = "Azshara", x = 19.1, y = 64, near = true }, -- 13
         { type = "TURNIN", quest = 5536, questName = "A Land Filled with Hatred", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 14
+        { type = "GRIND", npc = 6194, target = "Spitelash Serpent Guard", level = 48, map = 1447, zone = "Azshara", x = 36.4, y = 57.9, near = true, note = "grind Spitelash Serpent Guard (level 48-49) to level 48 - nothing worth questing at 47" }, -- 15
     },
 })

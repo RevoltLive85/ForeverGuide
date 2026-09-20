@@ -2,23 +2,25 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_07_IRONFORGE",
-    name = "7. Ironforge 21-21 (Night Elf)",
+    name = "7. Ironforge 24-24 (Night Elf)",
     version = 2,
     faction = "Alliance",
     race = { "NightElf" },
-    minLevel = 21,
-    maxLevel = 21,
+    minLevel = 24,
+    maxLevel = 24,
     map = 1455,
     zone = "Ironforge",
     next = "GEN_ALLIANCE_NIGHTELF_08_WETLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 7 of the NightElf route: level 21 to 21, 6 steps, ~11 min of play in the model (27659 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 7 of the NightElf route: level 24 to 24, 8 steps, ~13 min of play in the model (37625 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 61.3, y = 47.4, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 1
         { type = "NOTE", map = 1455, zone = "Ironforge", x = 61.3, y = 47.4, text = "set your hearthstone at the inn in Ironforge (if there is one)" }, -- 2
-        { type = "ACCEPT", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 3
-        { type = "TURNIN", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 4
-        { type = "ACCEPT", quest = 8374, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 5
-        { type = "TURNIN", quest = 8374, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 6
+        { type = "ACCEPT", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 3
+        { type = "TURNIN", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 4
+        { type = "ACCEPT", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 5
+        { type = "TURNIN", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 6
+        { type = "ACCEPT", quest = 8374, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 7
+        { type = "TURNIN", quest = 8374, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 8
     },
 })

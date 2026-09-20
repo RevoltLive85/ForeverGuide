@@ -12,10 +12,10 @@ ns.RegisterGuide({
     zone = "Tirisfal Glades",
     next = "GEN_HORDE_SCOURGE_02_UNDERCITY",
     author = "ForeverGuide route planner",
-    notes = "Chapter 1 of the Scourge route: level 1 to 12, 107 steps, ~184 min of play in the model (15572 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 1 of the Scourge route: level 1 to 12, 108 steps, ~190 min of play in the model (15152 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
-        { type = "NOTE", map = 1420, zone = "Tirisfal Glades", x = 39.7, y = 55.9, text = "set your hearthstone at the inn in Tirisfal Glades (if there is one)" }, -- 1
-        { type = "ACCEPT", quest = 8, questName = "A Rogue's Deal", npc = 6784, npcName = "Calvin Montague", map = 1420, zone = "Tirisfal Glades", x = 38.2, y = 56.8 }, -- 2
+        { type = "GRIND", npc = 1512, target = "Duskbat", level = 2, map = 1420, zone = "Tirisfal Glades", x = 34, y = 58.2, near = true, note = "grind Duskbat (level 1-2) to level 2 - nothing worth questing at 1" }, -- 1
+        { type = "NOTE", map = 1420, zone = "Tirisfal Glades", x = 31.5, y = 66.0, text = "set your hearthstone at the inn in Tirisfal Glades (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 376, questName = "The Damned", npc = 1661, npcName = "Novice Elreth", map = 1420, zone = "Tirisfal Glades", x = 30.9, y = 66.1 }, -- 3
         { type = "ACCEPT", quest = 364, questName = "The Mindless Ones", npc = 1569, npcName = "Shadow Priest Sarvis", map = 1420, zone = "Tirisfal Glades", x = 30.8, y = 66.2 }, -- 4
         { type = "COLLECT", quest = 376, questName = "The Damned", target = "Duskbat Wing / Scavenger Paw", count = 6, map = 1420, zone = "Tirisfal Glades", x = 29.8, y = 63.6, near = true }, -- 5
@@ -53,73 +53,74 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 427, questName = "At War With The Scarlet Crusade", npc = 1515, npcName = "Executor Zygand", map = 1420, zone = "Tirisfal Glades", x = 60.6, y = 51.8 }, -- 37
         { type = "ACCEPT", quest = 398, questName = "Wanted: Maggot Eye", map = 1420, zone = "Tirisfal Glades", x = 60.7, y = 51.5 }, -- 38
         { type = "TURNIN", quest = 383, questName = "Vital Intelligence", npc = 1515, npcName = "Executor Zygand", map = 1420, zone = "Tirisfal Glades", x = 60.6, y = 51.8 }, -- 39
-        { type = "TURNIN", quest = 8, questName = "A Rogue's Deal", npc = 5688, npcName = "Innkeeper Renee", map = 1420, zone = "Tirisfal Glades", x = 61.7, y = 52.1 }, -- 40
-        { type = "TURNIN", quest = 365, questName = "Fields of Grief", npc = 1518, npcName = "Apothecary Johaan", map = 1420, zone = "Tirisfal Glades", x = 59.5, y = 52.4 }, -- 41
-        { type = "ACCEPT", quest = 407, questName = "Fields of Grief", npc = 1518, npcName = "Apothecary Johaan", map = 1420, zone = "Tirisfal Glades", x = 59.5, y = 52.4 }, -- 42
-        { type = "ACCEPT", quest = 358, questName = "Graverobbers", npc = 1499, npcName = "Magistrate Sevren", map = 1420, zone = "Tirisfal Glades", x = 61.3, y = 50.8 }, -- 43
-        { type = "ACCEPT", quest = 375, questName = "The Chill of Death", npc = 1521, npcName = "Gretchen Dedmar", map = 1420, zone = "Tirisfal Glades", x = 61.9, y = 52.7 }, -- 44
-        { type = "ACCEPT", quest = 362, questName = "The Haunted Mills", npc = 1500, npcName = "Coleman Farthing", map = 1420, zone = "Tirisfal Glades", x = 61.7, y = 52.3 }, -- 45
-        { type = "ACCEPT", quest = 354, questName = "Deaths in the Family", npc = 1500, npcName = "Coleman Farthing", map = 1420, zone = "Tirisfal Glades", x = 61.7, y = 52.3 }, -- 46
-        { type = "TURNIN", quest = 407, questName = "Fields of Grief", npc = 1931, npcName = "Captured Scarlet Zealot", map = 1420, zone = "Tirisfal Glades", x = 62, y = 51.3 }, -- 47
-        { type = "COLLECT", quest = 367, questName = "A New Plague", target = "Darkhound Blood", count = 5, map = 1420, zone = "Tirisfal Glades", x = 61.1, y = 55.6, near = true }, -- 48
-        { type = "TURNIN", quest = 367, questName = "A New Plague", npc = 1518, npcName = "Apothecary Johaan", map = 1420, zone = "Tirisfal Glades", x = 59.5, y = 52.4 }, -- 49
-        { type = "ACCEPT", quest = 368, questName = "A New Plague", npc = 1518, npcName = "Apothecary Johaan", map = 1420, zone = "Tirisfal Glades", x = 59.5, y = 52.4 }, -- 50
-        { type = "COLLECT", quest = 404, questName = "A Putrid Task", target = "Putrid Claw", count = 7, map = 1420, zone = "Tirisfal Glades", x = 55.5, y = 48.8, near = true }, -- 51
-        { type = "TURNIN", quest = 404, questName = "A Putrid Task", npc = 1496, npcName = "Deathguard Dillinger", map = 1420, zone = "Tirisfal Glades", x = 58.2, y = 51.5 }, -- 52
-        { type = "ACCEPT", quest = 426, questName = "The Mills Overrun", npc = 1496, npcName = "Deathguard Dillinger", map = 1420, zone = "Tirisfal Glades", x = 58.2, y = 51.5 }, -- 53
-        { type = "COLLECT", quest = 5482, questName = "Doom Weed", target = "Doom Weed", count = 10, map = 1420, zone = "Tirisfal Glades", x = 58.3, y = 42.9, near = true }, -- 54
-        { type = "COMPLETE", quest = 358, questName = "Graverobbers", npc = 1941, target = "Rot Hide Graverobber / Embalming Ichor", map = 1420, zone = "Tirisfal Glades", x = 58.3, y = 42.9, near = true }, -- 55
-        { type = "KILL", quest = 358, questName = "Graverobbers", npc = 1675, target = "Rot Hide Mongrel", map = 1420, zone = "Tirisfal Glades", x = 60.5, y = 38.8, near = true }, -- 56
-        { type = "COLLECT", quest = 375, questName = "The Chill of Death", target = "Duskbat Pelt", map = 1420, zone = "Tirisfal Glades", x = 63.3, y = 41.7, near = true }, -- 57
-        { type = "COLLECT", quest = 368, questName = "A New Plague", target = "Vile Fin Scale", count = 5, map = 1420, zone = "Tirisfal Glades", x = 64.9, y = 29.7, near = true }, -- 58
-        { type = "KILL", quest = 398, questName = "Wanted: Maggot Eye", npc = 1753, target = "Maggot Eye", map = 1420, zone = "Tirisfal Glades", x = 58.7, y = 30.8, note = "loot Maggot Eye's Paw" }, -- 59
-        { type = "COLLECT", quest = 426, questName = "The Mills Overrun", target = "Notched Rib", count = 5, map = 1420, zone = "Tirisfal Glades", x = 51.3, y = 33.2, near = true }, -- 60
-        { type = "KILL", quest = 354, questName = "Deaths in the Family", npc = 1654, target = "Gregor Agamand", map = 1420, zone = "Tirisfal Glades", x = 46.7, y = 29.3, note = "loot Gregor's Remains" }, -- 61
-        { type = "KILL", quest = 354, questName = "Deaths in the Family", npc = 1656, target = "Thurman Agamand", map = 1420, zone = "Tirisfal Glades", x = 44, y = 33.6, note = "loot Thurman's Remains" }, -- 62
-        { type = "KILL", quest = 427, questName = "At War With The Scarlet Crusade", npc = 1535, target = "Scarlet Warrior", count = 10, map = 1420, zone = "Tirisfal Glades", x = 36.9, y = 48.2, near = true }, -- 63
-        { type = "KILL", quest = 362, questName = "The Haunted Mills", npc = 1657, target = "Devlin Agamand", map = 1420, zone = "Tirisfal Glades", x = 47.3, y = 40.8, note = "loot Devlin's Remains" }, -- 64
-        { type = "KILL", quest = 426, questName = "The Mills Overrun", npc = 1522, target = "Darkeye Bonecaster", count = 5, map = 1420, zone = "Tirisfal Glades", x = 48.3, y = 39.5, near = true, note = "loot Blackened Skull" }, -- 65
-        { type = "KILL", quest = 354, questName = "Deaths in the Family", npc = 1655, target = "Nissa Agamand", map = 1420, zone = "Tirisfal Glades", x = 49.7, y = 36.3, note = "loot Nissa's Remains" }, -- 66
-        { type = "ACCEPT", quest = 356, questName = "Rear Guard Patrol", npc = 1495, npcName = "Deathguard Linnea", map = 1420, zone = "Tirisfal Glades", x = 65.5, y = 60.3 }, -- 67
-        { type = "KILL", quest = 356, questName = "Rear Guard Patrol", npc = 1532, target = "Wandering Spirit / Bleeding Horror", count = 8, map = 1420, zone = "Tirisfal Glades", x = 74.2, y = 61.5, near = true }, -- 68
-        { type = "TURNIN", quest = 375, questName = "The Chill of Death", npc = 1521, npcName = "Gretchen Dedmar", map = 1420, zone = "Tirisfal Glades", x = 61.9, y = 52.7 }, -- 69
-        { type = "TURNIN", quest = 354, questName = "Deaths in the Family", npc = 1500, npcName = "Coleman Farthing", map = 1420, zone = "Tirisfal Glades", x = 61.7, y = 52.3 }, -- 70
-        { type = "TURNIN", quest = 362, questName = "The Haunted Mills", npc = 1500, npcName = "Coleman Farthing", map = 1420, zone = "Tirisfal Glades", x = 61.7, y = 52.3 }, -- 71
-        { type = "TURNIN", quest = 358, questName = "Graverobbers", npc = 1499, npcName = "Magistrate Sevren", map = 1420, zone = "Tirisfal Glades", x = 61.3, y = 50.8 }, -- 72
-        { type = "TURNIN", quest = 398, questName = "Wanted: Maggot Eye", npc = 1515, npcName = "Executor Zygand", map = 1420, zone = "Tirisfal Glades", x = 60.6, y = 51.8 }, -- 73
-        { type = "TURNIN", quest = 427, questName = "At War With The Scarlet Crusade", npc = 1515, npcName = "Executor Zygand", map = 1420, zone = "Tirisfal Glades", x = 60.6, y = 51.8 }, -- 74
-        { type = "TURNIN", quest = 368, questName = "A New Plague", npc = 1518, npcName = "Apothecary Johaan", map = 1420, zone = "Tirisfal Glades", x = 59.5, y = 52.4 }, -- 75
-        { type = "TURNIN", quest = 426, questName = "The Mills Overrun", npc = 1496, npcName = "Deathguard Dillinger", map = 1420, zone = "Tirisfal Glades", x = 58.2, y = 51.5 }, -- 76
-        { type = "ACCEPT", quest = 374, questName = "Proof of Demise", npc = 1652, npcName = "Deathguard Burgess", map = 1420, zone = "Tirisfal Glades", x = 60.9, y = 52 }, -- 77
-        { type = "ACCEPT", quest = 405, questName = "The Prodigal Lich", npc = 1499, npcName = "Magistrate Sevren", map = 1420, zone = "Tirisfal Glades", x = 61.3, y = 50.8 }, -- 78
-        { type = "ACCEPT", quest = 370, questName = "At War With The Scarlet Crusade", npc = 1515, npcName = "Executor Zygand", map = 1420, zone = "Tirisfal Glades", x = 60.6, y = 51.8 }, -- 79
-        { type = "ACCEPT", quest = 359, questName = "Forsaken Duties", npc = 1499, npcName = "Magistrate Sevren", map = 1420, zone = "Tirisfal Glades", x = 61.3, y = 50.8 }, -- 80
-        { type = "ACCEPT", quest = 355, questName = "Speak with Sevren", npc = 1500, npcName = "Coleman Farthing", map = 1420, zone = "Tirisfal Glades", x = 61.7, y = 52.3 }, -- 81
-        { type = "ACCEPT", quest = 369, questName = "A New Plague", npc = 1518, npcName = "Apothecary Johaan", map = 1420, zone = "Tirisfal Glades", x = 59.5, y = 52.4 }, -- 82
-        { type = "TURNIN", quest = 355, questName = "Speak with Sevren", npc = 1499, npcName = "Magistrate Sevren", map = 1420, zone = "Tirisfal Glades", x = 61.3, y = 50.8 }, -- 83
-        { type = "TURNIN", quest = 5482, questName = "Doom Weed", npc = 10665, npcName = "Junior Apothecary Holland", map = 1420, zone = "Tirisfal Glades", x = 57.4, y = 48.9 }, -- 84
-        { type = "COLLECT", quest = 374, questName = "Proof of Demise", target = "Scarlet Insignia Ring", count = 10, map = 1420, zone = "Tirisfal Glades", x = 52.8, y = 67.4, near = true }, -- 85
-        { type = "KILL", quest = 370, questName = "At War With The Scarlet Crusade", npc = 1536, target = "Scarlet Missionary / Scarlet Zealot / Captain Perrine", count = 3, map = 1420, zone = "Tirisfal Glades", x = 52.8, y = 67.4, near = true }, -- 86
-        { type = "ACCEPT", quest = 408, questName = "The Family Crypt", npc = 1499, npcName = "Magistrate Sevren", map = 1420, zone = "Tirisfal Glades", x = 61.3, y = 50.8 }, -- 87
-        { type = "TURNIN", quest = 374, questName = "Proof of Demise", npc = 1652, npcName = "Deathguard Burgess", map = 1420, zone = "Tirisfal Glades", x = 60.9, y = 52 }, -- 88
-        { type = "TURNIN", quest = 370, questName = "At War With The Scarlet Crusade", npc = 1515, npcName = "Executor Zygand", map = 1420, zone = "Tirisfal Glades", x = 60.6, y = 51.8 }, -- 89
-        { type = "ACCEPT", quest = 371, questName = "At War With The Scarlet Crusade", npc = 1515, npcName = "Executor Zygand", map = 1420, zone = "Tirisfal Glades", x = 60.6, y = 51.8 }, -- 90
-        { type = "KILL", quest = 371, questName = "At War With The Scarlet Crusade", npc = 1538, target = "Scarlet Friar", count = 5, map = 1420, zone = "Tirisfal Glades", x = 76.1, y = 57.2, near = true }, -- 91
-        { type = "KILL", quest = 371, questName = "At War With The Scarlet Crusade", npc = 1664, target = "Captain Vachon", count = 1, map = 1420, zone = "Tirisfal Glades", x = 78.8, y = 56.1 }, -- 92
-        { type = "KILL", quest = 369, questName = "A New Plague", npc = 1555, target = "Vicious Night Web Spider", count = 4, map = 1420, zone = "Tirisfal Glades", x = 83.8, y = 55.4, near = true, note = "loot Vicious Night Web Spider Venom" }, -- 93
-        { type = "KILL", quest = 408, questName = "The Family Crypt", npc = 1534, target = "Wailing Ancestor / Rotting Ancestor", count = 8, map = 1420, zone = "Tirisfal Glades", x = 55.2, y = 30, near = true }, -- 94
-        { type = "KILL", quest = 408, questName = "The Family Crypt", npc = 1658, target = "Captain Dargol", map = 1420, zone = "Tirisfal Glades", x = 52.8, y = 26.4, note = "loot Dargol's Skull" }, -- 95
-        { type = "TURNIN", quest = 371, questName = "At War With The Scarlet Crusade", npc = 1515, npcName = "Executor Zygand", map = 1420, zone = "Tirisfal Glades", x = 60.6, y = 51.8 }, -- 96
-        { type = "ACCEPT", quest = 372, questName = "At War With The Scarlet Crusade", npc = 1515, npcName = "Executor Zygand", map = 1420, zone = "Tirisfal Glades", x = 60.6, y = 51.8 }, -- 97
-        { type = "TURNIN", quest = 408, questName = "The Family Crypt", npc = 1499, npcName = "Magistrate Sevren", map = 1420, zone = "Tirisfal Glades", x = 61.3, y = 50.8 }, -- 98
-        { type = "TURNIN", quest = 369, questName = "A New Plague", npc = 1518, npcName = "Apothecary Johaan", map = 1420, zone = "Tirisfal Glades", x = 59.5, y = 52.4 }, -- 99
-        { type = "ACCEPT", quest = 492, questName = "A New Plague", npc = 1518, npcName = "Apothecary Johaan", map = 1420, zone = "Tirisfal Glades", x = 59.5, y = 52.4 }, -- 100
-        { type = "TURNIN", quest = 492, questName = "A New Plague", npc = 2211, npcName = "Captured Mountaineer", map = 1420, zone = "Tirisfal Glades", x = 61.9, y = 51.4 }, -- 101
-        { type = "KILL", quest = 372, questName = "At War With The Scarlet Crusade", npc = 1660, target = "Scarlet Bodyguard / Captain Melrache", map = 1420, zone = "Tirisfal Glades", x = 79.5, y = 25.3, near = true }, -- 102
-        { type = "TURNIN", quest = 359, questName = "Forsaken Duties", npc = 1495, npcName = "Deathguard Linnea", map = 1420, zone = "Tirisfal Glades", x = 65.5, y = 60.3 }, -- 103
-        { type = "ACCEPT", quest = 360, questName = "Return to the Magistrate", npc = 1495, npcName = "Deathguard Linnea", map = 1420, zone = "Tirisfal Glades", x = 65.5, y = 60.3 }, -- 104
-        { type = "TURNIN", quest = 356, questName = "Rear Guard Patrol", npc = 1495, npcName = "Deathguard Linnea", map = 1420, zone = "Tirisfal Glades", x = 65.5, y = 60.3 }, -- 105
-        { type = "TURNIN", quest = 360, questName = "Return to the Magistrate", npc = 1499, npcName = "Magistrate Sevren", map = 1420, zone = "Tirisfal Glades", x = 61.3, y = 50.8 }, -- 106
-        { type = "TURNIN", quest = 372, questName = "At War With The Scarlet Crusade", npc = 1515, npcName = "Executor Zygand", map = 1420, zone = "Tirisfal Glades", x = 60.6, y = 51.8 }, -- 107
+        { type = "TURNIN", quest = 365, questName = "Fields of Grief", npc = 1518, npcName = "Apothecary Johaan", map = 1420, zone = "Tirisfal Glades", x = 59.5, y = 52.4 }, -- 40
+        { type = "ACCEPT", quest = 407, questName = "Fields of Grief", npc = 1518, npcName = "Apothecary Johaan", map = 1420, zone = "Tirisfal Glades", x = 59.5, y = 52.4 }, -- 41
+        { type = "ACCEPT", quest = 358, questName = "Graverobbers", npc = 1499, npcName = "Magistrate Sevren", map = 1420, zone = "Tirisfal Glades", x = 61.3, y = 50.8 }, -- 42
+        { type = "TURNIN", quest = 407, questName = "Fields of Grief", npc = 1931, npcName = "Captured Scarlet Zealot", map = 1420, zone = "Tirisfal Glades", x = 62, y = 51.3 }, -- 43
+        { type = "COLLECT", quest = 367, questName = "A New Plague", target = "Darkhound Blood", count = 5, map = 1420, zone = "Tirisfal Glades", x = 61.1, y = 55.6, near = true }, -- 44
+        { type = "ACCEPT", quest = 375, questName = "The Chill of Death", npc = 1521, npcName = "Gretchen Dedmar", map = 1420, zone = "Tirisfal Glades", x = 61.9, y = 52.7 }, -- 45
+        { type = "ACCEPT", quest = 362, questName = "The Haunted Mills", npc = 1500, npcName = "Coleman Farthing", map = 1420, zone = "Tirisfal Glades", x = 61.7, y = 52.3 }, -- 46
+        { type = "ACCEPT", quest = 354, questName = "Deaths in the Family", npc = 1500, npcName = "Coleman Farthing", map = 1420, zone = "Tirisfal Glades", x = 61.7, y = 52.3 }, -- 47
+        { type = "TURNIN", quest = 367, questName = "A New Plague", npc = 1518, npcName = "Apothecary Johaan", map = 1420, zone = "Tirisfal Glades", x = 59.5, y = 52.4 }, -- 48
+        { type = "ACCEPT", quest = 368, questName = "A New Plague", npc = 1518, npcName = "Apothecary Johaan", map = 1420, zone = "Tirisfal Glades", x = 59.5, y = 52.4 }, -- 49
+        { type = "COLLECT", quest = 404, questName = "A Putrid Task", target = "Putrid Claw", count = 7, map = 1420, zone = "Tirisfal Glades", x = 55.5, y = 48.8, near = true }, -- 50
+        { type = "TURNIN", quest = 404, questName = "A Putrid Task", npc = 1496, npcName = "Deathguard Dillinger", map = 1420, zone = "Tirisfal Glades", x = 58.2, y = 51.5 }, -- 51
+        { type = "ACCEPT", quest = 426, questName = "The Mills Overrun", npc = 1496, npcName = "Deathguard Dillinger", map = 1420, zone = "Tirisfal Glades", x = 58.2, y = 51.5 }, -- 52
+        { type = "COLLECT", quest = 5482, questName = "Doom Weed", target = "Doom Weed", count = 10, map = 1420, zone = "Tirisfal Glades", x = 58.3, y = 42.9, near = true }, -- 53
+        { type = "COMPLETE", quest = 358, questName = "Graverobbers", npc = 1941, target = "Rot Hide Graverobber / Embalming Ichor", map = 1420, zone = "Tirisfal Glades", x = 58.3, y = 42.9, near = true }, -- 54
+        { type = "KILL", quest = 358, questName = "Graverobbers", npc = 1675, target = "Rot Hide Mongrel", map = 1420, zone = "Tirisfal Glades", x = 60.5, y = 38.8, near = true }, -- 55
+        { type = "COLLECT", quest = 375, questName = "The Chill of Death", target = "Duskbat Pelt", map = 1420, zone = "Tirisfal Glades", x = 63.3, y = 41.7, near = true }, -- 56
+        { type = "COLLECT", quest = 368, questName = "A New Plague", target = "Vile Fin Scale", count = 5, map = 1420, zone = "Tirisfal Glades", x = 64.9, y = 29.7, near = true }, -- 57
+        { type = "KILL", quest = 398, questName = "Wanted: Maggot Eye", npc = 1753, target = "Maggot Eye", map = 1420, zone = "Tirisfal Glades", x = 58.7, y = 30.8, note = "loot Maggot Eye's Paw" }, -- 58
+        { type = "COLLECT", quest = 426, questName = "The Mills Overrun", target = "Notched Rib", count = 5, map = 1420, zone = "Tirisfal Glades", x = 51.3, y = 33.2, near = true }, -- 59
+        { type = "KILL", quest = 354, questName = "Deaths in the Family", npc = 1654, target = "Gregor Agamand", map = 1420, zone = "Tirisfal Glades", x = 46.7, y = 29.3, note = "loot Gregor's Remains" }, -- 60
+        { type = "KILL", quest = 354, questName = "Deaths in the Family", npc = 1656, target = "Thurman Agamand", map = 1420, zone = "Tirisfal Glades", x = 44, y = 33.6, note = "loot Thurman's Remains" }, -- 61
+        { type = "KILL", quest = 427, questName = "At War With The Scarlet Crusade", npc = 1535, target = "Scarlet Warrior", count = 10, map = 1420, zone = "Tirisfal Glades", x = 36.9, y = 48.2, near = true }, -- 62
+        { type = "KILL", quest = 362, questName = "The Haunted Mills", npc = 1657, target = "Devlin Agamand", map = 1420, zone = "Tirisfal Glades", x = 47.3, y = 40.8, note = "loot Devlin's Remains" }, -- 63
+        { type = "KILL", quest = 426, questName = "The Mills Overrun", npc = 1522, target = "Darkeye Bonecaster", count = 5, map = 1420, zone = "Tirisfal Glades", x = 48.3, y = 39.5, near = true, note = "loot Blackened Skull" }, -- 64
+        { type = "KILL", quest = 354, questName = "Deaths in the Family", npc = 1655, target = "Nissa Agamand", map = 1420, zone = "Tirisfal Glades", x = 49.7, y = 36.3, note = "loot Nissa's Remains" }, -- 65
+        { type = "ACCEPT", quest = 356, questName = "Rear Guard Patrol", npc = 1495, npcName = "Deathguard Linnea", map = 1420, zone = "Tirisfal Glades", x = 65.5, y = 60.3 }, -- 66
+        { type = "KILL", quest = 356, questName = "Rear Guard Patrol", npc = 1532, target = "Wandering Spirit / Bleeding Horror", count = 8, map = 1420, zone = "Tirisfal Glades", x = 74.2, y = 61.5, near = true }, -- 67
+        { type = "TURNIN", quest = 375, questName = "The Chill of Death", npc = 1521, npcName = "Gretchen Dedmar", map = 1420, zone = "Tirisfal Glades", x = 61.9, y = 52.7 }, -- 68
+        { type = "TURNIN", quest = 354, questName = "Deaths in the Family", npc = 1500, npcName = "Coleman Farthing", map = 1420, zone = "Tirisfal Glades", x = 61.7, y = 52.3 }, -- 69
+        { type = "TURNIN", quest = 362, questName = "The Haunted Mills", npc = 1500, npcName = "Coleman Farthing", map = 1420, zone = "Tirisfal Glades", x = 61.7, y = 52.3 }, -- 70
+        { type = "TURNIN", quest = 358, questName = "Graverobbers", npc = 1499, npcName = "Magistrate Sevren", map = 1420, zone = "Tirisfal Glades", x = 61.3, y = 50.8 }, -- 71
+        { type = "TURNIN", quest = 398, questName = "Wanted: Maggot Eye", npc = 1515, npcName = "Executor Zygand", map = 1420, zone = "Tirisfal Glades", x = 60.6, y = 51.8 }, -- 72
+        { type = "TURNIN", quest = 427, questName = "At War With The Scarlet Crusade", npc = 1515, npcName = "Executor Zygand", map = 1420, zone = "Tirisfal Glades", x = 60.6, y = 51.8 }, -- 73
+        { type = "TURNIN", quest = 368, questName = "A New Plague", npc = 1518, npcName = "Apothecary Johaan", map = 1420, zone = "Tirisfal Glades", x = 59.5, y = 52.4 }, -- 74
+        { type = "TURNIN", quest = 426, questName = "The Mills Overrun", npc = 1496, npcName = "Deathguard Dillinger", map = 1420, zone = "Tirisfal Glades", x = 58.2, y = 51.5 }, -- 75
+        { type = "ACCEPT", quest = 374, questName = "Proof of Demise", npc = 1652, npcName = "Deathguard Burgess", map = 1420, zone = "Tirisfal Glades", x = 60.9, y = 52 }, -- 76
+        { type = "ACCEPT", quest = 405, questName = "The Prodigal Lich", npc = 1499, npcName = "Magistrate Sevren", map = 1420, zone = "Tirisfal Glades", x = 61.3, y = 50.8 }, -- 77
+        { type = "ACCEPT", quest = 370, questName = "At War With The Scarlet Crusade", npc = 1515, npcName = "Executor Zygand", map = 1420, zone = "Tirisfal Glades", x = 60.6, y = 51.8 }, -- 78
+        { type = "ACCEPT", quest = 359, questName = "Forsaken Duties", npc = 1499, npcName = "Magistrate Sevren", map = 1420, zone = "Tirisfal Glades", x = 61.3, y = 50.8 }, -- 79
+        { type = "ACCEPT", quest = 355, questName = "Speak with Sevren", npc = 1500, npcName = "Coleman Farthing", map = 1420, zone = "Tirisfal Glades", x = 61.7, y = 52.3 }, -- 80
+        { type = "ACCEPT", quest = 369, questName = "A New Plague", npc = 1518, npcName = "Apothecary Johaan", map = 1420, zone = "Tirisfal Glades", x = 59.5, y = 52.4 }, -- 81
+        { type = "TURNIN", quest = 355, questName = "Speak with Sevren", npc = 1499, npcName = "Magistrate Sevren", map = 1420, zone = "Tirisfal Glades", x = 61.3, y = 50.8 }, -- 82
+        { type = "TURNIN", quest = 5482, questName = "Doom Weed", npc = 10665, npcName = "Junior Apothecary Holland", map = 1420, zone = "Tirisfal Glades", x = 57.4, y = 48.9 }, -- 83
+        { type = "COLLECT", quest = 374, questName = "Proof of Demise", target = "Scarlet Insignia Ring", count = 10, map = 1420, zone = "Tirisfal Glades", x = 52.8, y = 67.4, near = true }, -- 84
+        { type = "KILL", quest = 370, questName = "At War With The Scarlet Crusade", npc = 1536, target = "Scarlet Missionary / Scarlet Zealot / Captain Perrine", count = 3, map = 1420, zone = "Tirisfal Glades", x = 52.8, y = 67.4, near = true }, -- 85
+        { type = "ACCEPT", quest = 408, questName = "The Family Crypt", npc = 1499, npcName = "Magistrate Sevren", map = 1420, zone = "Tirisfal Glades", x = 61.3, y = 50.8 }, -- 86
+        { type = "TURNIN", quest = 374, questName = "Proof of Demise", npc = 1652, npcName = "Deathguard Burgess", map = 1420, zone = "Tirisfal Glades", x = 60.9, y = 52 }, -- 87
+        { type = "TURNIN", quest = 370, questName = "At War With The Scarlet Crusade", npc = 1515, npcName = "Executor Zygand", map = 1420, zone = "Tirisfal Glades", x = 60.6, y = 51.8 }, -- 88
+        { type = "ACCEPT", quest = 371, questName = "At War With The Scarlet Crusade", npc = 1515, npcName = "Executor Zygand", map = 1420, zone = "Tirisfal Glades", x = 60.6, y = 51.8 }, -- 89
+        { type = "KILL", quest = 371, questName = "At War With The Scarlet Crusade", npc = 1538, target = "Scarlet Friar", count = 5, map = 1420, zone = "Tirisfal Glades", x = 76.1, y = 57.2, near = true }, -- 90
+        { type = "KILL", quest = 371, questName = "At War With The Scarlet Crusade", npc = 1664, target = "Captain Vachon", count = 1, map = 1420, zone = "Tirisfal Glades", x = 78.8, y = 56.1 }, -- 91
+        { type = "KILL", quest = 369, questName = "A New Plague", npc = 1555, target = "Vicious Night Web Spider", count = 4, map = 1420, zone = "Tirisfal Glades", x = 83.8, y = 55.4, near = true, note = "loot Vicious Night Web Spider Venom" }, -- 92
+        { type = "KILL", quest = 408, questName = "The Family Crypt", npc = 1534, target = "Wailing Ancestor / Rotting Ancestor", count = 8, map = 1420, zone = "Tirisfal Glades", x = 55.2, y = 30, near = true }, -- 93
+        { type = "KILL", quest = 408, questName = "The Family Crypt", npc = 1658, target = "Captain Dargol", map = 1420, zone = "Tirisfal Glades", x = 52.8, y = 26.4, note = "loot Dargol's Skull" }, -- 94
+        { type = "TURNIN", quest = 371, questName = "At War With The Scarlet Crusade", npc = 1515, npcName = "Executor Zygand", map = 1420, zone = "Tirisfal Glades", x = 60.6, y = 51.8 }, -- 95
+        { type = "ACCEPT", quest = 372, questName = "At War With The Scarlet Crusade", npc = 1515, npcName = "Executor Zygand", map = 1420, zone = "Tirisfal Glades", x = 60.6, y = 51.8 }, -- 96
+        { type = "TURNIN", quest = 408, questName = "The Family Crypt", npc = 1499, npcName = "Magistrate Sevren", map = 1420, zone = "Tirisfal Glades", x = 61.3, y = 50.8 }, -- 97
+        { type = "TURNIN", quest = 369, questName = "A New Plague", npc = 1518, npcName = "Apothecary Johaan", map = 1420, zone = "Tirisfal Glades", x = 59.5, y = 52.4 }, -- 98
+        { type = "ACCEPT", quest = 492, questName = "A New Plague", npc = 1518, npcName = "Apothecary Johaan", map = 1420, zone = "Tirisfal Glades", x = 59.5, y = 52.4 }, -- 99
+        { type = "TURNIN", quest = 492, questName = "A New Plague", npc = 2211, npcName = "Captured Mountaineer", map = 1420, zone = "Tirisfal Glades", x = 61.9, y = 51.4 }, -- 100
+        { type = "KILL", quest = 372, questName = "At War With The Scarlet Crusade", npc = 1660, target = "Scarlet Bodyguard / Captain Melrache", map = 1420, zone = "Tirisfal Glades", x = 79.5, y = 25.3, near = true }, -- 101
+        { type = "TURNIN", quest = 359, questName = "Forsaken Duties", npc = 1495, npcName = "Deathguard Linnea", map = 1420, zone = "Tirisfal Glades", x = 65.5, y = 60.3 }, -- 102
+        { type = "ACCEPT", quest = 360, questName = "Return to the Magistrate", npc = 1495, npcName = "Deathguard Linnea", map = 1420, zone = "Tirisfal Glades", x = 65.5, y = 60.3 }, -- 103
+        { type = "TURNIN", quest = 356, questName = "Rear Guard Patrol", npc = 1495, npcName = "Deathguard Linnea", map = 1420, zone = "Tirisfal Glades", x = 65.5, y = 60.3 }, -- 104
+        { type = "TURNIN", quest = 360, questName = "Return to the Magistrate", npc = 1499, npcName = "Magistrate Sevren", map = 1420, zone = "Tirisfal Glades", x = 61.3, y = 50.8 }, -- 105
+        { type = "TURNIN", quest = 372, questName = "At War With The Scarlet Crusade", npc = 1515, npcName = "Executor Zygand", map = 1420, zone = "Tirisfal Glades", x = 60.6, y = 51.8 }, -- 106
+        { type = "ACCEPT", quest = 8, questName = "A Rogue's Deal", npc = 6784, npcName = "Calvin Montague", map = 1420, zone = "Tirisfal Glades", x = 38.2, y = 56.8 }, -- 107
+        { type = "TURNIN", quest = 8, questName = "A Rogue's Deal", npc = 5688, npcName = "Innkeeper Renee", map = 1420, zone = "Tirisfal Glades", x = 61.7, y = 52.1, note = "reduced xp (60%) - you out-levelled it" }, -- 108
     },
 })

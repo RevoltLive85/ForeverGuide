@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_13_TANARIS",
-    name = "13. Tanaris 39-41 (Orc)",
+    name = "13. Tanaris 40-41 (Orc)",
     version = 2,
     faction = "Horde",
     race = { "Orc", "Troll" },
-    minLevel = 39,
+    minLevel = 40,
     maxLevel = 41,
     map = 1446,
     zone = "Tanaris",
-    next = "GEN_HORDE_ORC_14_FERALAS",
+    next = "GEN_HORDE_ORC_14_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 13 of the Orc route: level 39 to 41, 52 steps, ~180 min of play in the model (38034 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 13 of the Orc route: level 40 to 41, 52 steps, ~166 min of play in the model (40788 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1446, zone = "Tanaris", x = 51.8, y = 27.6, radius = 60, note = "travel to Tanaris (Tanaris)" }, -- 1
         { type = "NOTE", map = 1446, zone = "Tanaris", x = 51.8, y = 27.6, text = "set your hearthstone at the inn in Tanaris (if there is one)" }, -- 2

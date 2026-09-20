@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_21_DESOLACE",
-    name = "21. Desolace 41-41 (Human)",
+    name = "21. Desolace 42-42 (Human)",
     version = 2,
     faction = "Alliance",
     race = { "Human" },
-    minLevel = 41,
-    maxLevel = 41,
+    minLevel = 42,
+    maxLevel = 42,
     map = 1443,
     zone = "Desolace",
     next = "GEN_ALLIANCE_HUMAN_22_THE_HINTERLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 21 of the Human route: level 41 to 41, 9 steps, ~41 min of play in the model (36134 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 21 of the Human route: level 42 to 42, 9 steps, ~48 min of play in the model (30580 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1443, zone = "Desolace", x = 66.5, y = 9.4, radius = 60, note = "travel to Desolace (Desolace)" }, -- 1
         { type = "ACCEPT", quest = 7041, questName = "Vyletongue Corruption", npc = 11715, npcName = "Talendria", map = 1443, zone = "Desolace", x = 68.5, y = 8.9 }, -- 2

@@ -1,0 +1,29 @@
+{
+  "id": "GEN_ALLIANCE_SKYBORNE_41_WINTERSPRING",
+  "name": "41. Winterspring 53-54 (Skyborne)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["Skyborne"],
+  "minLevel": 53,
+  "maxLevel": 54,
+  "map": 1452,
+  "zone": "Winterspring",
+  "next": "GEN_ALLIANCE_SKYBORNE_42_SILITHUS",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 41 of the Skyborne route: level 53 to 54, 13 steps, ~232 min of play in the model (4558 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1452, "zone": "Winterspring", "x": 61.4, "y": 38.2, "radius": 60, "note": "use your hearthstone (Winterspring)"},
+    {"type": "TRAVEL", "map": 1452, "zone": "Winterspring", "x": 61.5, "y": 38.4, "radius": 60, "note": "travel to Winterspring (Winterspring)"},
+    {"type": "ACCEPT", "quest": 4861, "questName": "Enraged Wildkin", "npc": 10301, "npcName": "Jaron Stoneshaper", "map": 1452, "zone": "Winterspring", "x": 52.1, "y": 30.4},
+    {"type": "ACCEPT", "quest": 5244, "questName": "The Ruins of Kel'Theril", "npc": 11079, "npcName": "Wynd Nightchaser", "map": 1452, "zone": "Winterspring", "x": 52, "y": 30.4},
+    {"type": "TURNIN", "quest": 5244, "questName": "The Ruins of Kel'Theril", "npc": 10301, "npcName": "Jaron Stoneshaper", "map": 1452, "zone": "Winterspring", "x": 52.1, "y": 30.4},
+    {"type": "TURNIN", "quest": 4861, "questName": "Enraged Wildkin", "map": 1452, "zone": "Winterspring", "x": 59, "y": 59.8},
+    {"type": "ACCEPT", "quest": 4863, "questName": "Enraged Wildkin", "map": 1452, "zone": "Winterspring", "x": 59, "y": 59.8},
+    {"type": "TURNIN", "quest": 4863, "questName": "Enraged Wildkin", "map": 1452, "zone": "Winterspring", "x": 61.4, "y": 60.7},
+    {"type": "ACCEPT", "quest": 4864, "questName": "Enraged Wildkin", "map": 1452, "zone": "Winterspring", "x": 61.4, "y": 60.7},
+    {"type": "COLLECT", "quest": 4864, "questName": "Enraged Wildkin", "target": "Jaron's Supplies", "map": 1452, "zone": "Winterspring", "x": 61.4, "y": 60.7, "near": true},
+    {"type": "COLLECT", "quest": 4864, "questName": "Enraged Wildkin", "target": "Blue-feathered Amulet", "map": 1452, "zone": "Winterspring", "x": 59.4, "y": 59.8, "near": true},
+    {"type": "TURNIN", "quest": 4864, "questName": "Enraged Wildkin", "npc": 10301, "npcName": "Jaron Stoneshaper", "map": 1452, "zone": "Winterspring", "x": 52.1, "y": 30.4},
+    {"type": "GRIND", "npc": 7444, "target": "Shardtooth Bear", "level": 54, "map": 1452, "zone": "Winterspring", "x": 54.9, "y": 37.7, "near": true, "note": "grind Shardtooth Bear (level 53-54) to level 54 - nothing worth questing at 53"}
+  ]
+}

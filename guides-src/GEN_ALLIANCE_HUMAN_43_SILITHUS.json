@@ -1,16 +1,16 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_43_SILITHUS",
-  "name": "43. Silithus 53-54 (Human)",
+  "name": "43. Silithus 54-54 (Human)",
   "version": 2,
   "faction": "Alliance",
   "race": ["Human"],
-  "minLevel": 53,
+  "minLevel": 54,
   "maxLevel": 54,
   "map": 1451,
   "zone": "Silithus",
-  "next": "GEN_ALLIANCE_HUMAN_44_EASTERN_PLAGUELANDS",
+  "next": "GEN_ALLIANCE_HUMAN_44_UN_GORO_CRATER",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 43 of the Human route: level 53 to 54, 38 steps, ~213 min of play in the model (35730 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 43 of the Human route: level 54 to 54, 37 steps, ~164 min of play in the model (46030 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
   "steps": [
     {"type": "TRAVEL", "map": 1451, "zone": "Silithus", "x": 50.1, "y": 37.5, "radius": 60, "note": "travel to Silithus (Silithus)"},
     {"type": "NOTE", "map": 1451, "zone": "Silithus", "x": 50.1, "y": 37.5, "text": "set your hearthstone at the inn in Silithus (if there is one)"},
@@ -48,7 +48,6 @@
     {"type": "ACCEPT", "quest": 8287, "questName": "A Terrible Purpose", "npc": 15194, "npcName": "Hermit Ortell", "map": 1451, "zone": "Silithus", "x": 67.2, "y": 69.8},
     {"type": "COLLECT", "quest": 8323, "questName": "True Believers", "target": "Encrypted Twilight Text", "count": 10, "map": 1451, "zone": "Silithus", "x": 41.5, "y": 45.2, "near": true},
     {"type": "TURNIN", "quest": 8323, "questName": "True Believers", "npc": 15194, "npcName": "Hermit Ortell", "map": 1451, "zone": "Silithus", "x": 67.2, "y": 69.8},
-    {"type": "TURNIN", "quest": 8287, "questName": "A Terrible Purpose", "npc": 15181, "npcName": "Commander Mar'alith", "map": 1451, "zone": "Silithus", "x": 49.2, "y": 34.2},
-    {"type": "GRIND", "npc": 11735, "target": "Stonelash Scorpid", "level": 54, "map": 1451, "zone": "Silithus", "x": 43, "y": 41.2, "near": true, "note": "grind Stonelash Scorpid (level 54-55) to level 54 - nothing worth questing at 53"}
+    {"type": "TURNIN", "quest": 8287, "questName": "A Terrible Purpose", "npc": 15181, "npcName": "Commander Mar'alith", "map": 1451, "zone": "Silithus", "x": 49.2, "y": 34.2}
   ]
 }

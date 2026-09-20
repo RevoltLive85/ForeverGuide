@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_19_BLASTED_LANDS",
-    name = "19. Blasted Lands 44-45 (Orc)",
+    name = "19. Blasted Lands 45-46 (Orc)",
     version = 2,
     faction = "Horde",
     race = { "Orc", "Troll" },
-    minLevel = 44,
-    maxLevel = 45,
+    minLevel = 45,
+    maxLevel = 46,
     map = 1419,
     zone = "Blasted Lands",
-    next = "GEN_HORDE_ORC_20_AZSHARA",
+    next = "GEN_HORDE_ORC_20_FERALAS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 19 of the Orc route: level 44 to 45, 29 steps, ~145 min of play in the model (38948 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 19 of the Orc route: level 45 to 46, 29 steps, ~140 min of play in the model (39903 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2, radius = 60, note = "travel to Blasted Lands (Blasted Lands)" }, -- 1
         { type = "NOTE", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2, text = "set your hearthstone at the inn in Blasted Lands (if there is one)" }, -- 2

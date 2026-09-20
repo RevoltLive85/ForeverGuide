@@ -1,16 +1,16 @@
 {
   "id": "GEN_ALLIANCE_HUMAN_32_UN_GORO_CRATER",
-  "name": "32. Un'Goro Crater 47-49 (Human)",
+  "name": "32. Un'Goro Crater 48-50 (Human)",
   "version": 2,
   "faction": "Alliance",
   "race": ["Human"],
-  "minLevel": 47,
-  "maxLevel": 49,
+  "minLevel": 48,
+  "maxLevel": 50,
   "map": 1449,
   "zone": "Un'Goro Crater",
   "next": "GEN_ALLIANCE_HUMAN_33_WESTERN_PLAGUELANDS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 32 of the Human route: level 47 to 49, 32 steps, ~329 min of play in the model (13092 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 32 of the Human route: level 48 to 50, 33 steps, ~376 min of play in the model (11332 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
   "steps": [
     {"type": "TRAVEL", "map": 1449, "zone": "Un'Goro Crater", "x": 43.9, "y": 8.0, "radius": 60, "note": "travel to Un'Goro Crater (Un'Goro Crater)"},
     {"type": "ACCEPT", "quest": 3883, "questName": "Alien Ecology", "npc": 9271, "npcName": "Hol'anyee Marshal", "map": 1449, "zone": "Un'Goro Crater", "x": 43.9, "y": 7.2},
@@ -31,18 +31,19 @@
     {"type": "ACCEPT", "quest": 4292, "questName": "The Bait for Lar'korwi", "npc": 9619, "npcName": "Torwa Pathfinder", "map": 1449, "zone": "Un'Goro Crater", "x": 71.6, "y": 76},
     {"type": "KILL", "quest": 4292, "questName": "The Bait for Lar'korwi", "npc": 9684, "target": "Lar'korwi", "map": 1449, "zone": "Un'Goro Crater", "x": 79.7, "y": 49.8, "note": "loot Lar'korwi's Head"},
     {"type": "TURNIN", "quest": 4292, "questName": "The Bait for Lar'korwi", "npc": 9619, "npcName": "Torwa Pathfinder", "map": 1449, "zone": "Un'Goro Crater", "x": 71.6, "y": 76},
-    {"type": "GRIND", "npc": 6505, "target": "Ravasaur", "level": 48, "map": 1449, "zone": "Un'Goro Crater", "x": 67.7, "y": 72.1, "near": true, "note": "grind Ravasaur (level 48-49) to level 48 - nothing worth questing at 47"},
+    {"type": "GRIND", "npc": 6505, "target": "Ravasaur", "level": 49, "map": 1449, "zone": "Un'Goro Crater", "x": 67.7, "y": 72.1, "near": true, "note": "grind Ravasaur (level 48-49) to level 49 - nothing worth questing at 48"},
     {"type": "ACCEPT", "quest": 4503, "questName": "Shizzle's Flyer", "npc": 9998, "npcName": "Shizzle", "map": 1449, "zone": "Un'Goro Crater", "x": 44.2, "y": 11.6},
     {"type": "ACCEPT", "quest": 3882, "questName": "Roll the Bones", "npc": 9272, "npcName": "Spark Nilminer", "map": 1449, "zone": "Un'Goro Crater", "x": 43.5, "y": 7.4},
+    {"type": "ACCEPT", "quest": 3908, "questName": "It's a Secret to Everybody", "npc": 8737, "npcName": "Linken", "map": 1449, "zone": "Un'Goro Crater", "x": 44.7, "y": 8.1},
     {"type": "ACCEPT", "quest": 4501, "questName": "Beware of Pterrordax", "map": 1449, "zone": "Un'Goro Crater", "x": 43.5, "y": 8.4},
-    {"type": "KILL", "quest": 4501, "questName": "Beware of Pterrordax", "npc": 9166, "target": "Pterrordax", "count": 10, "map": 1449, "zone": "Un'Goro Crater", "x": 50.6, "y": 12, "near": true},
     {"type": "COLLECT", "quest": 4503, "questName": "Shizzle's Flyer", "target": "Webbed Pterrordax Scale", "count": 8, "map": 1449, "zone": "Un'Goro Crater", "x": 50.6, "y": 12, "near": true},
+    {"type": "KILL", "quest": 4501, "questName": "Beware of Pterrordax", "npc": 9166, "target": "Pterrordax", "count": 10, "map": 1449, "zone": "Un'Goro Crater", "x": 50.6, "y": 12, "near": true},
     {"type": "COLLECT", "quest": 3882, "questName": "Roll the Bones", "target": "Dinosaur Bone", "count": 8, "map": 1449, "zone": "Un'Goro Crater", "x": 58.1, "y": 33.9, "near": true},
     {"type": "COLLECT", "quest": 4503, "questName": "Shizzle's Flyer", "target": "Webbed Diemetradon Scale", "count": 8, "map": 1449, "zone": "Un'Goro Crater", "x": 58.1, "y": 33.9, "near": true},
     {"type": "KILL", "quest": 4501, "questName": "Beware of Pterrordax", "npc": 9167, "target": "Frenzied Pterrordax", "count": 10, "map": 1449, "zone": "Un'Goro Crater", "x": 37.4, "y": 40.4, "near": true},
     {"type": "TURNIN", "quest": 4503, "questName": "Shizzle's Flyer", "npc": 9998, "npcName": "Shizzle", "map": 1449, "zone": "Un'Goro Crater", "x": 44.2, "y": 11.6},
     {"type": "TURNIN", "quest": 4501, "questName": "Beware of Pterrordax", "npc": 9997, "npcName": "Spraggle Frock", "map": 1449, "zone": "Un'Goro Crater", "x": 43.6, "y": 8.5},
     {"type": "TURNIN", "quest": 3882, "questName": "Roll the Bones", "npc": 9272, "npcName": "Spark Nilminer", "map": 1449, "zone": "Un'Goro Crater", "x": 43.5, "y": 7.4},
-    {"type": "GRIND", "npc": 6511, "target": "Bloodpetal Thresher", "level": 49, "map": 1449, "zone": "Un'Goro Crater", "x": 56.6, "y": 36, "near": true, "note": "grind Bloodpetal Thresher (level 49-50) to level 49 - nothing worth questing at 48"}
+    {"type": "GRIND", "npc": 6511, "target": "Bloodpetal Thresher", "level": 50, "map": 1449, "zone": "Un'Goro Crater", "x": 56.6, "y": 36, "near": true, "note": "grind Bloodpetal Thresher (level 49-50) to level 50 - nothing worth questing at 49"}
   ]
 }

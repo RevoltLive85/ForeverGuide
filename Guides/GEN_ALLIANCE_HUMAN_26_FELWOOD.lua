@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_26_FELWOOD",
-    name = "26. Felwood 45-45 (Human)",
+    name = "26. Felwood 46-46 (Human)",
     version = 2,
     faction = "Alliance",
     race = { "Human" },
-    minLevel = 45,
-    maxLevel = 45,
+    minLevel = 46,
+    maxLevel = 46,
     map = 1448,
     zone = "Felwood",
     next = "GEN_ALLIANCE_HUMAN_27_FERALAS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 26 of the Human route: level 45 to 45, 14 steps, ~74 min of play in the model (24494 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 26 of the Human route: level 46 to 46, 14 steps, ~72 min of play in the model (24836 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1448, zone = "Felwood", x = 51.6, y = 82.7, radius = 60, note = "travel to Felwood (Felwood)" }, -- 1
         { type = "NOTE", map = 1448, zone = "Felwood", x = 51.6, y = 82.7, text = "set your hearthstone at the inn in Felwood (if there is one)" }, -- 2

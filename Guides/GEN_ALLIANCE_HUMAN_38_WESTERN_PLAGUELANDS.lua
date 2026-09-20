@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_38_WESTERN_PLAGUELANDS",
-    name = "38. Western Plaguelands 51-51 (Human)",
+    name = "38. Western Plaguelands 52-52 (Human)",
     version = 2,
     faction = "Alliance",
     race = { "Human" },
-    minLevel = 51,
-    maxLevel = 51,
+    minLevel = 52,
+    maxLevel = 52,
     map = 1422,
     zone = "Western Plaguelands",
     next = "GEN_ALLIANCE_HUMAN_39_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 38 of the Human route: level 51 to 51, 8 steps, ~41 min of play in the model (38536 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 38 of the Human route: level 52 to 52, 8 steps, ~41 min of play in the model (39039 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 43.0, y = 84.1, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 1
         { type = "ACCEPT", quest = 5343, questName = "Barov Family Fortune", npc = 11023, npcName = "Weldon Barov", map = 1422, zone = "Western Plaguelands", x = 43.5, y = 83.7 }, -- 2

@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_28_UN_GORO_CRATER",
-    name = "28. Un'Goro Crater 46-46 (Human)",
+    name = "28. Un'Goro Crater 47-47 (Human)",
     version = 2,
     faction = "Alliance",
     race = { "Human" },
-    minLevel = 46,
-    maxLevel = 46,
+    minLevel = 47,
+    maxLevel = 47,
     map = 1449,
     zone = "Un'Goro Crater",
     next = "GEN_ALLIANCE_HUMAN_29_TANARIS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 28 of the Human route: level 46 to 46, 27 steps, ~74 min of play in the model (39406 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 28 of the Human route: level 47 to 47, 27 steps, ~72 min of play in the model (40170 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.2, y = 6.6, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 1
         { type = "NOTE", map = 1449, zone = "Un'Goro Crater", x = 43.2, y = 6.6, text = "set your hearthstone at the inn in Un'Goro Crater (if there is one)" }, -- 2

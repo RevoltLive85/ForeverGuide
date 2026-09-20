@@ -50,7 +50,12 @@ function Recorder:NoteMap()
     if not mapID then return end
     local name, mapType, parent = ns.Player:GetMapName(mapID)
     local zone = ns.Player:GetZone()
-    ns.db.recorder.maps[mapID] = { name = name, zone = zone, type = mapType, parent = parent }
+    local entry = { name = name, zone = zone, type = mapType, parent = parent }
+    -- the map's world bounds: lets the tools convert world coordinates offline
+    local inst0, x0, y0 = ns.Navigation:MapToWorld(mapID, 0, 0)
+    local inst1, x1, y1 = ns.Navigation:MapToWorld(mapID, 100, 100)
+    if inst0 and x0 and x1 and inst0 == inst1 then entry.bounds = { inst0, x0, y0, x1, y1 } end
+    ns.db.recorder.maps[mapID] = entry
 end
 
 local function NPCFields(unitInfo)

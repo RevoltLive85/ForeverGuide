@@ -128,7 +128,12 @@ end
 local function SpawnLocations(kind, id, rec, out, name)
     if not rec then return out end
     name = name or rec.n
-    if rec.sp then
+    -- Forever evidence (recorded in-game, or RestedXP's Forever positions) beats the
+    -- vanilla tables: Forever moved NPCs and the vanilla point would send you to the old spot
+    local hasForever = (rec.spm and next(rec.spm) ~= nil) or (rec.spw and next(rec.spw) ~= nil)
+    local before = #out
+    local function vanilla()
+        if not rec.sp then return end
         for areaID, pts in pairs(rec.sp) do
             local map = DB:MapForArea(areaID)
             if map then
@@ -138,6 +143,7 @@ local function SpawnLocations(kind, id, rec, out, name)
             end
         end
     end
+    if not hasForever then vanilla() end
     if rec.spm then
         for map, pts in pairs(rec.spm) do
             for _, p in ipairs(pts) do
@@ -155,6 +161,7 @@ local function SpawnLocations(kind, id, rec, out, name)
             end
         end
     end
+    if hasForever and #out == before then vanilla() end   -- world points the client could not convert: vanilla spot
     return out
 end
 

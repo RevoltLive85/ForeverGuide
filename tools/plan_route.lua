@@ -237,7 +237,7 @@ local function eligible(state, r, zone)
     local s = state.qs[r.id]
     if s and (s.accepted or s.turnedIn) then return false end
     if not prereqsDone(state, r) then return false end
-    if (r.q.req or 0) > level(state) + 1 then return false end
+    if (r.q.req or 0) > level(state) then return false end
     if not inZone(r.starts, zone) then return false end
     -- objectives must be in this zone (or nowhere in particular)
     for i, o in ipairs(r.objs) do
@@ -298,7 +298,7 @@ local function runChapter(state, zone, emit)
                     if s and s.turnedIn then why = "done"
                     elseif s and s.accepted then why = "in log"
                     elseif not prereqsDone(state, r) then why = "prereq"
-                    elseif (r.q.req or 0) > L + 1 then why = "needs L" .. r.q.req
+                    elseif (r.q.req or 0) > L then why = "needs L" .. r.q.req
                     elseif not eligible(state, r, zone) then why = "objectives elsewhere"
                     else
                         local v, w, xp = packageValue(state, r, state.pos)

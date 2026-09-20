@@ -272,3 +272,21 @@ after every install via `cc_run` in that folder. Tests: 96 checks.
   lacks SuperTrackedFrame the chevron shows instead.
 - ComfyUI (on Ilya's PC) is the plan for real artwork (compass, corner ornaments, diamond) - NOT while the game runs: the
   GPU is already at ~88% of its budget and losing the device (see the crash analysis above).
+
+## Update 2026-09-20 (later) — in-game test fixes
+- Level gate: planner accepted quests at req-1 (wrong: `req <= L` now); engine `Guide:LevelGate` skips an ACCEPT the
+  level does not allow yet (`progress.deferred[quest] = idx`, note "needs level N - skipped until then", rows shown as
+  blocked), jumps back to it on FG_LEVEL_CHANGED; deferred list mirrored in the cvar workaround (`df`). Test added.
+- Position precedence: Forever evidence beats Questie. `DB.SpawnLocations` uses overlay `spm`/`spw` instead of vanilla
+  `sp` when present (falls back when world points cannot be converted); `Navigation:ResolveStep` prefers a Forever npc
+  position for ACCEPT/TURNIN/TALK steps over the planned coordinates; planner `spawnLocs` uses overlay map points
+  (`fsp`) and can convert world points offline once `data-src/mapbounds.json` exists (the recorder now logs each map's
+  world bounds; merge_recorded writes mapbounds.json + mapsizes.json). merge_recorded: the first recorded interaction
+  position of an npc replaces guide-sourced points. import_rxp: world-coordinate gotos (`map/inst,ew,ns`) and named
+  vanilla NPCs (unique names -> Questie ids) -> 441 npc records with RestedXP positions (380 in world coords).
+  Marshal Marris: Questie == RestedXP == reality (near the bridge) - the "pin in the lake" was the viewing angle.
+- UI: Quest Guide panel strata HIGH; Blizzard objective tracker faded + click-through while the panel shows
+  (`hideTracker`, /fg tracker on|off); info popup 360 wide, close button top-right, height from real text; edge
+  textures: top/bottom tiles are stored rotated 90 deg by the client (make_textures handles it); picker hint width.
+- Screen coordinates for computer use: click coordinates are in the reported frame (1456x819 here), not in the
+  scaled screenshot's pixels.

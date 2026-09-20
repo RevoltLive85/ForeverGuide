@@ -131,6 +131,10 @@ function Persist:EncodeChar()
         t.s = active.step
         t.gv = active.version
         t.d = encodeRanges(active.done)
+        local df = {}
+        for quest, idx in pairs(active.deferred or {}) do df[#df + 1] = quest .. ":" .. idx end
+        table.sort(df)
+        if #df > 0 then t.df = table.concat(df, ",") end
     end
     -- other guides: step only
     local others = {}
@@ -139,7 +143,7 @@ function Persist:EncodeChar()
     end
     table.sort(others)
     if #others > 0 then t.p = table.concat(others, ",") end
-    return encodePairs(t, { "v", "g", "m", "a", "s", "gv", "d", "p" })
+    return encodePairs(t, { "v", "g", "m", "a", "s", "gv", "d", "df", "p" })
 end
 
 function Persist:DecodeChar(s)
@@ -154,6 +158,10 @@ function Persist:DecodeChar(s)
         p.step = num(t.s) or 1
         p.version = num(t.gv) or p.version
         p.done = decodeRanges(t.d, {})
+        p.deferred = {}
+        if t.df and t.df ~= "" then
+            for quest, idx in string.gmatch(t.df, "(%d+):(%d+)") do p.deferred[tonumber(quest)] = tonumber(idx) end
+        end
         ch.guides[ch.activeGuide] = p
     end
     for id, step in string.gmatch(t.p or "", "([^,:]+):(%d+)") do

@@ -274,6 +274,14 @@ function Nav:ResolveStep(step)
         local loc = self:DBLocationForStep(step)
         if loc then return loc.map, loc.x, loc.y, step.text or loc.name, loc end
     end
+    -- an NPC step whose NPC has a Forever-confirmed position: that beats the planned spot
+    if step.npc and (step.type == "ACCEPT" or step.type == "TURNIN" or step.type == "TALK") and not step.edited and ns.DB and ns.DB:IsLoaded() then
+        local locs = ns.DB:NPCLocations(step.npc)
+        if locs[1] and locs[1].forever then
+            local loc = ns.DB:Nearest(locs) or locs[1]
+            return loc.map, loc.x, loc.y, step.text or loc.name, loc
+        end
+    end
     if step.x and step.y then
         local mapID = step.map
         -- guide data may carry Classic-era map IDs; if Forever does not know

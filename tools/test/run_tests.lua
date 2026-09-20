@@ -561,6 +561,39 @@ do
     G:SetStep(5); settle()
 end
 
+-- ---- level-gated quests: skipped until the level is reached, then revisited ---------------
+do
+    -- a small synthetic chapter: The Lost Tools (125, req low) then Blackrock Menace (20, req 18)
+    ns.RegisterGuide({ id = "TEST_GATE", name = "gate test", version = 1, faction = "Alliance", minLevel = 15, maxLevel = 20, map = 1433, zone = "Redridge Mountains",
+        steps = {
+            { type = "ACCEPT", quest = 125, questName = "The Lost Tools", map = 1433, x = 32.1, y = 48.6 },
+            { type = "ACCEPT", quest = 20, questName = "Blackrock Menace", map = 1433, x = 33.5, y = 49 },
+            { type = "KILL", quest = 20, questName = "Blackrock Menace", target = "Blackrock Champion", map = 1433, x = 60, y = 60 },
+            { type = "COLLECT", quest = 125, questName = "The Lost Tools", target = "Oslow's Toolbox", map = 1433, x = 41.5, y = 54.7 },
+            { type = "TURNIN", quest = 20, questName = "Blackrock Menace", map = 1433, x = 33.5, y = 49 },
+            { type = "TURNIN", quest = 125, questName = "The Lost Tools", map = 1433, x = 32.1, y = 48.6 },
+        } })
+    MOCK_LEVEL(17); settle()
+    G:Activate("TEST_GATE", true); settle()
+    MOCK_ACCEPT(125, "The Lost Tools", { { text = "Oslow's Toolbox: 0/1", finished = false, numFulfilled = 0, numRequired = 1 } }); settle()
+    check(G.current == 4, "the level-18 accept and its objective are passed over at 17 (current " .. tostring(G.current) .. ")")
+    check(G.progress.deferred and G.progress.deferred[20] == 2, "the quest is remembered as deferred")
+    check((G.note or ""):find("needs level 18") ~= nil, "the note says why: " .. tostring(G.note))
+    ns.UI:Refresh(); settle()
+    local blockedRow = false
+    for _, e in ipairs(ForeverGuideFrame.list.entries) do if e.state == "blocked" and e.questID == 20 then blockedRow = true end end
+    check(blockedRow, "deferred quest rows show as blocked with the level needed")
+    local enc = ns.Persist:EncodeChar()
+    check(enc:find("df=20:2", 1, true) ~= nil, "deferred quests are mirrored in the cvar workaround")
+    MOCK_LEVEL(18); settle()
+    check(G.current == 2, "reaching the level goes back to the deferred accept (" .. tostring(G.current) .. ")")
+    check(G.progress.deferred[20] == nil, "the deferral is cleared")
+    MOCK.log[125] = nil
+    for i, id in ipairs(MOCK.logOrder) do if id == 125 then table.remove(MOCK.logOrder, i) break end end
+    MOCK_LEVEL(5); settle()
+    G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); settle()
+end
+
 -- ---- sweep: every command, every UI script, options, keybinds ------------------------
 do
     local before = #reportedErrors

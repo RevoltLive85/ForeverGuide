@@ -10,7 +10,7 @@ ns.RegisterGuide({
     maxLevel = 42,
     map = 1454,
     zone = "Orgrimmar",
-    next = "GEN_HORDE_SKYBORNE_17_THE_HINTERLANDS",
+    next = "GEN_HORDE_SKYBORNE_17_DESOLACE",
     author = "ForeverGuide route planner",
     notes = "Chapter 16 of the Skyborne route: level 42 to 42, 10 steps, ~14 min of play in the model (73466 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {

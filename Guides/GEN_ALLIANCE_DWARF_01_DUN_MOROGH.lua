@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Dun Morogh",
     next = "GEN_ALLIANCE_DWARF_02_IRONFORGE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 1 of the Dwarf route: level 1 to 10, 77 steps, ~118 min of play in the model (14774 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 1 of the Dwarf route: level 1 to 10, 76 steps, ~123 min of play in the model (14119 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "NOTE", map = 1426, zone = "Dun Morogh", x = 27.4, y = 71.9, text = "set your hearthstone at the inn in Dun Morogh (if there is one)" }, -- 1
         { type = "ACCEPT", quest = 179, questName = "Dwarven Outfitters", npc = 658, npcName = "Sten Stoutarm", map = 1426, zone = "Dun Morogh", x = 29.9, y = 71.2 }, -- 2
@@ -45,51 +45,50 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 315, questName = "The Perfect Stout", npc = 1374, npcName = "Rejold Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.7 }, -- 29
         { type = "COLLECT", quest = 315, questName = "The Perfect Stout", target = "Shimmerweed", count = 6, map = 1426, zone = "Dun Morogh", x = 40.3, y = 42.9, near = true }, -- 30
         { type = "TURNIN", quest = 315, questName = "The Perfect Stout", npc = 1374, npcName = "Rejold Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.7 }, -- 31
-        { type = "ACCEPT", quest = 312, questName = "Tundra MacGrann's Stolen Stash", npc = 1266, npcName = "Tundra MacGrann", map = 1426, zone = "Dun Morogh", x = 34.6, y = 51.7 }, -- 32
-        { type = "COLLECT", quest = 312, questName = "Tundra MacGrann's Stolen Stash", target = "MacGrann's Dried Meats", map = 1426, zone = "Dun Morogh", x = 38.5, y = 53.9 }, -- 33
-        { type = "TURNIN", quest = 312, questName = "Tundra MacGrann's Stolen Stash", npc = 1266, npcName = "Tundra MacGrann", map = 1426, zone = "Dun Morogh", x = 34.6, y = 51.7 }, -- 34
-        { type = "TURNIN", quest = 420, questName = "Senir's Observations", npc = 1252, npcName = "Senir Whitebeard", map = 1426, zone = "Dun Morogh", x = 46.7, y = 53.8 }, -- 35
-        { type = "ACCEPT", quest = 400, questName = "Tools for Steelgrill", npc = 1872, npcName = "Tharek Blackstone", map = 1426, zone = "Dun Morogh", x = 46, y = 51.7 }, -- 36
-        { type = "ACCEPT", quest = 287, questName = "Frostmane Hold", npc = 1252, npcName = "Senir Whitebeard", map = 1426, zone = "Dun Morogh", x = 46.7, y = 53.8 }, -- 37
-        { type = "ACCEPT", quest = 412, questName = "Operation Recombobulation", npc = 1269, npcName = "Razzle Sprysprocket", map = 1426, zone = "Dun Morogh", x = 45.9, y = 49.4 }, -- 38
-        { type = "TURNIN", quest = 310, questName = "Bitter Rivals", map = 1426, zone = "Dun Morogh", x = 47.7, y = 52.7 }, -- 39
-        { type = "ACCEPT", quest = 5541, questName = "Ammo for Rumbleshot", npc = 1694, npcName = "Loslor Rudge", map = 1426, zone = "Dun Morogh", x = 50.1, y = 49.4 }, -- 40
-        { type = "ACCEPT", quest = 317, questName = "Stocking Jetsteam", npc = 1378, npcName = "Pilot Bellowfiz", map = 1426, zone = "Dun Morogh", x = 49.4, y = 48.4 }, -- 41
-        { type = "ACCEPT", quest = 311, questName = "Return to Marleth", map = 1426, zone = "Dun Morogh", x = 47.7, y = 52.7 }, -- 42
-        { type = "ACCEPT", quest = 313, questName = "The Grizzled Den", npc = 1377, npcName = "Pilot Stonegear", map = 1426, zone = "Dun Morogh", x = 49.6, y = 48.6 }, -- 43
-        { type = "TURNIN", quest = 400, questName = "Tools for Steelgrill", npc = 1376, npcName = "Beldin Steelgrill", map = 1426, zone = "Dun Morogh", x = 50.4, y = 49.1 }, -- 44
-        { type = "COLLECT", quest = 317, questName = "Stocking Jetsteam", target = "Chunk of Boar Meat / Thick Bear Fur", count = 4, map = 1426, zone = "Dun Morogh", x = 49.3, y = 50.3, near = true }, -- 45
-        { type = "TURNIN", quest = 317, questName = "Stocking Jetsteam", npc = 1378, npcName = "Pilot Bellowfiz", map = 1426, zone = "Dun Morogh", x = 49.4, y = 48.4 }, -- 46
-        { type = "ACCEPT", quest = 318, questName = "Evershine", npc = 1378, npcName = "Pilot Bellowfiz", map = 1426, zone = "Dun Morogh", x = 49.4, y = 48.4 }, -- 47
-        { type = "COLLECT", quest = 5541, questName = "Ammo for Rumbleshot", target = "Rumbleshot's Ammo", map = 1426, zone = "Dun Morogh", x = 44.1, y = 57 }, -- 48
-        { type = "COLLECT", quest = 313, questName = "The Grizzled Den", target = "Wendigo Mane", count = 8, map = 1426, zone = "Dun Morogh", x = 42.9, y = 55.3, near = true }, -- 49
-        { type = "KILL", quest = 287, questName = "Frostmane Hold", npc = 1123, target = "Frostmane Headhunter", count = 5, map = 1426, zone = "Dun Morogh", x = 40.9, y = 43.8, near = true }, -- 50
-        { type = "COLLECT", quest = 412, questName = "Operation Recombobulation", target = "Restabilization Cog", count = 8, map = 1426, zone = "Dun Morogh", x = 27.3, y = 43, near = true }, -- 51
-        { type = "ACCEPT", quest = 413, questName = "Shimmer Stout", npc = 1374, npcName = "Rejold Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.7 }, -- 52
-        { type = "TURNIN", quest = 318, questName = "Evershine", npc = 1374, npcName = "Rejold Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.7 }, -- 53
-        { type = "TURNIN", quest = 311, questName = "Return to Marleth", npc = 1375, npcName = "Marleth Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.5 }, -- 54
-        { type = "ACCEPT", quest = 319, questName = "A Favor for Evershine", npc = 1374, npcName = "Rejold Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.7 }, -- 55
-        { type = "KILL", quest = 319, questName = "A Favor for Evershine", npc = 1196, target = "Ice Claw Bear / Elder Crag Boar / Snow Leopard", count = 6, map = 1426, zone = "Dun Morogh", x = 29.1, y = 42.7, near = true }, -- 56
-        { type = "TURNIN", quest = 319, questName = "A Favor for Evershine", npc = 1374, npcName = "Rejold Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.7 }, -- 57
-        { type = "ACCEPT", quest = 320, questName = "Return to Bellowfiz", npc = 1374, npcName = "Rejold Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.7 }, -- 58
-        { type = "COLLECT", quest = 412, questName = "Operation Recombobulation", target = "Gyromechanic Gear", count = 8, map = 1426, zone = "Dun Morogh", x = 27.3, y = 43, near = true }, -- 59
-        { type = "COMPLETE", quest = 287, questName = "Frostmane Hold", target = "Fully explore Frostmane Hold", map = 1426, zone = "Dun Morogh", x = 22.8, y = 52.1, note = "Fully explore Frostmane Hold" }, -- 60
-        { type = "TURNIN", quest = 5541, questName = "Ammo for Rumbleshot", npc = 1243, npcName = "Hegnar Rumbleshot", map = 1426, zone = "Dun Morogh", x = 40.7, y = 65.1 }, -- 61
-        { type = "TURNIN", quest = 287, questName = "Frostmane Hold", npc = 1252, npcName = "Senir Whitebeard", map = 1426, zone = "Dun Morogh", x = 46.7, y = 53.8 }, -- 62
-        { type = "TURNIN", quest = 412, questName = "Operation Recombobulation", npc = 1269, npcName = "Razzle Sprysprocket", map = 1426, zone = "Dun Morogh", x = 45.9, y = 49.4 }, -- 63
-        { type = "TURNIN", quest = 313, questName = "The Grizzled Den", npc = 1377, npcName = "Pilot Stonegear", map = 1426, zone = "Dun Morogh", x = 49.6, y = 48.6 }, -- 64
-        { type = "TURNIN", quest = 320, questName = "Return to Bellowfiz", npc = 1378, npcName = "Pilot Bellowfiz", map = 1426, zone = "Dun Morogh", x = 49.4, y = 48.4 }, -- 65
-        { type = "ACCEPT", quest = 432, questName = "Those Blasted Troggs!", npc = 1254, npcName = "Foreman Stonebrow", map = 1426, zone = "Dun Morogh", x = 69.1, y = 56.3 }, -- 66
-        { type = "ACCEPT", quest = 433, questName = "The Public Servant", npc = 1977, npcName = "Senator Mehr Stonehallow", map = 1426, zone = "Dun Morogh", x = 68.7, y = 56 }, -- 67
-        { type = "KILL", quest = 432, questName = "Those Blasted Troggs!", npc = 1115, target = "Rockjaw Skullthumper", count = 6, map = 1426, zone = "Dun Morogh", x = 68.6, y = 58.1, near = true }, -- 68
-        { type = "TURNIN", quest = 432, questName = "Those Blasted Troggs!", npc = 1254, npcName = "Foreman Stonebrow", map = 1426, zone = "Dun Morogh", x = 69.1, y = 56.3 }, -- 69
-        { type = "KILL", quest = 433, questName = "The Public Servant", npc = 1117, target = "Rockjaw Bonesnapper", count = 10, map = 1426, zone = "Dun Morogh", x = 70.6, y = 55.3, near = true }, -- 70
-        { type = "TURNIN", quest = 433, questName = "The Public Servant", npc = 1977, npcName = "Senator Mehr Stonehallow", map = 1426, zone = "Dun Morogh", x = 68.7, y = 56 }, -- 71
-        { type = "TURNIN", quest = 413, questName = "Shimmer Stout", npc = 1959, npcName = "Mountaineer Barleybrew", map = 1426, zone = "Dun Morogh", x = 86.3, y = 48.8 }, -- 72
-        { type = "ACCEPT", quest = 419, questName = "The Lost Pilot", npc = 1960, npcName = "Pilot Hammerfoot", map = 1426, zone = "Dun Morogh", x = 83.9, y = 39.2 }, -- 73
-        { type = "TURNIN", quest = 419, questName = "The Lost Pilot", map = 1426, zone = "Dun Morogh", x = 79.7, y = 36.2 }, -- 74
-        { type = "ACCEPT", quest = 417, questName = "A Pilot's Revenge", map = 1426, zone = "Dun Morogh", x = 79.7, y = 36.2 }, -- 75
-        { type = "KILL", quest = 417, questName = "A Pilot's Revenge", npc = 1961, target = "Mangeclaw", map = 1426, zone = "Dun Morogh", x = 78.3, y = 37.8, note = "loot Mangy Claw" }, -- 76
-        { type = "TURNIN", quest = 417, questName = "A Pilot's Revenge", npc = 1960, npcName = "Pilot Hammerfoot", map = 1426, zone = "Dun Morogh", x = 83.9, y = 39.2 }, -- 77
+        { type = "TURNIN", quest = 420, questName = "Senir's Observations", npc = 1252, npcName = "Senir Whitebeard", map = 1426, zone = "Dun Morogh", x = 46.7, y = 53.8 }, -- 32
+        { type = "ACCEPT", quest = 400, questName = "Tools for Steelgrill", npc = 1872, npcName = "Tharek Blackstone", map = 1426, zone = "Dun Morogh", x = 46, y = 51.7 }, -- 33
+        { type = "TURNIN", quest = 310, questName = "Bitter Rivals", map = 1426, zone = "Dun Morogh", x = 47.7, y = 52.7 }, -- 34
+        { type = "ACCEPT", quest = 5541, questName = "Ammo for Rumbleshot", npc = 1694, npcName = "Loslor Rudge", map = 1426, zone = "Dun Morogh", x = 50.1, y = 49.4 }, -- 35
+        { type = "ACCEPT", quest = 317, questName = "Stocking Jetsteam", npc = 1378, npcName = "Pilot Bellowfiz", map = 1426, zone = "Dun Morogh", x = 49.4, y = 48.4 }, -- 36
+        { type = "ACCEPT", quest = 311, questName = "Return to Marleth", map = 1426, zone = "Dun Morogh", x = 47.7, y = 52.7 }, -- 37
+        { type = "ACCEPT", quest = 313, questName = "The Grizzled Den", npc = 1377, npcName = "Pilot Stonegear", map = 1426, zone = "Dun Morogh", x = 49.6, y = 48.6 }, -- 38
+        { type = "TURNIN", quest = 400, questName = "Tools for Steelgrill", npc = 1376, npcName = "Beldin Steelgrill", map = 1426, zone = "Dun Morogh", x = 50.4, y = 49.1 }, -- 39
+        { type = "COLLECT", quest = 317, questName = "Stocking Jetsteam", target = "Chunk of Boar Meat / Thick Bear Fur", count = 4, map = 1426, zone = "Dun Morogh", x = 49.3, y = 50.3, near = true }, -- 40
+        { type = "TURNIN", quest = 317, questName = "Stocking Jetsteam", npc = 1378, npcName = "Pilot Bellowfiz", map = 1426, zone = "Dun Morogh", x = 49.4, y = 48.4 }, -- 41
+        { type = "ACCEPT", quest = 318, questName = "Evershine", npc = 1378, npcName = "Pilot Bellowfiz", map = 1426, zone = "Dun Morogh", x = 49.4, y = 48.4 }, -- 42
+        { type = "COLLECT", quest = 5541, questName = "Ammo for Rumbleshot", target = "Rumbleshot's Ammo", map = 1426, zone = "Dun Morogh", x = 44.1, y = 57 }, -- 43
+        { type = "ACCEPT", quest = 287, questName = "Frostmane Hold", npc = 1252, npcName = "Senir Whitebeard", map = 1426, zone = "Dun Morogh", x = 46.7, y = 53.8 }, -- 44
+        { type = "ACCEPT", quest = 412, questName = "Operation Recombobulation", npc = 1269, npcName = "Razzle Sprysprocket", map = 1426, zone = "Dun Morogh", x = 45.9, y = 49.3 }, -- 45
+        { type = "COLLECT", quest = 313, questName = "The Grizzled Den", target = "Wendigo Mane", count = 8, map = 1426, zone = "Dun Morogh", x = 42.3, y = 49.2, near = true }, -- 46
+        { type = "KILL", quest = 287, questName = "Frostmane Hold", npc = 1123, target = "Frostmane Headhunter", count = 5, map = 1426, zone = "Dun Morogh", x = 40.9, y = 43.8, near = true }, -- 47
+        { type = "COLLECT", quest = 412, questName = "Operation Recombobulation", target = "Restabilization Cog / Gyromechanic Gear", count = 8, map = 1426, zone = "Dun Morogh", x = 27.4, y = 36.2, near = true }, -- 48
+        { type = "COMPLETE", quest = 287, questName = "Frostmane Hold", target = "Fully explore Frostmane Hold", map = 1426, zone = "Dun Morogh", x = 22.8, y = 52.1, note = "Fully explore Frostmane Hold" }, -- 49
+        { type = "TURNIN", quest = 313, questName = "The Grizzled Den", npc = 1377, npcName = "Pilot Stonegear", map = 1426, zone = "Dun Morogh", x = 49.6, y = 48.6 }, -- 50
+        { type = "TURNIN", quest = 287, questName = "Frostmane Hold", npc = 1252, npcName = "Senir Whitebeard", map = 1426, zone = "Dun Morogh", x = 46.7, y = 53.8 }, -- 51
+        { type = "TURNIN", quest = 412, questName = "Operation Recombobulation", npc = 1269, npcName = "Razzle Sprysprocket", map = 1426, zone = "Dun Morogh", x = 45.9, y = 49.3 }, -- 52
+        { type = "TURNIN", quest = 311, questName = "Return to Marleth", npc = 1375, npcName = "Marleth Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.5 }, -- 53
+        { type = "ACCEPT", quest = 413, questName = "Shimmer Stout", npc = 1374, npcName = "Rejold Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.7 }, -- 54
+        { type = "TURNIN", quest = 318, questName = "Evershine", npc = 1374, npcName = "Rejold Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.7 }, -- 55
+        { type = "ACCEPT", quest = 319, questName = "A Favor for Evershine", npc = 1374, npcName = "Rejold Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.7 }, -- 56
+        { type = "KILL", quest = 319, questName = "A Favor for Evershine", npc = 1201, target = "Snow Leopard / Elder Crag Boar / Ice Claw Bear", count = 8, map = 1426, zone = "Dun Morogh", x = 27.6, y = 42.5, near = true }, -- 57
+        { type = "TURNIN", quest = 319, questName = "A Favor for Evershine", npc = 1374, npcName = "Rejold Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.7 }, -- 58
+        { type = "ACCEPT", quest = 320, questName = "Return to Bellowfiz", npc = 1374, npcName = "Rejold Barleybrew", map = 1426, zone = "Dun Morogh", x = 30.2, y = 45.7 }, -- 59
+        { type = "ACCEPT", quest = 312, questName = "Tundra MacGrann's Stolen Stash", npc = 1266, npcName = "Tundra MacGrann", map = 1426, zone = "Dun Morogh", x = 34.6, y = 51.7 }, -- 60
+        { type = "COLLECT", quest = 312, questName = "Tundra MacGrann's Stolen Stash", target = "MacGrann's Dried Meats", map = 1426, zone = "Dun Morogh", x = 38.5, y = 53.9 }, -- 61
+        { type = "TURNIN", quest = 312, questName = "Tundra MacGrann's Stolen Stash", npc = 1266, npcName = "Tundra MacGrann", map = 1426, zone = "Dun Morogh", x = 34.6, y = 51.7 }, -- 62
+        { type = "TURNIN", quest = 5541, questName = "Ammo for Rumbleshot", npc = 1243, npcName = "Hegnar Rumbleshot", map = 1426, zone = "Dun Morogh", x = 40.7, y = 65.1 }, -- 63
+        { type = "TURNIN", quest = 320, questName = "Return to Bellowfiz", npc = 1378, npcName = "Pilot Bellowfiz", map = 1426, zone = "Dun Morogh", x = 49.4, y = 48.4 }, -- 64
+        { type = "ACCEPT", quest = 432, questName = "Those Blasted Troggs!", npc = 1254, npcName = "Foreman Stonebrow", map = 1426, zone = "Dun Morogh", x = 69.1, y = 56.3 }, -- 65
+        { type = "ACCEPT", quest = 433, questName = "The Public Servant", npc = 1977, npcName = "Senator Mehr Stonehallow", map = 1426, zone = "Dun Morogh", x = 68.7, y = 56 }, -- 66
+        { type = "KILL", quest = 432, questName = "Those Blasted Troggs!", npc = 1115, target = "Rockjaw Skullthumper", count = 6, map = 1426, zone = "Dun Morogh", x = 68.6, y = 58.1, near = true }, -- 67
+        { type = "TURNIN", quest = 432, questName = "Those Blasted Troggs!", npc = 1254, npcName = "Foreman Stonebrow", map = 1426, zone = "Dun Morogh", x = 69.1, y = 56.3 }, -- 68
+        { type = "KILL", quest = 433, questName = "The Public Servant", npc = 1117, target = "Rockjaw Bonesnapper", count = 10, map = 1426, zone = "Dun Morogh", x = 70.6, y = 55.3, near = true }, -- 69
+        { type = "TURNIN", quest = 433, questName = "The Public Servant", npc = 1977, npcName = "Senator Mehr Stonehallow", map = 1426, zone = "Dun Morogh", x = 68.7, y = 56 }, -- 70
+        { type = "TURNIN", quest = 413, questName = "Shimmer Stout", npc = 1959, npcName = "Mountaineer Barleybrew", map = 1426, zone = "Dun Morogh", x = 86.3, y = 48.8 }, -- 71
+        { type = "ACCEPT", quest = 419, questName = "The Lost Pilot", npc = 1960, npcName = "Pilot Hammerfoot", map = 1426, zone = "Dun Morogh", x = 83.9, y = 39.2 }, -- 72
+        { type = "TURNIN", quest = 419, questName = "The Lost Pilot", map = 1426, zone = "Dun Morogh", x = 79.7, y = 36.2 }, -- 73
+        { type = "ACCEPT", quest = 417, questName = "A Pilot's Revenge", map = 1426, zone = "Dun Morogh", x = 79.7, y = 36.2 }, -- 74
+        { type = "KILL", quest = 417, questName = "A Pilot's Revenge", npc = 1961, target = "Mangeclaw", map = 1426, zone = "Dun Morogh", x = 78.3, y = 37.8, note = "loot Mangy Claw" }, -- 75
+        { type = "TURNIN", quest = 417, questName = "A Pilot's Revenge", npc = 1960, npcName = "Pilot Hammerfoot", map = 1426, zone = "Dun Morogh", x = 83.9, y = 39.2 }, -- 76
     },
 })

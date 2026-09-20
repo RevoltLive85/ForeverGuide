@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_17_STRANGLETHORN_VALE",
-    name = "17. Stranglethorn Vale 36-37 (Night Elf)",
+    name = "17. Stranglethorn Vale 37-38 (Night Elf)",
     version = 2,
     faction = "Alliance",
     race = { "NightElf" },
-    minLevel = 36,
-    maxLevel = 37,
+    minLevel = 37,
+    maxLevel = 38,
     map = 1434,
     zone = "Stranglethorn Vale",
-    next = "GEN_ALLIANCE_NIGHTELF_18_DESOLACE",
+    next = "GEN_ALLIANCE_NIGHTELF_18_SWAMP_OF_SORROWS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 17 of the NightElf route: level 36 to 37, 32 steps, ~145 min of play in the model (28121 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 17 of the NightElf route: level 37 to 38, 32 steps, ~143 min of play in the model (28217 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1434, zone = "Stranglethorn Vale", x = 27.3, y = 76.2, radius = 60, note = "travel to Stranglethorn Vale (Stranglethorn Vale)" }, -- 1
         { type = "ACCEPT", quest = 595, questName = "The Bloodsail Buccaneers", npc = 2490, npcName = "First Mate Crazz", map = 1434, zone = "Stranglethorn Vale", x = 28.1, y = 76.2 }, -- 2
@@ -33,18 +33,18 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 587, questName = "Up to Snuff", target = "Snuff", count = 15, map = 1434, zone = "Stranglethorn Vale", x = 29.7, y = 80.8, near = true }, -- 17
         { type = "KILL", quest = 604, questName = "The Bloodsail Buccaneers", npc = 1563, target = "Bloodsail Swashbuckler", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 31, y = 81.1, near = true }, -- 18
         { type = "COLLECT", quest = 604, questName = "The Bloodsail Buccaneers", target = "Bloodsail Orders", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 27.7, y = 83.1, near = true }, -- 19
-        { type = "TURNIN", quest = 587, questName = "Up to Snuff", npc = 2488, npcName = "Deeg", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.4 }, -- 20
-        { type = "TURNIN", quest = 604, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 21
-        { type = "TURNIN", quest = 576, questName = "Keep An Eye Out", npc = 2493, npcName = "Dizzy One-Eye", map = 1434, zone = "Stranglethorn Vale", x = 28.6, y = 75.9 }, -- 22
-        { type = "ACCEPT", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 23
-        { type = "KILL", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2548, target = "Captain Keelhaul", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 29.3, y = 88.3 }, -- 24
-        { type = "KILL", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2546, target = "Fleet Master Firallon", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 30.6, y = 90.6 }, -- 25
-        { type = "KILL", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2550, target = "Captain Stillwater", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 32.9, y = 88.2 }, -- 26
-        { type = "TURNIN", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 27
-        { type = "COLLECT", quest = 209, questName = "Skullsplitter Tusks", target = "Skullsplitter Tusk", count = 18, map = 1434, zone = "Stranglethorn Vale", x = 43.6, y = 45.6, near = true }, -- 28
-        { type = "TURNIN", quest = 209, questName = "Skullsplitter Tusks", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 29
-        { type = "ACCEPT", quest = 617, questName = "Akiris by the Bundle", npc = 2494, npcName = "Privateer Bloads", map = 1434, zone = "Stranglethorn Vale", x = 26.8, y = 76.4 }, -- 30
-        { type = "KILL", quest = 617, questName = "Akiris by the Bundle", npc = 1907, target = "Naga Explorer", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 28.2, y = 64.4, near = true, note = "loot Akiris Reed" }, -- 31
-        { type = "TURNIN", quest = 617, questName = "Akiris by the Bundle", npc = 2494, npcName = "Privateer Bloads", map = 1434, zone = "Stranglethorn Vale", x = 26.8, y = 76.4 }, -- 32
+        { type = "TURNIN", quest = 576, questName = "Keep An Eye Out", npc = 2493, npcName = "Dizzy One-Eye", map = 1434, zone = "Stranglethorn Vale", x = 28.6, y = 75.9 }, -- 20
+        { type = "ACCEPT", quest = 617, questName = "Akiris by the Bundle", npc = 2494, npcName = "Privateer Bloads", map = 1434, zone = "Stranglethorn Vale", x = 26.8, y = 76.4 }, -- 21
+        { type = "TURNIN", quest = 604, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 22
+        { type = "TURNIN", quest = 587, questName = "Up to Snuff", npc = 2488, npcName = "Deeg", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.4 }, -- 23
+        { type = "ACCEPT", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 24
+        { type = "KILL", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2548, target = "Captain Keelhaul", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 29.3, y = 88.3 }, -- 25
+        { type = "KILL", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2546, target = "Fleet Master Firallon", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 30.6, y = 90.6 }, -- 26
+        { type = "KILL", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2550, target = "Captain Stillwater", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 32.9, y = 88.2 }, -- 27
+        { type = "KILL", quest = 617, questName = "Akiris by the Bundle", npc = 1907, target = "Naga Explorer", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 28.2, y = 64.4, near = true, note = "loot Akiris Reed" }, -- 28
+        { type = "TURNIN", quest = 617, questName = "Akiris by the Bundle", npc = 2494, npcName = "Privateer Bloads", map = 1434, zone = "Stranglethorn Vale", x = 26.8, y = 76.4 }, -- 29
+        { type = "TURNIN", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 30
+        { type = "COLLECT", quest = 209, questName = "Skullsplitter Tusks", target = "Skullsplitter Tusk", count = 18, map = 1434, zone = "Stranglethorn Vale", x = 43.6, y = 45.6, near = true }, -- 31
+        { type = "TURNIN", quest = 209, questName = "Skullsplitter Tusks", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 32
     },
 })

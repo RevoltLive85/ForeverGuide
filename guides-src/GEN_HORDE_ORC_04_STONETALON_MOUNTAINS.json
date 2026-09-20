@@ -10,7 +10,7 @@
   "zone": "Stonetalon Mountains",
   "next": "GEN_HORDE_ORC_05_ASHENVALE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 4 of the Orc route: level 24 to 25, 41 steps, ~155 min of play in the model (20690 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 4 of the Orc route: level 24 to 25, 41 steps, ~155 min of play in the model (20691 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
   "steps": [
     {"type": "TRAVEL", "map": 1442, "zone": "Stonetalon Mountains", "x": 46.9, "y": 61.0, "radius": 60, "note": "travel to Stonetalon Mountains (Stonetalon Mountains)"},
     {"type": "NOTE", "map": 1442, "zone": "Stonetalon Mountains", "x": 46.9, "y": 61.0, "text": "set your hearthstone at the inn in Stonetalon Mountains (if there is one)"},

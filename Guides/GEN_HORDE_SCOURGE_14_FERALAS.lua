@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_14_FERALAS",
-    name = "14. Feralas 40-41 (Undead)",
+    name = "14. Feralas 41-42 (Undead)",
     version = 2,
     faction = "Horde",
     race = { "Scourge" },
-    minLevel = 40,
-    maxLevel = 41,
+    minLevel = 41,
+    maxLevel = 42,
     map = 1444,
     zone = "Feralas",
     next = "GEN_HORDE_SCOURGE_15_DESOLACE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 14 of the Scourge route: level 40 to 41, 44 steps, ~178 min of play in the model (37985 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 14 of the Scourge route: level 41 to 42, 44 steps, ~172 min of play in the model (39003 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1444, zone = "Feralas", x = 75.0, y = 43.2, radius = 60, note = "travel to Feralas (Feralas)" }, -- 1
         { type = "NOTE", map = 1444, zone = "Feralas", x = 75.0, y = 43.2, text = "set your hearthstone at the inn in Feralas (if there is one)" }, -- 2
@@ -25,28 +25,28 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 2862, questName = "War on the Woodpaw", target = "Woodpaw Gnoll Mane", count = 10, map = 1444, zone = "Feralas", x = 72.9, y = 39.9, near = true }, -- 9
         { type = "TURNIN", quest = 2862, questName = "War on the Woodpaw", npc = 7875, npcName = "Hadoken Swiftstrider", map = 1444, zone = "Feralas", x = 74.9, y = 42.5 }, -- 10
         { type = "ACCEPT", quest = 2863, questName = "Alpha Strike", npc = 7875, npcName = "Hadoken Swiftstrider", map = 1444, zone = "Feralas", x = 74.9, y = 42.5 }, -- 11
-        { type = "KILL", quest = 2975, questName = "The Ogres of Feralas", npc = 5237, target = "Gordunni Ogre Mage", count = 10, map = 1444, zone = "Feralas", x = 76.1, y = 35, near = true }, -- 12
+        { type = "KILL", quest = 2975, questName = "The Ogres of Feralas", npc = 5229, target = "Gordunni Ogre / Gordunni Brute", count = 10, map = 1444, zone = "Feralas", x = 75.6, y = 34.8, near = true }, -- 12
         { type = "COLLECT", quest = 2987, questName = "Gordunni Cobalt", target = "Gordunni Cobalt", count = 12, map = 1444, zone = "Feralas", x = 76.4, y = 33.1, near = true }, -- 13
-        { type = "KILL", quest = 2975, questName = "The Ogres of Feralas", npc = 5232, target = "Gordunni Brute / Gordunni Ogre", count = 10, map = 1444, zone = "Feralas", x = 76.7, y = 33.1, near = true }, -- 14
-        { type = "COLLECT", quest = 2973, questName = "A New Cloak's Sheen", target = "Iridescent Sprite Darter Wing", count = 10, map = 1444, zone = "Feralas", x = 70.2, y = 46.6, near = true }, -- 15
-        { type = "KILL", quest = 2863, questName = "Alpha Strike", npc = 5258, target = "Woodpaw Alpha", count = 5, map = 1444, zone = "Feralas", x = 66.1, y = 51.6, near = true }, -- 16
+        { type = "KILL", quest = 2975, questName = "The Ogres of Feralas", npc = 5237, target = "Gordunni Ogre Mage", count = 10, map = 1444, zone = "Feralas", x = 76.3, y = 32.9, near = true }, -- 14
+        { type = "KILL", quest = 2863, questName = "Alpha Strike", npc = 5258, target = "Woodpaw Alpha", count = 5, map = 1444, zone = "Feralas", x = 74.3, y = 55, near = true }, -- 15
+        { type = "COLLECT", quest = 2973, questName = "A New Cloak's Sheen", target = "Iridescent Sprite Darter Wing", count = 10, map = 1444, zone = "Feralas", x = 68.9, y = 49.1, near = true }, -- 16
         { type = "COLLECT", quest = 2822, questName = "The Mark of Quality", target = "Thick Yeti Hide", count = 10, map = 1444, zone = "Feralas", x = 56.5, y = 56.5, near = true }, -- 17
-        { type = "TURNIN", quest = 2822, questName = "The Mark of Quality", npc = 7854, npcName = "Jangdor Swiftstrider", map = 1444, zone = "Feralas", x = 74.4, y = 42.9 }, -- 18
-        { type = "ACCEPT", quest = 7734, questName = "Improved Quality", npc = 7854, npcName = "Jangdor Swiftstrider", map = 1444, zone = "Feralas", x = 74.4, y = 42.9 }, -- 19
-        { type = "TURNIN", quest = 2863, questName = "Alpha Strike", npc = 7875, npcName = "Hadoken Swiftstrider", map = 1444, zone = "Feralas", x = 74.9, y = 42.5 }, -- 20
-        { type = "TURNIN", quest = 2975, questName = "The Ogres of Feralas", npc = 7777, npcName = "Rok Orhan", map = 1444, zone = "Feralas", x = 75.8, y = 43.6 }, -- 21
-        { type = "TURNIN", quest = 2973, questName = "A New Cloak's Sheen", npc = 4544, npcName = "Krueg Skullsplitter", map = 1444, zone = "Feralas", x = 75.9, y = 42.7 }, -- 22
+        { type = "TURNIN", quest = 2863, questName = "Alpha Strike", npc = 7875, npcName = "Hadoken Swiftstrider", map = 1444, zone = "Feralas", x = 74.9, y = 42.5 }, -- 18
+        { type = "ACCEPT", quest = 2902, questName = "Woodpaw Investigation", npc = 7875, npcName = "Hadoken Swiftstrider", map = 1444, zone = "Feralas", x = 74.9, y = 42.5 }, -- 19
+        { type = "TURNIN", quest = 2822, questName = "The Mark of Quality", npc = 7854, npcName = "Jangdor Swiftstrider", map = 1444, zone = "Feralas", x = 74.4, y = 42.9 }, -- 20
+        { type = "TURNIN", quest = 2973, questName = "A New Cloak's Sheen", npc = 4544, npcName = "Krueg Skullsplitter", map = 1444, zone = "Feralas", x = 75.9, y = 42.7 }, -- 21
+        { type = "TURNIN", quest = 2975, questName = "The Ogres of Feralas", npc = 7777, npcName = "Rok Orhan", map = 1444, zone = "Feralas", x = 75.8, y = 43.6 }, -- 22
         { type = "TURNIN", quest = 2987, questName = "Gordunni Cobalt", npc = 8021, npcName = "Orwin Gizzmick", map = 1444, zone = "Feralas", x = 75.7, y = 44.3 }, -- 23
-        { type = "ACCEPT", quest = 2902, questName = "Woodpaw Investigation", npc = 7875, npcName = "Hadoken Swiftstrider", map = 1444, zone = "Feralas", x = 74.9, y = 42.5 }, -- 24
-        { type = "ACCEPT", quest = 2980, questName = "The Ogres of Feralas", npc = 7777, npcName = "Rok Orhan", map = 1444, zone = "Feralas", x = 75.8, y = 43.6 }, -- 25
-        { type = "ACCEPT", quest = 2974, questName = "A Grim Discovery", npc = 4544, npcName = "Krueg Skullsplitter", map = 1444, zone = "Feralas", x = 75.9, y = 42.7 }, -- 26
+        { type = "ACCEPT", quest = 2980, questName = "The Ogres of Feralas", npc = 7777, npcName = "Rok Orhan", map = 1444, zone = "Feralas", x = 75.8, y = 43.6 }, -- 24
+        { type = "ACCEPT", quest = 2974, questName = "A Grim Discovery", npc = 4544, npcName = "Krueg Skullsplitter", map = 1444, zone = "Feralas", x = 75.9, y = 42.7 }, -- 25
+        { type = "ACCEPT", quest = 7734, questName = "Improved Quality", npc = 7854, npcName = "Jangdor Swiftstrider", map = 1444, zone = "Feralas", x = 74.4, y = 42.9 }, -- 26
         { type = "COLLECT", quest = 2974, questName = "A Grim Discovery", target = "Grimtotem Horn", count = 20, map = 1444, zone = "Feralas", x = 69.9, y = 40, near = true }, -- 27
         { type = "KILL", quest = 2980, questName = "The Ogres of Feralas", npc = 5234, target = "Gordunni Mauler / Gordunni Warlock", count = 10, map = 1444, zone = "Feralas", x = 61.8, y = 54.5, near = true }, -- 28
         { type = "KILL", quest = 2980, questName = "The Ogres of Feralas", npc = 5236, target = "Gordunni Shaman", count = 10, map = 1444, zone = "Feralas", x = 60.4, y = 64.8, near = true }, -- 29
         { type = "COLLECT", quest = 7734, questName = "Improved Quality", target = "Rage Scar Yeti Hide", count = 10, map = 1444, zone = "Feralas", x = 54.9, y = 33.5, near = true }, -- 30
-        { type = "TURNIN", quest = 7734, questName = "Improved Quality", npc = 7854, npcName = "Jangdor Swiftstrider", map = 1444, zone = "Feralas", x = 74.4, y = 42.9 }, -- 31
-        { type = "TURNIN", quest = 2980, questName = "The Ogres of Feralas", npc = 7777, npcName = "Rok Orhan", map = 1444, zone = "Feralas", x = 75.8, y = 43.6 }, -- 32
-        { type = "TURNIN", quest = 2974, questName = "A Grim Discovery", npc = 4544, npcName = "Krueg Skullsplitter", map = 1444, zone = "Feralas", x = 75.9, y = 42.7 }, -- 33
+        { type = "TURNIN", quest = 2980, questName = "The Ogres of Feralas", npc = 7777, npcName = "Rok Orhan", map = 1444, zone = "Feralas", x = 75.8, y = 43.6 }, -- 31
+        { type = "TURNIN", quest = 2974, questName = "A Grim Discovery", npc = 4544, npcName = "Krueg Skullsplitter", map = 1444, zone = "Feralas", x = 75.9, y = 42.7 }, -- 32
+        { type = "TURNIN", quest = 7734, questName = "Improved Quality", npc = 7854, npcName = "Jangdor Swiftstrider", map = 1444, zone = "Feralas", x = 74.4, y = 42.9 }, -- 33
         { type = "ACCEPT", quest = 2976, questName = "A Grim Discovery", npc = 4544, npcName = "Krueg Skullsplitter", map = 1444, zone = "Feralas", x = 75.9, y = 42.7 }, -- 34
         { type = "TURNIN", quest = 2902, questName = "Woodpaw Investigation", map = 1444, zone = "Feralas", x = 71.6, y = 55.9 }, -- 35
         { type = "ACCEPT", quest = 2903, questName = "The Battle Plans", map = 1444, zone = "Feralas", x = 71.6, y = 55.9 }, -- 36

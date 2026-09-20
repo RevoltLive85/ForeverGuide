@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Ashenvale",
     next = "GEN_HORDE_ORC_06_THOUSAND_NEEDLES",
     author = "ForeverGuide route planner",
-    notes = "Chapter 5 of the Orc route: level 25 to 27, 39 steps, ~116 min of play in the model (23015 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 5 of the Orc route: level 25 to 27, 39 steps, ~116 min of play in the model (23036 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1440, zone = "Ashenvale", x = 72.6, y = 63.9, radius = 60, note = "travel to Ashenvale (Ashenvale)" }, -- 1
         { type = "NOTE", map = 1440, zone = "Ashenvale", x = 72.6, y = 63.9, text = "set your hearthstone at the inn in Ashenvale (if there is one)" }, -- 2

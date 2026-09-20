@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_41_SILITHUS",
-    name = "41. Silithus 53-54 (Orc)",
+    name = "41. Silithus 54-55 (Orc)",
     version = 2,
     faction = "Horde",
     race = { "Orc", "Troll" },
-    minLevel = 53,
-    maxLevel = 54,
+    minLevel = 54,
+    maxLevel = 55,
     map = 1451,
     zone = "Silithus",
     next = "GEN_HORDE_ORC_42_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 41 of the Orc route: level 53 to 54, 40 steps, ~171 min of play in the model (46796 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 41 of the Orc route: level 54 to 55, 40 steps, ~165 min of play in the model (48185 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1452, zone = "Winterspring", x = 61.4, y = 38.2, radius = 60, note = "use your hearthstone (Winterspring)" }, -- 1
         { type = "TRAVEL", map = 1451, zone = "Silithus", x = 50.1, y = 37.6, radius = 60, note = "travel to Silithus (Silithus)" }, -- 2

@@ -2,22 +2,23 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_02_THUNDER_BLUFF",
-    name = "2. Thunder Bluff 9-10 (Tauren)",
+    name = "2. Thunder Bluff 11-11 (Tauren)",
     version = 2,
     faction = "Horde",
     race = { "Tauren" },
-    minLevel = 9,
-    maxLevel = 10,
+    minLevel = 11,
+    maxLevel = 11,
     map = 1456,
     zone = "Thunder Bluff",
     next = "GEN_HORDE_TAUREN_03_THE_BARRENS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 2 of the Tauren route: level 9 to 10, 5 steps, ~5 min of play in the model (26292 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 2 of the Tauren route: level 11 to 11, 6 steps, ~6 min of play in the model (27823 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
-        { type = "TRAVEL", map = 1456, zone = "Thunder Bluff", x = 54.2, y = 54.5, radius = 60, note = "travel to Thunder Bluff (Thunder Bluff)" }, -- 1
-        { type = "NOTE", map = 1456, zone = "Thunder Bluff", x = 54.2, y = 54.5, text = "set your hearthstone at the inn in Thunder Bluff (if there is one)" }, -- 2
+        { type = "TRAVEL", map = 1456, zone = "Thunder Bluff", x = 54.2, y = 54.4, radius = 60, note = "travel to Thunder Bluff (Thunder Bluff)" }, -- 1
+        { type = "NOTE", map = 1456, zone = "Thunder Bluff", x = 54.2, y = 54.4, text = "set your hearthstone at the inn in Thunder Bluff (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 8368, questName = "Battle of Warsong Gulch", npc = 15350, npcName = "Horde Warbringer", map = 1456, zone = "Thunder Bluff", x = 57.8, y = 76.4 }, -- 3
         { type = "TURNIN", quest = 8368, questName = "Battle of Warsong Gulch", npc = 15350, npcName = "Horde Warbringer", map = 1456, zone = "Thunder Bluff", x = 57.8, y = 76.4 }, -- 4
         { type = "TURNIN", quest = 861, questName = "The Hunter's Way", npc = 3441, npcName = "Melor Stonehoof", map = 1456, zone = "Thunder Bluff", x = 61.5, y = 80.9 }, -- 5
+        { type = "TURNIN", quest = 775, questName = "Journey into Thunder Bluff", npc = 3057, npcName = "Cairne Bloodhoof", map = 1456, zone = "Thunder Bluff", x = 60.3, y = 51.7 }, -- 6
     },
 })

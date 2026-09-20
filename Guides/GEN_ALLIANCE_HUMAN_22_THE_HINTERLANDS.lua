@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_22_THE_HINTERLANDS",
-    name = "22. The Hinterlands 41-44 (Human)",
+    name = "22. The Hinterlands 42-45 (Human)",
     version = 2,
     faction = "Alliance",
     race = { "Human" },
-    minLevel = 41,
-    maxLevel = 44,
+    minLevel = 42,
+    maxLevel = 45,
     map = 1425,
     zone = "The Hinterlands",
-    next = "GEN_ALLIANCE_HUMAN_23_SEARING_GORGE",
+    next = "GEN_ALLIANCE_HUMAN_23_IRONFORGE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 22 of the Human route: level 41 to 44, 19 steps, ~459 min of play in the model (3446 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 22 of the Human route: level 42 to 45, 19 steps, ~504 min of play in the model (3114 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1425, zone = "The Hinterlands", x = 12.0, y = 44.5, radius = 60, note = "travel to The Hinterlands (The Hinterlands)" }, -- 1
         { type = "NOTE", map = 1425, zone = "The Hinterlands", x = 12.0, y = 44.5, text = "set your hearthstone at the inn in The Hinterlands (if there is one)" }, -- 2
@@ -30,8 +30,8 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 2989, questName = "The Altar of Zul", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.5 }, -- 14
         { type = "COMPLETE", quest = 2989, questName = "The Altar of Zul", target = "Search the Altar of Zul", map = 1425, zone = "The Hinterlands", x = 49.0, y = 68.7, note = "Search the Altar of Zul" }, -- 15
         { type = "TURNIN", quest = 2989, questName = "The Altar of Zul", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.5 }, -- 16
-        { type = "GRIND", npc = 2657, target = "Trained Razorbeak", level = 42, map = 1425, zone = "The Hinterlands", x = 9.6, y = 52.8, near = true, note = "grind Trained Razorbeak (level 40-42) to level 42 - nothing worth questing at 41" }, -- 17
-        { type = "GRIND", npc = 2657, target = "Trained Razorbeak", level = 43, map = 1425, zone = "The Hinterlands", x = 9.6, y = 52.8, near = true, note = "grind Trained Razorbeak (level 40-42) to level 43 - nothing worth questing at 42" }, -- 18
-        { type = "GRIND", npc = 2928, target = "Primitive Owlbeast", level = 44, map = 1425, zone = "The Hinterlands", x = 38.7, y = 45.6, near = true, note = "grind Primitive Owlbeast (level 44-45) to level 44 - nothing worth questing at 43" }, -- 19
+        { type = "GRIND", npc = 2657, target = "Trained Razorbeak", level = 43, map = 1425, zone = "The Hinterlands", x = 9.6, y = 52.8, near = true, note = "grind Trained Razorbeak (level 40-42) to level 43 - nothing worth questing at 42" }, -- 17
+        { type = "GRIND", npc = 2928, target = "Primitive Owlbeast", level = 44, map = 1425, zone = "The Hinterlands", x = 38.7, y = 45.6, near = true, note = "grind Primitive Owlbeast (level 44-45) to level 44 - nothing worth questing at 43" }, -- 18
+        { type = "GRIND", npc = 2928, target = "Primitive Owlbeast", level = 45, map = 1425, zone = "The Hinterlands", x = 38.7, y = 45.6, near = true, note = "grind Primitive Owlbeast (level 44-45) to level 45 - nothing worth questing at 44" }, -- 19
     },
 })

@@ -1,0 +1,33 @@
+{
+  "id": "GEN_ALLIANCE_NIGHTELF_29_TANARIS",
+  "name": "29. Tanaris 47-47 (Night Elf)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["NightElf"],
+  "minLevel": 47,
+  "maxLevel": 47,
+  "map": 1446,
+  "zone": "Tanaris",
+  "next": "GEN_ALLIANCE_NIGHTELF_30_AZSHARA",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 29 of the NightElf route: level 47 to 47, 17 steps, ~59 min of play in the model (38601 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1446, "zone": "Tanaris", "x": 52.0, "y": 27.4, "radius": 60, "note": "travel to Tanaris (Tanaris)"},
+    {"type": "ACCEPT", "quest": 5863, "questName": "The Dunemaul Compound", "npc": 11758, "npcName": "Andi Lynn", "map": 1446, "zone": "Tanaris", "x": 52.8, "y": 27.4},
+    {"type": "ACCEPT", "quest": 2605, "questName": "The Thirsty Goblin", "npc": 7564, "npcName": "Marin Noggenfogger", "map": 1446, "zone": "Tanaris", "x": 51.8, "y": 28.7},
+    {"type": "ACCEPT", "quest": 3362, "questName": "Thistleshrub Valley", "npc": 7876, "npcName": "Tran'rek", "map": 1446, "zone": "Tanaris", "x": 51.6, "y": 26.8},
+    {"type": "KILL", "quest": 5863, "questName": "The Dunemaul Compound", "npc": 5472, "target": "Dunemaul Enforcer / Dunemaul Brute", "count": 10, "map": 1446, "zone": "Tanaris", "x": 39.9, "y": 50.9, "near": true},
+    {"type": "KILL", "quest": 5863, "questName": "The Dunemaul Compound", "npc": 12046, "target": "Gor'marok the Ravager", "count": 1, "map": 1446, "zone": "Tanaris", "x": 41.5, "y": 57.8},
+    {"type": "KILL", "quest": 2605, "questName": "The Thirsty Goblin", "npc": 5481, "target": "Thistleshrub Dew Collector", "map": 1446, "zone": "Tanaris", "x": 31.2, "y": 64.7, "near": true, "note": "loot Laden Dew Gland"},
+    {"type": "TURNIN", "quest": 2605, "questName": "The Thirsty Goblin", "npc": 7564, "npcName": "Marin Noggenfogger", "map": 1446, "zone": "Tanaris", "x": 51.8, "y": 28.7},
+    {"type": "ACCEPT", "quest": 2606, "questName": "In Good Taste", "npc": 7564, "npcName": "Marin Noggenfogger", "map": 1446, "zone": "Tanaris", "x": 51.8, "y": 28.7},
+    {"type": "TURNIN", "quest": 5863, "questName": "The Dunemaul Compound", "npc": 11758, "npcName": "Andi Lynn", "map": 1446, "zone": "Tanaris", "x": 52.8, "y": 27.4},
+    {"type": "TURNIN", "quest": 2606, "questName": "In Good Taste", "npc": 7583, "npcName": "Sprinkle", "map": 1446, "zone": "Tanaris", "x": 51.1, "y": 26.9},
+    {"type": "TURNIN", "quest": 3445, "questName": "The Sunken Temple", "npc": 7771, "npcName": "Marvon Rivetseeker", "map": 1446, "zone": "Tanaris", "x": 52.7, "y": 45.9},
+    {"type": "ACCEPT", "quest": 3161, "questName": "Gahz'ridian", "npc": 7771, "npcName": "Marvon Rivetseeker", "map": 1446, "zone": "Tanaris", "x": 52.7, "y": 45.9},
+    {"type": "COLLECT", "quest": 3161, "questName": "Gahz'ridian", "target": "Gahz'ridian Ornament", "count": 30, "map": 1446, "zone": "Tanaris", "x": 53, "y": 44, "near": true},
+    {"type": "TURNIN", "quest": 3161, "questName": "Gahz'ridian", "npc": 7771, "npcName": "Marvon Rivetseeker", "map": 1446, "zone": "Tanaris", "x": 52.7, "y": 45.9},
+    {"type": "KILL", "quest": 3362, "questName": "Thistleshrub Valley", "npc": 5490, "target": "Gnarled Thistleshrub / Thistleshrub Rootshaper", "count": 8, "map": 1446, "zone": "Tanaris", "x": 31.2, "y": 65.5, "near": true},
+    {"type": "TURNIN", "quest": 3362, "questName": "Thistleshrub Valley", "npc": 7876, "npcName": "Tran'rek", "map": 1446, "zone": "Tanaris", "x": 51.6, "y": 26.8}
+  ]
+}

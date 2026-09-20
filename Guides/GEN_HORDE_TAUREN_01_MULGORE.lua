@@ -2,68 +2,107 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_01_MULGORE",
-    name = "1. Mulgore 1-9 (Tauren)",
+    name = "1. Mulgore 1-11 (Tauren)",
     version = 2,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 1,
-    maxLevel = 9,
+    maxLevel = 11,
     map = 1412,
     zone = "Mulgore",
     next = "GEN_HORDE_TAUREN_02_THUNDER_BLUFF",
     author = "ForeverGuide route planner",
-    notes = "Chapter 1 of the Tauren route: level 1 to 9, 51 steps, ~129 min of play in the model (12628 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 1 of the Tauren route: level 1 to 11, 90 steps, ~194 min of play in the model (12593 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "NOTE", map = 1412, zone = "Mulgore", x = 47.9, y = 59.8, text = "set your hearthstone at the inn in Mulgore (if there is one)" }, -- 1
         { type = "ACCEPT", quest = 745, questName = "Sharing the Land", npc = 2993, npcName = "Baine Bloodhoof", map = 1412, zone = "Mulgore", x = 47.5, y = 60.2 }, -- 2
         { type = "KILL", quest = 745, questName = "Sharing the Land", npc = 2949, target = "Palemane Tanner / Palemane Skinner", count = 10, map = 1412, zone = "Mulgore", x = 47.4, y = 71.4, near = true }, -- 3
         { type = "KILL", quest = 745, questName = "Sharing the Land", npc = 2951, target = "Palemane Poacher", count = 10, map = 1412, zone = "Mulgore", x = 52.9, y = 73.4, near = true }, -- 4
         { type = "TURNIN", quest = 745, questName = "Sharing the Land", npc = 2993, npcName = "Baine Bloodhoof", map = 1412, zone = "Mulgore", x = 47.5, y = 60.2 }, -- 5
-        { type = "ACCEPT", quest = 748, questName = "Poison Water", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 6
-        { type = "ACCEPT", quest = 761, questName = "Swoop Hunting", npc = 2947, npcName = "Harken Windtotem", map = 1412, zone = "Mulgore", x = 48.7, y = 59.3 }, -- 7
-        { type = "COLLECT", quest = 748, questName = "Poison Water", target = "Plainstrider Talon", count = 6, map = 1412, zone = "Mulgore", x = 52.5, y = 60.6, near = true }, -- 8
-        { type = "COLLECT", quest = 748, questName = "Poison Water", target = "Prairie Wolf Paw", count = 6, map = 1412, zone = "Mulgore", x = 56.4, y = 63.7, near = true }, -- 9
-        { type = "ACCEPT", quest = 749, questName = "The Ravaged Caravan", npc = 2988, npcName = "Morin Cloudstalker", map = 1412, zone = "Mulgore", x = 57.2, y = 61.2 }, -- 10
-        { type = "COLLECT", quest = 761, questName = "Swoop Hunting", target = "Trophy Swoop Quill", count = 8, map = 1412, zone = "Mulgore", x = 53.9, y = 58.7, near = true }, -- 11
-        { type = "TURNIN", quest = 749, questName = "The Ravaged Caravan", map = 1412, zone = "Mulgore", x = 53.7, y = 48.2 }, -- 12
-        { type = "ACCEPT", quest = 751, questName = "The Ravaged Caravan", map = 1412, zone = "Mulgore", x = 53.7, y = 48.2 }, -- 13
-        { type = "TURNIN", quest = 751, questName = "The Ravaged Caravan", npc = 2988, npcName = "Morin Cloudstalker", map = 1412, zone = "Mulgore", x = 57.2, y = 61.2 }, -- 14
-        { type = "ACCEPT", quest = 764, questName = "The Venture Co.", npc = 2988, npcName = "Morin Cloudstalker", map = 1412, zone = "Mulgore", x = 57.2, y = 61.2 }, -- 15
-        { type = "ACCEPT", quest = 765, questName = "Supervisor Fizsprocket", npc = 2988, npcName = "Morin Cloudstalker", map = 1412, zone = "Mulgore", x = 57.2, y = 61.2 }, -- 16
-        { type = "KILL", quest = 764, questName = "The Venture Co.", npc = 2978, target = "Venture Co. Worker / Venture Co. Supervisor", count = 14, map = 1412, zone = "Mulgore", x = 60.2, y = 48.7, near = true }, -- 17
-        { type = "KILL", quest = 765, questName = "Supervisor Fizsprocket", npc = 3051, target = "Supervisor Fizsprocket", map = 1412, zone = "Mulgore", x = 64.9, y = 43.3, note = "loot Fizsprocket's Clipboard" }, -- 18
-        { type = "TURNIN", quest = 764, questName = "The Venture Co.", npc = 2988, npcName = "Morin Cloudstalker", map = 1412, zone = "Mulgore", x = 57.2, y = 61.2 }, -- 19
-        { type = "TURNIN", quest = 765, questName = "Supervisor Fizsprocket", npc = 2988, npcName = "Morin Cloudstalker", map = 1412, zone = "Mulgore", x = 57.2, y = 61.2 }, -- 20
-        { type = "TURNIN", quest = 748, questName = "Poison Water", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 21
-        { type = "ACCEPT", quest = 754, questName = "Winterhoof Cleansing", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 22
-        { type = "ACCEPT", quest = 746, questName = "Dwarven Digging", npc = 2993, npcName = "Baine Bloodhoof", map = 1412, zone = "Mulgore", x = 47.5, y = 60.2 }, -- 23
-        { type = "ACCEPT", quest = 743, questName = "Dangers of the Windfury", npc = 2985, npcName = "Ruul Eagletalon", map = 1412, zone = "Mulgore", x = 47.4, y = 62 }, -- 24
-        { type = "ACCEPT", quest = 766, questName = "Mazzranache", npc = 3055, npcName = "Maur Raincaller", map = 1412, zone = "Mulgore", x = 47, y = 57.1 }, -- 25
-        { type = "TURNIN", quest = 761, questName = "Swoop Hunting", npc = 2947, npcName = "Harken Windtotem", map = 1412, zone = "Mulgore", x = 48.7, y = 59.3 }, -- 26
-        { type = "COMPLETE", quest = 754, questName = "Winterhoof Cleansing", target = "Cleanse the Winterhoof Water Well", map = 1412, zone = "Mulgore", x = 53.6, y = 66.2, note = "Cleanse the Winterhoof Water Well" }, -- 27
-        { type = "COLLECT", quest = 766, questName = "Mazzranache", target = "Prairie Wolf Heart", map = 1412, zone = "Mulgore", x = 55.1, y = 67.4, near = true }, -- 28
-        { type = "COLLECT", quest = 766, questName = "Mazzranache", target = "Swoop Gizzard", map = 1412, zone = "Mulgore", x = 55.2, y = 70.4, near = true }, -- 29
-        { type = "COLLECT", quest = 766, questName = "Mazzranache", target = "Plainstrider Scale", map = 1412, zone = "Mulgore", x = 58.4, y = 72.3, near = true }, -- 30
-        { type = "COLLECT", quest = 743, questName = "Dangers of the Windfury", target = "Windfury Talon", count = 8, map = 1412, zone = "Mulgore", x = 61.7, y = 72.4, near = true }, -- 31
-        { type = "KILL", quest = 766, questName = "Mazzranache", npc = 3035, target = "Flatland Cougar", map = 1412, zone = "Mulgore", x = 57.1, y = 62.8, near = true, note = "loot Flatland Cougar Femur" }, -- 32
-        { type = "COLLECT", quest = 746, questName = "Dwarven Digging", target = "Broken Tools", count = 5, map = 1412, zone = "Mulgore", x = 31.3, y = 49.9 }, -- 33
-        { type = "TURNIN", quest = 754, questName = "Winterhoof Cleansing", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 34
-        { type = "ACCEPT", quest = 756, questName = "Thunderhorn Totem", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 35
-        { type = "TURNIN", quest = 746, questName = "Dwarven Digging", npc = 2993, npcName = "Baine Bloodhoof", map = 1412, zone = "Mulgore", x = 47.5, y = 60.2 }, -- 36
-        { type = "TURNIN", quest = 743, questName = "Dangers of the Windfury", npc = 2985, npcName = "Ruul Eagletalon", map = 1412, zone = "Mulgore", x = 47.4, y = 62 }, -- 37
-        { type = "TURNIN", quest = 766, questName = "Mazzranache", npc = 3055, npcName = "Maur Raincaller", map = 1412, zone = "Mulgore", x = 47, y = 57.1 }, -- 38
-        { type = "KILL", quest = 756, questName = "Thunderhorn Totem", npc = 2959, target = "Prairie Stalker", count = 6, map = 1412, zone = "Mulgore", x = 41.8, y = 51, near = true, note = "loot Stalker Claws" }, -- 39
-        { type = "KILL", quest = 756, questName = "Thunderhorn Totem", npc = 3035, target = "Flatland Cougar", count = 6, map = 1412, zone = "Mulgore", x = 39, y = 46.9, near = true, note = "loot Cougar Claws" }, -- 40
-        { type = "TURNIN", quest = 756, questName = "Thunderhorn Totem", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 41
-        { type = "ACCEPT", quest = 758, questName = "Thunderhorn Cleansing", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 42
-        { type = "ACCEPT", quest = 861, questName = "The Hunter's Way", npc = 3052, npcName = "Skorn Whitecloud", map = 1412, zone = "Mulgore", x = 46.8, y = 60.2 }, -- 43
-        { type = "COMPLETE", quest = 758, questName = "Thunderhorn Cleansing", target = "Cleanse the Thunderhorn Water Well", map = 1412, zone = "Mulgore", x = 44.5, y = 45.5, note = "Cleanse the Thunderhorn Water Well" }, -- 44
-        { type = "KILL", quest = 861, questName = "The Hunter's Way", npc = 3566, target = "Flatland Prowler", count = 4, map = 1412, zone = "Mulgore", x = 45, y = 33.4, near = true, note = "loot Flatland Prowler Claw" }, -- 45
-        { type = "TURNIN", quest = 758, questName = "Thunderhorn Cleansing", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 46
-        { type = "ACCEPT", quest = 759, questName = "Wildmane Totem", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 47
-        { type = "KILL", quest = 759, questName = "Wildmane Totem", npc = 2960, target = "Prairie Wolf Alpha", count = 8, map = 1412, zone = "Mulgore", x = 62.1, y = 56.2, near = true, note = "loot Prairie Alpha Tooth" }, -- 48
-        { type = "TURNIN", quest = 759, questName = "Wildmane Totem", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 49
-        { type = "ACCEPT", quest = 760, questName = "Wildmane Cleansing", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 50
-        { type = "ACCEPT", quest = 3376, questName = "Break Sharptusk!", npc = 3209, npcName = "Brave Windfeather", map = 1412, zone = "Mulgore", x = 44.5, y = 76.5 }, -- 51
+        { type = "ACCEPT", quest = 753, questName = "A Humble Task", npc = 2991, npcName = "Greatmother Hawkwind", map = 1412, zone = "Mulgore", x = 50, y = 81.2 }, -- 6
+        { type = "ACCEPT", quest = 747, questName = "The Hunt Begins", npc = 2980, npcName = "Grull Hawkwind", map = 1412, zone = "Mulgore", x = 44.9, y = 77.1 }, -- 7
+        { type = "ACCEPT", quest = 3376, questName = "Break Sharptusk!", npc = 3209, npcName = "Brave Windfeather", map = 1412, zone = "Mulgore", x = 44.5, y = 76.5 }, -- 8
+        { type = "KILL", quest = 747, questName = "The Hunt Begins", npc = 2955, target = "Plainstrider / Plainstrider", count = 7, map = 1412, zone = "Mulgore", x = 42.9, y = 76.5, near = true, note = "loot Plainstrider Meat" }, -- 9
+        { type = "TURNIN", quest = 747, questName = "The Hunt Begins", npc = 2980, npcName = "Grull Hawkwind", map = 1412, zone = "Mulgore", x = 44.9, y = 77.1 }, -- 10
+        { type = "ACCEPT", quest = 750, questName = "The Hunt Continues", npc = 2980, npcName = "Grull Hawkwind", map = 1412, zone = "Mulgore", x = 44.9, y = 77.1 }, -- 11
+        { type = "KILL", quest = 750, questName = "The Hunt Continues", npc = 2961, target = "Mountain Cougar", count = 10, map = 1412, zone = "Mulgore", x = 40.9, y = 82.1, near = true, note = "loot Mountain Cougar Pelt" }, -- 12
+        { type = "COLLECT", quest = 753, questName = "A Humble Task", target = "Water Pitcher", map = 1412, zone = "Mulgore", x = 50.2, y = 81.5, near = true }, -- 13
+        { type = "KILL", quest = 3376, questName = "Break Sharptusk!", npc = 8554, target = "Chief Sharptusk Thornmantle", map = 1412, zone = "Mulgore", x = 64.7, y = 77.7, note = "loot Chief Sharptusk Thornmantle's Head" }, -- 14
+        { type = "TURNIN", quest = 750, questName = "The Hunt Continues", npc = 2980, npcName = "Grull Hawkwind", map = 1412, zone = "Mulgore", x = 44.9, y = 77.1 }, -- 15
+        { type = "ACCEPT", quest = 780, questName = "The Battleboars", npc = 2980, npcName = "Grull Hawkwind", map = 1412, zone = "Mulgore", x = 44.9, y = 77.1 }, -- 16
+        { type = "TURNIN", quest = 3376, questName = "Break Sharptusk!", npc = 3209, npcName = "Brave Windfeather", map = 1412, zone = "Mulgore", x = 44.5, y = 76.5 }, -- 17
+        { type = "TURNIN", quest = 753, questName = "A Humble Task", npc = 2981, npcName = "Chief Hawkwind", map = 1412, zone = "Mulgore", x = 44.2, y = 76.1 }, -- 18
+        { type = "ACCEPT", quest = 755, questName = "Rites of the Earthmother", npc = 2981, npcName = "Chief Hawkwind", map = 1412, zone = "Mulgore", x = 44.2, y = 76.1 }, -- 19
+        { type = "COLLECT", quest = 780, questName = "The Battleboars", target = "Battleboar Snout / Battleboar Flank", count = 8, map = 1412, zone = "Mulgore", x = 54, y = 76.9, near = true }, -- 20
+        { type = "TURNIN", quest = 780, questName = "The Battleboars", npc = 2980, npcName = "Grull Hawkwind", map = 1412, zone = "Mulgore", x = 44.9, y = 77.1 }, -- 21
+        { type = "TURNIN", quest = 755, questName = "Rites of the Earthmother", npc = 2982, npcName = "Seer Graytongue", map = 1412, zone = "Mulgore", x = 42.6, y = 92.2 }, -- 22
+        { type = "ACCEPT", quest = 757, questName = "Rite of Strength", npc = 2982, npcName = "Seer Graytongue", map = 1412, zone = "Mulgore", x = 42.6, y = 92.2 }, -- 23
+        { type = "COLLECT", quest = 757, questName = "Rite of Strength", target = "Bristleback Belt", count = 12, map = 1412, zone = "Mulgore", x = 57.8, y = 81.7, near = true }, -- 24
+        { type = "ACCEPT", quest = 749, questName = "The Ravaged Caravan", npc = 2988, npcName = "Morin Cloudstalker", map = 1412, zone = "Mulgore", x = 57.2, y = 61.2 }, -- 25
+        { type = "TURNIN", quest = 749, questName = "The Ravaged Caravan", map = 1412, zone = "Mulgore", x = 53.7, y = 48.2 }, -- 26
+        { type = "ACCEPT", quest = 751, questName = "The Ravaged Caravan", map = 1412, zone = "Mulgore", x = 53.7, y = 48.2 }, -- 27
+        { type = "TURNIN", quest = 751, questName = "The Ravaged Caravan", npc = 2988, npcName = "Morin Cloudstalker", map = 1412, zone = "Mulgore", x = 57.2, y = 61.2 }, -- 28
+        { type = "ACCEPT", quest = 764, questName = "The Venture Co.", npc = 2988, npcName = "Morin Cloudstalker", map = 1412, zone = "Mulgore", x = 57.2, y = 61.2 }, -- 29
+        { type = "ACCEPT", quest = 765, questName = "Supervisor Fizsprocket", npc = 2988, npcName = "Morin Cloudstalker", map = 1412, zone = "Mulgore", x = 57.2, y = 61.2 }, -- 30
+        { type = "KILL", quest = 764, questName = "The Venture Co.", npc = 2978, target = "Venture Co. Worker / Venture Co. Supervisor", count = 14, map = 1412, zone = "Mulgore", x = 60.2, y = 48.7, near = true }, -- 31
+        { type = "KILL", quest = 765, questName = "Supervisor Fizsprocket", npc = 3051, target = "Supervisor Fizsprocket", map = 1412, zone = "Mulgore", x = 64.9, y = 43.3, note = "loot Fizsprocket's Clipboard" }, -- 32
+        { type = "TURNIN", quest = 764, questName = "The Venture Co.", npc = 2988, npcName = "Morin Cloudstalker", map = 1412, zone = "Mulgore", x = 57.2, y = 61.2 }, -- 33
+        { type = "TURNIN", quest = 765, questName = "Supervisor Fizsprocket", npc = 2988, npcName = "Morin Cloudstalker", map = 1412, zone = "Mulgore", x = 57.2, y = 61.2 }, -- 34
+        { type = "TURNIN", quest = 757, questName = "Rite of Strength", npc = 2981, npcName = "Chief Hawkwind", map = 1412, zone = "Mulgore", x = 44.2, y = 76.1 }, -- 35
+        { type = "ACCEPT", quest = 763, questName = "Rites of the Earthmother", npc = 2981, npcName = "Chief Hawkwind", map = 1412, zone = "Mulgore", x = 44.2, y = 76.1 }, -- 36
+        { type = "TURNIN", quest = 763, questName = "Rites of the Earthmother", npc = 2993, npcName = "Baine Bloodhoof", map = 1412, zone = "Mulgore", x = 47.5, y = 60.2 }, -- 37
+        { type = "ACCEPT", quest = 748, questName = "Poison Water", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 38
+        { type = "ACCEPT", quest = 767, questName = "Rite of Vision", npc = 2993, npcName = "Baine Bloodhoof", map = 1412, zone = "Mulgore", x = 47.5, y = 60.2 }, -- 39
+        { type = "ACCEPT", quest = 761, questName = "Swoop Hunting", npc = 2947, npcName = "Harken Windtotem", map = 1412, zone = "Mulgore", x = 48.7, y = 59.3 }, -- 40
+        { type = "ACCEPT", quest = 746, questName = "Dwarven Digging", npc = 2993, npcName = "Baine Bloodhoof", map = 1412, zone = "Mulgore", x = 47.5, y = 60.2 }, -- 41
+        { type = "ACCEPT", quest = 743, questName = "Dangers of the Windfury", npc = 2985, npcName = "Ruul Eagletalon", map = 1412, zone = "Mulgore", x = 47.4, y = 62 }, -- 42
+        { type = "ACCEPT", quest = 766, questName = "Mazzranache", npc = 3055, npcName = "Maur Raincaller", map = 1412, zone = "Mulgore", x = 47, y = 57.1 }, -- 43
+        { type = "TURNIN", quest = 767, questName = "Rite of Vision", npc = 3054, npcName = "Zarlman Two-Moons", map = 1412, zone = "Mulgore", x = 47.8, y = 57.5 }, -- 44
+        { type = "ACCEPT", quest = 771, questName = "Rite of Vision", npc = 3054, npcName = "Zarlman Two-Moons", map = 1412, zone = "Mulgore", x = 47.8, y = 57.5 }, -- 45
+        { type = "COLLECT", quest = 748, questName = "Poison Water", target = "Plainstrider Talon", count = 6, map = 1412, zone = "Mulgore", x = 52.5, y = 60.6, near = true }, -- 46
+        { type = "COLLECT", quest = 748, questName = "Poison Water", target = "Prairie Wolf Paw", count = 6, map = 1412, zone = "Mulgore", x = 56.4, y = 63.7, near = true }, -- 47
+        { type = "KILL", quest = 766, questName = "Mazzranache", npc = 3035, target = "Flatland Cougar", map = 1412, zone = "Mulgore", x = 57.1, y = 62.8, near = true, note = "loot Flatland Cougar Femur" }, -- 48
+        { type = "COLLECT", quest = 761, questName = "Swoop Hunting", target = "Trophy Swoop Quill", count = 8, map = 1412, zone = "Mulgore", x = 57.7, y = 68.4, near = true }, -- 49
+        { type = "COLLECT", quest = 766, questName = "Mazzranache", target = "Swoop Gizzard", map = 1412, zone = "Mulgore", x = 57.7, y = 68.4, near = true }, -- 50
+        { type = "COLLECT", quest = 743, questName = "Dangers of the Windfury", target = "Windfury Talon", count = 8, map = 1412, zone = "Mulgore", x = 61.7, y = 72.4, near = true }, -- 51
+        { type = "COLLECT", quest = 766, questName = "Mazzranache", target = "Prairie Wolf Heart", map = 1412, zone = "Mulgore", x = 61.7, y = 68.3, near = true }, -- 52
+        { type = "COLLECT", quest = 771, questName = "Rite of Vision", target = "Well Stone", count = 2, map = 1412, zone = "Mulgore", x = 53.9, y = 66.8, near = true }, -- 53
+        { type = "COLLECT", quest = 766, questName = "Mazzranache", target = "Plainstrider Scale", map = 1412, zone = "Mulgore", x = 52.5, y = 60.6, near = true }, -- 54
+        { type = "COLLECT", quest = 771, questName = "Rite of Vision", target = "Ambercorn", count = 2, map = 1412, zone = "Mulgore", x = 49.3, y = 56.2, near = true }, -- 55
+        { type = "TURNIN", quest = 771, questName = "Rite of Vision", npc = 3054, npcName = "Zarlman Two-Moons", map = 1412, zone = "Mulgore", x = 47.8, y = 57.5 }, -- 56
+        { type = "TURNIN", quest = 761, questName = "Swoop Hunting", npc = 2947, npcName = "Harken Windtotem", map = 1412, zone = "Mulgore", x = 48.7, y = 59.3 }, -- 57
+        { type = "TURNIN", quest = 766, questName = "Mazzranache", npc = 3055, npcName = "Maur Raincaller", map = 1412, zone = "Mulgore", x = 47, y = 57.1 }, -- 58
+        { type = "TURNIN", quest = 748, questName = "Poison Water", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 59
+        { type = "ACCEPT", quest = 754, questName = "Winterhoof Cleansing", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 60
+        { type = "ACCEPT", quest = 772, questName = "Rite of Vision", npc = 3054, npcName = "Zarlman Two-Moons", map = 1412, zone = "Mulgore", x = 47.8, y = 57.5 }, -- 61
+        { type = "ACCEPT", quest = 861, questName = "The Hunter's Way", npc = 3052, npcName = "Skorn Whitecloud", map = 1412, zone = "Mulgore", x = 46.8, y = 60.2 }, -- 62
+        { type = "TURNIN", quest = 743, questName = "Dangers of the Windfury", npc = 2985, npcName = "Ruul Eagletalon", map = 1412, zone = "Mulgore", x = 47.4, y = 62 }, -- 63
+        { type = "COMPLETE", quest = 754, questName = "Winterhoof Cleansing", target = "Cleanse the Winterhoof Water Well", map = 1412, zone = "Mulgore", x = 53.6, y = 66.2, note = "Cleanse the Winterhoof Water Well" }, -- 64
+        { type = "COLLECT", quest = 746, questName = "Dwarven Digging", target = "Broken Tools", count = 5, map = 1412, zone = "Mulgore", x = 31.3, y = 49.9 }, -- 65
+        { type = "KILL", quest = 861, questName = "The Hunter's Way", npc = 3566, target = "Flatland Prowler", count = 4, map = 1412, zone = "Mulgore", x = 45, y = 33.4, near = true, note = "loot Flatland Prowler Claw" }, -- 66
+        { type = "TURNIN", quest = 754, questName = "Winterhoof Cleansing", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 67
+        { type = "ACCEPT", quest = 756, questName = "Thunderhorn Totem", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 68
+        { type = "TURNIN", quest = 746, questName = "Dwarven Digging", npc = 2993, npcName = "Baine Bloodhoof", map = 1412, zone = "Mulgore", x = 47.5, y = 60.2 }, -- 69
+        { type = "KILL", quest = 756, questName = "Thunderhorn Totem", npc = 2959, target = "Prairie Stalker", count = 6, map = 1412, zone = "Mulgore", x = 41.8, y = 51, near = true, note = "loot Stalker Claws" }, -- 70
+        { type = "KILL", quest = 756, questName = "Thunderhorn Totem", npc = 3035, target = "Flatland Cougar", count = 6, map = 1412, zone = "Mulgore", x = 39, y = 46.9, near = true, note = "loot Cougar Claws" }, -- 71
+        { type = "TURNIN", quest = 756, questName = "Thunderhorn Totem", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 72
+        { type = "ACCEPT", quest = 758, questName = "Thunderhorn Cleansing", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 73
+        { type = "COMPLETE", quest = 758, questName = "Thunderhorn Cleansing", target = "Cleanse the Thunderhorn Water Well", map = 1412, zone = "Mulgore", x = 44.5, y = 45.5, note = "Cleanse the Thunderhorn Water Well" }, -- 74
+        { type = "TURNIN", quest = 758, questName = "Thunderhorn Cleansing", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 75
+        { type = "ACCEPT", quest = 759, questName = "Wildmane Totem", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 76
+        { type = "KILL", quest = 759, questName = "Wildmane Totem", npc = 2960, target = "Prairie Wolf Alpha", count = 8, map = 1412, zone = "Mulgore", x = 62.1, y = 56.2, near = true, note = "loot Prairie Alpha Tooth" }, -- 77
+        { type = "TURNIN", quest = 759, questName = "Wildmane Totem", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 78
+        { type = "ACCEPT", quest = 760, questName = "Wildmane Cleansing", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 79
+        { type = "TURNIN", quest = 772, questName = "Rite of Vision", npc = 2984, npcName = "Seer Wiserunner", map = 1412, zone = "Mulgore", x = 32.7, y = 36.1 }, -- 80
+        { type = "ACCEPT", quest = 773, questName = "Rite of Wisdom", npc = 2984, npcName = "Seer Wiserunner", map = 1412, zone = "Mulgore", x = 32.7, y = 36.1 }, -- 81
+        { type = "COMPLETE", quest = 760, questName = "Wildmane Cleansing", target = "Cleanse the Wildmane Well", map = 1412, zone = "Mulgore", x = 42.8, y = 14.2, note = "Cleanse the Wildmane Well" }, -- 82
+        { type = "TURNIN", quest = 773, questName = "Rite of Wisdom", npc = 2994, npcName = "Ancestral Spirit", map = 1412, zone = "Mulgore", x = 61.5, y = 21 }, -- 83
+        { type = "ACCEPT", quest = 775, questName = "Journey into Thunder Bluff", npc = 2994, npcName = "Ancestral Spirit", map = 1412, zone = "Mulgore", x = 61.5, y = 21 }, -- 84
+        { type = "ACCEPT", quest = 833, questName = "A Sacred Burial", npc = 3233, npcName = "Lorekeeper Raintotem", map = 1412, zone = "Mulgore", x = 59.9, y = 25.6 }, -- 85
+        { type = "KILL", quest = 833, questName = "A Sacred Burial", npc = 3232, target = "Bristleback Interloper", count = 8, map = 1412, zone = "Mulgore", x = 61.2, y = 22.8, near = true }, -- 86
+        { type = "TURNIN", quest = 833, questName = "A Sacred Burial", npc = 3233, npcName = "Lorekeeper Raintotem", map = 1412, zone = "Mulgore", x = 59.9, y = 25.6 }, -- 87
+        { type = "TURNIN", quest = 760, questName = "Wildmane Cleansing", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 88
+        { type = "ACCEPT", quest = 1656, questName = "A Task Unfinished", npc = 6775, npcName = "Antur Fallow", map = 1412, zone = "Mulgore", x = 38.5, y = 81.6 }, -- 89
+        { type = "TURNIN", quest = 1656, questName = "A Task Unfinished", npc = 6747, npcName = "Innkeeper Kauth", map = 1412, zone = "Mulgore", x = 46.6, y = 61.1, note = "reduced xp (80%) - you out-levelled it" }, -- 90
     },
 })

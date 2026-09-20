@@ -23,6 +23,7 @@ sys.path.insert(0, HERE)
 import foreverdb  # noqa: E402
 
 GOTO = re.compile(r"^\.goto\s+(\d+),\s*([\d.]+),\s*([\d.]+)")
+GOTO_WORLD = re.compile(r"^\.goto\s+(\d+)/(\d+),\s*(-?[\d.]+),\s*(-?[\d.]+)")
 ACCEPT = re.compile(r"^\.accept\s+(\d+)(?:\s*>>\s*Accept\s+(.*))?")
 TURNIN = re.compile(r"^\.turnin\s+(\d+)")
 COMPLETE = re.compile(r"^\.complete\s+(\d+),(\d+)(?:\s*--\s*\|?\s*(.*))?")
@@ -47,7 +48,7 @@ def parse_guide(text):
     for raw in text.splitlines():
         line = raw.strip()
         if line.startswith("step"):
-            cur = {"gotos": [], "accept": [], "turnin": [], "complete": [], "target": None, "mobs": [], "text": [], "click": False, "classes": 0}
+            cur = {"gotos": [], "wgotos": [], "accept": [], "turnin": [], "complete": [], "target": None, "mobs": [], "text": [], "click": False, "classes": 0}
             # "step << Hunter" / "step << Mage/Warlock": class-restricted step
             tag = line.split("<<", 1)[1] if "<<" in line else ""
             for word in re.split(r"[/\s]+", tag.strip()):
@@ -61,6 +62,11 @@ def parse_guide(text):
         m = GOTO.match(line)
         if m:
             cur["gotos"].append((int(m.group(1)), float(m.group(2)), float(m.group(3))))
+            continue
+        m = GOTO_WORLD.match(line)
+        if m:
+            # ".goto map/instance,east-west,north-south" -> world (x = north-south, y = east-west)
+            cur["wgotos"].append((int(m.group(1)), int(m.group(2)), float(m.group(4)), float(m.group(3))))
             continue
         m = ACCEPT.match(line)
         if m:
@@ -90,8 +96,8 @@ def parse_guide(text):
     return steps
 
 
-def harvest(steps, known_pos, want):
-    """want(qid) -> bool: which quest ids to take. Returns quests dict keyed by id."""
+def harvest(steps, known_pos, want, npcs):
+    """want(qid) -> bool: which quest ids to take. Returns quests dict keyed by id; npc positions go into npcs."""
     quests = {}
     prev_gotos = []
     for st in steps:
@@ -103,6 +109,16 @@ def harvest(steps, known_pos, want):
         elif st["gotos"]:
             prev_gotos = st["gotos"]
         tname, tid = st["target"] or (None, None)
+        if tname and (st["accept"] or st["turnin"]) and (st["gotos"] or st["wgotos"]):
+            npcs.setdefault(tname, {"id": tid, "spm": [], "spw": []})
+            if tid and not npcs[tname]["id"]:
+                npcs[tname]["id"] = tid
+            for g in st["gotos"][:1]:
+                if g not in npcs[tname]["spm"]:
+                    npcs[tname]["spm"].append(g)
+            for g in st["wgotos"][:1]:
+                if g not in npcs[tname]["spw"]:
+                    npcs[tname]["spw"].append(g)
         for qid, title in st["accept"]:
             if not want(qid):
                 continue
@@ -162,12 +178,26 @@ def main():
         return qid not in vanilla
 
     found = {}
+    npcs = {}
+    # vanilla NPC names -> ids (unique names only), to attach RestedXP's positions to Questie's records
+    name_to_id = {}
+    dup = set()
+    with open(os.path.join(foreverdb.ROOT, "Data", "NpcDB.lua"), "r", encoding="utf-8", errors="replace") as fh:
+        for line in fh:
+            m = re.match(r"^\[(\d+)\]=\{.*?n=\"((?:[^\"\\]|\\.)*)\"", line)
+            if m:
+                nid, nm = int(m.group(1)), m.group(2).replace('\\"', '"')
+                if nm in name_to_id:
+                    dup.add(nm)
+                name_to_id[nm] = nid
+    for nm in dup:
+        name_to_id.pop(nm, None)
     files = sorted(f for f in os.listdir(folder) if f.lower().endswith(".lua"))
     for fn in files:
         with open(os.path.join(folder, fn), "r", encoding="utf-8", errors="replace") as fh:
             text = fh.read()
         steps = parse_guide(text)
-        got = harvest(steps, None, want)
+        got = harvest(steps, None, want, npcs)
         for qid, q in got.items():
             dst = found.setdefault(qid, {"obj": {}})
             for k in ("n", "start", "fin", "pre"):
@@ -257,6 +287,25 @@ def main():
                     foreverdb.add_point(o.setdefault("spm", {}), mp, [x, y])
                 stats["objs"] += 1
         foreverdb.note_source(rec, "rxp")
+    # NPC positions from every guide step that talks to a named NPC (RestedXP's Forever positions;
+    # the addon and the planner prefer these over Questie's vanilla spot)
+    npc_pos = 0
+    for nm, info in npcs.items():
+        nid = info["id"] or name_to_id.get(nm)
+        if not nid or not (info["spm"] or info["spw"]):
+            continue
+        n = db["npcs"].setdefault(str(nid), {})
+        n["n"] = n.get("n") or nm
+        for mp, x, y in info["spm"]:
+            foreverdb.add_point(n.setdefault("spm", {}), mp, [x, y])
+            npc_pos += 1
+        for mp, inst, wx, wy in info["spw"]:
+            lst = n.setdefault("spw", {}).setdefault(str(mp), [])
+            if [inst, wx, wy] not in lst and len(lst) < foreverdb.MAX_POINTS:
+                lst.append([inst, wx, wy])
+                npc_pos += 1
+        foreverdb.note_source(n, "rxp")
+    stats["npcs"] += npc_pos
     for mp, name in MAP_NAMES.items():
         db["maps"].setdefault(str(mp), {})["name"] = name
     foreverdb.save(db)

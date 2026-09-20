@@ -17,6 +17,7 @@ and evidence is only ever added, never removed.
 """
 
 import glob
+import json
 import os
 import re
 import sys
@@ -64,6 +65,9 @@ def merge_file(path, db, known, stats):
             m["name"] = info["name"]
             if info.get("parent"):
                 m["parent"] = int(info["parent"])
+            b = foreverdb.as_list(info.get("bounds"))
+            if len(b) == 5 and all(isinstance(v, (int, float)) for v in b):
+                stats.setdefault("bounds", {})[str(int(mid))] = {"inst": int(b[0]), "x0": b[1], "y0": b[2], "x1": b[3], "y1": b[4]}
     for e in foreverdb.as_list(rec.get("entries")):
         if not isinstance(e, dict):
             continue
@@ -76,6 +80,10 @@ def merge_file(path, db, known, stats):
         if npc and e.get("npcName") and mid and x is not None:
             n = db["npcs"].setdefault(str(int(npc)), {})
             n["n"] = e["npcName"]
+            if "rec" not in (n.get("src") or []):
+                # first position seen in this game: it replaces anything a guide source said
+                n.pop("spw", None)
+                n["spm"] = {}
             if e.get("npcLevel"):
                 n["lvl"] = int(e["npcLevel"])
             if foreverdb.add_point(n.setdefault("spm", {}), int(mid), [x, y]):
@@ -189,6 +197,20 @@ def main():
             del db["quests"][qid]
     foreverdb.save(db)
     counts = foreverdb.emit_lua(db)
+    # map bounds / sizes for the offline tools (world -> map conversion, yards per map unit)
+    if stats.get("bounds"):
+        bpath = os.path.join(foreverdb.ROOT, "data-src", "mapbounds.json")
+        bounds = {}
+        if os.path.isfile(bpath):
+            with open(bpath, "r", encoding="utf-8") as fh:
+                bounds = json.load(fh)
+        bounds.update(stats["bounds"])
+        with open(bpath, "w", encoding="utf-8") as fh:
+            json.dump(bounds, fh, indent=1, sort_keys=True)
+        sizes = {mid: [abs(b["y0"] - b["y1"]), abs(b["x0"] - b["x1"])] for mid, b in bounds.items()}
+        with open(os.path.join(foreverdb.ROOT, "data-src", "mapsizes.json"), "w", encoding="utf-8") as fh:
+            json.dump(sizes, fh, indent=1, sort_keys=True)
+        print("map bounds known for %d maps -> data-src/mapbounds.json / mapsizes.json" % len(bounds))
     new_q = sum(1 for k in db["quests"] if int(k) not in known["quests"])
     new_n = sum(1 for k in db["npcs"] if int(k) not in known["npcs"])
     print("merged: %(starts)d giver links, %(ends)d turn-in links, %(npc_points)d npc points, %(obj_points)d objective points, %(titles)d titles" % stats)

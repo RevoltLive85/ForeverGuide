@@ -227,9 +227,17 @@ function QG:BuildGuideEntries()
             state = upcoming <= 2 and "available" or "future"
         end
         if idx == cur and G.IsStepBlocked and G:IsStepBlocked(s) and G.note then state = "blocked" end
+        local sub = subtitle(G, s, idx)
+        local gate = G.LevelGate and G:LevelGate(s)
+        local deferred = s.quest and G.progress and G.progress.deferred and G.progress.deferred[s.quest]
+        if state ~= "done" and (gate or (deferred and not ns.Quest:IsOnQuest(s.quest))) then
+            state = "blocked"
+            local q = ns.DB and ns.DB:GetQuest(s.quest)
+            sub = string.format("Needs level %d - skipped until then", gate or (q and q.req) or 0)
+        end
         local e = {
             number = idx, index = idx, step = s, icon = ICON_FOR[s.type] or "accept", state = state,
-            title = rowTitle(G, s), subtitle = subtitle(G, s, idx), questID = s.quest,
+            title = rowTitle(G, s), subtitle = sub, questID = s.quest,
             onClick = function() G:SetStep(idx) end,
             onRightClick = function() if idx == G.current then G:Skip() end end,
         }
@@ -301,7 +309,7 @@ function QG:CreateInfo()
     local ok, p = pcall(CreateFrame, "Frame", "ForeverGuideInfo", UIParent, "BackdropTemplate")
     if not ok or not p then p = CreateFrame("Frame", "ForeverGuideInfo", UIParent) end
     info = p
-    p:SetSize(320, 200)
+    p:SetSize(360, 200)
     p:SetFrameStrata("DIALOG")
     p:EnableMouse(true)
     p:SetMovable(true)
@@ -312,7 +320,7 @@ function QG:CreateInfo()
     Theme.Backdrop(p, "panel", 0.96)
     p.title = Theme.NewText(p, { fancy = true, size = 15, color = Theme.C.goldLight, maxLines = 2 })
     p.title:SetPoint("TOPLEFT", p, "TOPLEFT", 14, -12)
-    p.title:SetPoint("TOPRIGHT", p, "TOPRIGHT", -14, -12)
+    p.title:SetPoint("TOPRIGHT", p, "TOPRIGHT", -44, -12)
     p.body = Theme.NewText(p, { size = 11, color = Theme.C.text, maxLines = 12 })
     p.body:SetPoint("TOPLEFT", p.title, "BOTTOMLEFT", 0, -8)
     p.body:SetPoint("TOPRIGHT", p, "TOPRIGHT", -14, 0)
@@ -320,12 +328,12 @@ function QG:CreateInfo()
     p.skip = Theme.NewButton(p, "Skip", 66, 22, function() ns.Guide:Skip() QG:RefreshInfo() end)
     p.auto = Theme.NewButton(p, "Auto", 66, 22, function() ns.Tracker:SetMode(ns.char.mode == "auto" and "guide" or "auto") QG:RefreshInfo() end)
     p.resync = Theme.NewButton(p, "Resync", 66, 22, function() ns.Commands:Run("resync") QG:RefreshInfo() end)
-    p.close = Theme.NewButton(p, "Close", 66, 22, function() info:Hide() end)
+    p.close = Theme.NewButton(p, "x", 26, 20, function() info:Hide() end)
     p.back:SetPoint("BOTTOMLEFT", p, "BOTTOMLEFT", 12, 10)
-    p.skip:SetPoint("LEFT", p.back, "RIGHT", 4, 0)
-    p.auto:SetPoint("LEFT", p.skip, "RIGHT", 4, 0)
-    p.resync:SetPoint("LEFT", p.auto, "RIGHT", 4, 0)
-    p.close:SetPoint("BOTTOMRIGHT", p, "BOTTOMRIGHT", -12, 10)
+    p.skip:SetPoint("LEFT", p.back, "RIGHT", 6, 0)
+    p.auto:SetPoint("LEFT", p.skip, "RIGHT", 6, 0)
+    p.resync:SetPoint("LEFT", p.auto, "RIGHT", 6, 0)
+    p.close:SetPoint("TOPRIGHT", p, "TOPRIGHT", -8, -8)
     p:Hide()
     return p
 end
@@ -360,8 +368,9 @@ function QG:RefreshInfo()
         lines[#lines + 1] = "Pick a route with the Guides button, or /fg guides. Auto mode tracks your quest log without a guide."
     end
     info.body:SetText(table.concat(lines, "\n"))
-    local h = 48 + (info.body.GetStringHeight and info.body:GetStringHeight() or 60) + 44
-    info:SetHeight(math.max(140, h))
+    local titleH = info.title.GetStringHeight and info.title:GetStringHeight() or 18
+    local bodyH = info.body.GetStringHeight and info.body:GetStringHeight() or 60
+    info:SetHeight(math.max(140, 12 + titleH + 8 + bodyH + 16 + 22 + 12))
     info.back:SetShown(g ~= nil) info.skip:SetShown(g ~= nil) info.resync:SetShown(g ~= nil)
 end
 
