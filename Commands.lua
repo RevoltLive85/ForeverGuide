@@ -26,6 +26,7 @@ local HELP = {
     "/fg arrow on|off    the compact chevron arrow (fallback when the world waypoint cannot show)",
     "/fg path [name|race] follow another race's leveling route (any of your faction's)",
     "/fg waypoint on|off the in-world gold waypoint  |  /fg route on|off  the dotted path to it",
+    "/fg skull on|off  skull over the nearest quest mob  |  /fg skull others|plates on|off",
     "/fg qg <scale|opacity|width|rows|wpsize> <value>   Quest Guide look  |  /fg qg completed|distances|subtitles on|off",
     "/fg minimap on|off  the minimap button",
     "/fg auto [accept on|off|guide] [turnin on|off]   auto-accept / auto-turn-in quests (hold SHIFT at an NPC to do it by hand)",
@@ -178,6 +179,46 @@ function handlers.qg(rest)
     else
         ns.Print("/fg qg scale|opacity|width|rows|wpsize <value>  or  /fg qg completed|distances|subtitles|waypoint|route|wpanim on|off")
     end
+end
+
+--- /fg npdbg [mark] - what the client tells us about the nameplates around (mob marker research)
+function handlers.npdbg(rest)
+    local NP = rawget(_G, "C_NamePlate")
+    if not NP then ns.Print("no C_NamePlate") return end
+    local plates = ns.Safe(NP.GetNamePlates) or {}
+    local px, py = ns.Player:GetWorldPosition()
+    local secret = rawget(_G, "issecretvalue")
+    local function show(v) if secret and secret(v) then return "SECRET" end return tostring(v) end
+    ns.Printf("nameplates: %d (enemies cvar=%s, maxdist=%s)", #plates, tostring(ns.Safe(GetCVar, "nameplateShowEnemies")), tostring(ns.Safe(GetCVar, "nameplateMaxDistance")))
+    for i, plate in ipairs(plates) do
+        local u = plate.namePlateUnitToken or plate.UnitFrame and plate.UnitFrame.unit
+        if u then
+            local x, y = ns.Safe(UnitPosition, u)
+            local d = "?"
+            if type(x) == "number" and type(y) == "number" and px then d = string.format("%.0f", math.sqrt((x - px) ^ 2 + (y - py) ^ 2)) end
+            local cx, cy = plate:GetCenter()
+            ns.Printf("  %s %s tap=%s attack=%s dead=%s mark=%s pos=%s,%s dist=%s screen=%s,%s guid=%s", tostring(u), show(ns.Safe(UnitName, u)),
+                show(ns.Safe(UnitIsTapDenied, u)), show(ns.Safe(UnitCanAttack, "player", u)), show(ns.Safe(UnitIsDead, u)),
+                show(ns.Safe(GetRaidTargetIndex, u)), show(x), show(y), d, cx and string.format("%.0f", cx) or "?", cy and string.format("%.0f", cy) or "?",
+                tostring((ns.Safe(UnitGUID, u) or ""):match("Creature%-0%-%d+%-%d+%-%d+%-(%d+)")))
+            if rest == "mark" and ns.Safe(UnitCanAttack, "player", u) == true then
+                local ok, err = pcall(SetRaidTarget, u, 8)
+                ns.Printf("  SetRaidTarget(%s, 8): %s %s -> now %s", u, tostring(ok), tostring(err), show(ns.Safe(GetRaidTargetIndex, u)))
+                rest = nil
+            end
+        end
+    end
+end
+
+function handlers.skull(rest)
+    rest = (rest or ""):lower()
+    local key = "skull"
+    if rest:match("^plates") then key = "skullplates" rest = rest:gsub("^plates%s*", "")
+    elseif rest:match("^others") then key = "skullothers" rest = rest:gsub("^others%s*", "") end
+    local on
+    if rest == "on" then on = true elseif rest == "off" then on = false end
+    local ok, msg = ns.QuestGuideConfig.SetToggle(key, on)
+    ns.Print(msg)
 end
 
 function handlers.wpdbg()

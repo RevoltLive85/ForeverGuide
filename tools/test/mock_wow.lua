@@ -163,6 +163,7 @@ _G.UnitClass = function() return unpack(world.class) end
 _G.UnitRace = function() return unpack(world.race) end
 _G.UnitName = function(unit)
     if unit == "player" then return "Tester" end
+    if world.plates and world.plates[unit] then return world.plates[unit].name end
     local u = unit == "npc" and world.npc or world.target
     return u and u.name
 end
@@ -174,11 +175,35 @@ _G.UnitExists = function(unit)
 end
 _G.UnitGUID = function(unit)
     if unit == "player" then return "Player-1-000001" end
+    if world.plates and world.plates[unit] then return world.plates[unit].guid end
     local u = unit == "npc" and world.npc or world.target
     return u and ("Creature-0-1-1-1-" .. u.npcID .. "-0000000001")
 end
 _G.UnitIsPlayer = function(unit) if unit == "questnpc" or unit == "npc" then return world.offerFromPlayer == true end return false end
-_G.UnitIsDead = function() return false end
+_G.UnitIsDead = function(unit) local p = world.plates and world.plates[unit] return p and p.dead == true or false end
+-- ---- nameplates: world.plates["nameplate1"] = { name, tagged, dead, quest, scale, y } ---
+world.plates = {}
+_G.UnitCanAttack = function(_, unit) local p = world.plates[unit] return p ~= nil and p.friendly ~= true end
+_G.UnitIsTapDenied = function(unit) local p = world.plates[unit] return p and p.tagged == true or false end
+_G.C_NamePlate = {
+    GetNamePlates = function()
+        local out = {}
+        local keys = {}
+        for u in pairs(world.plates) do keys[#keys + 1] = u end
+        table.sort(keys)
+        for _, u in ipairs(keys) do
+            local p = world.plates[u]
+            p.frame = p.frame or NewRegion("Frame")
+            p.frame.namePlateUnitToken = u
+            p.frame.GetScale = function() return p.scale or 1 end
+            p.frame.GetCenter = function() return 640, p.y or 400 end
+            out[#out + 1] = p.frame
+        end
+        return out
+    end,
+    GetNamePlateForUnit = function(unit) local p = world.plates[unit] return p and p.frame end,
+}
+
 _G.UnitReaction = function(_, unit)
     local u = unit == "npc" and world.npc or world.target
     return u and (u.hostile and 2 or 5)
@@ -221,7 +246,7 @@ do
     stf.DistanceText.alpha = 1
     function stf:GetRegions() return self.Icon, self.DistanceText end
     function stf:GetChildren() return end
-    function stf:GetCenter() return world.pinX or 640, world.pinY or 420 end
+    function stf:GetCenter() return world.pinX or 640, world.pinY or 360 end
     function stf:IsShown() return world.superTrack == true end
     function stf:IsVisible() return world.superTrack == true end
     stf.Icon.GetAlpha = function(self) return self.alpha or 1 end
@@ -270,7 +295,7 @@ _G.C_QuestLog = {
     RequestLoadQuestByID = function() end,
     GetNextWaypoint = function() return nil end,
     GetMaxNumQuestsCanAccept = function() return 20 end,
-    UnitIsRelatedToActiveQuest = function() return false end,
+    UnitIsRelatedToActiveQuest = function(unit) local p = world.plates and world.plates[unit] return p and p.quest == true or false end,
 }
 _G.C_Item = { GetItemCount = function(id) return world.items[id] or 0 end }
 _G.C_SpellBook = { IsSpellKnown = function(id) return world.spells[id] == true end }
@@ -282,6 +307,12 @@ local function fire(event, ...)
     for _, f in ipairs(frames) do
         if f.events[event] and f.scripts.OnEvent then f.scripts.OnEvent(f, event, ...) end
     end
+end
+
+function _G.MOCK_PLATE(unit, def)
+    world.plates[unit] = def
+    if def and def.guid == nil then def.guid = "Creature-0-1-1-1-" .. (def.npcID or 0) .. "-" .. unit end
+    fire("NAME_PLATE_UNIT_" .. (def and "ADDED" or "REMOVED"), unit)
 end
 _G.MOCK_FIRE = fire
 
@@ -336,7 +367,9 @@ end
 
 
 -- ---- CVars (addon-registered ones persist in config-cache.wtf) ---------------
-world.cvars = {}
+world.cvars = { nameplateShowEnemies = "0" }
+_G.GetCVar = function(name) return world.cvars[name] end
+_G.SetCVar = function(name, value) return _G.C_CVar.SetCVar(name, value) end
 _G.C_CVar = {
     RegisterCVar = function(name, default) if world.cvars[name] == nil then world.cvars[name] = default or "" end end,
     SetCVar = function(name, value) if world.cvars[name] == nil then return false end world.cvars[name] = tostring(value or "") return true end,

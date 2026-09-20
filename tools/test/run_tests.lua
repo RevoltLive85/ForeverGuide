@@ -514,6 +514,42 @@ do
     check(cur() == 5, "two TRAVEL steps to the same spot both complete on arrival (" .. tostring(cur()) .. ")")
 end
 
+-- ---- skulls over quest mobs ----------------------------------------------------------------
+do
+    ns.RegisterGuide({ id = "AUDIT_SKULL", name = "skull", steps = {
+        { type = "ACCEPT", quest = 11 },
+        { type = "KILL", quest = 11, target = "Kobold Vermin", npc = 6, near = true },
+        { type = "TURNIN", quest = 11 } } })
+    if ns.Quest:IsOnQuest(11) then MOCK_ABANDON(11); settle() end
+    G:Activate("AUDIT_SKULL", true); settle()
+    MOCK_ACCEPT(11, "Riverpaw Gnoll Bounty", { { text = "Kobold Vermin slain", finished = false, numFulfilled = 0, numRequired = 10 } }); settle()
+    check(cur() == 2 and step().type == "KILL", "skull test: on the kill step (cur=" .. tostring(cur()) .. " lvl=" .. tostring(ns.Player:GetLevel()) .. " deferred=" .. tostring(next(G.progress.deferred or {})) .. " note=" .. tostring(G.note) .. ")")
+    local names = ns.MobMarker:WantedNames()
+    check(names["kobold vermin"] == true, "the kill step wants Kobold Vermin")
+    MOCK_PLATE("nameplate1", { name = "Kobold Vermin", npcID = 6, scale = 0.8, y = 500 })   -- far
+    MOCK_PLATE("nameplate2", { name = "Kobold Vermin", npcID = 6, scale = 1.0, y = 300 })   -- near
+    MOCK_PLATE("nameplate3", { name = "Kobold Worker", npcID = 257, scale = 1.0, y = 320, quest = true })  -- another quest's mob
+    MOCK_PLATE("nameplate4", { name = "Young Wolf", npcID = 299, scale = 1.0, y = 310 })     -- not a quest mob
+    settle(); ns.MobMarker:Scan()
+    local prim
+    ns.Events:Register("FG_MOB_MARKED", function(_, guid, unit) prim = unit end)
+    ns.MobMarker:Scan()
+    check(ns.MobMarker.primaryUnit == "nameplate2", "the nearest untagged quest mob gets the big skull (" .. tostring(ns.MobMarker.primaryUnit) .. ")")
+    check(ns.MobMarker.markedCount == 3, "the other quest mobs get small skulls, the wolf none (" .. tostring(ns.MobMarker.markedCount) .. ")")
+    check(GetCVar("nameplateShowEnemies") == "1", "enemy nameplates were switched on for the kill step")
+    MOCK_PLATE("nameplate2", { name = "Kobold Vermin", npcID = 6, scale = 1.0, y = 300, tagged = true }); ns.MobMarker:Scan()
+    check(ns.MobMarker.primaryUnit == "nameplate1", "a tagged mob loses the big skull to the next one (" .. tostring(ns.MobMarker.primaryUnit) .. ")")
+    MOCK_PLATE("nameplate1", { name = "Kobold Vermin", npcID = 6, scale = 0.8, y = 500, tagged = true }); ns.MobMarker:Scan()
+    check(ns.MobMarker.primaryUnit == nil and ns.MobMarker.markedCount == 3, "all tagged: no big skull, small skulls stay")
+    ns.Commands:Run("skull off"); ns.MobMarker:Scan()
+    check(ns.MobMarker.markedCount == 0 and GetCVar("nameplateShowEnemies") == "0", "/fg skull off removes the skulls and restores the nameplate setting")
+    ns.Commands:Run("skull on")
+    MOCK_ABANDON(11); settle()
+    ns.MobMarker:Scan()
+    check(GetCVar("nameplateShowEnemies") == "0", "leaving the kill step restores enemy nameplates (step=" .. tostring(step() and step().type) .. " cvar=" .. tostring(GetCVar("nameplateShowEnemies")) .. ")")
+    for i = 1, 4 do MOCK_PLATE("nameplate" .. i, nil) end
+end
+
 -- ---- editor + resync -------------------------------------------------------------------
 do
     G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); G:SetStep(1); settle()

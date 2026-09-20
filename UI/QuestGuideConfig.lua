@@ -53,6 +53,12 @@ Config.TOGGLES = {
                    set = function(v) Config.Waypoint().route = v Config.Apply() end },
     wpanim     = { label = "waypoint animation", get = function() return Config.Waypoint().animate ~= false end,
                    set = function(v) Config.Waypoint().animate = v Config.Apply() end },
+    skull      = { label = "skull over the nearest quest mob", get = function() return ns.MobMarker and ns.MobMarker.Cfg().enabled ~= false end,
+                   set = function(v) if ns.MobMarker then ns.MobMarker:SetEnabled(v) end end },
+    skullothers = { label = "small skulls over the other quest mobs around", get = function() return ns.MobMarker and ns.MobMarker.Cfg().others ~= false end,
+                   set = function(v) if ns.MobMarker then ns.MobMarker.Cfg().others = v ns.MobMarker:Scan() end end },
+    skullplates = { label = "switch enemy nameplates on during kill steps (needed for the skulls)", get = function() return ns.MobMarker and ns.MobMarker.Cfg().plates ~= false end,
+                   set = function(v) if ns.MobMarker then ns.MobMarker.Cfg().plates = v ns.MobMarker:Scan() end end },
     wpengine   = { label = "waypoint on the client's own pin (off: the Forever client cannot project it)", get = function() return Config.Waypoint().engine == true end,
                    set = function(v) Config.Waypoint().engine = v if ns.Waypoint then ns.Waypoint:Tick() end end },
     map        = { label = "hide the Quest Guide while the world map is open", get = function() return ns.db.ui.hideOnMap ~= false end,
@@ -84,6 +90,11 @@ function Config.OptionItems()
     end
     items[#items + 1] = { header = "Waypoint" }
     for _, key in ipairs({ "waypoint", "route", "wpanim", "wpengine" }) do
+        local t = Config.TOGGLES[key]
+        items[#items + 1] = { key = "qg_" .. key, label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
+    end
+    items[#items + 1] = { header = "Quest mobs" }
+    for _, key in ipairs({ "skull", "skullothers", "skullplates" }) do
         local t = Config.TOGGLES[key]
         items[#items + 1] = { key = "qg_" .. key, label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
     end

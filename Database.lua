@@ -47,6 +47,11 @@ local DEFAULTS = {
             animate = true,
             route = true,         -- the dotted path towards it
         },
+        skull = {                 -- skulls over quest mobs (UI/MobMarker.lua)
+            enabled = true,
+            others = true,        -- small skulls over the other quest mobs around
+            plates = true,        -- switch enemy nameplates on during kill steps
+        },
     },
     recorder = {
         enabled = true,           -- Phase 10: quietly record quest/NPC/coordinate data

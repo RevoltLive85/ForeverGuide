@@ -251,6 +251,95 @@ function WP:BearingPosition(state)
     local cx, cy, pinned = rayClamp(px, py, x, y, w, h)
     return cx, cy, a, pinned
 end
+-- ------------------------------------------------------------
+-- Camera direction from the engine's own pin.
+-- The client cannot project the waypoint (NavigationState Invalid) but it
+-- still pushes SuperTrackedFrame onto an ellipse (500 x 200 UI units) around
+-- the screen centre, along the SCREEN direction of the target as seen by the
+-- camera - measured 2026-09-20 in Redridge: turning the character 8 times
+-- walked the frame around that ellipse, and orbiting the camera with the
+-- left mouse button moved it while the facing did not. That direction is the
+-- one thing the player-facing API cannot give us: which way the CAMERA
+-- looks. We invert it through the same chase-camera model (pitch ENGINE_PITCH,
+-- camera GetCameraZoom() yards back, target roughly at the player's ground
+-- height) to get the target's bearing relative to the camera, then use that
+-- bearing instead of the facing-relative one when the two disagree.
+-- ------------------------------------------------------------
+local ENGINE_PITCH = math.rad(25)      -- fitted to the Redridge samples (rms 2.5 deg)
+local CAMERA_SNAP = math.rad(10)       -- within this of the facing: trust the facing exactly
+local camOffset, camOffsetAt = 0, 0
+
+function WP:EngineDirection()
+    if not stf or not ns.Navigation.ownsWaypoint then return nil end
+    local ok, shown = pcall(stf.IsShown, stf)
+    if not ok or not shown then return nil end
+    local cx, cy = stf:GetCenter()
+    local ui = rawget(_G, "UIParent")
+    if not cx or not ui then return nil end
+    local ux, uy = ui:GetCenter()
+    if not ux then return nil end
+    local s = (stf.GetEffectiveScale and stf:GetEffectiveScale() or 1) / (ui.GetEffectiveScale and ui:GetEffectiveScale() or 1)
+    local dx, dy = cx * s - ux, cy * s - uy
+    if dx * dx + dy * dy < 400 then return nil end   -- parked on the centre: no direction in it
+    return math.atan2(dx, dy)                         -- 0 = up, positive = right (clockwise)
+end
+
+-- screen direction the engine would report for a target `d` yards away at `theta`
+-- (positive = left) relative to the camera's forward axis
+local function modelDirection(theta, d, D, sinp, cosp, h)
+    local X = -d * math.sin(theta)
+    local up = (D + d * math.cos(theta)) * sinp + h * cosp
+    return math.atan2(X, up)
+end
+
+local function wrap(a)
+    while a > math.pi do a = a - 2 * math.pi end
+    while a < -math.pi do a = a + 2 * math.pi end
+    return a
+end
+
+--- The target's bearing relative to the camera (positive = left), or nil when the
+--- engine gives no usable direction. `facingAngle` is the facing-relative bearing
+--- (used to pick between mirror solutions).
+function WP:CameraBearing(psi, d, facingAngle)
+    if not psi or not d then return nil end
+    local zoom = ns.PlainNumber(ns.Safe(rawget(_G, "GetCameraZoom"))) or 15
+    if zoom < 5 then zoom = 5 elseif zoom > 40 then zoom = 40 end
+    local sinp, cosp = math.sin(ENGINE_PITCH), math.cos(ENGINE_PITCH)
+    local h = -(zoom * sinp + 1.5) - 4                -- camera above a spot a little below the player's feet
+    local best, bestCost
+    local function try(theta)
+        local diff = wrap(modelDirection(theta, d, zoom, sinp, cosp, h) - psi)
+        local prior = facingAngle and wrap(theta - facingAngle) or 0
+        local cost = diff * diff + 0.03 * prior * prior
+        if not bestCost or cost < bestCost then best, bestCost = theta, cost end
+    end
+    for i = -60, 60 do try(i * math.pi / 60) end       -- 3 degree scan
+    local coarse = best
+    for i = -6, 6 do try(coarse + i * math.pi / 360) end -- half-degree refinement
+    return best
+end
+
+--- Facing-relative state -> camera-relative state (same table when nothing changes).
+function WP:CameraCorrected(st)
+    if not st or not st.angle or not st.distance or cfg().camera == false then return st end
+    local psi = self:EngineDirection()
+    local now = ns.Now()
+    if psi then
+        local theta = self:CameraBearing(psi, st.distance, st.angle)
+        if theta then
+            local c = wrap(theta - st.angle)
+            if now - camOffsetAt > 1 then camOffset = c else camOffset = camOffset + 0.35 * wrap(c - camOffset) end
+            camOffsetAt = now
+        end
+    elseif now - camOffsetAt > 1 then
+        camOffset = 0
+    end
+    self.cameraOffset = camOffset
+    if math.abs(camOffset) < CAMERA_SNAP then return st end
+    return { angle = wrap(st.angle + camOffset), distance = st.distance, arrived = st.arrived, method = st.method }
+end
+
 WP.PlayerScreenPoint = function() return playerPoint(screenSize()) end
 
 --- /fg wpdbg - everything that decides where the diamond goes, for bug reports.
@@ -288,6 +377,8 @@ function WP:Debug()
     end
     local px, py, pi = ns.Player:GetWorldPosition()
     ns.Printf("  target: %s map=%s %s,%s world=%s,%s inst=%s | player world=%s,%s inst=%s map=%s", tostring(t and t.label), tostring(t and t.map), f(t and t.x), f(t and t.y), f(t and t.worldX), f(t and t.worldY), tostring(t and t.instanceID), f(px), f(py), tostring(pi), tostring(ns.Player:GetMapID()))
+    local psi = self:EngineDirection()
+    ns.Printf("  camera: engine dir=%s deg, offset from facing=%s deg", psi and f(math.deg(psi)) or "none", f(math.deg(self.cameraOffset or 0)))
     ns.Printf("  our state: distance=%s angle=%s method=%s | overlay mode=%s shown=%s at %s,%s", f(st and st.distance), f(st and st.angle), tostring(st and st.method), tostring(self.mode), tostring(overlay and overlay:IsShown()), f(overlay and overlay:GetCenter()), f(overlay and select(2, overlay:GetCenter())))
 end
 
@@ -307,7 +398,7 @@ function WP:Tick()
             end
         end
         if not x then
-            local st = Nav:Update(true)
+            local st = self:CameraCorrected(Nav:Update(true))
             local bx, by, _, pinned = self:BearingPosition(st)
             if bx then
                 x, y = bx, by

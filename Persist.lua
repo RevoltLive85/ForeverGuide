@@ -187,7 +187,7 @@ function Persist:DecodeChar(s)
 end
 
 -- ---- account settings + edits ----------------------------------------------------
-local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "rec", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "w", "ht", "hm", "sc", "sd", "ss", "e" }
+local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "rec", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "sk", "so", "sp", "w", "ht", "hm", "sc", "sd", "ss", "e" }
 
 function Persist:EncodeAcct()
     local db = ns.db
@@ -201,6 +201,8 @@ function Persist:EncodeAcct()
         wp = b01(nav.waypoint == nil or nav.waypoint.enabled ~= false), rt = b01(nav.waypoint == nil or nav.waypoint.route ~= false),
         wa = b01(nav.waypoint == nil or nav.waypoint.animate ~= false), ws = nav.waypoint and nav.waypoint.size,
         we = b01(nav.waypoint ~= nil and nav.waypoint.engine == true),
+        sk = b01(nav.skull == nil or nav.skull.enabled ~= false), so = b01(nav.skull == nil or nav.skull.others ~= false),
+        sp = b01(nav.skull == nil or nav.skull.plates ~= false),
         ar = b01(arrow.enabled ~= false), ap = arrow.point, ax = arrow.x, ay = arrow.y, as = arrow.scale,
         mm = b01(mm.shown ~= false), ma = mm.angle,
         bliz = b01(nav.blizzardWaypoint), rad = nav.arrivalRadius,
@@ -249,6 +251,10 @@ function Persist:DecodeAcct(s)
     if t.wa then nav.waypoint.animate = bool(t.wa) end
     if num(t.ws) then nav.waypoint.size = num(t.ws) end
     if t.we then nav.waypoint.engine = bool(t.we) end
+    nav.skull = nav.skull or { enabled = true, plates = true, others = true }
+    if t.sk then nav.skull.enabled = bool(t.sk) end
+    if t.so then nav.skull.others = bool(t.so) end
+    if t.sp then nav.skull.plates = bool(t.sp) end
     if num(t.fs) then ui.fontSize = num(t.fs) end
     if t.ar then arrow.enabled = bool(t.ar) end
     if t.ap and t.ap ~= "" then arrow.point = t.ap end

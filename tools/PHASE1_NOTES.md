@@ -357,3 +357,22 @@ Confirmed and fixed (each with a regression test; 183 tests):
   later test (restored now).
 Known limitation (not a bug): the in-world marker's direction is relative to the character's facing, not the camera -
 no camera-yaw API exists; a left-drag camera orbit around a standing character does not update it, moving does.
+
+## Update 2026-09-20 (late) — camera-aware marker, skulls over quest mobs (v0.3.3)
+- Ilya: "when I right-click-rotate the marker updates, when I left-click-rotate the camera it does not" — solved.
+  There is no camera-yaw API, but the engine still moves SuperTrackedFrame for the (Invalid) user waypoint: it parks
+  it on an ELLIPSE (500 x 200 UI units) around the screen centre along the target's SCREEN direction as the camera
+  sees it. Measured by turning the character in 8 steps (frame walks around the ellipse) and by orbiting the camera
+  with the left button (frame moves, facing does not). `Waypoint:EngineDirection()` reads that direction,
+  `CameraBearing()` inverts it through the chase-camera model (pitch 25 deg fitted, rms 2.5 deg over 9 samples,
+  recovered camera offset 41-60 deg for a true ~55) and `CameraCorrected()` swaps the facing-relative bearing for the
+  camera-relative one when they differ by more than 10 deg (smoothed 0.35/tick). `/fg wpdbg` prints both.
+- Skulls (Ilya: "like RestedXP: closest targetable quest mob, switch if tagged, also other quest mobs near"):
+  `SetRaidTarget` is ADDON_ACTION_FORBIDDEN on this client (RXP disables its markers on >= 12.0 for the same reason),
+  so UI/MobMarker.lua draws its own skull textures anchored to enemy nameplates. Wanted names come from the current
+  KILL/COLLECT/COMPLETE step (target parts, step npc, DB objective npc / item-dropping npcs); other quest mobs via
+  C_QuestLog.UnitIsRelatedToActiveQuest. Big pulsing skull = nearest untagged wanted mob (your current target wins;
+  "nearest" = nameplate scale, then lower on screen - UnitPosition is nil for non-group units here); small skulls on
+  the rest. Enemy nameplates (cvar nameplateShowEnemies, 45 yd here) are switched on during kill steps and restored
+  after / on logout (`plates` setting). Settings mirrored (`sk so sp`), `/fg skull`, options panel section.
+  Tests: nameplate mock (MOCK_PLATE), 192 tests.
