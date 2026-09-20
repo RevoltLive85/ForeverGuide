@@ -438,3 +438,8 @@ no camera-yaw API exists; a left-drag camera orbit around a standing character d
   >= 2 other players or any tagged mob around, below the crowded threshold. To actually see the players, friendly
   PLAYER nameplates (nameplateShowFriends=1, NPC/pet/guardian/totem/minion sub-cvars 0) are switched on during
   kill steps and restored after (`/fg skull friends off`, option "show other players' nameplates"). 239 tests.
+- Crowd banner layout (Ilya: "visual bug" - title ran under the x button, sub text cut off): 560 wide, title
+  anchored RIGHT to the close button's LEFT, sub wraps to 2 lines (maxLines) anchored RIGHT to the leftmost visible
+  button, `Layout(f, showInvite, showGo)` re-anchors and grows the frame from GetStringHeight (min 58). Title
+  shortened to "Group up - kill credit is shared", the player count lives in the sub line. `/fg crowd test` previews
+  the banner for 10 s (`Crowd:Preview`, Update() is held while `Crowd.preview`); `/fg crowd on|off`. v0.3.6, 241 tests.
