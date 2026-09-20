@@ -33,6 +33,7 @@ Guide.lua
 Tracker.lua
 Corpse.lua
 Bags.lua
+ItemTips.lua
 Recorder.lua
 Data\VanillaQuestIDs.lua
 Scanner.lua

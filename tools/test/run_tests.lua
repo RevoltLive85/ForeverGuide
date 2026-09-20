@@ -584,6 +584,23 @@ do
     check(not ForeverGuideBagBanner:IsShown(), "room again: the banner goes away")
 end
 
+-- ---- item tooltips ------------------------------------------------------------------------------
+do
+    -- Riverpaw Gnoll Bounty (11) collects Painted Gnoll Armband (782)
+    if not ns.Quest:IsOnQuest(11) then MOCK_ACCEPT(11, "Riverpaw Gnoll Bounty", { { text = "Painted Gnoll Armband", finished = false, numFulfilled = 3, numRequired = 8 } }); settle() end
+    local lines = ns.ItemTips:LinesFor(782, "Painted Gnoll Armband")
+    check(#lines >= 1 and lines[1][1]:find("Quest item: Riverpaw Gnoll Bounty (3/8)", 1, true) and lines[1][2] == "log", "an item in the log's objectives is labelled with the quest and progress (" .. tostring(lines[1] and lines[1][1]) .. ")")
+    MOCK_ABANDON(11); settle()
+    lines = ns.ItemTips:LinesFor(782, "Painted Gnoll Armband")
+    check(#lines >= 1 and lines[1][1]:find("Quest item for: Riverpaw Gnoll Bounty", 1, true), "an item a database quest collects is labelled even before the quest is taken (" .. tostring(lines[1] and lines[1][1]) .. ")")
+    -- a Forever-only wording: the live objective names the item, the database does not know it
+    MOCK_ACCEPT(4020, "Redridge Goulash", { { text = "Tough Condor Meat", finished = false, numFulfilled = 1, numRequired = 5 } }); settle()
+    lines = ns.ItemTips:LinesFor(1080, "Tough Condor Meat")
+    check(#lines >= 1 and lines[1][1]:find("Redridge Goulash (1/5)", 1, true), "an item named by a live objective is labelled from the log alone (" .. tostring(lines[1] and lines[1][1]) .. ")")
+    MOCK_ABANDON(4020); settle()
+    do local l = ns.ItemTips:LinesFor(999999, "Broken Sword") check(#l == 0, "an ordinary item gets no line (" .. tostring(l[1] and l[1][1]) .. ")") end
+end
+
 -- ---- skulls over quest mobs ----------------------------------------------------------------
 do
     ns.RegisterGuide({ id = "AUDIT_SKULL", name = "skull", steps = {
