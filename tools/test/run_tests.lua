@@ -538,9 +538,9 @@ do
     check(ns.MobMarker.markedCount == 3, "the other quest mobs get small skulls, the wolf none (" .. tostring(ns.MobMarker.markedCount) .. ")")
     check(GetCVar("nameplateShowEnemies") == "1", "enemy nameplates were switched on for the kill step")
     MOCK_PLATE("nameplate2", { name = "Kobold Vermin", npcID = 6, scale = 1.0, y = 300, tagged = true }); ns.MobMarker:Scan()
-    check(ns.MobMarker.primaryUnit == "nameplate1", "a tagged mob loses the big skull to the next one (" .. tostring(ns.MobMarker.primaryUnit) .. ")")
+    check(ns.MobMarker.primaryUnit == "nameplate1" and ns.MobMarker.markedCount == 2, "a tagged mob loses its skull entirely, the next one gets the big skull (" .. tostring(ns.MobMarker.primaryUnit) .. ", " .. tostring(ns.MobMarker.markedCount) .. ")")
     MOCK_PLATE("nameplate1", { name = "Kobold Vermin", npcID = 6, scale = 0.8, y = 500, tagged = true }); ns.MobMarker:Scan()
-    check(ns.MobMarker.primaryUnit == nil and ns.MobMarker.markedCount == 3, "all tagged: no big skull, small skulls stay")
+    check(ns.MobMarker.primaryUnit == nil and ns.MobMarker.markedCount == 1, "all wanted mobs tagged: no big skull, only the other quest's mob keeps a small one")
     -- in combat the nameplate frames cannot be measured (restricted regions): fall back to interact rings
     MOCK_PLATE("nameplate1", { name = "Kobold Vermin", npcID = 6, restricted = true, dist = 25 })
     MOCK_PLATE("nameplate2", { name = "Kobold Vermin", npcID = 6, restricted = true, dist = 8 })

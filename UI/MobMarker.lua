@@ -16,7 +16,7 @@
 -- "Nearest" without UnitPosition (nil for non-group units here): the
 -- nameplate's engine-set scale, then its height on screen (a chase camera
 -- looks down: lower on screen = closer). A mob tagged by someone else
--- (UnitIsTapDenied) never gets the big skull.
+-- (UnitIsTapDenied) gets no skull at all.
 -- ============================================================
 
 local _, ns = ...
@@ -215,10 +215,10 @@ function MM:Scan()
             local lower = name and string.lower(name)
             local isWanted = lower and names[lower] == true
             local related = isWanted or questRelated(u)
-            if related then
-                local isTagged = tagged(u)
+            -- a mob tagged by someone else is nobody's kill: no skull at all
+            if related and not tagged(u) then
                 local isTarget = targetGUID and ns.PlainString(ns.Safe(UnitGUID, u)) == targetGUID
-                if isWanted and not isTagged then
+                if isWanted then
                     local score = closeness(plate, u) + (isTarget and 5000 or 0)
                     if not bestScore or score > bestScore then
                         if best then others[#others + 1] = best end
