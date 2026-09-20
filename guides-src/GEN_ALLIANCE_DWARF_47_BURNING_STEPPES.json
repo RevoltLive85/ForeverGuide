@@ -1,0 +1,26 @@
+{
+  "id": "GEN_ALLIANCE_DWARF_47_BURNING_STEPPES",
+  "name": "47. Burning Steppes 55-55 (Dwarf)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["Dwarf", "Gnome"],
+  "minLevel": 55,
+  "maxLevel": 55,
+  "map": 1428,
+  "zone": "Burning Steppes",
+  "next": "GEN_ALLIANCE_DWARF_48_WINTERSPRING",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 47 of the Dwarf route: level 55 to 55, 10 steps, ~31 min of play in the model (56710 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1428, "zone": "Burning Steppes", "x": 65.4, "y": 23.3, "radius": 60, "note": "travel to Burning Steppes (Burning Steppes)"},
+    {"type": "ACCEPT", "quest": 4729, "questName": "Kibler's Exotic Pets", "npc": 10260, "npcName": "Kibler", "map": 1428, "zone": "Burning Steppes", "x": 65.9, "y": 21.9},
+    {"type": "ACCEPT", "quest": 4862, "questName": "En-Ay-Es-Tee-Why", "npc": 10260, "npcName": "Kibler", "map": 1428, "zone": "Burning Steppes", "x": 65.9, "y": 21.9},
+    {"type": "ACCEPT", "quest": 4866, "questName": "Mother's Milk", "npc": 9563, "npcName": "Ragged John", "map": 1428, "zone": "Burning Steppes", "x": 65, "y": 23.8},
+    {"type": "TURNIN", "quest": 4729, "questName": "Kibler's Exotic Pets", "npc": 10260, "npcName": "Kibler", "map": 1428, "zone": "Burning Steppes", "x": 65.9, "y": 21.9},
+    {"type": "TURNIN", "quest": 4862, "questName": "En-Ay-Es-Tee-Why", "npc": 10260, "npcName": "Kibler", "map": 1428, "zone": "Burning Steppes", "x": 65.9, "y": 21.9},
+    {"type": "KILL", "quest": 4866, "questName": "Mother's Milk", "npc": 9563, "target": "Ragged John", "count": 1, "map": 1428, "zone": "Burning Steppes", "x": 65, "y": 23.8},
+    {"type": "TURNIN", "quest": 4866, "questName": "Mother's Milk", "npc": 9563, "npcName": "Ragged John", "map": 1428, "zone": "Burning Steppes", "x": 65, "y": 23.8},
+    {"type": "ACCEPT", "quest": 7848, "questName": "Attunement to the Core", "npc": 14387, "npcName": "Lothos Riftwaker", "map": 1428, "zone": "Burning Steppes", "x": 26.4, "y": 24.5},
+    {"type": "TURNIN", "quest": 7848, "questName": "Attunement to the Core", "npc": 14387, "npcName": "Lothos Riftwaker", "map": 1428, "zone": "Burning Steppes", "x": 26.4, "y": 24.5}
+  ]
+}

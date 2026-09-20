@@ -252,6 +252,8 @@ function DB:ApplyOverlay(overlay)
         if f.req and not q.req then q.req = f.req end
         if f.zone and not q.zone then q.zone = f.zone end
         if f.xp and not q.xp then q.xp = f.xp end
+        if f.classes and q.forever then q.classes = f.classes end
+        if f.pre and q.forever and not q.pre then q.pre = f.pre end
         if f.snpc and #f.snpc > 0 and not ((q.snpc and #q.snpc > 0) or (q.sobj and #q.sobj > 0) or (q.sitem and #q.sitem > 0)) then
             q.snpc = {}
             for _, n in ipairs(f.snpc) do AddUnique(q.snpc, n) end
@@ -263,6 +265,7 @@ function DB:ApplyOverlay(overlay)
         -- objective / start evidence is kept separately and only used where vanilla has nothing
         if f.obj then q.fobj = f.obj end
         if f.start then q.fstart = f.start end
+        if f.fin then q.ffin = f.fin end
     end
     return added
 end
@@ -300,7 +303,7 @@ function DB:QuestStarts(questID)
     for _, npc in ipairs(q.snpc or {}) do self:NPCLocations(npc, out) end
     for _, obj in ipairs(q.sobj or {}) do self:ObjectLocations(obj, out) end
     for _, item in ipairs(q.sitem or {}) do self:ItemLocations(item, out) end
-    if #out == 0 and q.fstart then SpawnLocations("start", nil, q.fstart, out, q.n) end
+    if #out == 0 and q.fstart then SpawnLocations("start", nil, q.fstart, out, q.fstart.n or q.n) end
     return out
 end
 
@@ -311,6 +314,7 @@ function DB:QuestEnds(questID)
     if not q then return out end
     for _, npc in ipairs(q.enpc or {}) do self:NPCLocations(npc, out) end
     for _, obj in ipairs(q.eobj or {}) do self:ObjectLocations(obj, out) end
+    if #out == 0 and q.ffin then SpawnLocations("end", nil, q.ffin, out, q.ffin.n or q.n) end
     return out
 end
 

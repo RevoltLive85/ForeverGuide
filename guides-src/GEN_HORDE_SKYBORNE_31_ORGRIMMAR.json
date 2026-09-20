@@ -1,0 +1,24 @@
+{
+  "id": "GEN_HORDE_SKYBORNE_31_ORGRIMMAR",
+  "name": "31. Orgrimmar 50-50 (Skyborne)",
+  "version": 2,
+  "faction": "Horde",
+  "race": ["Skyborne"],
+  "minLevel": 50,
+  "maxLevel": 50,
+  "map": 1454,
+  "zone": "Orgrimmar",
+  "next": "GEN_HORDE_SKYBORNE_32_WESTERN_PLAGUELANDS",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 31 of the Skyborne route: level 50 to 50, 8 steps, ~18 min of play in the model (86402 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1454, "zone": "Orgrimmar", "x": 44.0, "y": 53.6, "radius": 60, "note": "travel to Orgrimmar (Orgrimmar)"},
+    {"type": "ACCEPT", "quest": 4494, "questName": "March of the Silithid", "npc": 7010, "npcName": "Zilzibin Drumlore", "map": 1454, "zone": "Orgrimmar", "x": 56.3, "y": 46.7},
+    {"type": "TURNIN", "quest": 8485, "questName": "The Brokering of Peace", "npc": 4949, "npcName": "Thrall", "map": 1454, "zone": "Orgrimmar", "x": 31.7, "y": 37.8},
+    {"type": "ACCEPT", "quest": 3504, "questName": "Betrayed", "npc": 4485, "npcName": "Belgrom Rockmaul", "map": 1454, "zone": "Orgrimmar", "x": 75.2, "y": 34.2},
+    {"type": "ACCEPT", "quest": 8367, "questName": "For Great Honor", "npc": 15350, "npcName": "Horde Warbringer", "map": 1454, "zone": "Orgrimmar", "x": 80.7, "y": 30.5},
+    {"type": "ACCEPT", "quest": 8369, "questName": "Invaders of Alterac Valley", "npc": 15350, "npcName": "Horde Warbringer", "map": 1454, "zone": "Orgrimmar", "x": 80.7, "y": 30.5},
+    {"type": "TURNIN", "quest": 8367, "questName": "For Great Honor", "npc": 15350, "npcName": "Horde Warbringer", "map": 1454, "zone": "Orgrimmar", "x": 80.7, "y": 30.5},
+    {"type": "TURNIN", "quest": 8369, "questName": "Invaders of Alterac Valley", "npc": 15350, "npcName": "Horde Warbringer", "map": 1454, "zone": "Orgrimmar", "x": 80.7, "y": 30.5}
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "GEN_ALLIANCE_HUMAN_14_IRONFORGE",
+  "name": "14. Ironforge 35-35 (Human)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["Human"],
+  "minLevel": 35,
+  "maxLevel": 35,
+  "map": 1455,
+  "zone": "Ironforge",
+  "next": "GEN_ALLIANCE_HUMAN_15_ARATHI_HIGHLANDS",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 14 of the Human route: level 35 to 35, 5 steps, ~12 min of play in the model (35545 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1455, "zone": "Ironforge", "x": 61.2, "y": 47.4, "radius": 60, "note": "travel to Ironforge (Ironforge)"},
+    {"type": "ACCEPT", "quest": 2930, "questName": "Data Rescue", "npc": 7950, "npcName": "Master Mechanic Castpipe", "map": 1455, "zone": "Ironforge", "x": 69.8, "y": 48.1},
+    {"type": "TURNIN", "quest": 2930, "questName": "Data Rescue", "npc": 7950, "npcName": "Master Mechanic Castpipe", "map": 1455, "zone": "Ironforge", "x": 69.8, "y": 48.1},
+    {"type": "ACCEPT", "quest": 1050, "questName": "Mythology of the Titans", "npc": 3979, "npcName": "Librarian Mae Paledust", "map": 1455, "zone": "Ironforge", "x": 75, "y": 12.5},
+    {"type": "TURNIN", "quest": 1050, "questName": "Mythology of the Titans", "npc": 3979, "npcName": "Librarian Mae Paledust", "map": 1455, "zone": "Ironforge", "x": 75, "y": 12.5}
+  ]
+}

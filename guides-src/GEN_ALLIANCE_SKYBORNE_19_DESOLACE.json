@@ -1,0 +1,25 @@
+{
+  "id": "GEN_ALLIANCE_SKYBORNE_19_DESOLACE",
+  "name": "19. Desolace 41-41 (Skyborne)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["Skyborne"],
+  "minLevel": 41,
+  "maxLevel": 41,
+  "map": 1443,
+  "zone": "Desolace",
+  "next": "GEN_ALLIANCE_SKYBORNE_20_THE_HINTERLANDS",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 19 of the Skyborne route: level 41 to 41, 9 steps, ~41 min of play in the model (36134 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1443, "zone": "Desolace", "x": 66.5, "y": 9.4, "radius": 60, "note": "travel to Desolace (Desolace)"},
+    {"type": "ACCEPT", "quest": 7041, "questName": "Vyletongue Corruption", "npc": 11715, "npcName": "Talendria", "map": 1443, "zone": "Desolace", "x": 68.5, "y": 8.9},
+    {"type": "ACCEPT", "quest": 7028, "questName": "Twisted Evils", "npc": 13656, "npcName": "Willow", "map": 1443, "zone": "Desolace", "x": 62.2, "y": 39.6},
+    {"type": "COLLECT", "quest": 7028, "questName": "Twisted Evils", "target": "Theradric Crystal Carving", "count": 15, "map": 1443, "zone": "Desolace", "x": 35.8, "y": 60.4, "near": true},
+    {"type": "COLLECT", "quest": 7041, "questName": "Vyletongue Corruption", "target": "Filled Cerulean Vial", "map": 1443, "zone": "Desolace", "x": 33.2, "y": 65.7},
+    {"type": "TURNIN", "quest": 7028, "questName": "Twisted Evils", "npc": 13656, "npcName": "Willow", "map": 1443, "zone": "Desolace", "x": 62.2, "y": 39.6},
+    {"type": "TURNIN", "quest": 7041, "questName": "Vyletongue Corruption", "npc": 11715, "npcName": "Talendria", "map": 1443, "zone": "Desolace", "x": 68.5, "y": 8.9},
+    {"type": "ACCEPT", "quest": 7067, "questName": "The Pariah's Instructions", "npc": 13717, "npcName": "Centaur Pariah", "map": 1443, "zone": "Desolace", "x": 50.4, "y": 86.7},
+    {"type": "TURNIN", "quest": 7067, "questName": "The Pariah's Instructions", "npc": 13717, "npcName": "Centaur Pariah", "map": 1443, "zone": "Desolace", "x": 50.4, "y": 86.7}
+  ]
+}

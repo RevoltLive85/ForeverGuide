@@ -1,0 +1,27 @@
+{
+  "id": "GEN_ALLIANCE_SKYBORNE_34_IRONFORGE",
+  "name": "34. Ironforge 50-50 (Skyborne)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["Skyborne"],
+  "minLevel": 50,
+  "maxLevel": 50,
+  "map": 1455,
+  "zone": "Ironforge",
+  "next": "GEN_ALLIANCE_SKYBORNE_35_BURNING_STEPPES",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 34 of the Skyborne route: level 50 to 50, 11 steps, ~26 min of play in the model (76061 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1455, "zone": "Ironforge", "x": 60.7, "y": 47.6, "radius": 60, "note": "travel to Ironforge (Ironforge)"},
+    {"type": "ACCEPT", "quest": 3702, "questName": "The Smoldering Ruins of Thaurissan", "npc": 8879, "npcName": "Royal Historian Archesonus", "map": 1455, "zone": "Ironforge", "x": 38.4, "y": 55.3},
+    {"type": "ACCEPT", "quest": 8371, "questName": "Concerted Efforts", "npc": 15351, "npcName": "Alliance Brigadier General", "map": 1455, "zone": "Ironforge", "x": 70.4, "y": 91.1},
+    {"type": "ACCEPT", "quest": 8375, "questName": "Remember Alterac Valley!", "npc": 15351, "npcName": "Alliance Brigadier General", "map": 1455, "zone": "Ironforge", "x": 70.4, "y": 91.1},
+    {"type": "TURNIN", "quest": 8371, "questName": "Concerted Efforts", "npc": 15351, "npcName": "Alliance Brigadier General", "map": 1455, "zone": "Ironforge", "x": 70.4, "y": 91.1},
+    {"type": "TURNIN", "quest": 8375, "questName": "Remember Alterac Valley!", "npc": 15351, "npcName": "Alliance Brigadier General", "map": 1455, "zone": "Ironforge", "x": 70.4, "y": 91.1},
+    {"type": "KILL", "quest": 3702, "questName": "The Smoldering Ruins of Thaurissan", "npc": 8879, "target": "Royal Historian Archesonus", "count": 1, "map": 1455, "zone": "Ironforge", "x": 38.4, "y": 55.3},
+    {"type": "TURNIN", "quest": 3702, "questName": "The Smoldering Ruins of Thaurissan", "npc": 8879, "npcName": "Royal Historian Archesonus", "map": 1455, "zone": "Ironforge", "x": 38.4, "y": 55.3},
+    {"type": "TURNIN", "quest": 8484, "questName": "The Brokering of Peace", "npc": 2784, "npcName": "King Magni Bronzebeard", "map": 1455, "zone": "Ironforge", "x": 39.1, "y": 56.2},
+    {"type": "TURNIN", "quest": 3368, "questName": "Suntara Stones", "npc": 8256, "npcName": "Curator Thorius", "map": 1455, "zone": "Ironforge", "x": 71.5, "y": 15.7},
+    {"type": "ACCEPT", "quest": 3371, "questName": "Dwarven Justice", "npc": 8256, "npcName": "Curator Thorius", "map": 1455, "zone": "Ironforge", "x": 71.5, "y": 15.7}
+  ]
+}

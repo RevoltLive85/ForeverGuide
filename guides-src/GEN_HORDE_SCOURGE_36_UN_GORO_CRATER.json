@@ -1,0 +1,30 @@
+{
+  "id": "GEN_HORDE_SCOURGE_36_UN_GORO_CRATER",
+  "name": "36. Un'Goro Crater 50-51 (Undead)",
+  "version": 2,
+  "faction": "Horde",
+  "race": ["Scourge"],
+  "minLevel": 50,
+  "maxLevel": 51,
+  "map": 1449,
+  "zone": "Un'Goro Crater",
+  "next": "GEN_HORDE_SCOURGE_37_EASTERN_PLAGUELANDS",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 36 of the Scourge route: level 50 to 51, 14 steps, ~173 min of play in the model (36917 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "GRIND", "npc": 6510, "target": "Bloodpetal Flayer", "level": 51, "map": 1449, "zone": "Un'Goro Crater", "x": 59.9, "y": 61.1, "near": true, "note": "grind Bloodpetal Flayer (level 51-52) to level 51 - nothing worth questing at 50"},
+    {"type": "ACCEPT", "quest": 4301, "questName": "The Mighty U'cha", "npc": 9619, "npcName": "Torwa Pathfinder", "map": 1449, "zone": "Un'Goro Crater", "x": 71.6, "y": 76},
+    {"type": "KILL", "quest": 4301, "questName": "The Mighty U'cha", "npc": 9622, "target": "U'cha", "map": 1449, "zone": "Un'Goro Crater", "x": 68.1, "y": 12.6, "note": "loot U'cha's Pelt"},
+    {"type": "TURNIN", "quest": 4301, "questName": "The Mighty U'cha", "npc": 9619, "npcName": "Torwa Pathfinder", "map": 1449, "zone": "Un'Goro Crater", "x": 71.6, "y": 76},
+    {"type": "ACCEPT", "quest": 974, "questName": "Finding the Source", "npc": 10302, "npcName": "Krakle", "map": 1449, "zone": "Un'Goro Crater", "x": 30.9, "y": 50.4},
+    {"type": "KILL", "quest": 974, "questName": "Finding the Source", "npc": 10541, "target": "Krakle's Thermometer", "count": 1, "map": 1449, "zone": "Un'Goro Crater", "x": 49, "y": 45, "note": "Find the hottest area of Fire Plume Ridge"},
+    {"type": "TURNIN", "quest": 974, "questName": "Finding the Source", "npc": 10302, "npcName": "Krakle", "map": 1449, "zone": "Un'Goro Crater", "x": 30.9, "y": 50.4},
+    {"type": "ACCEPT", "quest": 3908, "questName": "It's a Secret to Everybody", "npc": 8737, "npcName": "Linken", "map": 1449, "zone": "Un'Goro Crater", "x": 44.7, "y": 8.1},
+    {"type": "ACCEPT", "quest": 4492, "questName": "Lost!", "npc": 9997, "npcName": "Spraggle Frock", "map": 1449, "zone": "Un'Goro Crater", "x": 43.6, "y": 8.5},
+    {"type": "COMPLETE", "quest": 4492, "questName": "Lost!", "target": "Escort Ringo to Spraggle Frock at Marshal's Refuge", "map": 1449, "zone": "Un'Goro Crater", "x": 43.7, "y": 8.3, "note": "escort - stay close, it can fail: Escort Ringo to Spraggle Frock at Marshal's Refuge"},
+    {"type": "TURNIN", "quest": 4492, "questName": "Lost!", "npc": 9999, "npcName": "Ringo", "map": 1449, "zone": "Un'Goro Crater", "x": 51.9, "y": 49.9},
+    {"type": "ACCEPT", "quest": 4491, "questName": "A Little Help From My Friends", "npc": 9999, "npcName": "Ringo", "map": 1449, "zone": "Un'Goro Crater", "x": 51.9, "y": 49.9},
+    {"type": "COMPLETE", "quest": 4491, "questName": "A Little Help From My Friends", "target": "Escort Ringo to Spraggle Frock at Marshal's Refuge", "map": 1449, "zone": "Un'Goro Crater", "x": 43.7, "y": 8.3, "note": "escort - stay close, it can fail: Escort Ringo to Spraggle Frock at Marshal's Refuge"},
+    {"type": "TURNIN", "quest": 4491, "questName": "A Little Help From My Friends", "npc": 9997, "npcName": "Spraggle Frock", "map": 1449, "zone": "Un'Goro Crater", "x": 43.6, "y": 8.5}
+  ]
+}

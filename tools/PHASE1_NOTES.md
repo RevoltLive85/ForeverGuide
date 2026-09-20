@@ -227,3 +227,27 @@ after every install via `cc_run` in that folder. Tests: 96 checks.
 - State lives in `ns.db.ui.hiddenAll` (+ `hiddenAllPrev.window`), mirrored in the cvar workaround as `ha`, so it
   survives the beta's SavedVariables bug. `UI:Show()` (any explicit show path) clears the switch.
 - Tests: 119 (15 new: alt-click hide/restore, combat interaction, command, cvar round-trip).
+
+## Update 2026-09-20 — route planner rewrite (v0.3.0), RestedXP cross-reference, Skyborne
+- Old per-zone generator replaced by `tools/plan_route.lua` + `tools/lib/route_model.lua` + `tools/lib/route_data.lua`:
+  time model (yards from map sizes, kill xp/time by mob level, drop rates, escorts, grind rate as the yardstick), one
+  continuous 1-60 route per starting race (8 routes incl. Skyborne A/H), chapters chosen by simulating every candidate
+  zone from the carried state, value-filtered quests (60% of grind rate incl. chain unlock value), abandon rule for
+  stuck deliveries, hearthstone use, GRIND steps with a mob spot. 372 chapters, 3.3 MB compiled.
+- Big bugs found by the harness on the way: chapter candidate set was frozen at chapter start (chain follow-ups never
+  eligible -> thin chapters, 41 h grinding); home-hub turn-ins interleaved with objectives (zig-zag walks); deliveries to
+  out-levelled zones clogging the log; chain starters valued without what they unlock.
+- Modelled totals: ~116 h Alliance / ~118 h Horde without rested xp, dungeons or Forever's new content; 29-35 h of that
+  is grinding, nearly all at 42-44 and 52-60 (Classic's thin non-elite pool there; Forever's 162 new level-60 quests are
+  not routable yet - no positions).
+- Cross-reference (user request): Joana's Horde route (zone order, revisits), expcarry's Forever guide (new zones:
+  Riverglades 35-45 ~200 quests, Zephras Isle Skyborne start, 9 new dungeons, mount granted with riding skill),
+  RestedXP 4.11.x free Forever guides (`Interface\Guides\Forever`, CC BY-NC-SA): `tools/import_rxp.py` takes only the
+  facts - 226 quests: titles, giver/turn-in positions (npc ids where given), objective areas, class tags, inferred
+  chains - into the overlay. 156 Forever quests are now routable, incl. all of Zephras Isle (map 2521, synthetic areaID
+  102521). RXP's paid guides are encrypted and untouched. Our Human 1-11 now does 39 quests vs RXP's 112 for 1-13
+  (theirs includes class quests and Stormwind trips).
+- Engine: `ffin` (turn-in position without npc id), overlay `classes`/`pre` for new quests, tests updated (119).
+- Open: verify in-game that Darkshore-at-11 for humans (the model's pick over Westfall) is really faster; elite quests
+  as optional steps; cross-zone objectives; real quest-log cap (`C_QuestLog.GetMaxNumQuestsCanAccept`); Forever xp
+  values; the recorder should log map sizes (`data-src/mapsizes.json`) for the new maps.

@@ -6609,6 +6609,9 @@
   "1455": {
    "name": "Ironforge",
    "parent": 1415
+  },
+  "2521": {
+   "name": "Zephras Isle"
   }
  },
  "npcs": {
@@ -6757,6 +6760,1032 @@
    "src": [
     "rec"
    ]
+  },
+  "250874": {
+   "n": "Vuldren",
+   "spm": {
+    "2521": [
+     [
+      61.94,
+      68.83
+     ],
+     [
+      59.52,
+      64.85
+     ],
+     [
+      57.04,
+      67.73
+     ],
+     [
+      54.32,
+      75.08
+     ],
+     [
+      51.92,
+      80.46
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "250929": {
+   "n": "Malfunctioning Cyclone Construct",
+   "spm": {
+    "2521": [
+     [
+      49.09,
+      78.36
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ],
+   "starts": [
+    92698
+   ]
+  },
+  "251145": {
+   "n": "Al'Aketh Brute",
+   "spm": {
+    "2521": [
+     [
+      35.75,
+      31.93
+     ],
+     [
+      35.33,
+      34.19
+     ],
+     [
+      37.3,
+      32.89
+     ],
+     [
+      37.16,
+      34.72
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "251160": {
+   "n": "Al'Aketh Convert",
+   "spm": {
+    "2521": [
+     [
+      46.85,
+      17.68
+     ],
+     [
+      48.97,
+      20.86
+     ],
+     [
+      47.41,
+      21.14
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "251166": {
+   "ends": [
+    92467
+   ],
+   "n": "Minor Manifestation of Earth",
+   "spm": {
+    "2521": [
+     [
+      48.8,
+      25.87
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ],
+   "starts": [
+    92468
+   ]
+  },
+  "251245": {
+   "n": "Prideclaw",
+   "spm": {
+    "2521": [
+     [
+      43.07,
+      46.31
+     ],
+     [
+      49.54,
+      34.33
+     ],
+     [
+      47.65,
+      36.29
+     ],
+     [
+      49.75,
+      38.96
+     ],
+     [
+      36.44,
+      50.93
+     ],
+     [
+      34.12,
+      51.6
+     ],
+     [
+      35.12,
+      54.08
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "251261": {
+   "n": "Hippogryph Matriarch",
+   "spm": {
+    "2521": [
+     [
+      36.44,
+      50.93
+     ],
+     [
+      34.12,
+      51.6
+     ],
+     [
+      35.12,
+      54.08
+     ],
+     [
+      35.63,
+      57.34
+     ],
+     [
+      38.61,
+      56.89
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "251374": {
+   "ends": [
+    92466,
+    92468,
+    92484
+   ],
+   "n": "Windshaper Boro",
+   "spm": {
+    "2521": [
+     [
+      42.79,
+      23.57
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ],
+   "starts": [
+    92466,
+    92467
+   ]
+  },
+  "251487": {
+   "ends": [
+    92598
+   ],
+   "n": "Ventaari Brightwish",
+   "spm": {
+    "2521": [
+     [
+      42.61,
+      24.39
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "251523": {
+   "ends": [
+    92517
+   ],
+   "n": "Constable Aonda",
+   "spm": {
+    "2521": [
+     [
+      45.67,
+      45.5
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ],
+   "starts": [
+    93036
+   ]
+  },
+  "251622": {
+   "n": "Flutterfly",
+   "spm": {
+    "2521": [
+     [
+      51.69,
+      83.42
+     ],
+     [
+      50.02,
+      77.66
+     ],
+     [
+      46.69,
+      76.95
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "251661": {
+   "n": "Galestrider",
+   "spm": {
+    "2521": [
+     [
+      43.07,
+      46.31
+     ],
+     [
+      49.54,
+      34.33
+     ],
+     [
+      47.65,
+      36.29
+     ],
+     [
+      49.75,
+      38.96
+     ],
+     [
+      36.44,
+      50.93
+     ],
+     [
+      34.12,
+      51.6
+     ],
+     [
+      35.12,
+      54.08
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "251707": {
+   "n": "Ornery Galestrider",
+   "spm": {
+    "2521": [
+     [
+      46.16,
+      78.04
+     ],
+     [
+      48.92,
+      84.44
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "251902": {
+   "ends": [
+    94411
+   ],
+   "n": "Illaya Amberwind",
+   "spm": {
+    "2521": [
+     [
+      43.52,
+      44.79
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "251903": {
+   "ends": [
+    94413
+   ],
+   "n": "Rathiril Sunlance",
+   "spm": {
+    "2521": [
+     [
+      44.98,
+      46.37
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "251904": {
+   "ends": [
+    93036
+   ],
+   "n": "Sania Silverstream",
+   "spm": {
+    "2521": [
+     [
+      44.83,
+      45.52
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ],
+   "starts": [
+    92529
+   ]
+  },
+  "251905": {
+   "ends": [
+    92553,
+    96646
+   ],
+   "n": "Zerril Softbreeze",
+   "spm": {
+    "2521": [
+     [
+      43.85,
+      43.84
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ],
+   "starts": [
+    92553
+   ]
+  },
+  "251906": {
+   "ends": [
+    92516,
+    93319
+   ],
+   "n": "Teeri Wellwind",
+   "spm": {
+    "2521": [
+     [
+      44.47,
+      44.97
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "251913": {
+   "ends": [
+    97964
+   ],
+   "n": "Aedi Thriceforged",
+   "spm": {
+    "2521": [
+     [
+      44.89,
+      44.36
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "251918": {
+   "n": "Highlands Bandit",
+   "spm": {
+    "2521": [
+     [
+      46.41,
+      38.56
+     ],
+     [
+      49.54,
+      34.33
+     ],
+     [
+      47.65,
+      36.29
+     ],
+     [
+      49.75,
+      38.96
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "251968": {
+   "ends": [
+    92700,
+    92708
+   ],
+   "n": "Ayessa Dawnsinger",
+   "spm": {
+    "2521": [
+     [
+      61.49,
+      76.89
+     ],
+     [
+      59.15,
+      79.79
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ],
+   "starts": [
+    92708,
+    93735
+   ]
+  },
+  "251991": {
+   "ends": [
+    93951,
+    97973
+   ],
+   "n": "Taleen Shimmerthread",
+   "spm": {
+    "2521": [
+     [
+      44.87,
+      44.19
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "251992": {
+   "ends": [
+    97967
+   ],
+   "n": "Fenn Fairweather",
+   "spm": {
+    "2521": [
+     [
+      45.03,
+      48.45
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "251993": {
+   "ends": [
+    92515,
+    97969
+   ],
+   "n": "Indari Sunseam",
+   "spm": {
+    "2521": [
+     [
+      44.69,
+      44.52
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "252155": {
+   "ends": [
+    93926
+   ],
+   "n": "Piecekeeper Vaniel",
+   "spm": {
+    "2521": [
+     [
+      42.33,
+      62.01
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ],
+   "starts": [
+    93927
+   ]
+  },
+  "252172": {
+   "ends": [
+    93318
+   ],
+   "n": "Danarii Bellowveil",
+   "spm": {
+    "2521": [
+     [
+      45.23,
+      45.19
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "252359": {
+   "n": "Lotheluum Starbreeze",
+   "spm": {
+    "2521": [
+     [
+      63.97,
+      75.09
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ],
+   "starts": [
+    94484
+   ]
+  },
+  "252389": {
+   "ends": [
+    94013,
+    94978,
+    94979
+   ],
+   "n": "Quel'ana Quickgale",
+   "spm": {
+    "2521": [
+     [
+      59.57,
+      72.64
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ],
+   "starts": [
+    94013,
+    94050,
+    94978,
+    94979
+   ]
+  },
+  "252448": {
+   "n": "Alvarion Windfield",
+   "spm": {
+    "2521": [
+     [
+      62.1,
+      73.34
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ],
+   "starts": [
+    92679
+   ]
+  },
+  "252800": {
+   "ends": [
+    92679,
+    92682,
+    92683,
+    92684,
+    92685,
+    92693,
+    92698
+   ],
+   "n": "Aamelia Windfield",
+   "spm": {
+    "2521": [
+     [
+      46.71,
+      81.94
+     ],
+     [
+      47.51,
+      78.49
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ],
+   "starts": [
+    92682,
+    92683,
+    92684,
+    92685,
+    92693,
+    92703
+   ]
+  },
+  "252802": {
+   "n": "Hungry Bandit",
+   "spm": {
+    "2521": [
+     [
+      46.16,
+      78.04
+     ],
+     [
+      48.92,
+      84.44
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "252820": {
+   "n": "Bandit Highwayman",
+   "spm": {
+    "2521": [
+     [
+      45.62,
+      72.36
+     ],
+     [
+      43.55,
+      75.0
+     ],
+     [
+      45.76,
+      78.42
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "254344": {
+   "n": "Endaria Mistgaze",
+   "spm": {
+    "2521": [
+     [
+      58.13,
+      78.31
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ],
+   "starts": [
+    93736
+   ]
+  },
+  "254411": {
+   "ends": [
+    94050
+   ],
+   "n": "Quel'dora Quickgale",
+   "spm": {
+    "2521": [
+     [
+      59.6,
+      72.53
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "255534": {
+   "n": "\"Badwind\" Bennic",
+   "spm": {
+    "2521": [
+     [
+      46.41,
+      38.56
+     ],
+     [
+      50.68,
+      34.21
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "255853": {
+   "ends": [
+    94006,
+    94638
+   ],
+   "n": "Urs'endris",
+   "spm": {
+    "2521": [
+     [
+      69.76,
+      61.45
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ],
+   "starts": [
+    94638
+   ]
+  },
+  "256083": {
+   "ends": [
+    93735
+   ],
+   "n": "Riaani Nightwind",
+   "spm": {
+    "2521": [
+     [
+      59.06,
+      72.99
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ],
+   "starts": [
+    93737
+   ]
+  },
+  "256935": {
+   "n": "Malduko Cloudcrush",
+   "spm": {
+    "2521": [
+     [
+      37.04,
+      32.93
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "257006": {
+   "n": "Nyalah Brightfire",
+   "spm": {
+    "2521": [
+     [
+      60.64,
+      72.66
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ],
+   "starts": [
+    93317
+   ]
+  },
+  "257018": {
+   "ends": [
+    97965
+   ],
+   "n": "Naleeia Tattermend",
+   "spm": {
+    "2521": [
+     [
+      43.08,
+      46.31
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "257019": {
+   "ends": [
+    97963
+   ],
+   "n": "Nyassa Swiftdraught",
+   "spm": {
+    "2521": [
+     [
+      43.7,
+      43.43
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "257020": {
+   "ends": [
+    98286
+   ],
+   "n": "Nasalanna Windsinger",
+   "spm": {
+    "2521": [
+     [
+      43.25,
+      43.16
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "257021": {
+   "ends": [
+    97968
+   ],
+   "n": "Halassa Fernbreeze",
+   "spm": {
+    "2521": [
+     [
+      42.97,
+      43.54
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "257022": {
+   "ends": [
+    97970
+   ],
+   "n": "Messana Crestwind",
+   "spm": {
+    "2521": [
+     [
+      44.77,
+      44.57
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "257024": {
+   "ends": [
+    97971
+   ],
+   "n": "Mendalass Tattermend",
+   "spm": {
+    "2521": [
+     [
+      43.3,
+      43.37
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "257065": {
+   "ends": [
+    92529
+   ],
+   "n": "Missionary Jasaan",
+   "spm": {
+    "2521": [
+     [
+      46.88,
+      56.24
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ],
+   "starts": [
+    92528
+   ]
+  },
+  "257521": {
+   "n": "High Order Apprentice",
+   "spm": {
+    "2521": [
+     [
+      46.41,
+      38.56
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "258443": {
+   "n": "Ur'endra",
+   "spm": {
+    "2521": [
+     [
+      54.06,
+      65.53
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ]
+  },
+  "259012": {
+   "n": "Ealaane Nimbuswalker",
+   "spm": {
+    "2521": [
+     [
+      65.96,
+      74.31
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ],
+   "starts": [
+    94896,
+    94897
+   ]
+  },
+  "263664": {
+   "n": "Raan Wildwind",
+   "spm": {
+    "2521": [
+     [
+      41.66,
+      44.78
+     ]
+    ]
+   },
+   "src": [
+    "rxp"
+   ],
+   "starts": [
+    96646,
+    97963,
+    97964,
+    97965,
+    97967,
+    97968,
+    97969,
+    97970,
+    97971,
+    97973,
+    98286
+   ]
   }
  },
  "objects": {},
@@ -6766,6 +7795,78 @@
    "src": [
     "scan"
    ]
+  },
+  "123": {
+   "n": "The Collector",
+   "src": [
+    "rxp"
+   ]
+  },
+  "1642": {
+   "n": "The Tome of Divinity",
+   "src": [
+    "rxp"
+   ]
+  },
+  "1646": {
+   "fin": {
+    "n": "Tiza Battleforge",
+    "spm": {
+     "1455": [
+      [
+       27.62,
+       12.18
+      ]
+     ]
+    }
+   },
+   "n": "The Tome of Divinity",
+   "src": [
+    "rxp"
+   ],
+   "start": {
+    "spm": {
+     "1455": [
+      [
+       27.62,
+       12.18
+      ]
+     ]
+    }
+   }
+  },
+  "1649": {
+   "n": "The Tome of Valor",
+   "src": [
+    "rxp"
+   ],
+   "start": {
+    "n": "Duthorian Rall",
+    "spm": {
+     "1453": [
+      [
+       42.92,
+       34.22
+      ]
+     ]
+    }
+   }
+  },
+  "184": {
+   "n": "Furlbrow's Deed",
+   "src": [
+    "rxp"
+   ],
+   "start": {
+    "spm": {
+     "1429": [
+      [
+       77.3,
+       86.8
+      ]
+     ]
+    }
+   }
   },
   "239": {
    "n": "Westbrook Garrison Needs Help!",
@@ -6877,6 +7978,28 @@
     "scan"
    ]
   },
+  "361": {
+   "n": "A Letter Undelivered",
+   "src": [
+    "rxp"
+   ]
+  },
+  "373": {
+   "n": "The Unsent Letter",
+   "src": [
+    "rxp"
+   ],
+   "start": {
+    "spm": {
+     "1415": [
+      [
+       40.94,
+       79.76
+      ]
+     ]
+    }
+   }
+  },
   "384": {
    "n": "Beer Basted Boar Ribs",
    "src": [
@@ -6938,6 +8061,12 @@
     "scan"
    ]
   },
+  "4264": {
+   "n": "A Crumpled Up Note",
+   "src": [
+    "rxp"
+   ]
+  },
   "432": {
    "n": "Those Blasted Troggs!",
    "src": [
@@ -6969,31 +8098,88 @@
     "scan"
    ]
   },
+  "6564": {
+   "n": "Allegiance to the Old Gods",
+   "src": [
+    "rxp"
+   ]
+  },
   "6843": {
    "n": "Da Foo",
    "src": [
     "scan"
    ]
   },
+  "6922": {
+   "n": "Baron Aquanis",
+   "src": [
+    "rxp"
+   ]
+  },
+  "6981": {
+   "n": "The Glowing Shard",
+   "obj": [
+    {
+     "kind": "event",
+     "text": "Speak with someone in Ratchet about the Glowing Shard"
+    }
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
   "76156": {
+   "classes": 64,
    "lvl": 10,
    "n": "Stalk With The Earthmother",
+   "obj": [
+    {
+     "kind": "object",
+     "name": "Seaforium Mining Charge (5)",
+     "text": "Seaforium Mining Charge (5)"
+    }
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "76160": {
+   "classes": 64,
    "lvl": 11,
    "n": "Stalk With The Earthmother",
+   "obj": [
+    {
+     "kind": "object",
+     "name": "Pine Salve (1)",
+     "text": "Pine Salve (1)"
+    }
+   ],
+   "pre": [
+    76156
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "76240": {
+   "classes": 64,
    "lvl": 11,
    "n": "Stalk With The Earthmother",
+   "obj": [
+    {
+     "kind": "object",
+     "name": "Fish Chunks (1)",
+     "text": "Fish Chunks (1)"
+    }
+   ],
+   "pre": [
+    76160
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "7681": {
@@ -7008,6 +8194,422 @@
    "n": "Hunter test quest2",
    "src": [
     "scan"
+   ]
+  },
+  "770": {
+   "n": "The Demon Scarred Cloak",
+   "src": [
+    "rxp"
+   ]
+  },
+  "77574": {
+   "src": [
+    "rxp"
+   ]
+  },
+  "77582": {
+   "classes": 65,
+   "n": "A Trial of Fitness",
+   "pre": [
+    2383,
+    3065,
+    77588
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77583": {
+   "classes": 8,
+   "n": "Atop the Cliffs",
+   "pre": [
+    77592
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77584": {
+   "classes": 4,
+   "n": "Hunt for the Rune",
+   "pre": [
+    3082,
+    3087,
+    77590
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77585": {
+   "classes": 64,
+   "n": "Icons of Power",
+   "pre": [
+    3084,
+    3089
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77586": {
+   "classes": 256,
+   "n": "Stolen Power",
+   "pre": [
+    3090
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77587": {
+   "classes": 64,
+   "n": "Icons of Power",
+   "pre": [
+    3084,
+    3089
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77588": {
+   "classes": 65,
+   "n": "A Trial of Fitness",
+   "pre": [
+    2383,
+    3065,
+    77582
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77590": {
+   "classes": 4,
+   "n": "Rugged Terrain",
+   "pre": [
+    3082,
+    3087,
+    77584
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77592": {
+   "classes": 8,
+   "n": "Atop the Cliffs",
+   "pre": [
+    77583
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "7761": {
+   "n": "Blackhand's Command",
+   "src": [
+    "rxp"
+   ]
+  },
+  "77620": {
+   "fin": {
+    "n": "Khelden Bremen",
+    "spm": {
+     "1429": [
+      [
+       48.79,
+       41.58
+      ]
+     ]
+    }
+   },
+   "n": "Spell Research",
+   "pre": [
+    3104
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77642": {
+   "classes": 16,
+   "n": "Wisdom of the Loa",
+   "obj": [
+    {
+     "kind": "event",
+     "text": "Learn Spell: Engrave Gloves - Penance"
+    }
+   ],
+   "pre": [
+    3085
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77643": {
+   "classes": 128,
+   "n": "Spell Research",
+   "pre": [
+    3086
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77648": {
+   "classes": 1024,
+   "n": "Relics of the Tauren",
+   "pre": [
+    3094
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77649": {
+   "classes": 4,
+   "n": "A Hunter's Strength",
+   "pre": [
+    3092
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77651": {
+   "classes": 1,
+   "n": "Into the Brambles",
+   "pre": [
+    3091
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77652": {
+   "classes": 64,
+   "n": "Icons of Power",
+   "src": [
+    "rxp"
+   ]
+  },
+  "77655": {
+   "classes": 1,
+   "n": "The Lost Rune",
+   "pre": [
+    3106,
+    3112
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77656": {
+   "classes": 1,
+   "n": "The Lost Rune",
+   "pre": [
+    3106,
+    3112
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77657": {
+   "classes": 2,
+   "fin": {
+    "n": "Bromos Grummner",
+    "spm": {
+     "1426": [
+      [
+       28.79,
+       68.8
+      ]
+     ]
+    }
+   },
+   "n": "Relics of the Light",
+   "pre": [
+    3107
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77658": {
+   "classes": 8,
+   "n": "Thrice Stolen",
+   "pre": [
+    3109,
+    3113
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77659": {
+   "classes": 8,
+   "n": "Thrice Stolen",
+   "pre": [
+    3109,
+    3113
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77660": {
+   "classes": 4,
+   "n": "Trek Through the Caves",
+   "pre": [
+    3108
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77661": {
+   "classes": 16,
+   "fin": {
+    "n": "Branstock Khalder",
+    "spm": {
+     "1426": [
+      [
+       28.92,
+       66.38
+      ]
+     ]
+    }
+   },
+   "n": "Meditation on the Light",
+   "pre": [
+    3110
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77666": {
+   "classes": 256,
+   "fin": {
+    "n": "Alamar Grimm",
+    "spm": {
+     "1426": [
+      [
+       28.79,
+       68.8
+      ]
+     ]
+    }
+   },
+   "n": "Stolen Power",
+   "pre": [
+    3115
+   ],
+   "src": [
+    "rxp"
+   ],
+   "start": {
+    "n": "Alamar Grimm",
+    "spm": {
+     "1426": [
+      [
+       28.79,
+       68.8
+      ]
+     ]
+    }
+   }
+  },
+  "77667": {
+   "fin": {
+    "n": "Marryk Nurribit",
+    "spm": {
+     "1426": [
+      [
+       28.79,
+       68.8
+      ]
+     ]
+    }
+   },
+   "n": "Spell Research",
+   "pre": [
+    3114
+   ],
+   "src": [
+    "rxp"
+   ],
+   "start": {
+    "n": "Marryk Nurribit",
+    "spm": {
+     "1426": [
+      [
+       28.79,
+       68.8
+      ]
+     ]
+    }
+   }
+  },
+  "77668": {
+   "classes": 1,
+   "n": "The Lost Rune",
+   "pre": [
+    3095
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77669": {
+   "classes": 8,
+   "n": "The Scarlet Rune",
+   "pre": [
+    3096
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77670": {
+   "classes": 16,
+   "n": "Meditation on Undeath",
+   "src": [
+    "rxp"
+   ]
+  },
+  "77671": {
+   "n": "Spell Research",
+   "pre": [
+    364,
+    3099,
+    3098,
+    3097
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "77672": {
+   "n": "The Lost Rune",
+   "pre": [
+    364,
+    3099,
+    3098,
+    3097
+   ],
+   "src": [
+    "rxp"
+   ]
+  },
+  "781": {
+   "n": "Attack on Camp Narache",
+   "src": [
+    "rxp"
    ]
   },
   "78124": {
@@ -7220,6 +8822,12 @@
     "scan"
    ]
   },
+  "819": {
+   "n": "Chen's Empty Keg",
+   "src": [
+    "rxp"
+   ]
+  },
   "81953": {
    "lvl": 45,
    "n": "Stonewrought Design",
@@ -7231,6 +8839,30 @@
    "n": "Collin's Test Quest",
    "src": [
     "scan"
+   ]
+  },
+  "830": {
+   "n": "The Admiral's Orders",
+   "src": [
+    "rxp"
+   ]
+  },
+  "832": {
+   "n": "Burning Shadows",
+   "src": [
+    "rxp"
+   ]
+  },
+  "84384": {
+   "n": "Demonic Deceptions",
+   "obj": [
+    {
+     "kind": "kill",
+     "name": "Berserk Owlbeast"
+    }
+   ],
+   "src": [
+    "rxp"
    ]
   },
   "84397": {
@@ -7301,10 +8933,28 @@
    ]
   },
   "86667": {
+   "fin": {
+    "n": "Norric Lochthane",
+    "spm": {
+     "1426": [
+      [
+       70.84,
+       51.78
+      ]
+     ]
+    }
+   },
    "lvl": 20,
    "n": "Snowbound",
+   "obj": [
+    {
+     "kind": "event",
+     "text": "Jar of Snow 1/1"
+    }
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "86758": {
@@ -7346,6 +8996,18 @@
    "n": "Princess Must Die!",
    "src": [
     "scan"
+   ]
+  },
+  "883": {
+   "n": "Lakota'Mani",
+   "src": [
+    "rxp"
+   ]
+  },
+  "884": {
+   "n": "Owatanka",
+   "src": [
+    "rxp"
    ]
   },
   "90902": {
@@ -7516,11 +9178,72 @@
    ]
   },
   "91733": {
+   "fin": {
+    "n": "Ormin Pelford",
+    "spm": {
+     "1429": [
+      [
+       76.5,
+       71.9
+      ]
+     ]
+    }
+   },
    "lvl": 10,
    "n": "Downstream",
+   "obj": [
+    {
+     "kind": "event",
+     "spm": {
+      "1429": [
+       [
+        76.7,
+        82.5
+       ]
+      ]
+     },
+     "text": "Waterlogged Axe 1/1"
+    },
+    {
+     "kind": "event",
+     "spm": {
+      "1429": [
+       [
+        74.3,
+        76.4
+       ]
+      ]
+     },
+     "text": "Waterlogged Saw 1/1"
+    },
+    {
+     "kind": "event",
+     "spm": {
+      "1429": [
+       [
+        77.3,
+        86.8
+       ]
+      ]
+     },
+     "text": "Waterlogged Toolbox 1/1"
+    }
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Ormin Pelford",
+    "spm": {
+     "1429": [
+      [
+       76.5,
+       71.9
+      ]
+     ]
+    }
+   }
   },
   "91738": {
    "lvl": 10,
@@ -7540,20 +9263,67 @@
    "lvl": 2,
    "n": "Nibbled-On Book",
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "spm": {
+     "1429": [
+      [
+       47.6,
+       36.72
+      ]
+     ]
+    }
+   }
   },
   "91743": {
    "n": "Rascally Rodents",
+   "obj": [
+    {
+     "also": [
+      "Kobold Worker",
+      "Kobold Laborer"
+     ],
+     "kind": "kill",
+     "name": "Kobold Vermin",
+     "spm": {
+      "1429": [
+       [
+        47.6,
+        36.72
+       ],
+       [
+        49.22,
+        37.01
+       ],
+       [
+        47.57,
+        34.97
+       ],
+       [
+        49.82,
+        35.16
+       ]
+      ]
+     },
+     "text": "Stolen Book (8)"
+    }
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "91745": {
    "lvl": 3,
    "n": "Mining Consultant",
+   "pre": [
+    91743
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "91746": {
@@ -7572,8 +9342,39 @@
   "91752": {
    "lvl": 3,
    "n": "The Big Picture",
+   "obj": [
+    {
+     "count": 1,
+     "kind": "event",
+     "spm": {
+      "1429": [
+       [
+        47.78,
+        31.54
+       ],
+       [
+        48.66,
+        29.16
+       ],
+       [
+        50.49,
+        26.87
+       ],
+       [
+        48.64,
+        27.35
+       ]
+      ]
+     },
+     "text": "Sack of \"Picture\" Books"
+    }
+   ],
+   "pre": [
+    91745
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "91753": {
@@ -7586,8 +9387,12 @@
   "91758": {
    "lvl": 4,
    "n": "Follow That Kobold!",
+   "pre": [
+    91752
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "91772": {
@@ -7595,24 +9400,78 @@
    "n": "Shhh! We're Hunting Kobolds",
    "obj": [
     {
-     "kind": "event",
-     "text": "Followed Kobold Tracks"
+     "kind": "object",
+     "name": "Followed Kobold Tracks 6/6",
+     "text": "Followed Kobold Tracks 6/6"
     }
    ],
+   "pre": [
+    91758
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "91775": {
    "n": "Book Return",
+   "obj": [
+    {
+     "count": 1,
+     "kind": "kill",
+     "name": "Nimsy",
+     "spm": {
+      "1429": [
+       [
+        41.73,
+        78.02
+       ]
+      ]
+     },
+     "text": "Picture Book: Fun with Elementals"
+    },
+    {
+     "also": [
+      "Kobold Miner"
+     ],
+     "kind": "kill",
+     "name": "Kobold Tunneler",
+     "text": "Lost Book (6)"
+    }
+   ],
+   "pre": [
+    54,
+    91772
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "91777": {
    "n": "Rare Books",
+   "obj": [
+    {
+     "count": 1,
+     "kind": "kill",
+     "name": "Geosculptor Yip",
+     "text": "Geomancy for Curious Young Wizards"
+    },
+    {
+     "count": 1,
+     "kind": "kill",
+     "name": "Mother Fang",
+     "text": "Arcane Explainer: Magical Stuff in Simple Words"
+    }
+   ],
+   "pre": [
+    62,
+    40,
+    91775
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "91858": {
@@ -7687,8 +9546,12 @@
   "92124": {
    "lvl": 2,
    "n": "Book Inventory",
+   "pre": [
+    91741
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "92401": {
@@ -7739,152 +9602,699 @@
    ]
   },
   "92460": {
+   "fin": {
+    "n": "Rorian the Dayseeker",
+    "spm": {
+     "2521": [
+      [
+       42.07,
+       23.49
+      ]
+     ]
+    }
+   },
    "lvl": 1,
    "n": "Coming of Age",
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Ailee Farheart",
+    "spm": {
+     "2521": [
+      [
+       42.82,
+       23.41
+      ]
+     ]
+    }
+   }
   },
   "92461": {
+   "fin": {
+    "n": "Rorian the Dayseeker",
+    "spm": {
+     "2521": [
+      [
+       42.06,
+       23.48
+      ]
+     ]
+    }
+   },
    "lvl": 1,
    "n": "Harmony in Balance",
    "obj": [
     {
-     "kind": "event",
-     "text": "slain"
+     "count": 8,
+     "kind": "kill",
+     "name": "Juvenile Vuldren",
+     "spm": {
+      "2521": [
+       [
+        44.23,
+        26.0
+       ],
+       [
+        46.06,
+        25.33
+       ],
+       [
+        46.77,
+        27.83
+       ],
+       [
+        43.84,
+        28.39
+       ]
+      ]
+     },
+     "text": "Juvenile Vuldren slain"
     }
    ],
+   "pre": [
+    92460
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Rorian the Dayseeker",
+    "spm": {
+     "2521": [
+      [
+       42.07,
+       23.49
+      ]
+     ]
+    }
+   }
   },
   "92462": {
+   "fin": {
+    "n": "Elatrell Featherlight",
+    "spm": {
+     "2521": [
+      [
+       43.44,
+       24.78
+      ]
+     ]
+    }
+   },
    "lvl": 2,
    "n": "Infestation Investigation",
    "obj": [
     {
-     "kind": "event",
-     "text": "slain"
+     "count": 8,
+     "kind": "kill",
+     "name": "Pesky Cirrusfly",
+     "spm": {
+      "2521": [
+       [
+        44.23,
+        26.0
+       ],
+       [
+        46.06,
+        25.33
+       ],
+       [
+        46.77,
+        27.83
+       ],
+       [
+        43.84,
+        28.39
+       ]
+      ]
+     },
+     "text": "Pesky Cirrusfly slain"
     }
    ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Elatrell Featherlight",
+    "spm": {
+     "2521": [
+      [
+       43.44,
+       24.8
+      ]
+     ]
+    }
+   }
   },
   "92463": {
+   "fin": {
+    "n": "Elatrell Featherlight",
+    "spm": {
+     "2521": [
+      [
+       43.44,
+       24.8
+      ]
+     ]
+    }
+   },
    "lvl": 3,
    "n": "The Cirrusfly Queen",
    "obj": [
     {
-     "kind": "event",
-     "text": "slain"
+     "count": 1,
+     "kind": "kill",
+     "name": "Cirrusfly Queen",
+     "spm": {
+      "2521": [
+       [
+        48.41,
+        28.37
+       ]
+      ]
+     },
+     "text": "Cirrusfly Queen slain"
     }
    ],
+   "pre": [
+    92462
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Elatrell Featherlight",
+    "spm": {
+     "2521": [
+      [
+       43.44,
+       24.78
+      ]
+     ]
+    }
+   }
   },
   "92464": {
+   "fin": {
+    "n": "Yala Windwatcher",
+    "spm": {
+     "2521": [
+      [
+       47.29,
+       21.9
+      ]
+     ]
+    }
+   },
    "lvl": 3,
    "n": "Elemental Unrest",
+   "pre": [
+    92461,
+    92474
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Rorian the Dayseeker",
+    "spm": {
+     "2521": [
+      [
+       42.06,
+       23.48
+      ]
+     ]
+    }
+   }
   },
   "92465": {
+   "fin": {
+    "n": "Yala Windwatcher",
+    "spm": {
+     "2521": [
+      [
+       47.29,
+       21.9
+      ]
+     ]
+    }
+   },
    "lvl": 3,
    "n": "Agitators",
    "obj": [
     {
-     "kind": "event",
-     "text": "slain"
+     "also": [
+      "Roiling Winds",
+      "Al'Aketh Convert"
+     ],
+     "count": 7,
+     "kind": "kill",
+     "name": "Al'Aketh Convert",
+     "spm": {
+      "2521": [
+       [
+        46.85,
+        17.68
+       ],
+       [
+        48.97,
+        20.86
+       ],
+       [
+        47.41,
+        21.14
+       ]
+      ]
+     },
+     "text": "Al'Aketh Convert slain"
     },
     {
-     "kind": "event",
+     "also": [
+      "Roiling Winds",
+      "Al'Aketh Convert"
+     ],
+     "count": 6,
+     "kind": "kill",
+     "name": "Al'Aketh Convert",
+     "spm": {
+      "2521": [
+       [
+        46.85,
+        17.68
+       ],
+       [
+        48.97,
+        20.86
+       ],
+       [
+        47.41,
+        21.14
+       ]
+      ]
+     },
      "text": "Roiling Winds destroyed"
     }
    ],
+   "pre": [
+    92464
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Yala Windwatcher",
+    "spm": {
+     "2521": [
+      [
+       47.29,
+       21.9
+      ]
+     ]
+    }
+   }
   },
   "92466": {
+   "classes": 64,
+   "enpc": [
+    251374
+   ],
    "lvl": 4,
    "n": "Call of Earth",
+   "obj": [
+    {
+     "also": [
+      "Roiling Winds"
+     ],
+     "id": 251160,
+     "kind": "kill",
+     "name": "Al'Aketh Convert",
+     "spm": {
+      "2521": [
+       [
+        46.85,
+        17.68
+       ],
+       [
+        48.97,
+        20.86
+       ],
+       [
+        47.41,
+        21.14
+       ]
+      ]
+     }
+    }
+   ],
+   "pre": [
+    92484
+   ],
+   "snpc": [
+    251374
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "92467": {
+   "classes": 64,
+   "enpc": [
+    251166
+   ],
    "lvl": 4,
    "n": "Call of Earth",
+   "pre": [
+    92466
+   ],
+   "snpc": [
+    251374
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "92468": {
+   "classes": 64,
+   "enpc": [
+    251374
+   ],
    "lvl": 4,
    "n": "Call of Earth",
+   "pre": [
+    92467
+   ],
+   "snpc": [
+    251166
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "92469": {
+   "fin": {
+    "n": "Rorian the Dayseeker",
+    "spm": {
+     "2521": [
+      [
+       42.07,
+       23.49
+      ]
+     ]
+    }
+   },
    "lvl": 4,
    "n": "Return to Rorian",
+   "pre": [
+    92465
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Yala Windwatcher",
+    "spm": {
+     "2521": [
+      [
+       47.29,
+       21.9
+      ]
+     ]
+    }
+   }
   },
   "92470": {
+   "fin": {
+    "spm": {
+     "2521": [
+      [
+       36.2,
+       25.0
+      ]
+     ]
+    }
+   },
    "lvl": 5,
    "n": "Foul Matriarch",
    "obj": [
     {
-     "kind": "event",
-     "text": "slain"
+     "count": 8,
+     "kind": "kill",
+     "name": "Ursera Scavenger",
+     "spm": {
+      "2521": [
+       [
+        41.05,
+        25.7
+       ],
+       [
+        37.25,
+        29.72
+       ],
+       [
+        38.17,
+        27.84
+       ],
+       [
+        37.67,
+        26.31
+       ],
+       [
+        36.39,
+        23.79
+       ]
+      ]
+     },
+     "text": "Ursera Scavenger slain"
     },
     {
-     "kind": "event"
+     "count": 1,
+     "kind": "item",
+     "name": "Urs'anah",
+     "spm": {
+      "2521": [
+       [
+        37.52,
+        25.6
+       ],
+       [
+        35.88,
+        23.31
+       ],
+       [
+        35.65,
+        26.06
+       ]
+      ]
+     },
+     "text": "Head of Urs'anah"
+    }
+   ],
+   "pre": [
+    92471
+   ],
+   "src": [
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Aetheen of the Gales",
+    "spm": {
+     "2521": [
+      [
+       42.76,
+       23.65
+      ]
+     ]
+    }
+   }
+  },
+  "92471": {
+   "fin": {
+    "n": "Aetheen of the Gales",
+    "spm": {
+     "2521": [
+      [
+       42.76,
+       23.65
+      ]
+     ]
+    }
+   },
+   "lvl": 4,
+   "n": "Aetheen of the Gales",
+   "pre": [
+    92469
+   ],
+   "src": [
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Rorian the Dayseeker",
+    "spm": {
+     "2521": [
+      [
+       42.07,
+       23.49
+      ]
+     ]
+    }
+   }
+  },
+  "92472": {
+   "fin": {
+    "spm": {
+     "2521": [
+      [
+       45.67,
+       45.51
+      ]
+     ]
+    }
+   },
+   "lvl": 5,
+   "n": "The Next Step",
+   "pre": [
+    92470
+   ],
+   "src": [
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Aetheen of the Gales",
+    "spm": {
+     "2521": [
+      [
+       42.76,
+       23.65
+      ]
+     ]
+    }
+   }
+  },
+  "92473": {
+   "fin": {
+    "n": "Valreaa Valewind",
+    "spm": {
+     "2521": [
+      [
+       42.41,
+       25.15
+      ]
+     ]
+    }
+   },
+   "lvl": 4,
+   "n": "Aggressive Encroachment",
+   "obj": [
+    {
+     "count": 6,
+     "kind": "item",
+     "name": "Scrawny Ursera",
+     "spm": {
+      "2521": [
+       [
+        41.05,
+        25.7
+       ],
+       [
+        37.25,
+        29.72
+       ],
+       [
+        38.17,
+        27.84
+       ],
+       [
+        37.67,
+        26.31
+       ]
+      ]
+     },
+     "text": "Scrawny Ursera Claw"
     }
    ],
    "src": [
-    "scan"
-   ]
-  },
-  "92471": {
-   "lvl": 4,
-   "n": "Aetheen of the Gales",
-   "src": [
-    "scan"
-   ]
-  },
-  "92472": {
-   "lvl": 5,
-   "n": "The Next Step",
-   "src": [
-    "scan"
-   ]
-  },
-  "92473": {
-   "lvl": 4,
-   "n": "Aggressive Encroachment",
-   "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Valreaa Valewind",
+    "spm": {
+     "2521": [
+      [
+       42.41,
+       25.15
+      ]
+     ]
+    }
+   }
   },
   "92474": {
+   "fin": {
+    "n": "Rorian the Dayseeker",
+    "spm": {
+     "2521": [
+      [
+       42.06,
+       23.48
+      ]
+     ]
+    }
+   },
    "lvl": 2,
    "n": "Falling With Style",
+   "obj": [
+    {
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        42.06,
+        23.48
+       ]
+      ]
+     },
+     "text": "Use Walk on Air"
+    }
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Myriaal Mistwake",
+    "spm": {
+     "2521": [
+      [
+       43.64,
+       24.04
+      ]
+     ]
+    }
+   }
   },
   "92479": {
    "lvl": 1,
    "n": "A Scribbled Letter",
+   "pre": [
+    7
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "92480": {
@@ -7895,32 +10305,132 @@
    ]
   },
   "92481": {
+   "fin": {
+    "n": "Dorii Brightwhisper",
+    "spm": {
+     "2521": [
+      [
+       41.55,
+       23.67
+      ]
+     ]
+    }
+   },
    "lvl": 2,
    "n": "A Student of the Arcane",
+   "pre": [
+    92461,
+    92474
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Rorian the Dayseeker",
+    "spm": {
+     "2521": [
+      [
+       42.06,
+       23.48
+      ]
+     ]
+    }
+   }
   },
   "92482": {
+   "fin": {
+    "n": "Tai'ree Farsight",
+    "spm": {
+     "2521": [
+      [
+       42.47,
+       23.73
+      ]
+     ]
+    }
+   },
    "lvl": 2,
    "n": "The Way of the Hunter",
+   "pre": [
+    92461,
+    92474
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Rorian the Dayseeker",
+    "spm": {
+     "2521": [
+      [
+       42.06,
+       23.48
+      ]
+     ]
+    }
+   }
   },
   "92483": {
+   "fin": {
+    "n": "Akeri Duskblade",
+    "spm": {
+     "2521": [
+      [
+       43.74,
+       24.34
+      ]
+     ]
+    }
+   },
    "lvl": 2,
    "n": "At Home in the Shadows",
+   "pre": [
+    92461,
+    92474
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Rorian the Dayseeker",
+    "spm": {
+     "2521": [
+      [
+       42.06,
+       23.48
+      ]
+     ]
+    }
+   }
   },
   "92484": {
+   "enpc": [
+    251374
+   ],
    "lvl": 2,
    "n": "Embracing the Elements",
+   "pre": [
+    92461,
+    92474
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Rorian the Dayseeker",
+    "spm": {
+     "2521": [
+      [
+       42.06,
+       23.48
+      ]
+     ]
+    }
+   }
   },
   "92485": {
    "lvl": 2,
@@ -7930,258 +10440,1257 @@
    ]
   },
   "92514": {
+   "fin": {
+    "n": "Constable Aonda",
+    "spm": {
+     "2521": [
+      [
+       45.67,
+       45.5
+      ]
+     ]
+    }
+   },
    "lvl": 6,
    "n": "Welcome to Shen'dar Village",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
      "text": "Speak with Illaya Amberwind"
     },
     {
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        43.02,
+        43.24
+       ]
+      ]
+     },
      "text": "Speak with the Innkeeper"
     }
    ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Constable Aonda",
+    "spm": {
+     "2521": [
+      [
+       45.67,
+       45.51
+      ]
+     ]
+    }
+   }
   },
   "92515": {
+   "enpc": [
+    251993
+   ],
    "lvl": 6,
    "n": "The Problem With Prideclaws",
+   "obj": [
+    {
+     "count": 10,
+     "id": 251245,
+     "kind": "item",
+     "name": "Prideclaw",
+     "spm": {
+      "2521": [
+       [
+        43.07,
+        46.31
+       ],
+       [
+        49.54,
+        34.33
+       ],
+       [
+        47.65,
+        36.29
+       ],
+       [
+        49.75,
+        38.96
+       ],
+       [
+        36.44,
+        50.93
+       ],
+       [
+        34.12,
+        51.6
+       ],
+       [
+        35.12,
+        54.08
+       ]
+      ]
+     },
+     "text": "Prideclaw Pelt"
+    }
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Indari Sunseam",
+    "spm": {
+     "2521": [
+      [
+       44.68,
+       44.53
+      ]
+     ]
+    }
+   }
   },
   "92516": {
+   "enpc": [
+    251906
+   ],
    "lvl": 7,
    "n": "Hippogryph Harrassment",
    "obj": [
     {
-     "kind": "event",
-     "text": "slain"
+     "also": [
+      "Hippogryph Protector",
+      "Hippogryph Youth"
+     ],
+     "count": 8,
+     "id": 251261,
+     "kind": "kill",
+     "name": "Hippogryph Matriarch",
+     "spm": {
+      "2521": [
+       [
+        36.44,
+        50.93
+       ],
+       [
+        34.12,
+        51.6
+       ],
+       [
+        35.12,
+        54.08
+       ],
+       [
+        35.63,
+        57.34
+       ],
+       [
+        38.61,
+        56.89
+       ]
+      ]
+     },
+     "text": "Hippogryph Youth slain"
     },
     {
-     "kind": "event",
-     "text": "slain"
+     "also": [
+      "Hippogryph Protector",
+      "Hippogryph Youth"
+     ],
+     "count": 6,
+     "id": 251261,
+     "kind": "kill",
+     "name": "Hippogryph Matriarch",
+     "spm": {
+      "2521": [
+       [
+        36.44,
+        50.93
+       ],
+       [
+        34.12,
+        51.6
+       ],
+       [
+        35.12,
+        54.08
+       ],
+       [
+        35.63,
+        57.34
+       ],
+       [
+        38.61,
+        56.89
+       ]
+      ]
+     },
+     "text": "Hippogryph Protector slain"
     },
     {
-     "kind": "event",
-     "text": "slain"
+     "also": [
+      "Hippogryph Protector",
+      "Hippogryph Youth"
+     ],
+     "count": 1,
+     "id": 251261,
+     "kind": "kill",
+     "name": "Hippogryph Matriarch",
+     "spm": {
+      "2521": [
+       [
+        36.44,
+        50.93
+       ],
+       [
+        34.12,
+        51.6
+       ],
+       [
+        35.12,
+        54.08
+       ],
+       [
+        35.63,
+        57.34
+       ],
+       [
+        38.61,
+        56.89
+       ]
+      ]
+     },
+     "text": "Hippogryph Matriarch slain"
     }
    ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Teeri Wellwind",
+    "spm": {
+     "2521": [
+      [
+       44.47,
+       44.98
+      ]
+     ]
+    }
+   }
   },
   "92517": {
+   "enpc": [
+    251523
+   ],
    "lvl": 7,
    "n": "The Criminal Element",
    "obj": [
     {
-     "kind": "event",
-     "text": "slain"
+     "count": 10,
+     "id": 251918,
+     "kind": "kill",
+     "name": "Highlands Bandit",
+     "spm": {
+      "2521": [
+       [
+        46.41,
+        38.56
+       ],
+       [
+        49.54,
+        34.33
+       ],
+       [
+        47.65,
+        36.29
+       ],
+       [
+        49.75,
+        38.96
+       ]
+      ]
+     },
+     "text": "Highlands Bandit slain"
     },
     {
-     "kind": "event",
-     "text": "slain"
+     "count": 1,
+     "id": 255534,
+     "kind": "kill",
+     "name": "\"Badwind\" Bennic",
+     "spm": {
+      "2521": [
+       [
+        46.41,
+        38.56
+       ],
+       [
+        50.68,
+        34.21
+       ]
+      ]
+     },
+     "text": "\"Badwind\" Bennic slain"
     }
    ],
+   "pre": [
+    93461,
+    92514
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Constable Aonda",
+    "spm": {
+     "2521": [
+      [
+       45.67,
+       45.5
+      ]
+     ]
+    }
+   }
   },
   "92528": {
+   "fin": {
+    "n": "Constable Aonda",
+    "spm": {
+     "2521": [
+      [
+       46.44,
+       51.34
+      ]
+     ]
+    }
+   },
    "lvl": 8,
    "n": "Among the Faithful",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        48.8,
+        53.89
+       ],
+       [
+        46.44,
+        51.34
+       ]
+      ]
+     },
      "text": "Learn about the cultists' plans"
     }
    ],
+   "pre": [
+    92529
+   ],
+   "snpc": [
+    257065
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "92529": {
+   "enpc": [
+    257065
+   ],
    "lvl": 8,
    "n": "Falaath Village",
+   "pre": [
+    93036
+   ],
+   "snpc": [
+    251904
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "92532": {
+   "fin": {
+    "n": "Blademaster Ren",
+    "spm": {
+     "2521": [
+      [
+       43.66,
+       24.14
+      ]
+     ]
+    }
+   },
    "lvl": 2,
    "n": "The Warrior's Path",
+   "pre": [
+    92461,
+    92474
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Rorian the Dayseeker",
+    "spm": {
+     "2521": [
+      [
+       42.06,
+       23.48
+      ]
+     ]
+    }
+   }
   },
   "92544": {
+   "fin": {
+    "n": "Hanaa Nightwind",
+    "spm": {
+     "2521": [
+      [
+       38.32,
+       30.18
+      ]
+     ]
+    }
+   },
    "lvl": 5,
    "n": "Al'Aketh Thugs",
    "obj": [
     {
-     "kind": "event",
-     "text": "slain"
+     "also": [
+      "Al'Aketh Neophyte"
+     ],
+     "count": 6,
+     "id": 251145,
+     "kind": "kill",
+     "name": "Al'Aketh Brute",
+     "spm": {
+      "2521": [
+       [
+        35.75,
+        31.93
+       ],
+       [
+        35.33,
+        34.19
+       ],
+       [
+        37.3,
+        32.89
+       ],
+       [
+        37.16,
+        34.72
+       ]
+      ]
+     },
+     "text": "Al'Aketh Brute slain"
     },
     {
-     "kind": "event",
-     "text": "slain"
+     "also": [
+      "Al'Aketh Neophyte"
+     ],
+     "count": 4,
+     "id": 251145,
+     "kind": "kill",
+     "name": "Al'Aketh Brute",
+     "spm": {
+      "2521": [
+       [
+        35.75,
+        31.93
+       ],
+       [
+        35.33,
+        34.19
+       ],
+       [
+        37.3,
+        32.89
+       ],
+       [
+        37.16,
+        34.72
+       ]
+      ]
+     },
+     "text": "Al'Aketh Neophyte slain"
     },
     {
-     "kind": "event",
-     "text": "slain"
+     "count": 1,
+     "id": 256935,
+     "kind": "kill",
+     "name": "Malduko Cloudcrush",
+     "spm": {
+      "2521": [
+       [
+        37.04,
+        32.93
+       ]
+      ]
+     },
+     "text": "Malduko Cloudcrush slain"
     }
    ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Hanaa Nightwind",
+    "spm": {
+     "2521": [
+      [
+       38.31,
+       30.17
+      ]
+     ]
+    }
+   }
   },
   "92550": {
+   "fin": {
+    "n": "Constable Aonda",
+    "spm": {
+     "2521": [
+      [
+       45.67,
+       45.5
+      ]
+     ]
+    }
+   },
    "lvl": 8,
    "n": "Havoc in the Highlands",
    "obj": [
     {
-     "kind": "event",
-     "text": "slain"
+     "count": 6,
+     "kind": "kill",
+     "name": "Al'Aketh Stormcaller",
+     "spm": {
+      "2521": [
+       [
+        40.99,
+        64.09
+       ],
+       [
+        49.77,
+        57.24
+       ],
+       [
+        49.63,
+        54.73
+       ],
+       [
+        47.64,
+        54.14
+       ]
+      ]
+     },
+     "text": "Al'Aketh Stormcaller slain"
     },
     {
-     "kind": "event",
-     "text": "slain"
+     "count": 4,
+     "kind": "kill",
+     "name": "Living Lightning",
+     "spm": {
+      "2521": [
+       [
+        40.99,
+        64.09
+       ],
+       [
+        49.77,
+        57.24
+       ],
+       [
+        49.63,
+        54.73
+       ],
+       [
+        47.64,
+        54.14
+       ]
+      ]
+     },
+     "text": "Living Lightning slain"
     },
     {
-     "kind": "event"
+     "count": 1,
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        50.29,
+        56.95
+       ]
+      ]
+     },
+     "text": "Commander Cyclas's Head"
+    }
+   ],
+   "pre": [
+    92528
+   ],
+   "src": [
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Constable Aonda",
+    "spm": {
+     "2521": [
+      [
+       46.44,
+       51.34
+      ]
+     ]
+    }
+   }
+  },
+  "92551": {
+   "fin": {
+    "n": "Danarii Bellowveil",
+    "spm": {
+     "2521": [
+      [
+       49.77,
+       57.24
+      ]
+     ]
+    }
+   },
+   "lvl": 8,
+   "n": "Stolen Supplies",
+   "obj": [
+    {
+     "count": 10,
+     "kind": "kill",
+     "name": "Al'Aketh Stormcaller",
+     "spm": {
+      "2521": [
+       [
+        40.99,
+        64.09
+       ],
+       [
+        49.77,
+        57.24
+       ],
+       [
+        49.63,
+        54.73
+       ],
+       [
+        47.64,
+        54.14
+       ]
+      ]
+     },
+     "text": "Stolen Shen'dar Supplies"
     }
    ],
    "src": [
-    "scan"
-   ]
-  },
-  "92551": {
-   "lvl": 8,
-   "n": "Stolen Supplies",
-   "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Danarii Bellowveil",
+    "spm": {
+     "2521": [
+      [
+       45.25,
+       45.18
+      ]
+     ]
+    }
+   }
   },
   "92553": {
+   "enpc": [
+    251905
+   ],
    "lvl": 6,
    "n": "Restocking the Larders",
+   "obj": [
+    {
+     "count": 3,
+     "id": 251661,
+     "kind": "kill",
+     "name": "Galestrider",
+     "spm": {
+      "2521": [
+       [
+        43.07,
+        46.31
+       ],
+       [
+        49.54,
+        34.33
+       ],
+       [
+        47.65,
+        36.29
+       ],
+       [
+        49.75,
+        38.96
+       ],
+       [
+        36.44,
+        50.93
+       ],
+       [
+        34.12,
+        51.6
+       ],
+       [
+        35.12,
+        54.08
+       ]
+      ]
+     },
+     "text": "Small Egg"
+    },
+    {
+     "count": 8,
+     "id": 251661,
+     "kind": "item",
+     "name": "Galestrider",
+     "spm": {
+      "2521": [
+       [
+        43.07,
+        46.31
+       ],
+       [
+        49.54,
+        34.33
+       ],
+       [
+        47.65,
+        36.29
+       ],
+       [
+        49.75,
+        38.96
+       ],
+       [
+        36.44,
+        50.93
+       ],
+       [
+        34.12,
+        51.6
+       ],
+       [
+        35.12,
+        54.08
+       ]
+      ]
+     },
+     "text": "Strider Meat"
+    }
+   ],
+   "snpc": [
+    251905
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "92579": {
+   "fin": {
+    "n": "Valennia Stormfist",
+    "spm": {
+     "2521": [
+      [
+       66.18,
+       76.65
+      ]
+     ]
+    }
+   },
    "lvl": 8,
    "n": "To Valanaar",
+   "pre": [
+    92550,
+    93927
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Constable Aonda",
+    "spm": {
+     "2521": [
+      [
+       45.67,
+       45.5
+      ]
+     ]
+    }
+   }
   },
   "92595": {
+   "fin": {
+    "n": "Illaya Amberwind",
+    "spm": {
+     "2521": [
+      [
+       43.52,
+       44.78
+      ]
+     ]
+    }
+   },
    "lvl": 6,
    "n": "The Windshapers",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        43.52,
+        44.78
+       ]
+      ]
+     },
      "text": "Listen to Illaya"
     }
    ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Illaya Amberwind",
+    "spm": {
+     "2521": [
+      [
+       43.52,
+       44.78
+      ]
+     ]
+    }
+   }
   },
   "92596": {
+   "fin": {
+    "n": "Rathiril Sunlance",
+    "spm": {
+     "2521": [
+      [
+       44.98,
+       46.35
+      ]
+     ]
+    }
+   },
    "lvl": 6,
    "n": "The High Order",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        45.04,
+        46.49
+       ]
+      ]
+     },
      "text": "Listen to Rathiril Sunlance"
     }
    ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Rathiril Sunlance",
+    "spm": {
+     "2521": [
+      [
+       45.04,
+       46.49
+      ]
+     ]
+    }
+   }
   },
   "92597": {
+   "fin": {
+    "n": "Falorne Fallwind",
+    "spm": {
+     "2521": [
+      [
+       43.33,
+       24.92
+      ]
+     ]
+    }
+   },
    "lvl": 4,
    "n": "Reading the Ley Lines",
+   "obj": [
+    {
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        46.34,
+        17.91
+       ]
+      ]
+     },
+     "text": "Use your Read Ley Line ability near the Thendal Grove Ley Line"
+    }
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Falorne Fallwind",
+    "spm": {
+     "2521": [
+      [
+       43.33,
+       24.92
+      ]
+     ]
+    }
+   }
   },
   "92598": {
+   "enpc": [
+    251487
+   ],
    "lvl": 4,
    "n": "The Gift of Skysight",
+   "obj": [
+    {
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        48.4,
+        20.4
+       ]
+      ]
+     },
+     "text": "Use your Skysight ability near the Elemental Convergence"
+    }
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Ventaari Brightwish",
+    "spm": {
+     "2521": [
+      [
+       42.6,
+       24.39
+      ]
+     ]
+    }
+   }
   },
   "92640": {
+   "fin": {
+    "n": "Valennia Stormfist",
+    "spm": {
+     "2521": [
+      [
+       66.18,
+       76.65
+      ]
+     ]
+    }
+   },
    "lvl": 11,
    "n": "Desperate Times",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        66.18,
+        76.65
+       ]
+      ]
+     },
      "text": "Speak with Valennia Stormfist"
+    },
+    {
+     "count": 1,
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        59.15,
+        79.79
+       ]
+      ]
+     },
+     "text": "Recruit the Windshapers"
+    },
+    {
+     "count": 1,
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        66.54,
+        79.89
+       ]
+      ]
+     },
+     "text": "Recruit the High Order"
     }
    ],
+   "pre": [
+    94568
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Talaanis Shadowsong",
+    "spm": {
+     "2521": [
+      [
+       66.17,
+       76.51
+      ]
+     ]
+    }
+   }
   },
   "92642": {
+   "fin": {
+    "n": "Yorana Windyreed",
+    "spm": {
+     "2521": [
+      [
+       69.61,
+       67.1
+      ]
+     ]
+    }
+   },
    "lvl": 11,
    "n": "Disrupting Logistics",
    "obj": [
     {
-     "kind": "event",
-     "text": "slain"
+     "count": 4,
+     "kind": "kill",
+     "name": "Al'Aketh Healer",
+     "spm": {
+      "2521": [
+       [
+        66.09,
+        67.72
+       ]
+      ]
+     },
+     "text": "Al'Aketh Healer slain"
     },
     {
-     "kind": "event",
-     "text": "slain"
+     "count": 8,
+     "kind": "kill",
+     "name": "Al'Aketh Brawler",
+     "spm": {
+      "2521": [
+       [
+        65.42,
+        67.27
+       ]
+      ]
+     },
+     "text": "Al'Aketh Brawler slain"
     }
    ],
+   "pre": [
+    93320
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Yorana Windyreed",
+    "spm": {
+     "2521": [
+      [
+       69.64,
+       67.07
+      ]
+     ]
+    }
+   }
   },
   "92643": {
+   "fin": {
+    "n": "Dead Cultist",
+    "spm": {
+     "2521": [
+      [
+       56.03,
+       58.8
+      ]
+     ]
+    }
+   },
    "lvl": 11,
    "n": "The Turncoat",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        56.06,
+        60.85
+       ]
+      ]
+     },
      "text": "Find the secluded house in Shen'dar Highlands"
+    },
+    {
+     "count": 1,
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        56.49,
+        60.86
+       ]
+      ]
+     },
+     "text": "Find the Al'Aketh Turncoat"
     }
    ],
+   "pre": [
+    92881
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Talaanis Shadowsong",
+    "spm": {
+     "2521": [
+      [
+       66.17,
+       76.5
+      ]
+     ]
+    }
+   }
   },
   "92644": {
+   "fin": {
+    "n": "Talaanis Shadowsong",
+    "spm": {
+     "2521": [
+      [
+       66.17,
+       76.52
+      ]
+     ]
+    }
+   },
    "lvl": 11,
    "n": "Unfortunate News",
+   "pre": [
+    92643
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Dead Cultist",
+    "spm": {
+     "2521": [
+      [
+       56.03,
+       58.8
+      ]
+     ]
+    }
+   }
   },
   "92645": {
+   "fin": {
+    "n": "Yorana Windyreed",
+    "spm": {
+     "2521": [
+      [
+       69.61,
+       67.1
+      ]
+     ]
+    }
+   },
    "lvl": 11,
    "n": "Breaking the Breaker",
    "obj": [
     {
-     "kind": "event",
-     "text": "slain"
+     "count": 1,
+     "kind": "kill",
+     "name": "Commander Belguilos",
+     "spm": {
+      "2521": [
+       [
+        65.67,
+        65.58
+       ]
+      ]
+     },
+     "text": "Commander Belguilos slain"
     }
    ],
+   "pre": [
+    93320
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Yorana Windyreed",
+    "spm": {
+     "2521": [
+      [
+       69.64,
+       67.07
+      ]
+     ]
+    }
+   }
   },
   "92646": {
    "lvl": 12,
@@ -8197,11 +11706,23 @@
    ]
   },
   "92679": {
+   "enpc": [
+    252800
+   ],
    "lvl": 9,
    "n": "Blood Tithe",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        46.71,
+        81.95
+       ]
+      ]
+     },
      "text": "Find Aamelia Windfield"
     },
     {
@@ -8209,93 +11730,380 @@
      "text": "Listen to Alvarion Windfield's Story (Optional)"
     }
    ],
+   "snpc": [
+    252448
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "92682": {
+   "enpc": [
+    252800
+   ],
    "lvl": 9,
    "n": "Make Yourself Useful",
    "obj": [
     {
-     "kind": "event"
+     "count": 10,
+     "id": 252802,
+     "kind": "kill",
+     "name": "Hungry Bandit",
+     "spm": {
+      "2521": [
+       [
+        46.16,
+        78.04
+       ],
+       [
+        48.92,
+        84.44
+       ]
+      ]
+     },
+     "text": "Ripe Stormapple"
     },
     {
-     "kind": "event",
-     "text": "slain"
+     "count": 5,
+     "id": 252802,
+     "kind": "kill",
+     "name": "Hungry Bandit",
+     "spm": {
+      "2521": [
+       [
+        46.16,
+        78.04
+       ],
+       [
+        48.92,
+        84.44
+       ]
+      ]
+     },
+     "text": "Hungry Bandit slain"
     }
    ],
+   "pre": [
+    92679,
+    92698
+   ],
+   "snpc": [
+    252800
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "92683": {
+   "enpc": [
+    252800
+   ],
    "lvl": 9,
    "n": "Flutterfly Dust",
+   "obj": [
+    {
+     "count": 5,
+     "id": 251622,
+     "kind": "kill",
+     "name": "Flutterfly",
+     "spm": {
+      "2521": [
+       [
+        51.69,
+        83.42
+       ],
+       [
+        50.02,
+        77.66
+       ],
+       [
+        46.69,
+        76.95
+       ]
+      ]
+     },
+     "text": "Flutterfly Dust"
+    }
+   ],
+   "pre": [
+    92679,
+    92698
+   ],
+   "snpc": [
+    252800
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "92684": {
+   "enpc": [
+    252800
+   ],
    "lvl": 9,
    "n": "Ornery Ornery Galestriders",
+   "obj": [
+    {
+     "count": 7,
+     "id": 251707,
+     "kind": "kill",
+     "name": "Ornery Galestrider",
+     "spm": {
+      "2521": [
+       [
+        46.16,
+        78.04
+       ],
+       [
+        48.92,
+        84.44
+       ]
+      ]
+     },
+     "text": "Lowlands Galestrider Tenderloin"
+    }
+   ],
+   "pre": [
+    92679,
+    92698
+   ],
+   "snpc": [
+    252800
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "92685": {
+   "enpc": [
+    252800
+   ],
    "lvl": 9,
    "n": "The Hills Have Eyes",
+   "obj": [
+    {
+     "count": 7,
+     "id": 252820,
+     "kind": "item",
+     "name": "Bandit Highwayman",
+     "spm": {
+      "2521": [
+       [
+        45.62,
+        72.36
+       ],
+       [
+        43.55,
+        75.0
+       ],
+       [
+        45.76,
+        78.42
+       ]
+      ]
+     },
+     "text": "Blood-Stained Bandit Mask"
+    }
+   ],
+   "pre": [
+    92682,
+    92684,
+    92698,
+    92683
+   ],
+   "snpc": [
+    252800
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "92693": {
+   "enpc": [
+    252800
+   ],
    "lvl": 9,
    "n": "Standing Our Ground",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        46.71,
+        81.94
+       ]
+      ]
+     },
      "text": "Speak with Aamelia Windfield"
+    },
+    {
+     "count": 1,
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        47.51,
+        78.44
+       ]
+      ]
+     },
+     "text": "Follow Aamelia and make your final stand"
     }
    ],
+   "pre": [
+    92685
+   ],
+   "snpc": [
+    252800
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "92698": {
+   "enpc": [
+    252800
+   ],
    "lvl": 9,
    "n": "What Is My Purpose?",
+   "snpc": [
+    250929
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "92699": {
+   "fin": {
+    "n": "Elaadrin Evengale",
+    "spm": {
+     "2521": [
+      [
+       66.63,
+       79.94
+      ]
+     ]
+    }
+   },
    "lvl": 9,
    "n": "The Supreme Magister",
+   "pre": [
+    92701,
+    92579
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Valennia Stormfist",
+    "spm": {
+     "2521": [
+      [
+       66.18,
+       76.65
+      ]
+     ]
+    }
+   }
+  },
+  "927": {
+   "src": [
+    "rxp"
    ]
   },
   "92700": {
+   "enpc": [
+    251968
+   ],
    "lvl": 9,
    "n": "The Grand Skyseer",
+   "pre": [
+    92701,
+    92579
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Valennia Stormfist",
+    "spm": {
+     "2521": [
+      [
+       66.18,
+       76.65
+      ]
+     ]
+    }
+   }
   },
   "92701": {
+   "fin": {
+    "n": "Valennia Stormfist",
+    "spm": {
+     "2521": [
+      [
+       66.18,
+       76.65
+      ]
+     ]
+    }
+   },
    "lvl": 9,
    "n": "To Valanaar",
+   "pre": [
+    92550,
+    93927
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Constable Aonda",
+    "spm": {
+     "2521": [
+      [
+       45.67,
+       45.5
+      ]
+     ]
+    }
+   }
   },
   "92703": {
+   "fin": {
+    "n": "Alvarion Windfield",
+    "spm": {
+     "2521": [
+      [
+       62.11,
+       73.33
+      ]
+     ]
+    }
+   },
    "lvl": 9,
    "n": "Deliver the News",
+   "pre": [
+    92693
+   ],
+   "snpc": [
+    252800
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "92706": {
@@ -8306,50 +12114,182 @@
    ]
   },
   "92708": {
+   "enpc": [
+    251968
+   ],
    "lvl": 12,
    "n": "A Grand Adventure",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        59.27,
+        79.98
+       ]
+      ]
+     },
      "text": "Listen to Ayessa"
     }
    ],
+   "pre": [
+    92700
+   ],
+   "snpc": [
+    251968
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "92709": {
+   "fin": {
+    "n": "Elaadrin Evengale",
+    "spm": {
+     "2521": [
+      [
+       66.63,
+       79.94
+      ]
+     ]
+    }
+   },
    "lvl": 12,
    "n": "A Grand Adventure",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        64.17,
+        79.43
+       ]
+      ]
+     },
      "text": "Listen to Elaadrin"
     }
    ],
+   "pre": [
+    92699
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Elaadrin Evengale",
+    "spm": {
+     "2521": [
+      [
+       66.63,
+       79.94
+      ]
+     ]
+    }
+   }
   },
   "92727": {
+   "fin": {
+    "n": "Bloodstained Satchel",
+    "spm": {
+     "2521": [
+      [
+       53.33,
+       72.15
+      ]
+     ]
+    }
+   },
    "lvl": 10,
    "n": "The Missing Scholar",
+   "pre": [
+    92699
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Elaadrin Evengale",
+    "spm": {
+     "2521": [
+      [
+       66.63,
+       79.94
+      ]
+     ]
+    }
+   }
   },
   "92741": {
+   "fin": {
+    "n": "Iaadaria Bitterwind",
+    "spm": {
+     "2521": [
+      [
+       66.34,
+       79.51
+      ]
+     ]
+    }
+   },
    "lvl": 13,
    "n": "Unwelcome Visitors",
+   "obj": [
+    {
+     "count": 8,
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        59.36,
+        40.07
+       ]
+      ]
+     },
+     "text": "Shriekling Talons"
+    }
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Iaadaria Bitterwind",
+    "spm": {
+     "2521": [
+      [
+       66.35,
+       79.51
+      ]
+     ]
+    }
+   }
   },
   "92742": {
    "lvl": 12,
+   "n": "Testing the Wells",
+   "obj": [
+    {
+     "count": 1,
+     "kind": "event",
+     "text": "Jansen Stead Water Sample"
+    },
+    {
+     "count": 1,
+     "kind": "event",
+     "text": "Molsen Farm Water Sample"
+    }
+   ],
    "src": [
     "db2",
-    "scan"
+    "scan",
+    "rxp"
    ],
    "start": {
     "spw": {
@@ -8366,9 +12306,20 @@
   "92744": {
    "lvl": 12,
    "n": "Murloc Gills",
+   "obj": [
+    {
+     "also": [
+      "Murloc Coastrunner"
+     ],
+     "kind": "kill",
+     "name": "Murloc Raider",
+     "text": "Longshore Murloc Gills 7/7"
+    }
+   ],
    "src": [
     "db2",
-    "scan"
+    "scan",
+    "rxp"
    ],
    "start": {
     "spw": {
@@ -8956,51 +12907,239 @@
    }
   },
   "92834": {
+   "fin": {
+    "n": "Elaadrin Evengale",
+    "spm": {
+     "2521": [
+      [
+       66.63,
+       79.94
+      ]
+     ]
+    }
+   },
    "lvl": 11,
    "n": "Avenged Tenfold",
+   "obj": [
+    {
+     "count": 10,
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        65.43,
+        67.44
+       ]
+      ]
+     },
+     "text": "Al'Aketh Windstone Charm"
+    }
+   ],
+   "pre": [
+    92840
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Elaadrin Evengale",
+    "spm": {
+     "2521": [
+      [
+       66.63,
+       79.93
+      ]
+     ]
+    }
+   }
   },
   "92840": {
+   "fin": {
+    "n": "Elaadrin Evengale",
+    "spm": {
+     "2521": [
+      [
+       66.63,
+       79.93
+      ]
+     ]
+    }
+   },
    "lvl": 11,
    "n": "Catching Wind",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        47.93,
+        69.05
+       ]
+      ]
+     },
      "text": "Protect the Index"
     }
    ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Elaadrin Evengale",
+    "spm": {
+     "2521": [
+      [
+       66.63,
+       79.94
+      ]
+     ]
+    }
+   }
   },
   "92849": {
+   "fin": {
+    "n": "Fillion Flamebreeze",
+    "spm": {
+     "2521": [
+      [
+       52.07,
+       69.4
+      ]
+     ]
+    }
+   },
    "lvl": 10,
    "n": "The Missing Scholar",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        50.67,
+        65.38
+       ]
+      ]
+     },
      "text": "Find Fillion Flamebreeze"
+    },
+    {
+     "count": 1,
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        52.05,
+        69.4
+       ]
+      ]
+     },
+     "text": "Carry Fillion Flamebreeze to safety while avoiding enemies"
     }
    ],
+   "pre": [
+    92727
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Bloodstained Satchel",
+    "spm": {
+     "2521": [
+      [
+       53.33,
+       72.15
+      ]
+     ]
+    }
+   }
   },
   "92850": {
+   "fin": {
+    "n": "Dondallion Whisperwind",
+    "spm": {
+     "2521": [
+      [
+       66.26,
+       79.9
+      ]
+     ]
+    }
+   },
    "lvl": 10,
    "n": "The Missing Scholar",
+   "obj": [
+    {
+     "count": 1,
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        52.02,
+        65.51
+       ]
+      ]
+     },
+     "text": "Shriekling Matriarch's Head"
+    }
+   ],
+   "pre": [
+    92849
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Fillion Flamebreeze",
+    "spm": {
+     "2521": [
+      [
+       52.07,
+       69.4
+      ]
+     ]
+    }
+   }
   },
   "92860": {
+   "fin": {
+    "n": "Valennia Stormfist",
+    "spm": {
+     "2521": [
+      [
+       66.18,
+       76.66
+      ]
+     ]
+    }
+   },
    "lvl": 12,
    "n": "In Service of Zephras",
+   "pre": [
+    92840
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Elaadrin Evengale",
+    "spm": {
+     "2521": [
+      [
+       66.63,
+       79.93
+      ]
+     ]
+    }
+   }
   },
   "92871": {
    "lvl": 11,
@@ -9010,24 +13149,78 @@
    ]
   },
   "92880": {
+   "fin": {
+    "n": "Valennia Stormfist",
+    "spm": {
+     "2521": [
+      [
+       66.2,
+       76.66
+      ]
+     ]
+    }
+   },
    "lvl": 11,
    "n": "Return to Valanaar",
+   "pre": [
+    92645,
+    92642
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Yorana Windyreed",
+    "spm": {
+     "2521": [
+      [
+       69.61,
+       67.1
+      ]
+     ]
+    }
+   }
   },
   "92881": {
+   "fin": {
+    "n": "Talaanis Shadowsong",
+    "spm": {
+     "2521": [
+      [
+       66.17,
+       76.5
+      ]
+     ]
+    }
+   },
    "lvl": 11,
    "n": "The High Elder's Request",
+   "pre": [
+    92880
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Valennia Stormfist",
+    "spm": {
+     "2521": [
+      [
+       66.2,
+       76.66
+      ]
+     ]
+    }
+   }
   },
   "92909": {
    "lvl": 15,
    "n": "Harvesting the Harvesters",
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "92910": {
@@ -9057,52 +13250,192 @@
    ]
   },
   "92947": {
+   "fin": {
+    "n": "Hyusaa Quickbreeze",
+    "spm": {
+     "2521": [
+      [
+       63.79,
+       50.55
+      ]
+     ]
+    }
+   },
    "lvl": 12,
    "n": "Making Our Move",
    "obj": [
     {
-     "kind": "event",
-     "text": "slain"
+     "count": 8,
+     "kind": "kill",
+     "name": "Al'Aketh Guardian",
+     "spm": {
+      "2521": [
+       [
+        61.29,
+        49.5
+       ]
+      ]
+     },
+     "text": "Al'Aketh Guardian slain"
     },
     {
-     "kind": "event",
-     "text": "slain"
+     "count": 8,
+     "kind": "kill",
+     "name": "Al'Aketh Guardian",
+     "spm": {
+      "2521": [
+       [
+        61.29,
+        49.5
+       ]
+      ]
+     },
+     "text": "Al'Aketh Spiritcaller slain"
     },
     {
+     "count": 8,
+     "kind": "kill",
+     "name": "Al'Aketh Guardian",
+     "spm": {
+      "2521": [
+       [
+        61.29,
+        49.5
+       ]
+      ]
+     },
+     "text": "Al'Aketh Blademaster slain"
+    },
+    {
+     "count": 1,
      "kind": "event",
-     "text": "slain"
+     "spm": {
+      "2521": [
+       [
+        63.79,
+        50.55
+       ]
+      ]
+     },
+     "text": "Report to Hyusaa Quickbreeze"
     }
    ],
+   "pre": [
+    93065
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Valennia Stormfist",
+    "spm": {
+     "2521": [
+      [
+       61.15,
+       70.93
+      ]
+     ]
+    }
+   }
   },
   "93036": {
+   "enpc": [
+    251904
+   ],
    "lvl": 8,
    "n": "Infiltrating the Cult",
+   "pre": [
+    92517
+   ],
+   "snpc": [
+    251523
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "93065": {
+   "fin": {
+    "n": "Valennia Stormfist",
+    "spm": {
+     "2521": [
+      [
+       61.15,
+       70.93
+      ]
+     ]
+    }
+   },
    "lvl": 12,
    "n": "Prepare for Battle",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        61.15,
+        70.91
+       ]
+      ]
+     },
      "text": "Find Valennia on the Road"
     }
    ],
+   "pre": [
+    92640
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Valennia Stormfist",
+    "spm": {
+     "2521": [
+      [
+       66.18,
+       76.65
+      ]
+     ]
+    }
+   }
   },
   "93089": {
+   "fin": {
+    "n": "Elaadrin Evengale",
+    "spm": {
+     "2521": [
+      [
+       66.63,
+       79.95
+      ]
+     ]
+    }
+   },
    "lvl": 13,
    "n": "What Comes Next",
+   "pre": [
+    94369
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Talaanis Shadowsong",
+    "spm": {
+     "2521": [
+      [
+       66.18,
+       76.51
+      ]
+     ]
+    }
+   }
   },
   "93090": {
    "lvl": 13,
@@ -9112,115 +13445,514 @@
    ]
   },
   "93159": {
+   "fin": {
+    "n": "Strange Hermit",
+    "spm": {
+     "2521": [
+      [
+       53.96,
+       38.9
+      ]
+     ]
+    }
+   },
    "lvl": 13,
    "n": "The Strange Hermit",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        53.95,
+        38.9
+       ]
+      ]
+     },
      "text": "Learn more about the Strange Hermit"
     }
    ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Strange Hermit",
+    "spm": {
+     "2521": [
+      [
+       53.95,
+       38.9
+      ]
+     ]
+    }
+   }
   },
   "93160": {
+   "fin": {
+    "n": "Strange Hermit",
+    "spm": {
+     "2521": [
+      [
+       53.97,
+       38.92
+      ]
+     ]
+    }
+   },
    "lvl": 13,
    "n": "The Forest's Bounty",
+   "obj": [
+    {
+     "count": 8,
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        56.84,
+        38.03
+       ]
+      ]
+     },
+     "text": "Zephyrseed"
+    }
+   ],
+   "pre": [
+    93159
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Strange Hermit",
+    "spm": {
+     "2521": [
+      [
+       53.96,
+       38.9
+      ]
+     ]
+    }
+   }
   },
   "93165": {
+   "fin": {
+    "n": "Vayn Moongaze",
+    "spm": {
+     "2521": [
+      [
+       63.8,
+       36.0
+      ]
+     ]
+    }
+   },
    "lvl": 13,
    "n": "Mercy Falls on Deaf Ears",
+   "obj": [
+    {
+     "count": 10,
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        63.85,
+        37.16
+       ]
+      ]
+     },
+     "text": "Al'Alketh Cultist's Ear"
+    }
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Vayn Moongaze",
+    "spm": {
+     "2521": [
+      [
+       63.8,
+       36.03
+      ]
+     ]
+    }
+   }
   },
   "93172": {
+   "fin": {
+    "n": "Strange Hermit",
+    "spm": {
+     "2521": [
+      [
+       53.97,
+       38.9
+      ]
+     ]
+    }
+   },
    "lvl": 13,
    "n": "Free the Hollows",
    "obj": [
     {
+     "count": 10,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        58.59,
+        31.08
+       ]
+      ]
+     },
      "text": "Wind Hollow freed"
     }
    ],
+   "pre": [
+    93159
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Strange Hermit",
+    "spm": {
+     "2521": [
+      [
+       53.96,
+       38.9
+      ]
+     ]
+    }
+   }
   },
   "93317": {
+   "fin": {
+    "n": "Nyalah Brightfire",
+    "spm": {
+     "2521": [
+      [
+       60.64,
+       72.66
+      ]
+     ]
+    }
+   },
    "lvl": 9,
    "n": "Crab Season",
+   "obj": [
+    {
+     "count": 6,
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        52.58,
+        60.5
+       ]
+      ]
+     },
+     "text": "Windsong Crawler Meat"
+    }
+   ],
+   "snpc": [
+    257006
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "93318": {
+   "enpc": [
+    252172
+   ],
    "lvl": 9,
    "n": "WANTED: Vulgara the Insatiable",
+   "obj": [
+    {
+     "count": 1,
+     "kind": "item",
+     "name": "Vulgara",
+     "spm": {
+      "2521": [
+       [
+        43.08,
+        51.03
+       ],
+       [
+        42.75,
+        52.68
+       ]
+      ]
+     },
+     "text": "Vulgara's Head"
+    }
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "spm": {
+     "2521": [
+      [
+       43.37,
+       45.86
+      ]
+     ]
+    }
+   }
   },
   "93319": {
+   "enpc": [
+    251906
+   ],
    "lvl": 7,
    "n": "Pilfered Windstones",
    "obj": [
     {
-     "kind": "event",
+     "count": 10,
+     "id": 251918,
+     "kind": "kill",
+     "name": "Highlands Bandit",
+     "spm": {
+      "2521": [
+       [
+        46.41,
+        38.56
+       ],
+       [
+        49.54,
+        34.33
+       ],
+       [
+        47.65,
+        36.29
+       ],
+       [
+        49.75,
+        38.96
+       ]
+      ]
+     },
      "text": "Pilfered Windstone"
     }
    ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Teeri Wellwind",
+    "spm": {
+     "2521": [
+      [
+       44.47,
+       44.98
+      ]
+     ]
+    }
+   }
   },
   "93320": {
+   "fin": {
+    "n": "Yorana Windyreed",
+    "spm": {
+     "2521": [
+      [
+       69.64,
+       67.07
+      ]
+     ]
+    }
+   },
    "lvl": 11,
    "n": "Tower Defense",
+   "pre": [
+    92860
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Valennia Stormfist",
+    "spm": {
+     "2521": [
+      [
+       66.18,
+       76.66
+      ]
+     ]
+    }
+   }
+  },
+  "93459": {
+   "fin": {
+    "n": "Vayn Moongaze",
+    "spm": {
+     "2521": [
+      [
+       63.8,
+       35.99
+      ]
+     ]
+    }
+   },
+   "src": [
+    "rxp"
    ]
   },
   "93461": {
+   "fin": {
+    "n": "Constable Aonda",
+    "spm": {
+     "2521": [
+      [
+       45.67,
+       45.5
+      ]
+     ]
+    }
+   },
    "lvl": 6,
    "n": "Welcome to Shen'dar Village",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
      "text": "Speak with Rathiril Sunlance"
     },
     {
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        43.02,
+        43.24
+       ]
+      ]
+     },
      "text": "Speak with the Innkeeper"
     }
    ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Constable Aonda",
+    "spm": {
+     "2521": [
+      [
+       45.67,
+       45.51
+      ]
+     ]
+    }
+   }
   },
   "93552": {
+   "fin": {
+    "n": "Dalia the Collector",
+    "spm": {
+     "2521": [
+      [
+       43.89,
+       22.27
+      ]
+     ]
+    }
+   },
    "lvl": 4,
    "n": "Harvesting Windstones",
+   "obj": [
+    {
+     "count": 15,
+     "kind": "object",
+     "name": "Windstone Cluster",
+     "spm": {
+      "2521": [
+       [
+        43.82,
+        25.41
+       ],
+       [
+        44.28,
+        27.32
+       ],
+       [
+        45.33,
+        29.15
+       ],
+       [
+        47.41,
+        26.44
+       ],
+       [
+        46.62,
+        24.59
+       ],
+       [
+        46.85,
+        17.68
+       ],
+       [
+        48.97,
+        20.86
+       ]
+      ]
+     },
+     "text": "Windstone Cluster"
+    }
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Dalia the Collector",
+    "spm": {
+     "2521": [
+      [
+       43.37,
+       23.99
+      ]
+     ]
+    }
+   }
   },
   "93735": {
+   "enpc": [
+    256083
+   ],
    "lvl": 9,
    "n": "The Broken Construct",
+   "pre": [
+    92700
+   ],
+   "snpc": [
+    251968
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "93736": {
    "lvl": 9,
    "n": "Unwelcome Spirits",
+   "snpc": [
+    254344
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "93737": {
@@ -9228,12 +13960,36 @@
    "n": "The Broken Construct",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
      "text": "Listen to what Riaani Nightwind has to say"
+    },
+    {},
+    {},
+    {
+     "count": 1,
+     "kind": "object",
+     "name": "Air Construct Core",
+     "spm": {
+      "2521": [
+       [
+        44.97,
+        73.38
+       ]
+      ]
+     },
+     "text": "Air Construct Core"
     }
    ],
+   "pre": [
+    93735
+   ],
+   "snpc": [
+    256083
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "93738": {
@@ -9283,31 +14039,123 @@
    ]
   },
   "93791": {
+   "fin": {
+    "n": "Belann Windwood",
+    "spm": {
+     "2521": [
+      [
+       62.9,
+       77.45
+      ]
+     ]
+    }
+   },
    "lvl": 10,
    "n": "Speak with Belann",
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Belann Windwood",
+    "spm": {
+     "2521": [
+      [
+       62.9,
+       77.45
+      ]
+     ]
+    }
+   }
   },
   "93797": {
+   "classes": 128,
+   "fin": {
+    "n": "Belann Windwood",
+    "spm": {
+     "2521": [
+      [
+       62.89,
+       77.44
+      ]
+     ]
+    }
+   },
    "lvl": 10,
    "n": "Boughs in the Wind",
+   "obj": [
+    {
+     "count": 1,
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        48.49,
+        67.81
+       ]
+      ]
+     },
+     "text": "Wind-Infused Bough"
+    }
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "spm": {
+     "2521": [
+      [
+       62.9,
+       77.45
+      ]
+     ]
+    }
+   }
   },
   "93835": {
+   "fin": {
+    "n": "Elaadrin Evengale",
+    "spm": {
+     "2521": [
+      [
+       66.63,
+       79.93
+      ]
+     ]
+    }
+   },
    "lvl": 12,
    "n": "Confront Lorthuna",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        75.34,
+        53.32
+       ]
+      ]
+     },
      "text": "Confront Lorthuna"
     }
    ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "spm": {
+     "2521": [
+      [
+       65.19,
+       50.37
+      ]
+     ]
+    }
+   }
   },
   "93836": {
    "lvl": 12,
@@ -9323,29 +14171,126 @@
    ]
   },
   "93926": {
+   "enpc": [
+    252155
+   ],
    "lvl": 8,
    "n": "The Western Watch",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        42.32,
+        62.03
+       ]
+      ]
+     },
      "text": "Check in on the Western Watchtower in the Shen'dar Highlands"
     }
    ],
+   "pre": [
+    92528
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Constable Aonda",
+    "spm": {
+     "2521": [
+      [
+       46.44,
+       51.34
+      ]
+     ]
+    }
+   }
   },
   "93927": {
+   "fin": {
+    "n": "Constable Aonda",
+    "spm": {
+     "2521": [
+      [
+       45.67,
+       45.5
+      ]
+     ]
+    }
+   },
    "lvl": 8,
    "n": "A Last Request",
    "obj": [
     {
-     "kind": "event",
+     "count": 1,
+     "kind": "object",
+     "name": "Collect and read the note",
+     "spm": {
+      "2521": [
+       [
+        42.38,
+        62.07
+       ]
+      ]
+     },
      "text": "Collect and read the note"
+    },
+    {
+     "count": 1,
+     "kind": "kill",
+     "name": "Skypriest Aanders",
+     "spm": {
+      "2521": [
+       [
+        40.99,
+        64.09
+       ]
+      ]
+     },
+     "text": "Skypriest Aanders slain"
+    },
+    {
+     "count": 1,
+     "kind": "object",
+     "name": "Raani's Favorite Feather",
+     "spm": {
+      "2521": [
+       [
+        41.12,
+        64.09
+       ]
+      ]
+     },
+     "text": "Raani's Favorite Feather"
+    },
+    {
+     "count": 1,
+     "kind": "object",
+     "name": "Shadowsong Family Signet",
+     "spm": {
+      "2521": [
+       [
+        40.99,
+        64.09
+       ]
+      ]
+     },
+     "text": "Shadowsong Family Signet"
     }
    ],
+   "pre": [
+    93926
+   ],
+   "snpc": [
+    252155
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "93928": {
@@ -9356,50 +14301,233 @@
    ]
   },
   "93948": {
+   "fin": {
+    "n": "Talaanis Shadowsong",
+    "spm": {
+     "2521": [
+      [
+       66.17,
+       76.51
+      ]
+     ]
+    }
+   },
    "lvl": 9,
    "n": "Deliver the Signet",
+   "pre": [
+    92550,
+    93927
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Constable Aonda",
+    "spm": {
+     "2521": [
+      [
+       45.67,
+       45.5
+      ]
+     ]
+    }
+   }
   },
   "93949": {
    "lvl": 8,
    "n": "Bugged",
    "obj": [
     {
-     "kind": "event",
+     "count": 8,
+     "kind": "kill",
+     "name": "Skyhopper",
+     "spm": {
+      "2521": [
+       [
+        65.58,
+        76.65
+       ],
+       [
+        64.17,
+        78.27
+       ],
+       [
+        62.34,
+        76.66
+       ],
+       [
+        60.76,
+        73.03
+       ],
+       [
+        58.0,
+        75.83
+       ]
+      ]
+     },
      "text": "Enchanted Skyhopper Exterminated"
     }
    ],
+   "pre": [
+    92701,
+    92579
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Valennia Stormfist",
+    "spm": {
+     "2521": [
+      [
+       66.18,
+       76.65
+      ]
+     ]
+    }
+   }
   },
   "93951": {
+   "enpc": [
+    251991
+   ],
    "lvl": 7,
    "n": "A Little Beauty",
+   "obj": [
+    {
+     "count": 8,
+     "kind": "object",
+     "name": "Hippogryph Down",
+     "spm": {
+      "2521": [
+       [
+        36.44,
+        50.93
+       ],
+       [
+        34.12,
+        51.6
+       ],
+       [
+        35.12,
+        54.08
+       ],
+       [
+        35.63,
+        57.34
+       ],
+       [
+        38.61,
+        56.89
+       ]
+      ]
+     },
+     "text": "Hippogryph Down"
+    }
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Taleen Shimmerthread",
+    "spm": {
+     "2521": [
+      [
+       44.88,
+       44.19
+      ]
+     ]
+    }
+   }
   },
   "93958": {
+   "fin": {
+    "spm": {
+     "2521": [
+      [
+       65.19,
+       50.37
+      ]
+     ]
+    }
+   },
    "lvl": 12,
    "n": "The Inner Sanctum",
+   "pre": [
+    92947
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Hyusaa Quickbreeze",
+    "spm": {
+     "2521": [
+      [
+       63.79,
+       50.55
+      ]
+     ]
+    }
+   }
   },
   "93963": {
    "lvl": 13,
    "n": "Exploring the Alliance",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        63.99,
+        46.19
+       ],
+       [
+        63.91,
+        74.17
+       ],
+       [
+        58.84,
+        33.55
+       ],
+       [
+        65.91,
+        36.1
+       ],
+       [
+        63.95,
+        38.05
+       ],
+       [
+        64.64,
+        39.92
+       ],
+       [
+        58.97,
+        35.35
+       ],
+       [
+        53.97,
+        38.9
+       ],
+       [
+        48.53,
+        20.6
+       ]
+      ]
+     },
      "text": "Recieve Instructions from Randal Emerson"
     }
    ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "94003": {
@@ -9417,10 +14545,14 @@
    ]
   },
   "94006": {
+   "enpc": [
+    255853
+   ],
    "lvl": 10,
    "n": "The Great Ursera Spirit",
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "94007": {
@@ -9431,23 +14563,71 @@
    ]
   },
   "94013": {
+   "classes": 4,
+   "enpc": [
+    252389
+   ],
    "lvl": 10,
    "n": "Taming the Beast",
    "obj": [
     {
-     "kind": "event",
+     "id": 250874,
+     "kind": "kill",
+     "name": "Vuldren",
+     "spm": {
+      "2521": [
+       [
+        61.94,
+        68.83
+       ],
+       [
+        59.52,
+        64.85
+       ],
+       [
+        57.04,
+        67.73
+       ],
+       [
+        54.32,
+        75.08
+       ],
+       [
+        51.92,
+        80.46
+       ]
+      ]
+     },
      "text": "Tame a Vuldren"
     }
    ],
+   "pre": [
+    94979
+   ],
+   "snpc": [
+    252389
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "94050": {
+   "classes": 4,
+   "enpc": [
+    254411
+   ],
    "lvl": 10,
    "n": "Training the Beast",
+   "pre": [
+    94013
+   ],
+   "snpc": [
+    252389
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "94212": {
@@ -10494,17 +15674,52 @@
    ]
   },
   "94369": {
+   "fin": {
+    "n": "Talaanis Shadowsong",
+    "spm": {
+     "2521": [
+      [
+       66.18,
+       76.51
+      ]
+     ]
+    }
+   },
    "lvl": 12,
    "n": "The Fate of Zephras",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        66.17,
+        76.5
+       ]
+      ]
+     },
      "text": "Speak with Talaanis Shadowsong"
     }
    ],
+   "pre": [
+    93835
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Elaadrin Evengale",
+    "spm": {
+     "2521": [
+      [
+       66.63,
+       79.93
+      ]
+     ]
+    }
+   }
   },
   "94373": {
    "lvl": 4,
@@ -10528,37 +15743,135 @@
    ]
   },
   "94411": {
+   "enpc": [
+    251902
+   ],
    "lvl": 6,
    "n": "Meddlesome Mages",
    "obj": [
     {
-     "kind": "event",
+     "count": 6,
+     "id": 257521,
+     "kind": "kill",
+     "name": "High Order Apprentice",
+     "spm": {
+      "2521": [
+       [
+        46.41,
+        38.56
+       ]
+      ]
+     },
      "text": "High Order Apprentice defeated"
     }
    ],
+   "pre": [
+    92595
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Illaya Amberwind",
+    "spm": {
+     "2521": [
+      [
+       43.52,
+       44.78
+      ]
+     ]
+    }
+   }
   },
   "94413": {
+   "enpc": [
+    251903
+   ],
    "lvl": 6,
    "n": "A Magical Affront",
    "obj": [
     {
-     "kind": "event",
+     "count": 6,
+     "kind": "kill",
+     "name": "Windshaper Novice Seer",
+     "spm": {
+      "2521": [
+       [
+        39.56,
+        47.18
+       ],
+       [
+        37.56,
+        47.25
+       ]
+      ]
+     },
      "text": "Windshaper Novice Seer defeated"
     }
    ],
+   "pre": [
+    92596
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Rathiril Sunlance",
+    "spm": {
+     "2521": [
+      [
+       44.98,
+       46.35
+      ]
+     ]
+    }
+   }
   },
   "94414": {
+   "fin": {
+    "n": "Halaan Hawk-Eye",
+    "spm": {
+     "2521": [
+      [
+       43.8,
+       24.05
+      ]
+     ]
+    }
+   },
    "lvl": 2,
    "n": "The Anchors of Zephras",
+   "obj": [
+    {
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        43.8,
+        24.05
+       ]
+      ]
+     },
+     "text": "View the Anchor Pylon"
+    }
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Halaan Hawk-Eye",
+    "spm": {
+     "2521": [
+      [
+       43.53,
+       24.34
+      ]
+     ]
+    }
+   }
   },
   "94427": {
    "lvl": 12,
@@ -10647,76 +15960,333 @@
    ]
   },
   "94484": {
+   "fin": {
+    "spm": {
+     "2521": [
+      [
+       61.76,
+       39.14
+      ]
+     ]
+    }
+   },
    "lvl": 11,
    "n": "Unnerving Silence",
+   "snpc": [
+    252359
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "94485": {
+   "fin": {
+    "n": "Elegael Thornpaw",
+    "spm": {
+     "2521": [
+      [
+       61.76,
+       39.13
+      ]
+     ]
+    }
+   },
    "lvl": 12,
    "n": "Tears of the Lady",
+   "obj": [
+    {
+     "count": 8,
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        59.8,
+        40.38
+       ]
+      ]
+     },
+     "text": "Lady's Tear Moss"
+    }
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "spm": {
+     "2521": [
+      [
+       61.76,
+       39.14
+      ]
+     ]
+    }
+   }
   },
   "94486": {
+   "fin": {
+    "n": "Elegael Thornpaw",
+    "spm": {
+     "2521": [
+      [
+       61.76,
+       39.13
+      ]
+     ]
+    }
+   },
    "lvl": 11,
    "n": "Feathers for Binding",
    "obj": [
     {
+     "count": 20,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        55.93,
+        38.96
+       ]
+      ]
+     },
      "text": "Pristine Shriekling Feathers"
     }
    ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "spm": {
+     "2521": [
+      [
+       61.76,
+       39.14
+      ]
+     ]
+    }
+   }
   },
   "94487": {
+   "fin": {
+    "n": "Elegael Thornpaw",
+    "spm": {
+     "2521": [
+      [
+       61.76,
+       39.13
+      ]
+     ]
+    }
+   },
    "lvl": 11,
    "n": "Unwanted and Unworthy",
+   "obj": [
+    {
+     "count": 10,
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        62.69,
+        36.46
+       ]
+      ]
+     },
+     "text": "Bloody Heirloom"
+    }
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "spm": {
+     "2521": [
+      [
+       61.76,
+       39.14
+      ]
+     ]
+    }
+   }
   },
   "94488": {
+   "fin": {
+    "n": "Elegael Thornpaw",
+    "spm": {
+     "2521": [
+      [
+       61.76,
+       39.13
+      ]
+     ]
+    }
+   },
    "lvl": 11,
    "n": "The Ties That Bind",
+   "obj": [
+    {
+     "count": 1,
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        65.05,
+        36.66
+       ]
+      ]
+     },
+     "text": "Commander Haalien's Severed Head"
+    }
+   ],
+   "pre": [
+    94485,
+    94487,
+    94486
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Elegael Thornpaw",
+    "spm": {
+     "2521": [
+      [
+       61.76,
+       39.13
+      ]
+     ]
+    }
+   }
   },
   "94489": {
+   "fin": {
+    "n": "Elegael Thornpaw",
+    "spm": {
+     "2521": [
+      [
+       61.77,
+       39.14
+      ]
+     ]
+    }
+   },
    "lvl": 12,
    "n": "The Wounds of Betrayal",
    "obj": [
     {
+     "count": 7,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        65.91,
+        33.54
+       ]
+      ]
+     },
      "text": "Injured Druids healed"
     },
     {
+     "count": 1,
      "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        64.49,
+        34.74
+       ]
+      ]
+     },
      "text": "Find Jorel Windsinger"
     }
    ],
+   "pre": [
+    94485,
+    94487,
+    94486
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Elegael Thornpaw",
+    "spm": {
+     "2521": [
+      [
+       61.76,
+       39.13
+      ]
+     ]
+    }
+   }
   },
   "94490": {
+   "fin": {
+    "n": "Elegael Thornpaw",
+    "spm": {
+     "2521": [
+      [
+       61.76,
+       39.13
+      ]
+     ]
+    }
+   },
    "lvl": 12,
    "n": "Ripped Missive",
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "spm": {
+     "2521": [
+      [
+       64.77,
+       37.11
+      ]
+     ]
+    }
+   }
   },
   "94491": {
+   "fin": {
+    "n": "Lotheluum Starbreeze",
+    "spm": {
+     "2521": [
+      [
+       63.98,
+       75.08
+      ]
+     ]
+    }
+   },
    "lvl": 12,
    "n": "The Fate of the Den",
+   "pre": [
+    94490,
+    94488
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Elegael Thornpaw",
+    "spm": {
+     "2521": [
+      [
+       61.76,
+       39.13
+      ]
+     ]
+    }
+   }
   },
   "94493": {
    "lvl": 11,
@@ -10801,29 +16371,77 @@
    ]
   },
   "94568": {
+   "fin": {
+    "n": "Talaanis Shadowsong",
+    "spm": {
+     "2521": [
+      [
+       66.17,
+       76.51
+      ]
+     ]
+    }
+   },
    "lvl": 11,
    "n": "The Cult's True Plans",
    "obj": [
     {
+     "count": 1,
      "kind": "event",
      "text": "Learn what you can from the crystal"
     }
    ],
+   "pre": [
+    92644
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Talaanis Shadowsong",
+    "spm": {
+     "2521": [
+      [
+       66.17,
+       76.52
+      ]
+     ]
+    }
+   }
   },
   "94638": {
+   "enpc": [
+    255853
+   ],
    "lvl": 10,
    "n": "Strength and Mercy",
    "obj": [
     {
-     "kind": "event",
-     "text": "slain"
+     "count": 1,
+     "id": 258443,
+     "kind": "kill",
+     "name": "Ur'endra",
+     "spm": {
+      "2521": [
+       [
+        54.06,
+        65.53
+       ]
+      ]
+     },
+     "text": "Ur'endra slain"
     }
    ],
+   "pre": [
+    94006
+   ],
+   "snpc": [
+    255853
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "94773": {
@@ -10992,17 +16610,77 @@
    ]
   },
   "94896": {
+   "fin": {
+    "n": "Ealaane Nimbuswalker",
+    "spm": {
+     "2521": [
+      [
+       65.95,
+       74.31
+      ]
+     ]
+    }
+   },
    "lvl": 11,
    "n": "Aid For The Refugees",
+   "obj": [
+    {
+     "count": 8,
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        56.65,
+        29.37
+       ]
+      ]
+     },
+     "text": "Abandoned Belongings"
+    }
+   ],
+   "snpc": [
+    259012
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "94897": {
+   "fin": {
+    "n": "Ealaane Nimbuswalker",
+    "spm": {
+     "2521": [
+      [
+       65.95,
+       74.31
+      ]
+     ]
+    }
+   },
    "lvl": 11,
    "n": "The Fate of a Loved One",
+   "obj": [
+    {
+     "count": 1,
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        57.04,
+        29.36
+       ]
+      ]
+     },
+     "text": "Resaan's Heirloom"
+    }
+   ],
+   "snpc": [
+    259012
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "94898": {
@@ -11043,7 +16721,8 @@
    "lvl": 10,
    "n": "Child of Nature",
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "94913": {
@@ -11063,18 +16742,44 @@
   "94946": {
    "lvl": 13,
    "n": "The Magical City of Dalaran",
+   "pre": [
+    93089
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Elaadrin Evengale",
+    "spm": {
+     "2521": [
+      [
+       66.63,
+       79.95
+      ]
+     ]
+    }
+   }
   },
   "94947": {
    "lvl": 13,
    "n": "Welcome to Azeroth",
+   "obj": [
+    {
+     "kind": "event",
+     "text": "Take the Skyborne Portal to Stormwind"
+    }
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "94978": {
+   "classes": 4,
+   "enpc": [
+    252389
+   ],
    "lvl": 10,
    "n": "Taming the Beast",
    "obj": [
@@ -11083,21 +16788,53 @@
      "text": "Tame a Windsong Crawler"
     }
    ],
+   "snpc": [
+    252389
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "94979": {
+   "classes": 4,
+   "enpc": [
+    252389
+   ],
    "lvl": 10,
    "n": "Taming the Beast",
    "obj": [
     {
-     "kind": "event",
-     "text": "Tame an Ornery Galestrider"
+     "kind": "kill",
+     "name": "Ornery Galestrider",
+     "spm": {
+      "2521": [
+       [
+        60.91,
+        69.41
+       ],
+       [
+        58.34,
+        68.48
+       ],
+       [
+        53.8,
+        72.16
+       ]
+      ]
+     },
+     "text": "Tame a Ornery Galestrider"
     }
    ],
+   "pre": [
+    94978
+   ],
+   "snpc": [
+    252389
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "95034": {
@@ -11222,14 +16959,26 @@
    "lvl": 10,
    "n": "Stolen Blasting Powder",
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "95214": {
    "lvl": 10,
    "n": "Stolen Blasting Powder",
+   "obj": [
+    {
+     "kind": "kill",
+     "name": "Rockjaw Ambusher",
+     "text": "Stolen Blasting Powder (16)"
+    }
+   ],
+   "pre": [
+    95213
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "95216": {
@@ -11417,8 +17166,22 @@
   "95998": {
    "lvl": 6,
    "n": "The Great Outdoors",
+   "obj": [
+    {
+     "kind": "event",
+     "text": "/sit emote in chat 1/1"
+    },
+    {
+     "kind": "event",
+     "text": "Gain boosted rest buff 1/1"
+    }
+   ],
+   "pre": [
+    96627
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "95999": {
@@ -11506,11 +17269,64 @@
    ]
   },
   "96101": {
+   "fin": {
+    "n": "Raan Wildwind",
+    "spm": {
+     "2521": [
+      [
+       41.67,
+       44.79
+      ]
+     ]
+    }
+   },
    "lvl": 6,
    "n": "The Great Outdoors",
+   "obj": [
+    {
+     "count": 1,
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        41.67,
+        44.79
+       ]
+      ]
+     },
+     "text": "Use the /sit emote near the campfire"
+    },
+    {
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        41.67,
+        44.79
+       ]
+      ]
+     },
+     "text": "Gain the Boosted Rest buff"
+    }
+   ],
+   "pre": [
+    96638
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Raan Wildwind",
+    "spm": {
+     "2521": [
+      [
+       41.67,
+       44.79
+      ]
+     ]
+    }
+   }
   },
   "96102": {
    "lvl": 6,
@@ -11589,27 +17405,62 @@
   },
   "96390": {
    "n": "Nip 'Em in the Bud",
+   "obj": [
+    {
+     "kind": "kill",
+     "name": "Dark Iron Spy",
+     "text": "Dark Iron Spy slain 10/10"
+    }
+   ],
+   "pre": [
+    96392
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "96391": {
    "lvl": 15,
    "n": "Underground Map",
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "96392": {
    "n": "Farsen's Watch",
+   "obj": [
+    {
+     "kind": "event",
+     "text": "Use Farsen's Farsight"
+    }
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Earthseer Farsen",
+    "spm": {
+     "1426": [
+      [
+       66.36,
+       51.02
+      ]
+     ]
+    }
+   }
   },
   "96393": {
    "n": "Old Ironforge Incursion",
+   "pre": [
+    96390,
+    96391
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "96394": {
@@ -11658,8 +17509,20 @@
   "96604": {
    "lvl": 6,
    "n": "The Great Outdoors",
+   "obj": [
+    {
+     "count": 1,
+     "kind": "event",
+     "text": "Use the /sit emote near the campfire"
+    },
+    {
+     "kind": "event",
+     "text": "Gain the Boosted Rest buff"
+    }
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "96605": {
@@ -11693,15 +17556,23 @@
   "96626": {
    "lvl": 6,
    "n": "Camping 101: Cooking",
+   "pre": [
+    95998
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "96627": {
    "lvl": 6,
    "n": "The Adventurer",
+   "pre": [
+    21
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "96628": {
@@ -11733,17 +17604,50 @@
    ]
   },
   "96638": {
+   "fin": {
+    "n": "Raan Wildwind",
+    "spm": {
+     "2521": [
+      [
+       41.67,
+       44.79
+      ]
+     ]
+    }
+   },
    "lvl": 6,
    "n": "The Adventurer",
+   "pre": [
+    92470
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Aetheen of the Gales",
+    "spm": {
+     "2521": [
+      [
+       42.76,
+       23.65
+      ]
+     ]
+    }
+   }
   },
   "96646": {
+   "enpc": [
+    251905
+   ],
    "lvl": 6,
    "n": "Camping 101: Cooking",
+   "snpc": [
+    263664
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "96652": {
@@ -11794,35 +17698,91 @@
     "scan"
    ]
   },
+  "968": {
+   "n": "The Powers Below",
+   "src": [
+    "rxp"
+   ],
+   "start": {
+    "spm": {
+     "1455": [
+      [
+       67.4,
+       84.91
+      ]
+     ]
+    }
+   }
+  },
   "96821": {
    "lvl": 6,
    "n": "Legging It",
    "obj": [
     {
-     "kind": "event",
-     "text": "slain"
+     "also": [
+      "Ridgeshade Creeper"
+     ],
+     "count": 6,
+     "kind": "kill",
+     "name": "Ridgeshade Lurker",
+     "text": "Ridgeshade Creeper slain"
     },
     {
-     "kind": "event",
-     "text": "slain"
+     "also": [
+      "Ridgeshade Creeper"
+     ],
+     "count": 6,
+     "kind": "kill",
+     "name": "Ridgeshade Lurker",
+     "text": "Ridgeshade Lurker slain"
     }
    ],
+   "pre": [
+    805
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "96822": {
    "lvl": 6,
    "n": "For Honor",
+   "obj": [
+    {
+     "count": 1,
+     "kind": "event",
+     "text": "Raider's Bow"
+    },
+    {
+     "count": 1,
+     "kind": "event",
+     "text": "Raider's Battleaxe"
+    },
+    {
+     "count": 1,
+     "kind": "event",
+     "text": "Raider's Shield"
+    }
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "96825": {
    "lvl": 6,
    "n": "This Fruit Could Bite Back",
+   "obj": [
+    {
+     "count": 8,
+     "kind": "event",
+     "text": "Prickly Pear Fruit"
+    }
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "96873": {
@@ -12119,15 +18079,38 @@
   "97223": {
    "lvl": 8,
    "n": "Bloodtalon Matriarch",
+   "obj": [
+    {
+     "count": 1,
+     "kind": "kill",
+     "name": "Bloodtalon Martriarch",
+     "text": "Bloodtalon Martriarch Eggs"
+    }
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "97225": {
    "lvl": 9,
    "n": "Forgotten Loa Idols",
+   "obj": [
+    {
+     "also": [
+      "Voodoo Troll"
+     ],
+     "kind": "kill",
+     "name": "Hexed Troll",
+     "text": "Forgotten Loa Idols (x8)"
+    }
+   ],
+   "pre": [
+    805
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "97234": {
@@ -12263,8 +18246,19 @@
   "97279": {
    "lvl": 2,
    "n": "Wayward Weapons",
+   "obj": [
+    {
+     "count": 6,
+     "kind": "event",
+     "text": "Abandoned Training Weapon"
+    }
+   ],
+   "pre": [
+    4641
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "97281": {
@@ -12507,8 +18501,12 @@
   "97921": {
    "lvl": 6,
    "n": "Camping 101: Herbalism",
+   "pre": [
+    95998
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "97922": {
@@ -12519,15 +18517,23 @@
   },
   "97923": {
    "n": "Camping 101: Mining",
+   "pre": [
+    95998
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "97924": {
    "lvl": 6,
    "n": "Camping 101: Skinning",
+   "pre": [
+    95998
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "97925": {
@@ -12775,59 +18781,115 @@
    ]
   },
   "97963": {
+   "enpc": [
+    257019
+   ],
    "lvl": 6,
    "n": "Camping 101: Alchemy",
+   "snpc": [
+    263664
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "97964": {
+   "enpc": [
+    251913
+   ],
    "lvl": 6,
    "n": "Camping 101: Blacksmithing",
+   "snpc": [
+    263664
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "97965": {
+   "enpc": [
+    257018
+   ],
    "lvl": 6,
    "n": "Camping 101: First Aid",
+   "snpc": [
+    263664
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "97967": {
+   "enpc": [
+    251992
+   ],
    "lvl": 6,
    "n": "Camping 101: Fishing",
+   "snpc": [
+    263664
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "97968": {
+   "enpc": [
+    257021
+   ],
    "lvl": 6,
    "n": "Camping 101: Herbalism",
+   "snpc": [
+    263664
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "97969": {
+   "enpc": [
+    251993
+   ],
    "lvl": 6,
    "n": "Camping 101: Leatherworking",
+   "snpc": [
+    263664
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "97970": {
+   "enpc": [
+    257022
+   ],
    "lvl": 6,
    "n": "Camping 101: Mining",
+   "snpc": [
+    263664
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "97971": {
+   "enpc": [
+    257024
+   ],
    "lvl": 6,
    "n": "Camping 101: Skinning",
+   "snpc": [
+    263664
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "97972": {
@@ -12838,10 +18900,17 @@
    ]
   },
   "97973": {
+   "enpc": [
+    251991
+   ],
    "lvl": 6,
    "n": "Camping 101: Tailoring",
+   "snpc": [
+    263664
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "97977": {
@@ -12902,8 +18971,33 @@
   "98025": {
    "lvl": 13,
    "n": "WANTED: Jai'vhanel",
+   "obj": [
+    {
+     "count": 1,
+     "kind": "item",
+     "name": "Jai'vhanel",
+     "spm": {
+      "1439": [
+       [
+        42.67,
+        57.39
+       ],
+       [
+        41.99,
+        62.46
+       ],
+       [
+        44.07,
+        60.51
+       ]
+      ]
+     },
+     "text": "Feather of Jai'vhanel"
+    }
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "98028": {
@@ -13048,15 +19142,47 @@
   "98285": {
    "lvl": 6,
    "n": "Camping 101: Engineering",
+   "obj": [
+    {
+     "kind": "event",
+     "spm": {
+      "2521": [
+       [
+        53.96,
+        38.9
+       ]
+      ]
+     },
+     "text": "Raise your engineering skill to 20"
+    }
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "spm": {
+     "2521": [
+      [
+       53.96,
+       38.9
+      ]
+     ]
+    }
+   }
   },
   "98286": {
+   "enpc": [
+    257020
+   ],
    "lvl": 6,
    "n": "Camping 101: Enchanting",
+   "snpc": [
+    263664
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "98298": {
@@ -13372,17 +19498,53 @@
    ]
   },
   "98512": {
+   "fin": {
+    "n": "Fendaal Windstone",
+    "spm": {
+     "2521": [
+      [
+       56.8,
+       61.1
+      ]
+     ]
+    }
+   },
    "lvl": 11,
    "n": "Al'Aketh Assassins",
    "obj": [
     {
-     "kind": "event",
-     "text": "slain"
+     "also": [
+      "Al'Aketh Assassin"
+     ],
+     "count": 10,
+     "kind": "kill",
+     "name": "Al'Aketh Assassin",
+     "spm": {
+      "2521": [
+       [
+        55.66,
+        59.87
+       ]
+      ]
+     },
+     "text": "Al'Aketh Assassin slain"
     }
    ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Fendaal Windstone",
+    "spm": {
+     "2521": [
+      [
+       56.81,
+       61.11
+      ]
+     ]
+    }
+   }
   },
   "98517": {
    "lvl": 10,
@@ -13620,37 +19782,247 @@
    ]
   },
   "99127": {
+   "fin": {
+    "n": "Jason Mathers",
+    "spm": {
+     "1429": [
+      [
+       47.5,
+       62.2
+      ]
+     ]
+    }
+   },
    "n": "A Net Disaster",
+   "obj": [
+    {
+     "kind": "event",
+     "spm": {
+      "1429": [
+       [
+        48.5,
+        58.3
+       ],
+       [
+        47.7,
+        65.9
+       ],
+       [
+        49.9,
+        66.5
+       ]
+      ]
+     },
+     "text": "Half-Eaten Fish (7)"
+    }
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Jason Mathers",
+    "spm": {
+     "1429": [
+      [
+       47.5,
+       62.2
+      ]
+     ]
+    }
+   }
   },
   "99128": {
+   "fin": {
+    "n": "Jason Mathers",
+    "spm": {
+     "1429": [
+      [
+       47.5,
+       62.2
+      ]
+     ]
+    }
+   },
    "n": "Slimy Menace",
+   "obj": [
+    {
+     "also": [
+      "Murloc Streamrunner"
+     ],
+     "kind": "kill",
+     "name": "Murloc",
+     "spm": {
+      "1429": [
+       [
+        50.83,
+        65.45
+       ],
+       [
+        57.44,
+        63.66
+       ],
+       [
+        54.24,
+        66.89
+       ],
+       [
+        54.14,
+        62.47
+       ],
+       [
+        57.16,
+        62.16
+       ],
+       [
+        56.9,
+        67.02
+       ]
+      ]
+     },
+     "text": "Murloc Streamrunners slain (4)"
+    },
+    {
+     "also": [
+      "Murloc Streamrunner"
+     ],
+     "kind": "kill",
+     "name": "Murloc",
+     "spm": {
+      "1429": [
+       [
+        50.83,
+        65.45
+       ],
+       [
+        57.44,
+        63.66
+       ],
+       [
+        54.24,
+        66.89
+       ],
+       [
+        54.14,
+        62.47
+       ],
+       [
+        57.16,
+        62.16
+       ],
+       [
+        56.9,
+        67.02
+       ]
+      ]
+     },
+     "text": "Murloc slain (7)"
+    }
+   ],
+   "pre": [
+    99127
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Jason Mathers",
+    "spm": {
+     "1429": [
+      [
+       47.5,
+       62.2
+      ]
+     ]
+    }
+   }
   },
   "99129": {
    "lvl": 7,
    "n": "A Man About a Murloc",
+   "pre": [
+    99128
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Jason Mathers",
+    "spm": {
+     "1429": [
+      [
+       47.5,
+       62.2
+      ]
+     ]
+    }
+   }
   },
   "99130": {
+   "fin": {
+    "n": "Remy \"Two Times\"",
+    "spm": {
+     "1429": [
+      [
+       47.5,
+       62.2
+      ]
+     ]
+    }
+   },
    "lvl": 7,
    "n": "An Enticing Offer",
+   "obj": [
+    {
+     "kind": "kill",
+     "name": "Stonetusk Boar",
+     "text": "Duskweed Petal 18/18"
+    },
+    {
+     "kind": "kill",
+     "name": "Stonetusk Boar",
+     "text": "Vial of Animal Blood 6/6"
+    }
+   ],
    "src": [
-    "scan"
+    "scan",
+    "rxp"
    ]
   },
   "99131": {
+   "fin": {
+    "n": "Remy \"Two Times\"",
+    "spm": {
+     "1429": [
+      [
+       47.5,
+       62.2
+      ]
+     ]
+    }
+   },
    "lvl": 7,
    "n": "Baited for Success",
+   "pre": [
+    99130
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Remy \"Two Times\"",
+    "spm": {
+     "1429": [
+      [
+       47.5,
+       62.2
+      ]
+     ]
+    }
+   }
   },
   "99134": {
    "lvl": 6,
@@ -13680,10 +20052,71 @@
    ]
   },
   "99143": {
+   "fin": {
+    "n": "Lee Brown",
+    "spm": {
+     "1429": [
+      [
+       47.6,
+       62.3
+      ]
+     ]
+    }
+   },
    "n": "Bottles and Baubles",
+   "obj": [
+    {
+     "also": [
+      "Murloc Streamrunner"
+     ],
+     "kind": "kill",
+     "name": "Murloc",
+     "spm": {
+      "1429": [
+       [
+        50.83,
+        65.45
+       ],
+       [
+        57.44,
+        63.66
+       ],
+       [
+        54.24,
+        66.89
+       ],
+       [
+        54.14,
+        62.47
+       ],
+       [
+        57.16,
+        62.16
+       ],
+       [
+        56.9,
+        67.02
+       ]
+      ]
+     },
+     "text": "Shiny Junk (6)"
+    }
+   ],
    "src": [
-    "scan"
-   ]
+    "scan",
+    "rxp"
+   ],
+   "start": {
+    "n": "Lee Brown",
+    "spm": {
+     "1429": [
+      [
+       47.6,
+       62.3
+      ]
+     ]
+    }
+   }
   },
   "99144": {
    "lvl": 7,

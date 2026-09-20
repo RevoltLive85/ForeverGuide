@@ -1,0 +1,19 @@
+{
+  "id": "GEN_HORDE_ORC_27_ORGRIMMAR",
+  "name": "27. Orgrimmar 48-48 (Orc)",
+  "version": 2,
+  "faction": "Horde",
+  "race": ["Orc", "Troll"],
+  "minLevel": 48,
+  "maxLevel": 48,
+  "map": 1454,
+  "zone": "Orgrimmar",
+  "next": "GEN_HORDE_ORC_28_UNDERCITY",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 27 of the Orc route: level 48 to 48, 3 steps, ~17 min of play in the model (61435 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1454, "zone": "Orgrimmar", "x": 44.0, "y": 53.6, "radius": 60, "note": "travel to Orgrimmar (Orgrimmar)"},
+    {"type": "TURNIN", "quest": 8485, "questName": "The Brokering of Peace", "npc": 4949, "npcName": "Thrall", "map": 1454, "zone": "Orgrimmar", "x": 31.7, "y": 37.8},
+    {"type": "TURNIN", "quest": 3507, "questName": "Betrayed", "npc": 4485, "npcName": "Belgrom Rockmaul", "map": 1454, "zone": "Orgrimmar", "x": 75.2, "y": 34.2}
+  ]
+}

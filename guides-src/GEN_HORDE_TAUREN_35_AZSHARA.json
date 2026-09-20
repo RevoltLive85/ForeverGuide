@@ -1,0 +1,17 @@
+{
+  "id": "GEN_HORDE_TAUREN_35_AZSHARA",
+  "name": "35. Azshara 49-50 (Tauren)",
+  "version": 2,
+  "faction": "Horde",
+  "race": ["Tauren"],
+  "minLevel": 49,
+  "maxLevel": 50,
+  "map": 1447,
+  "zone": "Azshara",
+  "next": "GEN_HORDE_TAUREN_36_THE_HINTERLANDS",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 35 of the Tauren route: level 49 to 50, 1 steps, ~146 min of play in the model (35692 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "GRIND", "npc": 6196, "target": "Spitelash Myrmidon", "level": 50, "map": 1447, "zone": "Azshara", "x": 41.5, "y": 48.1, "near": true, "note": "grind Spitelash Myrmidon (level 50-51) to level 50 - nothing worth questing at 49"}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "GEN_ALLIANCE_HUMAN_02_IRONFORGE",
+  "name": "2. Ironforge 11-11 (Human)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["Human"],
+  "minLevel": 11,
+  "maxLevel": 11,
+  "map": 1455,
+  "zone": "Ironforge",
+  "next": "GEN_ALLIANCE_HUMAN_03_DARKSHORE",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 2 of the Human route: level 11 to 11, 6 steps, ~9 min of play in the model (29414 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1455, "zone": "Ironforge", "x": 61.4, "y": 48.2, "radius": 60, "note": "travel to Ironforge (Ironforge)"},
+    {"type": "NOTE", "map": 1455, "zone": "Ironforge", "x": 61.4, "y": 48.2, "text": "set your hearthstone at the inn in Ironforge (if there is one)"},
+    {"type": "ACCEPT", "quest": 8372, "questName": "Fight for Warsong Gulch", "npc": 15351, "npcName": "Alliance Brigadier General", "map": 1455, "zone": "Ironforge", "x": 70.4, "y": 91.1},
+    {"type": "TURNIN", "quest": 8372, "questName": "Fight for Warsong Gulch", "npc": 15351, "npcName": "Alliance Brigadier General", "map": 1455, "zone": "Ironforge", "x": 70.4, "y": 91.1},
+    {"type": "ACCEPT", "quest": 971, "questName": "Knowledge in the Deeps", "npc": 2786, "npcName": "Gerrig Bonegrip", "map": 1455, "zone": "Ironforge", "x": 50.8, "y": 5.6},
+    {"type": "TURNIN", "quest": 971, "questName": "Knowledge in the Deeps", "npc": 2786, "npcName": "Gerrig Bonegrip", "map": 1455, "zone": "Ironforge", "x": 50.8, "y": 5.6}
+  ]
+}

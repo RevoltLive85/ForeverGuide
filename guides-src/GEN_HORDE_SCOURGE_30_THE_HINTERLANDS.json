@@ -1,0 +1,31 @@
+{
+  "id": "GEN_HORDE_SCOURGE_30_THE_HINTERLANDS",
+  "name": "30. The Hinterlands 49-49 (Undead)",
+  "version": 2,
+  "faction": "Horde",
+  "race": ["Scourge"],
+  "minLevel": 49,
+  "maxLevel": 49,
+  "map": 1425,
+  "zone": "The Hinterlands",
+  "next": "GEN_HORDE_SCOURGE_31_EASTERN_PLAGUELANDS",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 30 of the Scourge route: level 49 to 49, 15 steps, ~31 min of play in the model (49269 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1422, "zone": "Western Plaguelands", "x": 39.1, "y": 62.6, "radius": 60, "note": "use your hearthstone (Western Plaguelands)"},
+    {"type": "TRAVEL", "map": 1425, "zone": "The Hinterlands", "x": 50.3, "y": 89.6, "radius": 60, "note": "travel to The Hinterlands (The Hinterlands)"},
+    {"type": "ACCEPT", "quest": 7849, "questName": "Separation Anxiety", "npc": 14741, "npcName": "Huntsman Markhor", "map": 1425, "zone": "The Hinterlands", "x": 79.2, "y": 79.5},
+    {"type": "ACCEPT", "quest": 7850, "questName": "Dark Vessels", "npc": 14736, "npcName": "Primal Torntusk", "map": 1425, "zone": "The Hinterlands", "x": 78.2, "y": 81.2},
+    {"type": "ACCEPT", "quest": 7845, "questName": "Kidnapped Elder Torntusk!", "npc": 14736, "npcName": "Primal Torntusk", "map": 1425, "zone": "The Hinterlands", "x": 78.2, "y": 81.2},
+    {"type": "COLLECT", "quest": 7850, "questName": "Dark Vessels", "target": "Vessel of Tainted Blood", "count": 10, "map": 1425, "zone": "The Hinterlands", "x": 67.9, "y": 75.8, "near": true},
+    {"type": "COLLECT", "quest": 7849, "questName": "Separation Anxiety", "target": "Huntsman Malkhor's Bones", "map": 1425, "zone": "The Hinterlands", "x": 62.1, "y": 75.4},
+    {"type": "TURNIN", "quest": 7845, "questName": "Kidnapped Elder Torntusk!", "npc": 14757, "npcName": "Elder Torntusk", "map": 1425, "zone": "The Hinterlands", "x": 59.7, "y": 77.8},
+    {"type": "COLLECT", "quest": 7849, "questName": "Separation Anxiety", "target": "Huntsman Malkhor's Skull", "map": 1425, "zone": "The Hinterlands", "x": 58.6, "y": 64.8},
+    {"type": "TURNIN", "quest": 7850, "questName": "Dark Vessels", "npc": 14736, "npcName": "Primal Torntusk", "map": 1425, "zone": "The Hinterlands", "x": 78.2, "y": 81.2},
+    {"type": "TURNIN", "quest": 7849, "questName": "Separation Anxiety", "npc": 14741, "npcName": "Huntsman Markhor", "map": 1425, "zone": "The Hinterlands", "x": 79.2, "y": 79.5},
+    {"type": "TURNIN", "quest": 650, "questName": "Ripple Recovery", "npc": 7801, "npcName": "Gilveradin Sunchaser", "map": 1425, "zone": "The Hinterlands", "x": 26.7, "y": 48.6},
+    {"type": "ACCEPT", "quest": 77, "questName": "A Sticky Situation", "npc": 7801, "npcName": "Gilveradin Sunchaser", "map": 1425, "zone": "The Hinterlands", "x": 26.7, "y": 48.6},
+    {"type": "COLLECT", "quest": 77, "questName": "A Sticky Situation", "target": "Hinterlands Honey Ripple", "count": 10, "map": 1425, "zone": "The Hinterlands", "x": 45.6, "y": 41.1, "near": true},
+    {"type": "TURNIN", "quest": 77, "questName": "A Sticky Situation", "npc": 7801, "npcName": "Gilveradin Sunchaser", "map": 1425, "zone": "The Hinterlands", "x": 26.7, "y": 48.6}
+  ]
+}

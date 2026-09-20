@@ -1,0 +1,31 @@
+{
+  "id": "GEN_ALLIANCE_SKYBORNE_40_UN_GORO_CRATER",
+  "name": "40. Un'Goro Crater 52-53 (Skyborne)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["Skyborne"],
+  "minLevel": 52,
+  "maxLevel": 53,
+  "map": 1449,
+  "zone": "Un'Goro Crater",
+  "next": "GEN_ALLIANCE_SKYBORNE_41_SILITHUS",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 40 of the Skyborne route: level 52 to 53, 15 steps, ~191 min of play in the model (7859 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1449, "zone": "Un'Goro Crater", "x": 43.7, "y": 7.0, "radius": 60, "note": "travel to Un'Goro Crater (Un'Goro Crater)"},
+    {"type": "ACCEPT", "quest": 3908, "questName": "It's a Secret to Everybody", "npc": 8737, "npcName": "Linken", "map": 1449, "zone": "Un'Goro Crater", "x": 44.7, "y": 8.1},
+    {"type": "ACCEPT", "quest": 4492, "questName": "Lost!", "npc": 9997, "npcName": "Spraggle Frock", "map": 1449, "zone": "Un'Goro Crater", "x": 43.6, "y": 8.5},
+    {"type": "COMPLETE", "quest": 4492, "questName": "Lost!", "target": "Escort Ringo to Spraggle Frock at Marshal's Refuge", "map": 1449, "zone": "Un'Goro Crater", "x": 43.7, "y": 8.3, "note": "escort - stay close, it can fail: Escort Ringo to Spraggle Frock at Marshal's Refuge"},
+    {"type": "ACCEPT", "quest": 974, "questName": "Finding the Source", "npc": 10302, "npcName": "Krakle", "map": 1449, "zone": "Un'Goro Crater", "x": 30.9, "y": 50.4},
+    {"type": "KILL", "quest": 974, "questName": "Finding the Source", "npc": 10541, "target": "Krakle's Thermometer", "count": 1, "map": 1449, "zone": "Un'Goro Crater", "x": 49, "y": 45, "note": "Find the hottest area of Fire Plume Ridge"},
+    {"type": "TURNIN", "quest": 4492, "questName": "Lost!", "npc": 9999, "npcName": "Ringo", "map": 1449, "zone": "Un'Goro Crater", "x": 51.9, "y": 49.9},
+    {"type": "ACCEPT", "quest": 4491, "questName": "A Little Help From My Friends", "npc": 9999, "npcName": "Ringo", "map": 1449, "zone": "Un'Goro Crater", "x": 51.9, "y": 49.9},
+    {"type": "COMPLETE", "quest": 4491, "questName": "A Little Help From My Friends", "target": "Escort Ringo to Spraggle Frock at Marshal's Refuge", "map": 1449, "zone": "Un'Goro Crater", "x": 43.7, "y": 8.3, "note": "escort - stay close, it can fail: Escort Ringo to Spraggle Frock at Marshal's Refuge"},
+    {"type": "TURNIN", "quest": 4491, "questName": "A Little Help From My Friends", "npc": 9997, "npcName": "Spraggle Frock", "map": 1449, "zone": "Un'Goro Crater", "x": 43.6, "y": 8.5},
+    {"type": "TURNIN", "quest": 974, "questName": "Finding the Source", "npc": 10302, "npcName": "Krakle", "map": 1449, "zone": "Un'Goro Crater", "x": 30.9, "y": 50.4},
+    {"type": "ACCEPT", "quest": 4301, "questName": "The Mighty U'cha", "npc": 9619, "npcName": "Torwa Pathfinder", "map": 1449, "zone": "Un'Goro Crater", "x": 71.6, "y": 76},
+    {"type": "KILL", "quest": 4301, "questName": "The Mighty U'cha", "npc": 9622, "target": "U'cha", "map": 1449, "zone": "Un'Goro Crater", "x": 68.1, "y": 12.6, "note": "loot U'cha's Pelt"},
+    {"type": "TURNIN", "quest": 4301, "questName": "The Mighty U'cha", "npc": 9619, "npcName": "Torwa Pathfinder", "map": 1449, "zone": "Un'Goro Crater", "x": 71.6, "y": 76},
+    {"type": "GRIND", "npc": 9167, "target": "Frenzied Pterrordax", "level": 53, "map": 1449, "zone": "Un'Goro Crater", "x": 41, "y": 64.8, "near": true, "note": "grind Frenzied Pterrordax (level 51-54) to level 53 - nothing worth questing at 52"}
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "GEN_ALLIANCE_DWARF_09_IRONFORGE",
+  "name": "9. Ironforge 24-24 (Dwarf)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["Dwarf", "Gnome"],
+  "minLevel": 24,
+  "maxLevel": 24,
+  "map": 1455,
+  "zone": "Ironforge",
+  "next": "GEN_ALLIANCE_DWARF_10_DUSKWOOD",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 9 of the Dwarf route: level 24 to 24, 5 steps, ~12 min of play in the model (33280 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1455, "zone": "Ironforge", "x": 61.3, "y": 47.4, "radius": 60, "note": "travel to Ironforge (Ironforge)"},
+    {"type": "ACCEPT", "quest": 2924, "questName": "Essential Artificials", "npc": 6169, "npcName": "Klockmort Spannerspan", "map": 1455, "zone": "Ironforge", "x": 67.9, "y": 46.1},
+    {"type": "ACCEPT", "quest": 2930, "questName": "Data Rescue", "npc": 7950, "npcName": "Master Mechanic Castpipe", "map": 1455, "zone": "Ironforge", "x": 69.8, "y": 48.1},
+    {"type": "TURNIN", "quest": 2930, "questName": "Data Rescue", "npc": 7950, "npcName": "Master Mechanic Castpipe", "map": 1455, "zone": "Ironforge", "x": 69.8, "y": 48.1},
+    {"type": "TURNIN", "quest": 2924, "questName": "Essential Artificials", "npc": 6169, "npcName": "Klockmort Spannerspan", "map": 1455, "zone": "Ironforge", "x": 67.9, "y": 46.1}
+  ]
+}

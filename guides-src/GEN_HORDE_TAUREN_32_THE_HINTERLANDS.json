@@ -1,0 +1,28 @@
+{
+  "id": "GEN_HORDE_TAUREN_32_THE_HINTERLANDS",
+  "name": "32. The Hinterlands 48-49 (Tauren)",
+  "version": 2,
+  "faction": "Horde",
+  "race": ["Tauren"],
+  "minLevel": 48,
+  "maxLevel": 49,
+  "map": 1425,
+  "zone": "The Hinterlands",
+  "next": "GEN_HORDE_TAUREN_33_WESTERN_PLAGUELANDS",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 32 of the Tauren route: level 48 to 49, 12 steps, ~59 min of play in the model (16920 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1458, "zone": "Undercity", "x": 59.4, "y": 65.5, "radius": 60, "note": "use your hearthstone (Undercity)"},
+    {"type": "TRAVEL", "map": 1425, "zone": "The Hinterlands", "x": 50.3, "y": 89.6, "radius": 60, "note": "travel to The Hinterlands (The Hinterlands)"},
+    {"type": "ACCEPT", "quest": 7849, "questName": "Separation Anxiety", "npc": 14741, "npcName": "Huntsman Markhor", "map": 1425, "zone": "The Hinterlands", "x": 79.2, "y": 79.5},
+    {"type": "ACCEPT", "quest": 7850, "questName": "Dark Vessels", "npc": 14736, "npcName": "Primal Torntusk", "map": 1425, "zone": "The Hinterlands", "x": 78.2, "y": 81.2},
+    {"type": "ACCEPT", "quest": 7845, "questName": "Kidnapped Elder Torntusk!", "npc": 14736, "npcName": "Primal Torntusk", "map": 1425, "zone": "The Hinterlands", "x": 78.2, "y": 81.2},
+    {"type": "COLLECT", "quest": 7850, "questName": "Dark Vessels", "target": "Vessel of Tainted Blood", "count": 10, "map": 1425, "zone": "The Hinterlands", "x": 67.9, "y": 75.8, "near": true},
+    {"type": "COLLECT", "quest": 7849, "questName": "Separation Anxiety", "target": "Huntsman Malkhor's Bones", "map": 1425, "zone": "The Hinterlands", "x": 62.1, "y": 75.4},
+    {"type": "TURNIN", "quest": 7845, "questName": "Kidnapped Elder Torntusk!", "npc": 14757, "npcName": "Elder Torntusk", "map": 1425, "zone": "The Hinterlands", "x": 59.7, "y": 77.8},
+    {"type": "COLLECT", "quest": 7849, "questName": "Separation Anxiety", "target": "Huntsman Malkhor's Skull", "map": 1425, "zone": "The Hinterlands", "x": 58.6, "y": 64.8},
+    {"type": "TURNIN", "quest": 7850, "questName": "Dark Vessels", "npc": 14736, "npcName": "Primal Torntusk", "map": 1425, "zone": "The Hinterlands", "x": 78.2, "y": 81.2},
+    {"type": "TURNIN", "quest": 7849, "questName": "Separation Anxiety", "npc": 14741, "npcName": "Huntsman Markhor", "map": 1425, "zone": "The Hinterlands", "x": 79.2, "y": 79.5},
+    {"type": "GRIND", "npc": 2659, "target": "Razorbeak Skylord", "level": 49, "map": 1425, "zone": "The Hinterlands", "x": 64.6, "y": 48.6, "near": true, "note": "grind Razorbeak Skylord (level 46-48) to level 49 - nothing worth questing at 48"}
+  ]
+}

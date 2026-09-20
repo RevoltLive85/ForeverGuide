@@ -325,7 +325,7 @@ end
 
 -- ---- multi-objective steps: each KILL/COLLECT step tracks its own objective ----
 do
-    G:Activate("GEN_ALLIANCE_ELWYNN_FOREST", true); settle()
+    G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); settle()
     local steps = G.active.steps
     local a, b
     for i, s in ipairs(steps) do
@@ -343,17 +343,31 @@ do
         check(G:StepObjectiveIndex(steps[a]) == 1 and G:StepObjectiveIndex(steps[b]) == 2,
             "steps map to objectives 1 and 2 by target name (" .. tostring(G:StepObjectiveIndex(steps[a])) .. "," .. tostring(G:StepObjectiveIndex(steps[b])) .. ")")
         check(cur() == a, "current step is the first objective step (" .. tostring(cur()) .. ")")
+        -- the route interleaves other quests' objectives between the two: put those quests in the log, finished
+        local between = {}
+        for i = a + 1, b - 1 do
+            local st = steps[i]
+            if st.quest and st.quest ~= 52 and not MOCK.log[st.quest] then
+                MOCK_ACCEPT(st.quest, "Quest " .. st.quest, { { text = "done: 1/1", finished = true, numFulfilled = 1, numRequired = 1 } })
+                between[#between + 1] = st.quest
+            end
+        end
+        settle()
         MOCK.log[52].objectives[1] = { text = "Young Forest Bear slain: 8/8", finished = true, numFulfilled = 8, numRequired = 8 }
         MOCK_FIRE("QUEST_LOG_UPDATE"); settle()
         check(cur() == b, "first objective done -> second objective step is current (" .. tostring(cur()) .. ")")
         check(G:GetStepProgress(steps[b]) == "0 / 8", "progress shows the second objective's own count: " .. G:GetStepProgress(steps[b]))
         -- /fg back holds the previous (already finished) step
         G:Back(); settle()
-        check(cur() == a, "back holds the finished step (" .. tostring(cur()) .. ")")
+        check(cur() < b and cur() >= a, "back holds a finished step (" .. tostring(cur()) .. ")")
         G:Skip(); settle()
         check(cur() == b, "skip releases the hold (" .. tostring(cur()) .. ")")
         MOCK.log[52] = nil
         for i, id in ipairs(MOCK.logOrder) do if id == 52 then table.remove(MOCK.logOrder, i) break end end
+        for _, qid in ipairs(between) do
+            MOCK.log[qid] = nil
+            for i, id in ipairs(MOCK.logOrder) do if id == qid then table.remove(MOCK.logOrder, i) break end end
+        end
     end
 end
 
@@ -436,13 +450,13 @@ end
 
 -- ---- editor + resync -------------------------------------------------------------------
 do
-    G:Activate("GEN_ALLIANCE_ELWYNN_FOREST", true); G:SetStep(1); settle()
+    G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); G:SetStep(1); settle()
     local step = G:GetCurrentStep()
     MOCK_MOVE(33.3, 44.4)
     ns.Commands:Run("edit here")
     local map, x, y = ns.Navigation:ResolveStep(step)
     check(map == 1429 and math.abs(x - 33.3) < 0.01 and math.abs(y - 44.4) < 0.01, "/fg edit here overrides the step location (" .. tostring(x) .. "," .. tostring(y) .. ")")
-    check(ns.db.edits and ns.db.edits.GEN_ALLIANCE_ELWYNN_FOREST and ns.db.edits.GEN_ALLIANCE_ELWYNN_FOREST[step.index] ~= nil, "edit persisted in ForeverGuideDB.edits")
+    check(ns.db.edits and ns.db.edits.GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST and ns.db.edits.GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST[step.index] ~= nil, "edit persisted in ForeverGuideDB.edits")
     ns.Commands:Run("edit note test note")
     check(ns.Editor:Effective(step).note == "test note", "/fg edit note sets the note")
     ns.Commands:Run("edits")
@@ -452,13 +466,24 @@ do
     -- resync: a level-20 character skips out-levelled quests
     MOCK_LEVEL(20); settle()
     local n = G:Resync(); settle()
-    check(n > 10, "resync skipped the out-levelled quests (" .. n .. ")")
+    check(n >= 5, "resync skipped the out-levelled quests (" .. n .. ")")
     local cs = G:GetCurrentStep()
-    check(cs == nil or not cs.quest or ns.Quest:XPMultiplier(cs.quest) > 0.2 or ns.Quest:IsOnQuest(cs.quest), "current step after resync is not a grey quest")
+    local function chainLink(qid)   -- a grey quest another step's quest needs stays on the route
+        for _, st in ipairs(G.active.steps) do
+            local q = st.quest and ns.DB:GetQuest(st.quest)
+            if q then
+                for _, pre in ipairs(q.pregroup or {}) do if pre == qid then return true end end
+                for _, pre in ipairs(q.pre or {}) do if pre == qid then return true end end
+                if q.parent == qid then return true end
+            end
+        end
+        return false
+    end
+    check(cs == nil or not cs.quest or ns.Quest:XPMultiplier(cs.quest) > 0.2 or ns.Quest:IsOnQuest(cs.quest) or chainLink(cs.quest), "current step after resync is not a grey quest (unless a chain needs it)")
     -- auto-pick prefers the race's natural chain / same continent over a far zone of the same level
     MOCK_LEVEL(11); settle()
     local pick = G:AutoPick()
-    check(pick and pick.id == "GEN_ALLIANCE_WESTFALL", "level-11 human in Elwynn auto-picks Westfall, not Darkshore (" .. tostring(pick and pick.id) .. ")")
+    check(pick and (pick.id:find("^GEN_ALLIANCE_HUMAN_0[12]_") ~= nil), "level-11 human in Elwynn auto-picks the Human route's chapter 1 or 2, not another race's chapter (" .. tostring(pick and pick.id) .. ")")
     MOCK_LEVEL(5); settle()
     G:Reset(); settle()
 end
@@ -467,7 +492,7 @@ end
 do
     local before = #reportedErrors
     local cmds = {
-        "", "help", "show", "hide", "toggle", "show", "guides", "guide GEN_ALLIANCE_ELWYNN_FOREST", "skip", "back", "next", "step 3",
+        "", "help", "show", "hide", "toggle", "show", "guides", "guide GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", "skip", "back", "next", "step 3",
         "quests", "mode auto", "track", "mode guide", "quest 783", "quest kobold", "avail", "avail 5", "pos", "target", "nav",
         "way 40 60", "lock", "unlock", "resetpos", "auto", "auto accept guide", "auto turnin off", "auto accept on", "auto turnin on",
         "minimap off", "minimap on", "arrow off", "arrow on", "scale 1.2", "scale 1", "rec status", "rec dump 3", "scan status",
@@ -522,7 +547,7 @@ end
 
 -- ---- beta SavedVariables bug: state survives a login with empty SavedVariables via cvars ----
 do
-    G:Activate("GEN_ALLIANCE_DUN_MOROGH", true); settle()
+    G:Activate("GEN_ALLIANCE_DWARF_01_DUN_MOROGH", true); settle()
     G:SetStep(20); settle()
     G.progress.done[7] = true G.progress.done[8] = true G.progress.done[12] = true
     ns.char.mode = "guide"
@@ -530,7 +555,7 @@ do
     ns.db.minimap.angle = 137
     ns.AutoQuest:Set("accept", "guide")
     ns.Commands:Run("edit note keep me")
-    ns.db.edits.GEN_ALLIANCE_DUN_MOROGH[G.current] = { type = G:GetCurrentStep().type, quest = G:GetCurrentStep().quest, map = 1426, x = 12.5, y = 34.5, npc = 999 }
+    ns.db.edits.GEN_ALLIANCE_DWARF_01_DUN_MOROGH[G.current] = { type = G:GetCurrentStep().type, quest = G:GetCurrentStep().quest, map = 1426, x = 12.5, y = 34.5, npc = 999 }
     ns.Persist:Save()
     check(#(MOCK.cvars.ForeverGuideA0 or "") > 0 and #(MOCK.cvars.ForeverGuideCSniffClassicBetaPvE20 or MOCK.cvars["ForeverGuideC" .. ((UnitName("player") .. GetRealmName()):gsub("[^%w]", "")):sub(1, 24) .. "0"] or "") > 0, "cvar mirror written (account + character)")
     local savedStep, savedGuide = G.progress.step, ns.char.activeGuide

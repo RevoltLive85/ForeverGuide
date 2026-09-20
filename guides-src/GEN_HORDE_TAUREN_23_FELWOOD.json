@@ -1,0 +1,33 @@
+{
+  "id": "GEN_HORDE_TAUREN_23_FELWOOD",
+  "name": "23. Felwood 46-46 (Tauren)",
+  "version": 2,
+  "faction": "Horde",
+  "race": ["Tauren"],
+  "minLevel": 46,
+  "maxLevel": 46,
+  "map": 1448,
+  "zone": "Felwood",
+  "next": "GEN_HORDE_TAUREN_24_UN_GORO_CRATER",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 23 of the Tauren route: level 46 to 46, 17 steps, ~72 min of play in the model (33234 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1448, "zone": "Felwood", "x": 50.5, "y": 82.5, "radius": 60, "note": "travel to Felwood (Felwood)"},
+    {"type": "NOTE", "map": 1448, "zone": "Felwood", "x": 50.5, "y": 82.5, "text": "set your hearthstone at the inn in Felwood (if there is one)"},
+    {"type": "ACCEPT", "quest": 8460, "questName": "Timbermaw Ally", "npc": 11554, "npcName": "Grazle", "map": 1448, "zone": "Felwood", "x": 50.9, "y": 85},
+    {"type": "KILL", "quest": 8460, "questName": "Timbermaw Ally", "npc": 7153, "target": "Deadwood Warrior / Deadwood Gardener / Deadwood Pathfinder", "count": 6, "map": 1448, "zone": "Felwood", "x": 49.7, "y": 88.2, "near": true},
+    {"type": "TURNIN", "quest": 8460, "questName": "Timbermaw Ally", "npc": 11554, "npcName": "Grazle", "map": 1448, "zone": "Felwood", "x": 50.9, "y": 85},
+    {"type": "ACCEPT", "quest": 6162, "questName": "A Husband's Last Battle", "npc": 9620, "npcName": "Dreka'Sur", "map": 1448, "zone": "Felwood", "x": 34.8, "y": 52.7},
+    {"type": "KILL", "quest": 6162, "questName": "A Husband's Last Battle", "npc": 9464, "target": "Overlord Ror", "map": 1448, "zone": "Felwood", "x": 48.2, "y": 94.3, "note": "loot Overlord Ror's Claw"},
+    {"type": "TURNIN", "quest": 6162, "questName": "A Husband's Last Battle", "npc": 9620, "npcName": "Dreka'Sur", "map": 1448, "zone": "Felwood", "x": 34.8, "y": 52.7},
+    {"type": "ACCEPT", "quest": 8461, "questName": "Deadwood of the North", "npc": 15395, "npcName": "Nafien", "map": 1448, "zone": "Felwood", "x": 64.8, "y": 8.1},
+    {"type": "ACCEPT", "quest": 8481, "questName": "The Root of All Evil", "npc": 11555, "npcName": "Gorn One Eye", "map": 1448, "zone": "Felwood", "x": 65.2, "y": 2.7},
+    {"type": "TURNIN", "quest": 8481, "questName": "The Root of All Evil", "npc": 11555, "npcName": "Gorn One Eye", "map": 1448, "zone": "Felwood", "x": 65.2, "y": 2.7},
+    {"type": "ACCEPT", "quest": 8485, "questName": "The Brokering of Peace", "npc": 11555, "npcName": "Gorn One Eye", "map": 1448, "zone": "Felwood", "x": 65.2, "y": 2.7},
+    {"type": "KILL", "quest": 8461, "questName": "Deadwood of the North", "npc": 7156, "target": "Deadwood Den Watcher / Deadwood Shaman", "count": 6, "map": 1448, "zone": "Felwood", "x": 63.7, "y": 6.1, "near": true},
+    {"type": "KILL", "quest": 8461, "questName": "Deadwood of the North", "npc": 7157, "target": "Deadwood Avenger", "count": 6, "map": 1448, "zone": "Felwood", "x": 63.7, "y": 8.2, "near": true},
+    {"type": "TURNIN", "quest": 8461, "questName": "Deadwood of the North", "npc": 15395, "npcName": "Nafien", "map": 1448, "zone": "Felwood", "x": 64.8, "y": 8.1},
+    {"type": "ACCEPT", "quest": 8462, "questName": "Speak to Nafien", "npc": 11554, "npcName": "Grazle", "map": 1448, "zone": "Felwood", "x": 50.9, "y": 85},
+    {"type": "TURNIN", "quest": 8462, "questName": "Speak to Nafien", "npc": 15395, "npcName": "Nafien", "map": 1448, "zone": "Felwood", "x": 64.8, "y": 8.1}
+  ]
+}

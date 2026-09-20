@@ -1,0 +1,33 @@
+{
+  "id": "GEN_ALLIANCE_NIGHTELF_04_STONETALON_MOUNTAINS",
+  "name": "4. Stonetalon Mountains 16-17 (Night Elf)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["NightElf"],
+  "minLevel": 16,
+  "maxLevel": 17,
+  "map": 1442,
+  "zone": "Stonetalon Mountains",
+  "next": "GEN_ALLIANCE_NIGHTELF_05_REDRIDGE_MOUNTAINS",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 4 of the NightElf route: level 16 to 17, 17 steps, ~35 min of play in the model (20875 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1442, "zone": "Stonetalon Mountains", "x": 59.5, "y": 65.9, "radius": 60, "note": "travel to Stonetalon Mountains (Stonetalon Mountains)"},
+    {"type": "NOTE", "map": 1442, "zone": "Stonetalon Mountains", "x": 59.5, "y": 65.9, "text": "set your hearthstone at the inn in Stonetalon Mountains (if there is one)"},
+    {"type": "ACCEPT", "quest": 1085, "questName": "On Guard in Stonetalon", "npc": 4080, "npcName": "Kaela Shadowspear", "map": 1442, "zone": "Stonetalon Mountains", "x": 59.9, "y": 66.9},
+    {"type": "ACCEPT", "quest": 1093, "questName": "Super Reaper 6000", "npc": 4201, "npcName": "Ziz Fizziks", "map": 1442, "zone": "Stonetalon Mountains", "x": 59, "y": 62.6},
+    {"type": "TURNIN", "quest": 1085, "questName": "On Guard in Stonetalon", "npc": 4077, "npcName": "Gaxim Rustfizzle", "map": 1442, "zone": "Stonetalon Mountains", "x": 59.5, "y": 67.2},
+    {"type": "ACCEPT", "quest": 1071, "questName": "A Gnome's Respite", "npc": 4077, "npcName": "Gaxim Rustfizzle", "map": 1442, "zone": "Stonetalon Mountains", "x": 59.5, "y": 67.2},
+    {"type": "KILL", "quest": 1071, "questName": "A Gnome's Respite", "npc": 3989, "target": "Venture Co. Logger", "count": 10, "map": 1442, "zone": "Stonetalon Mountains", "x": 62.7, "y": 55.3, "near": true},
+    {"type": "KILL", "quest": 1093, "questName": "Super Reaper 6000", "npc": 3988, "target": "Venture Co. Operator", "map": 1442, "zone": "Stonetalon Mountains", "x": 62.6, "y": 53.9, "near": true, "note": "loot Super Reaper 6000 Blueprints"},
+    {"type": "KILL", "quest": 1071, "questName": "A Gnome's Respite", "npc": 3991, "target": "Venture Co. Deforester", "count": 10, "map": 1442, "zone": "Stonetalon Mountains", "x": 60.6, "y": 52.1, "near": true},
+    {"type": "TURNIN", "quest": 1093, "questName": "Super Reaper 6000", "npc": 4201, "npcName": "Ziz Fizziks", "map": 1442, "zone": "Stonetalon Mountains", "x": 59, "y": 62.6},
+    {"type": "ACCEPT", "quest": 1094, "questName": "Further Instructions", "npc": 4201, "npcName": "Ziz Fizziks", "map": 1442, "zone": "Stonetalon Mountains", "x": 59, "y": 62.6},
+    {"type": "TURNIN", "quest": 1071, "questName": "A Gnome's Respite", "npc": 4077, "npcName": "Gaxim Rustfizzle", "map": 1442, "zone": "Stonetalon Mountains", "x": 59.5, "y": 67.2},
+    {"type": "ACCEPT", "quest": 1090, "questName": "Gerenzo's Orders", "npc": 4276, "npcName": "Piznik", "map": 1442, "zone": "Stonetalon Mountains", "x": 71.9, "y": 60},
+    {"type": "KILL", "quest": 1090, "questName": "Gerenzo's Orders", "npc": 4276, "target": "Piznik", "count": 1, "map": 1442, "zone": "Stonetalon Mountains", "x": 71.9, "y": 60},
+    {"type": "TURNIN", "quest": 1090, "questName": "Gerenzo's Orders", "npc": 4276, "npcName": "Piznik", "map": 1442, "zone": "Stonetalon Mountains", "x": 71.9, "y": 60},
+    {"type": "ACCEPT", "quest": 1092, "questName": "Gerenzo's Orders", "npc": 4276, "npcName": "Piznik", "map": 1442, "zone": "Stonetalon Mountains", "x": 71.9, "y": 60},
+    {"type": "TURNIN", "quest": 1092, "questName": "Gerenzo's Orders", "npc": 4201, "npcName": "Ziz Fizziks", "map": 1442, "zone": "Stonetalon Mountains", "x": 59, "y": 62.6}
+  ]
+}

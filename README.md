@@ -76,7 +76,9 @@ ForeverGuide/
   tools/
     compile_guides.py   JSON -> Lua  (python tools/compile_guides.py)
     build_questdb.lua   Questie Classic DB (+ corrections) -> Data/*.lua   (lua5.1 tools/build_questdb.lua <Questie> .)
-    generate_guides.lua Data/*.lua -> guides-src/GEN_*.json  (one route per zone and faction)
+    plan_route.lua      Data/*.lua -> guides-src/GEN_*.json  (one 1-60 route per starting race, see Route logic)
+    lib/route_model.lua xp / time model; lib/route_data.lua zones, map sizes, travel graph, overlay
+    import_rxp.py       factual quest positions from RestedXP's free Forever guides -> overlay
     questie_lookup.py   quest/NPC/object/item facts + step JSON from the Questie DB
     scan_diff.py        /fg scan results vs Questie: new / removed / renamed quests
     merge_recorded.py   SavedVariables (recorder/harvest/scan, incl. .bak, every account) -> data-src/forever.json -> Data/ForeverDB.lua
@@ -115,36 +117,42 @@ as they arrive (the server throttles; run it in the background over a few sessio
 shows progress), then `tools\sync_to_github.cmd` / `merge_recorded.py` folds them in. Positions of
 the new quests come from the recorder while you play them.
 
-## Route logic
+## Route logic (the planner)
 
-The generator thinks in hubs (clusters of givers / turn-ins): everything tied to the current hub is
-finished before the route moves on - objectives of quests that turn in there, turn-ins, givers,
-objectives close by - planned as one tour (nearest-neighbour + 2-opt). When a hub is exhausted the
-next one is the hub with the most waiting, and givers / objectives on the way are taken along.
-The order the hubs themselves are visited is planned as a tour too (nearest-neighbour + 2-opt over
-the hubs with something waiting), so a finished quest is never left behind for a long trip back.
-Quests with an elite / group target are kept in the route but marked optional (dimmed, they
-complete themselves once you move past them); objectives with many spawn points carry `near`, so
-in game the arrow points at the nearest known spawn instead of the planned spot.
-Quest XP is the real reward (Questie's XP table) with the Classic reduction for out-levelled quests,
-so lower-level quests are ordered first and never left to turn grey; quests that would give 20% or
-less are skipped unless a chain needs them. In game, auto mode ranks the quest log the same way
-(distance + levels of headroom before the reward shrinks) and the window warns when a quest is about
-to lose xp.
+`tools/plan_route.lua` builds **one continuous 1-60 route per starting race** (Human, Dwarf/Gnome,
+Night Elf, Orc/Troll, Tauren, Undead, and Skyborne for both factions), written as a chain of zone
+chapters (`guides-src/GEN_<FACTION>_<RACE>_<nn>_<ZONE>.json`, ~45 per race). "Fastest" means xp per
+second of modelled play:
 
-## Generated zone guides
+* `tools/lib/route_model.lua` prices everything in seconds - walking (yards from the real map sizes,
+  run speed, mount at 40), kills (mob level, drop rates, elites), gathering, escorts, talking - and pays
+  the real quest reward (Questie's xp table, Classic grey reduction) plus kill xp (Classic formula).
+* The yardstick is the **grind rate**: xp/s from killing even-level mobs. A quest that pays less than
+  60% of that, with its share of the travel and what it unlocks down its chain counted, is skipped -
+  grinding would be faster. Elite/group quests, class quests, dungeon-only chains are skipped.
+* The player state carries through the whole route: xp, quest log (cap 20), finished quests (so chains
+  continue across zones), position, hearthstone. Deliveries to a zone the route will not revisit are
+  never accepted; a full log gets its stuck deliveries abandoned (the guide says so).
+* The next chapter is chosen by **simulating every plausible zone** (and the capital, for turn-ins and
+  new quests) from the current state and taking the best xp / (travel + chapter time). A zone is left
+  when what remains is not worth the time and revisited later when it is - Joana's Barrens x4. When no
+  chapter beats 70% of the grind rate the route says *grind here* and names a mob spot.
+* Inside a chapter: hubs (clusters of givers / turn-ins). Everything tied to the current hub is done as
+  one loop out of town (objectives; nearest-neighbour + 2-opt in seconds, quests about to go grey first),
+  hand-ins on the way back, then the next hub by a tour over the hubs with something waiting, each hub
+  kept only if what waits there pays for the detour. Travel between zones uses a graph of walks, boats
+  and zeppelins; the hearthstone is used when it saves time.
+* Cross-reference: RestedXP's free WoW Forever guides supplied the positions of the new Forever quests
+  (see Data/README.md); Joana's and RestedXP's routes were used to sanity-check the zone order.
 
-`tools/generate_guides.lua` builds a guide for every classic zone and faction from the database
-(55 guides, `guides-src/GEN_*.json`): it picks the quests the faction can do in the zone, drops
-repeatables / dailies / profession and item-started quests / breadcrumbs / chains whose
-prerequisites live elsewhere, then simulates a hub-by-hub walk (see *Route logic*) with a real XP
-model so quests are picked up at the right level.
-Starting zones are race-locked and chain into the faction's next zone via `next`. Regenerate after
-a database rebuild:
+Regenerate after a database change (about a minute for all races):
 
-    lua5.1 tools/generate_guides.lua && python tools/compile_guides.py
+    lua5.1 tools/plan_route.lua && python tools/compile_guides.py
 
-They are sensible routes, not speedrun routes; the engine adapts as you play.
+`FG_TRACE=1` prints every chapter decision, `FG_STEPS=<areaID> FG_WHY=1` explains every quest of a zone,
+`FG_VALUE`, `FG_GRINDF`, `FG_KILLTIME`, `FG_DROP`, `FG_LOGCAP`, `FG_MOUNTLVL` tune the model. The
+modelled total (about 115 h without rested xp, dungeons or Forever's ~1000 new quests) is a yardstick
+for comparing routes, not a promise.
 
 ## Writing a guide
 

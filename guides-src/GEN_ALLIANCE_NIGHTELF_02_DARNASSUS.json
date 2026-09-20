@@ -1,0 +1,22 @@
+{
+  "id": "GEN_ALLIANCE_NIGHTELF_02_DARNASSUS",
+  "name": "2. Darnassus 10-10 (Night Elf)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["NightElf"],
+  "minLevel": 10,
+  "maxLevel": 10,
+  "map": 1457,
+  "zone": "Darnassus",
+  "next": "GEN_ALLIANCE_NIGHTELF_03_DARKSHORE",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 2 of the NightElf route: level 10 to 10, 6 steps, ~6 min of play in the model (29519 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1457, "zone": "Darnassus", "x": 52.2, "y": 27.4, "radius": 60, "note": "travel to Darnassus (Darnassus)"},
+    {"type": "NOTE", "map": 1457, "zone": "Darnassus", "x": 52.2, "y": 27.4, "text": "set your hearthstone at the inn in Darnassus (if there is one)"},
+    {"type": "ACCEPT", "quest": 8372, "questName": "Fight for Warsong Gulch", "npc": 15351, "npcName": "Alliance Brigadier General", "map": 1457, "zone": "Darnassus", "x": 58, "y": 34.5},
+    {"type": "TURNIN", "quest": 8372, "questName": "Fight for Warsong Gulch", "npc": 15351, "npcName": "Alliance Brigadier General", "map": 1457, "zone": "Darnassus", "x": 58, "y": 34.5},
+    {"type": "TURNIN", "quest": 922, "questName": "Rellian Greenspyre", "npc": 3517, "npcName": "Rellian Greenspyre", "map": 1457, "zone": "Darnassus", "x": 38.2, "y": 21.6},
+    {"type": "TURNIN", "quest": 935, "questName": "Crown of the Earth", "npc": 3516, "npcName": "Arch Druid Fandral Staghelm", "map": 1457, "zone": "Darnassus", "x": 34.8, "y": 9.3}
+  ]
+}

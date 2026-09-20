@@ -1,0 +1,23 @@
+{
+  "id": "GEN_HORDE_SCOURGE_02_UNDERCITY",
+  "name": "2. Undercity 12-12 (Undead)",
+  "version": 2,
+  "faction": "Horde",
+  "race": ["Scourge"],
+  "minLevel": 12,
+  "maxLevel": 12,
+  "map": 1458,
+  "zone": "Undercity",
+  "next": "GEN_HORDE_SCOURGE_03_THE_BARRENS",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 2 of the Scourge route: level 12 to 12, 7 steps, ~7 min of play in the model (26891 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1458, "zone": "Undercity", "x": 59.8, "y": 66.3, "radius": 60, "note": "travel to Undercity (Undercity)"},
+    {"type": "NOTE", "map": 1458, "zone": "Undercity", "x": 59.8, "y": 66.3, "text": "set your hearthstone at the inn in Undercity (if there is one)"},
+    {"type": "ACCEPT", "quest": 5725, "questName": "The Power to Destroy...", "npc": 2425, "npcName": "Varimathras", "map": 1458, "zone": "Undercity", "x": 56.3, "y": 92.2},
+    {"type": "TURNIN", "quest": 5725, "questName": "The Power to Destroy...", "npc": 2425, "npcName": "Varimathras", "map": 1458, "zone": "Undercity", "x": 56.3, "y": 92.2},
+    {"type": "ACCEPT", "quest": 8368, "questName": "Battle of Warsong Gulch", "npc": 15350, "npcName": "Horde Warbringer", "map": 1458, "zone": "Undercity", "x": 58.3, "y": 97.9},
+    {"type": "TURNIN", "quest": 8368, "questName": "Battle of Warsong Gulch", "npc": 15350, "npcName": "Horde Warbringer", "map": 1458, "zone": "Undercity", "x": 58.3, "y": 97.9},
+    {"type": "TURNIN", "quest": 405, "questName": "The Prodigal Lich", "npc": 1498, "npcName": "Bethor Iceshard", "map": 1458, "zone": "Undercity", "x": 84.1, "y": 17.5}
+  ]
+}

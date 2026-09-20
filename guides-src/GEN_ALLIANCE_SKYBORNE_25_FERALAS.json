@@ -1,0 +1,30 @@
+{
+  "id": "GEN_ALLIANCE_SKYBORNE_25_FERALAS",
+  "name": "25. Feralas 45-46 (Skyborne)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["Skyborne"],
+  "minLevel": 45,
+  "maxLevel": 46,
+  "map": 1444,
+  "zone": "Feralas",
+  "next": "GEN_ALLIANCE_SKYBORNE_26_UN_GORO_CRATER",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 25 of the Skyborne route: level 45 to 46, 14 steps, ~63 min of play in the model (30436 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1444, "zone": "Feralas", "x": 31.8, "y": 44.8, "radius": 60, "note": "travel to Feralas (Feralas)"},
+    {"type": "ACCEPT", "quest": 3445, "questName": "The Sunken Temple", "npc": 7900, "npcName": "Angelas Moonbreeze", "map": 1444, "zone": "Feralas", "x": 31.8, "y": 45.6},
+    {"type": "ACCEPT", "quest": 7003, "questName": "Zapped Giants", "npc": 14637, "npcName": "Zorbin Fandazzle", "map": 1444, "zone": "Feralas", "x": 44.8, "y": 43.4},
+    {"type": "ACCEPT", "quest": 7721, "questName": "Fuel for the Zapping", "npc": 14637, "npcName": "Zorbin Fandazzle", "map": 1444, "zone": "Feralas", "x": 44.8, "y": 43.4},
+    {"type": "COLLECT", "quest": 7721, "questName": "Fuel for the Zapping", "target": "Water Elemental Core", "count": 10, "map": 1444, "zone": "Feralas", "x": 45, "y": 46.3, "near": true},
+    {"type": "TURNIN", "quest": 7721, "questName": "Fuel for the Zapping", "npc": 14637, "npcName": "Zorbin Fandazzle", "map": 1444, "zone": "Feralas", "x": 44.8, "y": 43.4},
+    {"type": "COLLECT", "quest": 7003, "questName": "Zapped Giants", "target": "Miniaturization Residue", "count": 15, "map": 1444, "zone": "Feralas", "x": 44.3, "y": 46.6, "near": true},
+    {"type": "TURNIN", "quest": 7003, "questName": "Zapped Giants", "npc": 14637, "npcName": "Zorbin Fandazzle", "map": 1444, "zone": "Feralas", "x": 44.8, "y": 43.4},
+    {"type": "ACCEPT", "quest": 2844, "questName": "The Giant Guardian", "npc": 7765, "npcName": "Rockbiter", "map": 1444, "zone": "Feralas", "x": 42.4, "y": 22},
+    {"type": "TURNIN", "quest": 2844, "questName": "The Giant Guardian", "npc": 7774, "npcName": "Shay Leafrunner", "map": 1444, "zone": "Feralas", "x": 38.2, "y": 10.3},
+    {"type": "ACCEPT", "quest": 2845, "questName": "Wandering Shay", "npc": 7774, "npcName": "Shay Leafrunner", "map": 1444, "zone": "Feralas", "x": 38.2, "y": 10.3},
+    {"type": "COLLECT", "quest": 2845, "questName": "Wandering Shay", "target": "Shay's Bell", "map": 1444, "zone": "Feralas", "x": 38.3, "y": 10.3, "note": "escort - stay close, it can fail"},
+    {"type": "COMPLETE", "quest": 2845, "questName": "Wandering Shay", "target": "Take Shay Leafrunner to Rockbiter's camp", "map": 1444, "zone": "Feralas", "x": 42.3, "y": 21.9, "note": "escort - stay close, it can fail: Take Shay Leafrunner to Rockbiter's camp"},
+    {"type": "TURNIN", "quest": 2845, "questName": "Wandering Shay", "npc": 7765, "npcName": "Rockbiter", "map": 1444, "zone": "Feralas", "x": 42.4, "y": 22}
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "GEN_ALLIANCE_SKYBORNE_45_WINTERSPRING",
+  "name": "45. Winterspring 55-57 (Skyborne)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["Skyborne"],
+  "minLevel": 55,
+  "maxLevel": 57,
+  "map": 1452,
+  "zone": "Winterspring",
+  "next": "GEN_ALLIANCE_SKYBORNE_46_SILITHUS",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 45 of the Skyborne route: level 55 to 57, 10 steps, ~511 min of play in the model (2738 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1451, "zone": "Silithus", "x": 50.1, "y": 37.5, "radius": 60, "note": "use your hearthstone (Silithus)"},
+    {"type": "TRAVEL", "map": 1452, "zone": "Winterspring", "x": 61.5, "y": 38.4, "radius": 60, "note": "travel to Winterspring (Winterspring)"},
+    {"type": "ACCEPT", "quest": 969, "questName": "Luck Be With You", "npc": 10307, "npcName": "Witch Doctor Mau'ari", "map": 1452, "zone": "Winterspring", "x": 61.9, "y": 38.3},
+    {"type": "COLLECT", "quest": 969, "questName": "Luck Be With You", "target": "Frostmaul Shards", "count": 4, "map": 1452, "zone": "Winterspring", "x": 58.7, "y": 63.6, "near": true},
+    {"type": "TURNIN", "quest": 969, "questName": "Luck Be With You", "npc": 10307, "npcName": "Witch Doctor Mau'ari", "map": 1452, "zone": "Winterspring", "x": 61.9, "y": 38.3},
+    {"type": "ACCEPT", "quest": 975, "questName": "Cache of Mau'ari", "npc": 10307, "npcName": "Witch Doctor Mau'ari", "map": 1452, "zone": "Winterspring", "x": 61.9, "y": 38.3},
+    {"type": "TURNIN", "quest": 975, "questName": "Cache of Mau'ari", "npc": 10307, "npcName": "Witch Doctor Mau'ari", "map": 1452, "zone": "Winterspring", "x": 61.9, "y": 38.3},
+    {"type": "TURNIN", "quest": 3908, "questName": "It's a Secret to Everybody", "npc": 9298, "npcName": "Donova Snowden", "map": 1452, "zone": "Winterspring", "x": 31.3, "y": 45.2},
+    {"type": "GRIND", "npc": 7443, "target": "Shardtooth Mauler", "level": 56, "map": 1452, "zone": "Winterspring", "x": 51.9, "y": 32.7, "near": true, "note": "grind Shardtooth Mauler (level 54-56) to level 56 - nothing worth questing at 55"},
+    {"type": "GRIND", "npc": 7443, "target": "Shardtooth Mauler", "level": 57, "map": 1452, "zone": "Winterspring", "x": 51.9, "y": 32.7, "near": true, "note": "grind Shardtooth Mauler (level 54-56) to level 57 - nothing worth questing at 56"}
+  ]
+}
