@@ -432,3 +432,9 @@ no camera-yaw API exists; a left-drag camera orbit around a standing character d
   KILL steps out of a group the banner adds "kill credit is shared in a group - invite them" and an Invite button:
   `C_PartyInfo.InviteUnit` for up to 4 same-faction players seen in the last 3 min (nameplates, target, mouseover) -
   player-initiated only. 237 tests.
+- Group-up reminder (Ilya: "in a kill-x area we need a warning like the bags one"): the crowd banner now also shows
+  green "Kill quest with N players around - group up, kill credit is shared" + Invite when a shared kill step (or
+  any OPEN kill objective in the log - `MobMarker:OpenKillNames()`, so a quest picked up off-guide counts) has
+  >= 2 other players or any tagged mob around, below the crowded threshold. To actually see the players, friendly
+  PLAYER nameplates (nameplateShowFriends=1, NPC/pet/guardian/totem/minion sub-cvars 0) are switched on during
+  kill steps and restored after (`/fg skull friends off`, option "show other players' nameplates"). 239 tests.

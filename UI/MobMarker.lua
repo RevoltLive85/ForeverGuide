@@ -104,6 +104,28 @@ function MM:WantedNames()
     return set, step
 end
 
+--- lower-case names of mobs of every OPEN kill objective in the log (any quest, not just the guide's step)
+function MM:OpenKillNames()
+    local set = {}
+    local DB = ns.DB
+    if not DB or not DB:IsLoaded() or not ns.Quest then return set end
+    for _, questID in ipairs(ns.Quest.order or {}) do
+        local live = ns.Quest:GetObjectives(questID) or {}
+        for k, o in ipairs(live) do
+            if not o.finished then
+                local d = liveToDB(DB, questID, k, live)
+                if d and (d.kind == "kill" or d.kind == "credit") then addName(set, d.name) end
+                -- "X slain: 4/10" with no database match: the wording itself names the mob
+                if not d and o.text then
+                    local mob = o.text:match("^(.-)%s+slain")
+                    if mob and mob ~= "" then addName(set, mob) end
+                end
+            end
+        end
+    end
+    return set
+end
+
 --- lower-case names of mobs whose objective is already complete for every quest in the log:
 --- they may still count as "related to an active quest" for the client, but there is nothing to get
 function MM:FinishedNames()
@@ -239,6 +261,12 @@ local function setCVar(name, value)
     return ns.Safe(rawget(_G, "SetCVar"), name, value)
 end
 
+-- Friendly PLAYER nameplates (not npcs / pets / totems) during kill steps: the one way to see who
+-- is hunting next to you (the crowd rules and the group-up reminder count them). Restored after.
+local FRIEND_CVARS = { nameplateShowFriends = "1", nameplateShowFriendlyNPCs = "0", nameplateShowFriendlyPets = "0",
+                       nameplateShowFriendlyGuardians = "0", nameplateShowFriendlyTotems = "0", nameplateShowFriendlyMinions = "0" }
+local forcedFriends = nil
+
 local function forcePlates(want)
     if not cfg().plates then return end
     if want then
@@ -246,9 +274,22 @@ local function forcePlates(want)
             forcedPlates = getCVar("nameplateShowEnemies") or "0"
             setCVar("nameplateShowEnemies", "1")
         end
-    elseif forcedPlates ~= nil then
-        setCVar("nameplateShowEnemies", forcedPlates)
-        forcedPlates = nil
+        if cfg().friendplates ~= false and forcedFriends == nil then
+            forcedFriends = {}
+            for k, v in pairs(FRIEND_CVARS) do
+                forcedFriends[k] = getCVar(k) or "0"
+                if forcedFriends[k] ~= v then setCVar(k, v) end
+            end
+        end
+    else
+        if forcedPlates ~= nil then
+            setCVar("nameplateShowEnemies", forcedPlates)
+            forcedPlates = nil
+        end
+        if forcedFriends ~= nil then
+            for k, v in pairs(forcedFriends) do setCVar(k, v) end
+            forcedFriends = nil
+        end
     end
 end
 
@@ -304,8 +345,12 @@ function MM:Scan()
     if c.enabled == false or (ns.UI and ns.UI.AllHidden and ns.UI:AllHidden()) then forcePlates(false) return end
     local names, step = self:WantedNames()
     local finished = self:FinishedNames()
+    local openKills = self:OpenKillNames()
     local killStep = step ~= nil
-    forcePlates(killStep)
+    -- plates (and the crowd watch) also while an off-guide kill objective is open, e.g. a quest the
+    -- player picked up on their own
+    local anyKill = killStep or next(openKills) ~= nil
+    forcePlates(anyKill)
     self:UpdateTargetMacro(names)
     local NP = rawget(_G, "C_NamePlate")
     if not NP or type(NP.GetNamePlates) ~= "function" then return end
@@ -314,6 +359,7 @@ function MM:Scan()
     local others = {}
     local targetGUID = ns.PlainString(ns.Safe(UnitGUID, "target"))
     local seenFree, seenTagged, seenPlayers, seenNames = 0, 0, {}, {}
+    local killFree, killTagged = 0, 0      -- mobs of any open kill objective in the log
     for _, plate in ipairs(plates) do
         local u = plateUnit(plate)
         if u and ns.Plain(ns.Safe(UnitIsPlayer, u)) == true then
@@ -331,6 +377,7 @@ function MM:Scan()
             local lower = name and string.lower(name)
             local isWanted = lower and names[lower] ~= nil
             if isWanted then if tagged(u) then seenTagged = seenTagged + 1 else seenFree = seenFree + 1 end end
+            if lower and openKills[lower] then if tagged(u) then killTagged = killTagged + 1 else killFree = killFree + 1 end end
             -- objective complete for this mob's quest(s): no skull, whatever the client says
             local related = isWanted or (not (lower and finished[lower]) and questRelated(u))
             -- a mob tagged by someone else is nobody's kill: no skull at all
@@ -370,8 +417,8 @@ function MM:Scan()
         end
     end
     if not targetGUID or self.taggedWarned ~= targetGUID then self.taggedWarned = nil end
-    if killStep and ns.Crowd then
-        ns.Crowd:Observe(seenFree, seenTagged, seenPlayers, seenNames)
+    if anyKill and ns.Crowd then
+        ns.Crowd:Observe(seenFree, seenTagged, seenPlayers, seenNames, killFree, killTagged)
         ns.Crowd:Update()
     end
     local guid = best and ns.PlainString(ns.Safe(UnitGUID, plateUnit(best)))

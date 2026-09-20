@@ -215,7 +215,8 @@ function handlers.skull(rest)
     rest = (rest or ""):lower()
     local key = "skull"
     if rest:match("^plates") then key = "skullplates" rest = rest:gsub("^plates%s*", "")
-    elseif rest:match("^others") then key = "skullothers" rest = rest:gsub("^others%s*", "") end
+    elseif rest:match("^others") then key = "skullothers" rest = rest:gsub("^others%s*", "")
+    elseif rest:match("^friends") then key = "skullfriends" rest = rest:gsub("^friends%s*", "") end
     local on
     if rest == "on" then on = true elseif rest == "off" then on = false end
     local ok, msg = ns.QuestGuideConfig.SetToggle(key, on)

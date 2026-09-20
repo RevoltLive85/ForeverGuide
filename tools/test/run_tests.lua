@@ -732,8 +732,27 @@ do
     check(ns.MobMarker.markedCount == 0 and GetCVar("nameplateShowEnemies") == "0", "/fg skull off removes the skulls and restores the nameplate setting")
     ns.Commands:Run("skull on")
     MOCK_ABANDON(11); settle()
-    ns.MobMarker:Scan()
-    check(GetCVar("nameplateShowEnemies") == "0", "leaving the kill step restores enemy nameplates (step=" .. tostring(step() and step().type) .. " cvar=" .. tostring(GetCVar("nameplateShowEnemies")) .. ")")
+    -- plates also stay while any quest in the log has an open kill objective: drop those first
+    do
+        local drop = {}
+        for _, qid in ipairs(ns.Quest.order) do
+            for _, o in ipairs(ns.Quest:GetObjectives(qid) or {}) do
+                if not o.finished and o.text and o.text:find("slain", 1, true) then
+                    local copy = {}
+                    for i, oo in ipairs(ns.Quest:GetObjectives(qid)) do copy[i] = { text = oo.text, finished = oo.finished, numFulfilled = oo.numFulfilled, numRequired = oo.numRequired } end
+                    drop[#drop + 1] = { id = qid, title = ns.Quest:GetTitle(qid), objs = copy }
+                    break
+                end
+            end
+        end
+        for _, q in ipairs(drop) do MOCK_ABANDON(q.id) end
+        settle()
+        ns.MobMarker:Scan()
+        check(next(ns.MobMarker:OpenKillNames()) == nil, "no open kill objectives left in the log")
+        check(GetCVar("nameplateShowEnemies") == "0", "leaving the kill step restores enemy nameplates (step=" .. tostring(step() and step().type) .. " cvar=" .. tostring(GetCVar("nameplateShowEnemies")) .. ")")
+        for _, q in ipairs(drop) do MOCK_ACCEPT(q.id, q.title, q.objs) end
+        settle()
+    end
     for i = 1, 4 do MOCK_PLATE("nameplate" .. i, nil) end
 end
 

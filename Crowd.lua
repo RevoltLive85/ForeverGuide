@@ -46,9 +46,9 @@ end
 Crowd.NoteUnit = noteUnit
 
 --- Called by the mob scan: counts of wanted mobs free / tagged, and player GUIDs seen.
-function Crowd:Observe(free, tagged, players, names)
+function Crowd:Observe(free, tagged, players, names, killFree, killTagged)
     local now = ns.Now()
-    samples[#samples + 1] = { t = now, free = free or 0, tagged = tagged or 0, players = players or {} }
+    samples[#samples + 1] = { t = now, free = free or 0, tagged = tagged or 0, players = players or {}, killFree = killFree or 0, killTagged = killTagged or 0 }
     while samples[1] and now - samples[1].t > WINDOW do table.remove(samples, 1) end
     for name in pairs(names or {}) do seenNames[name] = now end
 end
@@ -87,12 +87,16 @@ function Crowd:Reset() samples = {} end
 function Crowd:Level()
     local tagged, free, players = 0, 0, {}
     local maxTagged, maxFree = 0, 0
+    local killSeen, killTagged = 0, 0
     for _, s in ipairs(samples) do
         -- each sample is a snapshot; use the busiest snapshot rather than a sum over time
         if s.tagged > maxTagged then maxTagged = s.tagged end
         if s.free > maxFree then maxFree = s.free end
+        if (s.killFree or 0) + (s.killTagged or 0) > killSeen then killSeen = (s.killFree or 0) + (s.killTagged or 0) end
+        if (s.killTagged or 0) > killTagged then killTagged = s.killTagged end
         for g in pairs(s.players) do players[g] = true end
     end
+    self.killSeen, self.killTagged = killSeen, killTagged
     tagged, free = maxTagged, maxFree
     local n = 0
     for _ in pairs(players) do n = n + 1 end
@@ -383,8 +387,11 @@ function Crowd:Update()
     -- bags banner) - kill credit is shared in a group, so this is the one crowd you can turn into a plus
     local step = ns.Guide and ns.Guide:GetCurrentStep()
     local inGroup = ns.Plain(ns.Safe(rawget(_G, "IsInGroup"))) == true
-    local killShare = step and step.type == "KILL" and self:IsSharedKillOrLoot(step) and not inGroup
-    local groupUp = killShare and (players >= GROUP_UP_PLAYERS or tagged >= 1)
+    local stepKill = step and step.type == "KILL" and self:IsSharedKillOrLoot(step)
+    -- a kill objective from the log with its mobs around counts too (a quest picked up off-guide)
+    local logKill = (self.killSeen or 0) > 0
+    local killShare = (stepKill or logKill) and not inGroup
+    local groupUp = killShare and (players >= GROUP_UP_PLAYERS or tagged >= 1 or (self.killTagged or 0) >= 1)
     if (not crowded and not groupUp) or (self.snoozedUntil and ns.Now() < self.snoozedUntil) then f:Hide() return end
     local total = tagged + free
     local title
