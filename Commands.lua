@@ -27,6 +27,7 @@ local HELP = {
     "/fg path [name|race] follow another race's leveling route (any of your faction's)",
     "/fg waypoint on|off the in-world gold waypoint  |  /fg route on|off  the dotted path to it",
     "/fg skull on|off  skull over the nearest quest mob  |  /fg skull others|plates on|off",
+    "/fg who  how many players of your level are in this zone (/who); /fg perf  what the addon costs per frame",
     "/fg qg <scale|opacity|width|rows|wpsize> <value>   Quest Guide look  |  /fg qg completed|distances|subtitles on|off",
     "/fg minimap on|off  the minimap button",
     "/fg auto [accept on|off|guide] [turnin on|off]   auto-accept / auto-turn-in quests (hold SHIFT at an NPC to do it by hand)",
@@ -222,6 +223,14 @@ function handlers.skull(rest)
 end
 
 --- /fg perf - what the addon costs the client (Blizzard's own profiler, 12.x)
+--- /fg who - how many same-faction players of your level are in this zone (a /who query)
+function handlers.who()
+    if not ns.Crowd then return end
+    local busy, n, zone, capped = ns.Crowd:ZoneBusy()
+    if n then ns.Printf("%s: %s%d players of your level%s (%s)", zone or "zone", capped and "50+ " or "", capped and 49 or n, busy and " - busy" or "", "asked " .. math.floor(ns.Now() - (ns.Crowd.zoneAt or 0)) .. "s ago") end
+    if ns.Crowd:PollZone(true) then ns.Print("asking the server (/who) - result in a moment.") else ns.Print("/who is throttled - try again in a minute.") end
+end
+
 function handlers.perf()
     local P = rawget(_G, "C_AddOnProfiler")
     local E = rawget(_G, "Enum") and Enum.AddOnProfilerMetric

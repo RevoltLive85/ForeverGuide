@@ -416,3 +416,19 @@ no camera-yaw API exists; a left-drag camera orbit around a standing character d
   the nearest other spawn cluster of the same mobs (DB spawn points clustered at 120 yd, >= 150 yd away,
   compass direction) and a "Go there" button (navigation override "crowd" until arrival), else another open
   step of the guide elsewhere; chat reminder every 3 min; x snoozes 5 min. 226 tests.
+- Zone population (Ilya: "use /targetfriend to count players"): TargetNearestFriendPlayer is protected for addons,
+  but /who is not - `C_FriendList.SetWhoToUi(true)` + `SendWho('z-"<zone>" L-3..L+4')` every 150 s while on a kill
+  step, WHO_LIST_UPDATE -> GetNumWhoResults (client caps at 49 -> "50+"). >= 25 same-faction players of our level
+  band in the zone = busy: the crowd banner adds "38 players of your level in Redridge Mountains · quieter zone:
+  Duskwood" and the button becomes "Switch zone" (activates the fitting zone guide, or another race's route chapter
+  for starter zones). `/fg who` prints and re-asks. 230 tests.
+- Crowd rules (Ilya): "more than 4 players around -> skip the current quest step, unless it is kill-x-mobs or
+  loot-from-mobs; for kill quests we can join a party". `Crowd:IsSharedKillOrLoot(step)`: KILL with count > 1 or
+  unnamed, COLLECT/COMPLETE whose DB objective is an item dropped by mobs or a kill -> shared (crowd only slows
+  it; the quieter-spot advice applies); a named single mob (count 1 + npc), an object, an event, an escort -> not
+  shared -> `Guide:Postpone(idx, 600, "5 players around")` walks past it for 10 min (`Guide.postponed`, row shown
+  dimmed "postponed - crowded (back in N min)"), `Guide:Unpostpone` pulls the persisted step index back. Only the
+  player-count rule (>= 5 players seen on nameplates / target / mouseover) postpones, not the tag ratio. For shared
+  KILL steps out of a group the banner adds "kill credit is shared in a group - invite them" and an Invite button:
+  `C_PartyInfo.InviteUnit` for up to 4 same-faction players seen in the last 3 min (nameplates, target, mouseover) -
+  player-initiated only. 237 tests.

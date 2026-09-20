@@ -183,11 +183,11 @@ _G.UnitGUID = function(unit)
     local u = unit == "npc" and world.npc or world.target
     return u and ("Creature-0-1-1-1-" .. u.npcID .. "-0000000001")
 end
-_G.UnitIsPlayer = function(unit) if unit == "questnpc" or unit == "npc" then return world.offerFromPlayer == true end return false end
+_G.UnitIsPlayer = function(unit) if unit == "questnpc" or unit == "npc" then return world.offerFromPlayer == true end local p = world.plates and world.plates[unit] return p and p.player == true or false end
 _G.UnitIsDead = function(unit) local p = world.plates and world.plates[unit] return p and p.dead == true or false end
 -- ---- nameplates: world.plates["nameplate1"] = { name, tagged, dead, quest, scale, y } ---
 world.plates = {}
-_G.UnitCanAttack = function(_, unit) local p = world.plates[unit] return p ~= nil and p.friendly ~= true end
+_G.UnitCanAttack = function(_, unit) local p = world.plates[unit] return p ~= nil and p.friendly ~= true and p.player ~= true end
 _G.UnitIsTapDenied = function(unit) local p = world.plates[unit] return p and p.tagged == true or false end
 _G.C_NamePlate = {
     GetNamePlates = function()
@@ -314,6 +314,17 @@ local function fire(event, ...)
 end
 
 _G.InCombatLockdown = function() return world.inCombat == true end
+_G.UnitInParty = function() return false end
+_G.UnitInRaid = function() return false end
+_G.UnitIsUnit = function(a, b) return a == b end
+_G.IsInGroup = function() return false end
+world.invited = {}
+_G.C_PartyInfo = { InviteUnit = function(name) world.invited[#world.invited + 1] = name end }
+_G.C_FriendList = {
+    SetWhoToUi = function() end,
+    SendWho = function(q) world.whoQuery = q fire("WHO_LIST_UPDATE") end,
+    GetNumWhoResults = function() return world.whoCount or 0 end,
+}
 world.bags = { [0] = { size = 16, items = {} } }   -- items: slot -> { quality, hasNoValue, isQuestItem }
 _G.C_Container = {
     GetContainerNumSlots = function(bag) local b = world.bags[bag] return b and b.size or 0 end,

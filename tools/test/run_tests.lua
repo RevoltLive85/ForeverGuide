@@ -664,6 +664,41 @@ do
         check(ns.Navigation.override == nil and ns.Navigation.target and ns.Navigation.target.owner == "guide", "arrival hands navigation back to the guide")
         for i = 1, 6 do MOCK_PLATE("nameplate" .. (10 + i), nil) end
         ns.Crowd.snoozedUntil = nil
+        -- more than 4 players around: a single-target step is postponed, a shared kill step stays and offers a group
+        for i = 1, 5 do MOCK_PLATE("nameplate" .. (20 + i), { name = "Player" .. i, player = true, friendly = true, npcID = 0 }) end
+        ns.MobMarker:Scan()
+        local _, _, pl = ns.Crowd:Level()
+        check(pl >= 5, "five players seen on nameplates (" .. tostring(pl) .. ")")
+        check(ns.Crowd:IsSharedKillOrLoot(step()) == true and G.postponed[cur()] == nil, "a kill-x-mobs step is not postponed by the crowd")
+        check(ForeverGuideCrowdBanner.invite:IsShown() and (ForeverGuideCrowdBanner.sub:GetText() or ""):find("shared in a group", 1, true), "...instead the banner offers to invite the players around (shown=" .. tostring(ForeverGuideCrowdBanner:IsShown()) .. " sub=" .. tostring(ForeverGuideCrowdBanner.sub:GetText()) .. ")")
+        check(ns.Crowd:InviteNearby() == 4 and #MOCK.invited == 4, "Invite asks up to four of them into a group")
+        ns.RegisterGuide({ id = "AUDIT_CROWD2", name = "crowd2", steps = {
+            { type = "ACCEPT", quest = 11 },
+            { type = "KILL", quest = 11, target = "Hogger", npc = 448, count = 1 },
+            { type = "KILL", quest = 11, target = "Kobold Vermin", npc = 6, near = true },
+            { type = "TURNIN", quest = 11 } } })
+        if not ns.Quest:IsOnQuest(11) then MOCK_ACCEPT(11, "Riverpaw Gnoll Bounty", { { text = "Hogger slain", finished = false, numFulfilled = 0, numRequired = 1 }, { text = "Kobold Vermin slain", finished = false, numFulfilled = 0, numRequired = 6 } }); settle() end
+        G:Activate("AUDIT_CROWD2", true)
+        check(not ns.Crowd:IsSharedKillOrLoot(G.active.steps[2]), "a named single mob is not a shared kill")
+        settle()
+        ns.MobMarker:Scan()
+        check(G.postponed[2] ~= nil and cur() == 3, "with more than 4 players around the named-mob step is postponed and the guide moves on (" .. tostring(cur()) .. ")")
+        G:Unpostpone(2)
+        check(cur() == 2, "unpostpone brings it back (cur=" .. tostring(cur()) .. " postponed=" .. tostring(G.postponed[2]) .. ")")
+        for i = 1, 5 do MOCK_PLATE("nameplate" .. (20 + i), nil) end
+        MOCK_ABANDON(11); settle()
+        if not ns.Quest:IsOnQuest(11) then MOCK_ACCEPT(11, "Riverpaw Gnoll Bounty", { { text = "Kobold Vermin slain", finished = false, numFulfilled = 0, numRequired = 10 } }); settle() end
+        G:Activate("AUDIT_SKULL", true); settle()
+        -- zone population via /who: 30 players of our level in the zone -> busy, and a zone guide elsewhere is named
+        MOCK.whoCount = 30
+        check(ns.Crowd:PollZone(true) and (MOCK.whoQuery or ""):find('z-"Elwynn Forest"', 1, true), "/who asks for this zone and our level band (" .. tostring(MOCK.whoQuery) .. ")")
+        local busy, n = ns.Crowd:ZoneBusy()
+        check(busy and n == 30, "30 same-level players in the zone counts as busy")
+        local alt = ns.Crowd:ZoneAlternative()
+        check(alt and alt.id:find("^GEN_") and alt.zone ~= "Elwynn Forest" and (alt.minLevel or 1) <= 5, "a guide for this level in another zone is offered (" .. tostring(alt and alt.id) .. ")")
+        MOCK.whoCount = 3
+        ns.Crowd:PollZone(true)
+        check(not ns.Crowd:ZoneBusy(), "3 players: not busy")
     end
     -- in combat the nameplate frames cannot be measured (restricted regions): fall back to interact rings
     MOCK_PLATE("nameplate1", { name = "Kobold Vermin", npcID = 6, restricted = true, dist = 25 })

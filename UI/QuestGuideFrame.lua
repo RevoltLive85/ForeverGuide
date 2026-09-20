@@ -260,13 +260,16 @@ function QG:BuildGuideEntries()
         local state
         if idx < cur or (idx > cur and G:IsStepDone(s, idx)) then state = "done"
         elseif idx == cur then state = "active"
-        elseif s.optional then state = "optional"
+        elseif s.optional or (G.postponed and G.postponed[idx] and ns.Now() < G.postponed[idx]) then state = "optional"
         else
             upcoming = upcoming + 1
             state = upcoming <= 2 and "available" or "future"
         end
         if idx == cur and G.IsStepBlocked and G:IsStepBlocked(s) and G.note then state = "blocked" end
         local sub = subtitle(G, s, idx)
+        if G.postponed and G.postponed[idx] and ns.Now() < G.postponed[idx] and state ~= "done" then
+            sub = string.format("postponed - crowded (back in %d min)", math.ceil((G.postponed[idx] - ns.Now()) / 60))
+        end
         local gate = G.LevelGate and G:LevelGate(s)
         local deferred = s.quest and G.progress and G.progress.deferred and G.progress.deferred[s.quest]
         if state ~= "done" and (gate or (deferred and not ns.Quest:IsOnQuest(s.quest))) then

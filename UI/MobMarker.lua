@@ -313,12 +313,18 @@ function MM:Scan()
     local best, bestScore, mine
     local others = {}
     local targetGUID = ns.PlainString(ns.Safe(UnitGUID, "target"))
-    local seenFree, seenTagged, seenPlayers = 0, 0, {}
+    local seenFree, seenTagged, seenPlayers, seenNames = 0, 0, {}, {}
     for _, plate in ipairs(plates) do
         local u = plateUnit(plate)
         if u and ns.Plain(ns.Safe(UnitIsPlayer, u)) == true then
             local g = ns.PlainString(ns.Safe(UnitGUID, u))
-            if g and g ~= ns.PlainString(ns.Safe(UnitGUID, "player")) then seenPlayers[g] = true end
+            if g and g ~= ns.PlainString(ns.Safe(UnitGUID, "player")) then
+                seenPlayers[g] = true
+                if ns.Plain(ns.Safe(UnitCanAttack, "player", u)) ~= true then
+                    local nm = ns.PlainString(ns.Safe(UnitName, u))
+                    if nm then seenNames[nm] = true end
+                end
+            end
         end
         if u and isMob(u) then
             local name = ns.PlainString(ns.Safe(UnitName, u))
@@ -365,7 +371,7 @@ function MM:Scan()
     end
     if not targetGUID or self.taggedWarned ~= targetGUID then self.taggedWarned = nil end
     if killStep and ns.Crowd then
-        ns.Crowd:Observe(seenFree, seenTagged, seenPlayers)
+        ns.Crowd:Observe(seenFree, seenTagged, seenPlayers, seenNames)
         ns.Crowd:Update()
     end
     local guid = best and ns.PlainString(ns.Safe(UnitGUID, plateUnit(best)))
