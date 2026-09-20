@@ -2,26 +2,24 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_48_WINTERSPRING",
-    name = "48. Winterspring 56-58 (Human)",
+    name = "48. Winterspring 58-60 (Human)",
     version = 2,
     faction = "Alliance",
     race = { "Human" },
-    minLevel = 56,
-    maxLevel = 58,
+    minLevel = 58,
+    maxLevel = 60,
     map = 1452,
     zone = "Winterspring",
-    next = "GEN_ALLIANCE_HUMAN_49_SILITHUS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 48 of the Human route: level 56 to 58, 9 steps, ~549 min of play in the model (1981 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 48 of the Human route: level 58 to 60, 8 steps, ~566 min of play in the model (1903 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
-        { type = "TRAVEL", map = 1451, zone = "Silithus", x = 50.1, y = 37.5, radius = 60, note = "use your hearthstone (Silithus)" }, -- 1
-        { type = "TRAVEL", map = 1452, zone = "Winterspring", x = 61.5, y = 38.4, radius = 60, note = "travel to Winterspring (Winterspring)" }, -- 2
-        { type = "ACCEPT", quest = 969, questName = "Luck Be With You", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 3
-        { type = "COLLECT", quest = 969, questName = "Luck Be With You", target = "Frostmaul Shards", count = 4, map = 1452, zone = "Winterspring", x = 58.7, y = 63.6, near = true }, -- 4
-        { type = "TURNIN", quest = 969, questName = "Luck Be With You", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 5
-        { type = "ACCEPT", quest = 975, questName = "Cache of Mau'ari", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 6
-        { type = "TURNIN", quest = 975, questName = "Cache of Mau'ari", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 7
-        { type = "GRIND", npc = 7443, target = "Shardtooth Mauler", level = 57, map = 1452, zone = "Winterspring", x = 59.8, y = 41.3, near = true, note = "grind Shardtooth Mauler (level 54-56) to level 57 - nothing worth questing at 56" }, -- 8
-        { type = "GRIND", npc = 7445, target = "Elder Shardtooth", level = 58, map = 1452, zone = "Winterspring", x = 61.5, y = 27.3, near = true, note = "grind Elder Shardtooth (level 57-58) to level 58 - nothing worth questing at 57" }, -- 9
+        { type = "TRAVEL", map = 1452, zone = "Winterspring", x = 61.5, y = 38.4, radius = 60, note = "travel to Winterspring (Winterspring)" }, -- 1
+        { type = "ACCEPT", quest = 969, questName = "Luck Be With You", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 2
+        { type = "COLLECT", quest = 969, questName = "Luck Be With You", target = "Frostmaul Shards", count = 4, map = 1452, zone = "Winterspring", x = 58.7, y = 63.6, near = true }, -- 3
+        { type = "TURNIN", quest = 969, questName = "Luck Be With You", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 4
+        { type = "ACCEPT", quest = 975, questName = "Cache of Mau'ari", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 5
+        { type = "TURNIN", quest = 975, questName = "Cache of Mau'ari", npc = 10307, npcName = "Witch Doctor Mau'ari", map = 1452, zone = "Winterspring", x = 61.9, y = 38.3 }, -- 6
+        { type = "GRIND", npc = 7445, target = "Elder Shardtooth", level = 59, map = 1452, zone = "Winterspring", x = 61.5, y = 27.3, near = true, note = "grind Elder Shardtooth (level 57-58) to level 59 - nothing worth questing at 58" }, -- 7
+        { type = "GRIND", npc = 7449, target = "Chillwind Ravager", level = 60, map = 1452, zone = "Winterspring", x = 61.9, y = 25.9, near = true, note = "grind Chillwind Ravager (level 57-59) to level 60 - nothing worth questing at 59" }, -- 8
     },
 })

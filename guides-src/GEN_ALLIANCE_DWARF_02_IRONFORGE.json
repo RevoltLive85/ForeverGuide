@@ -8,7 +8,7 @@
   "maxLevel": 10,
   "map": 1455,
   "zone": "Ironforge",
-  "next": "GEN_ALLIANCE_DWARF_03_DARKSHORE",
+  "next": "GEN_ALLIANCE_DWARF_03_LOCH_MODAN",
   "author": "ForeverGuide route planner",
   "notes": "Chapter 2 of the Dwarf route: level 10 to 10, 6 steps, ~7 min of play in the model (38372 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
   "steps": [

@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_27_FELWOOD",
-    name = "27. Felwood 48-49 (Undead)",
+    name = "27. Felwood 48-48 (Undead)",
     version = 2,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 48,
-    maxLevel = 49,
+    maxLevel = 48,
     map = 1448,
     zone = "Felwood",
-    next = "GEN_HORDE_SCOURGE_28_UN_GORO_CRATER",
+    next = "GEN_HORDE_SCOURGE_28_AZSHARA",
     author = "ForeverGuide route planner",
-    notes = "Chapter 27 of the Scourge route: level 48 to 49, 22 steps, ~85 min of play in the model (42287 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 27 of the Scourge route: level 48 to 48, 16 steps, ~81 min of play in the model (36565 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1448, zone = "Felwood", x = 50.4, y = 82.1, radius = 60, note = "travel to Felwood (Felwood)" }, -- 1
         { type = "ACCEPT", quest = 5155, questName = "Forces of Jaedenar", npc = 10922, npcName = "Greta Mosshoof", map = 1448, zone = "Felwood", x = 51.2, y = 82.1 }, -- 2
@@ -25,16 +25,10 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 5157, questName = "Collection of the Corrupt Water", npc = 10922, npcName = "Greta Mosshoof", map = 1448, zone = "Felwood", x = 51.2, y = 82.1 }, -- 9
         { type = "COLLECT", quest = 5157, questName = "Collection of the Corrupt Water", target = "Corrupt Moonwell Water", map = 1448, zone = "Felwood", x = 35.2, y = 59.8 }, -- 10
         { type = "TURNIN", quest = 5157, questName = "Collection of the Corrupt Water", npc = 10922, npcName = "Greta Mosshoof", map = 1448, zone = "Felwood", x = 51.2, y = 82.1 }, -- 11
-        { type = "ACCEPT", quest = 4505, questName = "Well of Corruption", npc = 9996, npcName = "Winna Hazzard", map = 1448, zone = "Felwood", x = 34.2, y = 52.3 }, -- 12
-        { type = "COLLECT", quest = 4505, questName = "Well of Corruption", target = "Filled Flasket", map = 1448, zone = "Felwood", x = 32.3, y = 66.6 }, -- 13
-        { type = "TURNIN", quest = 4505, questName = "Well of Corruption", npc = 9996, npcName = "Winna Hazzard", map = 1448, zone = "Felwood", x = 34.2, y = 52.3 }, -- 14
-        { type = "ACCEPT", quest = 4506, questName = "Corrupted Sabers", npc = 9996, npcName = "Winna Hazzard", map = 1448, zone = "Felwood", x = 34.2, y = 52.3 }, -- 15
-        { type = "COMPLETE", quest = 4506, questName = "Corrupted Sabers", target = "Return the corrupted cat to Winna Hazzard", map = 1448, zone = "Felwood", x = 34.3, y = 52.3, note = "Return the corrupted cat to Winna Hazzard" }, -- 16
-        { type = "TURNIN", quest = 4506, questName = "Corrupted Sabers", npc = 9996, npcName = "Winna Hazzard", map = 1448, zone = "Felwood", x = 34.2, y = 52.3 }, -- 17
-        { type = "COLLECT", quest = 4102, questName = "Cleansing Felwood", target = "Blood Amber", count = 15, map = 1448, zone = "Felwood", x = 55, y = 19.6, near = true }, -- 18
-        { type = "TURNIN", quest = 4102, questName = "Cleansing Felwood", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83.1 }, -- 19
-        { type = "ACCEPT", quest = 5887, questName = "Salve via Hunting", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83.1 }, -- 20
-        { type = "COLLECT", quest = 5887, questName = "Salve via Hunting", target = "Corrupted Soul Shard", map = 1448, zone = "Felwood", x = 47.1, y = 84, near = true }, -- 21
-        { type = "TURNIN", quest = 5887, questName = "Salve via Hunting", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83.1 }, -- 22
+        { type = "COLLECT", quest = 4102, questName = "Cleansing Felwood", target = "Blood Amber", count = 15, map = 1448, zone = "Felwood", x = 58, y = 22.4, near = true }, -- 12
+        { type = "TURNIN", quest = 4102, questName = "Cleansing Felwood", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83.1 }, -- 13
+        { type = "ACCEPT", quest = 5887, questName = "Salve via Hunting", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83.1 }, -- 14
+        { type = "COLLECT", quest = 5887, questName = "Salve via Hunting", target = "Corrupted Soul Shard", map = 1448, zone = "Felwood", x = 47.1, y = 84, near = true }, -- 15
+        { type = "TURNIN", quest = 5887, questName = "Salve via Hunting", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83.1 }, -- 16
     },
 })

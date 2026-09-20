@@ -1,0 +1,24 @@
+{
+  "id": "GEN_ALLIANCE_SKYBORNE_07_IRONFORGE",
+  "name": "7. Ironforge 25-25 (Skyborne)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["Skyborne"],
+  "minLevel": 25,
+  "maxLevel": 25,
+  "map": 1455,
+  "zone": "Ironforge",
+  "next": "GEN_ALLIANCE_SKYBORNE_08_REDRIDGE_MOUNTAINS",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 7 of the Skyborne route: level 25 to 25, 8 steps, ~13 min of play in the model (43781 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1455, "zone": "Ironforge", "x": 61.1, "y": 46.6, "radius": 60, "note": "travel to Ironforge (Ironforge)"},
+    {"type": "NOTE", "map": 1455, "zone": "Ironforge", "x": 61.1, "y": 46.6, "text": "set your hearthstone at the inn in Ironforge (if there is one)"},
+    {"type": "ACCEPT", "quest": 2924, "questName": "Essential Artificials", "npc": 6169, "npcName": "Klockmort Spannerspan", "map": 1455, "zone": "Ironforge", "x": 67.9, "y": 46.1},
+    {"type": "ACCEPT", "quest": 2930, "questName": "Data Rescue", "npc": 7950, "npcName": "Master Mechanic Castpipe", "map": 1455, "zone": "Ironforge", "x": 69.8, "y": 48.1},
+    {"type": "TURNIN", "quest": 2930, "questName": "Data Rescue", "npc": 7950, "npcName": "Master Mechanic Castpipe", "map": 1455, "zone": "Ironforge", "x": 69.8, "y": 48.1},
+    {"type": "TURNIN", "quest": 2924, "questName": "Essential Artificials", "npc": 6169, "npcName": "Klockmort Spannerspan", "map": 1455, "zone": "Ironforge", "x": 67.9, "y": 46.1},
+    {"type": "ACCEPT", "quest": 971, "questName": "Knowledge in the Deeps", "npc": 2786, "npcName": "Gerrig Bonegrip", "map": 1455, "zone": "Ironforge", "x": 50.8, "y": 5.6},
+    {"type": "TURNIN", "quest": 971, "questName": "Knowledge in the Deeps", "npc": 2786, "npcName": "Gerrig Bonegrip", "map": 1455, "zone": "Ironforge", "x": 50.8, "y": 5.6}
+  ]
+}

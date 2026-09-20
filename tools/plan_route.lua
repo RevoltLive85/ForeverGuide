@@ -56,6 +56,7 @@ local GREY_SKIP = 0.2
 local GRIND_FACTOR = env("FG_GRINDF", 0.7)   -- grind instead when the best chapter pays less than this share of the grind rate
 local ZONE_SWITCH = env("FG_SWITCH", 180)    -- fixed cost of changing zones (orientation, flight master, loading)
 local MIN_CHAPTER = env("FG_MINCH", 600)     -- a trip to another zone must be worth at least this many seconds of play
+local CROSS_SEA = env("FG_CROSSSEA", 0.85)   -- rate factor for a chapter on the other continent
 local MAX_CHAPTERS = 150
 local REMOTE = 1e6                           -- "in another zone" marker distance
 
@@ -823,6 +824,9 @@ local function planRoute(startZone)
             local pend1 = pendingReward(trial)
             local credit = xpG + 0.5 * (pend1 - pend0)
             local rate = tSpent > 0 and credit / tSpent or 0
+            -- crossing the sea costs more than the model sees (waiting for ships, no hearth, no flight
+            -- paths over there yet): a mild preference for the continent we are on
+            if state.pos and D.continent(state.pos.zone) ~= D.continent(zd.id) then rate = rate * CROSS_SEA end
             if TRACE then io.stderr:write(string.format("  L%d cand %-22s xp %6.0f  %5.0fs  %.2f xp/s  (%d steps, travel %.0fs work %.0fs)\n", L, Z.names[zd.id] or zd.id, credit, tSpent, rate, #steps, (trial.tTravel or 0) - (state.tTravel or 0), (trial.tWork or 0) - (state.tWork or 0))) end
             local bigEnough = tSpent >= MIN_CHAPTER or zd.city or (state.pos and zd.id == state.pos.zone)
             if #steps > 2 and xpG > 0 and credit > 0 and bigEnough and (not best or rate > best.rate) then best = { zd = zd, trial = trial, steps = steps, rate = rate, xp = xpG, t = tSpent } end
@@ -942,7 +946,8 @@ do
     local p = io.popen('ls "' .. root .. 'guides-src" 2>/dev/null')
     if p then
         for name in p:lines() do
-            if name:match("^GEN_") and (not onlyRace or name:upper():find("_" .. onlyRace:upper() .. "_", 1, true)) then os.remove(root .. "guides-src/" .. name) end
+            local mine = not onlyRace or name:upper():find("_" .. onlyRace:upper() .. "_", 1, true)
+            if name:match("^GEN_") and mine then os.remove(root .. "guides-src/" .. name) end
         end
         p:close()
     end
@@ -1006,5 +1011,64 @@ for _, run in ipairs(runs) do
         summary[#summary + 1] = string.format("%-9s %-8s reaches level %2d in %5.1f h modelled play (%.1f h of it grinding, %.1f h walking; %d chapters, %d steps)", key, zd.faction, level(state), state.time / 3600, (state.tGrind or 0) / 3600, (state.tTravel or 0) / 3600, #chapters, totalSteps)
     end
 end
+-- ---- zone guides: one standalone chapter per zone and faction, for anyone who wants that zone ----
+-- (the race routes above are the fast path; these are the "I am in Westfall, guide me here" fallbacks)
+local zoneGuides = 0
+for _, zd in ipairs(D.ZONES) do
+    if not zd.city and not zd.races and (not onlyRace or onlyRace:lower() == "zones") then
+        for _, faction in ipairs({ "Alliance", "Horde" }) do
+            local state = { xp = X.xpToLevel(zd.min), time = 0, pos = nil, qs = {}, visits = {}, faction = faction,
+                            mask = faction == "Alliance" and RACE_ALLIANCE or RACE_HORDE, travel = D.buildTravel(faction) }
+            local steps, guard = {}, 0
+            local startLevel = level(state)
+            while guard < 12 do
+                guard = guard + 1
+                local part, xpG, tSpent = runChapter(state, zd.id)
+                if #part == 0 or xpG <= 0 then break end
+                for _, st in ipairs(part) do
+                    if st.type ~= "TRAVEL" or #steps == 0 then steps[#steps + 1] = st end
+                end
+                if level(state) > zd.max + 2 then break end
+                -- nothing left at this level: pretend the levels came from elsewhere and look again
+                local L = level(state)
+                if X.grindRate(L) > 0 then
+                    local before = #steps
+                    -- only continue while the zone still has something for the next level
+                    local probe = copyState(state)
+                    probe.xp = X.xpToLevel(L + 1)
+                    local p2, xp2 = runChapter(probe, zd.id)
+                    if #p2 == 0 or xp2 <= 0 then break end
+                    state.xp = X.xpToLevel(L + 1)
+                end
+            end
+            local turnins = 0
+            for _, st in ipairs(steps) do if st.type == "TURNIN" then turnins = turnins + 1 end end
+            if turnins >= 6 then
+                local zoneName = Z.names[zd.id] or tostring(zd.id)
+                local id = "GEN_ZONE_" .. faction:upper() .. "_" .. D.slug(zoneName)
+                local guide = {
+                    id = id, name = string.format("Zone: %s %d-%d (%s)", zoneName, zd.min, zd.max, faction), version = 2, faction = faction,
+                    minLevel = zd.min, maxLevel = zd.max, map = Z.areaToMap[zd.id], zone = zoneName, author = "ForeverGuide route planner",
+                    notes = string.format("Every quest worth doing in %s for a %s character, %d quests. The race routes are the faster path; pick this when you just want to quest here.", zoneName, faction, turnins),
+                }
+                local lines = { "{" }
+                for _, k in ipairs({ "id", "name", "version", "faction", "minLevel", "maxLevel", "map", "zone", "author", "notes" }) do
+                    if guide[k] ~= nil then lines[#lines + 1] = "  " .. jsonString(k) .. ": " .. jsonValue(guide[k]) .. "," end
+                end
+                lines[#lines + 1] = '  "steps": ['
+                for j, st in ipairs(steps) do lines[#lines + 1] = "    " .. jsonValue(st) .. (j < #steps and "," or "") end
+                lines[#lines + 1] = "  ]"
+                lines[#lines + 1] = "}"
+                local f = assert(io.open(root .. "guides-src/" .. id .. ".json", "w"))
+                f:write(table.concat(lines, "\n") .. "\n")
+                f:close()
+                zoneGuides = zoneGuides + 1
+                print(string.format("%-48s L%2d-%2d %4d steps  %d quests", id, zd.min, zd.max, #steps, turnins))
+            end
+        end
+    end
+end
+if zoneGuides > 0 then summary[#summary + 1] = string.format("%d standalone zone guides", zoneGuides) end
+
 print("")
 for _, s in ipairs(summary) do print(s) end

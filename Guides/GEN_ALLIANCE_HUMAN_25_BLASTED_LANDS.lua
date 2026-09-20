@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_HUMAN_25_BLASTED_LANDS",
-    name = "25. Blasted Lands 45-46 (Human)",
+    name = "25. Blasted Lands 45-47 (Human)",
     version = 2,
     faction = "Alliance",
     race = { "Human" },
     minLevel = 45,
-    maxLevel = 46,
+    maxLevel = 47,
     map = 1419,
     zone = "Blasted Lands",
-    next = "GEN_ALLIANCE_HUMAN_26_FELWOOD",
+    next = "GEN_ALLIANCE_HUMAN_26_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
-    notes = "Chapter 25 of the Human route: level 45 to 46, 29 steps, ~140 min of play in the model (39903 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 25 of the Human route: level 45 to 47, 30 steps, ~238 min of play in the model (23493 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2, radius = 60, note = "travel to Blasted Lands (Blasted Lands)" }, -- 1
         { type = "NOTE", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2, text = "set your hearthstone at the inn in Blasted Lands (if there is one)" }, -- 2
@@ -43,5 +43,6 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 2581, questName = "Snickerfang Jowls", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 27
         { type = "TURNIN", quest = 2583, questName = "A Boar's Vitality", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 28
         { type = "TURNIN", quest = 2585, questName = "The Decisive Striker", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 29
+        { type = "GRIND", npc = 5996, target = "Nethergarde Miner", level = 47, map = 1419, zone = "Blasted Lands", x = 57.1, y = 11.5, near = true, note = "grind Nethergarde Miner (level 47-48) to level 47 - nothing worth questing at 46" }, -- 30
     },
 })

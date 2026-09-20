@@ -10,9 +10,9 @@ ns.RegisterGuide({
     maxLevel = 19,
     map = 1442,
     zone = "Stonetalon Mountains",
-    next = "GEN_ALLIANCE_SKYBORNE_04_REDRIDGE_MOUNTAINS",
+    next = "GEN_ALLIANCE_SKYBORNE_04_ASHENVALE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 3 of the Skyborne route: level 18 to 19, 17 steps, ~32 min of play in the model (22795 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 3 of the Skyborne route: level 18 to 19, 17 steps, ~33 min of play in the model (22270 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 65.9, radius = 60, note = "travel to Stonetalon Mountains (Stonetalon Mountains)" }, -- 1
         { type = "NOTE", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 65.9, text = "set your hearthstone at the inn in Stonetalon Mountains (if there is one)" }, -- 2

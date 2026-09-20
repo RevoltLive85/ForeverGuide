@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_TAUREN_12_DUSTWALLOW_MARSH",
-    name = "12. Dustwallow Marsh 38-39 (Tauren)",
+    name = "12. Dustwallow Marsh 38-40 (Tauren)",
     version = 2,
     faction = "Horde",
     race = { "Tauren" },
     minLevel = 38,
-    maxLevel = 39,
+    maxLevel = 40,
     map = 1445,
     zone = "Dustwallow Marsh",
-    next = "GEN_HORDE_TAUREN_13_FERALAS",
+    next = "GEN_HORDE_TAUREN_13_TANARIS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 12 of the Tauren route: level 38 to 39, 61 steps, ~190 min of play in the model (33525 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 12 of the Tauren route: level 38 to 40, 61 steps, ~164 min of play in the model (38018 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 32.1, radius = 60, note = "travel to Dustwallow Marsh (Dustwallow Marsh)" }, -- 1
         { type = "NOTE", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 32.1, text = "set your hearthstone at the inn in Dustwallow Marsh (if there is one)" }, -- 2
@@ -65,15 +65,15 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1273, questName = "Questioning Reethe", npc = 4983, npcName = "Ogron", map = 1445, zone = "Dustwallow Marsh", x = 41, y = 36.7 }, -- 49
         { type = "COMPLETE", quest = 1273, questName = "Questioning Reethe", target = "Question Reethe with Ogron", map = 1445, zone = "Dustwallow Marsh", x = 42.5, y = 38.1, note = "Question Reethe with Ogron" }, -- 50
         { type = "TURNIN", quest = 1273, questName = "Questioning Reethe", npc = 4926, npcName = "Krog", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 31.9 }, -- 51
-        { type = "ACCEPT", quest = 1239, questName = "The Severed Head", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 25.9 }, -- 52
-        { type = "TURNIN", quest = 1239, questName = "The Severed Head", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 53
-        { type = "ACCEPT", quest = 1240, questName = "The Troll Witchdoctor", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 54
-        { type = "COLLECT", quest = 1202, questName = "The Theramore Docks", target = "Captain's Documents", map = 1445, zone = "Dustwallow Marsh", x = 71.5, y = 51.2 }, -- 55
-        { type = "TURNIN", quest = 1202, questName = "The Theramore Docks", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 56
-        { type = "COMPLETE", quest = 1172, questName = "The Brood of Onyxia", target = "Egg of Onyxia", count = 5, map = 1445, zone = "Dustwallow Marsh", x = 48.5, y = 73.6, near = true, note = "Egg of Onyxia destroyed" }, -- 57
-        { type = "TURNIN", quest = 1172, questName = "The Brood of Onyxia", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 33.1 }, -- 58
-        { type = "ACCEPT", quest = 1173, questName = "Challenge Overlord Mok'Morokk", npc = 4500, npcName = "Overlord Mok'Morokk", map = 1445, zone = "Dustwallow Marsh", x = 36.3, y = 31.4 }, -- 59
-        { type = "COMPLETE", quest = 1173, questName = "Challenge Overlord Mok'Morokk", target = "Drive Overlord Mok'Morokk from Brackenwall Village", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 31.4, note = "Drive Overlord Mok'Morokk from Brackenwall Village" }, -- 60
-        { type = "TURNIN", quest = 1173, questName = "Challenge Overlord Mok'Morokk", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 33.1 }, -- 61
+        { type = "COLLECT", quest = 1202, questName = "The Theramore Docks", target = "Captain's Documents", map = 1445, zone = "Dustwallow Marsh", x = 71.5, y = 51.2 }, -- 52
+        { type = "COMPLETE", quest = 1172, questName = "The Brood of Onyxia", target = "Egg of Onyxia", count = 5, map = 1445, zone = "Dustwallow Marsh", x = 56.7, y = 75.4, near = true, note = "Egg of Onyxia destroyed" }, -- 53
+        { type = "TURNIN", quest = 1202, questName = "The Theramore Docks", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 54
+        { type = "TURNIN", quest = 1172, questName = "The Brood of Onyxia", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 33.1 }, -- 55
+        { type = "ACCEPT", quest = 1173, questName = "Challenge Overlord Mok'Morokk", npc = 4500, npcName = "Overlord Mok'Morokk", map = 1445, zone = "Dustwallow Marsh", x = 36.3, y = 31.4 }, -- 56
+        { type = "COMPLETE", quest = 1173, questName = "Challenge Overlord Mok'Morokk", target = "Drive Overlord Mok'Morokk from Brackenwall Village", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 31.4, note = "Drive Overlord Mok'Morokk from Brackenwall Village" }, -- 57
+        { type = "TURNIN", quest = 1173, questName = "Challenge Overlord Mok'Morokk", npc = 4501, npcName = "Draz'Zilb", map = 1445, zone = "Dustwallow Marsh", x = 37.2, y = 33.1 }, -- 58
+        { type = "ACCEPT", quest = 1239, questName = "The Severed Head", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 25.9 }, -- 59
+        { type = "TURNIN", quest = 1239, questName = "The Severed Head", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 60
+        { type = "ACCEPT", quest = 1240, questName = "The Troll Witchdoctor", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 61
     },
 })

@@ -2,16 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_DWARF_48_SILITHUS",
-    name = "48. Silithus 58-60 (Dwarf)",
+    name = "48. Silithus 58-58 (Dwarf)",
     version = 2,
     faction = "Alliance",
     race = { "Dwarf", "Gnome" },
     minLevel = 58,
-    maxLevel = 60,
+    maxLevel = 58,
     map = 1451,
     zone = "Silithus",
+    next = "GEN_ALLIANCE_DWARF_49_WINTERSPRING",
     author = "ForeverGuide route planner",
-    notes = "Chapter 48 of the Dwarf route: level 58 to 60, 21 steps, ~599 min of play in the model (5643 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 48 of the Dwarf route: level 58 to 58, 19 steps, ~44 min of play in the model (76790 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1451, zone = "Silithus", x = 50.1, y = 37.5, radius = 60, note = "use your hearthstone (Silithus)" }, -- 1
         { type = "TRAVEL", map = 1451, zone = "Silithus", x = 49.7, y = 37.4, radius = 60, note = "travel to Silithus (Silithus)" }, -- 2
@@ -32,7 +33,5 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 8310, questName = "Breaking the Code", target = "Hive'Zora Silithid Brain", map = 1451, zone = "Silithus", x = 37.1, y = 63.7, near = true }, -- 17
         { type = "COLLECT", quest = 8310, questName = "Breaking the Code", target = "Hive'Ashi Silithid Brain", map = 1451, zone = "Silithus", x = 48.5, y = 47.1, near = true }, -- 18
         { type = "TURNIN", quest = 8310, questName = "Breaking the Code", npc = 15171, npcName = "Frankal Stonebridge", map = 1451, zone = "Silithus", x = 40.8, y = 88.9 }, -- 19
-        { type = "GRIND", npc = 11727, target = "Hive'Zora Wasp", level = 59, map = 1451, zone = "Silithus", x = 37, y = 63.2, near = true, note = "grind Hive'Zora Wasp (level 57-59) to level 59 - nothing worth questing at 58" }, -- 20
-        { type = "GRIND", npc = 11727, target = "Hive'Zora Wasp", level = 60, map = 1451, zone = "Silithus", x = 37, y = 63.2, near = true, note = "grind Hive'Zora Wasp (level 57-59) to level 60 - nothing worth questing at 59" }, -- 21
     },
 })

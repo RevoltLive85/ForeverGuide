@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SKYBORNE_16_ORGRIMMAR",
-    name = "16. Orgrimmar 42-42 (Skyborne)",
+    name = "16. Orgrimmar 43-44 (Skyborne)",
     version = 2,
     faction = "Horde",
     race = { "Skyborne" },
-    minLevel = 42,
-    maxLevel = 42,
+    minLevel = 43,
+    maxLevel = 44,
     map = 1454,
     zone = "Orgrimmar",
-    next = "GEN_HORDE_SKYBORNE_17_DESOLACE",
+    next = "GEN_HORDE_SKYBORNE_17_THE_HINTERLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 16 of the Skyborne route: level 42 to 42, 10 steps, ~14 min of play in the model (73466 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 16 of the Skyborne route: level 43 to 44, 10 steps, ~18 min of play in the model (56149 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1454, zone = "Orgrimmar", x = 60.0, y = 40.2, radius = 60, note = "travel to Orgrimmar (Orgrimmar)" }, -- 1
         { type = "NOTE", map = 1454, zone = "Orgrimmar", x = 60.0, y = 40.2, text = "set your hearthstone at the inn in Orgrimmar (if there is one)" }, -- 2
@@ -22,7 +22,7 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 7732, questName = "Zukk'ash Report", npc = 7010, npcName = "Zilzibin Drumlore", map = 1454, zone = "Orgrimmar", x = 56.3, y = 46.7 }, -- 6
         { type = "TURNIN", quest = 3121, questName = "A Strange Request", npc = 3216, npcName = "Neeru Fireblade", map = 1454, zone = "Orgrimmar", x = 49.5, y = 50.6 }, -- 7
         { type = "TURNIN", quest = 2976, questName = "A Grim Discovery", npc = 4485, npcName = "Belgrom Rockmaul", map = 1454, zone = "Orgrimmar", x = 75.2, y = 34.2 }, -- 8
-        { type = "ACCEPT", quest = 650, questName = "Ripple Recovery", npc = 6987, npcName = "Malton Droffers", map = 1454, zone = "Orgrimmar", x = 59.7, y = 36.9 }, -- 9
+        { type = "ACCEPT", quest = 3504, questName = "Betrayed", npc = 4485, npcName = "Belgrom Rockmaul", map = 1454, zone = "Orgrimmar", x = 75.2, y = 34.2 }, -- 9
         { type = "ACCEPT", quest = 3122, questName = "Return to Witch Doctor Uzer'i", npc = 3216, npcName = "Neeru Fireblade", map = 1454, zone = "Orgrimmar", x = 49.5, y = 50.6 }, -- 10
     },
 })

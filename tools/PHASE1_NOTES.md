@@ -290,3 +290,9 @@ after every install via `cc_run` in that folder. Tests: 96 checks.
   textures: top/bottom tiles are stored rotated 90 deg by the client (make_textures handles it); picker hint width.
 - Screen coordinates for computer use: click coordinates are in the reported frame (1456x819 here), not in the
   scaled screenshot's pixels.
+- Zone guides: `plan_route.lua` also writes 43 standalone `GEN_ZONE_<FACTION>_<ZONE>` guides (unraced, "Zone: Westfall
+  10-20") so any character can quest a zone outside its race route (Ilya: "missing the Westfall guide" on a dwarf).
+- Planner fixes from that: Forever quests without recorded objectives were free deliveries in the model (Darkshore looked
+  like 55k xp/h) -> `questCost` charges an average kill quest for them; boat / zeppelin edges cost 8-15 min; a mild
+  same-continent preference (`CROSS_SEA` 0.85). Dwarf route is now Dun Morogh > IF > Loch Modan > Westfall > Redridge >
+  Duskwood > Wetlands ..., Human: Elwynn > IF > Westfall > Loch Modan > Redridge > Duskwood > Wetlands.

@@ -8,7 +8,7 @@
   "maxLevel": 11,
   "map": 1455,
   "zone": "Ironforge",
-  "next": "GEN_ALLIANCE_HUMAN_03_DARKSHORE",
+  "next": "GEN_ALLIANCE_HUMAN_03_WESTFALL",
   "author": "ForeverGuide route planner",
   "notes": "Chapter 2 of the Human route: level 11 to 11, 6 steps, ~9 min of play in the model (29414 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
   "steps": [

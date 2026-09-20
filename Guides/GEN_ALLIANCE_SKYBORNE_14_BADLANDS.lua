@@ -2,58 +2,59 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_14_BADLANDS",
-    name = "14. Badlands 35-36 (Skyborne)",
+    name = "14. Badlands 36-37 (Skyborne)",
     version = 2,
     faction = "Alliance",
     race = { "Skyborne" },
-    minLevel = 35,
-    maxLevel = 36,
+    minLevel = 36,
+    maxLevel = 37,
     map = 1418,
     zone = "Badlands",
-    next = "GEN_ALLIANCE_SKYBORNE_15_ARATHI_HIGHLANDS",
+    next = "GEN_ALLIANCE_SKYBORNE_15_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 14 of the Skyborne route: level 35 to 36, 41 steps, ~123 min of play in the model (38267 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 14 of the Skyborne route: level 36 to 37, 42 steps, ~107 min of play in the model (43978 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
-        { type = "TRAVEL", map = 1418, zone = "Badlands", x = 49.9, y = 47.6, radius = 60, note = "travel to Badlands (Badlands)" }, -- 1
-        { type = "NOTE", map = 1418, zone = "Badlands", x = 49.9, y = 47.6, text = "set your hearthstone at the inn in Badlands (if there is one)" }, -- 2
-        { type = "ACCEPT", quest = 719, questName = "A Dwarf and His Tools", npc = 2910, npcName = "Prospector Ryedol", map = 1418, zone = "Badlands", x = 53.4, y = 43.4 }, -- 3
-        { type = "ACCEPT", quest = 718, questName = "Mirages", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 4
-        { type = "ACCEPT", quest = 720, questName = "A Sign of Hope", map = 1418, zone = "Badlands", x = 53, y = 33.9 }, -- 5
-        { type = "TURNIN", quest = 720, questName = "A Sign of Hope", npc = 2910, npcName = "Prospector Ryedol", map = 1418, zone = "Badlands", x = 53.4, y = 43.4 }, -- 6
-        { type = "COLLECT", quest = 719, questName = "A Dwarf and His Tools", target = "Ryedol's Lucky Pick", map = 1418, zone = "Badlands", x = 52.9, y = 34.4, near = true }, -- 7
-        { type = "TURNIN", quest = 719, questName = "A Dwarf and His Tools", npc = 2910, npcName = "Prospector Ryedol", map = 1418, zone = "Badlands", x = 53.4, y = 43.4 }, -- 8
-        { type = "ACCEPT", quest = 2418, questName = "Power Stones", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 9
-        { type = "ACCEPT", quest = 703, questName = "Barbecued Buzzard Wings", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 10
-        { type = "COLLECT", quest = 2418, questName = "Power Stones", target = "Dentrium Power Stone / An'Alleum Power Stone", count = 8, map = 1418, zone = "Badlands", x = 51.2, y = 27.2, near = true }, -- 11
-        { type = "COLLECT", quest = 703, questName = "Barbecued Buzzard Wings", target = "Buzzard Wing", count = 4, map = 1418, zone = "Badlands", x = 48.9, y = 27.4, near = true }, -- 12
-        { type = "COLLECT", quest = 718, questName = "Mirages", target = "Supply Crate", map = 1418, zone = "Badlands", x = 66.6, y = 22 }, -- 13
-        { type = "TURNIN", quest = 718, questName = "Mirages", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 14
-        { type = "ACCEPT", quest = 733, questName = "Scrounging", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 15
-        { type = "COLLECT", quest = 733, questName = "Scrounging", target = "Scrap Metal", count = 7, map = 1418, zone = "Badlands", x = 64.7, y = 25.6, near = true }, -- 16
-        { type = "TURNIN", quest = 2418, questName = "Power Stones", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 17
-        { type = "TURNIN", quest = 703, questName = "Barbecued Buzzard Wings", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 18
-        { type = "TURNIN", quest = 733, questName = "Scrounging", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 19
-        { type = "ACCEPT", quest = 710, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 20
-        { type = "ACCEPT", quest = 713, questName = "Coolant Heads Prevail", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 21
-        { type = "TURNIN", quest = 713, questName = "Coolant Heads Prevail", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 22
-        { type = "ACCEPT", quest = 714, questName = "Gyro... What?", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 23
-        { type = "TURNIN", quest = 714, questName = "Gyro... What?", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 24
-        { type = "KILL", quest = 710, questName = "Study of the Elements: Rock", npc = 2735, target = "Lesser Rock Elemental", count = 10, map = 1418, zone = "Badlands", x = 23.5, y = 45.5, near = true, note = "loot Small Stone Shard" }, -- 25
-        { type = "TURNIN", quest = 710, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 26
-        { type = "ACCEPT", quest = 711, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 27
-        { type = "KILL", quest = 711, questName = "Study of the Elements: Rock", npc = 92, target = "Rock Elemental", count = 3, map = 1418, zone = "Badlands", x = 13.4, y = 33.4, near = true, note = "loot Large Stone Slab" }, -- 28
-        { type = "TURNIN", quest = 711, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 29
-        { type = "ACCEPT", quest = 712, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 30
-        { type = "KILL", quest = 712, questName = "Study of the Elements: Rock", npc = 2736, target = "Greater Rock Elemental", count = 5, map = 1418, zone = "Badlands", x = 6.6, y = 76.3, near = true, note = "loot Bracers of Rock Binding" }, -- 31
-        { type = "TURNIN", quest = 712, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 32
-        { type = "ACCEPT", quest = 734, questName = "This Is Going to Be Hard", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 33
-        { type = "ACCEPT", quest = 716, questName = "Stone Is Better than Cloth", npc = 2920, npcName = "Lucien Tosselwrench", map = 1418, zone = "Badlands", x = 25.8, y = 44.2 }, -- 34
-        { type = "TURNIN", quest = 716, questName = "Stone Is Better than Cloth", npc = 2920, npcName = "Lucien Tosselwrench", map = 1418, zone = "Badlands", x = 25.8, y = 44.2 }, -- 35
-        { type = "TURNIN", quest = 734, questName = "This Is Going to Be Hard", npc = 2920, npcName = "Lucien Tosselwrench", map = 1418, zone = "Badlands", x = 25.8, y = 44.2 }, -- 36
-        { type = "ACCEPT", quest = 777, questName = "This Is Going to Be Hard", npc = 2920, npcName = "Lucien Tosselwrench", map = 1418, zone = "Badlands", x = 25.8, y = 44.2 }, -- 37
-        { type = "TURNIN", quest = 777, questName = "This Is Going to Be Hard", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 38
-        { type = "ACCEPT", quest = 778, questName = "This Is Going to Be Hard", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 39
-        { type = "KILL", quest = 778, questName = "This Is Going to Be Hard", npc = 2919, target = "Fam'retor Guardian", map = 1418, zone = "Badlands", x = 26, y = 45.8, note = "loot Lotwil's Shackles of Elemental Binding" }, -- 40
-        { type = "TURNIN", quest = 778, questName = "This Is Going to Be Hard", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 41
+        { type = "TRAVEL", map = 1417, zone = "Arathi Highlands", x = 45.9, y = 46.0, radius = 60, note = "use your hearthstone (Arathi Highlands)" }, -- 1
+        { type = "TRAVEL", map = 1418, zone = "Badlands", x = 49.9, y = 47.6, radius = 60, note = "travel to Badlands (Badlands)" }, -- 2
+        { type = "NOTE", map = 1418, zone = "Badlands", x = 49.9, y = 47.6, text = "set your hearthstone at the inn in Badlands (if there is one)" }, -- 3
+        { type = "ACCEPT", quest = 719, questName = "A Dwarf and His Tools", npc = 2910, npcName = "Prospector Ryedol", map = 1418, zone = "Badlands", x = 53.4, y = 43.4 }, -- 4
+        { type = "ACCEPT", quest = 718, questName = "Mirages", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 5
+        { type = "ACCEPT", quest = 720, questName = "A Sign of Hope", map = 1418, zone = "Badlands", x = 53, y = 33.9 }, -- 6
+        { type = "TURNIN", quest = 720, questName = "A Sign of Hope", npc = 2910, npcName = "Prospector Ryedol", map = 1418, zone = "Badlands", x = 53.4, y = 43.4 }, -- 7
+        { type = "COLLECT", quest = 719, questName = "A Dwarf and His Tools", target = "Ryedol's Lucky Pick", map = 1418, zone = "Badlands", x = 52.9, y = 34.4, near = true }, -- 8
+        { type = "TURNIN", quest = 719, questName = "A Dwarf and His Tools", npc = 2910, npcName = "Prospector Ryedol", map = 1418, zone = "Badlands", x = 53.4, y = 43.4 }, -- 9
+        { type = "ACCEPT", quest = 2418, questName = "Power Stones", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 10
+        { type = "ACCEPT", quest = 703, questName = "Barbecued Buzzard Wings", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 11
+        { type = "COLLECT", quest = 2418, questName = "Power Stones", target = "Dentrium Power Stone / An'Alleum Power Stone", count = 8, map = 1418, zone = "Badlands", x = 51.2, y = 27.2, near = true }, -- 12
+        { type = "COLLECT", quest = 703, questName = "Barbecued Buzzard Wings", target = "Buzzard Wing", count = 4, map = 1418, zone = "Badlands", x = 48.9, y = 27.4, near = true }, -- 13
+        { type = "COLLECT", quest = 718, questName = "Mirages", target = "Supply Crate", map = 1418, zone = "Badlands", x = 66.6, y = 22 }, -- 14
+        { type = "TURNIN", quest = 718, questName = "Mirages", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 15
+        { type = "ACCEPT", quest = 733, questName = "Scrounging", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 16
+        { type = "COLLECT", quest = 733, questName = "Scrounging", target = "Scrap Metal", count = 7, map = 1418, zone = "Badlands", x = 64.7, y = 25.6, near = true }, -- 17
+        { type = "TURNIN", quest = 2418, questName = "Power Stones", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 18
+        { type = "TURNIN", quest = 703, questName = "Barbecued Buzzard Wings", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 19
+        { type = "TURNIN", quest = 733, questName = "Scrounging", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 20
+        { type = "ACCEPT", quest = 710, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 21
+        { type = "ACCEPT", quest = 713, questName = "Coolant Heads Prevail", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 22
+        { type = "TURNIN", quest = 713, questName = "Coolant Heads Prevail", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 23
+        { type = "ACCEPT", quest = 714, questName = "Gyro... What?", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 24
+        { type = "TURNIN", quest = 714, questName = "Gyro... What?", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 25
+        { type = "KILL", quest = 710, questName = "Study of the Elements: Rock", npc = 2735, target = "Lesser Rock Elemental", count = 10, map = 1418, zone = "Badlands", x = 23.5, y = 45.5, near = true, note = "loot Small Stone Shard" }, -- 26
+        { type = "TURNIN", quest = 710, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 27
+        { type = "ACCEPT", quest = 711, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 28
+        { type = "KILL", quest = 711, questName = "Study of the Elements: Rock", npc = 92, target = "Rock Elemental", count = 3, map = 1418, zone = "Badlands", x = 13.4, y = 33.4, near = true, note = "loot Large Stone Slab" }, -- 29
+        { type = "TURNIN", quest = 711, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 30
+        { type = "ACCEPT", quest = 712, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 31
+        { type = "KILL", quest = 712, questName = "Study of the Elements: Rock", npc = 2736, target = "Greater Rock Elemental", count = 5, map = 1418, zone = "Badlands", x = 6.6, y = 76.3, near = true, note = "loot Bracers of Rock Binding" }, -- 32
+        { type = "TURNIN", quest = 712, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 33
+        { type = "ACCEPT", quest = 734, questName = "This Is Going to Be Hard", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 34
+        { type = "ACCEPT", quest = 716, questName = "Stone Is Better than Cloth", npc = 2920, npcName = "Lucien Tosselwrench", map = 1418, zone = "Badlands", x = 25.8, y = 44.2 }, -- 35
+        { type = "TURNIN", quest = 716, questName = "Stone Is Better than Cloth", npc = 2920, npcName = "Lucien Tosselwrench", map = 1418, zone = "Badlands", x = 25.8, y = 44.2 }, -- 36
+        { type = "TURNIN", quest = 734, questName = "This Is Going to Be Hard", npc = 2920, npcName = "Lucien Tosselwrench", map = 1418, zone = "Badlands", x = 25.8, y = 44.2 }, -- 37
+        { type = "ACCEPT", quest = 777, questName = "This Is Going to Be Hard", npc = 2920, npcName = "Lucien Tosselwrench", map = 1418, zone = "Badlands", x = 25.8, y = 44.2 }, -- 38
+        { type = "TURNIN", quest = 777, questName = "This Is Going to Be Hard", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 39
+        { type = "ACCEPT", quest = 778, questName = "This Is Going to Be Hard", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 40
+        { type = "KILL", quest = 778, questName = "This Is Going to Be Hard", npc = 2919, target = "Fam'retor Guardian", map = 1418, zone = "Badlands", x = 26, y = 45.8, note = "loot Lotwil's Shackles of Elemental Binding" }, -- 41
+        { type = "TURNIN", quest = 778, questName = "This Is Going to Be Hard", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 42
     },
 })

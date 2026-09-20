@@ -10,7 +10,7 @@
   "zone": "Stranglethorn Vale",
   "next": "GEN_ALLIANCE_HUMAN_18_SWAMP_OF_SORROWS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 17 of the Human route: level 37 to 38, 32 steps, ~143 min of play in the model (28217 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 17 of the Human route: level 37 to 38, 32 steps, ~141 min of play in the model (28388 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
   "steps": [
     {"type": "TRAVEL", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.3, "y": 76.2, "radius": 60, "note": "travel to Stranglethorn Vale (Stranglethorn Vale)"},
     {"type": "ACCEPT", "quest": 595, "questName": "The Bloodsail Buccaneers", "npc": 2490, "npcName": "First Mate Crazz", "map": 1434, "zone": "Stranglethorn Vale", "x": 28.1, "y": 76.2},

@@ -12,20 +12,30 @@ ns.RegisterGuide({
     zone = "Winterspring",
     next = "GEN_ALLIANCE_HUMAN_43_SILITHUS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 42 of the Human route: level 53 to 54, 13 steps, ~232 min of play in the model (4558 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 42 of the Human route: level 53 to 54, 23 steps, ~260 min of play in the model (11223 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
-        { type = "TRAVEL", map = 1452, zone = "Winterspring", x = 61.4, y = 38.2, radius = 60, note = "use your hearthstone (Winterspring)" }, -- 1
-        { type = "TRAVEL", map = 1452, zone = "Winterspring", x = 61.5, y = 38.4, radius = 60, note = "travel to Winterspring (Winterspring)" }, -- 2
-        { type = "ACCEPT", quest = 4861, questName = "Enraged Wildkin", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52.1, y = 30.4 }, -- 3
-        { type = "ACCEPT", quest = 5244, questName = "The Ruins of Kel'Theril", npc = 11079, npcName = "Wynd Nightchaser", map = 1452, zone = "Winterspring", x = 52, y = 30.4 }, -- 4
-        { type = "TURNIN", quest = 5244, questName = "The Ruins of Kel'Theril", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52.1, y = 30.4 }, -- 5
-        { type = "TURNIN", quest = 4861, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 59, y = 59.8 }, -- 6
-        { type = "ACCEPT", quest = 4863, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 59, y = 59.8 }, -- 7
-        { type = "TURNIN", quest = 4863, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7 }, -- 8
-        { type = "ACCEPT", quest = 4864, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7 }, -- 9
-        { type = "COLLECT", quest = 4864, questName = "Enraged Wildkin", target = "Jaron's Supplies", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7, near = true }, -- 10
-        { type = "COLLECT", quest = 4864, questName = "Enraged Wildkin", target = "Blue-feathered Amulet", map = 1452, zone = "Winterspring", x = 59.4, y = 59.8, near = true }, -- 11
-        { type = "TURNIN", quest = 4864, questName = "Enraged Wildkin", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52.1, y = 30.4 }, -- 12
-        { type = "GRIND", npc = 7444, target = "Shardtooth Bear", level = 54, map = 1452, zone = "Winterspring", x = 54.9, y = 37.7, near = true, note = "grind Shardtooth Bear (level 53-54) to level 54 - nothing worth questing at 53" }, -- 13
+        { type = "TRAVEL", map = 1428, zone = "Burning Steppes", x = 65.3, y = 23.5, radius = 60, note = "use your hearthstone (Burning Steppes)" }, -- 1
+        { type = "TRAVEL", map = 1452, zone = "Winterspring", x = 61.4, y = 38.2, radius = 60, note = "travel to Winterspring (Winterspring)" }, -- 2
+        { type = "ACCEPT", quest = 3783, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 3
+        { type = "COLLECT", quest = 3783, questName = "Are We There, Yeti?", target = "Thick Yeti Fur", count = 10, map = 1452, zone = "Winterspring", x = 58.8, y = 34, near = true }, -- 4
+        { type = "TURNIN", quest = 3783, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 5
+        { type = "ACCEPT", quest = 977, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 6
+        { type = "COLLECT", quest = 977, questName = "Are We There, Yeti?", target = "Pristine Yeti Horn", count = 2, map = 1452, zone = "Winterspring", x = 64.7, y = 40.6, near = true }, -- 7
+        { type = "TURNIN", quest = 977, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 8
+        { type = "ACCEPT", quest = 4861, questName = "Enraged Wildkin", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52.1, y = 30.4 }, -- 9
+        { type = "ACCEPT", quest = 5244, questName = "The Ruins of Kel'Theril", npc = 11079, npcName = "Wynd Nightchaser", map = 1452, zone = "Winterspring", x = 52, y = 30.4 }, -- 10
+        { type = "TURNIN", quest = 5244, questName = "The Ruins of Kel'Theril", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52.1, y = 30.4 }, -- 11
+        { type = "TURNIN", quest = 4861, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 59, y = 59.8 }, -- 12
+        { type = "ACCEPT", quest = 4863, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 59, y = 59.8 }, -- 13
+        { type = "TURNIN", quest = 4863, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7 }, -- 14
+        { type = "ACCEPT", quest = 4864, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7 }, -- 15
+        { type = "COLLECT", quest = 4864, questName = "Enraged Wildkin", target = "Jaron's Supplies", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7, near = true }, -- 16
+        { type = "COLLECT", quest = 4864, questName = "Enraged Wildkin", target = "Blue-feathered Amulet", map = 1452, zone = "Winterspring", x = 59.4, y = 59.8, near = true }, -- 17
+        { type = "TURNIN", quest = 4864, questName = "Enraged Wildkin", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52.1, y = 30.4 }, -- 18
+        { type = "ACCEPT", quest = 5082, questName = "Threat of the Winterfall", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.3, y = 45.2 }, -- 19
+        { type = "KILL", quest = 5082, questName = "Threat of the Winterfall", npc = 7442, target = "Winterfall Pathfinder / Winterfall Totemic", count = 8, map = 1452, zone = "Winterspring", x = 33.4, y = 37.7, near = true }, -- 20
+        { type = "KILL", quest = 5082, questName = "Threat of the Winterfall", npc = 7440, target = "Winterfall Den Watcher", count = 8, map = 1452, zone = "Winterspring", x = 30.5, y = 36.9, near = true }, -- 21
+        { type = "TURNIN", quest = 5082, questName = "Threat of the Winterfall", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.3, y = 45.2 }, -- 22
+        { type = "GRIND", npc = 7444, target = "Shardtooth Bear", level = 54, map = 1452, zone = "Winterspring", x = 34.4, y = 43.9, near = true, note = "grind Shardtooth Bear (level 53-54) to level 54 - nothing worth questing at 53" }, -- 23
     },
 })

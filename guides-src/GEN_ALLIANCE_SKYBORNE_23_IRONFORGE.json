@@ -1,0 +1,26 @@
+{
+  "id": "GEN_ALLIANCE_SKYBORNE_23_IRONFORGE",
+  "name": "23. Ironforge 46-46 (Skyborne)",
+  "version": 2,
+  "faction": "Alliance",
+  "race": ["Skyborne"],
+  "minLevel": 46,
+  "maxLevel": 46,
+  "map": 1455,
+  "zone": "Ironforge",
+  "next": "GEN_ALLIANCE_SKYBORNE_24_SEARING_GORGE",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 23 of the Skyborne route: level 46 to 46, 10 steps, ~22 min of play in the model (67688 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1455, "zone": "Ironforge", "x": 60.8, "y": 47.5, "radius": 60, "note": "travel to Ironforge (Ironforge)"},
+    {"type": "ACCEPT", "quest": 1050, "questName": "Mythology of the Titans", "npc": 3979, "npcName": "Librarian Mae Paledust", "map": 1455, "zone": "Ironforge", "x": 75, "y": 12.5},
+    {"type": "ACCEPT", "quest": 3448, "questName": "Passing the Burden", "npc": 2916, "npcName": "Historian Karnik", "map": 1455, "zone": "Ironforge", "x": 77.5, "y": 11.8},
+    {"type": "TURNIN", "quest": 1050, "questName": "Mythology of the Titans", "npc": 3979, "npcName": "Librarian Mae Paledust", "map": 1455, "zone": "Ironforge", "x": 75, "y": 12.5, "note": "reduced xp (40%) - you out-levelled it"},
+    {"type": "TURNIN", "quest": 3448, "questName": "Passing the Burden", "npc": 8507, "npcName": "Tymor", "map": 1455, "zone": "Ironforge", "x": 31, "y": 4.8},
+    {"type": "ACCEPT", "quest": 3450, "questName": "An Easy Pickup", "npc": 8507, "npcName": "Tymor", "map": 1455, "zone": "Ironforge", "x": 31, "y": 4.8},
+    {"type": "TURNIN", "quest": 8484, "questName": "The Brokering of Peace", "npc": 2784, "npcName": "King Magni Bronzebeard", "map": 1455, "zone": "Ironforge", "x": 39.1, "y": 56.2},
+    {"type": "TURNIN", "quest": 3450, "questName": "An Easy Pickup", "npc": 8517, "npcName": "Xiggs Fuselighter", "map": 1455, "zone": "Ironforge", "x": 70.9, "y": 94.6},
+    {"type": "ACCEPT", "quest": 3451, "questName": "Signal for Pickup", "npc": 8517, "npcName": "Xiggs Fuselighter", "map": 1455, "zone": "Ironforge", "x": 70.9, "y": 94.6},
+    {"type": "TURNIN", "quest": 3451, "questName": "Signal for Pickup", "npc": 8517, "npcName": "Xiggs Fuselighter", "map": 1455, "zone": "Ironforge", "x": 70.9, "y": 94.6}
+  ]
+}

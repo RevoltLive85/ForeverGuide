@@ -10,7 +10,7 @@ ns.RegisterGuide({
     maxLevel = 12,
     map = 1458,
     zone = "Undercity",
-    next = "GEN_HORDE_SCOURGE_03_THE_BARRENS",
+    next = "GEN_HORDE_SCOURGE_03_SILVERPINE_FOREST",
     author = "ForeverGuide route planner",
     notes = "Chapter 2 of the Scourge route: level 12 to 12, 7 steps, ~7 min of play in the model (26891 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {

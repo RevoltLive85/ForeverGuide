@@ -8,7 +8,7 @@
   "maxLevel": 22,
   "map": 1413,
   "zone": "The Barrens",
-  "next": "GEN_HORDE_TAUREN_04_HILLSBRAD_FOOTHILLS",
+  "next": "GEN_HORDE_TAUREN_04_STONETALON_MOUNTAINS",
   "author": "ForeverGuide route planner",
   "notes": "Chapter 3 of the Tauren route: level 11 to 22, 177 steps, ~534 min of play in the model (20591 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
   "steps": [

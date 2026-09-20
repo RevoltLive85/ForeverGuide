@@ -2,30 +2,46 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_41_WINTERSPRING",
-    name = "41. Winterspring 53-54 (Skyborne)",
+    name = "41. Winterspring 53-53 (Skyborne)",
     version = 2,
     faction = "Alliance",
     race = { "Skyborne" },
     minLevel = 53,
-    maxLevel = 54,
+    maxLevel = 53,
     map = 1452,
     zone = "Winterspring",
-    next = "GEN_ALLIANCE_SKYBORNE_42_SILITHUS",
+    next = "GEN_ALLIANCE_SKYBORNE_42_FELWOOD",
     author = "ForeverGuide route planner",
-    notes = "Chapter 41 of the Skyborne route: level 53 to 54, 13 steps, ~232 min of play in the model (4558 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 41 of the Skyborne route: level 53 to 53, 29 steps, ~118 min of play in the model (35103 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
-        { type = "TRAVEL", map = 1452, zone = "Winterspring", x = 61.4, y = 38.2, radius = 60, note = "use your hearthstone (Winterspring)" }, -- 1
-        { type = "TRAVEL", map = 1452, zone = "Winterspring", x = 61.5, y = 38.4, radius = 60, note = "travel to Winterspring (Winterspring)" }, -- 2
-        { type = "ACCEPT", quest = 4861, questName = "Enraged Wildkin", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52.1, y = 30.4 }, -- 3
-        { type = "ACCEPT", quest = 5244, questName = "The Ruins of Kel'Theril", npc = 11079, npcName = "Wynd Nightchaser", map = 1452, zone = "Winterspring", x = 52, y = 30.4 }, -- 4
-        { type = "TURNIN", quest = 5244, questName = "The Ruins of Kel'Theril", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52.1, y = 30.4 }, -- 5
-        { type = "TURNIN", quest = 4861, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 59, y = 59.8 }, -- 6
-        { type = "ACCEPT", quest = 4863, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 59, y = 59.8 }, -- 7
-        { type = "TURNIN", quest = 4863, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7 }, -- 8
-        { type = "ACCEPT", quest = 4864, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7 }, -- 9
-        { type = "COLLECT", quest = 4864, questName = "Enraged Wildkin", target = "Jaron's Supplies", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7, near = true }, -- 10
-        { type = "COLLECT", quest = 4864, questName = "Enraged Wildkin", target = "Blue-feathered Amulet", map = 1452, zone = "Winterspring", x = 59.4, y = 59.8, near = true }, -- 11
-        { type = "TURNIN", quest = 4864, questName = "Enraged Wildkin", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52.1, y = 30.4 }, -- 12
-        { type = "GRIND", npc = 7444, target = "Shardtooth Bear", level = 54, map = 1452, zone = "Winterspring", x = 54.9, y = 37.7, near = true, note = "grind Shardtooth Bear (level 53-54) to level 54 - nothing worth questing at 53" }, -- 13
+        { type = "TRAVEL", map = 1428, zone = "Burning Steppes", x = 65.3, y = 23.5, radius = 60, note = "use your hearthstone (Burning Steppes)" }, -- 1
+        { type = "TRAVEL", map = 1452, zone = "Winterspring", x = 61.4, y = 38.2, radius = 60, note = "travel to Winterspring (Winterspring)" }, -- 2
+        { type = "NOTE", map = 1452, zone = "Winterspring", x = 61.4, y = 38.2, text = "set your hearthstone at the inn in Winterspring (if there is one)" }, -- 3
+        { type = "ACCEPT", quest = 3783, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 4
+        { type = "COLLECT", quest = 3783, questName = "Are We There, Yeti?", target = "Thick Yeti Fur", count = 10, map = 1452, zone = "Winterspring", x = 58.8, y = 34, near = true }, -- 5
+        { type = "TURNIN", quest = 3783, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 6
+        { type = "ACCEPT", quest = 977, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 7
+        { type = "COLLECT", quest = 977, questName = "Are We There, Yeti?", target = "Pristine Yeti Horn", count = 2, map = 1452, zone = "Winterspring", x = 64.7, y = 40.6, near = true }, -- 8
+        { type = "TURNIN", quest = 977, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 9
+        { type = "ACCEPT", quest = 4861, questName = "Enraged Wildkin", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52.1, y = 30.4 }, -- 10
+        { type = "ACCEPT", quest = 5244, questName = "The Ruins of Kel'Theril", npc = 11079, npcName = "Wynd Nightchaser", map = 1452, zone = "Winterspring", x = 52, y = 30.4 }, -- 11
+        { type = "TURNIN", quest = 5244, questName = "The Ruins of Kel'Theril", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52.1, y = 30.4 }, -- 12
+        { type = "TURNIN", quest = 4861, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 59, y = 59.8 }, -- 13
+        { type = "ACCEPT", quest = 4863, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 59, y = 59.8 }, -- 14
+        { type = "TURNIN", quest = 4863, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7 }, -- 15
+        { type = "ACCEPT", quest = 4864, questName = "Enraged Wildkin", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7 }, -- 16
+        { type = "COLLECT", quest = 4864, questName = "Enraged Wildkin", target = "Jaron's Supplies", map = 1452, zone = "Winterspring", x = 61.4, y = 60.7, near = true }, -- 17
+        { type = "COLLECT", quest = 4864, questName = "Enraged Wildkin", target = "Blue-feathered Amulet", map = 1452, zone = "Winterspring", x = 59.4, y = 59.8, near = true }, -- 18
+        { type = "TURNIN", quest = 4864, questName = "Enraged Wildkin", npc = 10301, npcName = "Jaron Stoneshaper", map = 1452, zone = "Winterspring", x = 52.1, y = 30.4 }, -- 19
+        { type = "TURNIN", quest = 3908, questName = "It's a Secret to Everybody", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.3, y = 45.2 }, -- 20
+        { type = "ACCEPT", quest = 5082, questName = "Threat of the Winterfall", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.3, y = 45.2 }, -- 21
+        { type = "KILL", quest = 5082, questName = "Threat of the Winterfall", npc = 7442, target = "Winterfall Pathfinder / Winterfall Totemic", count = 8, map = 1452, zone = "Winterspring", x = 33.4, y = 37.7, near = true }, -- 22
+        { type = "KILL", quest = 5082, questName = "Threat of the Winterfall", npc = 7440, target = "Winterfall Den Watcher", count = 8, map = 1452, zone = "Winterspring", x = 30.5, y = 36.9, near = true }, -- 23
+        { type = "ACCEPT", quest = 8464, questName = "Winterfall Activity", npc = 11556, npcName = "Salfa", map = 1452, zone = "Winterspring", x = 27.7, y = 34.5 }, -- 24
+        { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7440, target = "Winterfall Den Watcher", count = 8, map = 1452, zone = "Winterspring", x = 30.3, y = 36.3, near = true }, -- 25
+        { type = "TURNIN", quest = 5082, questName = "Threat of the Winterfall", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.3, y = 45.2 }, -- 26
+        { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7438, target = "Winterfall Ursa", count = 8, map = 1452, zone = "Winterspring", x = 65.1, y = 37.2, near = true }, -- 27
+        { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7439, target = "Winterfall Shaman", count = 8, map = 1452, zone = "Winterspring", x = 67.4, y = 35.2, near = true }, -- 28
+        { type = "TURNIN", quest = 8464, questName = "Winterfall Activity", npc = 11556, npcName = "Salfa", map = 1452, zone = "Winterspring", x = 27.7, y = 34.5 }, -- 29
     },
 })

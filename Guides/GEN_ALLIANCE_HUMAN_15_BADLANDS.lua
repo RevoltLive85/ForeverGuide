@@ -10,9 +10,9 @@ ns.RegisterGuide({
     maxLevel = 36,
     map = 1418,
     zone = "Badlands",
-    next = "GEN_ALLIANCE_HUMAN_16_ARATHI_HIGHLANDS",
+    next = "GEN_ALLIANCE_HUMAN_16_DESOLACE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 15 of the Human route: level 35 to 36, 41 steps, ~124 min of play in the model (38030 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 15 of the Human route: level 35 to 36, 41 steps, ~121 min of play in the model (39113 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1418, zone = "Badlands", x = 49.9, y = 47.6, radius = 60, note = "travel to Badlands (Badlands)" }, -- 1
         { type = "NOTE", map = 1418, zone = "Badlands", x = 49.9, y = 47.6, text = "set your hearthstone at the inn in Badlands (if there is one)" }, -- 2
@@ -30,9 +30,9 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 718, questName = "Mirages", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 14
         { type = "ACCEPT", quest = 733, questName = "Scrounging", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 15
         { type = "COLLECT", quest = 733, questName = "Scrounging", target = "Scrap Metal", count = 7, map = 1418, zone = "Badlands", x = 64.7, y = 25.6, near = true }, -- 16
-        { type = "TURNIN", quest = 2418, questName = "Power Stones", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 17
-        { type = "TURNIN", quest = 703, questName = "Barbecued Buzzard Wings", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 18
-        { type = "TURNIN", quest = 733, questName = "Scrounging", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 19
+        { type = "TURNIN", quest = 733, questName = "Scrounging", npc = 2860, npcName = "Sigrun Ironhew", map = 1418, zone = "Badlands", x = 53.8, y = 43.3 }, -- 17
+        { type = "TURNIN", quest = 2418, questName = "Power Stones", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 18
+        { type = "TURNIN", quest = 703, questName = "Barbecued Buzzard Wings", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 19
         { type = "ACCEPT", quest = 710, questName = "Study of the Elements: Rock", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 20
         { type = "ACCEPT", quest = 713, questName = "Coolant Heads Prevail", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 21
         { type = "TURNIN", quest = 713, questName = "Coolant Heads Prevail", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 22

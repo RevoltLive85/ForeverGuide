@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_24_FERALAS",
-    name = "24. Feralas 47-48 (Undead)",
+    name = "24. Feralas 47-47 (Undead)",
     version = 2,
     faction = "Horde",
     race = { "Scourge" },
     minLevel = 47,
-    maxLevel = 48,
+    maxLevel = 47,
     map = 1444,
     zone = "Feralas",
     next = "GEN_HORDE_SCOURGE_25_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
-    notes = "Chapter 24 of the Scourge route: level 47 to 48, 17 steps, ~117 min of play in the model (35331 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 24 of the Scourge route: level 47 to 47, 17 steps, ~117 min of play in the model (35331 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1444, zone = "Feralas", x = 74.9, y = 43.5, radius = 60, note = "travel to Feralas (Feralas)" }, -- 1
         { type = "ACCEPT", quest = 3063, questName = "Vengeance on the Northspring", npc = 7776, npcName = "Talo Thornhoof", map = 1444, zone = "Feralas", x = 76.2, y = 43.8 }, -- 2

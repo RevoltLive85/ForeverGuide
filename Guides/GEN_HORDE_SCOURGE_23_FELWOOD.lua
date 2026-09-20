@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_23_FELWOOD",
-    name = "23. Felwood 47-47 (Undead)",
+    name = "23. Felwood 46-47 (Undead)",
     version = 2,
     faction = "Horde",
     race = { "Scourge" },
-    minLevel = 47,
+    minLevel = 46,
     maxLevel = 47,
     map = 1448,
     zone = "Felwood",
     next = "GEN_HORDE_SCOURGE_24_FERALAS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 23 of the Scourge route: level 47 to 47, 17 steps, ~70 min of play in the model (34029 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 23 of the Scourge route: level 46 to 47, 17 steps, ~71 min of play in the model (33507 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1448, zone = "Felwood", x = 50.5, y = 82.5, radius = 60, note = "travel to Felwood (Felwood)" }, -- 1
         { type = "NOTE", map = 1448, zone = "Felwood", x = 50.5, y = 82.5, text = "set your hearthstone at the inn in Felwood (if there is one)" }, -- 2

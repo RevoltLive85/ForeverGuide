@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_02_DARKSHORE",
-    name = "2. Darkshore 14-18 (Skyborne)",
+    name = "2. Darkshore 13-18 (Skyborne)",
     version = 2,
     faction = "Alliance",
     race = { "Skyborne" },
-    minLevel = 14,
+    minLevel = 13,
     maxLevel = 18,
     map = 1439,
     zone = "Darkshore",
     next = "GEN_ALLIANCE_SKYBORNE_03_STONETALON_MOUNTAINS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 2 of the Skyborne route: level 14 to 18, 144 steps, ~209 min of play in the model (21787 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 2 of the Skyborne route: level 13 to 18, 143 steps, ~224 min of play in the model (20565 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1439, zone = "Darkshore", x = 37.6, y = 43.5, radius = 60, note = "travel to Darkshore (Darkshore)" }, -- 1
         { type = "NOTE", map = 1439, zone = "Darkshore", x = 37.6, y = 43.5, text = "set your hearthstone at the inn in Darkshore (if there is one)" }, -- 2
@@ -29,134 +29,133 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 982, questName = "Deep Ocean, Vast Sea", npc = 6301, npcName = "Gorbold Steelhand", map = 1439, zone = "Darkshore", x = 38.1, y = 41.2 }, -- 13
         { type = "ACCEPT", quest = 965, questName = "The Tower of Althalaxx", npc = 3657, npcName = "Sentinel Elissa Starbreeze", map = 1439, zone = "Darkshore", x = 39.0, y = 43.5 }, -- 14
         { type = "COLLECT", quest = 983, questName = "Buzzbox 827", target = "Crawler Leg", count = 6, map = 1439, zone = "Darkshore", x = 37.2, y = 40.6, near = true }, -- 15
-        { type = "COLLECT", quest = 3524, questName = "Washed Ashore", target = "Sea Creature Bones", map = 1439, zone = "Darkshore", x = 36.4, y = 50.9 }, -- 16
-        { type = "KILL", quest = 963, questName = "For Love Eternal", npc = 3667, target = "Anaya Dawnrunner", map = 1439, zone = "Darkshore", x = 41.8, y = 60.7, note = "loot Anaya's Pendant" }, -- 17
-        { type = "ACCEPT", quest = 953, questName = "The Fall of Ameth'Aran", npc = 3639, npcName = "Sentinel Tysha Moonblade", map = 1439, zone = "Darkshore", x = 40.3, y = 59.7 }, -- 18
-        { type = "COLLECT", quest = 958, questName = "Tools of the Highborne", target = "Highborne Relic", count = 7, map = 1439, zone = "Darkshore", x = 41.6, y = 59.6, near = true }, -- 19
-        { type = "COMPLETE", quest = 953, questName = "The Fall of Ameth'Aran", target = "The Lay of Ameth'Aran", map = 1439, zone = "Darkshore", x = 43.3, y = 58.7, note = "Read the Lay of Ameth'Aran" }, -- 20
-        { type = "COMPLETE", quest = 953, questName = "The Fall of Ameth'Aran", target = "The Fall of Ameth'Aran", map = 1439, zone = "Darkshore", x = 42.7, y = 63.1, note = "Read the Fall of Ameth'Aran" }, -- 21
-        { type = "KILL", quest = 2118, questName = "Plagued Lands", npc = 2164, target = "Rabid Thistle Bear", map = 1439, zone = "Darkshore", x = 39.5, y = 60.8, near = true }, -- 22
-        { type = "TURNIN", quest = 953, questName = "The Fall of Ameth'Aran", npc = 3639, npcName = "Sentinel Tysha Moonblade", map = 1439, zone = "Darkshore", x = 40.3, y = 59.7 }, -- 23
-        { type = "COMPLETE", quest = 984, questName = "How Big a Threat?", target = "Find a corrupt furbolg camp", map = 1439, zone = "Darkshore", x = 39.9, y = 53.9, near = true, note = "Find a corrupt furbolg camp" }, -- 24
-        { type = "COMPLETE", quest = 4811, questName = "The Red Crystal", target = "Locate the large, red crystal on Darkshore's eastern mountain range", map = 1439, zone = "Darkshore", x = 47.2, y = 48.7, note = "Locate the large, red crystal on Darkshore's eastern mountain range" }, -- 25
-        { type = "TURNIN", quest = 983, questName = "Buzzbox 827", map = 1439, zone = "Darkshore", x = 36.6, y = 46.3 }, -- 26
-        { type = "ACCEPT", quest = 1001, questName = "Buzzbox 411", map = 1439, zone = "Darkshore", x = 36.6, y = 46.3 }, -- 27
-        { type = "TURNIN", quest = 3524, questName = "Washed Ashore", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 28
-        { type = "TURNIN", quest = 1141, questName = "The Family and the Fishing Pole", npc = 10216, npcName = "Gubber Blump", map = 1439, zone = "Darkshore", x = 36.1, y = 44.9 }, -- 29
-        { type = "TURNIN", quest = 963, questName = "For Love Eternal", npc = 3644, npcName = "Cerellean Whiteclaw", map = 1439, zone = "Darkshore", x = 35.7, y = 43.7 }, -- 30
-        { type = "TURNIN", quest = 4811, questName = "The Red Crystal", npc = 2930, npcName = "Sentinel Glynda Nal'Shea", map = 1439, zone = "Darkshore", x = 37.7, y = 43.4 }, -- 31
-        { type = "ACCEPT", quest = 4812, questName = "As Water Cascades", npc = 2930, npcName = "Sentinel Glynda Nal'Shea", map = 1439, zone = "Darkshore", x = 37.7, y = 43.4 }, -- 32
-        { type = "ACCEPT", quest = 4681, questName = "Washed Ashore", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 33
-        { type = "ACCEPT", quest = 1138, questName = "Fruit of the Sea", npc = 10216, npcName = "Gubber Blump", map = 1439, zone = "Darkshore", x = 36.1, y = 44.9 }, -- 34
-        { type = "ACCEPT", quest = 4740, questName = "WANTED: Murkdeep!", map = 1439, zone = "Darkshore", x = 37.2, y = 44.2 }, -- 35
-        { type = "ACCEPT", quest = 729, questName = "The Absent Minded Prospector", npc = 2913, npcName = "Archaeologist Hollee", map = 1439, zone = "Darkshore", x = 37.4, y = 41.8 }, -- 36
-        { type = "TURNIN", quest = 958, questName = "Tools of the Highborne", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 37
-        { type = "TURNIN", quest = 2118, questName = "Plagued Lands", npc = 3701, npcName = "Tharnariun Treetender", map = 1439, zone = "Darkshore", x = 38.8, y = 43.4 }, -- 38
-        { type = "TURNIN", quest = 984, questName = "How Big a Threat?", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 39
-        { type = "ACCEPT", quest = 985, questName = "How Big a Threat?", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 40
-        { type = "ACCEPT", quest = 4761, questName = "Thundris Windweaver", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 41
-        { type = "ACCEPT", quest = 2138, questName = "Cleansing of the Infected", npc = 3701, npcName = "Tharnariun Treetender", map = 1439, zone = "Darkshore", x = 38.8, y = 43.4 }, -- 42
-        { type = "TURNIN", quest = 4761, questName = "Thundris Windweaver", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 43
-        { type = "ACCEPT", quest = 4762, questName = "The Cliffspring River", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 44
-        { type = "COLLECT", quest = 1001, questName = "Buzzbox 411", target = "Thresher Eye", count = 3, map = 1439, zone = "Darkshore", x = 33.8, y = 38.4, near = true }, -- 45
-        { type = "COLLECT", quest = 4681, questName = "Washed Ashore", target = "Sea Turtle Remains", map = 1439, zone = "Darkshore", x = 31.8, y = 46.3 }, -- 46
-        { type = "KILL", quest = 985, questName = "How Big a Threat?", npc = 2324, target = "Blackwood Windtalker / Blackwood Pathfinder", count = 8, map = 1439, zone = "Darkshore", x = 39.1, y = 52.6, near = true }, -- 47
-        { type = "COLLECT", quest = 4812, questName = "As Water Cascades", target = "Moonwell Water Tube", map = 1439, zone = "Darkshore", x = 37.8, y = 44 }, -- 48
-        { type = "TURNIN", quest = 4681, questName = "Washed Ashore", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 49
-        { type = "TURNIN", quest = 985, questName = "How Big a Threat?", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 50
-        { type = "ACCEPT", quest = 986, questName = "A Lost Master", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 51
-        { type = "COMPLETE", quest = 954, questName = "Bashal'Aran", target = "Find the source of the strange blue aura in the ruins of Bashal'Aran.", map = 1439, zone = "Darkshore", x = 44.3, y = 36.4, note = "Find the source of the strange blue aura in the ruins of Bashal'Aran." }, -- 52
-        { type = "TURNIN", quest = 954, questName = "Bashal'Aran", npc = 3650, npcName = "Asterion", map = 1439, zone = "Darkshore", x = 44.2, y = 36.3 }, -- 53
-        { type = "ACCEPT", quest = 955, questName = "Bashal'Aran", npc = 3650, npcName = "Asterion", map = 1439, zone = "Darkshore", x = 44.2, y = 36.3 }, -- 54
-        { type = "COLLECT", quest = 955, questName = "Bashal'Aran", target = "Grell Earring", count = 8, map = 1439, zone = "Darkshore", x = 44.6, y = 36.6, near = true }, -- 55
-        { type = "TURNIN", quest = 955, questName = "Bashal'Aran", npc = 3650, npcName = "Asterion", map = 1439, zone = "Darkshore", x = 44.2, y = 36.3 }, -- 56
-        { type = "ACCEPT", quest = 956, questName = "Bashal'Aran", npc = 3650, npcName = "Asterion", map = 1439, zone = "Darkshore", x = 44.2, y = 36.3 }, -- 57
-        { type = "KILL", quest = 956, questName = "Bashal'Aran", npc = 2212, target = "Deth'ryll Satyr", map = 1439, zone = "Darkshore", x = 45.5, y = 36.5, near = true, note = "loot Ancient Moonstone Seal" }, -- 58
-        { type = "TURNIN", quest = 956, questName = "Bashal'Aran", npc = 3650, npcName = "Asterion", map = 1439, zone = "Darkshore", x = 44.2, y = 36.3 }, -- 59
-        { type = "KILL", quest = 2138, questName = "Cleansing of the Infected", npc = 2164, target = "Rabid Thistle Bear", count = 20, map = 1439, zone = "Darkshore", x = 44.7, y = 33, near = true }, -- 60
-        { type = "ACCEPT", quest = 4723, questName = "Beached Sea Creature", map = 1439, zone = "Darkshore", x = 41.9, y = 31.5 }, -- 61
-        { type = "TURNIN", quest = 1001, questName = "Buzzbox 411", map = 1439, zone = "Darkshore", x = 42, y = 28.6 }, -- 62
-        { type = "ACCEPT", quest = 1002, questName = "Buzzbox 323", map = 1439, zone = "Darkshore", x = 42, y = 28.6 }, -- 63
-        { type = "COLLECT", quest = 1002, questName = "Buzzbox 323", target = "Moonstalker Fang", count = 6, map = 1439, zone = "Darkshore", x = 43.6, y = 29, near = true }, -- 64
-        { type = "COLLECT", quest = 4762, questName = "The Cliffspring River", target = "Cliffspring River Sample", map = 1439, zone = "Darkshore", x = 50.8, y = 25.6 }, -- 65
-        { type = "TURNIN", quest = 1002, questName = "Buzzbox 323", map = 1439, zone = "Darkshore", x = 51.3, y = 24.6 }, -- 66
-        { type = "ACCEPT", quest = 1003, questName = "Buzzbox 525", map = 1439, zone = "Darkshore", x = 51.3, y = 24.6 }, -- 67
-        { type = "COLLECT", quest = 947, questName = "Cave Mushrooms", target = "Scaber Stalk / Death Cap", count = 5, map = 1439, zone = "Darkshore", x = 55, y = 33.3, near = true }, -- 68
-        { type = "COLLECT", quest = 1003, questName = "Buzzbox 525", target = "Grizzled Scalp", count = 4, map = 1439, zone = "Darkshore", x = 51.5, y = 38.3, near = true }, -- 69
-        { type = "COLLECT", quest = 982, questName = "Deep Ocean, Vast Sea", target = "Mist Veil's Lockbox", map = 1439, zone = "Darkshore", x = 39.6, y = 27.5 }, -- 70
-        { type = "COLLECT", quest = 1138, questName = "Fruit of the Sea", target = "Fine Crab Chunks", count = 6, map = 1439, zone = "Darkshore", x = 45.5, y = 20.7, near = true }, -- 71
-        { type = "ACCEPT", quest = 4725, questName = "Beached Sea Turtle", map = 1439, zone = "Darkshore", x = 44.2, y = 20.6 }, -- 72
-        { type = "COLLECT", quest = 982, questName = "Deep Ocean, Vast Sea", target = "Silver Dawning's Lockbox", map = 1439, zone = "Darkshore", x = 38.2, y = 28.8 }, -- 73
-        { type = "TURNIN", quest = 4762, questName = "The Cliffspring River", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 74
+        { type = "COLLECT", quest = 982, questName = "Deep Ocean, Vast Sea", target = "Silver Dawning's Lockbox / Mist Veil's Lockbox", map = 1439, zone = "Darkshore", x = 38.2, y = 28.8 }, -- 16
+        { type = "KILL", quest = 2118, questName = "Plagued Lands", npc = 2164, target = "Rabid Thistle Bear", map = 1439, zone = "Darkshore", x = 44.7, y = 33, near = true }, -- 17
+        { type = "COMPLETE", quest = 954, questName = "Bashal'Aran", target = "Find the source of the strange blue aura in the ruins of Bashal'Aran.", map = 1439, zone = "Darkshore", x = 44.3, y = 36.4, note = "Find the source of the strange blue aura in the ruins of Bashal'Aran." }, -- 18
+        { type = "TURNIN", quest = 954, questName = "Bashal'Aran", npc = 3650, npcName = "Asterion", map = 1439, zone = "Darkshore", x = 44.2, y = 36.3 }, -- 19
+        { type = "ACCEPT", quest = 955, questName = "Bashal'Aran", npc = 3650, npcName = "Asterion", map = 1439, zone = "Darkshore", x = 44.2, y = 36.3 }, -- 20
+        { type = "COLLECT", quest = 955, questName = "Bashal'Aran", target = "Grell Earring", count = 8, map = 1439, zone = "Darkshore", x = 44.6, y = 36.6, near = true }, -- 21
+        { type = "TURNIN", quest = 955, questName = "Bashal'Aran", npc = 3650, npcName = "Asterion", map = 1439, zone = "Darkshore", x = 44.2, y = 36.3 }, -- 22
+        { type = "ACCEPT", quest = 956, questName = "Bashal'Aran", npc = 3650, npcName = "Asterion", map = 1439, zone = "Darkshore", x = 44.2, y = 36.3 }, -- 23
+        { type = "COLLECT", quest = 3524, questName = "Washed Ashore", target = "Sea Creature Bones", map = 1439, zone = "Darkshore", x = 36.4, y = 50.9 }, -- 24
+        { type = "COLLECT", quest = 958, questName = "Tools of the Highborne", target = "Highborne Relic", count = 7, map = 1439, zone = "Darkshore", x = 41.9, y = 57.3, near = true }, -- 25
+        { type = "ACCEPT", quest = 953, questName = "The Fall of Ameth'Aran", npc = 3639, npcName = "Sentinel Tysha Moonblade", map = 1439, zone = "Darkshore", x = 40.3, y = 59.7 }, -- 26
+        { type = "COMPLETE", quest = 953, questName = "The Fall of Ameth'Aran", target = "The Lay of Ameth'Aran", map = 1439, zone = "Darkshore", x = 43.3, y = 58.7, note = "Read the Lay of Ameth'Aran" }, -- 27
+        { type = "COMPLETE", quest = 953, questName = "The Fall of Ameth'Aran", target = "The Fall of Ameth'Aran", map = 1439, zone = "Darkshore", x = 42.7, y = 63.1, note = "Read the Fall of Ameth'Aran" }, -- 28
+        { type = "KILL", quest = 963, questName = "For Love Eternal", npc = 3667, target = "Anaya Dawnrunner", map = 1439, zone = "Darkshore", x = 41.8, y = 60.7, note = "loot Anaya's Pendant" }, -- 29
+        { type = "TURNIN", quest = 953, questName = "The Fall of Ameth'Aran", npc = 3639, npcName = "Sentinel Tysha Moonblade", map = 1439, zone = "Darkshore", x = 40.3, y = 59.7 }, -- 30
+        { type = "COMPLETE", quest = 984, questName = "How Big a Threat?", target = "Find a corrupt furbolg camp", map = 1439, zone = "Darkshore", x = 39.9, y = 53.9, near = true, note = "Find a corrupt furbolg camp" }, -- 31
+        { type = "COMPLETE", quest = 4811, questName = "The Red Crystal", target = "Locate the large, red crystal on Darkshore's eastern mountain range", map = 1439, zone = "Darkshore", x = 47.2, y = 48.7, note = "Locate the large, red crystal on Darkshore's eastern mountain range" }, -- 32
+        { type = "KILL", quest = 956, questName = "Bashal'Aran", npc = 2212, target = "Deth'ryll Satyr", map = 1439, zone = "Darkshore", x = 45.4, y = 39.7, near = true, note = "loot Ancient Moonstone Seal" }, -- 33
+        { type = "TURNIN", quest = 956, questName = "Bashal'Aran", npc = 3650, npcName = "Asterion", map = 1439, zone = "Darkshore", x = 44.2, y = 36.3 }, -- 34
+        { type = "ACCEPT", quest = 957, questName = "Bashal'Aran", npc = 3650, npcName = "Asterion", map = 1439, zone = "Darkshore", x = 44.2, y = 36.3 }, -- 35
+        { type = "COMPLETE", quest = 957, questName = "Bashal'Aran", target = "Ancient Flame", map = 1439, zone = "Darkshore", x = 42.4, y = 61.8, note = "Destroy the seal at the ancient flame" }, -- 36
+        { type = "COLLECT", quest = 947, questName = "Cave Mushrooms", target = "Scaber Stalk / Death Cap", count = 5, map = 1439, zone = "Darkshore", x = 55, y = 36.8, near = true }, -- 37
+        { type = "TURNIN", quest = 957, questName = "Bashal'Aran", npc = 3650, npcName = "Asterion", map = 1439, zone = "Darkshore", x = 44.2, y = 36.3 }, -- 38
+        { type = "TURNIN", quest = 958, questName = "Tools of the Highborne", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 39
+        { type = "TURNIN", quest = 982, questName = "Deep Ocean, Vast Sea", npc = 6301, npcName = "Gorbold Steelhand", map = 1439, zone = "Darkshore", x = 38.1, y = 41.2 }, -- 40
+        { type = "TURNIN", quest = 4811, questName = "The Red Crystal", npc = 2930, npcName = "Sentinel Glynda Nal'Shea", map = 1439, zone = "Darkshore", x = 37.7, y = 43.4 }, -- 41
+        { type = "TURNIN", quest = 947, questName = "Cave Mushrooms", npc = 3583, npcName = "Barithras Moonshade", map = 1439, zone = "Darkshore", x = 37.3, y = 43.6 }, -- 42
+        { type = "TURNIN", quest = 2118, questName = "Plagued Lands", npc = 3701, npcName = "Tharnariun Treetender", map = 1439, zone = "Darkshore", x = 38.8, y = 43.4 }, -- 43
+        { type = "ACCEPT", quest = 4812, questName = "As Water Cascades", npc = 2930, npcName = "Sentinel Glynda Nal'Shea", map = 1439, zone = "Darkshore", x = 37.7, y = 43.4 }, -- 44
+        { type = "ACCEPT", quest = 2138, questName = "Cleansing of the Infected", npc = 3701, npcName = "Tharnariun Treetender", map = 1439, zone = "Darkshore", x = 38.8, y = 43.4 }, -- 45
+        { type = "ACCEPT", quest = 948, questName = "Onu", npc = 3583, npcName = "Barithras Moonshade", map = 1439, zone = "Darkshore", x = 37.3, y = 43.6 }, -- 46
+        { type = "TURNIN", quest = 1141, questName = "The Family and the Fishing Pole", npc = 10216, npcName = "Gubber Blump", map = 1439, zone = "Darkshore", x = 36.1, y = 44.9 }, -- 47
+        { type = "TURNIN", quest = 3524, questName = "Washed Ashore", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 48
+        { type = "TURNIN", quest = 963, questName = "For Love Eternal", npc = 3644, npcName = "Cerellean Whiteclaw", map = 1439, zone = "Darkshore", x = 35.7, y = 43.7 }, -- 49
+        { type = "TURNIN", quest = 983, questName = "Buzzbox 827", map = 1439, zone = "Darkshore", x = 36.6, y = 46.3 }, -- 50
+        { type = "TURNIN", quest = 984, questName = "How Big a Threat?", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 51
+        { type = "ACCEPT", quest = 985, questName = "How Big a Threat?", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 52
+        { type = "ACCEPT", quest = 4761, questName = "Thundris Windweaver", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 53
+        { type = "ACCEPT", quest = 4740, questName = "WANTED: Murkdeep!", map = 1439, zone = "Darkshore", x = 37.2, y = 44.2 }, -- 54
+        { type = "ACCEPT", quest = 729, questName = "The Absent Minded Prospector", npc = 2913, npcName = "Archaeologist Hollee", map = 1439, zone = "Darkshore", x = 37.4, y = 41.8 }, -- 55
+        { type = "TURNIN", quest = 4761, questName = "Thundris Windweaver", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 56
+        { type = "ACCEPT", quest = 4762, questName = "The Cliffspring River", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 57
+        { type = "COLLECT", quest = 4812, questName = "As Water Cascades", target = "Moonwell Water Tube", map = 1439, zone = "Darkshore", x = 37.8, y = 44 }, -- 58
+        { type = "ACCEPT", quest = 1001, questName = "Buzzbox 411", map = 1439, zone = "Darkshore", x = 36.6, y = 46.3 }, -- 59
+        { type = "ACCEPT", quest = 4681, questName = "Washed Ashore", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 60
+        { type = "ACCEPT", quest = 1138, questName = "Fruit of the Sea", npc = 10216, npcName = "Gubber Blump", map = 1439, zone = "Darkshore", x = 36.1, y = 44.9 }, -- 61
+        { type = "COLLECT", quest = 1001, questName = "Buzzbox 411", target = "Thresher Eye", count = 3, map = 1439, zone = "Darkshore", x = 33.6, y = 41.6, near = true }, -- 62
+        { type = "COLLECT", quest = 4681, questName = "Washed Ashore", target = "Sea Turtle Remains", map = 1439, zone = "Darkshore", x = 31.8, y = 46.3 }, -- 63
+        { type = "COLLECT", quest = 1138, questName = "Fruit of the Sea", target = "Fine Crab Chunks", count = 6, map = 1439, zone = "Darkshore", x = 34.9, y = 72.3, near = true }, -- 64
+        { type = "KILL", quest = 985, questName = "How Big a Threat?", npc = 2167, target = "Blackwood Pathfinder / Blackwood Windtalker", count = 8, map = 1439, zone = "Darkshore", x = 39.2, y = 56.4, near = true }, -- 65
+        { type = "KILL", quest = 2138, questName = "Cleansing of the Infected", npc = 2164, target = "Rabid Thistle Bear", count = 20, map = 1439, zone = "Darkshore", x = 39.5, y = 60.8, near = true }, -- 66
+        { type = "COLLECT", quest = 4762, questName = "The Cliffspring River", target = "Cliffspring River Sample", map = 1439, zone = "Darkshore", x = 50.8, y = 25.6 }, -- 67
+        { type = "TURNIN", quest = 985, questName = "How Big a Threat?", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 68
+        { type = "ACCEPT", quest = 986, questName = "A Lost Master", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 69
+        { type = "TURNIN", quest = 2138, questName = "Cleansing of the Infected", npc = 3701, npcName = "Tharnariun Treetender", map = 1439, zone = "Darkshore", x = 38.8, y = 43.4 }, -- 70
+        { type = "ACCEPT", quest = 2139, questName = "Tharnariun's Hope", npc = 3701, npcName = "Tharnariun Treetender", map = 1439, zone = "Darkshore", x = 38.8, y = 43.4 }, -- 71
+        { type = "TURNIN", quest = 4762, questName = "The Cliffspring River", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 72
+        { type = "TURNIN", quest = 4681, questName = "Washed Ashore", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 73
+        { type = "TURNIN", quest = 1138, questName = "Fruit of the Sea", npc = 10216, npcName = "Gubber Blump", map = 1439, zone = "Darkshore", x = 36.1, y = 44.9 }, -- 74
         { type = "ACCEPT", quest = 4763, questName = "The Blackwood Corrupted", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 75
         { type = "TURNIN", quest = 4763, questName = "The Blackwood Corrupted", npc = 3649, npcName = "Thundris Windweaver", map = 1439, zone = "Darkshore", x = 37.4, y = 40.1 }, -- 76
-        { type = "TURNIN", quest = 982, questName = "Deep Ocean, Vast Sea", npc = 6301, npcName = "Gorbold Steelhand", map = 1439, zone = "Darkshore", x = 38.1, y = 41.2 }, -- 77
-        { type = "TURNIN", quest = 947, questName = "Cave Mushrooms", npc = 3583, npcName = "Barithras Moonshade", map = 1439, zone = "Darkshore", x = 37.3, y = 43.6 }, -- 78
-        { type = "TURNIN", quest = 2138, questName = "Cleansing of the Infected", npc = 3701, npcName = "Tharnariun Treetender", map = 1439, zone = "Darkshore", x = 38.8, y = 43.4 }, -- 79
-        { type = "ACCEPT", quest = 948, questName = "Onu", npc = 3583, npcName = "Barithras Moonshade", map = 1439, zone = "Darkshore", x = 37.3, y = 43.6 }, -- 80
-        { type = "ACCEPT", quest = 2139, questName = "Tharnariun's Hope", npc = 3701, npcName = "Tharnariun Treetender", map = 1439, zone = "Darkshore", x = 38.8, y = 43.4 }, -- 81
-        { type = "TURNIN", quest = 4723, questName = "Beached Sea Creature", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 82
-        { type = "TURNIN", quest = 4725, questName = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 83
-        { type = "TURNIN", quest = 1138, questName = "Fruit of the Sea", npc = 10216, npcName = "Gubber Blump", map = 1439, zone = "Darkshore", x = 36.1, y = 44.9 }, -- 84
-        { type = "KILL", quest = 2139, questName = "Tharnariun's Hope", npc = 6788, target = "Den Mother", count = 1, map = 1439, zone = "Darkshore", x = 51.5, y = 38.3 }, -- 85
-        { type = "TURNIN", quest = 2139, questName = "Tharnariun's Hope", npc = 3701, npcName = "Tharnariun Treetender", map = 1439, zone = "Darkshore", x = 38.8, y = 43.4 }, -- 86
-        { type = "ACCEPT", quest = 4722, questName = "Beached Sea Turtle", map = 1439, zone = "Darkshore", x = 37.1, y = 62.2 }, -- 87
-        { type = "ACCEPT", quest = 4728, questName = "Beached Sea Creature", map = 1439, zone = "Darkshore", x = 36, y = 70.9 }, -- 88
-        { type = "KILL", quest = 4740, questName = "WANTED: Murkdeep!", npc = 10323, target = "Murkdeep", count = 1, map = 1439, zone = "Darkshore", x = 36.4, y = 76.5 }, -- 89
-        { type = "COLLECT", quest = 986, questName = "A Lost Master", target = "Fine Moonstalker Pelt", count = 5, map = 1439, zone = "Darkshore", x = 36.2, y = 82.1, near = true }, -- 90
-        { type = "TURNIN", quest = 729, questName = "The Absent Minded Prospector", npc = 2917, npcName = "Prospector Remtravel", map = 1439, zone = "Darkshore", x = 35.7, y = 83.7 }, -- 91
-        { type = "ACCEPT", quest = 731, questName = "The Absent Minded Prospector", npc = 2917, npcName = "Prospector Remtravel", map = 1439, zone = "Darkshore", x = 35.7, y = 83.7 }, -- 92
-        { type = "COMPLETE", quest = 731, questName = "The Absent Minded Prospector", target = "Escort Prospector Remtravel", map = 1439, zone = "Darkshore", x = 35.7, y = 84.0, note = "escort - stay close, it can fail: Escort Prospector Remtravel" }, -- 93
-        { type = "ACCEPT", quest = 4730, questName = "Beached Sea Creature", map = 1439, zone = "Darkshore", x = 32.7, y = 80.8 }, -- 94
-        { type = "ACCEPT", quest = 4731, questName = "Beached Sea Turtle", map = 1439, zone = "Darkshore", x = 31.7, y = 83.7 }, -- 95
-        { type = "ACCEPT", quest = 4732, questName = "Beached Sea Turtle", map = 1439, zone = "Darkshore", x = 31.2, y = 85.6 }, -- 96
-        { type = "ACCEPT", quest = 4733, questName = "Beached Sea Creature", map = 1439, zone = "Darkshore", x = 31.3, y = 87.4 }, -- 97
-        { type = "TURNIN", quest = 1003, questName = "Buzzbox 525", map = 1439, zone = "Darkshore", x = 41.4, y = 80.6 }, -- 98
-        { type = "TURNIN", quest = 948, questName = "Onu", npc = 3616, npcName = "Onu", map = 1439, zone = "Darkshore", x = 43.5, y = 76.3 }, -- 99
-        { type = "ACCEPT", quest = 944, questName = "The Master's Glaive", npc = 3616, npcName = "Onu", map = 1439, zone = "Darkshore", x = 43.5, y = 76.3 }, -- 100
-        { type = "COMPLETE", quest = 944, questName = "The Master's Glaive", target = "Enter the Master's Glaive", map = 1439, zone = "Darkshore", x = 38.5, y = 86.5, note = "Enter the Master's Glaive" }, -- 101
-        { type = "TURNIN", quest = 944, questName = "The Master's Glaive", map = 1439, zone = "Darkshore", x = 38.6, y = 86.2 }, -- 102
-        { type = "ACCEPT", quest = 949, questName = "The Twilight Camp", map = 1439, zone = "Darkshore", x = 38.6, y = 86.2 }, -- 103
-        { type = "TURNIN", quest = 949, questName = "The Twilight Camp", map = 1439, zone = "Darkshore", x = 38.5, y = 86.1 }, -- 104
-        { type = "ACCEPT", quest = 950, questName = "Return to Onu", map = 1439, zone = "Darkshore", x = 38.5, y = 86.1 }, -- 105
-        { type = "TURNIN", quest = 950, questName = "Return to Onu", npc = 3616, npcName = "Onu", map = 1439, zone = "Darkshore", x = 43.5, y = 76.3 }, -- 106
-        { type = "ACCEPT", quest = 951, questName = "Mathystra Relics", npc = 3616, npcName = "Onu", map = 1439, zone = "Darkshore", x = 43.5, y = 76.3 }, -- 107
-        { type = "TURNIN", quest = 4812, questName = "As Water Cascades", map = 1439, zone = "Darkshore", x = 47.3, y = 48.7 }, -- 108
-        { type = "ACCEPT", quest = 4813, questName = "The Fragments Within", map = 1439, zone = "Darkshore", x = 47.3, y = 48.7 }, -- 109
-        { type = "TURNIN", quest = 4813, questName = "The Fragments Within", npc = 2930, npcName = "Sentinel Glynda Nal'Shea", map = 1439, zone = "Darkshore", x = 37.7, y = 43.4 }, -- 110
-        { type = "TURNIN", quest = 4740, questName = "WANTED: Murkdeep!", npc = 2930, npcName = "Sentinel Glynda Nal'Shea", map = 1439, zone = "Darkshore", x = 37.7, y = 43.4 }, -- 111
-        { type = "TURNIN", quest = 731, questName = "The Absent Minded Prospector", npc = 2913, npcName = "Archaeologist Hollee", map = 1439, zone = "Darkshore", x = 37.4, y = 41.8 }, -- 112
-        { type = "TURNIN", quest = 986, questName = "A Lost Master", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 113
-        { type = "TURNIN", quest = 4722, questName = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 114
-        { type = "TURNIN", quest = 4728, questName = "Beached Sea Creature", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 115
-        { type = "TURNIN", quest = 4730, questName = "Beached Sea Creature", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 116
-        { type = "TURNIN", quest = 4731, questName = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 117
-        { type = "TURNIN", quest = 4732, questName = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 118
-        { type = "TURNIN", quest = 4733, questName = "Beached Sea Creature", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 119
-        { type = "ACCEPT", quest = 741, questName = "The Absent Minded Prospector", npc = 2913, npcName = "Archaeologist Hollee", map = 1439, zone = "Darkshore", x = 37.4, y = 41.8 }, -- 120
-        { type = "ACCEPT", quest = 1275, questName = "Researching the Corruption", npc = 8997, npcName = "Gershala Nightwhisper", map = 1439, zone = "Darkshore", x = 38.3, y = 43.0 }, -- 121
-        { type = "ACCEPT", quest = 993, questName = "A Lost Master", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 122
-        { type = "ACCEPT", quest = 957, questName = "Bashal'Aran", npc = 3650, npcName = "Asterion", map = 1439, zone = "Darkshore", x = 44.2, y = 36.3 }, -- 123
-        { type = "COMPLETE", quest = 957, questName = "Bashal'Aran", target = "Ancient Flame", map = 1439, zone = "Darkshore", x = 42.4, y = 61.8, note = "Destroy the seal at the ancient flame" }, -- 124
-        { type = "COLLECT", quest = 951, questName = "Mathystra Relics", target = "Mathystra Relic", count = 6, map = 1439, zone = "Darkshore", x = 58, y = 25.9, near = true }, -- 125
-        { type = "TURNIN", quest = 957, questName = "Bashal'Aran", npc = 3650, npcName = "Asterion", map = 1439, zone = "Darkshore", x = 44.2, y = 36.3 }, -- 126
-        { type = "TURNIN", quest = 965, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 127
-        { type = "ACCEPT", quest = 966, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 128
-        { type = "KILL", quest = 966, questName = "The Tower of Althalaxx", npc = 2336, target = "Dark Strand Fanatic", count = 4, map = 1439, zone = "Darkshore", x = 55.8, y = 25.9, near = true, note = "loot Worn Parchment" }, -- 129
-        { type = "TURNIN", quest = 966, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 130
-        { type = "ACCEPT", quest = 967, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 131
-        { type = "ACCEPT", quest = 4727, questName = "Beached Sea Turtle", map = 1439, zone = "Darkshore", x = 53.1, y = 18.1 }, -- 132
-        { type = "ACCEPT", quest = 2098, questName = "Gyromast's Retrieval", npc = 6667, npcName = "Gelkak Gyromast", map = 1439, zone = "Darkshore", x = 56.6, y = 13.5 }, -- 133
-        { type = "COLLECT", quest = 2098, questName = "Gyromast's Retrieval", target = "Middle of Gelkak's Key / Bottom of Gelkak's Key", map = 1439, zone = "Darkshore", x = 55.5, y = 12.6, near = true }, -- 134
-        { type = "KILL", quest = 2098, questName = "Gyromast's Retrieval", npc = 2323, target = "Giant Foreststrider", map = 1439, zone = "Darkshore", x = 61.6, y = 12.3, near = true, note = "loot Top of Gelkak's Key" }, -- 135
-        { type = "TURNIN", quest = 2098, questName = "Gyromast's Retrieval", npc = 6667, npcName = "Gelkak Gyromast", map = 1439, zone = "Darkshore", x = 56.6, y = 13.5 }, -- 136
-        { type = "TURNIN", quest = 4727, questName = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 137
-        { type = "COLLECT", quest = 1275, questName = "Researching the Corruption", target = "Corrupted Brain Stem", map = 1439, zone = "Darkshore", x = 31.9, y = 91.4, near = true }, -- 138
-        { type = "TURNIN", quest = 1275, questName = "Researching the Corruption", npc = 8997, npcName = "Gershala Nightwhisper", map = 1439, zone = "Darkshore", x = 38.3, y = 43.0 }, -- 139
-        { type = "TURNIN", quest = 951, questName = "Mathystra Relics", npc = 3616, npcName = "Onu", map = 1439, zone = "Darkshore", x = 43.5, y = 76.3 }, -- 140
-        { type = "TURNIN", quest = 993, questName = "A Lost Master", npc = 3692, npcName = "Volcor", map = 1439, zone = "Darkshore", x = 45, y = 85.3 }, -- 141
-        { type = "ACCEPT", quest = 995, questName = "Escape Through Stealth", npc = 3692, npcName = "Volcor", map = 1439, zone = "Darkshore", x = 45, y = 85.3 }, -- 142
-        { type = "COMPLETE", quest = 995, questName = "Escape Through Stealth", target = "Help Volcor escape the cave", map = 1439, zone = "Darkshore", x = 44.6, y = 85, note = "Help Volcor escape the cave" }, -- 143
-        { type = "TURNIN", quest = 995, questName = "Escape Through Stealth", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 144
+        { type = "KILL", quest = 2139, questName = "Tharnariun's Hope", npc = 6788, target = "Den Mother", count = 1, map = 1439, zone = "Darkshore", x = 51.5, y = 38.3 }, -- 77
+        { type = "TURNIN", quest = 2139, questName = "Tharnariun's Hope", npc = 3701, npcName = "Tharnariun Treetender", map = 1439, zone = "Darkshore", x = 38.8, y = 43.4 }, -- 78
+        { type = "ACCEPT", quest = 4723, questName = "Beached Sea Creature", map = 1439, zone = "Darkshore", x = 41.9, y = 31.5 }, -- 79
+        { type = "TURNIN", quest = 1001, questName = "Buzzbox 411", map = 1439, zone = "Darkshore", x = 42, y = 28.6 }, -- 80
+        { type = "ACCEPT", quest = 1002, questName = "Buzzbox 323", map = 1439, zone = "Darkshore", x = 42, y = 28.6 }, -- 81
+        { type = "COLLECT", quest = 1002, questName = "Buzzbox 323", target = "Moonstalker Fang", count = 6, map = 1439, zone = "Darkshore", x = 43.6, y = 29, near = true }, -- 82
+        { type = "ACCEPT", quest = 4725, questName = "Beached Sea Turtle", map = 1439, zone = "Darkshore", x = 44.2, y = 20.6 }, -- 83
+        { type = "TURNIN", quest = 1002, questName = "Buzzbox 323", map = 1439, zone = "Darkshore", x = 51.3, y = 24.6 }, -- 84
+        { type = "ACCEPT", quest = 1003, questName = "Buzzbox 525", map = 1439, zone = "Darkshore", x = 51.3, y = 24.6 }, -- 85
+        { type = "COLLECT", quest = 1003, questName = "Buzzbox 525", target = "Grizzled Scalp", count = 4, map = 1439, zone = "Darkshore", x = 51.5, y = 38.3, near = true }, -- 86
+        { type = "ACCEPT", quest = 4727, questName = "Beached Sea Turtle", map = 1439, zone = "Darkshore", x = 53.1, y = 18.1 }, -- 87
+        { type = "COLLECT", quest = 986, questName = "A Lost Master", target = "Fine Moonstalker Pelt", count = 5, map = 1439, zone = "Darkshore", x = 59.9, y = 11.8, near = true }, -- 88
+        { type = "TURNIN", quest = 965, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 89
+        { type = "ACCEPT", quest = 966, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 90
+        { type = "KILL", quest = 966, questName = "The Tower of Althalaxx", npc = 2336, target = "Dark Strand Fanatic", count = 4, map = 1439, zone = "Darkshore", x = 55.8, y = 25.9, near = true, note = "loot Worn Parchment" }, -- 91
+        { type = "TURNIN", quest = 966, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 92
+        { type = "ACCEPT", quest = 967, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 93
+        { type = "ACCEPT", quest = 2098, questName = "Gyromast's Retrieval", npc = 6667, npcName = "Gelkak Gyromast", map = 1439, zone = "Darkshore", x = 56.6, y = 13.5 }, -- 94
+        { type = "COLLECT", quest = 2098, questName = "Gyromast's Retrieval", target = "Middle of Gelkak's Key / Bottom of Gelkak's Key", map = 1439, zone = "Darkshore", x = 55.5, y = 12.6, near = true }, -- 95
+        { type = "KILL", quest = 2098, questName = "Gyromast's Retrieval", npc = 2323, target = "Giant Foreststrider", map = 1439, zone = "Darkshore", x = 61.6, y = 12.3, near = true, note = "loot Top of Gelkak's Key" }, -- 96
+        { type = "TURNIN", quest = 2098, questName = "Gyromast's Retrieval", npc = 6667, npcName = "Gelkak Gyromast", map = 1439, zone = "Darkshore", x = 56.6, y = 13.5 }, -- 97
+        { type = "TURNIN", quest = 4812, questName = "As Water Cascades", map = 1439, zone = "Darkshore", x = 47.3, y = 48.7 }, -- 98
+        { type = "ACCEPT", quest = 4813, questName = "The Fragments Within", map = 1439, zone = "Darkshore", x = 47.3, y = 48.7 }, -- 99
+        { type = "TURNIN", quest = 4813, questName = "The Fragments Within", npc = 2930, npcName = "Sentinel Glynda Nal'Shea", map = 1439, zone = "Darkshore", x = 37.7, y = 43.4 }, -- 100
+        { type = "TURNIN", quest = 986, questName = "A Lost Master", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 101
+        { type = "TURNIN", quest = 4723, questName = "Beached Sea Creature", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 102
+        { type = "TURNIN", quest = 4725, questName = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 103
+        { type = "TURNIN", quest = 4727, questName = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 104
+        { type = "ACCEPT", quest = 993, questName = "A Lost Master", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 105
+        { type = "ACCEPT", quest = 4722, questName = "Beached Sea Turtle", map = 1439, zone = "Darkshore", x = 37.1, y = 62.2 }, -- 106
+        { type = "KILL", quest = 4740, questName = "WANTED: Murkdeep!", npc = 10323, target = "Murkdeep", count = 1, map = 1439, zone = "Darkshore", x = 36.4, y = 76.5 }, -- 107
+        { type = "TURNIN", quest = 729, questName = "The Absent Minded Prospector", npc = 2917, npcName = "Prospector Remtravel", map = 1439, zone = "Darkshore", x = 35.7, y = 83.7 }, -- 108
+        { type = "ACCEPT", quest = 731, questName = "The Absent Minded Prospector", npc = 2917, npcName = "Prospector Remtravel", map = 1439, zone = "Darkshore", x = 35.7, y = 83.7 }, -- 109
+        { type = "COMPLETE", quest = 731, questName = "The Absent Minded Prospector", target = "Escort Prospector Remtravel", map = 1439, zone = "Darkshore", x = 35.7, y = 84.0, note = "escort - stay close, it can fail: Escort Prospector Remtravel" }, -- 110
+        { type = "ACCEPT", quest = 4730, questName = "Beached Sea Creature", map = 1439, zone = "Darkshore", x = 32.7, y = 80.8 }, -- 111
+        { type = "ACCEPT", quest = 4731, questName = "Beached Sea Turtle", map = 1439, zone = "Darkshore", x = 31.7, y = 83.7 }, -- 112
+        { type = "ACCEPT", quest = 4732, questName = "Beached Sea Turtle", map = 1439, zone = "Darkshore", x = 31.2, y = 85.6 }, -- 113
+        { type = "ACCEPT", quest = 4733, questName = "Beached Sea Creature", map = 1439, zone = "Darkshore", x = 31.3, y = 87.4 }, -- 114
+        { type = "TURNIN", quest = 1003, questName = "Buzzbox 525", map = 1439, zone = "Darkshore", x = 41.4, y = 80.6 }, -- 115
+        { type = "TURNIN", quest = 993, questName = "A Lost Master", npc = 3692, npcName = "Volcor", map = 1439, zone = "Darkshore", x = 45, y = 85.3 }, -- 116
+        { type = "ACCEPT", quest = 995, questName = "Escape Through Stealth", npc = 3692, npcName = "Volcor", map = 1439, zone = "Darkshore", x = 45, y = 85.3 }, -- 117
+        { type = "COMPLETE", quest = 995, questName = "Escape Through Stealth", target = "Help Volcor escape the cave", map = 1439, zone = "Darkshore", x = 44.6, y = 85, note = "Help Volcor escape the cave" }, -- 118
+        { type = "TURNIN", quest = 948, questName = "Onu", npc = 3616, npcName = "Onu", map = 1439, zone = "Darkshore", x = 43.5, y = 76.3 }, -- 119
+        { type = "ACCEPT", quest = 944, questName = "The Master's Glaive", npc = 3616, npcName = "Onu", map = 1439, zone = "Darkshore", x = 43.5, y = 76.3 }, -- 120
+        { type = "COMPLETE", quest = 944, questName = "The Master's Glaive", target = "Enter the Master's Glaive", map = 1439, zone = "Darkshore", x = 38.5, y = 86.5, note = "Enter the Master's Glaive" }, -- 121
+        { type = "TURNIN", quest = 944, questName = "The Master's Glaive", map = 1439, zone = "Darkshore", x = 38.6, y = 86.2 }, -- 122
+        { type = "ACCEPT", quest = 949, questName = "The Twilight Camp", map = 1439, zone = "Darkshore", x = 38.6, y = 86.2 }, -- 123
+        { type = "TURNIN", quest = 949, questName = "The Twilight Camp", map = 1439, zone = "Darkshore", x = 38.5, y = 86.1 }, -- 124
+        { type = "ACCEPT", quest = 950, questName = "Return to Onu", map = 1439, zone = "Darkshore", x = 38.5, y = 86.1 }, -- 125
+        { type = "TURNIN", quest = 950, questName = "Return to Onu", npc = 3616, npcName = "Onu", map = 1439, zone = "Darkshore", x = 43.5, y = 76.3 }, -- 126
+        { type = "ACCEPT", quest = 951, questName = "Mathystra Relics", npc = 3616, npcName = "Onu", map = 1439, zone = "Darkshore", x = 43.5, y = 76.3 }, -- 127
+        { type = "ACCEPT", quest = 4728, questName = "Beached Sea Creature", map = 1439, zone = "Darkshore", x = 36, y = 70.9 }, -- 128
+        { type = "TURNIN", quest = 4722, questName = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 129
+        { type = "TURNIN", quest = 4728, questName = "Beached Sea Creature", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 130
+        { type = "TURNIN", quest = 4730, questName = "Beached Sea Creature", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 131
+        { type = "TURNIN", quest = 4731, questName = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 132
+        { type = "TURNIN", quest = 4732, questName = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 133
+        { type = "TURNIN", quest = 4733, questName = "Beached Sea Creature", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 134
+        { type = "TURNIN", quest = 4740, questName = "WANTED: Murkdeep!", npc = 2930, npcName = "Sentinel Glynda Nal'Shea", map = 1439, zone = "Darkshore", x = 37.7, y = 43.4 }, -- 135
+        { type = "TURNIN", quest = 731, questName = "The Absent Minded Prospector", npc = 2913, npcName = "Archaeologist Hollee", map = 1439, zone = "Darkshore", x = 37.4, y = 41.8 }, -- 136
+        { type = "ACCEPT", quest = 741, questName = "The Absent Minded Prospector", npc = 2913, npcName = "Archaeologist Hollee", map = 1439, zone = "Darkshore", x = 37.4, y = 41.8 }, -- 137
+        { type = "ACCEPT", quest = 1275, questName = "Researching the Corruption", npc = 8997, npcName = "Gershala Nightwhisper", map = 1439, zone = "Darkshore", x = 38.3, y = 43.0 }, -- 138
+        { type = "TURNIN", quest = 995, questName = "Escape Through Stealth", npc = 3693, npcName = "Terenthis", map = 1439, zone = "Darkshore", x = 39.4, y = 43.5 }, -- 139
+        { type = "COLLECT", quest = 1275, questName = "Researching the Corruption", target = "Corrupted Brain Stem", map = 1439, zone = "Darkshore", x = 31.9, y = 91.4, near = true }, -- 140
+        { type = "TURNIN", quest = 1275, questName = "Researching the Corruption", npc = 8997, npcName = "Gershala Nightwhisper", map = 1439, zone = "Darkshore", x = 38.3, y = 43.0 }, -- 141
+        { type = "COLLECT", quest = 951, questName = "Mathystra Relics", target = "Mathystra Relic", count = 6, map = 1439, zone = "Darkshore", x = 58, y = 25.9, near = true }, -- 142
+        { type = "TURNIN", quest = 951, questName = "Mathystra Relics", npc = 3616, npcName = "Onu", map = 1439, zone = "Darkshore", x = 43.5, y = 76.3 }, -- 143
     },
 })

@@ -10,9 +10,9 @@ ns.RegisterGuide({
     maxLevel = 55,
     map = 1423,
     zone = "Eastern Plaguelands",
-    next = "GEN_ALLIANCE_HUMAN_46_WESTERN_PLAGUELANDS",
+    next = "GEN_ALLIANCE_HUMAN_46_BURNING_STEPPES",
     author = "ForeverGuide route planner",
-    notes = "Chapter 45 of the Human route: level 55 to 55, 42 steps, ~170 min of play in the model (58489 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 45 of the Human route: level 55 to 55, 42 steps, ~178 min of play in the model (55810 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.9, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 1
         { type = "ACCEPT", quest = 5529, questName = "Plagued Hatchlings", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 2
@@ -24,19 +24,19 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 5212, questName = "The Flesh Does Not Lie", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 8
         { type = "ACCEPT", quest = 5513, questName = "Mantles of the Dawn", npc = 11536, npcName = "Quartermaster Miranda Breechlock", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 60 }, -- 9
         { type = "ACCEPT", quest = 5517, questName = "Chromatic Mantle of the Dawn", npc = 11536, npcName = "Quartermaster Miranda Breechlock", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 60 }, -- 10
-        { type = "TURNIN", quest = 5513, questName = "Mantles of the Dawn", npc = 11536, npcName = "Quartermaster Miranda Breechlock", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 60 }, -- 11
-        { type = "TURNIN", quest = 5517, questName = "Chromatic Mantle of the Dawn", npc = 11536, npcName = "Quartermaster Miranda Breechlock", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 60 }, -- 12
-        { type = "TURNIN", quest = 5212, questName = "The Flesh Does Not Lie", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 13
-        { type = "TURNIN", quest = 5529, questName = "Plagued Hatchlings", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 14
-        { type = "TURNIN", quest = 6026, questName = "That's Asking A Lot", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 15
-        { type = "ACCEPT", quest = 6041, questName = "When Smokey Sings, I Get Violent", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 16
-        { type = "ACCEPT", quest = 9141, questName = "They Call Me \"The Rooster\"", npc = 16212, npcName = "Dispatch Commander Metz", map = 1423, zone = "Eastern Plaguelands", x = 81.1, y = 57.6 }, -- 17
-        { type = "ACCEPT", quest = 5243, questName = "Houses of the Holy", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.7, y = 57.8 }, -- 18
-        { type = "ACCEPT", quest = 5213, questName = "The Active Agent", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 19
-        { type = "ACCEPT", quest = 5281, questName = "The Restless Souls", npc = 11038, npcName = "Caretaker Alen", map = 1423, zone = "Eastern Plaguelands", x = 79.6, y = 63.9 }, -- 20
-        { type = "TURNIN", quest = 5213, questName = "The Active Agent", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 21
-        { type = "TURNIN", quest = 9141, questName = "They Call Me \"The Rooster\"", npc = 16212, npcName = "Dispatch Commander Metz", map = 1423, zone = "Eastern Plaguelands", x = 81.1, y = 57.6 }, -- 22
-        { type = "TURNIN", quest = 5243, questName = "Houses of the Holy", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.7, y = 57.8 }, -- 23
+        { type = "ACCEPT", quest = 5243, questName = "Houses of the Holy", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.7, y = 57.8 }, -- 11
+        { type = "ACCEPT", quest = 9141, questName = "They Call Me \"The Rooster\"", npc = 16212, npcName = "Dispatch Commander Metz", map = 1423, zone = "Eastern Plaguelands", x = 81.1, y = 57.6 }, -- 12
+        { type = "ACCEPT", quest = 5281, questName = "The Restless Souls", npc = 11038, npcName = "Caretaker Alen", map = 1423, zone = "Eastern Plaguelands", x = 79.6, y = 63.9 }, -- 13
+        { type = "TURNIN", quest = 5513, questName = "Mantles of the Dawn", npc = 11536, npcName = "Quartermaster Miranda Breechlock", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 60 }, -- 14
+        { type = "TURNIN", quest = 5517, questName = "Chromatic Mantle of the Dawn", npc = 11536, npcName = "Quartermaster Miranda Breechlock", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 60 }, -- 15
+        { type = "TURNIN", quest = 5212, questName = "The Flesh Does Not Lie", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 16
+        { type = "TURNIN", quest = 5529, questName = "Plagued Hatchlings", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 17
+        { type = "TURNIN", quest = 6026, questName = "That's Asking A Lot", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 18
+        { type = "TURNIN", quest = 9141, questName = "They Call Me \"The Rooster\"", npc = 16212, npcName = "Dispatch Commander Metz", map = 1423, zone = "Eastern Plaguelands", x = 81.1, y = 57.6 }, -- 19
+        { type = "TURNIN", quest = 5243, questName = "Houses of the Holy", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.7, y = 57.8 }, -- 20
+        { type = "ACCEPT", quest = 6041, questName = "When Smokey Sings, I Get Violent", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 21
+        { type = "ACCEPT", quest = 5213, questName = "The Active Agent", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 22
+        { type = "TURNIN", quest = 5213, questName = "The Active Agent", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 23
         { type = "COLLECT", quest = 9126, questName = "Bonescythe Digs", target = "Bone Fragments", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 78.3, y = 55, near = true }, -- 24
         { type = "TURNIN", quest = 9126, questName = "Bonescythe Digs", npc = 16131, npcName = "Rohan the Assassin", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.5 }, -- 25
         { type = "COLLECT", quest = 9124, questName = "Cryptstalker Armor Doesn't Make Itself...", target = "Crypt Fiend Parts", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 81.9, y = 46.6, near = true }, -- 26

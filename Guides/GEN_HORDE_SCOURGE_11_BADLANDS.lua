@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_11_BADLANDS",
-    name = "11. Badlands 37-38 (Undead)",
+    name = "11. Badlands 36-38 (Undead)",
     version = 2,
     faction = "Horde",
     race = { "Scourge" },
-    minLevel = 37,
+    minLevel = 36,
     maxLevel = 38,
     map = 1418,
     zone = "Badlands",
-    next = "GEN_HORDE_SCOURGE_12_DUSTWALLOW_MARSH",
+    next = "GEN_HORDE_SCOURGE_12_SWAMP_OF_SORROWS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 11 of the Scourge route: level 37 to 38, 42 steps, ~138 min of play in the model (41430 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 11 of the Scourge route: level 36 to 38, 42 steps, ~145 min of play in the model (39902 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1417, zone = "Arathi Highlands", x = 73.6, y = 31.8, radius = 60, note = "use your hearthstone (Arathi Highlands)" }, -- 1
         { type = "TRAVEL", map = 1418, zone = "Badlands", x = 3.5, y = 47.0, radius = 60, note = "travel to Badlands (Badlands)" }, -- 2
@@ -21,8 +21,8 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1419, questName = "Coyote Thieves", npc = 5394, npcName = "Neeka Bloodscar", map = 1418, zone = "Badlands", x = 6.5, y = 47.2 }, -- 5
         { type = "COLLECT", quest = 2258, questName = "Badlands Reagent Run", target = "Rock Elemental Shard", count = 5, map = 1418, zone = "Badlands", x = 14.7, y = 41.8, near = true }, -- 6
         { type = "COLLECT", quest = 2258, questName = "Badlands Reagent Run", target = "Buzzard Gizzard", count = 5, map = 1418, zone = "Badlands", x = 15.5, y = 58.5, near = true }, -- 7
-        { type = "COLLECT", quest = 2258, questName = "Badlands Reagent Run", target = "Crag Coyote Fang", count = 10, map = 1418, zone = "Badlands", x = 11.2, y = 63.1, near = true }, -- 8
-        { type = "COLLECT", quest = 1419, questName = "Coyote Thieves", target = "Coyote Jawbone", count = 30, map = 1418, zone = "Badlands", x = 11.2, y = 63.1, near = true }, -- 9
+        { type = "COLLECT", quest = 1419, questName = "Coyote Thieves", target = "Coyote Jawbone", count = 30, map = 1418, zone = "Badlands", x = 11.2, y = 63.1, near = true }, -- 8
+        { type = "COLLECT", quest = 2258, questName = "Badlands Reagent Run", target = "Crag Coyote Fang", count = 10, map = 1418, zone = "Badlands", x = 11.2, y = 63.1, near = true }, -- 9
         { type = "TURNIN", quest = 2258, questName = "Badlands Reagent Run", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.4, y = 46.1 }, -- 10
         { type = "ACCEPT", quest = 2202, questName = "Uldaman Reagent Run", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.4, y = 46.1 }, -- 11
         { type = "TURNIN", quest = 1419, questName = "Coyote Thieves", npc = 5394, npcName = "Neeka Bloodscar", map = 1418, zone = "Badlands", x = 6.5, y = 47.2 }, -- 12

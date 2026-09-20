@@ -2,33 +2,39 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_ORC_36_EASTERN_PLAGUELANDS",
-    name = "36. Eastern Plaguelands 52-52 (Orc)",
+    name = "36. Eastern Plaguelands 51-53 (Orc)",
     version = 2,
     faction = "Horde",
     race = { "Orc", "Troll" },
-    minLevel = 52,
-    maxLevel = 52,
+    minLevel = 51,
+    maxLevel = 53,
     map = 1423,
     zone = "Eastern Plaguelands",
-    next = "GEN_HORDE_ORC_37_WINTERSPRING",
+    next = "GEN_HORDE_ORC_37_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 36 of the Orc route: level 52 to 52, 16 steps, ~83 min of play in the model (39868 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 36 of the Orc route: level 51 to 53, 22 steps, ~416 min of play in the model (9243 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
-        { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.3, y = 59.1, radius = 60, note = "use your hearthstone (Eastern Plaguelands)" }, -- 1
-        { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.8, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 2
-        { type = "ACCEPT", quest = 5542, questName = "Demon Dogs", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 3
-        { type = "ACCEPT", quest = 5543, questName = "Blood Tinged Skies", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 4
-        { type = "ACCEPT", quest = 5544, questName = "Carrion Grubbage", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 5
-        { type = "COLLECT", quest = 5544, questName = "Carrion Grubbage", target = "Slab of Carrion Worm Meat", count = 15, map = 1423, zone = "Eastern Plaguelands", x = 6.8, y = 42.2, near = true }, -- 6
-        { type = "TURNIN", quest = 5544, questName = "Carrion Grubbage", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 7
-        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8596, target = "Plaguehound Runt", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 7.7, y = 53.9, near = true }, -- 8
-        { type = "KILL", quest = 5543, questName = "Blood Tinged Skies", npc = 8600, target = "Plaguebat", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 15, y = 75.5, near = true }, -- 9
-        { type = "ACCEPT", quest = 6164, questName = "Augustus' Receipt Book", npc = 12384, npcName = "Augustus the Touched", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.5 }, -- 10
-        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8598, target = "Frenzied Plaguehound", count = 5, map = 1423, zone = "Eastern Plaguelands", x = 19.6, y = 25.9, near = true }, -- 11
-        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8597, target = "Plaguehound", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 53.1, y = 57.9, near = true }, -- 12
-        { type = "COLLECT", quest = 6164, questName = "Augustus' Receipt Book", target = "Augustus' Receipt Book", map = 1423, zone = "Eastern Plaguelands", x = 17.4, y = 31.1 }, -- 13
-        { type = "TURNIN", quest = 6164, questName = "Augustus' Receipt Book", npc = 12384, npcName = "Augustus the Touched", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.5 }, -- 14
-        { type = "TURNIN", quest = 5542, questName = "Demon Dogs", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 15
-        { type = "TURNIN", quest = 5543, questName = "Blood Tinged Skies", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 16
+        { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.9, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 1
+        { type = "TURNIN", quest = 5210, questName = "Brother Carlin", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 2
+        { type = "ACCEPT", quest = 5181, questName = "Villains of Darrowshire", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 3
+        { type = "COLLECT", quest = 5181, questName = "Villains of Darrowshire", target = "Shattered Sword of Marduk", map = 1423, zone = "Eastern Plaguelands", x = 53.9, y = 65.8 }, -- 4
+        { type = "COLLECT", quest = 5181, questName = "Villains of Darrowshire", target = "Skull of Horgus", map = 1423, zone = "Eastern Plaguelands", x = 51.1, y = 49.9 }, -- 5
+        { type = "TURNIN", quest = 5181, questName = "Villains of Darrowshire", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 6
+        { type = "GRIND", level = 52, note = "nothing worth questing at level 51 - grind to 52" }, -- 7
+        { type = "ACCEPT", quest = 5542, questName = "Demon Dogs", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 8
+        { type = "ACCEPT", quest = 5543, questName = "Blood Tinged Skies", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 9
+        { type = "ACCEPT", quest = 5544, questName = "Carrion Grubbage", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 10
+        { type = "COLLECT", quest = 5544, questName = "Carrion Grubbage", target = "Slab of Carrion Worm Meat", count = 15, map = 1423, zone = "Eastern Plaguelands", x = 6.8, y = 42.2, near = true }, -- 11
+        { type = "TURNIN", quest = 5544, questName = "Carrion Grubbage", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 12
+        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8596, target = "Plaguehound Runt", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 7.7, y = 53.9, near = true }, -- 13
+        { type = "KILL", quest = 5543, questName = "Blood Tinged Skies", npc = 8600, target = "Plaguebat", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 15, y = 75.5, near = true }, -- 14
+        { type = "ACCEPT", quest = 6164, questName = "Augustus' Receipt Book", npc = 12384, npcName = "Augustus the Touched", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.5 }, -- 15
+        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8598, target = "Frenzied Plaguehound", count = 5, map = 1423, zone = "Eastern Plaguelands", x = 19.6, y = 25.9, near = true }, -- 16
+        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8597, target = "Plaguehound", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 53.1, y = 57.9, near = true }, -- 17
+        { type = "COLLECT", quest = 6164, questName = "Augustus' Receipt Book", target = "Augustus' Receipt Book", map = 1423, zone = "Eastern Plaguelands", x = 17.4, y = 31.1 }, -- 18
+        { type = "TURNIN", quest = 6164, questName = "Augustus' Receipt Book", npc = 12384, npcName = "Augustus the Touched", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.5 }, -- 19
+        { type = "TURNIN", quest = 5542, questName = "Demon Dogs", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 20
+        { type = "TURNIN", quest = 5543, questName = "Blood Tinged Skies", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 21
+        { type = "GRIND", npc = 8596, target = "Plaguehound Runt", level = 53, map = 1423, zone = "Eastern Plaguelands", x = 7.7, y = 53.9, near = true, note = "grind Plaguehound Runt (level 53-54) to level 53 - nothing worth questing at 52" }, -- 22
     },
 })

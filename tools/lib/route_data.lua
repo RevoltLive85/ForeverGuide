@@ -192,6 +192,11 @@ M.ZONES = {
 }
 M.zoneByID = {}
 for _, zd in ipairs(M.ZONES) do M.zoneByID[zd.id] = zd end
+-- continents (for the planner's mild preference to stay on the one you are on)
+M.KALIMDOR = { [141] = true, [148] = true, [331] = true, [406] = true, [17] = true, [14] = true, [215] = true, [400] = true, [405] = true,
+               [357] = true, [440] = true, [490] = true, [16] = true, [361] = true, [618] = true, [1377] = true, [15] = true,
+               [1657] = true, [1637] = true, [1638] = true, [102521] = true, [493] = true }
+function M.continent(zone) return M.KALIMDOR[zone] and "Kalimdor" or "EasternKingdoms" end
 
 -- ---- map sizes (uiMapID -> width, height in yards; Classic WorldMapArea data) ----
 M.MAP_SIZE = {
@@ -271,8 +276,8 @@ M.EDGES = {
     { 331, 16, 260 }, { 361, 618, 320 }, { 361, 493, 160 }, { 14, 1637, 80 }, { 14, 17, 200 }, { 215, 1638, 80 }, { 215, 17, 240 },
     { 17, 406, 240 }, { 17, 400, 220 }, { 17, 15, 220 }, { 406, 405, 240 }, { 400, 357, 260 }, { 400, 440, 240 },
     { 357, 405, 320 }, { 440, 490, 220 }, { 490, 1377, 220 }, { 357, 1377, 320 }, { 405, 357, 320 },
-    -- boats / zeppelins
-    { 11, 148, 420, "A" }, { 11, 15, 420, "A" }, { 33, 17, 360 }, { 85, 14, 300, "H" }, { 85, 33, 300, "H" }, { 1657, 148, 300, "A" },
+    -- boats / zeppelins: walk to the dock, wait for the ship, the crossing, and no hearth on the other side
+    { 11, 148, 900, "A" }, { 11, 15, 900, "A" }, { 33, 17, 780, "A" }, { 33, 17, 480, "H" }, { 85, 14, 600, "H" }, { 85, 33, 600, "H" }, { 1657, 148, 420, "A" },
     -- Zephras Isle (Forever): RestedXP sends Alliance on to Darkshore and Horde to the Barrens
     { 102521, 148, 300, "A" }, { 102521, 17, 300, "H" },
 }

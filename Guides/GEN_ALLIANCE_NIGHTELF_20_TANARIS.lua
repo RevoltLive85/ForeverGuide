@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_NIGHTELF_20_TANARIS",
-    name = "20. Tanaris 41-42 (Night Elf)",
+    name = "20. Tanaris 41-45 (Night Elf)",
     version = 2,
     faction = "Alliance",
     race = { "NightElf" },
     minLevel = 41,
-    maxLevel = 42,
+    maxLevel = 45,
     map = 1446,
     zone = "Tanaris",
-    next = "GEN_ALLIANCE_NIGHTELF_21_DESOLACE",
+    next = "GEN_ALLIANCE_NIGHTELF_21_FERALAS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 20 of the NightElf route: level 41 to 42, 51 steps, ~165 min of play in the model (41061 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 20 of the NightElf route: level 41 to 45, 66 steps, ~694 min of play in the model (11913 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1446, zone = "Tanaris", x = 51.8, y = 27.5, radius = 60, note = "travel to Tanaris (Tanaris)" }, -- 1
         { type = "NOTE", map = 1446, zone = "Tanaris", x = 51.8, y = 27.5, text = "set your hearthstone at the inn in Tanaris (if there is one)" }, -- 2
@@ -65,5 +65,20 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1560, questName = "Tooga's Quest", npc = 5955, npcName = "Tooga", map = 1446, zone = "Tanaris", x = 29.5, y = 60.5 }, -- 49
         { type = "COMPLETE", quest = 1560, questName = "Tooga's Quest", target = "Lead Tooga to Torta", map = 1446, zone = "Tanaris", x = 66.6, y = 25.6, note = "Lead Tooga to Torta" }, -- 50
         { type = "TURNIN", quest = 1560, questName = "Tooga's Quest", npc = 6015, npcName = "Torta", map = 1446, zone = "Tanaris", x = 66.6, y = 25.7 }, -- 51
+        { type = "GRIND", npc = 5423, target = "Scorpid Tail Lasher", level = 43, map = 1446, zone = "Tanaris", x = 61.9, y = 41.5, near = true, note = "grind Scorpid Tail Lasher (level 43-44) to level 43 - nothing worth questing at 42" }, -- 52
+        { type = "GRIND", npc = 5426, target = "Blisterpaw Hyena", level = 44, map = 1446, zone = "Tanaris", x = 58, y = 49.5, near = true, note = "grind Blisterpaw Hyena (level 44-45) to level 44 - nothing worth questing at 43" }, -- 53
+        { type = "ACCEPT", quest = 3161, questName = "Gahz'ridian", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.7, y = 45.9 }, -- 54
+        { type = "COLLECT", quest = 3161, questName = "Gahz'ridian", target = "Gahz'ridian Ornament", count = 30, map = 1446, zone = "Tanaris", x = 53, y = 44, near = true }, -- 55
+        { type = "TURNIN", quest = 3161, questName = "Gahz'ridian", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.7, y = 45.9 }, -- 56
+        { type = "ACCEPT", quest = 2605, questName = "The Thirsty Goblin", npc = 7564, npcName = "Marin Noggenfogger", map = 1446, zone = "Tanaris", x = 51.8, y = 28.7 }, -- 57
+        { type = "ACCEPT", quest = 5863, questName = "The Dunemaul Compound", npc = 11758, npcName = "Andi Lynn", map = 1446, zone = "Tanaris", x = 52.8, y = 27.4 }, -- 58
+        { type = "KILL", quest = 5863, questName = "The Dunemaul Compound", npc = 5474, target = "Dunemaul Brute / Dunemaul Enforcer", count = 10, map = 1446, zone = "Tanaris", x = 42.1, y = 53.1, near = true }, -- 59
+        { type = "KILL", quest = 5863, questName = "The Dunemaul Compound", npc = 12046, target = "Gor'marok the Ravager", count = 1, map = 1446, zone = "Tanaris", x = 41.5, y = 57.8 }, -- 60
+        { type = "KILL", quest = 2605, questName = "The Thirsty Goblin", npc = 5481, target = "Thistleshrub Dew Collector", map = 1446, zone = "Tanaris", x = 31.2, y = 64.7, near = true, note = "loot Laden Dew Gland" }, -- 61
+        { type = "TURNIN", quest = 2605, questName = "The Thirsty Goblin", npc = 7564, npcName = "Marin Noggenfogger", map = 1446, zone = "Tanaris", x = 51.8, y = 28.7 }, -- 62
+        { type = "ACCEPT", quest = 2606, questName = "In Good Taste", npc = 7564, npcName = "Marin Noggenfogger", map = 1446, zone = "Tanaris", x = 51.8, y = 28.7 }, -- 63
+        { type = "TURNIN", quest = 5863, questName = "The Dunemaul Compound", npc = 11758, npcName = "Andi Lynn", map = 1446, zone = "Tanaris", x = 52.8, y = 27.4 }, -- 64
+        { type = "TURNIN", quest = 2606, questName = "In Good Taste", npc = 7583, npcName = "Sprinkle", map = 1446, zone = "Tanaris", x = 51.1, y = 26.9 }, -- 65
+        { type = "GRIND", npc = 5426, target = "Blisterpaw Hyena", level = 45, map = 1446, zone = "Tanaris", x = 48.8, y = 45, near = true, note = "grind Blisterpaw Hyena (level 44-45) to level 45 - nothing worth questing at 44" }, -- 66
     },
 })

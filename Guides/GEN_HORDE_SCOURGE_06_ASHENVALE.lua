@@ -2,24 +2,24 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_06_ASHENVALE",
-    name = "6. Ashenvale 26-27 (Undead)",
+    name = "6. Ashenvale 25-26 (Undead)",
     version = 2,
     faction = "Horde",
     race = { "Scourge" },
-    minLevel = 26,
-    maxLevel = 27,
+    minLevel = 25,
+    maxLevel = 26,
     map = 1440,
     zone = "Ashenvale",
-    next = "GEN_HORDE_SCOURGE_07_THOUSAND_NEEDLES",
+    next = "GEN_HORDE_SCOURGE_07_HILLSBRAD_FOOTHILLS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 6 of the Scourge route: level 26 to 27, 39 steps, ~114 min of play in the model (22596 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 6 of the Scourge route: level 25 to 26, 39 steps, ~118 min of play in the model (22803 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1440, zone = "Ashenvale", x = 72.6, y = 63.9, radius = 60, note = "travel to Ashenvale (Ashenvale)" }, -- 1
         { type = "NOTE", map = 1440, zone = "Ashenvale", x = 72.6, y = 63.9, text = "set your hearthstone at the inn in Ashenvale (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 6383, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.8, y = 61.5 }, -- 3
         { type = "ACCEPT", quest = 25, questName = "Stonetalon Standstill", npc = 12737, npcName = "Mastok Wrilehiss", map = 1440, zone = "Ashenvale", x = 73.7, y = 60 }, -- 4
         { type = "ACCEPT", quest = 6441, questName = "Satyr Horns", npc = 12724, npcName = "Pixel", map = 1440, zone = "Ashenvale", x = 73.1, y = 61.5 }, -- 5
-        { type = "TURNIN", quest = 6383, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.8, y = 61.5, note = "reduced xp (80%) - you out-levelled it" }, -- 6
+        { type = "TURNIN", quest = 6383, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.8, y = 61.5 }, -- 6
         { type = "ACCEPT", quest = 6503, questName = "Ashenvale Outrunners", npc = 12867, npcName = "Kuray'bin", map = 1440, zone = "Ashenvale", x = 71.1, y = 68.1 }, -- 7
         { type = "ACCEPT", quest = 6504, questName = "The Lost Pages", npc = 12718, npcName = "Gurda Ragescar", map = 1440, zone = "Ashenvale", x = 70, y = 71.2 }, -- 8
         { type = "TURNIN", quest = 6504, questName = "The Lost Pages", npc = 12718, npcName = "Gurda Ragescar", map = 1440, zone = "Ashenvale", x = 70, y = 71.2 }, -- 9
@@ -40,7 +40,7 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 6921, questName = "Amongst the Ruins", npc = 12736, npcName = "Je'neu Sancrea", map = 1440, zone = "Ashenvale", x = 11.6, y = 34.3 }, -- 24
         { type = "TURNIN", quest = 6921, questName = "Amongst the Ruins", npc = 12736, npcName = "Je'neu Sancrea", map = 1440, zone = "Ashenvale", x = 11.6, y = 34.3 }, -- 25
         { type = "COLLECT", quest = 6442, questName = "Naga at the Zoram Strand", target = "Wrathtail Head", count = 20, map = 1440, zone = "Ashenvale", x = 11.8, y = 31.9, near = true }, -- 26
-        { type = "TURNIN", quest = 6442, questName = "Naga at the Zoram Strand", npc = 12719, npcName = "Marukai", map = 1440, zone = "Ashenvale", x = 11.7, y = 34.9, note = "reduced xp (40%) - you out-levelled it" }, -- 27
+        { type = "TURNIN", quest = 6442, questName = "Naga at the Zoram Strand", npc = 12719, npcName = "Marukai", map = 1440, zone = "Ashenvale", x = 11.7, y = 34.9, note = "reduced xp (60%) - you out-levelled it" }, -- 27
         { type = "COMPLETE", quest = 6641, questName = "Vorsha the Lasher", target = "Defeat Vorsha the Lasher", map = 1440, zone = "Ashenvale", x = 9.6, y = 27.6, note = "Defeat Vorsha the Lasher" }, -- 28
         { type = "KILL", quest = 216, questName = "Between a Rock and a Thistlefur", npc = 3924, target = "Thistlefur Shaman / Thistlefur Avenger", count = 8, map = 1440, zone = "Ashenvale", x = 30.3, y = 42.3, near = true }, -- 29
         { type = "TURNIN", quest = 6641, questName = "Vorsha the Lasher", npc = 12863, npcName = "Warsong Runner", map = 1440, zone = "Ashenvale", x = 12.2, y = 34.2 }, -- 30

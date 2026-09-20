@@ -10,9 +10,9 @@ ns.RegisterGuide({
     maxLevel = 47,
     map = 1449,
     zone = "Un'Goro Crater",
-    next = "GEN_ALLIANCE_DWARF_28_TANARIS",
+    next = "GEN_ALLIANCE_DWARF_28_FERALAS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 27 of the Dwarf route: level 47 to 47, 27 steps, ~72 min of play in the model (40170 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 27 of the Dwarf route: level 47 to 47, 27 steps, ~100 min of play in the model (29139 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.2, y = 6.6, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 1
         { type = "NOTE", map = 1449, zone = "Un'Goro Crater", x = 43.2, y = 6.6, text = "set your hearthstone at the inn in Un'Goro Crater (if there is one)" }, -- 2

@@ -1,0 +1,23 @@
+{
+  "id": "GEN_HORDE_SKYBORNE_26_AZSHARA",
+  "name": "26. Azshara 48-49 (Skyborne)",
+  "version": 2,
+  "faction": "Horde",
+  "race": ["Skyborne"],
+  "minLevel": 48,
+  "maxLevel": 49,
+  "map": 1447,
+  "zone": "Azshara",
+  "next": "GEN_HORDE_SKYBORNE_27_UN_GORO_CRATER",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 26 of the Skyborne route: level 48 to 49, 7 steps, ~32 min of play in the model (32053 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1447, "zone": "Azshara", "x": 60.8, "y": 66.4, "radius": 60, "note": "travel to Azshara (Azshara)"},
+    {"type": "ACCEPT", "quest": 3601, "questName": "Kim'jael Indeed!", "npc": 8420, "npcName": "Kim'jael", "map": 1447, "zone": "Azshara", "x": 53.5, "y": 21.8},
+    {"type": "COLLECT", "quest": 3601, "questName": "Kim'jael Indeed!", "target": "Kim'Jael's Compass / Kim'Jael's Scope / Kim'Jael's Stuffed Chicken / Kim'Jael's Wizzlegoober", "map": 1447, "zone": "Azshara", "x": 56.4, "y": 28.4, "near": true},
+    {"type": "TURNIN", "quest": 3601, "questName": "Kim'jael Indeed!", "npc": 8420, "npcName": "Kim'jael", "map": 1447, "zone": "Azshara", "x": 53.5, "y": 21.8},
+    {"type": "ACCEPT", "quest": 5534, "questName": "Kim'jael's \"Missing\" Equipment", "npc": 8420, "npcName": "Kim'jael", "map": 1447, "zone": "Azshara", "x": 53.5, "y": 21.8},
+    {"type": "COLLECT", "quest": 5534, "questName": "Kim'jael's \"Missing\" Equipment", "target": "Some Rune", "map": 1447, "zone": "Azshara", "x": 49.5, "y": 42, "near": true},
+    {"type": "TURNIN", "quest": 5534, "questName": "Kim'jael's \"Missing\" Equipment", "npc": 8420, "npcName": "Kim'jael", "map": 1447, "zone": "Azshara", "x": 53.5, "y": 21.8}
+  ]
+}

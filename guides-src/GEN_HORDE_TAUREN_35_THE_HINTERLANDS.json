@@ -1,0 +1,22 @@
+{
+  "id": "GEN_HORDE_TAUREN_35_THE_HINTERLANDS",
+  "name": "35. The Hinterlands 51-51 (Tauren)",
+  "version": 2,
+  "faction": "Horde",
+  "race": ["Tauren"],
+  "minLevel": 51,
+  "maxLevel": 51,
+  "map": 1425,
+  "zone": "The Hinterlands",
+  "next": "GEN_HORDE_TAUREN_36_WESTERN_PLAGUELANDS",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 35 of the Tauren route: level 51 to 51, 6 steps, ~14 min of play in the model (70141 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.3, "y": 59.1, "radius": 60, "note": "use your hearthstone (Eastern Plaguelands)"},
+    {"type": "TRAVEL", "map": 1425, "zone": "The Hinterlands", "x": 50.3, "y": 89.6, "radius": 60, "note": "travel to The Hinterlands (The Hinterlands)"},
+    {"type": "ACCEPT", "quest": 8367, "questName": "For Great Honor", "npc": 15350, "npcName": "Horde Warbringer", "map": 1425, "zone": "The Hinterlands", "x": 50.3, "y": 89.6},
+    {"type": "ACCEPT", "quest": 8369, "questName": "Invaders of Alterac Valley", "npc": 15350, "npcName": "Horde Warbringer", "map": 1425, "zone": "The Hinterlands", "x": 50.3, "y": 89.6},
+    {"type": "TURNIN", "quest": 8367, "questName": "For Great Honor", "npc": 15350, "npcName": "Horde Warbringer", "map": 1425, "zone": "The Hinterlands", "x": 50.3, "y": 89.6},
+    {"type": "TURNIN", "quest": 8369, "questName": "Invaders of Alterac Valley", "npc": 15350, "npcName": "Horde Warbringer", "map": 1425, "zone": "The Hinterlands", "x": 50.3, "y": 89.6}
+  ]
+}

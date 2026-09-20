@@ -2,17 +2,17 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_ALLIANCE_SKYBORNE_43_UN_GORO_CRATER",
-    name = "43. Un'Goro Crater 54-55 (Skyborne)",
+    name = "43. Un'Goro Crater 53-54 (Skyborne)",
     version = 2,
     faction = "Alliance",
     race = { "Skyborne" },
-    minLevel = 54,
-    maxLevel = 55,
+    minLevel = 53,
+    maxLevel = 54,
     map = 1449,
     zone = "Un'Goro Crater",
-    next = "GEN_ALLIANCE_SKYBORNE_44_EASTERN_PLAGUELANDS",
+    next = "GEN_ALLIANCE_SKYBORNE_44_SILITHUS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 43 of the Skyborne route: level 54 to 55, 14 steps, ~78 min of play in the model (18956 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 43 of the Skyborne route: level 53 to 54, 14 steps, ~96 min of play in the model (15492 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 6.8, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 1
         { type = "ACCEPT", quest = 4492, questName = "Lost!", npc = 9997, npcName = "Spraggle Frock", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 8.5 }, -- 2
@@ -27,6 +27,6 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 4301, questName = "The Mighty U'cha", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 11
         { type = "KILL", quest = 4301, questName = "The Mighty U'cha", npc = 9622, target = "U'cha", map = 1449, zone = "Un'Goro Crater", x = 68.1, y = 12.6, note = "loot U'cha's Pelt" }, -- 12
         { type = "TURNIN", quest = 4301, questName = "The Mighty U'cha", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 13
-        { type = "GRIND", npc = 9164, target = "Elder Diemetradon", level = 55, map = 1449, zone = "Un'Goro Crater", x = 42.5, y = 73.6, near = true, note = "grind Elder Diemetradon (level 53-55) to level 55 - nothing worth questing at 54" }, -- 14
+        { type = "GRIND", npc = 9167, target = "Frenzied Pterrordax", level = 54, map = 1449, zone = "Un'Goro Crater", x = 41, y = 64.8, near = true, note = "grind Frenzied Pterrordax (level 51-54) to level 54 - nothing worth questing at 53" }, -- 14
     },
 })

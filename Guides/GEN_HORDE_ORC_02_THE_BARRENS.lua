@@ -10,7 +10,7 @@ ns.RegisterGuide({
     maxLevel = 22,
     map = 1413,
     zone = "The Barrens",
-    next = "GEN_HORDE_ORC_03_HILLSBRAD_FOOTHILLS",
+    next = "GEN_HORDE_ORC_03_STONETALON_MOUNTAINS",
     author = "ForeverGuide route planner",
     notes = "Chapter 2 of the Orc route: level 10 to 22, 182 steps, ~562 min of play in the model (20186 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {

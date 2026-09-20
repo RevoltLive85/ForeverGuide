@@ -1,0 +1,32 @@
+{
+  "id": "GEN_HORDE_ORC_46_SILITHUS",
+  "name": "46. Silithus 58-60 (Orc)",
+  "version": 2,
+  "faction": "Horde",
+  "race": ["Orc", "Troll"],
+  "minLevel": 58,
+  "maxLevel": 60,
+  "map": 1451,
+  "zone": "Silithus",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 46 of the Orc route: level 58 to 60, 17 steps, ~640 min of play in the model (4668 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1451, "zone": "Silithus", "x": 49.7, "y": 37.4, "radius": 60, "note": "travel to Silithus (Silithus)"},
+    {"type": "ACCEPT", "quest": 8318, "questName": "Secret Communication", "npc": 15306, "npcName": "Bor Wildmane", "map": 1451, "zone": "Silithus", "x": 48.6, "y": 37.8},
+    {"type": "ACCEPT", "quest": 8304, "questName": "Dearest Natalia", "npc": 15181, "npcName": "Commander Mar'alith", "map": 1451, "zone": "Silithus", "x": 49.2, "y": 34.2},
+    {"type": "ACCEPT", "quest": 9248, "questName": "A Humble Offering", "npc": 15282, "npcName": "Aurel Goldleaf", "map": 1451, "zone": "Silithus", "x": 52, "y": 38.2},
+    {"type": "COLLECT", "quest": 8318, "questName": "Secret Communication", "target": "Encrypted Twilight Text", "count": 10, "map": 1451, "zone": "Silithus", "x": 40.9, "y": 42.2, "near": true},
+    {"type": "COLLECT", "quest": 9248, "questName": "A Humble Offering", "target": "Abyssal Scepter", "count": 1, "map": 1451, "zone": "Silithus", "x": 39.6, "y": 45.1, "near": true},
+    {"type": "KILL", "quest": 8304, "questName": "Dearest Natalia", "npc": 15170, "target": "Rutgar Glyphshaper / Frankal Stonebridge", "count": 1, "map": 1451, "zone": "Silithus", "x": 41.3, "y": 88.5},
+    {"type": "TURNIN", "quest": 8318, "questName": "Secret Communication", "npc": 15306, "npcName": "Bor Wildmane", "map": 1451, "zone": "Silithus", "x": 48.6, "y": 37.8},
+    {"type": "TURNIN", "quest": 8304, "questName": "Dearest Natalia", "npc": 15181, "npcName": "Commander Mar'alith", "map": 1451, "zone": "Silithus", "x": 49.2, "y": 34.2},
+    {"type": "TURNIN", "quest": 9248, "questName": "A Humble Offering", "npc": 15282, "npcName": "Aurel Goldleaf", "map": 1451, "zone": "Silithus", "x": 52, "y": 38.2},
+    {"type": "ACCEPT", "quest": 8310, "questName": "Breaking the Code", "npc": 15171, "npcName": "Frankal Stonebridge", "map": 1451, "zone": "Silithus", "x": 40.8, "y": 88.9},
+    {"type": "COLLECT", "quest": 8310, "questName": "Breaking the Code", "target": "Hive'Regal Silithid Brain", "map": 1451, "zone": "Silithus", "x": 50.6, "y": 89.5, "near": true},
+    {"type": "COLLECT", "quest": 8310, "questName": "Breaking the Code", "target": "Hive'Zora Silithid Brain", "map": 1451, "zone": "Silithus", "x": 37.1, "y": 63.7, "near": true},
+    {"type": "COLLECT", "quest": 8310, "questName": "Breaking the Code", "target": "Hive'Ashi Silithid Brain", "map": 1451, "zone": "Silithus", "x": 48.5, "y": 47.1, "near": true},
+    {"type": "TURNIN", "quest": 8310, "questName": "Breaking the Code", "npc": 15171, "npcName": "Frankal Stonebridge", "map": 1451, "zone": "Silithus", "x": 40.8, "y": 88.9},
+    {"type": "GRIND", "npc": 11727, "target": "Hive'Zora Wasp", "level": 59, "map": 1451, "zone": "Silithus", "x": 37, "y": 63.2, "near": true, "note": "grind Hive'Zora Wasp (level 57-59) to level 59 - nothing worth questing at 58"},
+    {"type": "GRIND", "npc": 11727, "target": "Hive'Zora Wasp", "level": 60, "map": 1451, "zone": "Silithus", "x": 37, "y": 63.2, "near": true, "note": "grind Hive'Zora Wasp (level 57-59) to level 60 - nothing worth questing at 59"}
+  ]
+}

@@ -2,30 +2,30 @@
 local _, ns = ...
 ns.RegisterGuide({
     id = "GEN_HORDE_SCOURGE_10_STRANGLETHORN_VALE",
-    name = "10. Stranglethorn Vale 31-37 (Undead)",
+    name = "10. Stranglethorn Vale 30-36 (Undead)",
     version = 2,
     faction = "Horde",
     race = { "Scourge" },
-    minLevel = 31,
-    maxLevel = 37,
+    minLevel = 30,
+    maxLevel = 36,
     map = 1434,
     zone = "Stranglethorn Vale",
     next = "GEN_HORDE_SCOURGE_11_BADLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 10 of the Scourge route: level 31 to 37, 122 steps, ~922 min of play in the model (26954 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 10 of the Scourge route: level 30 to 36, 97 steps, ~854 min of play in the model (25842 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1434, zone = "Stranglethorn Vale", x = 27.3, y = 76.3, radius = 60, note = "travel to Stranglethorn Vale (Stranglethorn Vale)" }, -- 1
         { type = "ACCEPT", quest = 189, questName = "Bloodscalp Ears", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 2
         { type = "ACCEPT", quest = 605, questName = "Singing Blue Shards", npc = 2498, npcName = "Crank Fizzlebub", map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 77.2 }, -- 3
-        { type = "ACCEPT", quest = 213, questName = "Hostile Takeover", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 4
-        { type = "ACCEPT", quest = 577, questName = "Some Assembly Required", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 5
-        { type = "ACCEPT", quest = 606, questName = "Scaring Shaky", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77.1 }, -- 6
-        { type = "KILL", quest = 606, questName = "Scaring Shaky", npc = 1557, target = "Elder Mistvale Gorilla", count = 5, map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 68.4, near = true, note = "loot Mistvale Giblets" }, -- 7
-        { type = "COLLECT", quest = 605, questName = "Singing Blue Shards", target = "Singing Crystal Shard", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 39.1, y = 52, near = true }, -- 8
-        { type = "TURNIN", quest = 606, questName = "Scaring Shaky", npc = 2502, npcName = "\"Shaky\" Phillipe", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 73.6 }, -- 9
-        { type = "ACCEPT", quest = 607, questName = "Return to MacKinley", npc = 2502, npcName = "\"Shaky\" Phillipe", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 73.6 }, -- 10
-        { type = "TURNIN", quest = 605, questName = "Singing Blue Shards", npc = 2498, npcName = "Crank Fizzlebub", map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 77.2 }, -- 11
-        { type = "TURNIN", quest = 607, questName = "Return to MacKinley", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77.1 }, -- 12
+        { type = "ACCEPT", quest = 606, questName = "Scaring Shaky", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77.1 }, -- 4
+        { type = "KILL", quest = 606, questName = "Scaring Shaky", npc = 1557, target = "Elder Mistvale Gorilla", count = 5, map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 68.4, near = true, note = "loot Mistvale Giblets" }, -- 5
+        { type = "COLLECT", quest = 605, questName = "Singing Blue Shards", target = "Singing Crystal Shard", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 39.1, y = 52, near = true }, -- 6
+        { type = "TURNIN", quest = 606, questName = "Scaring Shaky", npc = 2502, npcName = "\"Shaky\" Phillipe", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 73.6 }, -- 7
+        { type = "ACCEPT", quest = 607, questName = "Return to MacKinley", npc = 2502, npcName = "\"Shaky\" Phillipe", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 73.6 }, -- 8
+        { type = "TURNIN", quest = 605, questName = "Singing Blue Shards", npc = 2498, npcName = "Crank Fizzlebub", map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 77.2 }, -- 9
+        { type = "TURNIN", quest = 607, questName = "Return to MacKinley", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77.1 }, -- 10
+        { type = "ACCEPT", quest = 577, questName = "Some Assembly Required", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 11
+        { type = "ACCEPT", quest = 213, questName = "Hostile Takeover", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 12
         { type = "ACCEPT", quest = 600, questName = "Venture Company Mining", npc = 2498, npcName = "Crank Fizzlebub", map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 77.2 }, -- 13
         { type = "ACCEPT", quest = 609, questName = "Voodoo Dues", npc = 2501, npcName = "\"Sea Wolf\" MacKinley", map = 1434, zone = "Stranglethorn Vale", x = 27.8, y = 77.1 }, -- 14
         { type = "KILL", quest = 609, questName = "Voodoo Dues", npc = 2537, target = "Chucky \"Ten Thumbs\"", map = 1434, zone = "Stranglethorn Vale", x = 40, y = 58.2, note = "loot Chucky's Huge Ring" }, -- 15
@@ -51,41 +51,41 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 598, questName = "Split Bone Necklace", target = "Split Bone Necklace", count = 25, map = 1434, zone = "Stranglethorn Vale", x = 42.4, y = 35.1, near = true }, -- 35
         { type = "KILL", quest = 582, questName = "Headhunting", npc = 671, target = "Bloodscalp Headhunter", count = 20, map = 1434, zone = "Stranglethorn Vale", x = 24.7, y = 10.5, near = true, note = "loot Shrunken Head" }, -- 36
         { type = "TURNIN", quest = 582, questName = "Headhunting", npc = 2497, npcName = "Nimboya", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.7 }, -- 37
-        { type = "ACCEPT", quest = 568, questName = "The Defense of Grom'gol", npc = 2464, npcName = "Commander Aggro'gosh", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 28.9 }, -- 38
-        { type = "ACCEPT", quest = 570, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 39
-        { type = "ACCEPT", quest = 584, questName = "Bloodscalp Clan Heads", npc = 2497, npcName = "Nimboya", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.7 }, -- 40
-        { type = "TURNIN", quest = 598, questName = "Split Bone Necklace", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 27.7 }, -- 41
-        { type = "COMPLETE", quest = 570, questName = "Mok'thardin's Enchantment", npc = 772, target = "Stranglethorn Tigress / Shadowmaw Claw", count = 8, map = 1434, zone = "Stranglethorn Vale", x = 38.7, y = 32.9, near = true, note = "loot Pristine Tigress Fang" }, -- 42
-        { type = "KILL", quest = 568, questName = "The Defense of Grom'gol", npc = 686, target = "Lashtail Raptor", count = 15, map = 1434, zone = "Stranglethorn Vale", x = 37.6, y = 27.9, near = true }, -- 43
-        { type = "KILL", quest = 584, questName = "Bloodscalp Clan Heads", npc = 1062, target = "Nezzliok the Dire / Gan'zulah", map = 1434, zone = "Stranglethorn Vale", x = 23.5, y = 9.5, note = "loot Nezzliok's Head" }, -- 44
-        { type = "TURNIN", quest = 584, questName = "Bloodscalp Clan Heads", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.6 }, -- 45
-        { type = "ACCEPT", quest = 585, questName = "Speaking with Nezzliok", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.6 }, -- 46
-        { type = "ACCEPT", quest = 586, questName = "Speaking with Gan'zulah", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.6 }, -- 47
-        { type = "TURNIN", quest = 568, questName = "The Defense of Grom'gol", npc = 2464, npcName = "Commander Aggro'gosh", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 28.9 }, -- 48
-        { type = "TURNIN", quest = 570, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 49
-        { type = "ACCEPT", quest = 569, questName = "The Defense of Grom'gol", npc = 2464, npcName = "Commander Aggro'gosh", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 28.9 }, -- 50
-        { type = "ACCEPT", quest = 572, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 51
-        { type = "KILL", quest = 572, questName = "Mok'thardin's Enchantment", npc = 687, target = "Jungle Stalker", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 32.6, y = 37.2, near = true, note = "loot Jungle Stalker Feather" }, -- 52
-        { type = "KILL", quest = 569, questName = "The Defense of Grom'gol", npc = 1142, target = "Mosh'Ogg Brute / Mosh'Ogg Witch Doctor", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 30.9, near = true }, -- 53
-        { type = "COLLECT", quest = 585, questName = "Speaking with Nezzliok", target = "Ziata'jai Trophy", map = 1434, zone = "Stranglethorn Vale", x = 42.2, y = 36.1 }, -- 54
-        { type = "COLLECT", quest = 585, questName = "Speaking with Nezzliok", target = "Balia'mah Trophy", map = 1434, zone = "Stranglethorn Vale", x = 46.1, y = 32.3 }, -- 55
-        { type = "KILL", quest = 586, questName = "Speaking with Gan'zulah", npc = 669, target = "Skullsplitter Hunter", count = 8, map = 1434, zone = "Stranglethorn Vale", x = 45.6, y = 38.6, near = true }, -- 56
-        { type = "COLLECT", quest = 585, questName = "Speaking with Nezzliok", target = "Zul'Mamwe Trophy", map = 1434, zone = "Stranglethorn Vale", x = 47.7, y = 39.5 }, -- 57
-        { type = "KILL", quest = 586, questName = "Speaking with Gan'zulah", npc = 781, target = "Skullsplitter Headhunter / Skullsplitter Berserker", count = 8, map = 1434, zone = "Stranglethorn Vale", x = 47.7, y = 42.5, near = true }, -- 58
-        { type = "KILL", quest = 586, questName = "Speaking with Gan'zulah", npc = 1059, target = "Ana'thek the Cruel", map = 1434, zone = "Stranglethorn Vale", x = 44.3, y = 45, note = "loot Broken Armor of Ana'thek" }, -- 59
-        { type = "TURNIN", quest = 572, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 60
-        { type = "ACCEPT", quest = 571, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 61
-        { type = "TURNIN", quest = 569, questName = "The Defense of Grom'gol", npc = 2464, npcName = "Commander Aggro'gosh", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 28.9 }, -- 62
-        { type = "TURNIN", quest = 585, questName = "Speaking with Nezzliok", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.6 }, -- 63
-        { type = "TURNIN", quest = 586, questName = "Speaking with Gan'zulah", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.6 }, -- 64
-        { type = "ACCEPT", quest = 588, questName = "The Fate of Yenniku", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.6 }, -- 65
-        { type = "TURNIN", quest = 588, questName = "The Fate of Yenniku", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 27.7 }, -- 66
-        { type = "ACCEPT", quest = 589, questName = "The Singing Crystals", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 27.7 }, -- 67
-        { type = "KILL", quest = 589, questName = "The Singing Crystals", npc = 1551, target = "Ironjaw Basilisk", count = 3, map = 1434, zone = "Stranglethorn Vale", x = 42.7, y = 45.8, near = true, note = "loot Pulsing Blue Shard" }, -- 68
-        { type = "KILL", quest = 571, questName = "Mok'thardin's Enchantment", npc = 1557, target = "Elder Mistvale Gorilla", map = 1434, zone = "Stranglethorn Vale", x = 32.4, y = 58, near = true, note = "loot Aged Gorilla Sinew" }, -- 69
-        { type = "TURNIN", quest = 571, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 70
-        { type = "ACCEPT", quest = 573, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 71
-        { type = "TURNIN", quest = 589, questName = "The Singing Crystals", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 27.7 }, -- 72
+        { type = "ACCEPT", quest = 584, questName = "Bloodscalp Clan Heads", npc = 2497, npcName = "Nimboya", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.7 }, -- 38
+        { type = "TURNIN", quest = 598, questName = "Split Bone Necklace", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 27.7 }, -- 39
+        { type = "KILL", quest = 584, questName = "Bloodscalp Clan Heads", npc = 1062, target = "Nezzliok the Dire / Gan'zulah", map = 1434, zone = "Stranglethorn Vale", x = 23.5, y = 9.5, note = "loot Nezzliok's Head" }, -- 40
+        { type = "TURNIN", quest = 584, questName = "Bloodscalp Clan Heads", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.6 }, -- 41
+        { type = "ACCEPT", quest = 568, questName = "The Defense of Grom'gol", npc = 2464, npcName = "Commander Aggro'gosh", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 28.9 }, -- 42
+        { type = "ACCEPT", quest = 570, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 43
+        { type = "ACCEPT", quest = 585, questName = "Speaking with Nezzliok", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.6 }, -- 44
+        { type = "ACCEPT", quest = 586, questName = "Speaking with Gan'zulah", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.6 }, -- 45
+        { type = "KILL", quest = 568, questName = "The Defense of Grom'gol", npc = 686, target = "Lashtail Raptor", count = 15, map = 1434, zone = "Stranglethorn Vale", x = 32.4, y = 24.6, near = true }, -- 46
+        { type = "COMPLETE", quest = 570, questName = "Mok'thardin's Enchantment", target = "Shadowmaw Claw / Stranglethorn Tigress", count = 8, map = 1434, zone = "Stranglethorn Vale", x = 38.7, y = 32.9, near = true }, -- 47
+        { type = "COLLECT", quest = 585, questName = "Speaking with Nezzliok", target = "Ziata'jai Trophy", map = 1434, zone = "Stranglethorn Vale", x = 42.2, y = 36.1 }, -- 48
+        { type = "COLLECT", quest = 585, questName = "Speaking with Nezzliok", target = "Balia'mah Trophy", map = 1434, zone = "Stranglethorn Vale", x = 46.1, y = 32.3 }, -- 49
+        { type = "KILL", quest = 586, questName = "Speaking with Gan'zulah", npc = 669, target = "Skullsplitter Hunter", count = 8, map = 1434, zone = "Stranglethorn Vale", x = 45.6, y = 38.6, near = true }, -- 50
+        { type = "COLLECT", quest = 585, questName = "Speaking with Nezzliok", target = "Zul'Mamwe Trophy", map = 1434, zone = "Stranglethorn Vale", x = 47.7, y = 39.5 }, -- 51
+        { type = "KILL", quest = 586, questName = "Speaking with Gan'zulah", npc = 781, target = "Skullsplitter Headhunter / Skullsplitter Berserker", count = 8, map = 1434, zone = "Stranglethorn Vale", x = 47.7, y = 42.5, near = true }, -- 52
+        { type = "KILL", quest = 586, questName = "Speaking with Gan'zulah", npc = 1059, target = "Ana'thek the Cruel", map = 1434, zone = "Stranglethorn Vale", x = 44.3, y = 45, note = "loot Broken Armor of Ana'thek" }, -- 53
+        { type = "TURNIN", quest = 570, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 54
+        { type = "ACCEPT", quest = 572, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 55
+        { type = "TURNIN", quest = 568, questName = "The Defense of Grom'gol", npc = 2464, npcName = "Commander Aggro'gosh", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 28.9 }, -- 56
+        { type = "TURNIN", quest = 585, questName = "Speaking with Nezzliok", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.6 }, -- 57
+        { type = "TURNIN", quest = 586, questName = "Speaking with Gan'zulah", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.6 }, -- 58
+        { type = "ACCEPT", quest = 569, questName = "The Defense of Grom'gol", npc = 2464, npcName = "Commander Aggro'gosh", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 28.9 }, -- 59
+        { type = "ACCEPT", quest = 588, questName = "The Fate of Yenniku", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 27.6 }, -- 60
+        { type = "TURNIN", quest = 588, questName = "The Fate of Yenniku", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 27.7 }, -- 61
+        { type = "ACCEPT", quest = 589, questName = "The Singing Crystals", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 27.7 }, -- 62
+        { type = "KILL", quest = 569, questName = "The Defense of Grom'gol", npc = 1142, target = "Mosh'Ogg Brute / Mosh'Ogg Witch Doctor", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 30.9, near = true }, -- 63
+        { type = "KILL", quest = 572, questName = "Mok'thardin's Enchantment", npc = 687, target = "Jungle Stalker", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 32.6, y = 37.2, near = true, note = "loot Jungle Stalker Feather" }, -- 64
+        { type = "KILL", quest = 589, questName = "The Singing Crystals", npc = 1551, target = "Ironjaw Basilisk", count = 3, map = 1434, zone = "Stranglethorn Vale", x = 42.7, y = 45.8, near = true, note = "loot Pulsing Blue Shard" }, -- 65
+        { type = "TURNIN", quest = 572, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 66
+        { type = "ACCEPT", quest = 571, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 67
+        { type = "TURNIN", quest = 569, questName = "The Defense of Grom'gol", npc = 2464, npcName = "Commander Aggro'gosh", map = 1434, zone = "Stranglethorn Vale", x = 32.2, y = 28.9 }, -- 68
+        { type = "TURNIN", quest = 589, questName = "The Singing Crystals", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 27.7 }, -- 69
+        { type = "KILL", quest = 571, questName = "Mok'thardin's Enchantment", npc = 1557, target = "Elder Mistvale Gorilla", map = 1434, zone = "Stranglethorn Vale", x = 32.4, y = 58, near = true, note = "loot Aged Gorilla Sinew" }, -- 70
+        { type = "TURNIN", quest = 571, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 71
+        { type = "ACCEPT", quest = 573, questName = "Mok'thardin's Enchantment", npc = 2465, npcName = "Far Seer Mok'thardin", map = 1434, zone = "Stranglethorn Vale", x = 32.1, y = 29.2 }, -- 72
         { type = "KILL", quest = 573, questName = "Mok'thardin's Enchantment", npc = 1907, target = "Naga Explorer", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 59.7, near = true }, -- 73
         { type = "COLLECT", quest = 573, questName = "Mok'thardin's Enchantment", target = "Holy Spring Water", map = 1434, zone = "Stranglethorn Vale", x = 29, y = 61.9 }, -- 74
         { type = "TURNIN", quest = 189, questName = "Bloodscalp Ears", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 75
@@ -111,30 +111,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 621, questName = "Zanzil's Secret", npc = 2498, npcName = "Crank Fizzlebub", map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 77.2 }, -- 95
         { type = "COLLECT", quest = 621, questName = "Zanzil's Secret", target = "Zanzil's Mixture", count = 12, map = 1434, zone = "Stranglethorn Vale", x = 38.7, y = 59.8, near = true }, -- 96
         { type = "TURNIN", quest = 621, questName = "Zanzil's Secret", npc = 2498, npcName = "Crank Fizzlebub", map = 1434, zone = "Stranglethorn Vale", x = 27.1, y = 77.2 }, -- 97
-        { type = "ACCEPT", quest = 595, questName = "The Bloodsail Buccaneers", npc = 2490, npcName = "First Mate Crazz", map = 1434, zone = "Stranglethorn Vale", x = 28.1, y = 76.2 }, -- 98
-        { type = "ACCEPT", quest = 209, questName = "Skullsplitter Tusks", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 99
-        { type = "TURNIN", quest = 595, questName = "The Bloodsail Buccaneers", map = 1434, zone = "Stranglethorn Vale", x = 27.3, y = 69.5 }, -- 100
-        { type = "ACCEPT", quest = 597, questName = "The Bloodsail Buccaneers", map = 1434, zone = "Stranglethorn Vale", x = 27.3, y = 69.5 }, -- 101
-        { type = "TURNIN", quest = 597, questName = "The Bloodsail Buccaneers", npc = 2490, npcName = "First Mate Crazz", map = 1434, zone = "Stranglethorn Vale", x = 28.1, y = 76.2 }, -- 102
-        { type = "ACCEPT", quest = 599, questName = "The Bloodsail Buccaneers", npc = 2490, npcName = "First Mate Crazz", map = 1434, zone = "Stranglethorn Vale", x = 28.1, y = 76.2 }, -- 103
-        { type = "ACCEPT", quest = 587, questName = "Up to Snuff", npc = 2488, npcName = "Deeg", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.4 }, -- 104
-        { type = "ACCEPT", quest = 576, questName = "Keep An Eye Out", npc = 2493, npcName = "Dizzy One-Eye", map = 1434, zone = "Stranglethorn Vale", x = 28.6, y = 75.9 }, -- 105
-        { type = "TURNIN", quest = 599, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 106
-        { type = "ACCEPT", quest = 604, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 107
-        { type = "COLLECT", quest = 604, questName = "The Bloodsail Buccaneers", target = "Bloodsail Charts", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 29.6, y = 80.8, near = true }, -- 108
-        { type = "COLLECT", quest = 576, questName = "Keep An Eye Out", target = "Dizzy's Eye", map = 1434, zone = "Stranglethorn Vale", x = 29.7, y = 80.8, near = true }, -- 109
-        { type = "COLLECT", quest = 587, questName = "Up to Snuff", target = "Snuff", count = 15, map = 1434, zone = "Stranglethorn Vale", x = 29.7, y = 80.8, near = true }, -- 110
-        { type = "KILL", quest = 604, questName = "The Bloodsail Buccaneers", npc = 1563, target = "Bloodsail Swashbuckler", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 31, y = 81.1, near = true }, -- 111
-        { type = "COLLECT", quest = 604, questName = "The Bloodsail Buccaneers", target = "Bloodsail Orders", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 27.7, y = 83.1, near = true }, -- 112
-        { type = "TURNIN", quest = 587, questName = "Up to Snuff", npc = 2488, npcName = "Deeg", map = 1434, zone = "Stranglethorn Vale", x = 26.9, y = 77.4 }, -- 113
-        { type = "TURNIN", quest = 604, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 114
-        { type = "TURNIN", quest = 576, questName = "Keep An Eye Out", npc = 2493, npcName = "Dizzy One-Eye", map = 1434, zone = "Stranglethorn Vale", x = 28.6, y = 75.9 }, -- 115
-        { type = "ACCEPT", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 116
-        { type = "KILL", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2548, target = "Captain Keelhaul", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 29.3, y = 88.3 }, -- 117
-        { type = "KILL", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2546, target = "Fleet Master Firallon", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 30.6, y = 90.6 }, -- 118
-        { type = "KILL", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2550, target = "Captain Stillwater", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 32.9, y = 88.2 }, -- 119
-        { type = "TURNIN", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 120
-        { type = "COLLECT", quest = 209, questName = "Skullsplitter Tusks", target = "Skullsplitter Tusk", count = 18, map = 1434, zone = "Stranglethorn Vale", x = 43.6, y = 45.6, near = true }, -- 121
-        { type = "TURNIN", quest = 209, questName = "Skullsplitter Tusks", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 122
     },
 })

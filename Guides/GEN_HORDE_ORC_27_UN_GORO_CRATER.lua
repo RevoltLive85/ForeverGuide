@@ -10,22 +10,23 @@ ns.RegisterGuide({
     maxLevel = 49,
     map = 1449,
     zone = "Un'Goro Crater",
-    next = "GEN_HORDE_ORC_28_THE_HINTERLANDS",
+    next = "GEN_HORDE_ORC_28_ORGRIMMAR",
     author = "ForeverGuide route planner",
-    notes = "Chapter 27 of the Orc route: level 49 to 49, 13 steps, ~68 min of play in the model (32368 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 27 of the Orc route: level 49 to 49, 14 steps, ~45 min of play in the model (49486 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
-        { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 44.0, y = 8.0, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 1
-        { type = "ACCEPT", quest = 3882, questName = "Roll the Bones", npc = 9272, npcName = "Spark Nilminer", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 7.4 }, -- 2
-        { type = "ACCEPT", quest = 4503, questName = "Shizzle's Flyer", npc = 9998, npcName = "Shizzle", map = 1449, zone = "Un'Goro Crater", x = 44.2, y = 11.6 }, -- 3
-        { type = "ACCEPT", quest = 3908, questName = "It's a Secret to Everybody", npc = 8737, npcName = "Linken", map = 1449, zone = "Un'Goro Crater", x = 44.7, y = 8.1 }, -- 4
-        { type = "ACCEPT", quest = 4501, questName = "Beware of Pterrordax", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 8.4 }, -- 5
-        { type = "COLLECT", quest = 4503, questName = "Shizzle's Flyer", target = "Webbed Pterrordax Scale", count = 8, map = 1449, zone = "Un'Goro Crater", x = 50.6, y = 12, near = true }, -- 6
-        { type = "KILL", quest = 4501, questName = "Beware of Pterrordax", npc = 9166, target = "Pterrordax", count = 10, map = 1449, zone = "Un'Goro Crater", x = 50.6, y = 12, near = true }, -- 7
-        { type = "COLLECT", quest = 3882, questName = "Roll the Bones", target = "Dinosaur Bone", count = 8, map = 1449, zone = "Un'Goro Crater", x = 58.1, y = 33.9, near = true }, -- 8
-        { type = "COLLECT", quest = 4503, questName = "Shizzle's Flyer", target = "Webbed Diemetradon Scale", count = 8, map = 1449, zone = "Un'Goro Crater", x = 58.1, y = 33.9, near = true }, -- 9
-        { type = "KILL", quest = 4501, questName = "Beware of Pterrordax", npc = 9167, target = "Frenzied Pterrordax", count = 10, map = 1449, zone = "Un'Goro Crater", x = 37.4, y = 40.4, near = true }, -- 10
-        { type = "TURNIN", quest = 4503, questName = "Shizzle's Flyer", npc = 9998, npcName = "Shizzle", map = 1449, zone = "Un'Goro Crater", x = 44.2, y = 11.6 }, -- 11
-        { type = "TURNIN", quest = 4501, questName = "Beware of Pterrordax", npc = 9997, npcName = "Spraggle Frock", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 8.5 }, -- 12
-        { type = "TURNIN", quest = 3882, questName = "Roll the Bones", npc = 9272, npcName = "Spark Nilminer", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 7.4 }, -- 13
+        { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 6.6, radius = 60, note = "use your hearthstone (Un'Goro Crater)" }, -- 1
+        { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 44.0, y = 8.0, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 2
+        { type = "ACCEPT", quest = 3882, questName = "Roll the Bones", npc = 9272, npcName = "Spark Nilminer", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 7.4 }, -- 3
+        { type = "ACCEPT", quest = 4503, questName = "Shizzle's Flyer", npc = 9998, npcName = "Shizzle", map = 1449, zone = "Un'Goro Crater", x = 44.2, y = 11.6 }, -- 4
+        { type = "ACCEPT", quest = 3908, questName = "It's a Secret to Everybody", npc = 8737, npcName = "Linken", map = 1449, zone = "Un'Goro Crater", x = 44.7, y = 8.1 }, -- 5
+        { type = "ACCEPT", quest = 4501, questName = "Beware of Pterrordax", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 8.4 }, -- 6
+        { type = "COLLECT", quest = 4503, questName = "Shizzle's Flyer", target = "Webbed Pterrordax Scale", count = 8, map = 1449, zone = "Un'Goro Crater", x = 50.6, y = 12, near = true }, -- 7
+        { type = "KILL", quest = 4501, questName = "Beware of Pterrordax", npc = 9166, target = "Pterrordax", count = 10, map = 1449, zone = "Un'Goro Crater", x = 50.6, y = 12, near = true }, -- 8
+        { type = "COLLECT", quest = 3882, questName = "Roll the Bones", target = "Dinosaur Bone", count = 8, map = 1449, zone = "Un'Goro Crater", x = 58.1, y = 33.9, near = true }, -- 9
+        { type = "COLLECT", quest = 4503, questName = "Shizzle's Flyer", target = "Webbed Diemetradon Scale", count = 8, map = 1449, zone = "Un'Goro Crater", x = 58.1, y = 33.9, near = true }, -- 10
+        { type = "KILL", quest = 4501, questName = "Beware of Pterrordax", npc = 9167, target = "Frenzied Pterrordax", count = 10, map = 1449, zone = "Un'Goro Crater", x = 37.4, y = 40.4, near = true }, -- 11
+        { type = "TURNIN", quest = 4503, questName = "Shizzle's Flyer", npc = 9998, npcName = "Shizzle", map = 1449, zone = "Un'Goro Crater", x = 44.2, y = 11.6 }, -- 12
+        { type = "TURNIN", quest = 4501, questName = "Beware of Pterrordax", npc = 9997, npcName = "Spraggle Frock", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 8.5 }, -- 13
+        { type = "TURNIN", quest = 3882, questName = "Roll the Bones", npc = 9272, npcName = "Spark Nilminer", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 7.4 }, -- 14
     },
 })

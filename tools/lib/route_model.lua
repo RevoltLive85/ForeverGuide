@@ -134,6 +134,11 @@ function M.questCost(qq, L)
         local w, x = M.objectiveCost(o, L, escort)
         work, xp = work + w, xp + x
     end
+    -- a Forever quest whose objectives nobody has recorded yet is not a free delivery:
+    -- assume an average kill quest's work (and no kill xp, since we do not know the mobs)
+    if qq.q.forever and #qq.objs == 0 then
+        work = work + M.DEFAULT_KILLS * M.killTime(L, L, false) + 60
+    end
     return work, xp
 end
 

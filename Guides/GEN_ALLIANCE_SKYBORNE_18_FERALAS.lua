@@ -12,7 +12,7 @@ ns.RegisterGuide({
     zone = "Feralas",
     next = "GEN_ALLIANCE_SKYBORNE_19_TANARIS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 18 of the Skyborne route: level 40 to 41, 52 steps, ~152 min of play in the model (36889 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+    notes = "Chapter 18 of the Skyborne route: level 40 to 41, 52 steps, ~135 min of play in the model (41542 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
     steps = {
         { type = "TRAVEL", map = 1444, zone = "Feralas", x = 31.2, y = 45.0, radius = 60, note = "travel to Feralas (Feralas)" }, -- 1
         { type = "NOTE", map = 1444, zone = "Feralas", x = 31.2, y = 45.0, text = "set your hearthstone at the inn in Feralas (if there is one)" }, -- 2

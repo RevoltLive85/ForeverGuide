@@ -1,0 +1,32 @@
+{
+  "id": "GEN_HORDE_SKYBORNE_25_FELWOOD",
+  "name": "25. Felwood 48-48 (Skyborne)",
+  "version": 2,
+  "faction": "Horde",
+  "race": ["Skyborne"],
+  "minLevel": 48,
+  "maxLevel": 48,
+  "map": 1448,
+  "zone": "Felwood",
+  "next": "GEN_HORDE_SKYBORNE_26_AZSHARA",
+  "author": "ForeverGuide route planner",
+  "notes": "Chapter 25 of the Skyborne route: level 48 to 48, 16 steps, ~81 min of play in the model (36565 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "steps": [
+    {"type": "TRAVEL", "map": 1448, "zone": "Felwood", "x": 50.4, "y": 82.1, "radius": 60, "note": "travel to Felwood (Felwood)"},
+    {"type": "ACCEPT", "quest": 5155, "questName": "Forces of Jaedenar", "npc": 10922, "npcName": "Greta Mosshoof", "map": 1448, "zone": "Felwood", "x": 51.2, "y": 82.1},
+    {"type": "ACCEPT", "quest": 5156, "questName": "Verifying the Corruption", "npc": 10921, "npcName": "Taronn Redfeather", "map": 1448, "zone": "Felwood", "x": 50.9, "y": 81.6},
+    {"type": "ACCEPT", "quest": 4102, "questName": "Cleansing Felwood", "npc": 9529, "npcName": "Maybess Riverbreeze", "map": 1448, "zone": "Felwood", "x": 46.8, "y": 83.1},
+    {"type": "KILL", "quest": 5155, "questName": "Forces of Jaedenar", "npc": 7112, "target": "Jaedenar Cultist / Jaedenar Adept / Jaedenar Hound / Jaedenar Guardian", "count": 4, "map": 1448, "zone": "Felwood", "x": 39, "y": 62.2, "near": true},
+    {"type": "COMPLETE", "quest": 5156, "questName": "Verifying the Corruption", "npc": 9878, "target": "Entropic Beast / Entropic Horror / Explore the craters in Shatter Scar Vale", "count": 2, "map": 1448, "zone": "Felwood", "x": 41.3, "y": 43.8, "near": true},
+    {"type": "TURNIN", "quest": 5156, "questName": "Verifying the Corruption", "npc": 10921, "npcName": "Taronn Redfeather", "map": 1448, "zone": "Felwood", "x": 50.9, "y": 81.6},
+    {"type": "TURNIN", "quest": 5155, "questName": "Forces of Jaedenar", "npc": 10922, "npcName": "Greta Mosshoof", "map": 1448, "zone": "Felwood", "x": 51.2, "y": 82.1},
+    {"type": "ACCEPT", "quest": 5157, "questName": "Collection of the Corrupt Water", "npc": 10922, "npcName": "Greta Mosshoof", "map": 1448, "zone": "Felwood", "x": 51.2, "y": 82.1},
+    {"type": "COLLECT", "quest": 5157, "questName": "Collection of the Corrupt Water", "target": "Corrupt Moonwell Water", "map": 1448, "zone": "Felwood", "x": 35.2, "y": 59.8},
+    {"type": "TURNIN", "quest": 5157, "questName": "Collection of the Corrupt Water", "npc": 10922, "npcName": "Greta Mosshoof", "map": 1448, "zone": "Felwood", "x": 51.2, "y": 82.1},
+    {"type": "COLLECT", "quest": 4102, "questName": "Cleansing Felwood", "target": "Blood Amber", "count": 15, "map": 1448, "zone": "Felwood", "x": 58, "y": 22.4, "near": true},
+    {"type": "TURNIN", "quest": 4102, "questName": "Cleansing Felwood", "npc": 9529, "npcName": "Maybess Riverbreeze", "map": 1448, "zone": "Felwood", "x": 46.8, "y": 83.1},
+    {"type": "ACCEPT", "quest": 5887, "questName": "Salve via Hunting", "npc": 9529, "npcName": "Maybess Riverbreeze", "map": 1448, "zone": "Felwood", "x": 46.8, "y": 83.1},
+    {"type": "COLLECT", "quest": 5887, "questName": "Salve via Hunting", "target": "Corrupted Soul Shard", "map": 1448, "zone": "Felwood", "x": 47.1, "y": 84, "near": true},
+    {"type": "TURNIN", "quest": 5887, "questName": "Salve via Hunting", "npc": 9529, "npcName": "Maybess Riverbreeze", "map": 1448, "zone": "Felwood", "x": 46.8, "y": 83.1}
+  ]
+}
