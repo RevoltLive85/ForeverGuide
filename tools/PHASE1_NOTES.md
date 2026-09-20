@@ -398,3 +398,9 @@ no camera-yaw API exists; a left-drag camera orbit around a standing character d
   over 5 ms at login/reload, memory 43 MB -> 31 MB after making compiled guides lazy (steps are a closure built on
   first use; `stepCount` for lists; `Guide.StepCount(g)`). Ilya's 25-41 fps is the GPU, not the addon.
 - Tests: 205 (group quests, full log, corpse, restricted nameplates, secure target macro).
+- v0.3.5: Bags.lua (C_Container: free/total, grey items with a sell value, never quest items; nearest vendor from
+  ItemDB vendors + NPCLocations; header tag, chat on threshold crossing / loot step, popup line). MobMarker: wanted
+  names only from OPEN objectives; `FinishedNames()` = mobs of finished objectives across the log (minus those an
+  open objective still needs) get no skull; `liveToDB` is strict (DB objective name must appear in the live text -
+  Forever's "Kill Dire Condor" has no counterpart in the old data, and the same-position fallback pointed at the
+  goretusks). 211 tests. Release zip: `python tools/package.py` -> dist/ForeverGuide-<ver>.zip; CHANGELOG.md.

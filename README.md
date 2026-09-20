@@ -8,13 +8,26 @@ no chat, no combat assistance.
 ForeverGuide DB (JSON)  ->  tools/compile_guides.py  ->  Guides/*.lua  ->  addon engine  ->  WoW Forever
 ```
 
-## Install / test
+## Install
 
-The folder is already in `_classic_beta_\Interface\AddOns\ForeverGuide` and is a git checkout of
-https://github.com/RevoltLive85/ForeverGuide - after editing anything, double-click
-`tools\sync_to_github.cmd` (or `git add -A && git commit && git push`) so the repo stays current.
-Anyone else: clone the repo into `Interface\AddOns\` (or unzip a release from `python tools/package.py`).
-Log in, enable it on the AddOns screen, then:
+1. Download `ForeverGuide-<version>.zip` from the [releases page](https://github.com/RevoltLive85/ForeverGuide/releases)
+   (or clone this repo) and unzip it so that you get `World of Warcraft\_classic_beta_\Interface\AddOns\ForeverGuide\ForeverGuide.toc`.
+2. Log in, enable **ForeverGuide** on the AddOns screen. If the beta has moved to a newer build than the addon's
+   TOC number, tick **Load out of date AddOns** on that screen - the addon reads game state defensively and keeps
+   working across builds.
+3. First login: the Quest Guide window picks the leveling route for your race and level on its own and the gold
+   diamond in the world points at the first step. **Guides** (button or `/fg guides`) lists every route of your
+   faction, the chapters of the one you follow, and standalone zone guides - the race route is only a
+   recommendation. **Guide** opens the step details with Back / Skip / Auto / Resync.
+4. Alt-click the minimap button (or `/fg hideall`) hides everything while the guide keeps running.
+
+**Beta caveat:** this client build never reads SavedVariables back, so the addon mirrors your progress and settings
+into CVars every 30 s and restores them at login ("beta workaround" line in chat). Step edits and reports live in the
+SavedVariables file and can be lost - `tools/apply_edits.py` folds them into the guide source.
+
+Developers: the addon folder doubles as the repo (`tools/`, `guides-src/`, `data-src/` are not loaded by the game);
+`python tools/package.py` builds the release zip, `lua5.1 tools/test/run_tests.lua` runs the engine tests.
+Then:
 
 | command | what |
 |---|---|

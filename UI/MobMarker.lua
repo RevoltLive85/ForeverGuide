@@ -44,7 +44,36 @@ local function addName(set, name)
     if type(name) == "string" and name ~= "" then set[string.lower(name)] = name end   -- lower -> as written
 end
 
---- lower-case names of the mobs the current step is about ({} when it is not a kill/loot step)
+-- the mobs behind one database objective (killed, credited, or dropping the item)
+local function objectiveMobs(DB, d, set)
+    if d.kind == "kill" or d.kind == "credit" then
+        addName(set, d.name)
+    elseif d.kind == "item" then
+        local it = DB:GetItem(d.id)
+        for _, npc in ipairs(it and it.npc or {}) do addName(set, DB:NPCName(npc)) end
+    end
+end
+
+-- which database objective a live objective is (by wording), so a finished "Goretusk Snout 5/5"
+-- takes the goretusks off the list even while the quest's other objectives are open
+local function liveToDB(DB, questID, k, live)
+    local o = live[k]
+    local d = DB:MatchObjective(questID, k, o and o.text)
+    if not d then return nil end
+    -- strict: the database objective must be named in the live text. Forever rewrote some quests
+    -- (Redridge Goulash: "Kill Dire Condor" where the old data has an item), and MatchObjective's
+    -- last resort - same position - would hand back the wrong mobs
+    local text = o and o.text and string.lower(o.text)
+    local name = d.name and string.lower(d.name)
+    if text and name and name ~= "" and string.find(text, name, 1, true) then return d end
+    if text and d.kind == "item" then
+        local it = DB:GetItem(d.id)
+        if it and it.n and string.find(text, string.lower(it.n), 1, true) then return d end
+    end
+    return nil
+end
+
+--- lower-case names of the mobs the current step still needs ({} when it is not a kill/loot step)
 function MM:WantedNames()
     local step = ns.Guide and ns.Guide:GetCurrentStep()
     local set = {}
@@ -57,19 +86,49 @@ function MM:WantedNames()
     if step.quest and DB and DB:IsLoaded() then
         local objIdx = ns.Guide:StepObjectiveIndex(step)
         local live = ns.Quest:GetObjectives(step.quest) or {}
-        local o = objIdx and live[objIdx]
-        local dbo = DB:MatchObjective(step.quest, objIdx or 1, o and o.text)
-        local list = dbo and { dbo } or DB:QuestObjectives(step.quest)
-        for _, d in ipairs(list or {}) do
-            if d.kind == "kill" or d.kind == "credit" then
-                addName(set, d.name)
-            elseif d.kind == "item" then
-                local it = DB:GetItem(d.id)
-                for _, npc in ipairs(it and it.npc or {}) do addName(set, DB:NPCName(npc)) end
+        if objIdx then
+            local d = liveToDB(DB, step.quest, objIdx, live)
+            if d and not (live[objIdx] and live[objIdx].finished) then objectiveMobs(DB, d, set) end
+        elseif #live > 0 then
+            -- no single objective identified: every objective that is still open
+            for k, o in ipairs(live) do
+                if not o.finished then
+                    local d = liveToDB(DB, step.quest, k, live)
+                    if d then objectiveMobs(DB, d, set) end
+                end
             end
+        else
+            for _, d in ipairs(DB:QuestObjectives(step.quest) or {}) do objectiveMobs(DB, d, set) end
         end
     end
     return set, step
+end
+
+--- lower-case names of mobs whose objective is already complete for every quest in the log:
+--- they may still count as "related to an active quest" for the client, but there is nothing to get
+function MM:FinishedNames()
+    local set = {}
+    local DB = ns.DB
+    if not DB or not DB:IsLoaded() or not ns.Quest then return set end
+    for _, questID in ipairs(ns.Quest.order or {}) do
+        local live = ns.Quest:GetObjectives(questID) or {}
+        local open = {}
+        for k, o in ipairs(live) do
+            if o.finished then
+                local d = liveToDB(DB, questID, k, live)
+                if d then objectiveMobs(DB, d, set) end
+            end
+        end
+        -- a mob wanted by another, still open objective of the same quest stays
+        for k, o in ipairs(live) do
+            if not o.finished then
+                local d = liveToDB(DB, questID, k, live)
+                if d then objectiveMobs(DB, d, open) end
+            end
+        end
+        for k in pairs(open) do set[k] = nil end
+    end
+    return set
 end
 
 -- ---- nameplates -----------------------------------------------------------------------
@@ -241,9 +300,10 @@ end
 function MM:Scan()
     releaseAll()
     local c = cfg()
-    self.primaryUnit, self.markedCount = nil, 0
+    self.primaryUnit, self.markedCount, self.markedUnits = nil, 0, {}
     if c.enabled == false or (ns.UI and ns.UI.AllHidden and ns.UI:AllHidden()) then forcePlates(false) return end
     local names, step = self:WantedNames()
+    local finished = self:FinishedNames()
     local killStep = step ~= nil
     forcePlates(killStep)
     self:UpdateTargetMacro(names)
@@ -259,7 +319,8 @@ function MM:Scan()
             local name = ns.PlainString(ns.Safe(UnitName, u))
             local lower = name and string.lower(name)
             local isWanted = lower and names[lower] ~= nil
-            local related = isWanted or questRelated(u)
+            -- objective complete for this mob's quest(s): no skull, whatever the client says
+            local related = isWanted or (not (lower and finished[lower]) and questRelated(u))
             -- a mob tagged by someone else is nobody's kill: no skull at all
             if related and not tagged(u) then
                 local isTarget = targetGUID and ns.PlainString(ns.Safe(UnitGUID, u)) == targetGUID
@@ -283,6 +344,9 @@ function MM:Scan()
     end
     self.primaryUnit = best and plateUnit(best) or nil
     self.markedCount = #used
+    self.markedUnits = {}
+    if best then self.markedUnits[plateUnit(best)] = "primary" end
+    if c.others ~= false then for _, plate in ipairs(others) do self.markedUnits[plateUnit(plate)] = "other" end end
     -- the player's own target got taken by someone else: say so once (we cannot retarget for them)
     if killStep and targetGUID and not self.taggedWarned then
         local tName = ns.PlainString(ns.Safe(UnitName, "target"))

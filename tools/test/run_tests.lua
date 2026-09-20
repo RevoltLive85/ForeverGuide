@@ -566,6 +566,22 @@ do
     check(ns.Navigation.target and ns.Navigation.target.owner == "guide" and ns.Navigation.override == nil, "alive again: the guide's target returns (" .. tostring(ns.Navigation.target and ns.Navigation.target.owner) .. ")")
 end
 
+-- ---- bag space --------------------------------------------------------------------------------
+do
+    MOCK_BAG(10, 2, 1); settle()
+    check(ns.Bags:Tag() == nil, "plenty of room: no bag tag")
+    MOCK_BAG(2, 4, 3); settle()
+    local tag, full = ns.Bags:Tag()
+    check(tag == "bags 2/16" and not full, "2 free slots: header tag (" .. tostring(tag) .. ")")
+    local advice = ns.Bags:Advice()
+    check(advice and advice:find("4 grey items", 1, true) and advice:find("never counted", 1, true), "advice counts grey items only, never quest items (" .. tostring(advice) .. ")")
+    MOCK_BAG(0, 0, 5); settle()
+    local _, full0 = ns.Bags:Tag()
+    local adv0 = ns.Bags:Advice()
+    check(full0 == true and adv0 and adv0:find("FULL", 1, true) and adv0:find("never quest items", 1, true), "full bags with only quest items: urgent, no sale suggested (" .. tostring(adv0) .. ")")
+    MOCK_BAG(16, 0, 0); settle()
+end
+
 -- ---- skulls over quest mobs ----------------------------------------------------------------
 do
     ns.RegisterGuide({ id = "AUDIT_SKULL", name = "skull", steps = {
@@ -608,6 +624,18 @@ do
     MOCK_PLATE("nameplate2", { name = "Kobold Vermin", npcID = 6, restricted = true, dist = 8 })
     ns.MobMarker:Scan()
     check(ns.MobMarker.primaryUnit == "nameplate2" and #reportedErrors == 0, "restricted nameplates: no error, nearest by interact distance (" .. tostring(ns.MobMarker.primaryUnit) .. ")")
+    -- Protect the Frontier (52): prowlers done, bears open -> prowlers get no skull even though the client
+    -- still calls them "related to an active quest"; the step's own mob keeps the big one
+    if not ns.Quest:IsOnQuest(52) then
+        MOCK_ACCEPT(52, "Protect the Frontier", { { text = "Prowler slain", finished = true, numFulfilled = 8, numRequired = 8 }, { text = "Young Forest Bear slain", finished = false, numFulfilled = 2, numRequired = 5 } }); settle()
+    end
+    MOCK_PLATE("nameplate5", { name = "Prowler", npcID = 118, scale = 1.0, y = 330, quest = true })
+    MOCK_PLATE("nameplate6", { name = "Young Forest Bear", npcID = 822, scale = 1.0, y = 330, quest = true })
+    ns.MobMarker:Scan()
+    local fin = ns.MobMarker:FinishedNames()
+    check(fin["prowler"] ~= nil and fin["young forest bear"] == nil, "finished objective mobs are known (prowler yes, bear no)")
+    check(ns.MobMarker.markedUnits["nameplate6"] and not ns.MobMarker.markedUnits["nameplate5"], "the open objective's mob has a skull, the finished one has none")
+    MOCK_PLATE("nameplate5", nil); MOCK_PLATE("nameplate6", nil); MOCK_ABANDON(52); settle()
     ns.Commands:Run("skull off"); ns.MobMarker:Scan()
     check(ns.MobMarker.markedCount == 0 and GetCVar("nameplateShowEnemies") == "0", "/fg skull off removes the skulls and restores the nameplate setting")
     ns.Commands:Run("skull on")

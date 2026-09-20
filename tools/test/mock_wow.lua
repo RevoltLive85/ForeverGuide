@@ -314,6 +314,21 @@ local function fire(event, ...)
 end
 
 _G.InCombatLockdown = function() return world.inCombat == true end
+world.bags = { [0] = { size = 16, items = {} } }   -- items: slot -> { quality, hasNoValue, isQuestItem }
+_G.C_Container = {
+    GetContainerNumSlots = function(bag) local b = world.bags[bag] return b and b.size or 0 end,
+    GetContainerNumFreeSlots = function(bag) local b = world.bags[bag] if not b then return 0 end local used = 0 for _ in pairs(b.items) do used = used + 1 end return b.size - used, 0 end,
+    GetContainerItemInfo = function(bag, slot) local b = world.bags[bag] return b and b.items[slot] end,
+}
+function _G.MOCK_BAG(freeSlots, junk, questItems)
+    local b = world.bags[0]
+    b.items = {}
+    local slot = 1
+    for _ = 1, (junk or 0) do b.items[slot] = { quality = 0, hasNoValue = false } slot = slot + 1 end
+    for _ = 1, (questItems or 0) do b.items[slot] = { quality = 1, hasNoValue = true, isQuestItem = true } slot = slot + 1 end
+    while b.size - (slot - 1) > freeSlots do b.items[slot] = { quality = 1, hasNoValue = false } slot = slot + 1 end
+    fire("BAG_UPDATE_DELAYED")
+end
 _G.UnitIsGhost = function(unit) return unit == "player" and world.ghost == true end
 _G.C_DeathInfo = { GetCorpseMapPosition = function(mapID) if world.corpse and world.corpse.map == mapID then return { x = world.corpse.x / 100, y = world.corpse.y / 100 } end return nil end }
 function _G.MOCK_DIE(x, y) world.ghost = true world.corpse = { map = world.mapID, x = x, y = y } fire("PLAYER_DEAD") fire("PLAYER_ALIVE") end
