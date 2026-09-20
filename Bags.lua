@@ -105,6 +105,68 @@ function Bags:Advice(force)
     return table.concat(parts, " ")
 end
 
+-- ---- the on-screen banner ------------------------------------------------------------------
+--   ┌────────────────────────────────────────────┐
+--   │ [bag]  BAGS FULL - quest loot will be missed │   top centre, under the zone text
+--   │        3 grey items to sell - Yuka (2.0 km)  │
+--   └────────────────────────────────────────────┘
+local banner
+local function Banner()
+    if banner then return banner end
+    local Theme = ns.Theme
+    local ok, f = pcall(CreateFrame, "Frame", "ForeverGuideBagBanner", UIParent, "BackdropTemplate")
+    if not ok or not f then f = CreateFrame("Frame", "ForeverGuideBagBanner", UIParent) end
+    banner = f
+    f:SetSize(420, 52)
+    f:SetPoint("TOP", UIParent, "TOP", 0, -150)
+    f:SetFrameStrata("HIGH")
+    if Theme and Theme.Backdrop then Theme.Backdrop(f, "panel", 0.92) end
+    f.icon = f:CreateTexture(nil, "ARTWORK")
+    f.icon:SetSize(30, 30)
+    f.icon:SetPoint("LEFT", f, "LEFT", 12, 0)
+    pcall(f.icon.SetTexture, f.icon, "Interface\\Icons\\INV_Misc_Bag_08")
+    pcall(f.icon.SetTexCoord, f.icon, 0.08, 0.92, 0.08, 0.92)
+    f.title = Theme and Theme.NewText(f, { fancy = true, size = 15, color = { 1, 0.35, 0.25 }, oneLine = true, shadow = true }) or f:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+    f.title:SetPoint("TOPLEFT", f.icon, "TOPRIGHT", 10, 0)
+    f.title:SetPoint("RIGHT", f, "RIGHT", -12, 0)
+    f.sub = Theme and Theme.NewText(f, { size = 11, color = Theme.C.text, oneLine = true }) or f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    f.sub:SetPoint("BOTTOMLEFT", f.icon, "BOTTOMRIGHT", 10, 1)
+    f.sub:SetPoint("RIGHT", f, "RIGHT", -12, 0)
+    f:EnableMouse(true)
+    f:SetScript("OnMouseUp", function() Bags.snoozedUntil = ns.Now() + 120 f:Hide() end)
+    f:SetScript("OnEnter", function(self)
+        local tt = rawget(_G, "GameTooltip")
+        if tt then tt:SetOwner(self, "ANCHOR_BOTTOM") tt:AddLine("Click to hide for 2 minutes", 0.85, 0.82, 0.75) tt:Show() end
+    end)
+    f:SetScript("OnLeave", function() local tt = rawget(_G, "GameTooltip") if tt then tt:Hide() end end)
+    f:Hide()
+    return f
+end
+
+function Bags:UpdateBanner()
+    local st = self.last or self:Status()
+    local f = Banner()
+    local hidden = ns.UI and ns.UI.AllHidden and ns.UI:AllHidden()
+    if not st or st.total == 0 or st.free > (cfg().warn or WARN_FREE) or hidden or (self.snoozedUntil and ns.Now() < self.snoozedUntil) then
+        f:Hide()
+        return
+    end
+    local full = st.free == 0
+    f.title:SetText(full and "BAGS FULL - quest loot will be missed" or string.format("Bags nearly full - %d slot%s left", st.free, st.free == 1 and "" or "s"))
+    if ns.Theme then ns.Theme.Color(f.title, full and { 1, 0.35, 0.25 } or { 1, 0.7, 0.3 }) end
+    local sub
+    if st.junk > 0 then sub = string.format("%d grey item%s to sell", st.junk, st.junk == 1 and "" or "s")
+    else sub = "nothing grey to sell - bank or vendor gear you do not need" end
+    local name, d = self:NearestVendor()
+    if name then sub = sub .. string.format("  ·  nearest vendor %s (%s)", name, ns.Navigation:FormatDistance(d)) end
+    f.sub:SetText(sub)
+    if ns.Theme and ns.Theme.Pulse then
+        ns.Theme.Pulse(f.icon, 1.4, 0.55, 1.0)
+        ns.Theme.SetPulseEnabled(f.icon, full)
+    end
+    f:Show()
+end
+
 -- a chat line when the bags cross a threshold (once per crossing), and on a loot step with low space
 local lastBand
 function Bags:Check(reason)
@@ -120,6 +182,8 @@ function Bags:Check(reason)
         if reason == "step" and step then self.warnedStep = step.index end
     end
     lastBand = band
+    if band == 0 then self.snoozedUntil = nil end
+    self:UpdateBanner()
     if ns.UI and ns.UI.Refresh then ns.UI:Refresh() end
 end
 
@@ -130,4 +194,6 @@ end
 
 function Bags:OnEnable()
     self.last = self:Status()
+    self:UpdateBanner()
+    ns.Events:Register("FG_HIDDEN_ALL_CHANGED", function() Bags:UpdateBanner() end)
 end

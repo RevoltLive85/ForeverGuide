@@ -334,7 +334,7 @@ function QG:Refresh()
     local entries, cur, total = self:BuildGuideEntries()
     local bagTag, bagFull = ns.Bags and ns.Bags:Tag()
     local sub = string.format("%s  ·  Lv %d", g.name or g.id, level)
-    if bagTag then sub = sub .. "  ·  " .. (bagFull and "|cffff5040" or "|cffffa040") .. bagTag .. "|r" end
+    if bagTag then sub = (bagFull and "|cffff5040" or "|cffffa040") .. bagTag .. "|r  ·  " .. sub end
     f.header:Set(string.format("%d / %d", math.min(cur, total), total), sub)
     if cur > total then
         f.list:Set({}, "Guide complete!" .. (g.next and ("\nNext chapter: " .. g.next) or ""))
