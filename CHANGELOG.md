@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.6 - 2026-09-21
+- Crowd safeguard: quest mobs tagged by others, player nameplates and `/who` zone counts decide when an area is too busy; a crowded step (unless kill-x / loot-item) is postponed for 10 minutes with a quieter spawn, step or zone offered.
+- Group-up banner on any open kill objective with others around: kill credit is shared in a group, so an Invite button asks the players seen near you; banner laid out in two lines with the buttons clear of the text.
+- Corpse marker while dead, on-screen bags-full banner, quest-item tooltip lines (in your log / later on your route / left over and safe to sell).
+
 ## 0.3.5 - 2026-09-21
 - Bag space: "bags 2/16" tag in the header, a chat line when space runs low or a loot step starts, the info popup names how many grey items to sell and the nearest vendor; quest items are never counted.
 - Skulls follow objective completion: a mob whose objective is already complete (5/5 snouts) gets no skull even while its quest is still in the log; strict matching against the live objective text for quests Forever rewrote.

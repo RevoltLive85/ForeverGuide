@@ -677,7 +677,9 @@ do
             ns.Crowd:Reset()
             ns.MobMarker:Scan()
             local _, _, _, cr = ns.Crowd:Level()
-            check(not cr and ForeverGuideCrowdBanner:IsShown() and (ForeverGuideCrowdBanner.title:GetText() or ""):find("group up", 1, true), "two players on a kill step: the group-up reminder shows without a crowd (" .. tostring(ForeverGuideCrowdBanner.title:GetText()) .. ")")
+            check(not cr and ForeverGuideCrowdBanner:IsShown() and (ForeverGuideCrowdBanner.title:GetText() or ""):find("Group up", 1, true), "two players on a kill step: the group-up reminder shows without a crowd (" .. tostring(ForeverGuideCrowdBanner.title:GetText()) .. ")")
+            check((ForeverGuideCrowdBanner.sub:GetText() or ""):find("2 players", 1, true), "the sub line names the players around")
+            check(ForeverGuideCrowdBanner.invite:IsShown() and ForeverGuideCrowdBanner:GetHeight() >= 58, "invite button shown and the banner tall enough for two lines")
             for i = 3, 5 do MOCK_PLATE("nameplate" .. (20 + i), { name = "Player" .. i, player = true, friendly = true, npcID = 0 }) end
             ns.MobMarker:Scan()
         end

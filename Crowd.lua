@@ -307,25 +307,32 @@ local function Banner()
     local ok, f = pcall(CreateFrame, "Frame", "ForeverGuideCrowdBanner", UIParent, "BackdropTemplate")
     if not ok or not f then f = CreateFrame("Frame", "ForeverGuideCrowdBanner", UIParent) end
     banner = f
-    f:SetSize(460, 56)
+    --   ┌──────────────────────────────────────────────────────────────┐
+    --   │ [icon] Group up - kill credit is shared                    [x] │  title: one line, stops before the x
+    --   │        Invite the 3 players near you (or ask to join theirs)   │  sub: wraps to two lines, stops before
+    --   │        · quieter: north 80 yd              [Invite] [Go there] │       the buttons; the frame grows to fit
+    --   └──────────────────────────────────────────────────────────────┘
+    f:SetSize(560, 58)
     f:SetPoint("TOP", UIParent, "TOP", 0, -210)
     f:SetFrameStrata("HIGH")
     if Theme and Theme.Backdrop then Theme.Backdrop(f, "panel", 0.92) end
     f.icon = f:CreateTexture(nil, "ARTWORK")
     f.icon:SetSize(28, 28)
-    f.icon:SetPoint("LEFT", f, "LEFT", 12, 0)
+    f.icon:SetPoint("TOPLEFT", f, "TOPLEFT", 12, -12)
     pcall(f.icon.SetTexture, f.icon, "Interface\\Icons\\Ability_Rogue_Sprint")
     pcall(f.icon.SetTexCoord, f.icon, 0.08, 0.92, 0.08, 0.92)
+    f.close = Theme and Theme.NewButton(f, "x", 22, 18, function() Crowd.snoozedUntil = ns.Now() + 300 f:Hide() end) or CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    f.close:SetPoint("TOPRIGHT", f, "TOPRIGHT", -8, -6)
     f.title = Theme and Theme.NewText(f, { fancy = true, size = 14, color = { 1, 0.7, 0.3 }, oneLine = true, shadow = true }) or f:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
     f.title:SetPoint("TOPLEFT", f.icon, "TOPRIGHT", 10, 1)
-    f.title:SetPoint("RIGHT", f, "RIGHT", -12, 0)
-    f.sub = Theme and Theme.NewText(f, { size = 11, color = Theme.C.text, oneLine = true }) or f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
-    f.sub:SetPoint("BOTTOMLEFT", f.icon, "BOTTOMRIGHT", 10, 0)
-    f.sub:SetPoint("RIGHT", f, "RIGHT", -100, 0)
+    f.title:SetPoint("RIGHT", f.close, "LEFT", -8, 0)
+    f.sub = Theme and Theme.NewText(f, { size = 11, color = Theme.C.text, maxLines = 2 }) or f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
+    f.sub:SetPoint("TOPLEFT", f.title, "BOTTOMLEFT", 0, -3)
+    f.sub:SetPoint("RIGHT", f, "RIGHT", -12, 0)
     f.go = Theme and Theme.NewButton(f, "Go there", 84, 22, function() Crowd:GoToAlternative() end) or CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     f.go:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -10, 8)
     f.invite = Theme and Theme.NewButton(f, "Invite", 64, 22, function() Crowd:InviteNearby() end) or CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    f.invite:SetPoint("RIGHT", f.go, "LEFT", -6, 0)
+    f.invite:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -10, 8)
     f.invite:SetScript("OnEnter", function(self)
         local tt = rawget(_G, "GameTooltip")
         if not tt then return end
@@ -343,10 +350,30 @@ local function Banner()
         tt:Show()
     end)
     f.invite:SetScript("OnLeave", function() local tt = rawget(_G, "GameTooltip") if tt then tt:Hide() end end)
-    f.close = Theme and Theme.NewButton(f, "x", 22, 18, function() Crowd.snoozedUntil = ns.Now() + 300 f:Hide() end) or CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    f.close:SetPoint("TOPRIGHT", f, "TOPRIGHT", -8, -6)
     f:Hide()
     return f
+end
+
+-- Lay the banner out for the buttons that are showing: the buttons sit in a row at the bottom right,
+-- the sub text stops before the leftmost one, and the frame grows so two lines of sub text fit.
+local function Layout(f, showInvite, showGo)
+    f.invite:SetShown(showInvite)
+    f.go:SetShown(showGo)
+    f.invite:ClearAllPoints()
+    f.go:ClearAllPoints()
+    f.go:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -10, 8)
+    if showGo then f.invite:SetPoint("RIGHT", f.go, "LEFT", -6, 0)
+    else f.invite:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -10, 8) end
+    local leftmost = (showInvite and f.invite) or (showGo and f.go) or nil
+    f.sub:ClearAllPoints()
+    f.sub:SetPoint("TOPLEFT", f.title, "BOTTOMLEFT", 0, -3)
+    if leftmost then f.sub:SetPoint("RIGHT", leftmost, "LEFT", -10, 0)
+    else f.sub:SetPoint("RIGHT", f, "RIGHT", -12, 0) end
+    local titleH = ns.PlainNumber(ns.Safe(f.title.GetStringHeight, f.title)) or 14
+    local subH = ns.PlainNumber(ns.Safe(f.sub.GetStringHeight, f.sub)) or 12
+    local wanted = 12 + titleH + 3 + subH + 10
+    if leftmost then wanted = math.max(wanted, 12 + titleH + 3 + 22 + 8) end
+    f:SetHeight(math.max(58, math.ceil(wanted)))
 end
 
 function Crowd:GoToAlternative()
@@ -379,6 +406,7 @@ function Crowd:ReleaseOverride()
 end
 
 function Crowd:Update()
+    if self.preview then return end
     local f = Banner()
     if cfg().enabled == false or (ns.UI and ns.UI.AllHidden and ns.UI:AllHidden()) then f:Hide() return end
     local tagged, free, players, crowded = self:Level()
@@ -397,7 +425,7 @@ function Crowd:Update()
     local title
     if crowded and tagged >= MIN_TAGGED then title = string.format("Crowded: %d of %d quest mobs are taken by others", tagged, total)
     elseif crowded then title = string.format("Crowded: %d players hunting the same mobs", players)
-    else title = string.format("Kill quest with %s around - group up, kill credit is shared", players >= 2 and (players .. " players") or "others") end
+    else title = "Group up - kill credit is shared" end
     f.title:SetText(title)
     if ns.Theme then ns.Theme.Color(f.title, crowded and { 1, 0.7, 0.3 } or { 0.55, 0.85, 0.45 }) end
     local spawn = self:SpawnAlternatives()[1]
@@ -421,14 +449,14 @@ function Crowd:Update()
     end
     self:PollZone()
     -- a shared kill step: a group shares kill credit, so offer to invite the people around
-    f.invite:SetShown(killShare == true)
     if killShare and crowded then sub = "kill credit is shared in a group - invite them  ·  " .. sub
-    elseif killShare then sub = "Invite the players near you (or ask to join theirs)" .. (spawn and ("  ·  quieter: " .. spawn.label) or "") end
-    f.sub:SetWidth(0)
-    f.sub:SetPoint("RIGHT", f, "RIGHT", killShare and -170 or -100, 0)
+    elseif killShare then
+        sub = string.format("Invite the %s near you (or ask to join theirs)", players >= 2 and (players .. " players") or "players")
+            .. (spawn and ("  ·  quieter: " .. spawn.label) or "")
+    end
     f.sub:SetText(sub)
-    f.go:SetShown(self.alt ~= nil or self.altZone ~= nil)
     f.go.label:SetText(self.alt and "Go there" or "Switch zone")
+    Layout(f, killShare == true, self.alt ~= nil or self.altZone ~= nil)
     if not f:IsShown() then
         f:Show()
         local now = ns.Now()
@@ -437,6 +465,19 @@ function Crowd:Update()
             ns.Printf("%s. %s", title, sub)
         end
     end
+end
+
+--- /fg crowd test - show the banner with sample text for 10 s (to see where it sits and how it wraps)
+function Crowd:Preview()
+    local f = Banner()
+    f.title:SetText("Group up - kill credit is shared")
+    if ns.Theme then ns.Theme.Color(f.title, { 0.55, 0.85, 0.45 }) end
+    f.sub:SetText("Invite the 3 players near you (or ask to join theirs)  ·  quieter: Redridge Mongrel also spawn 312 yd SW (13 spots)")
+    f.go.label:SetText("Go there")
+    Layout(f, true, true)
+    f:Show()
+    self.preview = true
+    ns.Events:After(10, function() if Crowd.preview then Crowd.preview = nil f:Hide() Crowd:Update() end end)
 end
 
 function Crowd:OnInit()
