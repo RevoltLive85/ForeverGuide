@@ -443,6 +443,7 @@ do
     check(silent + un == 60 - 38, "the other " .. (60 - 38) .. " ids are silent or unanswered (" .. silent .. " + " .. un .. ")")
     ns.Commands:Run("scan status")
     -- "/fg scan new": exactly the bundled Forever-only id ranges, with level + objectives captured
+    local realDifficulty, realObjectives = C_QuestLog.GetQuestDifficultyLevel, C_QuestLog.GetQuestObjectives
     C_QuestLog.GetQuestDifficultyLevel = function(id) return server[id] and 7 or 0 end
     C_QuestLog.GetQuestObjectives = function(id) return server[id] and { { text = "Dark Iron Spy slain: 0/10", type = "monster" } } or {} end
     server[90104] = true
@@ -455,6 +456,8 @@ do
         "scan new records title, level and objectives of a Forever quest")
     ns.ForeverNewQuestIDRanges = savedRanges
     C_QuestLog.GetTitleForQuestID = realTitle
+    C_QuestLog.GetQuestDifficultyLevel, C_QuestLog.GetQuestObjectives = realDifficulty, realObjectives
+    ns.Quest:Refresh()
 end
 
 
@@ -478,6 +481,39 @@ do
     check(ns.Quest:XPMultiplier(783, 1) == 1 and ns.Quest:XPMultiplier(783, 7) == 0.8 and ns.Quest:XPMultiplier(783, 12) == 0.1, "xp multiplier follows the Classic reduction table")
 end
 
+-- ---- audit regressions (2026-09-20) --------------------------------------------------------
+do
+    -- 1. an objective step whose wording matches no live objective must not count as done
+    ns.RegisterGuide({ id = "AUDIT_OBJ", name = "audit obj", steps = {
+        { type = "ACCEPT", quest = 11 },
+        { type = "KILL", quest = 11, target = "Defias Trapper", npc = 6 },   -- npc 6 = Kobold Vermin in the DB, wording matches nothing
+        { type = "TURNIN", quest = 11 } } })
+    if ns.Quest:IsOnQuest(11) then MOCK_ABANDON(11); settle() end
+    G:Activate("AUDIT_OBJ", true); settle()
+    -- quest 11 needs a higher level than the test character has: the whole quest is deferred (guide runs past its end)
+    check(G.progress.deferred[11] == 1 and cur() == 4, "a quest above the level is deferred with all its steps (cur=" .. tostring(cur()) .. " lvl=" .. tostring(ns.Player:GetLevel()) .. ")")
+    MOCK_ACCEPT(11, "Riverpaw Gnoll Bounty", { { text = "Kobold Vermin slain", finished = false, numFulfilled = 0, numRequired = 6 }, { text = "Painted Gnoll Armband", finished = false, numFulfilled = 0, numRequired = 8 } }); settle()
+    check(G.progress.deferred[11] == nil and cur() == 2, "taking a deferred quest by hand brings the guide back to its objective steps (" .. tostring(cur()) .. ")")
+    check(cur() == 2, "a kill step with unmatched wording stays current at 0/6 instead of being skipped (" .. tostring(cur()) .. ")")
+    MOCK_PROGRESS(11, 1, 6); settle()
+    check(cur() == 3, "...and completes once the objective its index points at is finished (" .. tostring(cur()) .. ")")
+    MOCK_ABANDON(11); settle()
+    -- 2. two steps at the same spot: the arrow label follows the step, and a repeated TRAVEL completes
+    ns.RegisterGuide({ id = "AUDIT_NAV", name = "audit nav", steps = {
+        { type = "ACCEPT", quest = 62, map = 1429, x = 40, y = 60, npc = 240 },
+        { type = "TURNIN", quest = 62, map = 1429, x = 40, y = 60, npc = 240 },
+        { type = "TRAVEL", map = 1429, x = 40, y = 60, text = "Go to A" },
+        { type = "TRAVEL", map = 1429, x = 40, y = 60, text = "Go to A again" },
+        { type = "NOTE", text = "end" } } })
+    G:Activate("AUDIT_NAV", true); settle()
+    MOCK_ACCEPT(62, "The Fargodeep Mine", {}); settle()
+    check(cur() == 2 and ns.Navigation.target and ns.Navigation.target.label == G:GetStepText(step()), "same spot, next step: the navigation label follows the step (" .. tostring(ns.Navigation.target and ns.Navigation.target.label) .. ")")
+    MOCK_TURNIN(62); settle()
+    MOCK_MOVE(40, 60); ns.Navigation:Update(); settle()
+    ns.Navigation:Update(); settle()
+    check(cur() == 5, "two TRAVEL steps to the same spot both complete on arrival (" .. tostring(cur()) .. ")")
+end
+
 -- ---- editor + resync -------------------------------------------------------------------
 do
     G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); G:SetStep(1); settle()
@@ -489,6 +525,24 @@ do
     check(ns.db.edits and ns.db.edits.GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST and ns.db.edits.GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST[step.index] ~= nil, "edit persisted in ForeverGuideDB.edits")
     ns.Commands:Run("edit note test note")
     check(ns.Editor:Effective(step).note == "test note", "/fg edit note sets the note")
+    do
+        ns.Commands:Run("edit clear")
+        local near
+        for _, s in ipairs(G.active.steps) do if s.near then near = s break end end
+        G:SetStep(near.index); settle()
+        near = G:GetCurrentStep()   -- Evaluate may have moved on; the note lands on the current step
+        check(near and near.near == true, "the nearest-spawn step is current (" .. tostring(near and near.index) .. ")")
+        local m0, x0, y0 = ns.Navigation:ResolveStep(near)
+        ns.Commands:Run("edit note just a note")
+        local m1, x1, y1 = ns.Navigation:ResolveStep(near)
+        check(m0 == m1 and x0 == x1 and y0 == y1, string.format("a note-only edit does not move a nearest-spawn step (%s,%s -> %s,%s)", tostring(x0), tostring(y0), tostring(x1), tostring(y1)))
+        check(ns.Editor:Effective(near).hasEdit and not ns.Editor:Effective(near).edited, "note-only edit: hasEdit set, positional override not")
+        ns.Commands:Run("edit clear")
+        G:SetStep(1); settle()
+        MOCK_MOVE(33.3, 44.4)
+        ns.Commands:Run("edit here")
+        ns.Commands:Run("edit note test note")
+    end
     ns.Commands:Run("edits")
     ns.Commands:Run("edit clear")
     local map2, x2 = ns.Navigation:ResolveStep(step)
@@ -729,7 +783,10 @@ do
     ns.AutoQuest:Set("accept", "guide")
     ns.Commands:Run("edit note keep me")
     ns.db.edits.GEN_ALLIANCE_DWARF_01_DUN_MOROGH[G.current] = { type = G:GetCurrentStep().type, quest = G:GetCurrentStep().quest, map = 1426, x = 12.5, y = 34.5, npc = 999 }
+    ns.db.edits.GEN_ALLIANCE_DWARF_01_DUN_MOROGH[3] = { type = "ACCEPT", quest = 179, npc = 658 }
+    ns.db.ui.width = 480; ns.db.ui.hideTracker = false; ns.db.ui.hideOnMap = false
     ns.Persist:Save()
+    check(ns.Persist.lastSaveOK == true, "the cvar mirror verified its write")
     check(#(MOCK.cvars.ForeverGuideA0 or "") > 0 and #(MOCK.cvars.ForeverGuideCSniffClassicBetaPvE20 or MOCK.cvars["ForeverGuideC" .. ((UnitName("player") .. GetRealmName()):gsub("[^%w]", "")):sub(1, 24) .. "0"] or "") > 0, "cvar mirror written (account + character)")
     local savedStep, savedGuide = G.progress.step, ns.char.activeGuide
     -- simulate the beta: SavedVariables come back nil at the next login
@@ -744,6 +801,9 @@ do
     check(ns.db.ui.x == -123 and ns.db.ui.y == -45 and ns.db.minimap.angle == 137 and ns.db.auto.accept == "guide", "settings restored")
     local e = ns.db.edits and ns.db.edits[savedGuide] and ns.db.edits[savedGuide][savedStep]
     check(e and e.x == 12.5 and e.npc == 999, "step edit restored")
+    local e2 = ns.db.edits[savedGuide][3]
+    check(e2 and e2.npc == 658 and e2.quest == 179 and e and e.quest ~= nil, "a second step edit survives the mirror too (separator kept)")
+    check(ns.db.ui.width == 480 and ns.db.ui.hideTracker == false and ns.db.ui.hideOnMap == false, "window width and the tracker/map switches are restored")
     ns.AutoQuest:Set("accept", "on")
     ns.db.edits = {}
     G:Activate(savedGuide, true); G:Reset(); settle()

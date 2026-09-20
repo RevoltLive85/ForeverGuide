@@ -61,21 +61,36 @@ local function ReadChunks(prefix, n)
     return s ~= "" and s or nil
 end
 
+local warnedFull = {}
 local function WriteChunks(prefix, n, str)
     local c = CVar()
     if not c then return false end
     Register(prefix, n)
     str = str or ""
-    if #str > CHUNK * n then str = str:sub(1, CHUNK * n) end
+    if #str > CHUNK * n then
+        if not warnedFull[prefix] then
+            warnedFull[prefix] = true
+            ns.Warn(string.format("cvar mirror: %s state is %d characters, only %d fit - the tail (step edits) will not survive a beta login. Fold edits in with tools/apply_edits.py.", prefix == ACCT_PREFIX and "account" or "character", #str, CHUNK * n))
+        end
+        str = str:sub(1, CHUNK * n)
+    end
+    local ok = true
     for i = 0, n - 1 do
         local piece = str:sub(i * CHUNK + 1, (i + 1) * CHUNK)
-        pcall(c.SetCVar, prefix .. i, piece)
+        local okc, res = pcall(c.SetCVar, prefix .. i, piece)
+        if not okc or res == false then ok = false end
     end
-    return true
+    -- SetCVar answers false (no error) for a cvar the client refused to register: read the first chunk back
+    if ok then
+        local okr, back = pcall(c.GetCVar, prefix .. "0")
+        if not okr or ns.PlainString(back) ~= str:sub(1, CHUNK) then ok = false end
+    end
+    return ok
 end
 
 -- ---- encoding: k=v pairs joined by ';' (values never contain ';' or '=') ------
-local function esc(s) return (tostring(s):gsub("[;=|]", "_")) end
+local function esc(s) return (tostring(s):gsub("[;=]", "_")) end   -- '|' is the edit-record separator, keep it
+local function escField(s) return (tostring(s):gsub("[;=|:]", "_")) end
 
 local function encodePairs(t, order)
     local out = {}
@@ -172,7 +187,7 @@ function Persist:DecodeChar(s)
 end
 
 -- ---- account settings + edits ----------------------------------------------------
-local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "rec", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "sc", "sd", "ss", "e" }
+local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "rec", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "w", "ht", "hm", "sc", "sd", "ss", "e" }
 
 function Persist:EncodeAcct()
     local db = ns.db
@@ -181,7 +196,8 @@ function Persist:EncodeAcct()
         v = 1,
         shown = b01(ui.shown ~= false), locked = b01(ui.locked), scale = ui.scale, point = ui.point, x = ui.x, y = ui.y,
         hic = b01(ui.hideInCombat), fs = ui.fontSize, ha = b01(ui.hiddenAll),
-        op = ui.opacity, rows = ui.maxRows, sc = b01(ui.showCompleted ~= false), sd = b01(ui.showDistances ~= false), ss = b01(ui.showSubtitles ~= false),
+        op = ui.opacity, rows = ui.maxRows, w = ui.width, ht = b01(ui.hideTracker ~= false), hm = b01(ui.hideOnMap ~= false),
+        sc = b01(ui.showCompleted ~= false), sd = b01(ui.showDistances ~= false), ss = b01(ui.showSubtitles ~= false),
         wp = b01(nav.waypoint == nil or nav.waypoint.enabled ~= false), rt = b01(nav.waypoint == nil or nav.waypoint.route ~= false),
         wa = b01(nav.waypoint == nil or nav.waypoint.animate ~= false), ws = nav.waypoint and nav.waypoint.size,
         we = b01(nav.waypoint ~= nil and nav.waypoint.engine == true),
@@ -195,7 +211,7 @@ function Persist:EncodeAcct()
     local edits = {}
     for gid, steps in pairs(db.edits or {}) do
         for idx, e in pairs(steps) do
-            edits[#edits + 1] = table.concat({ gid, idx, e.map or "", e.x or "", e.y or "", e.npc or "", e.radius or "", e.type or "", e.quest or "" }, ":")
+            edits[#edits + 1] = table.concat({ escField(gid), idx, e.map or "", e.x or "", e.y or "", e.npc or "", e.radius or "", escField(e.type or ""), e.quest or "" }, ":")
         end
     end
     table.sort(edits)
@@ -221,6 +237,9 @@ function Persist:DecodeAcct(s)
     if t.ha then ui.hiddenAll = bool(t.ha) end
     if num(t.op) then ui.opacity = num(t.op) end
     if num(t.rows) then ui.maxRows = num(t.rows) end
+    if num(t.w) then ui.width = num(t.w) end
+    if t.ht then ui.hideTracker = bool(t.ht) end
+    if t.hm then ui.hideOnMap = bool(t.hm) end
     if t.sc then ui.showCompleted = bool(t.sc) end
     if t.sd then ui.showDistances = bool(t.sd) end
     if t.ss then ui.showSubtitles = bool(t.ss) end
@@ -253,7 +272,7 @@ function Persist:DecodeAcct(s)
             if gid and idx then
                 db.edits[gid] = db.edits[gid] or {}
                 local e = db.edits[gid][idx] or {}
-                if tonumber(f[3]) then e.map, e.x, e.y = tonumber(f[3]), tonumber(f[4]), tonumber(f[5]) end
+                if tonumber(f[3]) and tonumber(f[4]) and tonumber(f[5]) then e.map, e.x, e.y = tonumber(f[3]), tonumber(f[4]), tonumber(f[5]) end
                 if tonumber(f[6]) then e.npc = tonumber(f[6]) end
                 if tonumber(f[7]) then e.radius = tonumber(f[7]) end
                 if f[8] and f[8] ~= "" then e.type = f[8] end
@@ -271,10 +290,15 @@ Persist.restored = { acct = false, char = false }
 
 function Persist:Save()
     if not self.available then return false end
-    WriteChunks(ACCT_PREFIX, ACCT_CHUNKS, self:EncodeAcct())
-    WriteChunks(CharKey(), CHAR_CHUNKS, self:EncodeChar())
+    local okA = WriteChunks(ACCT_PREFIX, ACCT_CHUNKS, self:EncodeAcct())
+    local okC = WriteChunks(CharKey(), CHAR_CHUNKS, self:EncodeChar())
     self.lastSave = ns.Now()
-    return true
+    self.lastSaveOK = okA and okC
+    if not self.lastSaveOK and not self.warnedWrite then
+        self.warnedWrite = true
+        ns.Warn("cvar mirror: the client did not store the state (SetCVar refused) - progress will not survive a beta login.")
+    end
+    return self.lastSaveOK
 end
 
 function Persist:Restore()
@@ -286,6 +310,11 @@ function Persist:Restore()
     end
     if D.freshChar then
         local s = ReadChunks(CharKey(), CHAR_CHUNKS)
+        if not s then
+            -- the realm name may not have been readable when an earlier save built the key
+            local name = ns.PlainString(ns.Safe(rawget(_G, "UnitName"), "player"))
+            if name then s = ReadChunks("ForeverGuideC" .. (name:gsub("[^%w]", "")), CHAR_CHUNKS) end
+        end
         if s and self:DecodeChar(s) then self.restored.char = true end
     end
 end
@@ -296,7 +325,7 @@ function Persist:Status()
     return string.format("SavedVariables %s at login; cvar mirror %s (last save %s)",
         (D.freshAccount or D.freshChar) and "were EMPTY (beta bug)" or "loaded",
         (self.restored.acct or self.restored.char) and "restored the state" or "on standby",
-        self.lastSave and (math.floor(ns.Now() - self.lastSave) .. "s ago") or "never")
+        self.lastSave and (math.floor(ns.Now() - self.lastSave) .. "s ago" .. (self.lastSaveOK == false and ", NOT STORED" or "")) or "never")
 end
 
 function Persist:OnInit()

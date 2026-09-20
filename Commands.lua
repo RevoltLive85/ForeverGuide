@@ -479,6 +479,7 @@ function handlers.wrong(rest)
         end
     end
     table.insert(ns.db.reports, r)
+    while #ns.db.reports > 300 do table.remove(ns.db.reports, 1) end
     ns.Printf("noted (%d report%s). Thanks - run tools/collect_reports.py to turn these into corrections.", #ns.db.reports, #ns.db.reports == 1 and "" or "s")
 end
 handlers.report = handlers.wrong

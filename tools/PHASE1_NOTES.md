@@ -331,3 +331,29 @@ after every install via `cc_run` in that folder. Tests: 96 checks.
   corner) - they take the ground direction from the character and a **ray clamp** pins them to the edge in that
   direction (left = left edge at the character's height, behind = bottom edge), drawn at 70% alpha; (3) a marker holds
   its last position for 1.5 s across a momentary gap in position/facing data instead of blinking. Tests: 171.
+
+## Update 2026-09-20 (night) — full code audit (two reviewers over every Lua file), v0.3.2
+Confirmed and fixed (each with a regression test; 183 tests):
+- Guide.IsStepDone: an objective step whose `target` wording matched no live objective text counted as DONE (allCovered
+  started true) when the index came from the DB npc/item name - kill steps were skipped at 0/6. Now a text match is
+  required; with none, the objective the index points at decides.
+- Guide.UpdateNavigation deduped the target by map/x/y only: two steps at one spot (accept then turn in at an npc,
+  ~23% of consecutive step pairs) kept the previous label/radius on the arrow, and a TRAVEL to a spot already reached
+  could never complete (arrival latch already fired). The target now carries guide id + step index + label.
+- Guide.Evaluate: a quest deferred for level that the player then took by hand was never returned to (its objective
+  steps stayed "passed over"); the guide now jumps back to it ("<quest> is in your log - back to it").
+- Persist: the edit-record separator `|` was stripped by `esc` -> a second `/fg edit` corrupted the first and lost the
+  rest after a beta login; `ui.width`, `hideTracker`, `hideOnMap` were never mirrored (snapped back every login);
+  WriteChunks now verifies the write (SetCVar false / read-back) and warns once when the 1200-char budget is exceeded;
+  the character key falls back to the realm-less key on restore; half-truncated edits no longer crash `/fg edits`.
+- Editor.Effective set `edited` for a note/radius-only edit, which switched the resolver away from the nearest spawn /
+  Forever npc position (the opposite of what the note-writer wanted). `edited` now means "position or npc pinned";
+  `hasEdit` drives the "(edited)" tooltip suffix.
+- Quest.Refresh cached the "Quest <id>" placeholder when the title came back secret (combat) and kept it after the
+  quest left the log; AutoQuest read the quest id from `info[#info]` (holes -> `frequency`); GetStepText formatted a
+  TRAVEL with x but no y; ClearBlizzardWaypoint compared a nil y; the waypoint used raw tonumber on GetCameraZoom;
+  `/fg wrong` reports are capped at 300.
+- Test harness: the scanner test left stubbed C_QuestLog.GetQuestObjectives/GetQuestDifficultyLevel in place for every
+  later test (restored now).
+Known limitation (not a bug): the in-world marker's direction is relative to the character's facing, not the camera -
+no camera-yaw API exists; a left-drag camera orbit around a standing character does not update it, moving does.

@@ -82,8 +82,9 @@ function Quest:Refresh()
             else
                 local questID = PlainNumber(info.questID)
                 if questID and questID > 0 then
-                    local title = PlainString(info.title) or ("Quest " .. questID)
-                    self.titles[questID] = title
+                    local real = PlainString(info.title)
+                    local title = real or self.titles[questID] or ("Quest " .. questID)
+                    if real then self.titles[questID] = real end   -- never cache the placeholder (secret title in combat)
                     local entry = {
                         questID = questID,
                         title = title,

@@ -243,7 +243,7 @@ function QG:BuildGuideEntries()
         }
         local tip = {}
         local eff = ns.Editor and ns.Editor:Effective(s) or s
-        if eff.note and eff.note ~= "" then tip[#tip + 1] = eff.note .. (eff.edited and "  (edited)" or "") end
+        if eff.note and eff.note ~= "" then tip[#tip + 1] = eff.note .. (eff.hasEdit and "  (edited)" or "") end
         if s.quest and ns.Quest then
             local grey = ns.Quest:GreyWarning(s.quest)
             if grey then tip[#tip + 1] = "|cffff8040" .. grey .. "|r" end

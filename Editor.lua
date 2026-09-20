@@ -121,7 +121,7 @@ function Editor:List()
         for _, i in ipairs(idx) do
             local e = edits[i]
             local parts = {}
-            if e.x then parts[#parts + 1] = string.format("%s %.1f,%.1f", e.zone or tostring(e.map), e.x, e.y) end
+            if e.x and e.y then parts[#parts + 1] = string.format("%s %.1f,%.1f", e.zone or tostring(e.map), e.x, e.y) end
             if e.npc then parts[#parts + 1] = string.format("npc %s (%d)", e.npcName or "?", e.npc) end
             if e.note then parts[#parts + 1] = '"' .. e.note .. '"' end
             if e.radius then parts[#parts + 1] = e.radius .. " yd" end
@@ -145,6 +145,7 @@ function Editor:Effective(step)
     if e.npc then out.npc = e.npc out.npcName = e.npcName end
     if e.note then out.note = e.note end
     if e.radius then out.radius = e.radius end
-    out.edited = true
+    out.hasEdit = true                               -- "(edited)" in the tooltip
+    out.edited = (e.x ~= nil) or (e.npc ~= nil)      -- only a pinned spot/npc overrides the resolver's better guesses
     return out
 end

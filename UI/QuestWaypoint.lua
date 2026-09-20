@@ -228,7 +228,7 @@ function WP:BearingPosition(state)
     if not state or not state.angle or not state.distance then return nil end
     local w, h = screenSize()
     local px, py = playerPoint(w, h)
-    local zoom = tonumber(ns.Safe and ns.Safe(rawget(_G, "GetCameraZoom")) or nil) or 15
+    local zoom = ns.PlainNumber(ns.Safe(rawget(_G, "GetCameraZoom"))) or 15
     if zoom < 5 then zoom = 5 elseif zoom > 40 then zoom = 40 end
     local D, H = zoom * math.cos(PITCH), zoom * math.sin(PITCH) + 1.5   -- camera aims at the chest
     local f = w / 2

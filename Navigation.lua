@@ -64,6 +64,8 @@ function Nav:SetTarget(target)
         y = target.y,
         label = target.label,
         owner = target.owner,
+        guide = target.guide,
+        step = target.step,
         radius = target.radius or (ns.db and ns.db.nav.arrivalRadius) or 15,
     }
     t.instanceID, t.worldX, t.worldY = self:MapToWorld(t.map, t.x, t.y)
@@ -104,7 +106,7 @@ function Nav:ClearBlizzardWaypoint()
     if type(cur) == "table" and own then
         local pos = cur.position
         local cx, cy = pos and PlainNumber(pos.x), pos and PlainNumber(pos.y)
-        if PlainNumber(cur.uiMapID) ~= own.map or not cx or math.abs(cx - own.x) > 1e-3 or math.abs(cy - own.y) > 1e-3 then
+        if PlainNumber(cur.uiMapID) ~= own.map or not cx or not cy or math.abs(cx - own.x) > 1e-3 or math.abs(cy - own.y) > 1e-3 then
             return   -- not ours any more
         end
     end

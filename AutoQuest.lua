@@ -106,10 +106,11 @@ local function HandleGreeting()
         local n = PlainNumber(Safe(rawget(_G, "GetNumAvailableQuests"))) or 0
         for i = 1, n do
             local title = PlainString(Safe(rawget(_G, "GetAvailableTitle"), i))
-            local info = { Safe(rawget(_G, "GetAvailableQuestInfo"), i) }
-            local isTrivial, frequency, isRepeatable = info[1], info[2], info[3]
-            -- Retail returns the quest id as the trailing value; fall back to a title match against the guide
-            local questID = PlainNumber(info[#info])
+            local nret = select("#", Safe(rawget(_G, "GetAvailableQuestInfo"), i))
+            local isTrivial, frequency, isRepeatable, _, qid = Safe(rawget(_G, "GetAvailableQuestInfo"), i)
+            -- Retail returns the quest id as the fifth value; with fewer returns (nil holes) never guess
+            -- from the tail - that lands on `frequency` - fall back to a title match against the guide
+            local questID = nret >= 5 and PlainNumber(qid) or nil
             if questID and questID <= 0 then questID = nil end
             local g = ns.Guide.active
             if not questID and g and title then

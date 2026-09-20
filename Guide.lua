@@ -261,17 +261,23 @@ function Guide:IsStepDone(step, idx)
         local objIdx = self:StepObjectiveIndex(step)
         if objIdx then
             -- every objective this step covers must be finished
-            local allCovered = true
+            local allCovered, matched = true, false
             local objs = Q:GetObjectives(step.quest) or {}
             local keys = step.target and string.gmatch(step.target, "[^/]+")
             if keys then
                 for part in keys do
                     local lower = string.lower(ns.Trim(part))
                     for _, o in ipairs(objs) do
-                        if o.text and string.find(string.lower(o.text), lower, 1, true) and not o.finished then allCovered = false end
+                        if o.text and string.find(string.lower(o.text), lower, 1, true) then
+                            matched = true
+                            if not o.finished then allCovered = false end
+                        end
                     end
                 end
-            else
+            end
+            if not matched then
+                -- the guide's wording matches no live objective text (the index came from the DB's
+                -- npc/item name): judge the objective the index points at, never "done by default"
                 local o = Q:GetObjective(step.quest, objIdx)
                 allCovered = o ~= nil and o.finished == true
             end
@@ -370,8 +376,16 @@ function Guide:Evaluate(reason)
     -- 0. quests skipped earlier because the level was too low: back to them once it is reached
     for quest, acceptIdx in pairs(p.deferred) do
         local s = steps[acceptIdx]
-        if not s or s.quest ~= quest or p.done[acceptIdx] or ns.Quest:IsOnQuest(quest) or ns.Quest:IsCompleted(quest) then
+        if not s or s.quest ~= quest or p.done[acceptIdx] or ns.Quest:IsCompleted(quest) then
             p.deferred[quest] = nil
+        elseif ns.Quest:IsOnQuest(quest) then
+            -- the player took the quest by hand (a level-independent giver, or a level we misjudged):
+            -- its objective steps were passed over as deferred, so go back and work them
+            p.deferred[quest] = nil
+            if acceptIdx < i then
+                i = acceptIdx
+                self.note = string.format("%s is in your log - back to it.", ns.Quest:GetTitle(quest) or ("quest " .. quest))
+            end
         elseif not self:LevelGate(s) then
             p.deferred[quest] = nil
             if acceptIdx < i then
@@ -471,9 +485,14 @@ function Guide:UpdateNavigation()
     local mapID, x, y = ns.Navigation:ResolveStep(step)
     if mapID then
         local t = ns.Navigation.target
-        if not (t and t.map == mapID and t.x == x and t.y == y) then
-            local eff = ns.Editor and ns.Editor:Effective(step) or step
-            ns.Navigation:SetTarget({ map = mapID, x = x, y = y, label = self:GetStepText(step), radius = eff.radius, owner = "guide" })
+        local eff = ns.Editor and ns.Editor:Effective(step) or step
+        local label = self:GetStepText(step)
+        -- same spot for two steps in a row (accept then turn in at one npc) still needs a fresh
+        -- target: the label, the radius and the one-shot arrival latch belong to the step
+        if not (t and t.map == mapID and t.x == x and t.y == y and t.label == label and t.radius == (eff.radius or t.radius)
+                and t.guide == self.active.id and t.step == step.index) then
+            ns.Navigation:SetTarget({ map = mapID, x = x, y = y, label = label, radius = eff.radius, owner = "guide",
+                                      guide = self.active.id, step = step.index })
         end
     else
         ns.Navigation:Clear()
@@ -634,7 +653,7 @@ function Guide:GetStepText(step)
     elseif t == "TALK" then
         return verb .. " " .. tostring(step.npcName or (DB and DB:NPCName(step.npc)) or ("NPC " .. tostring(step.npc)))
     elseif t == "TRAVEL" or t == "FLY" then
-        return verb .. " " .. tostring(step.zone or (step.x and string.format("%.1f, %.1f", step.x, step.y)) or "destination")
+        return verb .. " " .. tostring(step.zone or (step.x and step.y and string.format("%.1f, %.1f", step.x, step.y)) or "destination")
     elseif t == "HEARTH" then
         return verb .. " " .. tostring(step.zone or "the inn")
     end
