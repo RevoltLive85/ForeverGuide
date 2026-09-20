@@ -275,6 +275,20 @@ function UI:OnInit()
     }, function() ns.Events:Debounce("ui", 0.05, refresh) end)
 end
 
+-- the fullscreen world map: the window steps aside while it is open (option hideOnMap)
+local mapHidden
+function UI:OnMap(open)
+    local f = frame()
+    if not f then return end
+    if open then
+        if ns.db.ui.hideOnMap == false or ns.db.ui.hiddenAll then return end
+        if f:IsShown() then mapHidden = true f:Hide() end
+    elseif mapHidden then
+        mapHidden = nil
+        if not ns.db.ui.hiddenAll and ns.db.ui.shown ~= false then f:Show() end
+    end
+end
+
 -- hide in combat (optional): remember what was showing, restore afterwards
 local combatHidden
 function UI:OnCombat(inCombat)

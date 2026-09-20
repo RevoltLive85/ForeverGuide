@@ -221,6 +221,12 @@ do
     stf.Icon.GetAlpha = function(self) return self.alpha or 1 end
     stf.DistanceText.GetAlpha = function(self) return self.alpha or 1 end
     _G.SuperTrackedFrame = stf
+    local wm = NewRegion("Frame")
+    wm.name = "WorldMapFrame"
+    wm.hooks = {}
+    function wm:HookScript(name, fn) self.hooks[name] = fn end
+    function wm:IsShown() return world.mapOpen == true end
+    _G.WorldMapFrame = wm
 end
 
 -- ---- quests -----------------------------------------------------------------

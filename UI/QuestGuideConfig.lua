@@ -53,6 +53,8 @@ Config.TOGGLES = {
                    set = function(v) Config.Waypoint().route = v Config.Apply() end },
     wpanim     = { label = "waypoint animation", get = function() return Config.Waypoint().animate ~= false end,
                    set = function(v) Config.Waypoint().animate = v Config.Apply() end },
+    map        = { label = "hide the Quest Guide while the world map is open", get = function() return ns.db.ui.hideOnMap ~= false end,
+                   set = function(v) ns.db.ui.hideOnMap = v end },
     tracker    = { label = "hide Blizzard's objective tracker while the Quest Guide shows", get = function() return ns.db.ui.hideTracker ~= false end,
                    set = function(v) ns.db.ui.hideTracker = v if ns.QuestGuide and ns.QuestGuide.ApplyTracker then ns.QuestGuide:ApplyTracker() end end },
     completed  = { label = "show completed steps", get = function() return ns.db.ui.showCompleted ~= false end,
@@ -74,7 +76,7 @@ end
 --- Option-panel items (same shape Options.lua uses)
 function Config.OptionItems()
     local items = { { header = "Quest Guide" } }
-    for _, key in ipairs({ "questguide", "tracker", "completed", "distances", "subtitles" }) do
+    for _, key in ipairs({ "questguide", "tracker", "map", "completed", "distances", "subtitles" }) do
         local t = Config.TOGGLES[key]
         items[#items + 1] = { key = "qg_" .. key, label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
     end

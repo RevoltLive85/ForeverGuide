@@ -131,8 +131,18 @@ function WP:SetEnabled(on)
 end
 
 --- Is the world pin usable right now? (engine frame present, shown, and our point)
+--- The fullscreen world map covers the pin: nothing of ours should float over it.
+local function mapOpen()
+    local wm = rawget(_G, "WorldMapFrame")
+    if not wm then return false end
+    local ok, shown = pcall(wm.IsShown, wm)
+    return ok and shown == true
+end
+WP.MapOpen = mapOpen
+
 function WP:PinShown()
     if not stf or not cfg().enabled or self:IsSuppressed() then return false end
+    if mapOpen() then return false end
     if not ns.Navigation.target or not ns.Navigation.ownsWaypoint then return false end
     local ok, shown = pcall(stf.IsShown, stf)
     if not ok or not shown then return false end
@@ -166,6 +176,15 @@ function WP:Tick()
         if overlay:IsShown() then overlay:Hide() end
         if #hiddenRegions > 0 and (not cfg().enabled or not ns.Navigation.target) then fadeBlizzard(false) end
     end
+    -- while the map is open the chevron stays away too (the map's own pin shows the spot)
+    if mapOpen() then
+        if ns.Arrow and ns.Arrow.HideTemporarily and not ns.Arrow.suppressedByMap then ns.Arrow.suppressedByMap = true ns.Arrow:HideTemporarily(true, "map") end
+        if ns.Route then ns.Route:Update(nil) end
+        return
+    elseif ns.Arrow and ns.Arrow.suppressedByMap then
+        ns.Arrow.suppressedByMap = false
+        ns.Arrow:HideTemporarily(false, "map")
+    end
     -- the compact chevron covers what the pin cannot (no engine pin, other continent, disabled)
     if ns.Arrow and ns.Arrow.HideTemporarily then
         local want = not show
@@ -183,5 +202,10 @@ end
 
 function WP:OnEnable()
     self:Create()
+    local wm = rawget(_G, "WorldMapFrame")
+    if wm and wm.HookScript then
+        pcall(wm.HookScript, wm, "OnShow", function() WP:Tick() if ns.UI.OnMap then ns.UI:OnMap(true) end end)
+        pcall(wm.HookScript, wm, "OnHide", function() WP:Tick() if ns.UI.OnMap then ns.UI:OnMap(false) end end)
+    end
     self:Tick()
 end

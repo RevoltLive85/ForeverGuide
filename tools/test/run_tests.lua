@@ -550,6 +550,13 @@ do
     check(ns.Arrow.suppressedByWaypoint == false, "the chevron arrow is back when the waypoint is off")
     ns.Commands:Run("waypoint on"); ns.Waypoint:Tick()
     check(ns.db.nav.waypoint.enabled == true and ns.db.nav.blizzardWaypoint == true and ns.Waypoint.overlay:IsShown(), "/fg waypoint on brings the overlay back")
+    -- the world map opens: nothing of ours floats over it; closes: back
+    MOCK.mapOpen = true; WorldMapFrame.hooks.OnShow(); settle()
+    check(not ns.Waypoint.overlay:IsShown() and not ns.Arrow:IsShown(), "world map open: waypoint and chevron hide")
+    check(not ForeverGuideFrame:IsShown(), "world map open: the Quest Guide window steps aside")
+    MOCK.mapOpen = false; WorldMapFrame.hooks.OnHide(); settle()
+    check(ns.Waypoint.overlay:IsShown(), "world map closed: the waypoint is back")
+    check(ForeverGuideFrame:IsShown(), "world map closed: the window is back")
     -- no engine pin (other continent / hidden): fallback to the chevron
     MOCK.superTrack = false; ns.Waypoint:Tick()
     check(not ns.Waypoint.overlay:IsShown() and ns.Arrow.suppressedByWaypoint == false, "engine pin hidden: overlay hides and the chevron takes over")
