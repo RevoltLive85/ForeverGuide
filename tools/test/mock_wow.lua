@@ -70,7 +70,12 @@ local function NewRegion(kind)
     function r:SetFrameLevel() end
     function r:RegisterForClicks() end
     function r:SetBlendMode() end
-    function r:GetCenter() return 0, 0 end
+    function r:GetCenter()
+        -- a CENTER anchor on something's BOTTOMLEFT is an absolute position; anything else is 0,0
+        local p = self.points[1]
+        if p and p[1] == "CENTER" and p[3] == "BOTTOMLEFT" then return p[4] or 0, p[5] or 0 end
+        return 0, 0
+    end
     function r:GetEffectiveScale() return 1 end
     function r:SetAllPoints() end
     function r:SetNormalFontObject() end
@@ -96,6 +101,7 @@ function _G.CreateFrame(kind, name, parent, template)
     return f
 end
 _G.UIParent = NewRegion("Frame")
+_G.UIParent:SetSize(1280, 720)
 _G.Minimap = NewRegion("Frame"); _G.Minimap.w = 140
 function _G.Minimap:GetCenter() return 500, 500 end
 function _G.Minimap:GetEffectiveScale() return 1 end

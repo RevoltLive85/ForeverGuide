@@ -221,9 +221,33 @@ do
     ns.UI:Refresh()
     ns.UI:TogglePicker()
     check(ForeverGuidePicker and ForeverGuidePicker:IsShown() and #ForeverGuidePicker.rows >= 2, "guide picker shows auto mode + guides (" .. tostring(ForeverGuidePicker and #ForeverGuidePicker.rows) .. " rows)")
-    ForeverGuidePicker.rows[2]:GetScript("OnClick")(ForeverGuidePicker.rows[2])
+    -- rows: auto, "ROUTES" header, routes..., "CHAPTERS" header, chapters...; click the first chapter row
+    local chapterRow, routeRow
+    for _, row in ipairs(ForeverGuidePicker.rows) do
+        if row:IsShown() and not row.header then
+            if row.onClick and not routeRow then routeRow = row end
+            if row.guideID and row.guideID ~= "__auto" and not chapterRow then chapterRow = row end
+        end
+    end
+    check(routeRow ~= nil and chapterRow ~= nil, "picker lists routes and chapters")
+    chapterRow:GetScript("OnClick")(chapterRow)
     check(ns.char.mode == "guide" and ns.Guide.active ~= nil and not ForeverGuidePicker:IsShown(), "clicking a guide activates it and closes the picker")
     check(ForeverGuideArrowFrame ~= nil and (ForeverGuideArrowFrame:IsShown() or (ns.Waypoint.overlay and ns.Waypoint.overlay:IsShown())), "a target shows either the chevron arrow or the world waypoint")
+    -- any route of the faction can be chosen; the race's own is only the default
+    local routes = ns.Guide:Routes()
+    check(#routes >= 3, "an Alliance character sees every Alliance route (" .. #routes .. ")")
+    local other
+    for _, r in ipairs(routes) do if not r.mine then other = r break end end
+    check(other ~= nil, "routes of other races are offered too")
+    if other then
+        local r, pick = ns.Guide:ChooseRoute(other.key)
+        check(r and r.key == other.key and pick ~= nil and ns.char.route == other.key and ns.Guide.active and ns.Guide.active.id == pick.id, string.format("choosing another race's route activates its fitting chapter (r=%s pick=%s active=%s route=%s)", tostring(r and r.key), tostring(pick and pick.id), tostring(ns.Guide.active and ns.Guide.active.id), tostring(ns.char.route)))
+        check(ns.Persist:EncodeChar():find("r=" .. other.key, 1, true) ~= nil, "the chosen route is mirrored in the cvars")
+        local ap = ns.Guide:AutoPick()
+        check(ap and ns.Guide:RouteOf(ap) == other.key, "auto-pick follows the chosen route (" .. tostring(ap and ap.id) .. ")")
+        ns.Commands:Run("path race")
+        check(ns.char.route == nil, "/fg path race goes back to the race's own route")
+    end
     ns.Tracker:SetMode("guide")
 end
 
@@ -557,9 +581,22 @@ do
     MOCK.mapOpen = false; WorldMapFrame.hooks.OnHide(); settle()
     check(ns.Waypoint.overlay:IsShown(), "world map closed: the waypoint is back")
     check(ForeverGuideFrame:IsShown(), "world map closed: the window is back")
-    -- no engine pin (other continent / hidden): fallback to the chevron
+    -- the engine cannot project the pin (Forever: NavigationState Invalid, frame faded):
+    -- the diamond is placed on the bearing ring around the character instead
     MOCK.superTrack = false; ns.Waypoint:Tick()
-    check(not ns.Waypoint.overlay:IsShown() and ns.Arrow.suppressedByWaypoint == false, "engine pin hidden: overlay hides and the chevron takes over")
+    check(ns.Waypoint.overlay:IsShown() and ns.Waypoint.mode == "bearing" and ns.Arrow.suppressedByWaypoint == true, "engine pin unusable: the diamond goes on the bearing ring (mode=" .. tostring(ns.Waypoint.mode) .. ")")
+    do
+        local px, py = ns.Waypoint.PlayerScreenPoint()
+        local ox, oy = ns.Waypoint.overlay:GetCenter()
+        local st = ns.Navigation.state
+        local ahead = st and st.angle and math.abs(st.angle) < math.pi / 2
+        check(ox and ((ahead and oy > py) or (not ahead and oy < py)), string.format("bearing ring: a target ahead sits above the character, behind below (angle=%.2f dy=%.0f)", st and st.angle or 0, (oy or 0) - py))
+    end
+    -- no direction at all (no facing): fallback to the chevron
+    local savedFacing = MOCK.facing
+    MOCK.facing = nil; ns.Navigation:Update(); ns.Waypoint:Tick()
+    check(not ns.Waypoint.overlay:IsShown() and ns.Arrow.suppressedByWaypoint == false, "no direction known: overlay hides and the chevron takes over")
+    MOCK.facing = savedFacing; ns.Navigation:Update()
     MOCK.superTrack = true; ns.Waypoint:Tick()
     ns.Commands:Run("route off")
     check(ns.db.nav.waypoint.route == false, "/fg route off disables the dotted path")

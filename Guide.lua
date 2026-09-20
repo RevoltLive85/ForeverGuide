@@ -86,15 +86,85 @@ function Guide:Find(text)
     return nil
 end
 
---- Guides usable by this character (faction / class / race filters).
+--- Guides usable by this character (faction / class filters). A guide's race is a
+--- preference, not a lock: any Alliance character may follow the Dwarf route.
 function Guide:Applicable(guide)
     local faction = ns.Player:GetFaction()
     if guide.faction and faction and string.upper(guide.faction) ~= string.upper(faction) then return false end
     local _, classFile = ns.Player:GetClass()
     if guide.class and classFile and not ns.Contains(guide.class, classFile) then return false end
-    local _, raceFile = ns.Player:GetRace()
-    if guide.race and raceFile and not ns.Contains(guide.race, raceFile) then return false end
     return true
+end
+
+--- Does the guide's race list include this character?
+function Guide:ForMyRace(guide)
+    local _, raceFile = ns.Player:GetRace()
+    return not guide.race or not raceFile or ns.Contains(guide.race, raceFile)
+end
+
+-- ---- routes: a route is a chain of chapters GEN_<FACTION>_<KEY>_nn_<ZONE> --------------------
+local ROUTE_LABEL = { HUMAN = "Human", DWARF = "Dwarf / Gnome", NIGHTELF = "Night Elf", ORC = "Orc / Troll", TAUREN = "Tauren",
+                      SCOURGE = "Undead", SKYBORNE = "Skyborne" }
+function Guide:RouteOf(guide)
+    local id = type(guide) == "table" and guide.id or guide
+    if type(id) ~= "string" then return nil end
+    local faction, key = id:match("^GEN_(%u+)_([%u_]-)_%d%d_")
+    if not faction then return nil end
+    return "GEN_" .. faction .. "_" .. key, key
+end
+
+--- The routes this character's faction can follow: { key, label, chapters = {guide...}, mine = bool, chosen = bool }
+function Guide:Routes()
+    local byKey, order = {}, {}
+    for _, id in ipairs(self.list) do
+        local g = self.registry[id]
+        local key, race = self:RouteOf(g)
+        if key and self:Applicable(g) then
+            local r = byKey[key]
+            if not r then
+                r = { key = key, race = race, label = ROUTE_LABEL[race] or race, chapters = {}, mine = self:ForMyRace(g) }
+                byKey[key] = r
+                order[#order + 1] = r
+            end
+            r.chapters[#r.chapters + 1] = g
+        end
+    end
+    for _, r in ipairs(order) do
+        table.sort(r.chapters, function(a, b) return a.id < b.id end)
+        r.chosen = (ns.char.route == r.key)
+    end
+    table.sort(order, function(a, b)
+        if a.mine ~= b.mine then return a.mine end
+        return a.label < b.label
+    end)
+    return order
+end
+
+--- The route the character follows: the chosen one, else the race's own, else nil.
+function Guide:CurrentRoute()
+    local routes = self:Routes()
+    for _, r in ipairs(routes) do if r.chosen then return r end end
+    for _, r in ipairs(routes) do if r.mine then return r end end
+    return routes[1]
+end
+
+--- Choose a route (key or label); activates the chapter that fits the level.
+function Guide:ChooseRoute(which)
+    local target
+    for _, r in ipairs(self:Routes()) do
+        if r.key == which or r.label:lower() == tostring(which):lower() or r.race:lower() == tostring(which):lower() then target = r break end
+    end
+    if not target then return nil end
+    ns.char.route = target.key
+    local level = ns.Player:GetLevel()
+    local pick = target.chapters[1]
+    for _, g in ipairs(target.chapters) do
+        if (g.maxLevel or 60) >= level and (g.minLevel or 1) <= level + 2 then pick = g break end
+        if (g.minLevel or 1) <= level then pick = g end
+    end
+    if pick then self:Activate(pick.id) end
+    if ns.Tracker then ns.Tracker:SetMode("guide") end
+    return target, pick
 end
 
 --- Pick the guide that fits this character best: level range first, then
@@ -105,20 +175,10 @@ function Guide:AutoPick()
     local curMap = ns.Player:GetMapID()
     local curName = curMap and ns.Player:GetMapName(curMap)
     local _, _, curInst = ns.Player:GetWorldPosition()
-    local _, raceFile = ns.Player:GetRace()
-    -- guides for the character's race chain: every guide reachable through `next` from a race guide
+    -- the chapters of the route the character follows (chosen, else the race's own)
     local chain = {}
-    for _, id in ipairs(self.list) do
-        local g = self.registry[id]
-        if g.race and raceFile and ns.Contains(g.race, raceFile) then
-            local cur, guard = g, 0
-            while cur and guard < 40 do
-                chain[cur.id] = true
-                cur = cur.next and self.registry[cur.next] or nil
-                guard = guard + 1
-            end
-        end
-    end
+    local route = self:CurrentRoute()
+    if route then for _, g in ipairs(route.chapters) do chain[g.id] = true end end
     local best, bestScore = nil, nil
     for _, id in ipairs(self.list) do
         local g = self.registry[id]
@@ -136,7 +196,7 @@ function Guide:AutoPick()
                 local inst = ns.Navigation:MapToWorld(g.map, 50, 50)
                 if inst and inst ~= curInst then score = score + 4 end   -- other continent
             end
-            if not chain[g.id] then score = score + 2 end   -- off the race's natural path
+            if not chain[g.id] then score = score + (ns.char.route and 8 or 2) end   -- off the route we follow
             if not bestScore or score < bestScore then best, bestScore = g, score end
         end
     end

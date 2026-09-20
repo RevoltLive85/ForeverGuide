@@ -10,13 +10,22 @@
 --
 -- How it works: Navigation already sets Blizzard's user waypoint and
 -- super-tracks it (Retail engine: C_Map.SetUserWaypoint +
--- C_SuperTrack.SetSuperTrackedUserWaypoint). The engine then projects
--- SuperTrackedFrame onto the screen where the point is in the world and
--- clamps it to the screen edge when it is behind the player. We dress
--- that frame: its own icon/text are faded out, our diamond, quest name
--- and distance ride on its position. No SuperTrackedFrame (or a target
--- the engine cannot show, e.g. another continent) -> the compact gold
--- chevron in Arrow.lua takes over.
+-- C_SuperTrack.SetSuperTrackedUserWaypoint). When the engine can project
+-- that point (C_Navigation.GetTargetState() ~= Invalid, frame alpha > 0)
+-- we dress SuperTrackedFrame: its own icon/text are faded out, our
+-- diamond, quest name and distance ride on its position.
+--
+-- On the Forever client the projection is not available in the open
+-- world: GetTargetState() reports Invalid, the engine fades its frame to
+-- alpha 0 and parks it at a meaningless spot near the character (that
+-- was the "the diamond is next to me but the target is 78 yd away" bug).
+-- Then we place the diamond ourselves: on a ring around the character's
+-- on-screen position, in the direction of the target relative to the
+-- player's facing (ahead = above the character, right = right of it),
+-- with the ring radius growing with the distance. It still reads as an
+-- in-world marker and the dotted route still leads towards it.
+-- No target direction at all (other continent, no facing) -> the compact
+-- gold chevron in Arrow.lua takes over.
 -- ============================================================
 
 local _, ns = ...
@@ -141,14 +150,97 @@ end
 WP.MapOpen = mapOpen
 
 function WP:PinShown()
-    if not stf or not cfg().enabled or self:IsSuppressed() then return false end
+    if not cfg().enabled or self:IsSuppressed() then return false end
     if mapOpen() then return false end
-    if not ns.Navigation.target or not ns.Navigation.ownsWaypoint then return false end
+    if not ns.Navigation.target then return false end
+    return true
+end
+
+--- Does the engine's SuperTrackedFrame sit where the target really is?
+--- Only then may the diamond ride on it. Blizzard's own mixin fades the frame
+--- to 0 when C_Navigation says the position is invalid; we honour both signals.
+function WP:EngineUsable()
+    if not stf or not ns.Navigation.ownsWaypoint then return false end
     local ok, shown = pcall(stf.IsShown, stf)
     if not ok or not shown then return false end
     local okv, visible = pcall(stf.IsVisible, stf)
     if okv and visible == false then return false end
+    local N = rawget(_G, "C_Navigation")
+    if N then
+        if type(N.GetTargetState) == "function" then
+            local oks, state = pcall(N.GetTargetState)
+            local invalid = (rawget(_G, "Enum") and Enum.NavigationState and Enum.NavigationState.Invalid) or 0
+            if oks and state ~= nil and state == invalid then return false end
+        end
+        if type(N.HasValidScreenPosition) == "function" then
+            local okp, valid = pcall(N.HasValidScreenPosition)
+            if okp and valid == false then return false end
+        end
+    end
+    local oka, alpha = pcall(stf.GetAlpha, stf)
+    if oka and type(alpha) == "number" and alpha <= 0.01 then return false end
     return true
+end
+
+-- Where the character stands on screen (UIParent units) and how far out the
+-- bearing ring goes: a little below the centre of the view, radius growing
+-- with the distance so a far target sits high on screen, a close one hugs
+-- the character.
+local RING_MIN, RING_BASE, RING_PER_YARD, RING_MAX_FRAC = 110, 90, 0.6, 0.34
+function WP:BearingPosition(state)
+    if not state or not state.angle or not state.distance then return nil end
+    local ui = rawget(_G, "UIParent")
+    local w, h = ui and ui:GetWidth() or 1024, ui and ui:GetHeight() or 768
+    local px, py = w / 2, h * 0.40
+    local r = RING_BASE + state.distance * RING_PER_YARD
+    if r < RING_MIN then r = RING_MIN end
+    if r > h * RING_MAX_FRAC then r = h * RING_MAX_FRAC end
+    -- angle: 0 = straight ahead, positive = to the left (see Navigation:Update)
+    local a = state.angle
+    return px - math.sin(a) * r, py + math.cos(a) * r, a
+end
+WP.PlayerScreenPoint = function()
+    local ui = rawget(_G, "UIParent")
+    local w, h = ui and ui:GetWidth() or 1024, ui and ui:GetHeight() or 768
+    return w / 2, h * 0.40
+end
+
+--- /fg wpdbg - everything that decides where the diamond goes, for bug reports.
+function WP:Debug()
+    local Nav = ns.Navigation
+    local t, st = Nav.target, Nav.state
+    local function f(v) if type(v) == "number" then return string.format("%.1f", v) end return tostring(v) end
+    ns.Printf("waypoint: stf=%s shown=%s visible=%s alpha=%s scale=%s", tostring(stf and stf:GetName() or stf), tostring(stf and stf:IsShown()), tostring(stf and stf:IsVisible()), f(stf and stf:GetAlpha()), f(stf and stf:GetEffectiveScale()))
+    if stf then
+        local cx, cy = stf:GetCenter()
+        local w, h = stf:GetSize()
+        local n = stf:GetNumPoints()
+        ns.Printf("  center=%s,%s size=%s x %s points=%s parent=%s", f(cx), f(cy), f(w), f(h), tostring(n), tostring(stf:GetParent() and stf:GetParent():GetName()))
+        for i = 1, (n or 0) do
+            local pt, rel, rp, x, y = stf:GetPoint(i)
+            ns.Printf("  point %d: %s %s %s %s,%s", i, tostring(pt), tostring(rel and rel.GetName and rel:GetName() or rel), tostring(rp), f(x), f(y))
+        end
+    end
+    local ui = rawget(_G, "UIParent")
+    ns.Printf("  screen=%s x %s uiscale=%s", f(ui and ui:GetWidth()), f(ui and ui:GetHeight()), f(ui and ui:GetEffectiveScale()))
+    local N = rawget(_G, "C_Navigation")
+    if N then
+        local okd, d = pcall(N.GetDistance)
+        local oks, s = pcall(N.GetTargetState)
+        local okc, c = pcall(N.WasClampedToScreen)
+        local okv, v = pcall(N.HasValidScreenPosition)
+        local okf, fr = pcall(N.GetFrame)
+        ns.Printf("  C_Navigation: distance=%s state=%s clamped=%s validScreenPos=%s frame=%s", okd and f(d) or "err", oks and tostring(s) or "err", okc and tostring(c) or "err", okv and tostring(v) or "err", okf and tostring(fr and fr.GetName and fr:GetName() or fr) or "err")
+    end
+    local okw, wp = pcall(C_Map.GetUserWaypoint)
+    if okw and type(wp) == "table" then
+        ns.Printf("  user waypoint: map=%s x=%s y=%s (ours=%s)", tostring(wp.uiMapID), f(wp.position and wp.position.x), f(wp.position and wp.position.y), tostring(Nav.ownsWaypoint))
+    else
+        ns.Printf("  user waypoint: none")
+    end
+    local px, py, pi = ns.Player:GetWorldPosition()
+    ns.Printf("  target: %s map=%s %s,%s world=%s,%s inst=%s | player world=%s,%s inst=%s map=%s", tostring(t and t.label), tostring(t and t.map), f(t and t.x), f(t and t.y), f(t and t.worldX), f(t and t.worldY), tostring(t and t.instanceID), f(px), f(py), tostring(pi), tostring(ns.Player:GetMapID()))
+    ns.Printf("  our state: distance=%s angle=%s method=%s | overlay mode=%s shown=%s at %s,%s", f(st and st.distance), f(st and st.angle), tostring(st and st.method), tostring(self.mode), tostring(overlay and overlay:IsShown()), f(overlay and overlay:GetCenter()), f(overlay and select(2, overlay:GetCenter())))
 end
 
 function WP:Tick()
@@ -156,12 +248,29 @@ function WP:Tick()
     local Nav = ns.Navigation
     local show = self:PinShown()
     if show then
-        fadeBlizzard(true)
-        local cx, cy = stf:GetCenter()
-        if not cx then show = false else
-            local s = (stf.GetEffectiveScale and stf:GetEffectiveScale() or 1) / (overlay.GetEffectiveScale and overlay:GetEffectiveScale() or 1)
+        if stf and Nav.ownsWaypoint then fadeBlizzard(true) end
+        local x, y, behind
+        if self:EngineUsable() then
+            local cx, cy = stf:GetCenter()
+            if cx then
+                local s = (stf.GetEffectiveScale and stf:GetEffectiveScale() or 1) / (overlay.GetEffectiveScale and overlay:GetEffectiveScale() or 1)
+                x, y = cx * s, cy * s
+                self.mode = "engine"
+            end
+        end
+        if not x then
+            local st = Nav:Update(true)
+            local bx, by, a = self:BearingPosition(st)
+            if bx then
+                x, y = bx, by
+                behind = math.abs(a) > math.pi * 0.5
+                self.mode = "bearing"
+            end
+        end
+        if not x then show = false self.mode = nil else
             overlay:ClearAllPoints()
-            overlay:SetPoint("CENTER", UIParent, "BOTTOMLEFT", cx * s, cy * s)
+            overlay:SetPoint("CENTER", UIParent, "BOTTOMLEFT", x, y)
+            pcall(overlay.SetAlpha, overlay, behind and 0.7 or 1)
             local t = Nav.target
             local label = t and t.label or ""
             local name, what = label:match("^(.-)%s+[·%-]%s+(.+)$")

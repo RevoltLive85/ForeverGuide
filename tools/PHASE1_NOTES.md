@@ -296,3 +296,23 @@ after every install via `cc_run` in that folder. Tests: 96 checks.
   like 55k xp/h) -> `questCost` charges an average kill quest for them; boat / zeppelin edges cost 8-15 min; a mild
   same-continent preference (`CROSS_SEA` 0.85). Dwarf route is now Dun Morogh > IF > Loch Modan > Westfall > Redridge >
   Duskwood > Wetlands ..., Human: Elwynn > IF > Westfall > Loch Modan > Redridge > Duskwood > Wetlands.
+
+## Update 2026-09-20 (evening) — routes are a choice; the waypoint bug
+- Routes: `Guide:Routes()` lists every generated route of the faction (`GEN_<FACTION>_<RACE>` chapters), `mine` marks
+  the race's own; `Guide:ChooseRoute(key|label|race)` stores `ns.char.route` (cvar mirror `r`) and activates the
+  chapter fitting the level; `CurrentRoute()` = chosen or the race's own; AutoPick prefers the followed route (+8
+  penalty off-route when one is chosen, +2 otherwise). `Guide:Applicable` no longer locks guides to the race (faction
+  and class only). Picker sections: Auto, ROUTES, CHAPTERS - <route>, ZONE GUIDES, OTHER GUIDES. `/fg path`.
+  Ilya: "players should be able to choose their leveling route, we can only recommend it".
+- Waypoint bug ("the diamond is next to me but the target is 78 yd away"): `/fg wpdbg` showed why. On the Forever
+  client `C_Navigation.GetTargetState()` is 0 (Invalid) for a user waypoint in the open world, the engine fades
+  SuperTrackedFrame to alpha 0 and parks it at a meaningless spot near the character (clamped=true, position
+  unrelated to the direction). The distance from C_Navigation matches ours, so the pin's world point is right - only
+  the projection is missing in this build. Fix: `Waypoint:EngineUsable()` (frame shown, state ~= Invalid,
+  HasValidScreenPosition, alpha > 0) gates the "ride the engine pin" mode; otherwise the diamond goes on a **bearing
+  ring** around the character's on-screen spot (radius 90 + 0.6/yd, clamped 110..34% of the height, direction from
+  Navigation's angle: ahead = above, left = left, behind = below at 70% alpha). Same limitation as every Classic
+  arrow: the direction is relative to the player's facing, not the camera (no camera-yaw API), so it is exact while
+  moving and off while the camera is swung around a standing character. No direction at all -> chevron.
+- Tests: mock `GetCenter` now honours a CENTER-on-BOTTOMLEFT anchor, UIParent is 1280x720; route tests compare ids
+  (Routes() builds fresh tables). 162 tests.

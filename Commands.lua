@@ -24,6 +24,7 @@ local HELP = {
     "/fg way <x> <y>     point the arrow at x,y on your current map",
     "/fg lock|unlock     lock or unlock the window and the arrow  |  /fg scale <0.5-2>  |  /fg resetpos",
     "/fg arrow on|off    the compact chevron arrow (fallback when the world waypoint cannot show)",
+    "/fg path [name|race] follow another race's leveling route (any of your faction's)",
     "/fg waypoint on|off the in-world gold waypoint  |  /fg route on|off  the dotted path to it",
     "/fg qg <scale|opacity|width|rows|wpsize> <value>   Quest Guide look  |  /fg qg completed|distances|subtitles on|off",
     "/fg minimap on|off  the minimap button",
@@ -117,6 +118,28 @@ function handlers.show() ns.UI:Show() end
 function handlers.hide() ns.UI:Hide() end
 function handlers.toggle() ns.UI:Toggle() end
 
+function handlers.path(rest)
+    rest = (rest or ""):gsub("^%s+", ""):gsub("%s+$", "")
+    local G = ns.Guide
+    if rest == "" then
+        local cur = G:CurrentRoute()
+        for _, r in ipairs(G:Routes()) do
+            ns.Printf("  %s route - %d chapters%s%s", r.label, #r.chapters, r.mine and "  (your race)" or "", cur and cur.key == r.key and "  <- following" or "")
+        end
+        ns.Print("/fg path <name> follows that route (e.g. /fg path dwarf); /fg path race goes back to your race's own.")
+        return
+    end
+    if rest:lower() == "race" or rest:lower() == "default" then
+        ns.char.route = nil
+        ns.Print("following your race's own route again.")
+        ns.UI:Refresh()
+        return
+    end
+    local r, pick = G:ChooseRoute(rest)
+    if not r then ns.Print("no such route: " .. rest .. "  (/fg path lists them)") return end
+    ns.Printf("following the %s route%s.", r.label, pick and (" - " .. (pick.name or pick.id)) or "")
+end
+
 function handlers.waypoint(rest)
     rest = (rest or ""):lower()
     local on
@@ -153,6 +176,10 @@ function handlers.qg(rest)
     else
         ns.Print("/fg qg scale|opacity|width|rows|wpsize <value>  or  /fg qg completed|distances|subtitles|waypoint|route|wpanim on|off")
     end
+end
+
+function handlers.wpdbg()
+    if ns.Waypoint and ns.Waypoint.Debug then ns.Waypoint:Debug() end
 end
 
 function handlers.tracker(rest)

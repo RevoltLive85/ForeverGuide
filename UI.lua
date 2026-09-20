@@ -64,7 +64,7 @@ function UI:CreatePicker()
     p.hint = Theme.NewText(p, { size = 10, color = Theme.C.textDim, oneLine = true })
     p.hint:SetPoint("TOPLEFT", p, "TOPLEFT", PAD + 2, -32)
     p.hint:SetPoint("TOPRIGHT", p, "TOPRIGHT", -PAD, -32)
-    p.hint:SetText("your route, chapter by chapter - dimmed = outside your level")
+    p.hint:SetText("pick a route, a chapter, or a single zone - dimmed = outside your level")
     p.line = p:CreateTexture(nil, "ARTWORK")
     p.line:SetHeight(8)
     p.line:SetPoint("TOPLEFT", p, "TOPLEFT", 6, -44)
@@ -101,7 +101,11 @@ local function PickerRow(p, i)
     pcall(btn.sub.SetJustifyV, btn.sub, "MIDDLE")
     btn.label:SetPoint("RIGHT", btn.sub, "LEFT", -4, 0)
     btn:SetScript("OnClick", function(self)
-        if self.guideID == "__auto" then
+        if self.header then return end
+        if self.onClick then
+            local okc, err = pcall(self.onClick)
+            if not okc then ns.ReportOnce("picker:route", err) end
+        elseif self.guideID == "__auto" then
             ns.Tracker:SetMode("auto")
         elseif self.guideID then
             ns.Guide:Activate(self.guideID)
@@ -120,10 +124,11 @@ end
 function UI:RefreshPicker()
     local p = self:CreatePicker()
     local G = ns.Guide
-    p:SetWidth(math.max(ns.db.ui.width or 300, 300))
+    p:SetWidth(math.max(ns.db.ui.width or 300, 320))
     local y = 54
     local i = 0
-    local function add(text, sub, id, dim, active)
+    local level = ns.Player:GetLevel()
+    local function add(text, sub, id, dim, active, header, onClick)
         i = i + 1
         local row = PickerRow(p, i)
         row:ClearAllPoints()
@@ -132,47 +137,90 @@ function UI:RefreshPicker()
         row:SetText(text)
         row.sub:SetText(sub or "")
         row.guideID = id
-        Theme.Color(row.label, active and Theme.C.goldLight or (dim and Theme.C.muted or Theme.C.text))
-        row.active:SetShown(active and true or false)
-        row:SetAlpha(dim and 0.6 or 1)
+        row.onClick = onClick
+        row.header = header
+        if header then
+            Theme.Color(row.label, Theme.C.gold)
+            row.active:Hide()
+            row:SetAlpha(1)
+            row:EnableMouse(false)
+            row:SetHeight(18)
+            y = y + 18 + 2
+        else
+            Theme.Color(row.label, active and Theme.C.goldLight or (dim and Theme.C.muted or Theme.C.text))
+            row.active:SetShown(active and true or false)
+            row:SetAlpha(dim and 0.6 or 1)
+            row:EnableMouse(true)
+            row:SetHeight(22)
+            y = y + 22 + 2
+        end
         row:Show()
         row.sub:Show()
-        y = y + 22 + 2
     end
     if ns.DB and ns.DB:IsLoaded() then
         add("Auto mode - follow my quest log", ns.char.mode == "auto" and "active" or "", "__auto", false, ns.char.mode == "auto")
     end
-    local list = {}
+    -- routes: pick any of your faction's, your race's is only the default
+    local routes = G:Routes()
+    local current = G:CurrentRoute()
+    if #routes > 0 then
+        add("ROUTES", "", nil, false, false, true)
+        for _, r in ipairs(routes) do
+            local sub = string.format("%d chapters%s", #r.chapters, r.mine and "  ·  your race" or "")
+            add(r.label .. " route", sub, nil, not r.mine and not r.chosen, current and current.key == r.key, false,
+                function() G:ChooseRoute(r.key) end)
+        end
+    end
+    -- chapters of the route we follow, around the level
+    if current then
+        add("CHAPTERS  -  " .. current.label:upper() .. " ROUTE", "", nil, false, false, true)
+        local list = current.chapters
+        local start = 1
+        for k, g in ipairs(list) do if (g.maxLevel or 60) >= level - 2 then start = math.max(1, k - 2) break end end
+        local shown = 0
+        for k = start, #list do
+            local g = list[k]
+            if shown >= 9 then break end
+            local fits = (g.minLevel or 1) <= level + 3 and (g.maxLevel or 60) >= level - 2
+            local prog = ns.char.guides and ns.char.guides[g.id]
+            local progText = ""
+            if prog and prog.step and prog.step > 1 then
+                if prog.step > #g.steps then progText = "  done"
+                else progText = string.format("  step %d/%d", prog.step, #g.steps) end
+            end
+            local active = G.active == g and ns.char.mode ~= "auto"
+            add(g.name or g.id, string.format("%s-%s  %d steps%s", tostring(g.minLevel or "?"), tostring(g.maxLevel or "?"), #g.steps, progText), g.id, not fits, active)
+            shown = shown + 1
+        end
+    end
+    -- zone guides near the level: quest a zone on its own, whatever the route says
+    local zones = {}
     for _, id in ipairs(G.list) do
         local g = G.registry[id]
-        if G:Applicable(g) then list[#list + 1] = g end
+        if id:match("^GEN_ZONE_") and G:Applicable(g) and (g.maxLevel or 60) >= level - 2 and (g.minLevel or 1) <= level + 6 then zones[#zones + 1] = g end
     end
-    local showingAll = false
-    if #list == 0 then
-        for _, id in ipairs(G.list) do list[#list + 1] = G.registry[id] end
-        showingAll = true
-    end
-    table.sort(list, function(a, b)
+    table.sort(zones, function(a, b)
         if (a.minLevel or 0) ~= (b.minLevel or 0) then return (a.minLevel or 0) < (b.minLevel or 0) end
         return (a.name or a.id) < (b.name or b.id)
     end)
-    local level = ns.Player:GetLevel()
-    -- show the chapters around the player's level (the route can be 45 chapters long)
-    local start = 1
-    for k, g in ipairs(list) do if (g.maxLevel or 60) >= level - 2 then start = math.max(1, k - 2) break end end
-    for k = start, #list do
-        local g = list[k]
-        if i >= 18 then break end
-        local fits = (g.minLevel or 1) <= level + 3 and (g.maxLevel or 60) >= level - 2
-        local prog = ns.char.guides and ns.char.guides[g.id]
-        local progText = ""
-        if prog and prog.step and prog.step > 1 then
-            if prog.step > #g.steps then progText = "  done"
-            else progText = string.format("  step %d/%d", prog.step, #g.steps) end
+    if #zones > 0 then
+        add("ZONE GUIDES", "", nil, false, false, true)
+        for k, g in ipairs(zones) do
+            if k > 7 then break end
+            local fits = (g.minLevel or 1) <= level + 3 and (g.maxLevel or 60) >= level - 2
+            local active = G.active == g and ns.char.mode ~= "auto"
+            add((g.name or g.id):gsub("^Zone: ", ""), string.format("%s-%s  %d steps", tostring(g.minLevel or "?"), tostring(g.maxLevel or "?"), #g.steps), g.id, not fits, active)
         end
-        local active = G.active == g and ns.char.mode ~= "auto"
-        local sub = string.format("%s-%s  %d steps%s", tostring(g.minLevel or "?"), tostring(g.maxLevel or "?"), #g.steps, progText)
-        add((g.name or g.id) .. (showingAll and "  [other faction/race]" or ""), sub, g.id, not fits, active)
+    end
+    -- hand-written guides (anything else registered)
+    local others = 0
+    for _, id in ipairs(G.list) do
+        local g = G.registry[id]
+        if not id:match("^GEN_") and G:Applicable(g) then
+            if others == 0 then add("OTHER GUIDES", "", nil, false, false, true) end
+            others = others + 1
+            if others <= 4 then add(g.name or g.id, string.format("%s-%s", tostring(g.minLevel or "?"), tostring(g.maxLevel or "?")), g.id, false, G.active == g and ns.char.mode ~= "auto") end
+        end
     end
     if i == 0 then add("no guides installed", "", nil, true) end
     for j = i + 1, #p.rows do p.rows[j]:Hide() p.rows[j].sub:Hide() end

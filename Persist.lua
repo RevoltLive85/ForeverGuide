@@ -125,7 +125,7 @@ end
 -- ---- character state ------------------------------------------------------------
 function Persist:EncodeChar()
     local ch = ns.char
-    local t = { v = 1, g = ch.activeGuide, m = ch.mode, a = b01(ch.autoPickGuide ~= false) }
+    local t = { v = 1, g = ch.activeGuide, m = ch.mode, a = b01(ch.autoPickGuide ~= false), r = ch.route }
     local active = ch.activeGuide and ch.guides[ch.activeGuide]
     if active then
         t.s = active.step
@@ -143,7 +143,7 @@ function Persist:EncodeChar()
     end
     table.sort(others)
     if #others > 0 then t.p = table.concat(others, ",") end
-    return encodePairs(t, { "v", "g", "m", "a", "s", "gv", "d", "df", "p" })
+    return encodePairs(t, { "v", "g", "m", "a", "r", "s", "gv", "d", "df", "p" })
 end
 
 function Persist:DecodeChar(s)
@@ -153,6 +153,7 @@ function Persist:DecodeChar(s)
     if t.g and t.g ~= "" then ch.activeGuide = t.g end
     if t.m and t.m ~= "" then ch.mode = t.m end
     if t.a then ch.autoPickGuide = bool(t.a) end
+    if t.r and t.r ~= "" then ch.route = t.r end
     if ch.activeGuide and t.s then
         local p = ch.guides[ch.activeGuide] or { step = 1, done = {}, version = 1 }
         p.step = num(t.s) or 1
