@@ -24,6 +24,7 @@ local MIN_PLAYERS = 5        -- or this many distinct players seen around
 local ALT_MIN_YD = 150       -- an alternative spot must be this far away
 local CLUSTER_YD = 120       -- spawn points closer than this are one spot
 local REPEAT_SEC = 180       -- chat reminder cadence
+local GROUP_UP_PLAYERS = 2   -- on a kill step, this many other players around = "group up" reminder
 
 local samples = {}           -- { t, free, tagged, players = {guid=true} }
 
@@ -79,6 +80,8 @@ function Crowd:InviteNearby()
     ns.Printf("invited %d player%s to share kills: %s", n, n == 1 and "" or "s", table.concat((function() local t = {} for _, p in ipairs(list) do t[#t + 1] = p.name end return t end)(), ", "))
     return n
 end
+
+function Crowd:Reset() samples = {} end
 
 --- Competition over the window: tagged, free, distinct players, crowded (bool).
 function Crowd:Level()
@@ -376,12 +379,20 @@ function Crowd:Update()
     if cfg().enabled == false or (ns.UI and ns.UI.AllHidden and ns.UI:AllHidden()) then f:Hide() return end
     local tagged, free, players, crowded = self:Level()
     if crowded then self:MaybePostpone() end
-    if not crowded or (self.snoozedUntil and ns.Now() < self.snoozedUntil) then f:Hide() return end
+    -- a kill-x-mobs step with anyone else on the same mobs: the standing "group up" reminder (like the
+    -- bags banner) - kill credit is shared in a group, so this is the one crowd you can turn into a plus
+    local step = ns.Guide and ns.Guide:GetCurrentStep()
+    local inGroup = ns.Plain(ns.Safe(rawget(_G, "IsInGroup"))) == true
+    local killShare = step and step.type == "KILL" and self:IsSharedKillOrLoot(step) and not inGroup
+    local groupUp = killShare and (players >= GROUP_UP_PLAYERS or tagged >= 1)
+    if (not crowded and not groupUp) or (self.snoozedUntil and ns.Now() < self.snoozedUntil) then f:Hide() return end
     local total = tagged + free
     local title
-    if tagged >= MIN_TAGGED then title = string.format("Crowded: %d of %d quest mobs are taken by others", tagged, total)
-    else title = string.format("Crowded: %d players hunting the same mobs", players) end
+    if crowded and tagged >= MIN_TAGGED then title = string.format("Crowded: %d of %d quest mobs are taken by others", tagged, total)
+    elseif crowded then title = string.format("Crowded: %d players hunting the same mobs", players)
+    else title = string.format("Kill quest with %s around - group up, kill credit is shared", players >= 2 and (players .. " players") or "others") end
     f.title:SetText(title)
+    if ns.Theme then ns.Theme.Color(f.title, crowded and { 1, 0.7, 0.3 } or { 0.55, 0.85, 0.45 }) end
     local spawn = self:SpawnAlternatives()[1]
     local stepAlt = self:StepAlternative()
     self.alt = spawn or stepAlt
@@ -403,10 +414,9 @@ function Crowd:Update()
     end
     self:PollZone()
     -- a shared kill step: a group shares kill credit, so offer to invite the people around
-    local step = ns.Guide and ns.Guide:GetCurrentStep()
-    local killShare = step and step.type == "KILL" and self:IsSharedKillOrLoot(step) and not (ns.Plain(ns.Safe(rawget(_G, "IsInGroup"))) == true)
     f.invite:SetShown(killShare == true)
-    if killShare then sub = "kill credit is shared in a group - invite them  ·  " .. sub end
+    if killShare and crowded then sub = "kill credit is shared in a group - invite them  ·  " .. sub
+    elseif killShare then sub = "Invite the players near you (or ask to join theirs)" .. (spawn and ("  ·  quieter: " .. spawn.label) or "") end
     f.sub:SetWidth(0)
     f.sub:SetPoint("RIGHT", f, "RIGHT", killShare and -170 or -100, 0)
     f.sub:SetText(sub)
@@ -427,6 +437,6 @@ function Crowd:OnInit()
     ns.Events:Register("PLAYER_TARGET_CHANGED", function() noteUnit("target") end)
     ns.Events:Register("UPDATE_MOUSEOVER_UNIT", function() noteUnit("mouseover") end)
     ns.Events:Register("FG_NAV_ARRIVED", function(_, target) if target and target.owner == "crowd" then Crowd:ReleaseOverride() end end)
-    ns.Events:RegisterMany({ "FG_STEP_CHANGED", "FG_GUIDE_CHANGED" }, function() Crowd:ReleaseOverride() samples = {} Crowd:Update() end)
+    ns.Events:RegisterMany({ "FG_STEP_CHANGED", "FG_GUIDE_CHANGED" }, function() Crowd:ReleaseOverride() Crowd:Reset() Crowd:Update() end)
     ns.Events:Register("FG_HIDDEN_ALL_CHANGED", function() Crowd:Update() end)
 end

@@ -670,6 +670,17 @@ do
         local _, _, pl = ns.Crowd:Level()
         check(pl >= 5, "five players seen on nameplates (" .. tostring(pl) .. ")")
         check(ns.Crowd:IsSharedKillOrLoot(step()) == true and G.postponed[cur()] == nil, "a kill-x-mobs step is not postponed by the crowd")
+        do
+            -- only two players around, nothing tagged: not crowded, but a kill step still gets the group-up reminder
+            for i = 3, 5 do MOCK_PLATE("nameplate" .. (20 + i), nil) end
+            ns.Crowd.snoozedUntil = nil
+            ns.Crowd:Reset()
+            ns.MobMarker:Scan()
+            local _, _, _, cr = ns.Crowd:Level()
+            check(not cr and ForeverGuideCrowdBanner:IsShown() and (ForeverGuideCrowdBanner.title:GetText() or ""):find("group up", 1, true), "two players on a kill step: the group-up reminder shows without a crowd (" .. tostring(ForeverGuideCrowdBanner.title:GetText()) .. ")")
+            for i = 3, 5 do MOCK_PLATE("nameplate" .. (20 + i), { name = "Player" .. i, player = true, friendly = true, npcID = 0 }) end
+            ns.MobMarker:Scan()
+        end
         check(ForeverGuideCrowdBanner.invite:IsShown() and (ForeverGuideCrowdBanner.sub:GetText() or ""):find("shared in a group", 1, true), "...instead the banner offers to invite the players around (shown=" .. tostring(ForeverGuideCrowdBanner:IsShown()) .. " sub=" .. tostring(ForeverGuideCrowdBanner.sub:GetText()) .. ")")
         check(ns.Crowd:InviteNearby() == 4 and #MOCK.invited == 4, "Invite asks up to four of them into a group")
         ns.RegisterGuide({ id = "AUDIT_CROWD2", name = "crowd2", steps = {
