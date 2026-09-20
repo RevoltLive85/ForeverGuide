@@ -195,8 +195,8 @@ _G.C_NamePlate = {
             local p = world.plates[u]
             p.frame = p.frame or NewRegion("Frame")
             p.frame.namePlateUnitToken = u
-            p.frame.GetScale = function() return p.scale or 1 end
-            p.frame.GetCenter = function() return 640, p.y or 400 end
+            p.frame.GetScale = function() if p.restricted then error("Can't measure restricted regions") end return p.scale or 1 end
+            p.frame.GetCenter = function() if p.restricted then error("Can't measure restricted regions") end return 640, p.y or 400 end
             out[#out + 1] = p.frame
         end
         return out
@@ -309,6 +309,11 @@ local function fire(event, ...)
     end
 end
 
+_G.CheckInteractDistance = function(unit, ring)
+    local p = world.plates and world.plates[unit]
+    if not p or not p.dist then return nil end
+    return (ring == 3 and p.dist <= 10) or (ring == 4 and p.dist <= 28) or false
+end
 function _G.MOCK_PLATE(unit, def)
     world.plates[unit] = def
     if def and def.guid == nil then def.guid = "Creature-0-1-1-1-" .. (def.npcID or 0) .. "-" .. unit end

@@ -541,6 +541,11 @@ do
     check(ns.MobMarker.primaryUnit == "nameplate1", "a tagged mob loses the big skull to the next one (" .. tostring(ns.MobMarker.primaryUnit) .. ")")
     MOCK_PLATE("nameplate1", { name = "Kobold Vermin", npcID = 6, scale = 0.8, y = 500, tagged = true }); ns.MobMarker:Scan()
     check(ns.MobMarker.primaryUnit == nil and ns.MobMarker.markedCount == 3, "all tagged: no big skull, small skulls stay")
+    -- in combat the nameplate frames cannot be measured (restricted regions): fall back to interact rings
+    MOCK_PLATE("nameplate1", { name = "Kobold Vermin", npcID = 6, restricted = true, dist = 25 })
+    MOCK_PLATE("nameplate2", { name = "Kobold Vermin", npcID = 6, restricted = true, dist = 8 })
+    ns.MobMarker:Scan()
+    check(ns.MobMarker.primaryUnit == "nameplate2" and #reportedErrors == 0, "restricted nameplates: no error, nearest by interact distance (" .. tostring(ns.MobMarker.primaryUnit) .. ")")
     ns.Commands:Run("skull off"); ns.MobMarker:Scan()
     check(ns.MobMarker.markedCount == 0 and GetCVar("nameplateShowEnemies") == "0", "/fg skull off removes the skulls and restores the nameplate setting")
     ns.Commands:Run("skull on")

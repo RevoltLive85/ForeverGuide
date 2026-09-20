@@ -92,13 +92,24 @@ local function questRelated(u)
     return ns.Plain(ns.Call("C_QuestLog.UnitIsRelatedToActiveQuest", u)) == true
 end
 
--- closeness proxy: bigger nameplate scale first, then lower on screen
-local function closeness(plate)
-    local s = plate.GetScale and plate:GetScale() or 1
-    local _, cy = plate:GetCenter()
-    local ui = rawget(_G, "UIParent")
-    local h = ui and ui:GetHeight() or 1000
-    return (s or 1) * 1000 - (cy or h) / h * 100
+-- Closeness proxy. Nameplate frames are "restricted regions" on this client:
+-- measuring them (GetCenter/GetScale) throws in combat, anchoring to them is
+-- fine. So: measure when allowed (scale, then lower on screen = closer), else
+-- fall back to the interact-distance rings (10 / 28 yd), else everything ties.
+local function closeness(plate, u)
+    local okS, s = pcall(plate.GetScale, plate)
+    local okC, _, cy = pcall(plate.GetCenter, plate)
+    if okS and okC and type(cy) == "number" then
+        local ui = rawget(_G, "UIParent")
+        local h = ui and ui:GetHeight() or 1000
+        return (ns.PlainNumber(s) or 1) * 1000 - cy / h * 100
+    end
+    local CID = rawget(_G, "CheckInteractDistance")
+    if CID then
+        if ns.Plain(ns.Safe(CID, u, 3)) == true then return 300 end   -- within ~10 yd
+        if ns.Plain(ns.Safe(CID, u, 4)) == true then return 200 end   -- within ~28 yd
+    end
+    return 100
 end
 
 -- ---- skull frames ---------------------------------------------------------------------
@@ -208,7 +219,7 @@ function MM:Scan()
                 local isTagged = tagged(u)
                 local isTarget = targetGUID and ns.PlainString(ns.Safe(UnitGUID, u)) == targetGUID
                 if isWanted and not isTagged then
-                    local score = closeness(plate) + (isTarget and 5000 or 0)
+                    local score = closeness(plate, u) + (isTarget and 5000 or 0)
                     if not bestScore or score > bestScore then
                         if best then others[#others + 1] = best end
                         best, bestScore = plate, score
