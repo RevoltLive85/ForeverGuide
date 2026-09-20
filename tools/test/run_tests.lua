@@ -223,7 +223,7 @@ do
     check(ForeverGuidePicker and ForeverGuidePicker:IsShown() and #ForeverGuidePicker.rows >= 2, "guide picker shows auto mode + guides (" .. tostring(ForeverGuidePicker and #ForeverGuidePicker.rows) .. " rows)")
     ForeverGuidePicker.rows[2]:GetScript("OnClick")(ForeverGuidePicker.rows[2])
     check(ns.char.mode == "guide" and ns.Guide.active ~= nil and not ForeverGuidePicker:IsShown(), "clicking a guide activates it and closes the picker")
-    check(ForeverGuideArrowFrame ~= nil and ForeverGuideArrowFrame:IsShown(), "floating arrow frame exists and is shown with a target")
+    check(ForeverGuideArrowFrame ~= nil and (ForeverGuideArrowFrame:IsShown() or (ns.Waypoint.overlay and ns.Waypoint.overlay:IsShown())), "a target shows either the chevron arrow or the world waypoint")
     ns.Tracker:SetMode("guide")
 end
 
@@ -247,21 +247,22 @@ do
     ns.UI:Show()
     ns.Navigation:SetTarget({ map = 1429, x = 40, y = 60, label = "test", owner = "test" })
     ns.Arrow:SetEnabled(true); ns.Arrow:Refresh()
+    local function pointerShown() return ns.Arrow:IsShown() or (ns.Waypoint.overlay and ns.Waypoint.overlay:IsShown()) end
     local frameWasShown = ForeverGuideFrame:IsShown()
-    local arrowWasShown = ns.Arrow:IsShown()
-    check(frameWasShown and arrowWasShown, "window and arrow are up before the alt-click")
+    local arrowWasShown = pointerShown()
+    check(frameWasShown and arrowWasShown, "window and waypoint/arrow are up before the alt-click")
     MOCK.alt = true
     mb.scripts.OnClick(mb, "LeftButton"); settle()
     check(ns.UI:AllHidden(), "alt-click sets the hide-everything switch")
     check(not ForeverGuideFrame:IsShown(), "alt-click hides the guide window")
-    check(not ns.Arrow:IsShown(), "alt-click hides the arrow")
+    check(not pointerShown(), "alt-click hides the waypoint and the arrow")
     check(ns.db.ui.arrow.enabled ~= false, "hiding everything does not disable the arrow itself")
     check(ns.Guide.active ~= nil or true, "guide keeps running while hidden")
     mb.scripts.OnClick(mb, "LeftButton"); settle()
     MOCK.alt = false
     check(not ns.UI:AllHidden(), "a second alt-click clears the switch")
     check(ForeverGuideFrame:IsShown(), "the window comes back")
-    check(ns.Arrow:IsShown(), "the arrow comes back")
+    check(pointerShown(), "the waypoint / arrow comes back")
     -- combat hiding must not undo it, and /fg hideall is the same switch
     ns.Commands:Run("hideall on")
     check(ns.UI:AllHidden(), "/fg hideall on hides everything")
@@ -269,7 +270,7 @@ do
     MOCK_FIRE("PLAYER_REGEN_DISABLED"); settle()
     MOCK_FIRE("PLAYER_REGEN_ENABLED"); settle()
     check(not ForeverGuideFrame:IsShown(), "leaving combat does not undo the hide-everything switch")
-    check(not ns.Arrow:IsShown(), "leaving combat does not bring the arrow back while hidden")
+    check(not pointerShown(), "leaving combat does not bring the waypoint / arrow back while hidden")
     ns.db.ui.hideInCombat = false
     local acct = ns.Persist:EncodeAcct()
     check(acct:find("ha=1", 1, true) ~= nil, "the switch is written to the cvar mirror")
@@ -486,6 +487,78 @@ do
     check(pick and (pick.id:find("^GEN_ALLIANCE_HUMAN_0[12]_") ~= nil), "level-11 human in Elwynn auto-picks the Human route's chapter 1 or 2, not another race's chapter (" .. tostring(pick and pick.id) .. ")")
     MOCK_LEVEL(5); settle()
     G:Reset(); settle()
+end
+
+-- ---- the Quest Guide window: rows, header, states, settings, waypoint fallback ----------
+do
+    G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); G:SetStep(5); settle()
+    ns.Tracker:SetMode("guide"); settle()
+    ns.UI:Show(); settle()
+    local f = ForeverGuideFrame
+    check(f.header and f.list and f.guideBtn and f.guidesBtn, "quest guide window has header, list and the two buttons")
+    local shownRows, activeRows, activeIdx = 0, 0, nil
+    for i, e in ipairs(f.list.entries) do
+        shownRows = shownRows + 1
+        if e.state == "active" then activeRows = activeRows + 1 activeIdx = e.index end
+    end
+    check(shownRows >= 3 and shownRows <= (ns.db.ui.maxRows or 7), "list shows a sensible number of rows (" .. shownRows .. ")")
+    check(activeRows == 1 and activeIdx == G.current, "exactly one row is the active step and it is the current one")
+    check(f.header.count:GetText():find("^%d+ / %d+$") ~= nil, "header shows current / total (" .. tostring(f.header.count:GetText()) .. ")")
+    local e1 = f.list.entries[1]
+    check(e1.title and e1.title ~= "" and e1.number, "rows carry a title and a step number")
+    local hasDone = false
+    for _, e in ipairs(f.list.entries) do if e.state == "done" then hasDone = true end end
+    check(hasDone, "a completed step stays visible above the current one")
+    -- clicking a row jumps to that step
+    local target
+    for _, e in ipairs(f.list.entries) do if e.state == "available" then target = e break end end
+    if target then
+        f.list.rows[1].entry = target
+        f.list.rows[1]:GetScript("OnClick")(f.list.rows[1], "LeftButton"); settle()
+        check(G.current == target.index, "clicking a row jumps to that step (" .. tostring(G.current) .. " vs " .. tostring(target.index) .. ")")
+    end
+    -- settings
+    ns.Commands:Run("qg opacity 0.7")
+    check(math.abs((ns.db.ui.opacity or 0) - 0.7) < 1e-6, "/fg qg opacity sets the window opacity")
+    ns.Commands:Run("qg rows 4"); settle()
+    ns.UI:Refresh(); settle()
+    check(#f.list.entries <= 4, "/fg qg rows limits the list (" .. #f.list.entries .. ")")
+    ns.Commands:Run("qg rows 7"); ns.UI:Refresh(); settle()
+    ns.Commands:Run("qg subtitles off"); ns.UI:Refresh(); settle()
+    check(ns.db.ui.showSubtitles == false and f.list.rows[1]:GetHeight() == ns.QuestRow.HEIGHT_ONE, "subtitles off makes single-line rows")
+    ns.Commands:Run("qg subtitles on"); ns.UI:Refresh(); settle()
+    ns.Commands:Run("qg completed off"); ns.UI:Refresh(); settle()
+    local anyDone = false
+    for _, e in ipairs(f.list.entries) do if e.state == "done" then anyDone = true end end
+    check(not anyDone, "completed rows hidden when the option is off")
+    ns.Commands:Run("qg completed on"); ns.UI:Refresh(); settle()
+    -- the Guide info popup
+    ns.QuestGuide:ToggleInfo(); settle()
+    check(ForeverGuideInfo and ForeverGuideInfo:IsShown() and (ForeverGuideInfo.body:GetText() or ""):find("Step") ~= nil, "the Guide button opens the info popup with the current step")
+    ns.QuestGuide:ToggleInfo(); settle()
+    -- waypoint: the engine pin (SuperTrackedFrame) is dressed by our overlay while it shows
+    ns.Navigation:SetTarget({ map = 1429, x = 40, y = 60, label = "Hilary's Necklace", owner = "test" }); settle()
+    ns.Waypoint:Tick()
+    check(ns.Navigation.ownsWaypoint and MOCK.superTrack == true, "a target sets the engine's user waypoint and super-tracks it")
+    check(ns.Waypoint.overlay:IsShown(), "the world waypoint overlay shows on the engine pin")
+    check(ns.Waypoint.overlay.name:GetText() == "Hilary's Necklace", "the overlay carries the quest name")
+    check(SuperTrackedFrame.Icon.alpha == 0, "the engine pin's own icon is faded out under our diamond")
+    check(ns.Arrow.suppressedByWaypoint == true, "the chevron arrow steps aside while the world pin shows")
+    ns.Commands:Run("waypoint off"); ns.Waypoint:Tick()
+    check(ns.db.nav.waypoint.enabled == false and not ns.Waypoint.overlay:IsShown(), "/fg waypoint off hides the overlay")
+    check(SuperTrackedFrame.Icon.alpha == 1, "the engine pin's own art is restored when the waypoint is off")
+    check(ns.Arrow.suppressedByWaypoint == false, "the chevron arrow is back when the waypoint is off")
+    ns.Commands:Run("waypoint on"); ns.Waypoint:Tick()
+    check(ns.db.nav.waypoint.enabled == true and ns.db.nav.blizzardWaypoint == true and ns.Waypoint.overlay:IsShown(), "/fg waypoint on brings the overlay back")
+    -- no engine pin (other continent / hidden): fallback to the chevron
+    MOCK.superTrack = false; ns.Waypoint:Tick()
+    check(not ns.Waypoint.overlay:IsShown() and ns.Arrow.suppressedByWaypoint == false, "engine pin hidden: overlay hides and the chevron takes over")
+    MOCK.superTrack = true; ns.Waypoint:Tick()
+    ns.Commands:Run("route off")
+    check(ns.db.nav.waypoint.route == false, "/fg route off disables the dotted path")
+    ns.Commands:Run("route on")
+    ns.Navigation:Clear()
+    G:SetStep(5); settle()
 end
 
 -- ---- sweep: every command, every UI script, options, keybinds ------------------------

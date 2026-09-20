@@ -1,7 +1,7 @@
 ## Interface: 16001
 ## Title: ForeverGuide
 ## Notes: Free, data-driven leveling guide engine for WoW Forever. Reads game state and shows you the next step. Never automates combat, movement or chat (quest accept / turn-in is optional).
-## Author: Ilya
+## Author: RevoltLive
 ## Version: 0.3.0
 ## SavedVariables: ForeverGuideDB
 ## SavedVariablesPerCharacter: ForeverGuideCharDB
@@ -35,6 +35,15 @@ Recorder.lua
 Data\VanillaQuestIDs.lua
 Scanner.lua
 Harvest.lua
+# ---- the Quest Guide interface (UI\*.lua: theme, window, list, waypoint; UI.lua coordinates) ----
+UI\Theme.lua
+UI\QuestGuideConfig.lua
+UI\QuestGuideHeader.lua
+UI\QuestRow.lua
+UI\QuestList.lua
+UI\QuestGuideFrame.lua
+UI\QuestWaypoint.lua
+UI\QuestRoute.lua
 UI.lua
 Arrow.lua
 AutoQuest.lua

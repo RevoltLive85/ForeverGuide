@@ -251,3 +251,24 @@ after every install via `cc_run` in that folder. Tests: 96 checks.
 - Open: verify in-game that Darkshore-at-11 for humans (the model's pick over Westfall) is really faster; elite quests
   as optional steps; cross-zone objectives; real quest-log cap (`C_QuestLog.GetMaxNumQuestsCanAccept`); Forever xp
   values; the recorder should log map sizes (`data-src/mapsizes.json`) for the new maps.
+
+## Update 2026-09-20 — Quest Guide UI redesign (v0.3.0 UI)
+- Spec from Ilya: premium fantasy panel on the right (dark parchment, thin gold rim, soft glow), header "QUEST GUIDE 6/14",
+  rows = number ring + kind icon + title + objective line + distance, active row outlined/glowing/pulsing with a gold bar,
+  completed rows dimmed, two compact buttons [Guide] [Guides], and the big green arrow replaced by an in-world gold
+  diamond waypoint with name + distance and a dotted route.
+- Built as UI/*.lua modules on top of the untouched engine: Theme (textures drawn procedurally by tools/make_textures.py:
+  panel_bg, border_gold, glow_gold, border_thin, row_active, row_bar, header_line, separator, button(_hl), icons atlas,
+  ring, waypoint, dot, chevron - all 32-bit TGA, power of two, top-left origin), QuestGuideConfig (ui.opacity/maxRows/
+  showCompleted/showDistances/showSubtitles, nav.waypoint{enabled,size,animate,route}; /fg qg, /fg waypoint, /fg route;
+  Options panel items; cvar mirror keys op rows sc sd ss wp rt wa ws), QuestGuideHeader, QuestRow (states available/
+  active/done/blocked/optional/future, click = jump, right-click current = skip, tooltip with note/grey warning), QuestList
+  (row pool, distances on a 0.25 s throttle, resolution cached per refresh), QuestGuideFrame (window + "Guide" info popup
+  with Back/Skip/Auto/Resync), QuestWaypoint (fades SuperTrackedFrame's own art, overlays diamond + name + distance at
+  its screen position; falls back to Arrow.lua's compact gold chevron when the engine has no pin), QuestRoute (14 dots
+  between the player's feet and the pin, BACKGROUND strata). UI.lua is now the coordinator + restyled picker with the
+  same public API (tests: 142).
+- The world pin relies on the Retail engine's user waypoint / super-track (already used by /fg bliz); if a client build
+  lacks SuperTrackedFrame the chevron shows instead.
+- ComfyUI (on Ilya's PC) is the plan for real artwork (compass, corner ornaments, diamond) - NOT while the game runs: the
+  GPU is already at ~88% of its budget and losing the device (see the crash analysis above).

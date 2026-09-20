@@ -205,6 +205,23 @@ _G.C_Map = {
 }
 _G.UiMapPoint = { CreateFromCoordinates = function(m, x, y) return { map = m, x = x, y = y } end }
 _G.C_SuperTrack = { SetSuperTrackedUserWaypoint = function(v) world.superTrack = v end }
+-- the engine's in-world pin frame (Retail engine): shown while a user waypoint is super-tracked
+do
+    local stf = NewRegion("Frame")
+    stf.name = "SuperTrackedFrame"
+    stf.Icon = NewRegion("Texture")
+    stf.Icon.alpha = 1
+    stf.DistanceText = NewRegion("FontString")
+    stf.DistanceText.alpha = 1
+    function stf:GetRegions() return self.Icon, self.DistanceText end
+    function stf:GetChildren() return end
+    function stf:GetCenter() return world.pinX or 640, world.pinY or 420 end
+    function stf:IsShown() return world.superTrack == true end
+    function stf:IsVisible() return world.superTrack == true end
+    stf.Icon.GetAlpha = function(self) return self.alpha or 1 end
+    stf.DistanceText.GetAlpha = function(self) return self.alpha or 1 end
+    _G.SuperTrackedFrame = stf
+end
 
 -- ---- quests -----------------------------------------------------------------
 _G.C_QuestLog = {

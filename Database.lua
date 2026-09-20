@@ -28,11 +28,24 @@ local DEFAULTS = {
         fontSize = 12,
         showPrevious = 2,     -- completed steps shown above the current one
         showUpcoming = 4,     -- upcoming steps shown below the current one
+        -- Quest Guide window (UI/QuestGuide*.lua)
+        opacity = 0.92,
+        maxRows = 7,          -- rows in the list (the current one is always among them)
+        showCompleted = true,
+        showDistances = true,
+        showSubtitles = true,
+        hideTracker = true,   -- Blizzard's objective tracker is hidden while the Quest Guide shows
     },
     nav = {
         blizzardWaypoint = true,  -- also set Blizzard's own map pin / super-track arrow
         arrivalRadius = 15,       -- yards: TRAVEL steps complete within this distance
         updateInterval = 0.1,     -- seconds between distance/arrow updates
+        waypoint = {              -- the in-world gold waypoint (UI/QuestWaypoint.lua)
+            enabled = true,
+            size = 1.0,
+            animate = true,
+            route = true,         -- the dotted path towards it
+        },
     },
     recorder = {
         enabled = true,           -- Phase 10: quietly record quest/NPC/coordinate data

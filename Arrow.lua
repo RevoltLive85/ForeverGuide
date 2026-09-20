@@ -1,9 +1,11 @@
 -- ============================================================
 -- ForeverGuide / Arrow.lua
--- The floating direction arrow (TomTom style): a big arrow above the
--- character that rotates towards the current destination, with the
--- destination name and distance under it. Green when you face it,
--- yellow when it is to the side, red when it is behind you.
+-- The compact gold chevron: rotates towards the destination, with the
+-- destination name and distance under it. Since the in-world waypoint
+-- (UI/QuestWaypoint.lua) took over the everyday job, this only shows when
+-- the engine cannot place the world pin (other continent, no
+-- SuperTrackedFrame, waypoint disabled). Warm gold when you face the
+-- target, cooler / dimmer the further it is to the side or behind.
 --
 --   /fg arrow on|off      show / hide
 --   /fg unlock            drag it (and the window) somewhere else
@@ -12,9 +14,9 @@
 local _, ns = ...
 local Arrow = ns:NewModule("Arrow")
 
-local TEXTURE = "Interface\\AddOns\\ForeverGuide\\Textures\\arrow.tga"
+local TEXTURE = "Interface\\AddOns\\ForeverGuide\\Textures\\chevron.tga"
 local FONT = rawget(_G, "STANDARD_TEXT_FONT") or "Fonts\\FRIZQT__.TTF"
-local SIZE = 56
+local SIZE = 36
 local frame
 
 local function Cfg()
@@ -63,14 +65,14 @@ function Arrow:Create()
     label:SetJustifyH("CENTER")
     pcall(label.SetWordWrap, label, true)
     pcall(label.SetMaxLines, label, 1)
-    label:SetTextColor(1, 1, 1)
+    label:SetTextColor(1, 0.88, 0.55)
     f.label = label
 
     local dist = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     dist:SetFont(FONT, 11, "OUTLINE")
     dist:SetPoint("TOP", label, "BOTTOM", 0, -1)
     dist:SetJustifyH("CENTER")
-    dist:SetTextColor(0.85, 0.85, 0.85)
+    dist:SetTextColor(0.93, 0.89, 0.80)
     f.dist = dist
 
     local hint = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
@@ -133,16 +135,10 @@ function Arrow:Tick()
     end
     local angle = s.angle
     f.tex:SetRotation(angle)
+    -- gold when facing it, dimming towards a dusty orange when it is behind you
     local a = math.abs(angle)
-    if a < math.pi / 8 then
-        f.tex:SetVertexColor(0.35, 1, 0.35)
-    elseif a < math.pi / 2 then
-        local k = (a - math.pi / 8) / (math.pi / 2 - math.pi / 8)
-        f.tex:SetVertexColor(0.35 + 0.65 * k, 1, 0.35 * (1 - k))
-    else
-        local k = (a - math.pi / 2) / (math.pi / 2)
-        f.tex:SetVertexColor(1, 1 - k, 0)
-    end
+    local k = math.min(1, a / math.pi)
+    f.tex:SetVertexColor(1, 0.92 - 0.35 * k, 0.55 - 0.35 * k)
     f.dist:SetText(Nav:FormatDistance(s.distance) .. (s.arrived and "  - here" or ""))
 end
 

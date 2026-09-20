@@ -23,7 +23,9 @@ local HELP = {
     "/fg nav             distance/direction to the current step",
     "/fg way <x> <y>     point the arrow at x,y on your current map",
     "/fg lock|unlock     lock or unlock the window and the arrow  |  /fg scale <0.5-2>  |  /fg resetpos",
-    "/fg arrow on|off    the floating direction arrow",
+    "/fg arrow on|off    the compact chevron arrow (fallback when the world waypoint cannot show)",
+    "/fg waypoint on|off the in-world gold waypoint  |  /fg route on|off  the dotted path to it",
+    "/fg qg <scale|opacity|width|rows|wpsize> <value>   Quest Guide look  |  /fg qg completed|distances|subtitles on|off",
     "/fg minimap on|off  the minimap button",
     "/fg auto [accept on|off|guide] [turnin on|off]   auto-accept / auto-turn-in quests (hold SHIFT at an NPC to do it by hand)",
     "/fg rec on|off|status|dump [n]|clear   data recorder (Phase 10)",
@@ -114,6 +116,58 @@ end
 function handlers.show() ns.UI:Show() end
 function handlers.hide() ns.UI:Hide() end
 function handlers.toggle() ns.UI:Toggle() end
+
+function handlers.waypoint(rest)
+    rest = (rest or ""):lower()
+    local on
+    if rest == "on" then on = true elseif rest == "off" then on = false end
+    local ok, msg = ns.QuestGuideConfig.SetToggle("waypoint", on)
+    ns.Print(msg)
+end
+
+function handlers.route(rest)
+    rest = (rest or ""):lower()
+    local on
+    if rest == "on" then on = true elseif rest == "off" then on = false end
+    local ok, msg = ns.QuestGuideConfig.SetToggle("route", on)
+    ns.Print(msg)
+end
+
+function handlers.qg(rest)
+    local key, value = (rest or ""):match("^(%S+)%s*(.*)$")
+    key = key and key:lower()
+    local C = ns.QuestGuideConfig
+    if not key then
+        for k, n in pairs(C.NUMBERS) do ns.Printf("  %s = %s  (%s-%s)", k, tostring(n.get()), tostring(n.min), tostring(n.max)) end
+        for k, t in pairs(C.TOGGLES) do ns.Printf("  %s %s", k, t.get() and "on" or "off") end
+        return
+    end
+    if C.NUMBERS[key] then
+        local ok, msg = C.SetNumber(key, value)
+        ns.Print(msg)
+    elseif C.TOGGLES[key] then
+        local on
+        if value:lower() == "on" then on = true elseif value:lower() == "off" then on = false end
+        local ok, msg = C.SetToggle(key, on)
+        ns.Print(msg)
+    else
+        ns.Print("/fg qg scale|opacity|width|rows|wpsize <value>  or  /fg qg completed|distances|subtitles|waypoint|route|wpanim on|off")
+    end
+end
+
+function handlers.tracker(rest)
+    rest = (rest or ""):lower()
+    if rest == "on" or rest == "off" then
+        local ok, msg = ns.QuestGuideConfig.SetToggle("tracker", rest == "on")
+        ns.Print(msg)
+        return
+    end
+    for _, name in ipairs({ "ObjectiveTrackerFrame", "QuestObjectiveTracker", "QuestWatchFrame", "WatchFrame", "ObjectiveTrackerBlocksFrame", "ScenarioObjectiveTracker" }) do
+        local f = rawget(_G, name)
+        if f then ns.Printf("  %s: shown=%s alpha=%s parent=%s", name, tostring(f.IsShown and f:IsShown()), tostring(f.GetAlpha and f:GetAlpha()), tostring(f.GetParent and f:GetParent() and f:GetParent():GetName())) end
+    end
+    ns.Printf("hide Blizzard tracker while the Quest Guide shows: %s   (/fg tracker on|off)", ns.db.ui.hideTracker ~= false and "on" or "off")
+end
 
 function handlers.hideall(rest)
     rest = (rest or ""):lower()

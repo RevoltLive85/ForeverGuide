@@ -31,6 +31,8 @@ Log in, enable it on the AddOns screen, then:
 | `/fg avail` | quests you could pick up in the current zone, with their givers and distances |
 | `/fg auto accept on\|off\|guide`, `/fg auto turnin on\|off` | auto-accept / auto-turn-in at NPCs (on by default; hold SHIFT to do it by hand; multi-choice rewards are left to you) |
 | `/fg minimap on\|off` | minimap button: left click window, right click guide picker, shift-click arrow, **alt-click hide everything**, drag to move |
+| `/fg waypoint on\|off`, `/fg route on\|off` | the in-world gold waypoint and the dotted path towards it |
+| `/fg qg scale\|opacity\|width\|rows\|wpsize <n>` | Quest Guide look; `/fg qg completed\|distances\|subtitles on\|off` |
 | `/fg hideall [on\|off]` | hide the window *and* the arrow at once (same as alt-clicking the minimap button); the guide keeps running in the background |
 | `/fg scan` | ask the server about every quest id 1-100000; log out, then `python tools/scan_diff.py` lists Forever's new quests vs Questie |
 | `/fg wrong <text>` / `/fg reports` | report the current step as wrong (saved with your position + target); `python tools/collect_reports.py` turns the reports into a review list |
@@ -58,8 +60,13 @@ ForeverGuide/
   Tracker.lua       auto mode: navigates the quest log using the database
   Recorder.lua      Phase 10 data recorder (quest -> npc -> coords -> level) into SavedVariables
   Scanner.lua       quest id scanner (/fg scan) -> which quest ids exist on Forever's server
-  UI.lua            the guide window + guide picker
-  Arrow.lua         floating direction arrow (Textures/arrow.tga)
+  UI.lua            coordinator of the interface + the guide picker
+  UI/Theme.lua      textures, colours, fonts, backdrops, buttons, pulse ticker (Textures/*.tga from tools/make_textures.py)
+  UI/QuestGuideFrame.lua   the Quest Guide window (parchment + gold), header, list, Guide / Guides buttons
+  UI/QuestGuideHeader.lua, QuestList.lua, QuestRow.lua   the rows: number ring, kind icon, title, objective line, distance
+  UI/QuestWaypoint.lua     the in-world gold waypoint riding on the engine's super-tracked pin (+ QuestRoute.lua dotted path)
+  UI/QuestGuideConfig.lua  settings (/fg qg ..., options panel)
+  Arrow.lua         compact gold chevron - fallback when the world pin cannot show (Textures/chevron.tga)
   AutoQuest.lua     auto-accept / auto-turn-in through the normal quest windows
   Minimap.lua       minimap button
   Options.lua       options panel (Settings canvas category)
