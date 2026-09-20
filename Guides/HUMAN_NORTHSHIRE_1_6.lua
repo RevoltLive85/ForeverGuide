@@ -10,7 +10,8 @@ ns.RegisterGuide({
     maxLevel = 6,
     author = "ForeverGuide sample",
     notes = "Quest IDs, NPC IDs and coordinates come from Questie's Classic Era database (Elwynn Forest, uiMapID 1429). Forever is a new build of the old world: verify every ID in the beta with /fg rec dump and fix anything that changed.",
-    steps = {
+    stepCount = 40,
+    steps = function() return {
         { type = "ACCEPT", quest = 783, questName = "A Threat Within", npc = 823, npcName = "Deputy Willem", map = 1429, zone = "Elwynn Forest", x = 48.2, y = 42.9, note = "Deputy Willem stands in front of the abbey." }, -- 1
         { type = "TURNIN", quest = 783, questName = "A Threat Within", npc = 197, npcName = "Marshal McBride", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 41.6, note = "Inside the abbey, straight ahead." }, -- 2
         { type = "ACCEPT", quest = 7, questName = "Kobold Camp Cleanup", npc = 197, npcName = "Marshal McBride", map = 1429, zone = "Elwynn Forest", x = 48.9, y = 41.6 }, -- 3
@@ -51,5 +52,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 2158, questName = "Rest and Relaxation", npc = 295, npcName = "Innkeeper Farley", map = 1429, zone = "Elwynn Forest", x = 43.8, y = 65.8, note = "Lion's Pride Inn." }, -- 38
         { type = "HEARTH", npc = 295, npcName = "Innkeeper Farley", map = 1429, zone = "Goldshire", x = 43.8, y = 65.8, text = "Set your hearthstone at the Lion's Pride Inn" }, -- 39
         { type = "NOTE", text = "End of the sample guide. Goldshire 6-10 continues from Marshal Dughan (The Fargodeep Mine, A Fishy Peril, ...)." }, -- 40
-    },
+    } end,
 })

@@ -10,7 +10,7 @@
   "zone": "Feralas",
   "next": "GEN_ALLIANCE_NIGHTELF_22_FELWOOD",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 21 of the NightElf route: level 45 to 45, 13 steps, ~55 min of play in the model (34811 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 21 of the NightElf route: level 45 to 45, 13 steps, ~55 min of play in the model (34811 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1444, "zone": "Feralas", "x": 31.8, "y": 44.8, "radius": 60, "note": "travel to Feralas (Feralas)"},
     {"type": "ACCEPT", "quest": 7003, "questName": "Zapped Giants", "npc": 14637, "npcName": "Zorbin Fandazzle", "map": 1444, "zone": "Feralas", "x": 44.8, "y": 43.4},

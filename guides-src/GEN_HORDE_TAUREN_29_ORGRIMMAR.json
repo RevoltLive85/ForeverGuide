@@ -10,7 +10,7 @@
   "zone": "Orgrimmar",
   "next": "GEN_HORDE_TAUREN_30_UNDERCITY",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 29 of the Tauren route: level 49 to 49, 3 steps, ~20 min of play in the model (50595 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 29 of the Tauren route: level 49 to 49, 3 steps, ~20 min of play in the model (50595 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1454, "zone": "Orgrimmar", "x": 62.3, "y": 40.1, "radius": 60, "note": "travel to Orgrimmar (Orgrimmar)"},
     {"type": "TURNIN", "quest": 3507, "questName": "Betrayed", "npc": 4485, "npcName": "Belgrom Rockmaul", "map": 1454, "zone": "Orgrimmar", "x": 75.2, "y": 34.2},

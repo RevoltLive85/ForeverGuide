@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Wetlands",
     next = "GEN_ALLIANCE_SKYBORNE_07_IRONFORGE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 6 of the Skyborne route: level 22 to 25, 69 steps, ~176 min of play in the model (27594 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 6 of the Skyborne route: level 22 to 25, 69 steps, ~176 min of play in the model (27594 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 69,
+    steps = function() return {
         { type = "TRAVEL", map = 1437, zone = "Wetlands", x = 10.3, y = 58.9, radius = 60, note = "travel to Wetlands (Wetlands)" }, -- 1
         { type = "NOTE", map = 1437, zone = "Wetlands", x = 10.3, y = 58.9, text = "set your hearthstone at the inn in Wetlands (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 279, questName = "Claws from the Deep", npc = 1242, npcName = "Karl Boran", map = 1437, zone = "Wetlands", x = 8.3, y = 58.6 }, -- 3
@@ -83,5 +84,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 465, questName = "Nek'rosh's Gambit", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.9, y = 57.5 }, -- 67
         { type = "TURNIN", quest = 465, questName = "Nek'rosh's Gambit", map = 1437, zone = "Wetlands", x = 47.5, y = 47 }, -- 68
         { type = "TURNIN", quest = 472, questName = "Fall of Dun Modr", npc = 1071, npcName = "Longbraid the Grim", map = 1437, zone = "Wetlands", x = 49.8, y = 18.3 }, -- 69
-    },
+    } end,
 })

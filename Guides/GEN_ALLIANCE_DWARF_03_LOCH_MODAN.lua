@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Loch Modan",
     next = "GEN_ALLIANCE_DWARF_04_WESTFALL",
     author = "ForeverGuide route planner",
-    notes = "Chapter 3 of the Dwarf route: level 10 to 14, 43 steps, ~116 min of play in the model (17791 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 3 of the Dwarf route: level 10 to 14, 43 steps, ~116 min of play in the model (17791 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 43,
+    steps = function() return {
         { type = "TRAVEL", map = 1432, zone = "Loch Modan", x = 35.7, y = 49.1, radius = 60, note = "travel to Loch Modan (Loch Modan)" }, -- 1
         { type = "NOTE", map = 1432, zone = "Loch Modan", x = 35.7, y = 49.1, text = "set your hearthstone at the inn in Loch Modan (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 6387, questName = "Honor Students", npc = 1681, npcName = "Brock Stoneseeker", map = 1432, zone = "Loch Modan", x = 37, y = 47.8 }, -- 3
@@ -57,5 +58,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 385, questName = "Crocolisk Hunting", npc = 1154, npcName = "Marek Ironheart", map = 1432, zone = "Loch Modan", x = 81.8, y = 61.7 }, -- 41
         { type = "TURNIN", quest = 258, questName = "A Hunter's Challenge", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 42
         { type = "TURNIN", quest = 298, questName = "Excavation Progress Report", npc = 1105, npcName = "Jern Hornhelm", map = 1432, zone = "Loch Modan", x = 37.2, y = 47.4 }, -- 43
-    },
+    } end,
 })

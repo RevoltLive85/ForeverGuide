@@ -12,15 +12,18 @@ ns.RegisterGuide({
     zone = "Burning Steppes",
     next = "GEN_HORDE_SKYBORNE_34_THE_HINTERLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 33 of the Skyborne route: level 50 to 51, 8 steps, ~160 min of play in the model (39833 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 33 of the Skyborne route: level 50 to 51, 10 steps, ~160 min of play in the model (39833 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    stepCount = 10,
+    steps = function() return {
         { type = "GRIND", npc = 7033, target = "Firegut Ogre", level = 51, map = 1428, zone = "Burning Steppes", x = 75.2, y = 45.3, near = true, note = "grind Firegut Ogre (level 50-51) to level 51 - nothing worth questing at 50" }, -- 1
         { type = "ACCEPT", quest = 4296, questName = "Tablet of the Seven", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 2
         { type = "ACCEPT", quest = 4726, questName = "Broodling Essence", npc = 10267, npcName = "Tinkee Steamboil", map = 1428, zone = "Burning Steppes", x = 65.2, y = 24 }, -- 3
         { type = "ACCEPT", quest = 4123, questName = "The Heart of the Mountain", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 4
-        { type = "TURNIN", quest = 4123, questName = "The Heart of the Mountain", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 5
-        { type = "TURNIN", quest = 4726, questName = "Broodling Essence", npc = 10267, npcName = "Tinkee Steamboil", map = 1428, zone = "Burning Steppes", x = 65.2, y = 24 }, -- 6
-        { type = "COLLECT", quest = 4296, questName = "Tablet of the Seven", target = "Tablet Transcript", map = 1428, zone = "Burning Steppes", x = 54.1, y = 40.8 }, -- 7
-        { type = "TURNIN", quest = 4296, questName = "Tablet of the Seven", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 8
-    },
+        { type = "ACCEPT", quest = 4136, questName = "Ribbly Screwspigot", npc = 9544, npcName = "Yuka Screwspigot", map = 1428, zone = "Burning Steppes", x = 66.1, y = 22, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 5
+        { type = "TURNIN", quest = 4136, questName = "Ribbly Screwspigot", npc = 9544, npcName = "Yuka Screwspigot", map = 1428, zone = "Burning Steppes", x = 66.1, y = 22, optional = true }, -- 6
+        { type = "TURNIN", quest = 4123, questName = "The Heart of the Mountain", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 7
+        { type = "TURNIN", quest = 4726, questName = "Broodling Essence", npc = 10267, npcName = "Tinkee Steamboil", map = 1428, zone = "Burning Steppes", x = 65.2, y = 24 }, -- 8
+        { type = "COLLECT", quest = 4296, questName = "Tablet of the Seven", target = "Tablet Transcript", map = 1428, zone = "Burning Steppes", x = 54.1, y = 40.8 }, -- 9
+        { type = "TURNIN", quest = 4296, questName = "Tablet of the Seven", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 10
+    } end,
 })

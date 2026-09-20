@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Orgrimmar",
     next = "GEN_HORDE_TAUREN_18_THE_HINTERLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 17 of the Tauren route: level 43 to 44, 10 steps, ~18 min of play in the model (56149 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 17 of the Tauren route: level 43 to 44, 10 steps, ~18 min of play in the model (56149 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 10,
+    steps = function() return {
         { type = "TRAVEL", map = 1454, zone = "Orgrimmar", x = 60.0, y = 40.2, radius = 60, note = "travel to Orgrimmar (Orgrimmar)" }, -- 1
         { type = "NOTE", map = 1454, zone = "Orgrimmar", x = 60.0, y = 40.2, text = "set your hearthstone at the inn in Orgrimmar (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 649, questName = "Ripple Recovery", npc = 6986, npcName = "Dran Droffers", map = 1454, zone = "Orgrimmar", x = 59.5, y = 36.6 }, -- 3
@@ -24,5 +25,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 2976, questName = "A Grim Discovery", npc = 4485, npcName = "Belgrom Rockmaul", map = 1454, zone = "Orgrimmar", x = 75.2, y = 34.2 }, -- 8
         { type = "ACCEPT", quest = 3504, questName = "Betrayed", npc = 4485, npcName = "Belgrom Rockmaul", map = 1454, zone = "Orgrimmar", x = 75.2, y = 34.2 }, -- 9
         { type = "ACCEPT", quest = 3122, questName = "Return to Witch Doctor Uzer'i", npc = 3216, npcName = "Neeru Fireblade", map = 1454, zone = "Orgrimmar", x = 49.5, y = 50.6 }, -- 10
-    },
+    } end,
 })

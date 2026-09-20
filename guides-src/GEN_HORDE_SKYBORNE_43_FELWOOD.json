@@ -10,7 +10,7 @@
   "zone": "Felwood",
   "next": "GEN_HORDE_SKYBORNE_44_UN_GORO_CRATER",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 43 of the Skyborne route: level 56 to 56, 9 steps, ~17 min of play in the model (58362 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 43 of the Skyborne route: level 56 to 56, 9 steps, ~17 min of play in the model (58362 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1448, "zone": "Felwood", "x": 35.2, "y": 52.5, "radius": 60, "note": "travel to Felwood (Felwood)"},
     {"type": "ACCEPT", "quest": 4505, "questName": "Well of Corruption", "npc": 9996, "npcName": "Winna Hazzard", "map": 1448, "zone": "Felwood", "x": 34.2, "y": 52.3},

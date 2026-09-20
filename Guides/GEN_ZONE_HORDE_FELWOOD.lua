@@ -11,7 +11,8 @@ ns.RegisterGuide({
     zone = "Felwood",
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Felwood for a Horde character, 13 quests. The race routes are the faster path; pick this when you just want to quest here.",
-    steps = {
+    stepCount = 41,
+    steps = function() return {
         { type = "TRAVEL", map = 1448, zone = "Felwood", x = 50.5, y = 82.5, radius = 60, note = "travel to Felwood (Felwood)" }, -- 1
         { type = "NOTE", map = 1448, zone = "Felwood", x = 50.5, y = 82.5, text = "set your hearthstone at the inn in Felwood (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 8460, questName = "Timbermaw Ally", npc = 11554, npcName = "Grazle", map = 1448, zone = "Felwood", x = 50.9, y = 85 }, -- 3
@@ -53,5 +54,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 4506, questName = "Corrupted Sabers", npc = 9996, npcName = "Winna Hazzard", map = 1448, zone = "Felwood", x = 34.2, y = 52.3 }, -- 39
         { type = "ACCEPT", quest = 6031, questName = "Runecloth", npc = 11557, npcName = "Meilosh", map = 1448, zone = "Felwood", x = 65.7, y = 2.8 }, -- 40
         { type = "TURNIN", quest = 6031, questName = "Runecloth", npc = 11557, npcName = "Meilosh", map = 1448, zone = "Felwood", x = 65.7, y = 2.8 }, -- 41
-    },
+    } end,
 })

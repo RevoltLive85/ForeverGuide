@@ -10,7 +10,7 @@
   "zone": "Burning Steppes",
   "next": "GEN_HORDE_ORC_42_WINTERSPRING",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 41 of the Orc route: level 55 to 56, 10 steps, ~35 min of play in the model (50784 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 41 of the Orc route: level 55 to 56, 10 steps, ~35 min of play in the model (50784 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1428, "zone": "Burning Steppes", "x": 65.4, "y": 23.3, "radius": 60, "note": "travel to Burning Steppes (Burning Steppes)"},
     {"type": "ACCEPT", "quest": 4729, "questName": "Kibler's Exotic Pets", "npc": 10260, "npcName": "Kibler", "map": 1428, "zone": "Burning Steppes", "x": 65.9, "y": 21.9},

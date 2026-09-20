@@ -10,7 +10,7 @@
   "zone": "Ironforge",
   "next": "GEN_ALLIANCE_HUMAN_03_WESTFALL",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 2 of the Human route: level 11 to 11, 6 steps, ~9 min of play in the model (29414 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 2 of the Human route: level 11 to 11, 6 steps, ~9 min of play in the model (29414 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1455, "zone": "Ironforge", "x": 61.4, "y": 48.2, "radius": 60, "note": "travel to Ironforge (Ironforge)"},
     {"type": "NOTE", "map": 1455, "zone": "Ironforge", "x": 61.4, "y": 48.2, "text": "set your hearthstone at the inn in Ironforge (if there is one)"},

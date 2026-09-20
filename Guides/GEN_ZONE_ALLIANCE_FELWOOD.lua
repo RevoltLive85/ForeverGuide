@@ -11,7 +11,8 @@ ns.RegisterGuide({
     zone = "Felwood",
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Felwood for a Alliance character, 12 quests. The race routes are the faster path; pick this when you just want to quest here.",
-    steps = {
+    stepCount = 40,
+    steps = function() return {
         { type = "TRAVEL", map = 1448, zone = "Felwood", x = 51.6, y = 82.7, radius = 60, note = "travel to Felwood (Felwood)" }, -- 1
         { type = "NOTE", map = 1448, zone = "Felwood", x = 51.6, y = 82.7, text = "set your hearthstone at the inn in Felwood (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 8460, questName = "Timbermaw Ally", npc = 11554, npcName = "Grazle", map = 1448, zone = "Felwood", x = 50.9, y = 85 }, -- 3
@@ -52,5 +53,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 6031, questName = "Runecloth", npc = 11557, npcName = "Meilosh", map = 1448, zone = "Felwood", x = 65.7, y = 2.8 }, -- 38
         { type = "ACCEPT", quest = 8462, questName = "Speak to Nafien", npc = 11554, npcName = "Grazle", map = 1448, zone = "Felwood", x = 50.9, y = 85 }, -- 39
         { type = "TURNIN", quest = 8462, questName = "Speak to Nafien", npc = 15395, npcName = "Nafien", map = 1448, zone = "Felwood", x = 64.8, y = 8.1 }, -- 40
-    },
+    } end,
 })

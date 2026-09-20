@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Azshara",
     next = "GEN_ALLIANCE_HUMAN_31_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
-    notes = "Chapter 30 of the Human route: level 48 to 48, 14 steps, ~51 min of play in the model (39054 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 30 of the Human route: level 48 to 48, 14 steps, ~51 min of play in the model (39054 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 14,
+    steps = function() return {
         { type = "TRAVEL", map = 1447, zone = "Azshara", x = 60.8, y = 66.4, radius = 60, note = "travel to Azshara (Azshara)" }, -- 1
         { type = "NOTE", map = 1447, zone = "Azshara", x = 60.8, y = 66.4, text = "set your hearthstone at the inn in Azshara (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 3601, questName = "Kim'jael Indeed!", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 3
@@ -28,5 +29,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 5535, questName = "Spiritual Unrest", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 12
         { type = "KILL", quest = 5536, questName = "A Land Filled with Hatred", npc = 6127, target = "Haldarr Felsworn / Haldarr Trickster / Haldarr Satyr", count = 6, map = 1447, zone = "Azshara", x = 19.1, y = 64, near = true }, -- 13
         { type = "TURNIN", quest = 5536, questName = "A Land Filled with Hatred", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 14
-    },
+    } end,
 })

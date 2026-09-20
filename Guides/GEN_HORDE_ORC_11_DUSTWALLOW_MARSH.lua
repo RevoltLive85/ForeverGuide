@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Dustwallow Marsh",
     next = "GEN_HORDE_ORC_12_TANARIS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 11 of the Orc route: level 38 to 40, 61 steps, ~164 min of play in the model (38018 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 11 of the Orc route: level 38 to 40, 61 steps, ~164 min of play in the model (38018 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 61,
+    steps = function() return {
         { type = "TRAVEL", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 32.1, radius = 60, note = "travel to Dustwallow Marsh (Dustwallow Marsh)" }, -- 1
         { type = "NOTE", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 32.1, text = "set your hearthstone at the inn in Dustwallow Marsh (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 1201, questName = "Theramore Spies", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 3
@@ -75,5 +76,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1239, questName = "The Severed Head", map = 1445, zone = "Dustwallow Marsh", x = 55.4, y = 25.9 }, -- 59
         { type = "TURNIN", quest = 1239, questName = "The Severed Head", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 60
         { type = "ACCEPT", quest = 1240, questName = "The Troll Witchdoctor", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 61
-    },
+    } end,
 })

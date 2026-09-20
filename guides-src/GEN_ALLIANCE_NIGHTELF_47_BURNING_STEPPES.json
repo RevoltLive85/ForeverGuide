@@ -10,7 +10,7 @@
   "zone": "Burning Steppes",
   "next": "GEN_ALLIANCE_NIGHTELF_48_SILITHUS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 47 of the NightElf route: level 55 to 58, 12 steps, ~618 min of play in the model (2884 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 47 of the NightElf route: level 55 to 58, 12 steps, ~618 min of play in the model (2884 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1428, "zone": "Burning Steppes", "x": 65.4, "y": 23.3, "radius": 60, "note": "travel to Burning Steppes (Burning Steppes)"},
     {"type": "ACCEPT", "quest": 4729, "questName": "Kibler's Exotic Pets", "npc": 10260, "npcName": "Kibler", "map": 1428, "zone": "Burning Steppes", "x": 65.9, "y": 21.9},

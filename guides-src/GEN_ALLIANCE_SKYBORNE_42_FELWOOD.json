@@ -10,7 +10,7 @@
   "zone": "Felwood",
   "next": "GEN_ALLIANCE_SKYBORNE_43_UN_GORO_CRATER",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 42 of the Skyborne route: level 53 to 53, 13 steps, ~50 min of play in the model (40955 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 42 of the Skyborne route: level 53 to 53, 13 steps, ~50 min of play in the model (40955 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1448, "zone": "Felwood", "x": 51.3, "y": 81.7, "radius": 60, "note": "travel to Felwood (Felwood)"},
     {"type": "ACCEPT", "quest": 4421, "questName": "The Corruption of the Jadefire", "npc": 9116, "npcName": "Eridan Bluewind", "map": 1448, "zone": "Felwood", "x": 51.4, "y": 81.5},

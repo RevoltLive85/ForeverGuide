@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Teldrassil",
     next = "GEN_ALLIANCE_NIGHTELF_02_DARNASSUS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 1 of the NightElf route: level 1 to 10, 101 steps, ~143 min of play in the model (11737 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 1 of the NightElf route: level 1 to 10, 101 steps, ~143 min of play in the model (11737 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 101,
+    steps = function() return {
         { type = "NOTE", map = 1438, zone = "Teldrassil", x = 59.1, y = 44.7, text = "set your hearthstone at the inn in Teldrassil (if there is one)" }, -- 1
         { type = "ACCEPT", quest = 458, questName = "The Woodland Protector", npc = 2077, npcName = "Melithar Staghelm", map = 1438, zone = "Teldrassil", x = 59.9, y = 42.5 }, -- 2
         { type = "ACCEPT", quest = 456, questName = "The Balance of Nature", npc = 2079, npcName = "Conservator Ilthalaine", map = 1438, zone = "Teldrassil", x = 58.7, y = 44.3 }, -- 3
@@ -115,5 +116,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 2399, questName = "The Sprouted Fronds", map = 1438, zone = "Teldrassil", x = 60.8, y = 68.6 }, -- 99
         { type = "ACCEPT", quest = 6341, questName = "The Bounty of Teldrassil", npc = 10118, npcName = "Nessa Shadowsong", map = 1438, zone = "Teldrassil", x = 56.3, y = 92.4 }, -- 100
         { type = "TURNIN", quest = 6341, questName = "The Bounty of Teldrassil", npc = 3838, npcName = "Vesprystus", map = 1438, zone = "Teldrassil", x = 58.4, y = 94 }, -- 101
-    },
+    } end,
 })

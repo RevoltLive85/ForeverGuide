@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Duskwood",
     next = "GEN_ALLIANCE_DWARF_07_WETLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 6 of the Dwarf route: level 19 to 22, 81 steps, ~197 min of play in the model (22716 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 6 of the Dwarf route: level 19 to 22, 81 steps, ~197 min of play in the model (22716 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 81,
+    steps = function() return {
         { type = "TRAVEL", map = 1431, zone = "Duskwood", x = 74.9, y = 47.1, radius = 60, note = "travel to Duskwood (Duskwood)" }, -- 1
         { type = "NOTE", map = 1431, zone = "Duskwood", x = 74.9, y = 47.1, text = "set your hearthstone at the inn in Duskwood (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 56, questName = "The Night Watch", npc = 264, npcName = "Commander Althea Ebonlocke", map = 1431, zone = "Duskwood", x = 73.5, y = 46.8 }, -- 3
@@ -95,5 +96,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 401, questName = "Wait for Sirra to Finish", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 79
         { type = "ACCEPT", quest = 252, questName = "Translation to Ello", npc = 268, npcName = "Sirra Von'Indi", map = 1431, zone = "Duskwood", x = 72.6, y = 47.6 }, -- 80
         { type = "TURNIN", quest = 252, questName = "Translation to Ello", npc = 263, npcName = "Lord Ello Ebonlocke", map = 1431, zone = "Duskwood", x = 71.9, y = 46.4 }, -- 81
-    },
+    } end,
 })

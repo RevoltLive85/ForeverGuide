@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Eastern Plaguelands",
     next = "GEN_ALLIANCE_DWARF_47_BURNING_STEPPES",
     author = "ForeverGuide route planner",
-    notes = "Chapter 46 of the Dwarf route: level 55 to 55, 42 steps, ~178 min of play in the model (55810 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 46 of the Dwarf route: level 55 to 55, 42 steps, ~178 min of play in the model (55810 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 42,
+    steps = function() return {
         { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.9, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 1
         { type = "ACCEPT", quest = 5529, questName = "Plagued Hatchlings", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 2
         { type = "ACCEPT", quest = 6026, questName = "That's Asking A Lot", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 3
@@ -56,5 +57,5 @@ ns.RegisterGuide({
         { type = "KILL", quest = 6024, questName = "Hameya's Plea", npc = 12248, target = "Infiltrator Hameya", map = 1423, zone = "Eastern Plaguelands", x = 70.7, y = 16.5, note = "loot Hameya's Key" }, -- 40
         { type = "TURNIN", quest = 9664, questName = "Establishing New Outposts", npc = 17069, npcName = "Emmisary Whitebeard", map = 1423, zone = "Eastern Plaguelands", x = 81.3, y = 59.4 }, -- 41
         { type = "TURNIN", quest = 6024, questName = "Hameya's Plea", map = 1423, zone = "Eastern Plaguelands", x = 28, y = 86.2 }, -- 42
-    },
+    } end,
 })

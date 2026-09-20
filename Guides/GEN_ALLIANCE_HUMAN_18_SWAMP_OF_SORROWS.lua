@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Swamp of Sorrows",
     next = "GEN_ALLIANCE_HUMAN_19_TANARIS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 18 of the Human route: level 38 to 40, 21 steps, ~235 min of play in the model (5235 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 18 of the Human route: level 38 to 40, 21 steps, ~235 min of play in the model (5235 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 21,
+    steps = function() return {
         { type = "TRAVEL", map = 1435, zone = "Swamp of Sorrows", x = 29.3, y = 60.1, radius = 60, note = "travel to Swamp of Sorrows (Swamp of Sorrows)" }, -- 1
         { type = "NOTE", map = 1435, zone = "Swamp of Sorrows", x = 29.3, y = 60.1, text = "set your hearthstone at the inn in Swamp of Sorrows (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 1396, questName = "Encroaching Wildlife", npc = 5476, npcName = "Watcher Biggs", map = 1435, zone = "Swamp of Sorrows", x = 26.7, y = 59.8 }, -- 3
@@ -35,5 +36,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 1398, questName = "Driftwood", npc = 5476, npcName = "Watcher Biggs", map = 1435, zone = "Swamp of Sorrows", x = 26.7, y = 59.8 }, -- 19
         { type = "GRIND", npc = 768, target = "Shadow Panther", level = 39, map = 1435, zone = "Swamp of Sorrows", x = 61.2, y = 64, near = true, note = "grind Shadow Panther (level 39-40) to level 39 - nothing worth questing at 38" }, -- 20
         { type = "GRIND", npc = 768, target = "Shadow Panther", level = 40, map = 1435, zone = "Swamp of Sorrows", x = 61.2, y = 64, near = true, note = "grind Shadow Panther (level 39-40) to level 40 - nothing worth questing at 39" }, -- 21
-    },
+    } end,
 })

@@ -9,7 +9,7 @@
   "map": 1452,
   "zone": "Winterspring",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 49 of the NightElf route: level 58 to 60, 8 steps, ~566 min of play in the model (1903 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 49 of the NightElf route: level 58 to 60, 8 steps, ~566 min of play in the model (1903 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1452, "zone": "Winterspring", "x": 61.5, "y": 38.4, "radius": 60, "note": "travel to Winterspring (Winterspring)"},
     {"type": "ACCEPT", "quest": 969, "questName": "Luck Be With You", "npc": 10307, "npcName": "Witch Doctor Mau'ari", "map": 1452, "zone": "Winterspring", "x": 61.9, "y": 38.3},

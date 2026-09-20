@@ -11,84 +11,98 @@ ns.RegisterGuide({
     zone = "Eastern Plaguelands",
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Eastern Plaguelands for a Horde character, 27 quests. The race routes are the faster path; pick this when you just want to quest here.",
-    steps = {
+    stepCount = 91,
+    steps = function() return {
         { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.3, y = 59.1, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 1
         { type = "NOTE", map = 1423, zone = "Eastern Plaguelands", x = 81.3, y = 59.1, text = "set your hearthstone at the inn in Eastern Plaguelands (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 5211, questName = "Defenders of Darrowshire", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 3
-        { type = "ACCEPT", quest = 6021, questName = "Zaeldarr the Outcast", npc = 11038, npcName = "Caretaker Alen", map = 1423, zone = "Eastern Plaguelands", x = 79.6, y = 63.9 }, -- 4
-        { type = "KILL", quest = 5211, questName = "Defenders of Darrowshire", npc = 11064, target = "Darrowshire Spirit", count = 15, map = 1423, zone = "Eastern Plaguelands", x = 81.8, y = 42.1, near = true }, -- 5
-        { type = "TURNIN", quest = 5211, questName = "Defenders of Darrowshire", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 6
-        { type = "ACCEPT", quest = 5149, questName = "Pamela's Doll", npc = 10926, npcName = "Pamela Redpath", map = 1423, zone = "Eastern Plaguelands", x = 36.5, y = 90.8 }, -- 7
-        { type = "TURNIN", quest = 5149, questName = "Pamela's Doll", npc = 10926, npcName = "Pamela Redpath", map = 1423, zone = "Eastern Plaguelands", x = 36.5, y = 90.8 }, -- 8
-        { type = "ACCEPT", quest = 5152, questName = "Auntie Marlene", npc = 10926, npcName = "Pamela Redpath", map = 1423, zone = "Eastern Plaguelands", x = 36.5, y = 90.8 }, -- 9
-        { type = "ACCEPT", quest = 5241, questName = "Uncle Carlin", npc = 10926, npcName = "Pamela Redpath", map = 1423, zone = "Eastern Plaguelands", x = 36.5, y = 90.8 }, -- 10
-        { type = "KILL", quest = 6021, questName = "Zaeldarr the Outcast", npc = 12250, target = "Zaeldarr the Outcast", map = 1423, zone = "Eastern Plaguelands", x = 27.5, y = 84.9, note = "loot Zaeldarr's Head" }, -- 11
-        { type = "ACCEPT", quest = 6164, questName = "Augustus' Receipt Book", npc = 12384, npcName = "Augustus the Touched", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.5 }, -- 12
-        { type = "ACCEPT", quest = 5542, questName = "Demon Dogs", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 13
-        { type = "ACCEPT", quest = 5543, questName = "Blood Tinged Skies", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 14
-        { type = "ACCEPT", quest = 5544, questName = "Carrion Grubbage", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 15
-        { type = "COLLECT", quest = 5544, questName = "Carrion Grubbage", target = "Slab of Carrion Worm Meat", count = 15, map = 1423, zone = "Eastern Plaguelands", x = 6.8, y = 42.2, near = true }, -- 16
-        { type = "TURNIN", quest = 5544, questName = "Carrion Grubbage", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 17
-        { type = "COLLECT", quest = 6164, questName = "Augustus' Receipt Book", target = "Augustus' Receipt Book", map = 1423, zone = "Eastern Plaguelands", x = 17.4, y = 31.1 }, -- 18
-        { type = "TURNIN", quest = 6164, questName = "Augustus' Receipt Book", npc = 12384, npcName = "Augustus the Touched", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.5 }, -- 19
-        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8598, target = "Frenzied Plaguehound", count = 5, map = 1423, zone = "Eastern Plaguelands", x = 19.6, y = 25.9, near = true }, -- 20
-        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8596, target = "Plaguehound Runt", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 7.7, y = 53.9, near = true }, -- 21
-        { type = "KILL", quest = 5543, questName = "Blood Tinged Skies", npc = 8600, target = "Plaguebat", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 15, y = 75.5, near = true }, -- 22
-        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8597, target = "Plaguehound", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 52.3, y = 62.2, near = true }, -- 23
-        { type = "TURNIN", quest = 5542, questName = "Demon Dogs", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 24
-        { type = "TURNIN", quest = 5543, questName = "Blood Tinged Skies", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 25
-        { type = "TURNIN", quest = 6021, questName = "Zaeldarr the Outcast", npc = 11038, npcName = "Caretaker Alen", map = 1423, zone = "Eastern Plaguelands", x = 79.6, y = 63.9 }, -- 26
-        { type = "TURNIN", quest = 5241, questName = "Uncle Carlin", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 27
-        { type = "ACCEPT", quest = 6026, questName = "That's Asking A Lot", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 28
-        { type = "TURNIN", quest = 6026, questName = "That's Asking A Lot", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 29
-        { type = "ACCEPT", quest = 6041, questName = "When Smokey Sings, I Get Violent", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 30
-        { type = "KILL", quest = 6041, questName = "When Smokey Sings, I Get Violent", npc = 12247, target = "Scourge Structure", count = 8, map = 1423, zone = "Eastern Plaguelands", x = 40.7, y = 38.6, near = true, note = "Scourge Structures Destroyed" }, -- 31
-        { type = "TURNIN", quest = 6041, questName = "When Smokey Sings, I Get Violent", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 32
-        { type = "ACCEPT", quest = 6024, questName = "Hameya's Plea", map = 1423, zone = "Eastern Plaguelands", x = 27.3, y = 85.2 }, -- 33
-        { type = "ACCEPT", quest = 6022, questName = "To Kill With Purpose", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 34
-        { type = "ACCEPT", quest = 6042, questName = "Un-Life's Little Annoyances", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 35
-        { type = "ACCEPT", quest = 6133, questName = "The Ranger Lord's Behest", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 36
-        { type = "TURNIN", quest = 6022, questName = "To Kill With Purpose", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 37
-        { type = "KILL", quest = 6042, questName = "Un-Life's Little Annoyances", npc = 8601, target = "Noxious Plaguebat", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 46.2, y = 65.8, near = true }, -- 38
-        { type = "KILL", quest = 6042, questName = "Un-Life's Little Annoyances", npc = 8602, target = "Monstrous Plaguebat", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 43.5, y = 43, near = true }, -- 39
-        { type = "KILL", quest = 6133, questName = "The Ranger Lord's Behest", npc = 8564, target = "Ranger / Woodsman / Pathstrider", count = 8, map = 1423, zone = "Eastern Plaguelands", x = 51.4, y = 21.7, near = true }, -- 40
-        { type = "COLLECT", quest = 6133, questName = "The Ranger Lord's Behest", target = "Quel'Thalas Registry", map = 1423, zone = "Eastern Plaguelands", x = 52.1, y = 18.3 }, -- 41
-        { type = "TURNIN", quest = 6042, questName = "Un-Life's Little Annoyances", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 42
-        { type = "TURNIN", quest = 6133, questName = "The Ranger Lord's Behest", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 43
-        { type = "KILL", quest = 6024, questName = "Hameya's Plea", npc = 12248, target = "Infiltrator Hameya", map = 1423, zone = "Eastern Plaguelands", x = 70.7, y = 16.5, note = "loot Hameya's Key" }, -- 44
-        { type = "TURNIN", quest = 6024, questName = "Hameya's Plea", map = 1423, zone = "Eastern Plaguelands", x = 28, y = 86.2 }, -- 45
-        { type = "ACCEPT", quest = 5281, questName = "The Restless Souls", npc = 11038, npcName = "Caretaker Alen", map = 1423, zone = "Eastern Plaguelands", x = 79.6, y = 63.9 }, -- 46
-        { type = "ACCEPT", quest = 5529, questName = "Plagued Hatchlings", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 47
-        { type = "ACCEPT", quest = 5513, questName = "Mantles of the Dawn", npc = 11536, npcName = "Quartermaster Miranda Breechlock", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 60 }, -- 48
-        { type = "ACCEPT", quest = 5517, questName = "Chromatic Mantle of the Dawn", npc = 11536, npcName = "Quartermaster Miranda Breechlock", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 60 }, -- 49
-        { type = "ACCEPT", quest = 5212, questName = "The Flesh Does Not Lie", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 50
-        { type = "ACCEPT", quest = 9124, questName = "Cryptstalker Armor Doesn't Make Itself...", npc = 16132, npcName = "Huntsman Leopold", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 58.6 }, -- 51
-        { type = "ACCEPT", quest = 9126, questName = "Bonescythe Digs", npc = 16131, npcName = "Rohan the Assassin", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.5 }, -- 52
-        { type = "ACCEPT", quest = 9128, questName = "The Elemental Equation", npc = 16116, npcName = "Archmage Angela Dosantos", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 58.3 }, -- 53
-        { type = "ACCEPT", quest = 9665, questName = "Bolstering Our Defenses", npc = 17072, npcName = "Emmisary Gormok", map = 1423, zone = "Eastern Plaguelands", x = 80, y = 57.4 }, -- 54
-        { type = "ACCEPT", quest = 9141, questName = "They Call Me \"The Rooster\"", npc = 16212, npcName = "Dispatch Commander Metz", map = 1423, zone = "Eastern Plaguelands", x = 81.1, y = 57.6 }, -- 55
-        { type = "ACCEPT", quest = 5243, questName = "Houses of the Holy", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.7, y = 57.8 }, -- 56
-        { type = "TURNIN", quest = 5243, questName = "Houses of the Holy", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.7, y = 57.8 }, -- 57
-        { type = "TURNIN", quest = 9141, questName = "They Call Me \"The Rooster\"", npc = 16212, npcName = "Dispatch Commander Metz", map = 1423, zone = "Eastern Plaguelands", x = 81.1, y = 57.6 }, -- 58
-        { type = "TURNIN", quest = 5212, questName = "The Flesh Does Not Lie", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 59
-        { type = "TURNIN", quest = 5529, questName = "Plagued Hatchlings", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 60
-        { type = "TURNIN", quest = 5513, questName = "Mantles of the Dawn", npc = 11536, npcName = "Quartermaster Miranda Breechlock", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 60 }, -- 61
-        { type = "TURNIN", quest = 5517, questName = "Chromatic Mantle of the Dawn", npc = 11536, npcName = "Quartermaster Miranda Breechlock", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 60 }, -- 62
-        { type = "ACCEPT", quest = 5213, questName = "The Active Agent", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 63
-        { type = "TURNIN", quest = 5213, questName = "The Active Agent", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 64
-        { type = "COLLECT", quest = 9126, questName = "Bonescythe Digs", target = "Bone Fragments", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 78.3, y = 55, near = true }, -- 65
-        { type = "TURNIN", quest = 9126, questName = "Bonescythe Digs", npc = 16131, npcName = "Rohan the Assassin", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.5 }, -- 66
-        { type = "COLLECT", quest = 9124, questName = "Cryptstalker Armor Doesn't Make Itself...", target = "Crypt Fiend Parts", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 81.9, y = 46.6, near = true }, -- 67
-        { type = "COLLECT", quest = 9128, questName = "The Elemental Equation", target = "Core of Elements", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 72.8, y = 35.2, near = true }, -- 68
-        { type = "KILL", quest = 9665, questName = "Bolstering Our Defenses", npc = 17690, target = "<TXT>Eastwall Capture Quest Doodad", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 67.5, y = 48, note = "Capture Eastwall Tower" }, -- 69
-        { type = "KILL", quest = 9665, questName = "Bolstering Our Defenses", npc = 17696, target = "<TXT>Northpass Capture Quest Doodad", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 56.6, y = 24.4, note = "Capture Northpass Tower" }, -- 70
-        { type = "KILL", quest = 9665, questName = "Bolstering Our Defenses", npc = 17689, target = "<TXT>Crown Guard Capture Quest Doodad", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 39.7, y = 75.4, note = "Capture Crown Guard Tower" }, -- 71
-        { type = "TURNIN", quest = 9124, questName = "Cryptstalker Armor Doesn't Make Itself...", npc = 16132, npcName = "Huntsman Leopold", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 58.6 }, -- 72
-        { type = "TURNIN", quest = 9128, questName = "The Elemental Equation", npc = 16116, npcName = "Archmage Angela Dosantos", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 58.3 }, -- 73
-        { type = "KILL", quest = 9665, questName = "Bolstering Our Defenses", npc = 17698, target = "<TXT>Plaguewood Capture Quest Doodad", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 22, y = 32, note = "Capture Plaguewood Tower" }, -- 74
-        { type = "TURNIN", quest = 5281, questName = "The Restless Souls", npc = 11140, npcName = "Egan", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.7 }, -- 75
-        { type = "ACCEPT", quest = 5282, questName = "The Restless Souls", npc = 11140, npcName = "Egan", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.7 }, -- 76
-        { type = "TURNIN", quest = 5282, questName = "The Restless Souls", npc = 11140, npcName = "Egan", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.7 }, -- 77
-        { type = "TURNIN", quest = 9665, questName = "Bolstering Our Defenses", npc = 17072, npcName = "Emmisary Gormok", map = 1423, zone = "Eastern Plaguelands", x = 80, y = 57.4 }, -- 78
-    },
+        { type = "ACCEPT", quest = 5214, questName = "The Great Ezra Grimm", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 4
+        { type = "TURNIN", quest = 5214, questName = "The Great Ezra Grimm", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58, optional = true }, -- 5
+        { type = "ACCEPT", quest = 5251, questName = "The Archivist", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 6
+        { type = "TURNIN", quest = 5251, questName = "The Archivist", npc = 11039, npcName = "Duke Nicholas Zverenhoff", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 59.8, optional = true }, -- 7
+        { type = "ACCEPT", quest = 6021, questName = "Zaeldarr the Outcast", npc = 11038, npcName = "Caretaker Alen", map = 1423, zone = "Eastern Plaguelands", x = 79.6, y = 63.9 }, -- 8
+        { type = "KILL", quest = 5211, questName = "Defenders of Darrowshire", npc = 11064, target = "Darrowshire Spirit", count = 15, map = 1423, zone = "Eastern Plaguelands", x = 81.8, y = 42.1, near = true }, -- 9
+        { type = "TURNIN", quest = 5211, questName = "Defenders of Darrowshire", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 10
+        { type = "ACCEPT", quest = 5149, questName = "Pamela's Doll", npc = 10926, npcName = "Pamela Redpath", map = 1423, zone = "Eastern Plaguelands", x = 36.5, y = 90.8 }, -- 11
+        { type = "TURNIN", quest = 5149, questName = "Pamela's Doll", npc = 10926, npcName = "Pamela Redpath", map = 1423, zone = "Eastern Plaguelands", x = 36.5, y = 90.8 }, -- 12
+        { type = "ACCEPT", quest = 5152, questName = "Auntie Marlene", npc = 10926, npcName = "Pamela Redpath", map = 1423, zone = "Eastern Plaguelands", x = 36.5, y = 90.8 }, -- 13
+        { type = "ACCEPT", quest = 5241, questName = "Uncle Carlin", npc = 10926, npcName = "Pamela Redpath", map = 1423, zone = "Eastern Plaguelands", x = 36.5, y = 90.8 }, -- 14
+        { type = "KILL", quest = 6021, questName = "Zaeldarr the Outcast", npc = 12250, target = "Zaeldarr the Outcast", map = 1423, zone = "Eastern Plaguelands", x = 27.5, y = 84.9, note = "loot Zaeldarr's Head" }, -- 15
+        { type = "ACCEPT", quest = 6164, questName = "Augustus' Receipt Book", npc = 12384, npcName = "Augustus the Touched", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.5 }, -- 16
+        { type = "ACCEPT", quest = 5542, questName = "Demon Dogs", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 17
+        { type = "ACCEPT", quest = 5543, questName = "Blood Tinged Skies", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 18
+        { type = "ACCEPT", quest = 5544, questName = "Carrion Grubbage", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 19
+        { type = "ACCEPT", quest = 5742, questName = "Redemption", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 20
+        { type = "KILL", quest = 5742, questName = "Redemption", npc = 1855, target = "Tirion Fordring", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7, optional = true }, -- 21
+        { type = "TURNIN", quest = 5742, questName = "Redemption", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7, optional = true }, -- 22
+        { type = "COLLECT", quest = 5544, questName = "Carrion Grubbage", target = "Slab of Carrion Worm Meat", count = 15, map = 1423, zone = "Eastern Plaguelands", x = 6.8, y = 42.2, near = true }, -- 23
+        { type = "TURNIN", quest = 5544, questName = "Carrion Grubbage", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 24
+        { type = "COLLECT", quest = 6164, questName = "Augustus' Receipt Book", target = "Augustus' Receipt Book", map = 1423, zone = "Eastern Plaguelands", x = 17.4, y = 31.1 }, -- 25
+        { type = "TURNIN", quest = 6164, questName = "Augustus' Receipt Book", npc = 12384, npcName = "Augustus the Touched", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.5 }, -- 26
+        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8598, target = "Frenzied Plaguehound", count = 5, map = 1423, zone = "Eastern Plaguelands", x = 19.6, y = 25.9, near = true }, -- 27
+        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8596, target = "Plaguehound Runt", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 7.7, y = 53.9, near = true }, -- 28
+        { type = "KILL", quest = 5543, questName = "Blood Tinged Skies", npc = 8600, target = "Plaguebat", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 15, y = 75.5, near = true }, -- 29
+        { type = "KILL", quest = 5542, questName = "Demon Dogs", npc = 8597, target = "Plaguehound", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 52.3, y = 62.2, near = true }, -- 30
+        { type = "TURNIN", quest = 5542, questName = "Demon Dogs", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 31
+        { type = "TURNIN", quest = 5543, questName = "Blood Tinged Skies", npc = 1855, npcName = "Tirion Fordring", map = 1423, zone = "Eastern Plaguelands", x = 7.6, y = 43.7 }, -- 32
+        { type = "TURNIN", quest = 6021, questName = "Zaeldarr the Outcast", npc = 11038, npcName = "Caretaker Alen", map = 1423, zone = "Eastern Plaguelands", x = 79.6, y = 63.9 }, -- 33
+        { type = "TURNIN", quest = 5241, questName = "Uncle Carlin", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 34
+        { type = "ACCEPT", quest = 6026, questName = "That's Asking A Lot", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 35
+        { type = "TURNIN", quest = 6026, questName = "That's Asking A Lot", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 36
+        { type = "ACCEPT", quest = 6041, questName = "When Smokey Sings, I Get Violent", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 37
+        { type = "KILL", quest = 6041, questName = "When Smokey Sings, I Get Violent", npc = 12247, target = "Scourge Structure", count = 8, map = 1423, zone = "Eastern Plaguelands", x = 40.7, y = 38.6, near = true, note = "Scourge Structures Destroyed" }, -- 38
+        { type = "TURNIN", quest = 6041, questName = "When Smokey Sings, I Get Violent", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 39
+        { type = "ACCEPT", quest = 6024, questName = "Hameya's Plea", map = 1423, zone = "Eastern Plaguelands", x = 27.3, y = 85.2 }, -- 40
+        { type = "ACCEPT", quest = 6022, questName = "To Kill With Purpose", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 41
+        { type = "ACCEPT", quest = 6042, questName = "Un-Life's Little Annoyances", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 42
+        { type = "ACCEPT", quest = 6133, questName = "The Ranger Lord's Behest", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 43
+        { type = "ACCEPT", quest = 6135, questName = "Duskwing, Oh How I Hate Thee...", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 44
+        { type = "KILL", quest = 6135, questName = "Duskwing, Oh How I Hate Thee...", npc = 11897, target = "Duskwing", map = 1423, zone = "Eastern Plaguelands", x = 30.8, y = 69.8, optional = true }, -- 45
+        { type = "TURNIN", quest = 6135, questName = "Duskwing, Oh How I Hate Thee...", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7, optional = true }, -- 46
+        { type = "ACCEPT", quest = 6136, questName = "The Corpulent One", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 47
+        { type = "KILL", quest = 6136, questName = "The Corpulent One", npc = 11896, target = "Borelgore", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 54.8, y = 31.8, optional = true }, -- 48
+        { type = "TURNIN", quest = 6136, questName = "The Corpulent One", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7, optional = true }, -- 49
+        { type = "TURNIN", quest = 6022, questName = "To Kill With Purpose", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 50
+        { type = "KILL", quest = 6042, questName = "Un-Life's Little Annoyances", npc = 8601, target = "Noxious Plaguebat", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 46.2, y = 65.8, near = true }, -- 51
+        { type = "KILL", quest = 6042, questName = "Un-Life's Little Annoyances", npc = 8602, target = "Monstrous Plaguebat", count = 20, map = 1423, zone = "Eastern Plaguelands", x = 43.5, y = 43, near = true }, -- 52
+        { type = "KILL", quest = 6133, questName = "The Ranger Lord's Behest", npc = 8564, target = "Ranger / Woodsman / Pathstrider", count = 8, map = 1423, zone = "Eastern Plaguelands", x = 51.4, y = 21.7, near = true }, -- 53
+        { type = "COLLECT", quest = 6133, questName = "The Ranger Lord's Behest", target = "Quel'Thalas Registry", map = 1423, zone = "Eastern Plaguelands", x = 52.1, y = 18.3 }, -- 54
+        { type = "TURNIN", quest = 6042, questName = "Un-Life's Little Annoyances", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 55
+        { type = "TURNIN", quest = 6133, questName = "The Ranger Lord's Behest", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 56
+        { type = "KILL", quest = 6024, questName = "Hameya's Plea", npc = 12248, target = "Infiltrator Hameya", map = 1423, zone = "Eastern Plaguelands", x = 70.7, y = 16.5, note = "loot Hameya's Key" }, -- 57
+        { type = "TURNIN", quest = 6024, questName = "Hameya's Plea", map = 1423, zone = "Eastern Plaguelands", x = 28, y = 86.2 }, -- 58
+        { type = "ACCEPT", quest = 5281, questName = "The Restless Souls", npc = 11038, npcName = "Caretaker Alen", map = 1423, zone = "Eastern Plaguelands", x = 79.6, y = 63.9 }, -- 59
+        { type = "ACCEPT", quest = 5529, questName = "Plagued Hatchlings", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 60
+        { type = "ACCEPT", quest = 5513, questName = "Mantles of the Dawn", npc = 11536, npcName = "Quartermaster Miranda Breechlock", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 60 }, -- 61
+        { type = "ACCEPT", quest = 5517, questName = "Chromatic Mantle of the Dawn", npc = 11536, npcName = "Quartermaster Miranda Breechlock", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 60 }, -- 62
+        { type = "ACCEPT", quest = 5212, questName = "The Flesh Does Not Lie", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 63
+        { type = "ACCEPT", quest = 9124, questName = "Cryptstalker Armor Doesn't Make Itself...", npc = 16132, npcName = "Huntsman Leopold", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 58.6 }, -- 64
+        { type = "ACCEPT", quest = 9126, questName = "Bonescythe Digs", npc = 16131, npcName = "Rohan the Assassin", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.5 }, -- 65
+        { type = "ACCEPT", quest = 9128, questName = "The Elemental Equation", npc = 16116, npcName = "Archmage Angela Dosantos", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 58.3 }, -- 66
+        { type = "ACCEPT", quest = 9665, questName = "Bolstering Our Defenses", npc = 17072, npcName = "Emmisary Gormok", map = 1423, zone = "Eastern Plaguelands", x = 80, y = 57.4 }, -- 67
+        { type = "ACCEPT", quest = 9141, questName = "They Call Me \"The Rooster\"", npc = 16212, npcName = "Dispatch Commander Metz", map = 1423, zone = "Eastern Plaguelands", x = 81.1, y = 57.6 }, -- 68
+        { type = "ACCEPT", quest = 5243, questName = "Houses of the Holy", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.7, y = 57.8 }, -- 69
+        { type = "TURNIN", quest = 5243, questName = "Houses of the Holy", npc = 11036, npcName = "Leonid Barthalomew the Revered", map = 1423, zone = "Eastern Plaguelands", x = 81.7, y = 57.8 }, -- 70
+        { type = "TURNIN", quest = 9141, questName = "They Call Me \"The Rooster\"", npc = 16212, npcName = "Dispatch Commander Metz", map = 1423, zone = "Eastern Plaguelands", x = 81.1, y = 57.6 }, -- 71
+        { type = "TURNIN", quest = 5212, questName = "The Flesh Does Not Lie", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 72
+        { type = "TURNIN", quest = 5529, questName = "Plagued Hatchlings", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 73
+        { type = "TURNIN", quest = 5513, questName = "Mantles of the Dawn", npc = 11536, npcName = "Quartermaster Miranda Breechlock", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 60 }, -- 74
+        { type = "TURNIN", quest = 5517, questName = "Chromatic Mantle of the Dawn", npc = 11536, npcName = "Quartermaster Miranda Breechlock", map = 1423, zone = "Eastern Plaguelands", x = 81.6, y = 60 }, -- 75
+        { type = "ACCEPT", quest = 5213, questName = "The Active Agent", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 76
+        { type = "TURNIN", quest = 5213, questName = "The Active Agent", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 77
+        { type = "COLLECT", quest = 9126, questName = "Bonescythe Digs", target = "Bone Fragments", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 78.3, y = 55, near = true }, -- 78
+        { type = "TURNIN", quest = 9126, questName = "Bonescythe Digs", npc = 16131, npcName = "Rohan the Assassin", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.5 }, -- 79
+        { type = "COLLECT", quest = 9124, questName = "Cryptstalker Armor Doesn't Make Itself...", target = "Crypt Fiend Parts", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 81.9, y = 46.6, near = true }, -- 80
+        { type = "COLLECT", quest = 9128, questName = "The Elemental Equation", target = "Core of Elements", count = 30, map = 1423, zone = "Eastern Plaguelands", x = 72.8, y = 35.2, near = true }, -- 81
+        { type = "KILL", quest = 9665, questName = "Bolstering Our Defenses", npc = 17690, target = "<TXT>Eastwall Capture Quest Doodad", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 67.5, y = 48, note = "Capture Eastwall Tower" }, -- 82
+        { type = "KILL", quest = 9665, questName = "Bolstering Our Defenses", npc = 17696, target = "<TXT>Northpass Capture Quest Doodad", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 56.6, y = 24.4, note = "Capture Northpass Tower" }, -- 83
+        { type = "KILL", quest = 9665, questName = "Bolstering Our Defenses", npc = 17689, target = "<TXT>Crown Guard Capture Quest Doodad", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 39.7, y = 75.4, note = "Capture Crown Guard Tower" }, -- 84
+        { type = "TURNIN", quest = 9124, questName = "Cryptstalker Armor Doesn't Make Itself...", npc = 16132, npcName = "Huntsman Leopold", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 58.6 }, -- 85
+        { type = "TURNIN", quest = 9128, questName = "The Elemental Equation", npc = 16116, npcName = "Archmage Angela Dosantos", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 58.3 }, -- 86
+        { type = "KILL", quest = 9665, questName = "Bolstering Our Defenses", npc = 17698, target = "<TXT>Plaguewood Capture Quest Doodad", count = 1, map = 1423, zone = "Eastern Plaguelands", x = 22, y = 32, note = "Capture Plaguewood Tower" }, -- 87
+        { type = "TURNIN", quest = 5281, questName = "The Restless Souls", npc = 11140, npcName = "Egan", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.7 }, -- 88
+        { type = "ACCEPT", quest = 5282, questName = "The Restless Souls", npc = 11140, npcName = "Egan", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.7 }, -- 89
+        { type = "TURNIN", quest = 5282, questName = "The Restless Souls", npc = 11140, npcName = "Egan", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.7 }, -- 90
+        { type = "TURNIN", quest = 9665, questName = "Bolstering Our Defenses", npc = 17072, npcName = "Emmisary Gormok", map = 1423, zone = "Eastern Plaguelands", x = 80, y = 57.4 }, -- 91
+    } end,
 })

@@ -11,7 +11,8 @@ ns.RegisterGuide({
     zone = "Western Plaguelands",
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Western Plaguelands for a Horde character, 10 quests. The race routes are the faster path; pick this when you just want to quest here.",
-    steps = {
+    stepCount = 35,
+    steps = function() return {
         { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 39.1, y = 62.6, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 1
         { type = "NOTE", map = 1422, zone = "Western Plaguelands", x = 39.1, y = 62.6, text = "set your hearthstone at the inn in Western Plaguelands (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 5021, questName = "Better Late Than Never", npc = 10778, npcName = "Janice Felstone", map = 1422, zone = "Western Plaguelands", x = 38.4, y = 54.1 }, -- 3
@@ -47,5 +48,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 4972, questName = "Counting Out Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 33
         { type = "COLLECT", quest = 4972, questName = "Counting Out Time", target = "Andorhal Watch", count = 5, map = 1422, zone = "Western Plaguelands", x = 40.3, y = 68.2, near = true }, -- 34
         { type = "TURNIN", quest = 4972, questName = "Counting Out Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 35
-    },
+    } end,
 })

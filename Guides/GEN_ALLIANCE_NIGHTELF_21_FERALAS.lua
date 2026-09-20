@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Feralas",
     next = "GEN_ALLIANCE_NIGHTELF_22_FELWOOD",
     author = "ForeverGuide route planner",
-    notes = "Chapter 21 of the NightElf route: level 45 to 45, 13 steps, ~55 min of play in the model (34811 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 21 of the NightElf route: level 45 to 45, 13 steps, ~55 min of play in the model (34811 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 13,
+    steps = function() return {
         { type = "TRAVEL", map = 1444, zone = "Feralas", x = 31.8, y = 44.8, radius = 60, note = "travel to Feralas (Feralas)" }, -- 1
         { type = "ACCEPT", quest = 7003, questName = "Zapped Giants", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 2
         { type = "ACCEPT", quest = 7721, questName = "Fuel for the Zapping", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 3
@@ -27,5 +28,5 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 2845, questName = "Wandering Shay", target = "Shay's Bell", map = 1444, zone = "Feralas", x = 38.3, y = 10.3, note = "escort - stay close, it can fail" }, -- 11
         { type = "COMPLETE", quest = 2845, questName = "Wandering Shay", target = "Take Shay Leafrunner to Rockbiter's camp", map = 1444, zone = "Feralas", x = 42.3, y = 21.9, note = "escort - stay close, it can fail: Take Shay Leafrunner to Rockbiter's camp" }, -- 12
         { type = "TURNIN", quest = 2845, questName = "Wandering Shay", npc = 7765, npcName = "Rockbiter", map = 1444, zone = "Feralas", x = 42.4, y = 22 }, -- 13
-    },
+    } end,
 })

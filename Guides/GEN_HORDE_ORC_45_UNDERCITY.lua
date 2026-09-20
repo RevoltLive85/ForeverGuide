@@ -12,12 +12,13 @@ ns.RegisterGuide({
     zone = "Undercity",
     next = "GEN_HORDE_ORC_46_SILITHUS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 45 of the Orc route: level 56 to 58, 5 steps, ~399 min of play in the model (10860 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 45 of the Orc route: level 56 to 58, 5 steps, ~399 min of play in the model (10860 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 5,
+    steps = function() return {
         { type = "GRIND", npc = 5624, target = "Undercity Guardian", level = 57, map = 1458, zone = "Undercity", x = 69.8, y = 44.8, near = true, note = "grind Undercity Guardian (level 55-55) to level 57 - nothing worth questing at 56" }, -- 1
         { type = "TURNIN", quest = 5023, questName = "Better Late Than Never", npc = 10781, npcName = "Royal Overseer Bauhaus", map = 1458, zone = "Undercity", x = 69.8, y = 43.2 }, -- 2
         { type = "ACCEPT", quest = 5049, questName = "The Jeremiah Blues", npc = 10781, npcName = "Royal Overseer Bauhaus", map = 1458, zone = "Undercity", x = 69.8, y = 43.2 }, -- 3
         { type = "TURNIN", quest = 5049, questName = "The Jeremiah Blues", npc = 8403, npcName = "Jeremiah Payson", map = 1458, zone = "Undercity", x = 67.6, y = 44.2 }, -- 4
         { type = "GRIND", level = 58, note = "nothing worth questing at level 57 - grind to 58" }, -- 5
-    },
+    } end,
 })

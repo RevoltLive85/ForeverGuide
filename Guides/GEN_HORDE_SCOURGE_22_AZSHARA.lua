@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Azshara",
     next = "GEN_HORDE_SCOURGE_23_FELWOOD",
     author = "ForeverGuide route planner",
-    notes = "Chapter 22 of the Scourge route: level 46 to 46, 25 steps, ~97 min of play in the model (32412 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 22 of the Scourge route: level 46 to 46, 25 steps, ~97 min of play in the model (32412 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 25,
+    steps = function() return {
         { type = "TRAVEL", map = 1447, zone = "Azshara", x = 22.5, y = 51.4, radius = 60, note = "travel to Azshara (Azshara)" }, -- 1
         { type = "NOTE", map = 1447, zone = "Azshara", x = 22.5, y = 51.4, text = "set your hearthstone at the inn in Azshara (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 3517, questName = "Stealing Knowledge", npc = 8587, npcName = "Jediga", map = 1447, zone = "Azshara", x = 22.6, y = 51.4 }, -- 3
@@ -39,5 +40,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 5535, questName = "Spiritual Unrest", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 23
         { type = "KILL", quest = 5536, questName = "A Land Filled with Hatred", npc = 6127, target = "Haldarr Felsworn / Haldarr Trickster / Haldarr Satyr", count = 6, map = 1447, zone = "Azshara", x = 19.1, y = 64, near = true }, -- 24
         { type = "TURNIN", quest = 5536, questName = "A Land Filled with Hatred", npc = 11548, npcName = "Loh'atu", map = 1447, zone = "Azshara", x = 11.4, y = 78.2 }, -- 25
-    },
+    } end,
 })

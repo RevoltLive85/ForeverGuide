@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Eastern Plaguelands",
     next = "GEN_HORDE_SKYBORNE_41_BURNING_STEPPES",
     author = "ForeverGuide route planner",
-    notes = "Chapter 40 of the Skyborne route: level 55 to 55, 34 steps, ~154 min of play in the model (54940 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 40 of the Skyborne route: level 55 to 55, 34 steps, ~154 min of play in the model (54940 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 34,
+    steps = function() return {
         { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.9, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 1
         { type = "ACCEPT", quest = 5529, questName = "Plagued Hatchlings", npc = 11035, npcName = "Betina Bigglezink", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.7 }, -- 2
         { type = "ACCEPT", quest = 9124, questName = "Cryptstalker Armor Doesn't Make Itself...", npc = 16132, npcName = "Huntsman Leopold", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 58.6 }, -- 3
@@ -48,5 +49,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 5282, questName = "The Restless Souls", npc = 11140, npcName = "Egan", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.7 }, -- 32
         { type = "TURNIN", quest = 5282, questName = "The Restless Souls", npc = 11140, npcName = "Egan", map = 1423, zone = "Eastern Plaguelands", x = 14.5, y = 33.7 }, -- 33
         { type = "TURNIN", quest = 9665, questName = "Bolstering Our Defenses", npc = 17072, npcName = "Emmisary Gormok", map = 1423, zone = "Eastern Plaguelands", x = 80, y = 57.4 }, -- 34
-    },
+    } end,
 })

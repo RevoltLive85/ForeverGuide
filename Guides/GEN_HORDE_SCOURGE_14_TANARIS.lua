@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Tanaris",
     next = "GEN_HORDE_SCOURGE_15_FERALAS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 14 of the Scourge route: level 40 to 41, 52 steps, ~173 min of play in the model (39442 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 14 of the Scourge route: level 40 to 41, 52 steps, ~173 min of play in the model (39442 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 52,
+    steps = function() return {
         { type = "TRAVEL", map = 1446, zone = "Tanaris", x = 51.8, y = 27.6, radius = 60, note = "travel to Tanaris (Tanaris)" }, -- 1
         { type = "NOTE", map = 1446, zone = "Tanaris", x = 51.8, y = 27.6, text = "set your hearthstone at the inn in Tanaris (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 1690, questName = "Wastewander Justice", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5 }, -- 3
@@ -66,5 +67,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1560, questName = "Tooga's Quest", npc = 5955, npcName = "Tooga", map = 1446, zone = "Tanaris", x = 29.5, y = 60.5 }, -- 50
         { type = "COMPLETE", quest = 1560, questName = "Tooga's Quest", target = "Lead Tooga to Torta", map = 1446, zone = "Tanaris", x = 66.6, y = 25.6, note = "Lead Tooga to Torta" }, -- 51
         { type = "TURNIN", quest = 1560, questName = "Tooga's Quest", npc = 6015, npcName = "Torta", map = 1446, zone = "Tanaris", x = 66.6, y = 25.7 }, -- 52
-    },
+    } end,
 })

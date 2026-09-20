@@ -10,7 +10,7 @@
   "zone": "Elwynn Forest",
   "next": "GEN_ALLIANCE_HUMAN_02_IRONFORGE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 1 of the Human route: level 1 to 11, 104 steps, ~152 min of play in the model (13893 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 1 of the Human route: level 1 to 11, 107 steps, ~152 min of play in the model (13893 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
     {"type": "NOTE", "map": 1429, "zone": "Elwynn Forest", "x": 48.9, "y": 41.6, "text": "set your hearthstone at the inn in Elwynn Forest (if there is one)"},
     {"type": "ACCEPT", "quest": 783, "questName": "A Threat Within", "npc": 823, "npcName": "Deputy Willem", "map": 1429, "zone": "Elwynn Forest", "x": 48.2, "y": 42.9},
@@ -66,6 +66,9 @@
     {"type": "TURNIN", "quest": 106, "questName": "Young Lovers", "npc": 252, "npcName": "Tommy Joe Stonefield", "map": 1429, "zone": "Elwynn Forest", "x": 29.8, "y": 86},
     {"type": "ACCEPT", "quest": 111, "questName": "Speak with Gramma", "npc": 252, "npcName": "Tommy Joe Stonefield", "map": 1429, "zone": "Elwynn Forest", "x": 29.8, "y": 86},
     {"type": "ACCEPT", "quest": 11, "questName": "Riverpaw Gnoll Bounty", "npc": 963, "npcName": "Deputy Rainer", "map": 1429, "zone": "Elwynn Forest", "x": 24.2, "y": 74.5},
+    {"type": "ACCEPT", "quest": 176, "questName": "Wanted:  \"Hogger\"", "map": 1429, "zone": "Elwynn Forest", "x": 24.6, "y": 74.7, "note": "group quest (elite mobs) - optional, take it only with company", "optional": true},
+    {"type": "KILL", "quest": 176, "questName": "Wanted:  \"Hogger\"", "npc": 448, "target": "Hogger", "map": 1429, "zone": "Elwynn Forest", "x": 25, "y": 92.9, "optional": true},
+    {"type": "TURNIN", "quest": 176, "questName": "Wanted:  \"Hogger\"", "npc": 240, "npcName": "Marshal Dughan", "map": 1429, "zone": "Elwynn Forest", "x": 42.1, "y": 65.9, "optional": true},
     {"type": "COLLECT", "quest": 11, "questName": "Riverpaw Gnoll Bounty", "target": "Painted Gnoll Armband", "count": 8, "map": 1429, "zone": "Elwynn Forest", "x": 27.5, "y": 79.9, "near": true},
     {"type": "TURNIN", "quest": 11, "questName": "Riverpaw Gnoll Bounty", "npc": 963, "npcName": "Deputy Rainer", "map": 1429, "zone": "Elwynn Forest", "x": 24.2, "y": 74.5},
     {"type": "TURNIN", "quest": 111, "questName": "Speak with Gramma", "npc": 248, "npcName": "Gramma Stonefield", "map": 1429, "zone": "Elwynn Forest", "x": 35.0, "y": 83.9},

@@ -12,13 +12,14 @@ ns.RegisterGuide({
     zone = "Thunder Bluff",
     next = "GEN_HORDE_TAUREN_03_THE_BARRENS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 2 of the Tauren route: level 11 to 11, 6 steps, ~6 min of play in the model (27823 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 2 of the Tauren route: level 11 to 11, 6 steps, ~6 min of play in the model (27823 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 6,
+    steps = function() return {
         { type = "TRAVEL", map = 1456, zone = "Thunder Bluff", x = 54.2, y = 54.4, radius = 60, note = "travel to Thunder Bluff (Thunder Bluff)" }, -- 1
         { type = "NOTE", map = 1456, zone = "Thunder Bluff", x = 54.2, y = 54.4, text = "set your hearthstone at the inn in Thunder Bluff (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 8368, questName = "Battle of Warsong Gulch", npc = 15350, npcName = "Horde Warbringer", map = 1456, zone = "Thunder Bluff", x = 57.8, y = 76.4 }, -- 3
         { type = "TURNIN", quest = 8368, questName = "Battle of Warsong Gulch", npc = 15350, npcName = "Horde Warbringer", map = 1456, zone = "Thunder Bluff", x = 57.8, y = 76.4 }, -- 4
         { type = "TURNIN", quest = 861, questName = "The Hunter's Way", npc = 3441, npcName = "Melor Stonehoof", map = 1456, zone = "Thunder Bluff", x = 61.5, y = 80.9 }, -- 5
         { type = "TURNIN", quest = 775, questName = "Journey into Thunder Bluff", npc = 3057, npcName = "Cairne Bloodhoof", map = 1456, zone = "Thunder Bluff", x = 60.3, y = 51.7 }, -- 6
-    },
+    } end,
 })

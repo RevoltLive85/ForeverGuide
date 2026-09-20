@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Eastern Plaguelands",
     next = "GEN_ALLIANCE_HUMAN_36_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 35 of the Human route: level 50 to 51, 14 steps, ~40 min of play in the model (44286 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 35 of the Human route: level 50 to 51, 14 steps, ~40 min of play in the model (44286 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 14,
+    steps = function() return {
         { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.3, y = 59.1, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 1
         { type = "NOTE", map = 1423, zone = "Eastern Plaguelands", x = 81.3, y = 59.1, text = "set your hearthstone at the inn in Eastern Plaguelands (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 5211, questName = "Defenders of Darrowshire", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 3
@@ -28,5 +29,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 5241, questName = "Uncle Carlin", npc = 10926, npcName = "Pamela Redpath", map = 1423, zone = "Eastern Plaguelands", x = 36.5, y = 90.8 }, -- 12
         { type = "TURNIN", quest = 6021, questName = "Zaeldarr the Outcast", npc = 11038, npcName = "Caretaker Alen", map = 1423, zone = "Eastern Plaguelands", x = 79.6, y = 63.9 }, -- 13
         { type = "TURNIN", quest = 5241, questName = "Uncle Carlin", npc = 11063, npcName = "Carlin Redpath", map = 1423, zone = "Eastern Plaguelands", x = 81.5, y = 59.8 }, -- 14
-    },
+    } end,
 })

@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Arathi Highlands",
     next = "GEN_HORDE_SCOURGE_10_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 9 of the Scourge route: level 29 to 30, 42 steps, ~159 min of play in the model (21663 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 9 of the Scourge route: level 29 to 30, 42 steps, ~159 min of play in the model (21663 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 42,
+    steps = function() return {
         { type = "TRAVEL", map = 1417, zone = "Arathi Highlands", x = 73.6, y = 31.8, radius = 60, note = "travel to Arathi Highlands (Arathi Highlands)" }, -- 1
         { type = "NOTE", map = 1417, zone = "Arathi Highlands", x = 73.6, y = 31.8, text = "set your hearthstone at the inn in Arathi Highlands (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 8171, questName = "The Battle for Arathi Basin!", npc = 15021, npcName = "Deathmaster Dwire", map = 1417, zone = "Arathi Highlands", x = 73.3, y = 29.7 }, -- 3
@@ -56,5 +57,5 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Thundering Key", map = 1417, zone = "Arathi Highlands", x = 52, y = 50.7 }, -- 40
         { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Burning Key", map = 1417, zone = "Arathi Highlands", x = 25.5, y = 30.1 }, -- 41
         { type = "TURNIN", quest = 651, questName = "Stones of Binding", map = 1417, zone = "Arathi Highlands", x = 36.2, y = 57.4 }, -- 42
-    },
+    } end,
 })

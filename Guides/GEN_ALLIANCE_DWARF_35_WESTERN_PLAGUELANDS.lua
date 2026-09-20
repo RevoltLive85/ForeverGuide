@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Western Plaguelands",
     next = "GEN_ALLIANCE_DWARF_36_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 35 of the Dwarf route: level 50 to 50, 56 steps, ~133 min of play in the model (54007 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 35 of the Dwarf route: level 50 to 50, 56 steps, ~133 min of play in the model (54007 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 56,
+    steps = function() return {
         { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 43.4, y = 83.7, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 1
         { type = "NOTE", map = 1422, zone = "Western Plaguelands", x = 43.4, y = 83.7, text = "set your hearthstone at the inn in Western Plaguelands (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 5092, questName = "Clear the Way", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 3
@@ -70,5 +71,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 5226, questName = "Return to Chillwind Point", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 54
         { type = "ACCEPT", quest = 5237, questName = "Mission Accomplished!", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 55
         { type = "TURNIN", quest = 5237, questName = "Mission Accomplished!", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 56
-    },
+    } end,
 })

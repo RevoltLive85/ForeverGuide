@@ -10,7 +10,7 @@
   "zone": "Ashenvale",
   "next": "GEN_ALLIANCE_HUMAN_10_THOUSAND_NEEDLES",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 9 of the Human route: level 26 to 28, 82 steps, ~211 min of play in the model (23289 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 9 of the Human route: level 26 to 28, 82 steps, ~211 min of play in the model (23289 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1437, "zone": "Wetlands", "x": 10.3, "y": 58.9, "radius": 60, "note": "use your hearthstone (Wetlands)"},
     {"type": "TRAVEL", "map": 1440, "zone": "Ashenvale", "x": 61.8, "y": 83.8, "radius": 60, "note": "travel to Ashenvale (Ashenvale)"},

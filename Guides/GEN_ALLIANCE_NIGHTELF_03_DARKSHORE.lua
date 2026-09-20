@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Darkshore",
     next = "GEN_ALLIANCE_NIGHTELF_04_THE_BARRENS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 3 of the NightElf route: level 10 to 16, 140 steps, ~218 min of play in the model (20283 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 3 of the NightElf route: level 10 to 16, 140 steps, ~218 min of play in the model (20283 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 140,
+    steps = function() return {
         { type = "TRAVEL", map = 1439, zone = "Darkshore", x = 37.6, y = 43.5, radius = 60, note = "travel to Darkshore (Darkshore)" }, -- 1
         { type = "NOTE", map = 1439, zone = "Darkshore", x = 37.6, y = 43.5, text = "set your hearthstone at the inn in Darkshore (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 983, questName = "Buzzbox 827", npc = 3666, npcName = "Wizbang Cranktoggle", map = 1439, zone = "Darkshore", x = 37.0, y = 44.1 }, -- 3
@@ -154,5 +155,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 4725, questName = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 138
         { type = "TURNIN", quest = 4727, questName = "Beached Sea Turtle", npc = 10219, npcName = "Gwennyth Bly'Leggonde", map = 1439, zone = "Darkshore", x = 36.6, y = 45.6 }, -- 139
         { type = "TURNIN", quest = 951, questName = "Mathystra Relics", npc = 3616, npcName = "Onu", map = 1439, zone = "Darkshore", x = 43.5, y = 76.3 }, -- 140
-    },
+    } end,
 })

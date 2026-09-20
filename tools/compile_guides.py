@@ -146,10 +146,13 @@ def compile_guide(guide):
     for key in ("id", "name", "version", "faction", "race", "class", "minLevel", "maxLevel", "map", "zone", "next", "author", "notes"):
         if key in guide:
             lines.append(f"    {key} = {lua_value(guide[key])},")
-    lines.append("    steps = {")
+    # steps are built on first use (a closure), not at login: 425 guides x ~40 steps as live
+    # tables cost ~25 MB of addon memory; as bytecode they cost a fraction of that
+    lines.append(f"    stepCount = {len(guide['steps'])},")
+    lines.append("    steps = function() return {")
     for i, step in enumerate(guide["steps"], start=1):
         lines.append(f"        {lua_value(step)}, -- {i}")
-    lines.append("    },")
+    lines.append("    } end,")
     lines.append("})")
     return "\n".join(lines) + "\n"
 

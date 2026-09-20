@@ -11,7 +11,8 @@ ns.RegisterGuide({
     zone = "Westfall",
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Westfall for a Alliance character, 16 quests. The race routes are the faster path; pick this when you just want to quest here.",
-    steps = {
+    stepCount = 55,
+    steps = function() return {
         { type = "TRAVEL", map = 1436, zone = "Westfall", x = 56.2, y = 43.9, radius = 60, note = "travel to Westfall (Westfall)" }, -- 1
         { type = "NOTE", map = 1436, zone = "Westfall", x = 56.2, y = 43.9, text = "set your hearthstone at the inn in Westfall (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 6181, questName = "A Swift Message", npc = 491, npcName = "Quartermaster Lewis", map = 1436, zone = "Westfall", x = 57, y = 47.2 }, -- 3
@@ -67,5 +68,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 104, questName = "The Coastal Menace", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 53
         { type = "KILL", quest = 104, questName = "The Coastal Menace", npc = 391, target = "Old Murk-Eye", map = 1436, zone = "Westfall", x = 29.3, y = 76, note = "loot Scale of Old Murk-Eye" }, -- 54
         { type = "TURNIN", quest = 104, questName = "The Coastal Menace", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 55
-    },
+    } end,
 })

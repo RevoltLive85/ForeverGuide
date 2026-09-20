@@ -10,7 +10,7 @@
   "zone": "Duskwood",
   "next": "GEN_ALLIANCE_HUMAN_07_WETLANDS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 6 of the Human route: level 20 to 23, 93 steps, ~220 min of play in the model (24445 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 6 of the Human route: level 20 to 23, 95 steps, ~220 min of play in the model (24445 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
     {"type": "TRAVEL", "map": 1431, "zone": "Duskwood", "x": 74.9, "y": 47.1, "radius": 60, "note": "travel to Duskwood (Duskwood)"},
     {"type": "NOTE", "map": 1431, "zone": "Duskwood", "x": 74.9, "y": 47.1, "text": "set your hearthstone at the inn in Duskwood (if there is one)"},
@@ -22,6 +22,8 @@
     {"type": "KILL", "quest": 56, "questName": "The Night Watch", "npc": 203, "target": "Skeletal Mage / Skeletal Warrior", "count": 8, "map": 1431, "zone": "Duskwood", "x": 79.8, "y": 66.1, "near": true},
     {"type": "TURNIN", "quest": 56, "questName": "The Night Watch", "npc": 264, "npcName": "Commander Althea Ebonlocke", "map": 1431, "zone": "Duskwood", "x": 73.5, "y": 46.8},
     {"type": "ACCEPT", "quest": 57, "questName": "The Night Watch", "npc": 264, "npcName": "Commander Althea Ebonlocke", "map": 1431, "zone": "Duskwood", "x": 73.5, "y": 46.8},
+    {"type": "ACCEPT", "quest": 377, "questName": "Crime and Punishment", "npc": 270, "npcName": "Councilman Millstipe", "map": 1431, "zone": "Duskwood", "x": 71.9, "y": 47.8, "note": "group quest (elite mobs) - optional, take it only with company", "optional": true},
+    {"type": "TURNIN", "quest": 377, "questName": "Crime and Punishment", "npc": 270, "npcName": "Councilman Millstipe", "map": 1431, "zone": "Duskwood", "x": 71.9, "y": 47.8, "optional": true},
     {"type": "TURNIN", "quest": 101, "questName": "The Totem of Infliction", "npc": 265, "npcName": "Madame Eva", "map": 1431, "zone": "Duskwood", "x": 75.8, "y": 45.3},
     {"type": "KILL", "quest": 57, "questName": "The Night Watch", "npc": 202, "target": "Skeletal Horror", "count": 15, "map": 1431, "zone": "Duskwood", "x": 81.1, "y": 56.2, "near": true},
     {"type": "KILL", "quest": 57, "questName": "The Night Watch", "npc": 531, "target": "Skeletal Fiend", "count": 15, "map": 1431, "zone": "Duskwood", "x": 23.8, "y": 44, "near": true},

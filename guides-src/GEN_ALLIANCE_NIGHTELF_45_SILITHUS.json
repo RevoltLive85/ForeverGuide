@@ -10,7 +10,7 @@
   "zone": "Silithus",
   "next": "GEN_ALLIANCE_NIGHTELF_46_EASTERN_PLAGUELANDS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 45 of the NightElf route: level 54 to 55, 38 steps, ~219 min of play in the model (34477 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 45 of the NightElf route: level 54 to 55, 38 steps, ~219 min of play in the model (34477 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1451, "zone": "Silithus", "x": 50.1, "y": 37.5, "radius": 60, "note": "travel to Silithus (Silithus)"},
     {"type": "NOTE", "map": 1451, "zone": "Silithus", "x": 50.1, "y": 37.5, "text": "set your hearthstone at the inn in Silithus (if there is one)"},

@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Western Plaguelands",
     next = "GEN_HORDE_ORC_32_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 31 of the Orc route: level 50 to 50, 18 steps, ~26 min of play in the model (54923 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 31 of the Orc route: level 50 to 50, 18 steps, ~26 min of play in the model (54923 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 18,
+    steps = function() return {
         { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 39.1, y = 62.6, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 1
         { type = "NOTE", map = 1422, zone = "Western Plaguelands", x = 39.1, y = 62.6, text = "set your hearthstone at the inn in Western Plaguelands (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 5021, questName = "Better Late Than Never", npc = 10778, npcName = "Janice Felstone", map = 1422, zone = "Western Plaguelands", x = 38.4, y = 54.1 }, -- 3
@@ -32,5 +33,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 6025, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 16
         { type = "COMPLETE", quest = 6025, questName = "Unfinished Business", target = "Overlook Hearthglen from a high vantage point", map = 1422, zone = "Western Plaguelands", x = 45.8, y = 18.2, note = "Overlook Hearthglen from a high vantage point" }, -- 17
         { type = "TURNIN", quest = 6025, questName = "Unfinished Business", npc = 11610, npcName = "Kirsta Deepshadow", map = 1422, zone = "Western Plaguelands", x = 51.9, y = 28.1 }, -- 18
-    },
+    } end,
 })

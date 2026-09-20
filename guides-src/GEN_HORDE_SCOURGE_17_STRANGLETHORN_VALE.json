@@ -10,7 +10,7 @@
   "zone": "Stranglethorn Vale",
   "next": "GEN_HORDE_SCOURGE_18_ORGRIMMAR",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 17 of the Scourge route: level 43 to 43, 31 steps, ~95 min of play in the model (40330 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 17 of the Scourge route: level 43 to 43, 31 steps, ~95 min of play in the model (40330 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.3, "y": 76.1, "radius": 60, "note": "travel to Stranglethorn Vale (Stranglethorn Vale)"},
     {"type": "ACCEPT", "quest": 595, "questName": "The Bloodsail Buccaneers", "npc": 2490, "npcName": "First Mate Crazz", "map": 1434, "zone": "Stranglethorn Vale", "x": 28.1, "y": 76.2},

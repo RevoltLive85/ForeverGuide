@@ -12,11 +12,12 @@ ns.RegisterGuide({
     zone = "Feralas",
     next = "GEN_ALLIANCE_NIGHTELF_32_TANARIS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 31 of the NightElf route: level 48 to 48, 4 steps, ~14 min of play in the model (15828 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 31 of the NightElf route: level 48 to 48, 4 steps, ~14 min of play in the model (15828 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 4,
+    steps = function() return {
         { type = "TRAVEL", map = 1444, zone = "Feralas", x = 31.8, y = 44.8, radius = 60, note = "travel to Feralas (Feralas)" }, -- 1
         { type = "ACCEPT", quest = 3445, questName = "The Sunken Temple", npc = 7900, npcName = "Angelas Moonbreeze", map = 1444, zone = "Feralas", x = 31.8, y = 45.6 }, -- 2
         { type = "TURNIN", quest = 4142, questName = "A Visit to Gregan", npc = 7775, npcName = "Gregan Brewspewer", map = 1444, zone = "Feralas", x = 45.1, y = 25.6 }, -- 3
         { type = "ACCEPT", quest = 4143, questName = "Haze of Evil", npc = 7775, npcName = "Gregan Brewspewer", map = 1444, zone = "Feralas", x = 45.1, y = 25.6 }, -- 4
-    },
+    } end,
 })

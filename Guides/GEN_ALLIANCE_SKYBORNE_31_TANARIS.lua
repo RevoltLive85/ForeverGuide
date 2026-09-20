@@ -12,13 +12,16 @@ ns.RegisterGuide({
     zone = "Tanaris",
     next = "GEN_ALLIANCE_SKYBORNE_32_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
-    notes = "Chapter 31 of the Skyborne route: level 48 to 49, 6 steps, ~91 min of play in the model (8726 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 31 of the Skyborne route: level 48 to 49, 8 steps, ~91 min of play in the model (8726 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    stepCount = 8,
+    steps = function() return {
         { type = "TRAVEL", map = 1446, zone = "Tanaris", x = 52.0, y = 27.4, radius = 60, note = "travel to Tanaris (Tanaris)" }, -- 1
         { type = "ACCEPT", quest = 3362, questName = "Thistleshrub Valley", npc = 7876, npcName = "Tran'rek", map = 1446, zone = "Tanaris", x = 51.6, y = 26.8 }, -- 2
-        { type = "TURNIN", quest = 3445, questName = "The Sunken Temple", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.7, y = 45.9 }, -- 3
-        { type = "KILL", quest = 3362, questName = "Thistleshrub Valley", npc = 5490, target = "Gnarled Thistleshrub / Thistleshrub Rootshaper", count = 8, map = 1446, zone = "Tanaris", x = 31.2, y = 65.5, near = true }, -- 4
-        { type = "TURNIN", quest = 3362, questName = "Thistleshrub Valley", npc = 7876, npcName = "Tran'rek", map = 1446, zone = "Tanaris", x = 51.6, y = 26.8 }, -- 5
-        { type = "GRIND", npc = 5431, target = "Surf Glider", level = 49, map = 1446, zone = "Tanaris", x = 67, y = 57.5, near = true, note = "grind Surf Glider (level 48-50) to level 49 - nothing worth questing at 48" }, -- 6
-    },
+        { type = "ACCEPT", quest = 2768, questName = "Divino-matic Rod", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 3
+        { type = "TURNIN", quest = 2768, questName = "Divino-matic Rod", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5, optional = true }, -- 4
+        { type = "TURNIN", quest = 3445, questName = "The Sunken Temple", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.7, y = 45.9 }, -- 5
+        { type = "KILL", quest = 3362, questName = "Thistleshrub Valley", npc = 5490, target = "Gnarled Thistleshrub / Thistleshrub Rootshaper", count = 8, map = 1446, zone = "Tanaris", x = 31.2, y = 65.5, near = true }, -- 6
+        { type = "TURNIN", quest = 3362, questName = "Thistleshrub Valley", npc = 7876, npcName = "Tran'rek", map = 1446, zone = "Tanaris", x = 51.6, y = 26.8 }, -- 7
+        { type = "GRIND", npc = 5431, target = "Surf Glider", level = 49, map = 1446, zone = "Tanaris", x = 67, y = 57.5, near = true, note = "grind Surf Glider (level 48-50) to level 49 - nothing worth questing at 48" }, -- 8
+    } end,
 })

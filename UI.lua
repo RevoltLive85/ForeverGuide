@@ -185,11 +185,11 @@ function UI:RefreshPicker()
             local prog = ns.char.guides and ns.char.guides[g.id]
             local progText = ""
             if prog and prog.step and prog.step > 1 then
-                if prog.step > #g.steps then progText = "  done"
-                else progText = string.format("  step %d/%d", prog.step, #g.steps) end
+                if prog.step > ns.Guide.StepCount(g) then progText = "  done"
+                else progText = string.format("  step %d/%d", prog.step, ns.Guide.StepCount(g)) end
             end
             local active = G.active == g and ns.char.mode ~= "auto"
-            add(g.name or g.id, string.format("%s-%s  %d steps%s", tostring(g.minLevel or "?"), tostring(g.maxLevel or "?"), #g.steps, progText), g.id, not fits, active)
+            add(g.name or g.id, string.format("%s-%s  %d steps%s", tostring(g.minLevel or "?"), tostring(g.maxLevel or "?"), ns.Guide.StepCount(g), progText), g.id, not fits, active)
             shown = shown + 1
         end
     end
@@ -209,7 +209,7 @@ function UI:RefreshPicker()
             if k > 7 then break end
             local fits = (g.minLevel or 1) <= level + 3 and (g.maxLevel or 60) >= level - 2
             local active = G.active == g and ns.char.mode ~= "auto"
-            add((g.name or g.id):gsub("^Zone: ", ""), string.format("%s-%s  %d steps", tostring(g.minLevel or "?"), tostring(g.maxLevel or "?"), #g.steps), g.id, not fits, active)
+            add((g.name or g.id):gsub("^Zone: ", ""), string.format("%s-%s  %d steps", tostring(g.minLevel or "?"), tostring(g.maxLevel or "?"), ns.Guide.StepCount(g)), g.id, not fits, active)
         end
     end
     -- hand-written guides (anything else registered)

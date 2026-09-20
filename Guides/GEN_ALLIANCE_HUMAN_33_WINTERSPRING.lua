@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Winterspring",
     next = "GEN_ALLIANCE_HUMAN_34_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 33 of the Human route: level 49 to 50, 9 steps, ~124 min of play in the model (10215 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 33 of the Human route: level 49 to 50, 9 steps, ~124 min of play in the model (10215 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 9,
+    steps = function() return {
         { type = "TRAVEL", map = 1452, zone = "Winterspring", x = 61.4, y = 38.2, radius = 60, note = "travel to Winterspring (Winterspring)" }, -- 1
         { type = "NOTE", map = 1452, zone = "Winterspring", x = 61.4, y = 38.2, text = "set your hearthstone at the inn in Winterspring (if there is one)" }, -- 2
         { type = "TURNIN", quest = 3908, questName = "It's a Secret to Everybody", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.3, y = 45.2 }, -- 3
@@ -23,5 +24,5 @@ ns.RegisterGuide({
         { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7439, target = "Winterfall Shaman", count = 8, map = 1452, zone = "Winterspring", x = 67.4, y = 35.2, near = true }, -- 7
         { type = "TURNIN", quest = 8464, questName = "Winterfall Activity", npc = 11556, npcName = "Salfa", map = 1452, zone = "Winterspring", x = 27.7, y = 34.5 }, -- 8
         { type = "GRIND", level = 50, note = "nothing worth questing at level 49 - grind to 50" }, -- 9
-    },
+    } end,
 })

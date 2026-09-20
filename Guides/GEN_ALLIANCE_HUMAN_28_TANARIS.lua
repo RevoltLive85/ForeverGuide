@@ -12,25 +12,28 @@ ns.RegisterGuide({
     zone = "Tanaris",
     next = "GEN_ALLIANCE_HUMAN_29_FELWOOD",
     author = "ForeverGuide route planner",
-    notes = "Chapter 28 of the Human route: level 47 to 47, 18 steps, ~59 min of play in the model (38382 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 28 of the Human route: level 47 to 47, 20 steps, ~59 min of play in the model (38382 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    stepCount = 20,
+    steps = function() return {
         { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.2, y = 6.6, radius = 60, note = "use your hearthstone (Un'Goro Crater)" }, -- 1
         { type = "TRAVEL", map = 1446, zone = "Tanaris", x = 52.0, y = 27.4, radius = 60, note = "travel to Tanaris (Tanaris)" }, -- 2
         { type = "ACCEPT", quest = 5863, questName = "The Dunemaul Compound", npc = 11758, npcName = "Andi Lynn", map = 1446, zone = "Tanaris", x = 52.8, y = 27.4 }, -- 3
         { type = "ACCEPT", quest = 2605, questName = "The Thirsty Goblin", npc = 7564, npcName = "Marin Noggenfogger", map = 1446, zone = "Tanaris", x = 51.8, y = 28.7 }, -- 4
         { type = "ACCEPT", quest = 3362, questName = "Thistleshrub Valley", npc = 7876, npcName = "Tran'rek", map = 1446, zone = "Tanaris", x = 51.6, y = 26.8 }, -- 5
-        { type = "KILL", quest = 5863, questName = "The Dunemaul Compound", npc = 5472, target = "Dunemaul Enforcer / Dunemaul Brute", count = 10, map = 1446, zone = "Tanaris", x = 39.9, y = 50.9, near = true }, -- 6
-        { type = "KILL", quest = 5863, questName = "The Dunemaul Compound", npc = 12046, target = "Gor'marok the Ravager", count = 1, map = 1446, zone = "Tanaris", x = 41.5, y = 57.8 }, -- 7
-        { type = "KILL", quest = 2605, questName = "The Thirsty Goblin", npc = 5481, target = "Thistleshrub Dew Collector", map = 1446, zone = "Tanaris", x = 31.2, y = 64.7, near = true, note = "loot Laden Dew Gland" }, -- 8
-        { type = "TURNIN", quest = 2605, questName = "The Thirsty Goblin", npc = 7564, npcName = "Marin Noggenfogger", map = 1446, zone = "Tanaris", x = 51.8, y = 28.7 }, -- 9
-        { type = "ACCEPT", quest = 2606, questName = "In Good Taste", npc = 7564, npcName = "Marin Noggenfogger", map = 1446, zone = "Tanaris", x = 51.8, y = 28.7 }, -- 10
-        { type = "TURNIN", quest = 5863, questName = "The Dunemaul Compound", npc = 11758, npcName = "Andi Lynn", map = 1446, zone = "Tanaris", x = 52.8, y = 27.4 }, -- 11
-        { type = "TURNIN", quest = 2606, questName = "In Good Taste", npc = 7583, npcName = "Sprinkle", map = 1446, zone = "Tanaris", x = 51.1, y = 26.9 }, -- 12
-        { type = "TURNIN", quest = 3445, questName = "The Sunken Temple", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.7, y = 45.9 }, -- 13
-        { type = "ACCEPT", quest = 3161, questName = "Gahz'ridian", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.7, y = 45.9 }, -- 14
-        { type = "COLLECT", quest = 3161, questName = "Gahz'ridian", target = "Gahz'ridian Ornament", count = 30, map = 1446, zone = "Tanaris", x = 53, y = 44, near = true }, -- 15
-        { type = "TURNIN", quest = 3161, questName = "Gahz'ridian", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.7, y = 45.9 }, -- 16
-        { type = "KILL", quest = 3362, questName = "Thistleshrub Valley", npc = 5490, target = "Gnarled Thistleshrub / Thistleshrub Rootshaper", count = 8, map = 1446, zone = "Tanaris", x = 31.2, y = 65.5, near = true }, -- 17
-        { type = "TURNIN", quest = 3362, questName = "Thistleshrub Valley", npc = 7876, npcName = "Tran'rek", map = 1446, zone = "Tanaris", x = 51.6, y = 26.8 }, -- 18
-    },
+        { type = "ACCEPT", quest = 2768, questName = "Divino-matic Rod", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 6
+        { type = "TURNIN", quest = 2768, questName = "Divino-matic Rod", npc = 7407, npcName = "Chief Engineer Bilgewhizzle", map = 1446, zone = "Tanaris", x = 52.5, y = 28.5, optional = true }, -- 7
+        { type = "KILL", quest = 5863, questName = "The Dunemaul Compound", npc = 5472, target = "Dunemaul Enforcer / Dunemaul Brute", count = 10, map = 1446, zone = "Tanaris", x = 39.9, y = 50.9, near = true }, -- 8
+        { type = "KILL", quest = 5863, questName = "The Dunemaul Compound", npc = 12046, target = "Gor'marok the Ravager", count = 1, map = 1446, zone = "Tanaris", x = 41.5, y = 57.8 }, -- 9
+        { type = "KILL", quest = 2605, questName = "The Thirsty Goblin", npc = 5481, target = "Thistleshrub Dew Collector", map = 1446, zone = "Tanaris", x = 31.2, y = 64.7, near = true, note = "loot Laden Dew Gland" }, -- 10
+        { type = "TURNIN", quest = 2605, questName = "The Thirsty Goblin", npc = 7564, npcName = "Marin Noggenfogger", map = 1446, zone = "Tanaris", x = 51.8, y = 28.7 }, -- 11
+        { type = "ACCEPT", quest = 2606, questName = "In Good Taste", npc = 7564, npcName = "Marin Noggenfogger", map = 1446, zone = "Tanaris", x = 51.8, y = 28.7 }, -- 12
+        { type = "TURNIN", quest = 5863, questName = "The Dunemaul Compound", npc = 11758, npcName = "Andi Lynn", map = 1446, zone = "Tanaris", x = 52.8, y = 27.4 }, -- 13
+        { type = "TURNIN", quest = 2606, questName = "In Good Taste", npc = 7583, npcName = "Sprinkle", map = 1446, zone = "Tanaris", x = 51.1, y = 26.9 }, -- 14
+        { type = "TURNIN", quest = 3445, questName = "The Sunken Temple", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.7, y = 45.9 }, -- 15
+        { type = "ACCEPT", quest = 3161, questName = "Gahz'ridian", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.7, y = 45.9 }, -- 16
+        { type = "COLLECT", quest = 3161, questName = "Gahz'ridian", target = "Gahz'ridian Ornament", count = 30, map = 1446, zone = "Tanaris", x = 53, y = 44, near = true }, -- 17
+        { type = "TURNIN", quest = 3161, questName = "Gahz'ridian", npc = 7771, npcName = "Marvon Rivetseeker", map = 1446, zone = "Tanaris", x = 52.7, y = 45.9 }, -- 18
+        { type = "KILL", quest = 3362, questName = "Thistleshrub Valley", npc = 5490, target = "Gnarled Thistleshrub / Thistleshrub Rootshaper", count = 8, map = 1446, zone = "Tanaris", x = 31.2, y = 65.5, near = true }, -- 19
+        { type = "TURNIN", quest = 3362, questName = "Thistleshrub Valley", npc = 7876, npcName = "Tran'rek", map = 1446, zone = "Tanaris", x = 51.6, y = 26.8 }, -- 20
+    } end,
 })

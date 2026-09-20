@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Un'Goro Crater",
     next = "GEN_ALLIANCE_HUMAN_45_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 44 of the Human route: level 54 to 55, 14 steps, ~78 min of play in the model (18956 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 44 of the Human route: level 54 to 55, 14 steps, ~78 min of play in the model (18956 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 14,
+    steps = function() return {
         { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 6.8, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 1
         { type = "ACCEPT", quest = 4492, questName = "Lost!", npc = 9997, npcName = "Spraggle Frock", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 8.5 }, -- 2
         { type = "COMPLETE", quest = 4492, questName = "Lost!", target = "Escort Ringo to Spraggle Frock at Marshal's Refuge", map = 1449, zone = "Un'Goro Crater", x = 43.7, y = 8.3, note = "escort - stay close, it can fail: Escort Ringo to Spraggle Frock at Marshal's Refuge" }, -- 3
@@ -28,5 +29,5 @@ ns.RegisterGuide({
         { type = "KILL", quest = 4301, questName = "The Mighty U'cha", npc = 9622, target = "U'cha", map = 1449, zone = "Un'Goro Crater", x = 68.1, y = 12.6, note = "loot U'cha's Pelt" }, -- 12
         { type = "TURNIN", quest = 4301, questName = "The Mighty U'cha", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 13
         { type = "GRIND", npc = 9164, target = "Elder Diemetradon", level = 55, map = 1449, zone = "Un'Goro Crater", x = 42.5, y = 73.6, near = true, note = "grind Elder Diemetradon (level 53-55) to level 55 - nothing worth questing at 54" }, -- 14
-    },
+    } end,
 })

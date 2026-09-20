@@ -10,7 +10,7 @@
   "zone": "Felwood",
   "next": "GEN_ALLIANCE_SKYBORNE_22_BLASTED_LANDS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 21 of the Skyborne route: level 45 to 45, 14 steps, ~64 min of play in the model (28315 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 21 of the Skyborne route: level 45 to 45, 14 steps, ~64 min of play in the model (28315 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1448, "zone": "Felwood", "x": 51.6, "y": 82.7, "radius": 60, "note": "travel to Felwood (Felwood)"},
     {"type": "NOTE", "map": 1448, "zone": "Felwood", "x": 51.6, "y": 82.7, "text": "set your hearthstone at the inn in Felwood (if there is one)"},

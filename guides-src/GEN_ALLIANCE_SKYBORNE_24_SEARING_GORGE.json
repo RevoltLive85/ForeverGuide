@@ -10,7 +10,7 @@
   "zone": "Searing Gorge",
   "next": "GEN_ALLIANCE_SKYBORNE_25_THE_HINTERLANDS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 24 of the Skyborne route: level 46 to 47, 33 steps, ~100 min of play in the model (44170 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 24 of the Skyborne route: level 46 to 47, 36 steps, ~100 min of play in the model (44170 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
     {"type": "TRAVEL", "map": 1427, "zone": "Searing Gorge", "x": 38.1, "y": 32.5, "radius": 60, "note": "travel to Searing Gorge (Searing Gorge)"},
     {"type": "NOTE", "map": 1427, "zone": "Searing Gorge", "x": 38.1, "y": 32.5, "text": "set your hearthstone at the inn in Searing Gorge (if there is one)"},
@@ -20,6 +20,9 @@
     {"type": "ACCEPT", "quest": 7724, "questName": "Fiery Menace!", "npc": 14627, "npcName": "Hansel Heavyhands", "map": 1427, "zone": "Searing Gorge", "x": 38.6, "y": 27.8},
     {"type": "ACCEPT", "quest": 7727, "questName": "Incendosaurs? Whateverosaur is More Like It", "npc": 14627, "npcName": "Hansel Heavyhands", "map": 1427, "zone": "Searing Gorge", "x": 38.6, "y": 27.8},
     {"type": "ACCEPT", "quest": 7722, "questName": "What the Flux?", "npc": 14624, "npcName": "Master Smith Burninate", "map": 1427, "zone": "Searing Gorge", "x": 38.8, "y": 28.5},
+    {"type": "ACCEPT", "quest": 7701, "questName": "WANTED: Overseer Maltorius", "map": 1427, "zone": "Searing Gorge", "x": 37.7, "y": 26.5, "note": "group quest (elite mobs) - optional, take it only with company", "optional": true},
+    {"type": "KILL", "quest": 7701, "questName": "WANTED: Overseer Maltorius", "npc": 14621, "target": "Overseer Maltorius", "map": 1427, "zone": "Searing Gorge", "x": 40.8, "y": 35.9, "optional": true},
+    {"type": "TURNIN", "quest": 7701, "questName": "WANTED: Overseer Maltorius", "npc": 14634, "npcName": "Lookout Captain Lolo Longstriker", "map": 1427, "zone": "Searing Gorge", "x": 37.7, "y": 26.6, "optional": true},
     {"type": "ACCEPT", "quest": 3377, "questName": "Prayer to Elune", "npc": 8436, "npcName": "Zamael Lunthistle", "map": 1427, "zone": "Searing Gorge", "x": 29.6, "y": 26.3},
     {"type": "KILL", "quest": 7729, "questName": "JOB OPPORTUNITY: Culling the Competition", "npc": 5846, "target": "Dark Iron Taskmaster", "count": 15, "map": 1427, "zone": "Searing Gorge", "x": 38, "y": 32, "near": true},
     {"type": "KILL", "quest": 7729, "questName": "JOB OPPORTUNITY: Culling the Competition", "npc": 5844, "target": "Dark Iron Slaver", "count": 15, "map": 1427, "zone": "Searing Gorge", "x": 38.4, "y": 38, "near": true},

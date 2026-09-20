@@ -10,7 +10,7 @@
   "zone": "Badlands",
   "next": "GEN_HORDE_ORC_10_SWAMP_OF_SORROWS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 9 of the Orc route: level 36 to 38, 42 steps, ~145 min of play in the model (39902 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 9 of the Orc route: level 36 to 38, 42 steps, ~145 min of play in the model (39902 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1417, "zone": "Arathi Highlands", "x": 73.6, "y": 31.8, "radius": 60, "note": "use your hearthstone (Arathi Highlands)"},
     {"type": "TRAVEL", "map": 1418, "zone": "Badlands", "x": 3.5, "y": 47.0, "radius": 60, "note": "travel to Badlands (Badlands)"},

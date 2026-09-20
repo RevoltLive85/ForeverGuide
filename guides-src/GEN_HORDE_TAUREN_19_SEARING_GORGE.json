@@ -10,7 +10,7 @@
   "zone": "Searing Gorge",
   "next": "GEN_HORDE_TAUREN_20_BLASTED_LANDS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 19 of the Tauren route: level 45 to 45, 26 steps, ~106 min of play in the model (39495 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 19 of the Tauren route: level 45 to 45, 26 steps, ~106 min of play in the model (39495 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1427, "zone": "Searing Gorge", "x": 38.8, "y": 33.8, "radius": 60, "note": "travel to Searing Gorge (Searing Gorge)"},
     {"type": "NOTE", "map": 1427, "zone": "Searing Gorge", "x": 38.8, "y": 33.8, "text": "set your hearthstone at the inn in Searing Gorge (if there is one)"},

@@ -12,26 +12,33 @@ ns.RegisterGuide({
     zone = "Silithus",
     next = "GEN_ALLIANCE_HUMAN_48_WINTERSPRING",
     author = "ForeverGuide route planner",
-    notes = "Chapter 47 of the Human route: level 58 to 58, 19 steps, ~44 min of play in the model (76790 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 47 of the Human route: level 58 to 58, 25 steps, ~44 min of play in the model (76790 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (2 here).",
+    stepCount = 25,
+    steps = function() return {
         { type = "TRAVEL", map = 1451, zone = "Silithus", x = 50.1, y = 37.5, radius = 60, note = "use your hearthstone (Silithus)" }, -- 1
         { type = "TRAVEL", map = 1451, zone = "Silithus", x = 49.7, y = 37.4, radius = 60, note = "travel to Silithus (Silithus)" }, -- 2
         { type = "ACCEPT", quest = 8318, questName = "Secret Communication", npc = 15306, npcName = "Bor Wildmane", map = 1451, zone = "Silithus", x = 48.6, y = 37.8 }, -- 3
         { type = "ACCEPT", quest = 8304, questName = "Dearest Natalia", npc = 15181, npcName = "Commander Mar'alith", map = 1451, zone = "Silithus", x = 49.2, y = 34.2 }, -- 4
-        { type = "ACCEPT", quest = 9248, questName = "A Humble Offering", npc = 15282, npcName = "Aurel Goldleaf", map = 1451, zone = "Silithus", x = 52, y = 38.2 }, -- 5
-        { type = "COLLECT", quest = 8318, questName = "Secret Communication", target = "Encrypted Twilight Text", count = 10, map = 1451, zone = "Silithus", x = 40.9, y = 42.2, near = true }, -- 6
-        { type = "COLLECT", quest = 9248, questName = "A Humble Offering", target = "Abyssal Scepter", count = 1, map = 1451, zone = "Silithus", x = 39.6, y = 45.1, near = true }, -- 7
-        { type = "ACCEPT", quest = 9419, questName = "Scouring the Desert", npc = 17080, npcName = "Marshal Bluewall", map = 1451, zone = "Silithus", x = 33.3, y = 51.1 }, -- 8
-        { type = "KILL", quest = 9419, questName = "Scouring the Desert", npc = 17090, target = "Silithus Dust Turnin Quest Doodad", count = 1, map = 1451, zone = "Silithus", x = 33, y = 50.8 }, -- 9
-        { type = "TURNIN", quest = 9419, questName = "Scouring the Desert", npc = 17080, npcName = "Marshal Bluewall", map = 1451, zone = "Silithus", x = 33.3, y = 51.1 }, -- 10
-        { type = "KILL", quest = 8304, questName = "Dearest Natalia", npc = 15170, target = "Rutgar Glyphshaper / Frankal Stonebridge", count = 1, map = 1451, zone = "Silithus", x = 41.3, y = 88.5 }, -- 11
-        { type = "TURNIN", quest = 8318, questName = "Secret Communication", npc = 15306, npcName = "Bor Wildmane", map = 1451, zone = "Silithus", x = 48.6, y = 37.8 }, -- 12
-        { type = "TURNIN", quest = 8304, questName = "Dearest Natalia", npc = 15181, npcName = "Commander Mar'alith", map = 1451, zone = "Silithus", x = 49.2, y = 34.2 }, -- 13
-        { type = "TURNIN", quest = 9248, questName = "A Humble Offering", npc = 15282, npcName = "Aurel Goldleaf", map = 1451, zone = "Silithus", x = 52, y = 38.2 }, -- 14
-        { type = "ACCEPT", quest = 8310, questName = "Breaking the Code", npc = 15171, npcName = "Frankal Stonebridge", map = 1451, zone = "Silithus", x = 40.8, y = 88.9 }, -- 15
-        { type = "COLLECT", quest = 8310, questName = "Breaking the Code", target = "Hive'Regal Silithid Brain", map = 1451, zone = "Silithus", x = 50.6, y = 89.5, near = true }, -- 16
-        { type = "COLLECT", quest = 8310, questName = "Breaking the Code", target = "Hive'Zora Silithid Brain", map = 1451, zone = "Silithus", x = 37.1, y = 63.7, near = true }, -- 17
-        { type = "COLLECT", quest = 8310, questName = "Breaking the Code", target = "Hive'Ashi Silithid Brain", map = 1451, zone = "Silithus", x = 48.5, y = 47.1, near = true }, -- 18
-        { type = "TURNIN", quest = 8310, questName = "Breaking the Code", npc = 15171, npcName = "Frankal Stonebridge", map = 1451, zone = "Silithus", x = 40.8, y = 88.9 }, -- 19
-    },
+        { type = "ACCEPT", quest = 8306, questName = "Into The Maw of Madness", npc = 15181, npcName = "Commander Mar'alith", map = 1451, zone = "Silithus", x = 49.2, y = 34.2, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 5
+        { type = "KILL", quest = 8306, questName = "Into The Maw of Madness", npc = 15215, target = "Mistress Natalia Mar'alith", count = 1, map = 1414, zone = "Kalimdor - the continent map", x = 44.4, y = 86.1, optional = true }, -- 6
+        { type = "TURNIN", quest = 8306, questName = "Into The Maw of Madness", npc = 15181, npcName = "Commander Mar'alith", map = 1451, zone = "Silithus", x = 49.2, y = 34.2, optional = true }, -- 7
+        { type = "ACCEPT", quest = 9248, questName = "A Humble Offering", npc = 15282, npcName = "Aurel Goldleaf", map = 1451, zone = "Silithus", x = 52, y = 38.2 }, -- 8
+        { type = "ACCEPT", quest = 8283, questName = "Wanted - Deathclasp, Terror of the Sands", map = 1451, zone = "Silithus", x = 51.4, y = 38.3, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 9
+        { type = "KILL", quest = 8283, questName = "Wanted - Deathclasp, Terror of the Sands", npc = 15196, target = "Deathclasp", map = 1451, zone = "Silithus", x = 45.1, y = 92.3, optional = true }, -- 10
+        { type = "TURNIN", quest = 8283, questName = "Wanted - Deathclasp, Terror of the Sands", npc = 15182, npcName = "Vish Kozus", map = 1451, zone = "Silithus", x = 50.8, y = 33.7, optional = true }, -- 11
+        { type = "COLLECT", quest = 8318, questName = "Secret Communication", target = "Encrypted Twilight Text", count = 10, map = 1451, zone = "Silithus", x = 40.9, y = 42.2, near = true }, -- 12
+        { type = "COLLECT", quest = 9248, questName = "A Humble Offering", target = "Abyssal Scepter", count = 1, map = 1451, zone = "Silithus", x = 39.6, y = 45.1, near = true }, -- 13
+        { type = "ACCEPT", quest = 9419, questName = "Scouring the Desert", npc = 17080, npcName = "Marshal Bluewall", map = 1451, zone = "Silithus", x = 33.3, y = 51.1 }, -- 14
+        { type = "KILL", quest = 9419, questName = "Scouring the Desert", npc = 17090, target = "Silithus Dust Turnin Quest Doodad", count = 1, map = 1451, zone = "Silithus", x = 33, y = 50.8 }, -- 15
+        { type = "TURNIN", quest = 9419, questName = "Scouring the Desert", npc = 17080, npcName = "Marshal Bluewall", map = 1451, zone = "Silithus", x = 33.3, y = 51.1 }, -- 16
+        { type = "KILL", quest = 8304, questName = "Dearest Natalia", npc = 15170, target = "Rutgar Glyphshaper / Frankal Stonebridge", count = 1, map = 1451, zone = "Silithus", x = 41.3, y = 88.5 }, -- 17
+        { type = "TURNIN", quest = 8318, questName = "Secret Communication", npc = 15306, npcName = "Bor Wildmane", map = 1451, zone = "Silithus", x = 48.6, y = 37.8 }, -- 18
+        { type = "TURNIN", quest = 8304, questName = "Dearest Natalia", npc = 15181, npcName = "Commander Mar'alith", map = 1451, zone = "Silithus", x = 49.2, y = 34.2 }, -- 19
+        { type = "TURNIN", quest = 9248, questName = "A Humble Offering", npc = 15282, npcName = "Aurel Goldleaf", map = 1451, zone = "Silithus", x = 52, y = 38.2 }, -- 20
+        { type = "ACCEPT", quest = 8310, questName = "Breaking the Code", npc = 15171, npcName = "Frankal Stonebridge", map = 1451, zone = "Silithus", x = 40.8, y = 88.9 }, -- 21
+        { type = "COLLECT", quest = 8310, questName = "Breaking the Code", target = "Hive'Regal Silithid Brain", map = 1451, zone = "Silithus", x = 50.6, y = 89.5, near = true }, -- 22
+        { type = "COLLECT", quest = 8310, questName = "Breaking the Code", target = "Hive'Zora Silithid Brain", map = 1451, zone = "Silithus", x = 37.1, y = 63.7, near = true }, -- 23
+        { type = "COLLECT", quest = 8310, questName = "Breaking the Code", target = "Hive'Ashi Silithid Brain", map = 1451, zone = "Silithus", x = 48.5, y = 47.1, near = true }, -- 24
+        { type = "TURNIN", quest = 8310, questName = "Breaking the Code", npc = 15171, npcName = "Frankal Stonebridge", map = 1451, zone = "Silithus", x = 40.8, y = 88.9 }, -- 25
+    } end,
 })

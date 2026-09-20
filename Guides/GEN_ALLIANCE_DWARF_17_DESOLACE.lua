@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Desolace",
     next = "GEN_ALLIANCE_DWARF_18_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 17 of the Dwarf route: level 36 to 37, 69 steps, ~234 min of play in the model (26723 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 17 of the Dwarf route: level 36 to 37, 69 steps, ~234 min of play in the model (26723 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 69,
+    steps = function() return {
         { type = "TRAVEL", map = 1443, zone = "Desolace", x = 66.5, y = 9.9, radius = 60, note = "travel to Desolace (Desolace)" }, -- 1
         { type = "NOTE", map = 1443, zone = "Desolace", x = 66.5, y = 9.9, text = "set your hearthstone at the inn in Desolace (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 1387, questName = "Centaur Bounty", npc = 5752, npcName = "Corporal Melkins", map = 1443, zone = "Desolace", x = 66.7, y = 10.9 }, -- 3
@@ -83,5 +84,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1375, questName = "Khan Shaka", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 67
         { type = "KILL", quest = 1375, questName = "Khan Shaka", npc = 5602, target = "Khan Shaka", map = 1443, zone = "Desolace", x = 40.5, y = 95.5, note = "loot Khan Shaka's Head" }, -- 68
         { type = "TURNIN", quest = 1375, questName = "Khan Shaka", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 69
-    },
+    } end,
 })

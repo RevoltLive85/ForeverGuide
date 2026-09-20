@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Hillsbrad Foothills",
     next = "GEN_ALLIANCE_DWARF_14_ARATHI_HIGHLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 13 of the Dwarf route: level 32 to 33, 24 steps, ~83 min of play in the model (23481 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 13 of the Dwarf route: level 32 to 33, 24 steps, ~83 min of play in the model (23481 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 24,
+    steps = function() return {
         { type = "TRAVEL", map = 1424, zone = "Hillsbrad Foothills", x = 50.2, y = 58.1, radius = 60, note = "travel to Hillsbrad Foothills (Hillsbrad Foothills)" }, -- 1
         { type = "NOTE", map = 1424, zone = "Hillsbrad Foothills", x = 50.2, y = 58.1, text = "set your hearthstone at the inn in Hillsbrad Foothills (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 536, questName = "Down the Coast", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.5, y = 58.4 }, -- 3
@@ -38,5 +39,5 @@ ns.RegisterGuide({
         { type = "KILL", quest = 562, questName = "Stormwind Ho!", npc = 2371, target = "Daggerspine Siren", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 55.2, y = 61.4, near = true }, -- 22
         { type = "KILL", quest = 562, questName = "Stormwind Ho!", npc = 2369, target = "Daggerspine Shorehunter", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 55.9, y = 66.6, near = true }, -- 23
         { type = "TURNIN", quest = 562, questName = "Stormwind Ho!", npc = 2228, npcName = "Lieutenant Farren Orinelle", map = 1424, zone = "Hillsbrad Foothills", x = 51.5, y = 58.4 }, -- 24
-    },
+    } end,
 })

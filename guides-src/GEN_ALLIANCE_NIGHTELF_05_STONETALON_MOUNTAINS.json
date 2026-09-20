@@ -10,7 +10,7 @@
   "zone": "Stonetalon Mountains",
   "next": "GEN_ALLIANCE_NIGHTELF_06_ASHENVALE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 5 of the NightElf route: level 18 to 19, 17 steps, ~29 min of play in the model (25317 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 5 of the NightElf route: level 18 to 19, 17 steps, ~29 min of play in the model (25317 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1442, "zone": "Stonetalon Mountains", "x": 59.5, "y": 65.9, "radius": 60, "note": "travel to Stonetalon Mountains (Stonetalon Mountains)"},
     {"type": "NOTE", "map": 1442, "zone": "Stonetalon Mountains", "x": 59.5, "y": 65.9, "text": "set your hearthstone at the inn in Stonetalon Mountains (if there is one)"},

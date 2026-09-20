@@ -10,7 +10,7 @@
   "zone": "Stranglethorn Vale",
   "next": "GEN_HORDE_SCOURGE_09_ARATHI_HIGHLANDS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 8 of the Scourge route: level 28 to 29, 37 steps, ~131 min of play in the model (21082 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 8 of the Scourge route: level 28 to 29, 37 steps, ~131 min of play in the model (21082 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.4, "y": 76.4, "radius": 60, "note": "travel to Stranglethorn Vale (Stranglethorn Vale)"},
     {"type": "NOTE", "map": 1434, "zone": "Stranglethorn Vale", "x": 27.4, "y": 76.4, "text": "set your hearthstone at the inn in Stranglethorn Vale (if there is one)"},

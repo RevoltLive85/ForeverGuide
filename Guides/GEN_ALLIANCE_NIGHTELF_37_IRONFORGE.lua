@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Ironforge",
     next = "GEN_ALLIANCE_NIGHTELF_38_BURNING_STEPPES",
     author = "ForeverGuide route planner",
-    notes = "Chapter 37 of the NightElf route: level 51 to 51, 10 steps, ~26 min of play in the model (53781 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 37 of the NightElf route: level 51 to 51, 10 steps, ~26 min of play in the model (53781 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 10,
+    steps = function() return {
         { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 61.0, y = 47.6, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 1
         { type = "ACCEPT", quest = 3702, questName = "The Smoldering Ruins of Thaurissan", npc = 8879, npcName = "Royal Historian Archesonus", map = 1455, zone = "Ironforge", x = 38.4, y = 55.3 }, -- 2
         { type = "ACCEPT", quest = 8371, questName = "Concerted Efforts", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 3
@@ -24,5 +25,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 3702, questName = "The Smoldering Ruins of Thaurissan", npc = 8879, npcName = "Royal Historian Archesonus", map = 1455, zone = "Ironforge", x = 38.4, y = 55.3 }, -- 8
         { type = "TURNIN", quest = 3368, questName = "Suntara Stones", npc = 8256, npcName = "Curator Thorius", map = 1455, zone = "Ironforge", x = 71.5, y = 15.7 }, -- 9
         { type = "ACCEPT", quest = 3371, questName = "Dwarven Justice", npc = 8256, npcName = "Curator Thorius", map = 1455, zone = "Ironforge", x = 71.5, y = 15.7 }, -- 10
-    },
+    } end,
 })

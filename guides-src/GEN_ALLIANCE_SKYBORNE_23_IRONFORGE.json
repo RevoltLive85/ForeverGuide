@@ -10,7 +10,7 @@
   "zone": "Ironforge",
   "next": "GEN_ALLIANCE_SKYBORNE_24_SEARING_GORGE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 23 of the Skyborne route: level 46 to 46, 10 steps, ~22 min of play in the model (67688 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 23 of the Skyborne route: level 46 to 46, 10 steps, ~22 min of play in the model (67688 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1455, "zone": "Ironforge", "x": 60.8, "y": 47.5, "radius": 60, "note": "travel to Ironforge (Ironforge)"},
     {"type": "ACCEPT", "quest": 1050, "questName": "Mythology of the Titans", "npc": 3979, "npcName": "Librarian Mae Paledust", "map": 1455, "zone": "Ironforge", "x": 75, "y": 12.5},

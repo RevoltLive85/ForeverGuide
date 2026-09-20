@@ -10,7 +10,7 @@
   "zone": "Desolace",
   "next": "GEN_ALLIANCE_SKYBORNE_18_FERALAS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 17 of the Skyborne route: level 38 to 40, 71 steps, ~187 min of play in the model (30719 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 17 of the Skyborne route: level 38 to 40, 74 steps, ~187 min of play in the model (30719 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
     {"type": "TRAVEL", "map": 1443, "zone": "Desolace", "x": 66.5, "y": 9.9, "radius": 60, "note": "travel to Desolace (Desolace)"},
     {"type": "NOTE", "map": 1443, "zone": "Desolace", "x": 66.5, "y": 9.9, "text": "set your hearthstone at the inn in Desolace (if there is one)"},
@@ -61,6 +61,9 @@
     {"type": "TURNIN", "quest": 5561, "questName": "Kodo Roundup", "npc": 11596, "npcName": "Smeed Scrabblescrew", "map": 1443, "zone": "Desolace", "x": 60.9, "y": 61.9},
     {"type": "TURNIN", "quest": 1385, "questName": "Brutal Politics", "npc": 5398, "npcName": "Warug", "map": 1443, "zone": "Desolace", "x": 75, "y": 68.2},
     {"type": "ACCEPT", "quest": 1386, "questName": "Assault on the Kolkar", "npc": 5398, "npcName": "Warug", "map": 1443, "zone": "Desolace", "x": 75, "y": 68.2},
+    {"type": "ACCEPT", "quest": 1381, "questName": "Khan Hratha", "npc": 5398, "npcName": "Warug", "map": 1443, "zone": "Desolace", "x": 75, "y": 68.2, "note": "group quest (elite mobs) - optional, take it only with company", "optional": true},
+    {"type": "KILL", "quest": 1381, "questName": "Khan Hratha", "npc": 5402, "target": "Khan Hratha", "map": 1443, "zone": "Desolace", "x": 29.6, "y": 52, "optional": true},
+    {"type": "TURNIN", "quest": 1381, "questName": "Khan Hratha", "npc": 5398, "npcName": "Warug", "map": 1443, "zone": "Desolace", "x": 75, "y": 68.2, "optional": true},
     {"type": "KILL", "quest": 1386, "questName": "Assault on the Kolkar", "npc": 4634, "target": "Kolkar Mauler / Kolkar Scout / Kolkar Centaur", "count": 12, "map": 1443, "zone": "Desolace", "x": 70.9, "y": 50.6, "near": true},
     {"type": "TURNIN", "quest": 1386, "questName": "Assault on the Kolkar", "npc": 5398, "npcName": "Warug", "map": 1443, "zone": "Desolace", "x": 75, "y": 68.2, "note": "reduced xp (60%) - you out-levelled it"},
     {"type": "ACCEPT", "quest": 1369, "questName": "Broken Tears", "npc": 5398, "npcName": "Warug", "map": 1443, "zone": "Desolace", "x": 75, "y": 68.2},

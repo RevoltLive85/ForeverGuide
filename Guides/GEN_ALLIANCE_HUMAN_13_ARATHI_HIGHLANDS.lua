@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Arathi Highlands",
     next = "GEN_ALLIANCE_HUMAN_14_DUSTWALLOW_MARSH",
     author = "ForeverGuide route planner",
-    notes = "Chapter 13 of the Human route: level 33 to 34, 37 steps, ~107 min of play in the model (34430 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 13 of the Human route: level 33 to 34, 37 steps, ~107 min of play in the model (34430 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 37,
+    steps = function() return {
         { type = "TRAVEL", map = 1417, zone = "Arathi Highlands", x = 45.9, y = 46.0, radius = 60, note = "travel to Arathi Highlands (Arathi Highlands)" }, -- 1
         { type = "NOTE", map = 1417, zone = "Arathi Highlands", x = 45.9, y = 46.0, text = "set your hearthstone at the inn in Arathi Highlands (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 681, questName = "Northfold Manor", npc = 2700, npcName = "Captain Nials", map = 1417, zone = "Arathi Highlands", x = 45.8, y = 47.6 }, -- 3
@@ -51,5 +52,5 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Thundering Key", map = 1417, zone = "Arathi Highlands", x = 52, y = 50.7 }, -- 35
         { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Burning Key", map = 1417, zone = "Arathi Highlands", x = 25.5, y = 30.1 }, -- 36
         { type = "TURNIN", quest = 651, questName = "Stones of Binding", map = 1417, zone = "Arathi Highlands", x = 36.2, y = 57.4 }, -- 37
-    },
+    } end,
 })

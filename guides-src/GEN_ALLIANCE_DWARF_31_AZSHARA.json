@@ -10,7 +10,7 @@
   "zone": "Azshara",
   "next": "GEN_ALLIANCE_DWARF_32_UN_GORO_CRATER",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 31 of the Dwarf route: level 48 to 48, 14 steps, ~51 min of play in the model (39054 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 31 of the Dwarf route: level 48 to 48, 14 steps, ~51 min of play in the model (39054 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1447, "zone": "Azshara", "x": 60.8, "y": 66.4, "radius": 60, "note": "travel to Azshara (Azshara)"},
     {"type": "NOTE", "map": 1447, "zone": "Azshara", "x": 60.8, "y": 66.4, "text": "set your hearthstone at the inn in Azshara (if there is one)"},

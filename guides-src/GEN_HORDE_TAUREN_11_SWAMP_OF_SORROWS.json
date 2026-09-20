@@ -10,7 +10,7 @@
   "zone": "Swamp of Sorrows",
   "next": "GEN_HORDE_TAUREN_12_DUSTWALLOW_MARSH",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 11 of the Tauren route: level 38 to 38, 34 steps, ~125 min of play in the model (32862 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 11 of the Tauren route: level 38 to 38, 34 steps, ~125 min of play in the model (32862 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1435, "zone": "Swamp of Sorrows", "x": 40.2, "y": 60.6, "radius": 60, "note": "travel to Swamp of Sorrows (Swamp of Sorrows)"},
     {"type": "NOTE", "map": 1435, "zone": "Swamp of Sorrows", "x": 40.2, "y": 60.6, "text": "set your hearthstone at the inn in Swamp of Sorrows (if there is one)"},

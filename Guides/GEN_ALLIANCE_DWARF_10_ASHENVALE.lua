@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Ashenvale",
     next = "GEN_ALLIANCE_DWARF_11_THOUSAND_NEEDLES",
     author = "ForeverGuide route planner",
-    notes = "Chapter 10 of the Dwarf route: level 25 to 28, 81 steps, ~226 min of play in the model (22251 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 10 of the Dwarf route: level 25 to 28, 81 steps, ~226 min of play in the model (22251 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 81,
+    steps = function() return {
         { type = "TRAVEL", map = 1440, zone = "Ashenvale", x = 61.8, y = 83.8, radius = 60, note = "travel to Ashenvale (Ashenvale)" }, -- 1
         { type = "NOTE", map = 1440, zone = "Ashenvale", x = 61.8, y = 83.8, text = "set your hearthstone at the inn in Ashenvale (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 7863, questName = "Sentinel Basic Care Package", npc = 14753, npcName = "Illiyana Moonblaze", map = 1440, zone = "Ashenvale", x = 61.5, y = 83.9 }, -- 3
@@ -95,5 +96,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1032, questName = "Satyr Slaying!", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 79
         { type = "COLLECT", quest = 1032, questName = "Satyr Slaying!", target = "Satyr Horns", count = 16, map = 1440, zone = "Ashenvale", x = 66.1, y = 53.4, near = true }, -- 80
         { type = "TURNIN", quest = 1032, questName = "Satyr Slaying!", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 81
-    },
+    } end,
 })

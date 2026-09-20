@@ -54,10 +54,29 @@ function ns.RegisterGuide(guide)
         return
     end
     guide.version = guide.version or 1
-    guide.steps = guide.steps or {}
-    for i, step in ipairs(guide.steps) do
-        step.index = i
-        step.type = string.upper(tostring(step.type or "NOTE"))
+    local function prepare(steps)
+        for i, step in ipairs(steps) do
+            step.index = i
+            step.type = string.upper(tostring(step.type or "NOTE"))
+        end
+        return steps
+    end
+    if type(guide.steps) == "function" then
+        -- compiled guides hand over a loader: the step tables are built the first time a guide's
+        -- steps are read (activation, AutoQuest, the info popup), never for the 400 guides that are
+        -- only ever listed in the picker
+        local loader = guide.steps
+        guide.steps = nil
+        setmetatable(guide, { __index = function(t, k)
+            if k ~= "steps" then return nil end
+            local steps = prepare(loader() or {})
+            rawset(t, "steps", steps)
+            rawset(t, "stepCount", #steps)
+            return steps
+        end })
+    else
+        guide.steps = prepare(guide.steps or {})
+        guide.stepCount = #guide.steps
     end
     if not Guide.registry[guide.id] then
         Guide.list[#Guide.list + 1] = guide.id
@@ -413,7 +432,13 @@ function Guide:Evaluate(reason)
                 done = true      -- an objective / turn-in of a quest we could not take yet
             end
         end
-        -- manual steps and optional (group) steps complete themselves once the player is past them
+        -- optional quest steps (group / elite quests the route only offers) are walked past unless the
+        -- player opted in by taking the quest: then its objectives and turn-in are guided like any other
+        if not done and step.optional and step.quest then
+            local opted = step.type ~= "ACCEPT" and ns.Quest:IsOnQuest(step.quest)
+            if not opted then done = true end   -- passed over, not marked done
+        end
+        -- manual steps and other optional steps complete themselves once the player is past them
         if not done and (MANUAL[step.type] or step.optional) then
             local k = i + 1
             while steps[k] and (MANUAL[steps[k].type] or not self:StepApplies(steps[k])) do k = k + 1 end
@@ -434,6 +459,25 @@ function Guide:Evaluate(reason)
                 self.note = string.format("%s needs level %d - skipped until then.", ns.Quest:GetTitle(quest) or q.n or ("quest " .. quest), q.req)
                 break
             end
+        end
+    end
+
+    -- 1b. about to accept with a full quest log: name the quests this guide does not need
+    if steps[i] and steps[i].type == "ACCEPT" and steps[i].quest and not ns.Quest:IsOnQuest(steps[i].quest) and not self.note then
+        local n, max = ns.Quest:GetNumQuests()
+        if max and max > 0 and n >= max then
+            local needed = {}
+            for k = i, #steps do if steps[k].quest then needed[steps[k].quest] = true end end
+            local spare = {}
+            for _, id in ipairs(ns.Quest.order or {}) do
+                if not needed[id] then spare[#spare + 1] = ns.Quest:GetTitle(id) or ("quest " .. id) end
+                if #spare >= 4 then break end
+            end
+            self.note = string.format("Quest log full (%d/%d). %s", n, max,
+                #spare > 0 and ("Not needed by this guide: " .. table.concat(spare, ", ") .. " - abandon one.") or "Turn something in first.")
+            self.logFull = true
+        else
+            self.logFull = nil
         end
     end
 
@@ -479,6 +523,7 @@ function Guide:Evaluate(reason)
 end
 
 function Guide:UpdateNavigation()
+    if ns.Navigation.override then return end                  -- a ghost walks to its corpse first (Corpse.lua)
     if ns.Tracker and ns.Tracker:IsActive() then return end   -- tracker drives navigation (auto mode, or no guide)
     local step = self:GetCurrentStep()
     if not step then ns.Navigation:Clear() return end
@@ -518,6 +563,11 @@ function Guide:Activate(id, silent)
     if self.active ~= g then return true end   -- finished instantly and chained into the next guide
     ns.Events:Fire("FG_GUIDE_CHANGED", g)
     return true
+end
+
+--- Number of steps without forcing a lazy guide to load its steps.
+function Guide.StepCount(g)
+    return g and (rawget(g, "stepCount") or (rawget(g, "steps") and #g.steps) or 0) or 0
 end
 
 function Guide:GetCurrentStep()

@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Felwood",
     next = "GEN_ALLIANCE_DWARF_31_AZSHARA",
     author = "ForeverGuide route planner",
-    notes = "Chapter 30 of the Dwarf route: level 47 to 48, 26 steps, ~111 min of play in the model (40817 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 30 of the Dwarf route: level 47 to 48, 26 steps, ~111 min of play in the model (40817 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 26,
+    steps = function() return {
         { type = "TRAVEL", map = 1448, zone = "Felwood", x = 51.6, y = 82.7, radius = 60, note = "travel to Felwood (Felwood)" }, -- 1
         { type = "NOTE", map = 1448, zone = "Felwood", x = 51.6, y = 82.7, text = "set your hearthstone at the inn in Felwood (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 8460, questName = "Timbermaw Ally", npc = 11554, npcName = "Grazle", map = 1448, zone = "Felwood", x = 50.9, y = 85 }, -- 3
@@ -40,5 +41,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 5882, questName = "Salve via Hunting", npc = 9528, npcName = "Arathandris Silversky", map = 1448, zone = "Felwood", x = 54.2, y = 86.8 }, -- 24
         { type = "COLLECT", quest = 5882, questName = "Salve via Hunting", target = "Corrupted Soul Shard", map = 1448, zone = "Felwood", x = 55, y = 85.8, near = true }, -- 25
         { type = "TURNIN", quest = 5882, questName = "Salve via Hunting", npc = 9528, npcName = "Arathandris Silversky", map = 1448, zone = "Felwood", x = 54.2, y = 86.8 }, -- 26
-    },
+    } end,
 })

@@ -221,6 +221,28 @@ function handlers.skull(rest)
     ns.Print(msg)
 end
 
+--- /fg perf - what the addon costs the client (Blizzard's own profiler, 12.x)
+function handlers.perf()
+    local P = rawget(_G, "C_AddOnProfiler")
+    local E = rawget(_G, "Enum") and Enum.AddOnProfilerMetric
+    local okm, mem = pcall(function() UpdateAddOnMemoryUsage() return GetAddOnMemoryUsage("ForeverGuide") end)
+    ns.Printf("ForeverGuide memory: %s KB, framerate %s fps", okm and string.format("%.0f", mem or 0) or "?", string.format("%.0f", ns.PlainNumber(ns.Safe(rawget(_G, "GetFramerate"))) or 0))
+    if not P or not E then ns.Print("C_AddOnProfiler not available on this client.") return end
+    if ns.Plain(ns.Safe(P.IsEnabled)) == false then ns.Print("the addon profiler is disabled (cvar addonProfilerEnabled 0)") end
+    local function m(name, metric) return ns.PlainNumber(ns.Safe(P.GetAddOnMetric, name, metric)) or 0 end
+    ns.Printf("  per frame: recent avg %.2f ms, session avg %.2f ms, peak %.1f ms, frames over 1 ms: %d, over 5 ms: %d",
+        m("ForeverGuide", E.RecentAverageTime), m("ForeverGuide", E.SessionAverageTime), m("ForeverGuide", E.PeakTime),
+        m("ForeverGuide", E.CountTimeOver1Ms), m("ForeverGuide", E.CountTimeOver5Ms))
+    local all = ns.PlainNumber(ns.Safe(P.GetOverallMetric, E.RecentAverageTime)) or 0
+    ns.Printf("  all addons together: %.2f ms per frame recently", all)
+    local top = ns.Safe(P.GetTopKAddOnsForMetric, E.RecentAverageTime, 6)
+    if type(top) == "table" then
+        for i, r in ipairs(top) do
+            ns.Printf("  %d. %s  %.2f ms", i, tostring(r.addOnName), ns.PlainNumber(r.metricValue) or 0)
+        end
+    end
+end
+
 function handlers.wpdbg()
     if ns.Waypoint and ns.Waypoint.Debug then ns.Waypoint:Debug() end
 end
@@ -257,7 +279,7 @@ function handlers.guides()
         local active = (G.active == g) and (OK .. " (active)" .. END) or ""
         local usable = G:Applicable(g) and "" or (D .. " [not for this character]" .. END)
         ns.Printf("  %s%s%s  %s  %s-%s  %d steps%s%s", C, id, END, g.name or "", tostring(g.minLevel or "?"),
-            tostring(g.maxLevel or "?"), #g.steps, active, usable)
+            tostring(g.maxLevel or "?"), ns.Guide.StepCount(g), active, usable)
     end
     ns.Print("start one with /fg guide <id or name>")
 end

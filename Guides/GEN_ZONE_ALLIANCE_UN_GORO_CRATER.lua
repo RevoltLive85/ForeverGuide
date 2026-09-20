@@ -11,7 +11,8 @@ ns.RegisterGuide({
     zone = "Un'Goro Crater",
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Un'Goro Crater for a Alliance character, 22 quests. The race routes are the faster path; pick this when you just want to quest here.",
-    steps = {
+    stepCount = 69,
+    steps = function() return {
         { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.2, y = 6.6, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 1
         { type = "NOTE", map = 1449, zone = "Un'Goro Crater", x = 43.2, y = 6.6, text = "set your hearthstone at the inn in Un'Goro Crater (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 3883, questName = "Alien Ecology", npc = 9271, npcName = "Hol'anyee Marshal", map = 1449, zone = "Un'Goro Crater", x = 43.9, y = 7.2 }, -- 3
@@ -81,5 +82,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 974, questName = "Finding the Source", npc = 10302, npcName = "Krakle", map = 1449, zone = "Un'Goro Crater", x = 30.9, y = 50.4 }, -- 67
         { type = "KILL", quest = 974, questName = "Finding the Source", npc = 10541, target = "Krakle's Thermometer", count = 1, map = 1449, zone = "Un'Goro Crater", x = 49, y = 45, note = "Find the hottest area of Fire Plume Ridge" }, -- 68
         { type = "TURNIN", quest = 974, questName = "Finding the Source", npc = 10302, npcName = "Krakle", map = 1449, zone = "Un'Goro Crater", x = 30.9, y = 50.4 }, -- 69
-    },
+    } end,
 })

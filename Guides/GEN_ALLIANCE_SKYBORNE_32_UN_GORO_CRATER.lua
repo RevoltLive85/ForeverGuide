@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Un'Goro Crater",
     next = "GEN_ALLIANCE_SKYBORNE_33_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 32 of the Skyborne route: level 49 to 50, 15 steps, ~218 min of play in the model (11561 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 32 of the Skyborne route: level 49 to 50, 15 steps, ~218 min of play in the model (11561 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 15,
+    steps = function() return {
         { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.7, y = 8.0, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 1
         { type = "ACCEPT", quest = 3882, questName = "Roll the Bones", npc = 9272, npcName = "Spark Nilminer", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 7.4 }, -- 2
         { type = "ACCEPT", quest = 4503, questName = "Shizzle's Flyer", npc = 9998, npcName = "Shizzle", map = 1449, zone = "Un'Goro Crater", x = 44.2, y = 11.6 }, -- 3
@@ -29,5 +30,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 4501, questName = "Beware of Pterrordax", npc = 9997, npcName = "Spraggle Frock", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 8.5 }, -- 13
         { type = "TURNIN", quest = 3882, questName = "Roll the Bones", npc = 9272, npcName = "Spark Nilminer", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 7.4 }, -- 14
         { type = "GRIND", npc = 6511, target = "Bloodpetal Thresher", level = 50, map = 1449, zone = "Un'Goro Crater", x = 56.6, y = 36, near = true, note = "grind Bloodpetal Thresher (level 49-50) to level 50 - nothing worth questing at 49" }, -- 15
-    },
+    } end,
 })

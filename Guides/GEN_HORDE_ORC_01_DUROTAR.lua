@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Durotar",
     next = "GEN_HORDE_ORC_02_THE_BARRENS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 1 of the Orc route: level 1 to 10, 76 steps, ~145 min of play in the model (13465 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 1 of the Orc route: level 1 to 10, 76 steps, ~145 min of play in the model (13465 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 76,
+    steps = function() return {
         { type = "NOTE", map = 1411, zone = "Durotar", x = 42.6, y = 67.4, text = "set your hearthstone at the inn in Durotar (if there is one)" }, -- 1
         { type = "ACCEPT", quest = 788, questName = "Cutting Teeth", npc = 3143, npcName = "Gornek", map = 1411, zone = "Durotar", x = 42.1, y = 68.3 }, -- 2
         { type = "KILL", quest = 788, questName = "Cutting Teeth", npc = 3098, target = "Mottled Boar", count = 10, map = 1411, zone = "Durotar", x = 41.4, y = 71.6, near = true }, -- 3
@@ -90,5 +91,5 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 827, questName = "Skull Rock", target = "Searing Collar", map = 1411, zone = "Durotar", x = 52.6, y = 25, near = true }, -- 74
         { type = "TURNIN", quest = 827, questName = "Skull Rock", npc = 3208, npcName = "Margoz", map = 1411, zone = "Durotar", x = 56.4, y = 20 }, -- 75
         { type = "ACCEPT", quest = 829, questName = "Neeru Fireblade", npc = 3208, npcName = "Margoz", map = 1411, zone = "Durotar", x = 56.4, y = 20 }, -- 76
-    },
+    } end,
 })

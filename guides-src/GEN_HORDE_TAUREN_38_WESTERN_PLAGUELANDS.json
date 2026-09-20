@@ -10,7 +10,7 @@
   "zone": "Western Plaguelands",
   "next": "GEN_HORDE_TAUREN_39_EASTERN_PLAGUELANDS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 38 of the Tauren route: level 53 to 54, 13 steps, ~242 min of play in the model (8624 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 38 of the Tauren route: level 53 to 54, 13 steps, ~242 min of play in the model (8624 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1422, "zone": "Western Plaguelands", "x": 39.0, "y": 63.2, "radius": 60, "note": "travel to Western Plaguelands (Western Plaguelands)"},
     {"type": "ACCEPT", "quest": 4971, "questName": "A Matter of Time", "npc": 10667, "npcName": "Chromie", "map": 1422, "zone": "Western Plaguelands", "x": 39.5, "y": 66.8},

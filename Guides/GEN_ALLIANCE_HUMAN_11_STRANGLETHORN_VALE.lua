@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Stranglethorn Vale",
     next = "GEN_ALLIANCE_HUMAN_12_HILLSBRAD_FOOTHILLS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 11 of the Human route: level 29 to 32, 109 steps, ~384 min of play in the model (25987 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 11 of the Human route: level 29 to 32, 109 steps, ~384 min of play in the model (25987 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 109,
+    steps = function() return {
         { type = "TRAVEL", map = 1434, zone = "Stranglethorn Vale", x = 27.3, y = 76.5, radius = 60, note = "travel to Stranglethorn Vale (Stranglethorn Vale)" }, -- 1
         { type = "NOTE", map = 1434, zone = "Stranglethorn Vale", x = 27.3, y = 76.5, text = "set your hearthstone at the inn in Stranglethorn Vale (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 575, questName = "Supply and Demand", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 3
@@ -123,5 +124,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 601, questName = "Water Elementals", npc = 2496, npcName = "Baron Revilgaz", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.9 }, -- 107
         { type = "KILL", quest = 601, questName = "Water Elementals", npc = 691, target = "Lesser Water Elemental", count = 6, map = 1434, zone = "Stranglethorn Vale", x = 19.9, y = 24.5, near = true, note = "loot Water Elemental Bracers" }, -- 108
         { type = "TURNIN", quest = 601, questName = "Water Elementals", npc = 2496, npcName = "Baron Revilgaz", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 76.9 }, -- 109
-    },
+    } end,
 })

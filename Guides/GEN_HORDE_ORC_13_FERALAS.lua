@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Feralas",
     next = "GEN_HORDE_ORC_14_DESOLACE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 13 of the Orc route: level 41 to 42, 44 steps, ~171 min of play in the model (39160 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 13 of the Orc route: level 41 to 42, 44 steps, ~171 min of play in the model (39160 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 44,
+    steps = function() return {
         { type = "TRAVEL", map = 1444, zone = "Feralas", x = 75.0, y = 43.2, radius = 60, note = "travel to Feralas (Feralas)" }, -- 1
         { type = "NOTE", map = 1444, zone = "Feralas", x = 75.0, y = 43.2, text = "set your hearthstone at the inn in Feralas (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 2862, questName = "War on the Woodpaw", npc = 7875, npcName = "Hadoken Swiftstrider", map = 1444, zone = "Feralas", x = 74.9, y = 42.5 }, -- 3
@@ -58,5 +59,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 7730, questName = "Zukk'ash Infestation", npc = 7875, npcName = "Hadoken Swiftstrider", map = 1444, zone = "Feralas", x = 74.9, y = 42.5 }, -- 42
         { type = "TURNIN", quest = 7731, questName = "Stinglasher", npc = 7875, npcName = "Hadoken Swiftstrider", map = 1444, zone = "Feralas", x = 74.9, y = 42.5 }, -- 43
         { type = "ACCEPT", quest = 7732, questName = "Zukk'ash Report", npc = 7875, npcName = "Hadoken Swiftstrider", map = 1444, zone = "Feralas", x = 74.9, y = 42.5 }, -- 44
-    },
+    } end,
 })

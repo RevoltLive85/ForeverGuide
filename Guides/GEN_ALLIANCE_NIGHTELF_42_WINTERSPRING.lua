@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Winterspring",
     next = "GEN_ALLIANCE_NIGHTELF_43_FELWOOD",
     author = "ForeverGuide route planner",
-    notes = "Chapter 42 of the NightElf route: level 53 to 53, 29 steps, ~118 min of play in the model (35103 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 42 of the NightElf route: level 53 to 53, 29 steps, ~118 min of play in the model (35103 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 29,
+    steps = function() return {
         { type = "TRAVEL", map = 1428, zone = "Burning Steppes", x = 65.3, y = 23.5, radius = 60, note = "use your hearthstone (Burning Steppes)" }, -- 1
         { type = "TRAVEL", map = 1452, zone = "Winterspring", x = 61.4, y = 38.2, radius = 60, note = "travel to Winterspring (Winterspring)" }, -- 2
         { type = "NOTE", map = 1452, zone = "Winterspring", x = 61.4, y = 38.2, text = "set your hearthstone at the inn in Winterspring (if there is one)" }, -- 3
@@ -43,5 +44,5 @@ ns.RegisterGuide({
         { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7438, target = "Winterfall Ursa", count = 8, map = 1452, zone = "Winterspring", x = 65.1, y = 37.2, near = true }, -- 27
         { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7439, target = "Winterfall Shaman", count = 8, map = 1452, zone = "Winterspring", x = 67.4, y = 35.2, near = true }, -- 28
         { type = "TURNIN", quest = 8464, questName = "Winterfall Activity", npc = 11556, npcName = "Salfa", map = 1452, zone = "Winterspring", x = 27.7, y = 34.5 }, -- 29
-    },
+    } end,
 })

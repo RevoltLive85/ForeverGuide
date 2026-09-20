@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "The Hinterlands",
     next = "GEN_ALLIANCE_SKYBORNE_26_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
-    notes = "Chapter 25 of the Skyborne route: level 47 to 47, 16 steps, ~48 min of play in the model (31295 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 25 of the Skyborne route: level 47 to 47, 16 steps, ~48 min of play in the model (31295 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 16,
+    steps = function() return {
         { type = "TRAVEL", map = 1425, zone = "The Hinterlands", x = 12.0, y = 44.5, radius = 60, note = "travel to The Hinterlands (The Hinterlands)" }, -- 1
         { type = "NOTE", map = 1425, zone = "The Hinterlands", x = 12.0, y = 44.5, text = "set your hearthstone at the inn in The Hinterlands (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 2988, questName = "Witherbark Cages", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.5 }, -- 3
@@ -30,5 +31,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 2880, questName = "Troll Necklace Bounty", npc = 7884, npcName = "Fraggar Thundermantle", map = 1425, zone = "The Hinterlands", x = 14.8, y = 44.6 }, -- 14
         { type = "COMPLETE", quest = 2989, questName = "The Altar of Zul", target = "Search the Altar of Zul", map = 1425, zone = "The Hinterlands", x = 49.0, y = 68.7, note = "Search the Altar of Zul" }, -- 15
         { type = "TURNIN", quest = 2989, questName = "The Altar of Zul", npc = 5636, npcName = "Gryphon Master Talonaxe", map = 1425, zone = "The Hinterlands", x = 9.8, y = 44.5 }, -- 16
-    },
+    } end,
 })

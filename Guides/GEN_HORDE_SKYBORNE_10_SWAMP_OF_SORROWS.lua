@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Swamp of Sorrows",
     next = "GEN_HORDE_SKYBORNE_11_DUSTWALLOW_MARSH",
     author = "ForeverGuide route planner",
-    notes = "Chapter 10 of the Skyborne route: level 38 to 38, 34 steps, ~125 min of play in the model (32862 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 10 of the Skyborne route: level 38 to 38, 34 steps, ~125 min of play in the model (32862 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 34,
+    steps = function() return {
         { type = "TRAVEL", map = 1435, zone = "Swamp of Sorrows", x = 40.2, y = 60.6, radius = 60, note = "travel to Swamp of Sorrows (Swamp of Sorrows)" }, -- 1
         { type = "NOTE", map = 1435, zone = "Swamp of Sorrows", x = 40.2, y = 60.6, text = "set your hearthstone at the inn in Swamp of Sorrows (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 698, questName = "Lack of Surplus", npc = 5591, npcName = "Dar", map = 1435, zone = "Swamp of Sorrows", x = 44.7, y = 57.2 }, -- 3
@@ -48,5 +49,5 @@ ns.RegisterGuide({
         { type = "KILL", quest = 1428, questName = "Continued Threat", npc = 752, target = "Marsh Oracle", count = 10, map = 1435, zone = "Swamp of Sorrows", x = 94.9, y = 61, near = true }, -- 32
         { type = "KILL", quest = 1428, questName = "Continued Threat", npc = 751, target = "Marsh Flesheater", count = 10, map = 1435, zone = "Swamp of Sorrows", x = 94.4, y = 52.5, near = true }, -- 33
         { type = "TURNIN", quest = 1428, questName = "Continued Threat", npc = 5593, npcName = "Katar", map = 1435, zone = "Swamp of Sorrows", x = 83.8, y = 80.4 }, -- 34
-    },
+    } end,
 })

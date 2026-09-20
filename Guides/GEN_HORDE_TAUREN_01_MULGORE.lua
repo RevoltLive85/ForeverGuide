@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Mulgore",
     next = "GEN_HORDE_TAUREN_02_THUNDER_BLUFF",
     author = "ForeverGuide route planner",
-    notes = "Chapter 1 of the Tauren route: level 1 to 11, 90 steps, ~194 min of play in the model (12593 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 1 of the Tauren route: level 1 to 11, 90 steps, ~194 min of play in the model (12593 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 90,
+    steps = function() return {
         { type = "NOTE", map = 1412, zone = "Mulgore", x = 47.9, y = 59.8, text = "set your hearthstone at the inn in Mulgore (if there is one)" }, -- 1
         { type = "ACCEPT", quest = 745, questName = "Sharing the Land", npc = 2993, npcName = "Baine Bloodhoof", map = 1412, zone = "Mulgore", x = 47.5, y = 60.2 }, -- 2
         { type = "KILL", quest = 745, questName = "Sharing the Land", npc = 2949, target = "Palemane Tanner / Palemane Skinner", count = 10, map = 1412, zone = "Mulgore", x = 47.4, y = 71.4, near = true }, -- 3
@@ -104,5 +105,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 760, questName = "Wildmane Cleansing", npc = 2948, npcName = "Mull Thunderhorn", map = 1412, zone = "Mulgore", x = 48.5, y = 60.4 }, -- 88
         { type = "ACCEPT", quest = 1656, questName = "A Task Unfinished", npc = 6775, npcName = "Antur Fallow", map = 1412, zone = "Mulgore", x = 38.5, y = 81.6 }, -- 89
         { type = "TURNIN", quest = 1656, questName = "A Task Unfinished", npc = 6747, npcName = "Innkeeper Kauth", map = 1412, zone = "Mulgore", x = 46.6, y = 61.1, note = "reduced xp (80%) - you out-levelled it" }, -- 90
-    },
+    } end,
 })

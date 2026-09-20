@@ -10,7 +10,7 @@
   "zone": "Feralas",
   "next": "GEN_HORDE_SCOURGE_16_DESOLACE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 15 of the Scourge route: level 41 to 42, 44 steps, ~171 min of play in the model (39160 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 15 of the Scourge route: level 41 to 42, 44 steps, ~171 min of play in the model (39160 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1444, "zone": "Feralas", "x": 75.0, "y": 43.2, "radius": 60, "note": "travel to Feralas (Feralas)"},
     {"type": "NOTE", "map": 1444, "zone": "Feralas", "x": 75.0, "y": 43.2, "text": "set your hearthstone at the inn in Feralas (if there is one)"},

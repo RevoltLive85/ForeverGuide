@@ -10,7 +10,7 @@
   "zone": "Eastern Plaguelands",
   "next": "GEN_HORDE_TAUREN_40_SILITHUS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 39 of the Tauren route: level 54 to 54, 20 steps, ~81 min of play in the model (50154 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 39 of the Tauren route: level 54 to 54, 20 steps, ~81 min of play in the model (50154 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.3, "y": 59.1, "radius": 60, "note": "use your hearthstone (Eastern Plaguelands)"},
     {"type": "TRAVEL", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.4, "y": 58.8, "radius": 60, "note": "travel to Eastern Plaguelands (Eastern Plaguelands)"},

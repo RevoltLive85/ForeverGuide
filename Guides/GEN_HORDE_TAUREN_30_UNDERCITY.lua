@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Undercity",
     next = "GEN_HORDE_TAUREN_31_THE_HINTERLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 30 of the Tauren route: level 49 to 49, 15 steps, ~21 min of play in the model (34867 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 30 of the Tauren route: level 49 to 49, 15 steps, ~21 min of play in the model (34867 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 15,
+    steps = function() return {
         { type = "TRAVEL", map = 1458, zone = "Undercity", x = 59.4, y = 65.5, radius = 60, note = "travel to Undercity (Undercity)" }, -- 1
         { type = "NOTE", map = 1458, zone = "Undercity", x = 59.4, y = 65.5, text = "set your hearthstone at the inn in Undercity (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 1109, questName = "Going, Going, Guano!", npc = 2055, npcName = "Master Apothecary Faranell", map = 1458, zone = "Undercity", x = 48.8, y = 69.3 }, -- 3
@@ -29,5 +30,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 4293, questName = "A Sample of Slime...", npc = 10136, npcName = "Chemist Fuely", map = 1458, zone = "Undercity", x = 47.5, y = 73.4 }, -- 13
         { type = "COLLECT", quest = 4294, questName = "... and a Batch of Ooze", target = "Pure Un'Goro Sample", count = 5, map = 1458, zone = "Undercity", x = 47.7, y = 73.6 }, -- 14
         { type = "TURNIN", quest = 4294, questName = "... and a Batch of Ooze", npc = 10136, npcName = "Chemist Fuely", map = 1458, zone = "Undercity", x = 47.5, y = 73.4 }, -- 15
-    },
+    } end,
 })

@@ -10,7 +10,7 @@
   "zone": "Wetlands",
   "next": "GEN_ALLIANCE_HUMAN_08_IRONFORGE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 7 of the Human route: level 23 to 26, 70 steps, ~172 min of play in the model (28303 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 7 of the Human route: level 23 to 26, 70 steps, ~172 min of play in the model (28303 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1437, "zone": "Wetlands", "x": 10.3, "y": 58.9, "radius": 60, "note": "travel to Wetlands (Wetlands)"},
     {"type": "NOTE", "map": 1437, "zone": "Wetlands", "x": 10.3, "y": 58.9, "text": "set your hearthstone at the inn in Wetlands (if there is one)"},

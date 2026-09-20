@@ -45,7 +45,7 @@ M.DEFAULT_KILLS = env("FG_KILLS", 8)        -- kill count when the text does not
 M.DEFAULT_ITEMS = env("FG_ITEMS", 6)
 M.VALUE_MIN = env("FG_VALUE", 0.6)          -- a quest package must pay at least this share of the grind rate
 M.SHARED_TRAVEL = env("FG_SHARED", 0.5)     -- share of a quest's travel it really pays itself (the rest is shared with neighbours)
-M.LOG_CAP = env("FG_LOGCAP", 20)
+M.LOG_CAP = env("FG_LOGCAP", 40)     -- WoW Forever: C_QuestLog.GetMaxNumQuestsCanAccept() == 40 (Classic had 20)
 M.HEARTH_CD = env("FG_HEARTHCD", 3600)      -- Classic hearthstone cooldown
 
 function M.speed(L) return L >= M.MOUNT_LEVEL and M.MOUNT_SPEED or M.RUN_SPEED end

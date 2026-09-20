@@ -10,7 +10,7 @@
   "zone": "Arathi Highlands",
   "next": "GEN_ALLIANCE_SKYBORNE_13_STRANGLETHORN_VALE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 12 of the Skyborne route: level 30 to 31, 39 steps, ~125 min of play in the model (30066 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 12 of the Skyborne route: level 30 to 31, 39 steps, ~125 min of play in the model (30066 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1417, "zone": "Arathi Highlands", "x": 45.9, "y": 46.0, "radius": 60, "note": "travel to Arathi Highlands (Arathi Highlands)"},
     {"type": "NOTE", "map": 1417, "zone": "Arathi Highlands", "x": 45.9, "y": 46.0, "text": "set your hearthstone at the inn in Arathi Highlands (if there is one)"},

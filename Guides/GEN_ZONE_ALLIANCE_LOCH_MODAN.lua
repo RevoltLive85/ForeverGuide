@@ -11,7 +11,8 @@ ns.RegisterGuide({
     zone = "Loch Modan",
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Loch Modan for a Alliance character, 14 quests. The race routes are the faster path; pick this when you just want to quest here.",
-    steps = {
+    stepCount = 46,
+    steps = function() return {
         { type = "TRAVEL", map = 1432, zone = "Loch Modan", x = 35.7, y = 49.1, radius = 60, note = "travel to Loch Modan (Loch Modan)" }, -- 1
         { type = "NOTE", map = 1432, zone = "Loch Modan", x = 35.7, y = 49.1, text = "set your hearthstone at the inn in Loch Modan (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 6387, questName = "Honor Students", npc = 1681, npcName = "Brock Stoneseeker", map = 1432, zone = "Loch Modan", x = 37, y = 47.8 }, -- 3
@@ -43,17 +44,20 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 307, questName = "Filthy Paws", npc = 1343, npcName = "Mountaineer Stormpike", map = 1432, zone = "Loch Modan", x = 24.8, y = 18.4 }, -- 29
         { type = "ACCEPT", quest = 298, questName = "Excavation Progress Report", npc = 1344, npcName = "Prospector Ironband", map = 1432, zone = "Loch Modan", x = 65.9, y = 65.6 }, -- 30
         { type = "ACCEPT", quest = 385, questName = "Crocolisk Hunting", npc = 1154, npcName = "Marek Ironheart", map = 1432, zone = "Loch Modan", x = 81.8, y = 61.7 }, -- 31
-        { type = "ACCEPT", quest = 257, questName = "A Hunter's Boast", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 32
-        { type = "KILL", quest = 257, questName = "A Hunter's Boast", npc = 1194, target = "Mountain Buzzard", count = 6, map = 1432, zone = "Loch Modan", x = 79.3, y = 66.9, near = true }, -- 33
-        { type = "TURNIN", quest = 257, questName = "A Hunter's Boast", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 34
-        { type = "ACCEPT", quest = 258, questName = "A Hunter's Challenge", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 35
-        { type = "KILL", quest = 258, questName = "A Hunter's Challenge", npc = 1192, target = "Elder Mountain Boar", count = 5, map = 1432, zone = "Loch Modan", x = 74.8, y = 50.7, near = true }, -- 36
-        { type = "COLLECT", quest = 385, questName = "Crocolisk Hunting", target = "Crocolisk Meat / Crocolisk Skin", count = 5, map = 1432, zone = "Loch Modan", x = 61.9, y = 45.4, near = true }, -- 37
-        { type = "TURNIN", quest = 385, questName = "Crocolisk Hunting", npc = 1154, npcName = "Marek Ironheart", map = 1432, zone = "Loch Modan", x = 81.8, y = 61.7 }, -- 38
-        { type = "TURNIN", quest = 258, questName = "A Hunter's Challenge", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 39
-        { type = "ACCEPT", quest = 297, questName = "Gathering Idols", npc = 1345, npcName = "Magmar Fellhew", map = 1432, zone = "Loch Modan", x = 64.9, y = 66.7 }, -- 40
-        { type = "COLLECT", quest = 297, questName = "Gathering Idols", target = "Carved Stone Idol", count = 8, map = 1432, zone = "Loch Modan", x = 68, y = 66.1, near = true }, -- 41
-        { type = "TURNIN", quest = 297, questName = "Gathering Idols", npc = 1345, npcName = "Magmar Fellhew", map = 1432, zone = "Loch Modan", x = 64.9, y = 66.7 }, -- 42
-        { type = "TURNIN", quest = 298, questName = "Excavation Progress Report", npc = 1105, npcName = "Jern Hornhelm", map = 1432, zone = "Loch Modan", x = 37.2, y = 47.4 }, -- 43
-    },
+        { type = "ACCEPT", quest = 271, questName = "Vyrin's Revenge", npc = 1156, npcName = "Vyrin Swiftwind", map = 1432, zone = "Loch Modan", x = 81.7, y = 64.1, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 32
+        { type = "KILL", quest = 271, questName = "Vyrin's Revenge", npc = 1225, target = "Ol' Sooty", map = 1432, zone = "Loch Modan", x = 37.9, y = 63.4, optional = true }, -- 33
+        { type = "TURNIN", quest = 271, questName = "Vyrin's Revenge", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5, optional = true }, -- 34
+        { type = "ACCEPT", quest = 257, questName = "A Hunter's Boast", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 35
+        { type = "KILL", quest = 257, questName = "A Hunter's Boast", npc = 1194, target = "Mountain Buzzard", count = 6, map = 1432, zone = "Loch Modan", x = 79.3, y = 66.9, near = true }, -- 36
+        { type = "TURNIN", quest = 257, questName = "A Hunter's Boast", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 37
+        { type = "ACCEPT", quest = 258, questName = "A Hunter's Challenge", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 38
+        { type = "KILL", quest = 258, questName = "A Hunter's Challenge", npc = 1192, target = "Elder Mountain Boar", count = 5, map = 1432, zone = "Loch Modan", x = 74.8, y = 50.7, near = true }, -- 39
+        { type = "COLLECT", quest = 385, questName = "Crocolisk Hunting", target = "Crocolisk Meat / Crocolisk Skin", count = 5, map = 1432, zone = "Loch Modan", x = 61.9, y = 45.4, near = true }, -- 40
+        { type = "TURNIN", quest = 385, questName = "Crocolisk Hunting", npc = 1154, npcName = "Marek Ironheart", map = 1432, zone = "Loch Modan", x = 81.8, y = 61.7 }, -- 41
+        { type = "TURNIN", quest = 258, questName = "A Hunter's Challenge", npc = 1187, npcName = "Daryl the Youngling", map = 1432, zone = "Loch Modan", x = 83.5, y = 65.5 }, -- 42
+        { type = "ACCEPT", quest = 297, questName = "Gathering Idols", npc = 1345, npcName = "Magmar Fellhew", map = 1432, zone = "Loch Modan", x = 64.9, y = 66.7 }, -- 43
+        { type = "COLLECT", quest = 297, questName = "Gathering Idols", target = "Carved Stone Idol", count = 8, map = 1432, zone = "Loch Modan", x = 68, y = 66.1, near = true }, -- 44
+        { type = "TURNIN", quest = 297, questName = "Gathering Idols", npc = 1345, npcName = "Magmar Fellhew", map = 1432, zone = "Loch Modan", x = 64.9, y = 66.7 }, -- 45
+        { type = "TURNIN", quest = 298, questName = "Excavation Progress Report", npc = 1105, npcName = "Jern Hornhelm", map = 1432, zone = "Loch Modan", x = 37.2, y = 47.4 }, -- 46
+    } end,
 })

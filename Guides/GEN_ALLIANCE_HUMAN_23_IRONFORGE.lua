@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Ironforge",
     next = "GEN_ALLIANCE_HUMAN_24_SEARING_GORGE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 23 of the Human route: level 45 to 45, 9 steps, ~22 min of play in the model (42575 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 23 of the Human route: level 45 to 45, 9 steps, ~22 min of play in the model (42575 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 9,
+    steps = function() return {
         { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 61.0, y = 47.4, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 1
         { type = "ACCEPT", quest = 1050, questName = "Mythology of the Titans", npc = 3979, npcName = "Librarian Mae Paledust", map = 1455, zone = "Ironforge", x = 75, y = 12.5 }, -- 2
         { type = "ACCEPT", quest = 3448, questName = "Passing the Burden", npc = 2916, npcName = "Historian Karnik", map = 1455, zone = "Ironforge", x = 77.5, y = 11.8 }, -- 3
@@ -23,5 +24,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 3450, questName = "An Easy Pickup", npc = 8517, npcName = "Xiggs Fuselighter", map = 1455, zone = "Ironforge", x = 70.9, y = 94.6 }, -- 7
         { type = "ACCEPT", quest = 3451, questName = "Signal for Pickup", npc = 8517, npcName = "Xiggs Fuselighter", map = 1455, zone = "Ironforge", x = 70.9, y = 94.6 }, -- 8
         { type = "TURNIN", quest = 3451, questName = "Signal for Pickup", npc = 8517, npcName = "Xiggs Fuselighter", map = 1455, zone = "Ironforge", x = 70.9, y = 94.6 }, -- 9
-    },
+    } end,
 })

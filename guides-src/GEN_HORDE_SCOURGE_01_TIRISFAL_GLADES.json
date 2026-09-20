@@ -10,7 +10,7 @@
   "zone": "Tirisfal Glades",
   "next": "GEN_HORDE_SCOURGE_02_UNDERCITY",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 1 of the Scourge route: level 1 to 12, 108 steps, ~190 min of play in the model (15152 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 1 of the Scourge route: level 1 to 12, 108 steps, ~190 min of play in the model (15152 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "GRIND", "npc": 1512, "target": "Duskbat", "level": 2, "map": 1420, "zone": "Tirisfal Glades", "x": 34, "y": 58.2, "near": true, "note": "grind Duskbat (level 1-2) to level 2 - nothing worth questing at 1"},
     {"type": "NOTE", "map": 1420, "zone": "Tirisfal Glades", "x": 31.5, "y": 66.0, "text": "set your hearthstone at the inn in Tirisfal Glades (if there is one)"},

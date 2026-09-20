@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Western Plaguelands",
     next = "GEN_HORDE_TAUREN_37_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 36 of the Tauren route: level 51 to 51, 15 steps, ~29 min of play in the model (55919 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 36 of the Tauren route: level 51 to 51, 15 steps, ~29 min of play in the model (55919 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 15,
+    steps = function() return {
         { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 39.2, y = 64.3, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 1
         { type = "TURNIN", quest = 5152, questName = "Auntie Marlene", npc = 10927, npcName = "Marlene Redpath", map = 1422, zone = "Western Plaguelands", x = 49.2, y = 78.6 }, -- 2
         { type = "ACCEPT", quest = 5153, questName = "A Strange Historian", npc = 10927, npcName = "Marlene Redpath", map = 1422, zone = "Western Plaguelands", x = 49.2, y = 78.6 }, -- 3
@@ -29,5 +30,5 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 5154, questName = "The Annals of Darrowshire", target = "Annals of Darrowshire", map = 1422, zone = "Western Plaguelands", x = 43.4, y = 68.8, near = true }, -- 13
         { type = "TURNIN", quest = 5154, questName = "The Annals of Darrowshire", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 14
         { type = "ACCEPT", quest = 5210, questName = "Brother Carlin", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 15
-    },
+    } end,
 })

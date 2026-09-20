@@ -10,7 +10,7 @@
   "zone": "Dustwallow Marsh",
   "next": "GEN_ALLIANCE_NIGHTELF_18_DESOLACE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 17 of the NightElf route: level 37 to 38, 42 steps, ~110 min of play in the model (30710 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 17 of the NightElf route: level 37 to 38, 42 steps, ~110 min of play in the model (30710 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1445, "zone": "Dustwallow Marsh", "x": 67.0, "y": 48.1, "radius": 60, "note": "travel to Dustwallow Marsh (Dustwallow Marsh)"},
     {"type": "NOTE", "map": 1445, "zone": "Dustwallow Marsh", "x": 67.0, "y": 48.1, "text": "set your hearthstone at the inn in Dustwallow Marsh (if there is one)"},

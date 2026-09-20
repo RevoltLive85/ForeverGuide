@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Searing Gorge",
     next = "GEN_ALLIANCE_DWARF_26_BLASTED_LANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 25 of the Dwarf route: level 45 to 45, 33 steps, ~107 min of play in the model (42031 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 25 of the Dwarf route: level 45 to 45, 33 steps, ~107 min of play in the model (42031 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 33,
+    steps = function() return {
         { type = "TRAVEL", map = 1427, zone = "Searing Gorge", x = 38.1, y = 32.5, radius = 60, note = "travel to Searing Gorge (Searing Gorge)" }, -- 1
         { type = "NOTE", map = 1427, zone = "Searing Gorge", x = 38.1, y = 32.5, text = "set your hearthstone at the inn in Searing Gorge (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 7728, questName = "STOLEN: Smithing Tuyere and Lookout's Spyglass", map = 1427, zone = "Searing Gorge", x = 37.7, y = 26.5 }, -- 3
@@ -47,5 +48,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 3367, questName = "Suntara Stones", map = 1427, zone = "Searing Gorge", x = 74.5, y = 19.3 }, -- 31
         { type = "ACCEPT", quest = 3368, questName = "Suntara Stones", map = 1427, zone = "Searing Gorge", x = 74.5, y = 19.3 }, -- 32
         { type = "TURNIN", quest = 4449, questName = "Caught!", map = 1427, zone = "Searing Gorge", x = 65.6, y = 62.2 }, -- 33
-    },
+    } end,
 })

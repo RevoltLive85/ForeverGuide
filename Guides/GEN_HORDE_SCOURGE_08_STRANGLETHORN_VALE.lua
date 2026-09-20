@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Stranglethorn Vale",
     next = "GEN_HORDE_SCOURGE_09_ARATHI_HIGHLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 8 of the Scourge route: level 28 to 29, 37 steps, ~131 min of play in the model (21082 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 8 of the Scourge route: level 28 to 29, 37 steps, ~131 min of play in the model (21082 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 37,
+    steps = function() return {
         { type = "TRAVEL", map = 1434, zone = "Stranglethorn Vale", x = 27.4, y = 76.4, radius = 60, note = "travel to Stranglethorn Vale (Stranglethorn Vale)" }, -- 1
         { type = "NOTE", map = 1434, zone = "Stranglethorn Vale", x = 27.4, y = 76.4, text = "set your hearthstone at the inn in Stranglethorn Vale (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 575, questName = "Supply and Demand", npc = 2495, npcName = "Drizzlik", map = 1434, zone = "Stranglethorn Vale", x = 28.3, y = 77.6 }, -- 3
@@ -51,5 +52,5 @@ ns.RegisterGuide({
         { type = "KILL", quest = 196, questName = "Raptor Mastery", npc = 687, target = "Jungle Stalker", count = 10, map = 1434, zone = "Stranglethorn Vale", x = 32.6, y = 37.2, near = true }, -- 35
         { type = "TURNIN", quest = 196, questName = "Raptor Mastery", npc = 715, npcName = "Hemet Nesingwary", map = 1434, zone = "Stranglethorn Vale", x = 35.7, y = 10.8 }, -- 36
         { type = "TURNIN", quest = 188, questName = "Tiger Mastery", npc = 717, npcName = "Ajeck Rouack", map = 1434, zone = "Stranglethorn Vale", x = 35.6, y = 10.6 }, -- 37
-    },
+    } end,
 })

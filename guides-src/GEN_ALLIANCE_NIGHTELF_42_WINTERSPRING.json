@@ -10,7 +10,7 @@
   "zone": "Winterspring",
   "next": "GEN_ALLIANCE_NIGHTELF_43_FELWOOD",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 42 of the NightElf route: level 53 to 53, 29 steps, ~118 min of play in the model (35103 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 42 of the NightElf route: level 53 to 53, 29 steps, ~118 min of play in the model (35103 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1428, "zone": "Burning Steppes", "x": 65.3, "y": 23.5, "radius": 60, "note": "use your hearthstone (Burning Steppes)"},
     {"type": "TRAVEL", "map": 1452, "zone": "Winterspring", "x": 61.4, "y": 38.2, "radius": 60, "note": "travel to Winterspring (Winterspring)"},

@@ -12,13 +12,14 @@ ns.RegisterGuide({
     zone = "The Hinterlands",
     next = "GEN_HORDE_ORC_35_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 34 of the Orc route: level 51 to 51, 6 steps, ~14 min of play in the model (70141 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 34 of the Orc route: level 51 to 51, 6 steps, ~14 min of play in the model (70141 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 6,
+    steps = function() return {
         { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.3, y = 59.1, radius = 60, note = "use your hearthstone (Eastern Plaguelands)" }, -- 1
         { type = "TRAVEL", map = 1425, zone = "The Hinterlands", x = 50.3, y = 89.6, radius = 60, note = "travel to The Hinterlands (The Hinterlands)" }, -- 2
         { type = "ACCEPT", quest = 8367, questName = "For Great Honor", npc = 15350, npcName = "Horde Warbringer", map = 1425, zone = "The Hinterlands", x = 50.3, y = 89.6 }, -- 3
         { type = "ACCEPT", quest = 8369, questName = "Invaders of Alterac Valley", npc = 15350, npcName = "Horde Warbringer", map = 1425, zone = "The Hinterlands", x = 50.3, y = 89.6 }, -- 4
         { type = "TURNIN", quest = 8367, questName = "For Great Honor", npc = 15350, npcName = "Horde Warbringer", map = 1425, zone = "The Hinterlands", x = 50.3, y = 89.6 }, -- 5
         { type = "TURNIN", quest = 8369, questName = "Invaders of Alterac Valley", npc = 15350, npcName = "Horde Warbringer", map = 1425, zone = "The Hinterlands", x = 50.3, y = 89.6 }, -- 6
-    },
+    } end,
 })

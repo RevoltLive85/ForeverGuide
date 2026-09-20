@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Felwood",
     next = "GEN_HORDE_SCOURGE_46_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
-    notes = "Chapter 45 of the Scourge route: level 56 to 56, 9 steps, ~17 min of play in the model (58362 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 45 of the Scourge route: level 56 to 56, 9 steps, ~17 min of play in the model (58362 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 9,
+    steps = function() return {
         { type = "TRAVEL", map = 1448, zone = "Felwood", x = 35.2, y = 52.5, radius = 60, note = "travel to Felwood (Felwood)" }, -- 1
         { type = "ACCEPT", quest = 4505, questName = "Well of Corruption", npc = 9996, npcName = "Winna Hazzard", map = 1448, zone = "Felwood", x = 34.2, y = 52.3 }, -- 2
         { type = "COLLECT", quest = 4505, questName = "Well of Corruption", target = "Filled Flasket", map = 1448, zone = "Felwood", x = 32.3, y = 66.6 }, -- 3
@@ -23,5 +24,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 4506, questName = "Corrupted Sabers", npc = 9996, npcName = "Winna Hazzard", map = 1448, zone = "Felwood", x = 34.2, y = 52.3 }, -- 7
         { type = "ACCEPT", quest = 6031, questName = "Runecloth", npc = 11557, npcName = "Meilosh", map = 1448, zone = "Felwood", x = 65.7, y = 2.8 }, -- 8
         { type = "TURNIN", quest = 6031, questName = "Runecloth", npc = 11557, npcName = "Meilosh", map = 1448, zone = "Felwood", x = 65.7, y = 2.8 }, -- 9
-    },
+    } end,
 })

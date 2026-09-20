@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Felwood",
     next = "GEN_HORDE_TAUREN_23_FERALAS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 22 of the Tauren route: level 46 to 47, 17 steps, ~71 min of play in the model (33507 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 22 of the Tauren route: level 46 to 47, 17 steps, ~71 min of play in the model (33507 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 17,
+    steps = function() return {
         { type = "TRAVEL", map = 1448, zone = "Felwood", x = 50.5, y = 82.5, radius = 60, note = "travel to Felwood (Felwood)" }, -- 1
         { type = "NOTE", map = 1448, zone = "Felwood", x = 50.5, y = 82.5, text = "set your hearthstone at the inn in Felwood (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 8460, questName = "Timbermaw Ally", npc = 11554, npcName = "Grazle", map = 1448, zone = "Felwood", x = 50.9, y = 85 }, -- 3
@@ -31,5 +32,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 8461, questName = "Deadwood of the North", npc = 15395, npcName = "Nafien", map = 1448, zone = "Felwood", x = 64.8, y = 8.1 }, -- 15
         { type = "ACCEPT", quest = 8462, questName = "Speak to Nafien", npc = 11554, npcName = "Grazle", map = 1448, zone = "Felwood", x = 50.9, y = 85 }, -- 16
         { type = "TURNIN", quest = 8462, questName = "Speak to Nafien", npc = 15395, npcName = "Nafien", map = 1448, zone = "Felwood", x = 64.8, y = 8.1 }, -- 17
-    },
+    } end,
 })

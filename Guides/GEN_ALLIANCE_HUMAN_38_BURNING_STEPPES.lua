@@ -12,33 +12,44 @@ ns.RegisterGuide({
     zone = "Burning Steppes",
     next = "GEN_ALLIANCE_HUMAN_39_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 38 of the Human route: level 51 to 52, 26 steps, ~138 min of play in the model (40141 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 38 of the Human route: level 51 to 52, 36 steps, ~138 min of play in the model (40141 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (3 here).",
+    stepCount = 36,
+    steps = function() return {
         { type = "TRAVEL", map = 1428, zone = "Burning Steppes", x = 65.3, y = 23.5, radius = 60, note = "travel to Burning Steppes (Burning Steppes)" }, -- 1
         { type = "NOTE", map = 1428, zone = "Burning Steppes", x = 65.3, y = 23.5, text = "set your hearthstone at the inn in Burning Steppes (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 4296, questName = "Tablet of the Seven", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 3
         { type = "ACCEPT", quest = 4726, questName = "Broodling Essence", npc = 10267, npcName = "Tinkee Steamboil", map = 1428, zone = "Burning Steppes", x = 65.2, y = 24 }, -- 4
         { type = "ACCEPT", quest = 4123, questName = "The Heart of the Mountain", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 5
-        { type = "TURNIN", quest = 4123, questName = "The Heart of the Mountain", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 6
-        { type = "TURNIN", quest = 4726, questName = "Broodling Essence", npc = 10267, npcName = "Tinkee Steamboil", map = 1428, zone = "Burning Steppes", x = 65.2, y = 24 }, -- 7
-        { type = "COLLECT", quest = 4296, questName = "Tablet of the Seven", target = "Tablet Transcript", map = 1428, zone = "Burning Steppes", x = 54.1, y = 40.8 }, -- 8
-        { type = "TURNIN", quest = 4296, questName = "Tablet of the Seven", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 9
-        { type = "ACCEPT", quest = 3823, questName = "Extinguish the Firegut", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 10
-        { type = "ACCEPT", quest = 4283, questName = "FIFTY! YEP!", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 11
-        { type = "ACCEPT", quest = 4286, questName = "The Good Stuff", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 12
-        { type = "TURNIN", quest = 4286, questName = "The Good Stuff", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 13
-        { type = "KILL", quest = 3823, questName = "Extinguish the Firegut", npc = 7033, target = "Firegut Ogre", count = 15, map = 1428, zone = "Burning Steppes", x = 78.7, y = 55.5, near = true }, -- 14
-        { type = "KILL", quest = 3823, questName = "Extinguish the Firegut", npc = 7034, target = "Firegut Ogre Mage", count = 15, map = 1428, zone = "Burning Steppes", x = 77, y = 51.2, near = true }, -- 15
-        { type = "KILL", quest = 3823, questName = "Extinguish the Firegut", npc = 7035, target = "Firegut Brute", count = 15, map = 1428, zone = "Burning Steppes", x = 80.4, y = 48.3, near = true }, -- 16
-        { type = "COLLECT", quest = 4283, questName = "FIFTY! YEP!", target = "Blackrock Medallion", count = 50, map = 1428, zone = "Burning Steppes", x = 81.5, y = 56.7, near = true }, -- 17
-        { type = "TURNIN", quest = 3823, questName = "Extinguish the Firegut", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 18
-        { type = "TURNIN", quest = 4283, questName = "FIFTY! YEP!", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 19
-        { type = "ACCEPT", quest = 3824, questName = "Gor'tesh the Brute Lord", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 20
-        { type = "KILL", quest = 3824, questName = "Gor'tesh the Brute Lord", npc = 9176, target = "Gor'tesh", map = 1428, zone = "Burning Steppes", x = 39.3, y = 55.3, note = "loot Gor'tesh's Lopped Off Head" }, -- 21
-        { type = "TURNIN", quest = 3824, questName = "Gor'tesh the Brute Lord", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 22
-        { type = "ACCEPT", quest = 3825, questName = "Ogre Head On A Stick = Party", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 23
-        { type = "COMPLETE", quest = 3825, questName = "Ogre Head On A Stick = Party", target = "Soft Dirt Mound", map = 1428, zone = "Burning Steppes", x = 81, y = 46.8, note = "Gor'tesh Head Planted" }, -- 24
-        { type = "TURNIN", quest = 3825, questName = "Ogre Head On A Stick = Party", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 25
-        { type = "GRIND", npc = 7033, target = "Firegut Ogre", level = 52, map = 1428, zone = "Burning Steppes", x = 78.7, y = 55.5, near = true, note = "grind Firegut Ogre (level 50-51) to level 52 - nothing worth questing at 51" }, -- 26
-    },
+        { type = "ACCEPT", quest = 4136, questName = "Ribbly Screwspigot", npc = 9544, npcName = "Yuka Screwspigot", map = 1428, zone = "Burning Steppes", x = 66.1, y = 22, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 6
+        { type = "TURNIN", quest = 4136, questName = "Ribbly Screwspigot", npc = 9544, npcName = "Yuka Screwspigot", map = 1428, zone = "Burning Steppes", x = 66.1, y = 22, optional = true }, -- 7
+        { type = "TURNIN", quest = 4123, questName = "The Heart of the Mountain", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 8
+        { type = "TURNIN", quest = 4726, questName = "Broodling Essence", npc = 10267, npcName = "Tinkee Steamboil", map = 1428, zone = "Burning Steppes", x = 65.2, y = 24 }, -- 9
+        { type = "COLLECT", quest = 4296, questName = "Tablet of the Seven", target = "Tablet Transcript", map = 1428, zone = "Burning Steppes", x = 54.1, y = 40.8 }, -- 10
+        { type = "TURNIN", quest = 4296, questName = "Tablet of the Seven", npc = 9536, npcName = "Maxwort Uberglint", map = 1428, zone = "Burning Steppes", x = 65.2, y = 23.9 }, -- 11
+        { type = "ACCEPT", quest = 3823, questName = "Extinguish the Firegut", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 12
+        { type = "ACCEPT", quest = 4283, questName = "FIFTY! YEP!", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 13
+        { type = "ACCEPT", quest = 4286, questName = "The Good Stuff", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 14
+        { type = "ACCEPT", quest = 4182, questName = "Dragonkin Menace", npc = 9562, npcName = "Helendis Riverhorn", map = 1428, zone = "Burning Steppes", x = 85.8, y = 69, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 15
+        { type = "KILL", quest = 4182, questName = "Dragonkin Menace", npc = 7047, target = "Black Broodling", count = 15, map = 1428, zone = "Burning Steppes", x = 90.5, y = 50.9, optional = true, near = true }, -- 16
+        { type = "KILL", quest = 4182, questName = "Dragonkin Menace", npc = 7040, target = "Black Dragonspawn", count = 15, map = 1428, zone = "Burning Steppes", x = 92.8, y = 57.5, optional = true, near = true }, -- 17
+        { type = "KILL", quest = 4182, questName = "Dragonkin Menace", npc = 7044, target = "Black Drake", count = 15, map = 1428, zone = "Burning Steppes", x = 89.5, y = 57, optional = true, near = true }, -- 18
+        { type = "KILL", quest = 4182, questName = "Dragonkin Menace", npc = 7041, target = "Black Wyrmkin", count = 15, map = 1428, zone = "Burning Steppes", x = 77.9, y = 62.2, optional = true, near = true }, -- 19
+        { type = "TURNIN", quest = 4182, questName = "Dragonkin Menace", npc = 9562, npcName = "Helendis Riverhorn", map = 1428, zone = "Burning Steppes", x = 85.8, y = 69, optional = true }, -- 20
+        { type = "ACCEPT", quest = 4262, questName = "Overmaster Pyron", npc = 9561, npcName = "Jalinda Sprig", map = 1428, zone = "Burning Steppes", x = 85.4, y = 70.1, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 21
+        { type = "TURNIN", quest = 4262, questName = "Overmaster Pyron", npc = 9561, npcName = "Jalinda Sprig", map = 1428, zone = "Burning Steppes", x = 85.4, y = 70.1, optional = true }, -- 22
+        { type = "TURNIN", quest = 4286, questName = "The Good Stuff", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 23
+        { type = "KILL", quest = 3823, questName = "Extinguish the Firegut", npc = 7033, target = "Firegut Ogre", count = 15, map = 1428, zone = "Burning Steppes", x = 78.7, y = 55.5, near = true }, -- 24
+        { type = "KILL", quest = 3823, questName = "Extinguish the Firegut", npc = 7034, target = "Firegut Ogre Mage", count = 15, map = 1428, zone = "Burning Steppes", x = 77, y = 51.2, near = true }, -- 25
+        { type = "KILL", quest = 3823, questName = "Extinguish the Firegut", npc = 7035, target = "Firegut Brute", count = 15, map = 1428, zone = "Burning Steppes", x = 80.4, y = 48.3, near = true }, -- 26
+        { type = "COLLECT", quest = 4283, questName = "FIFTY! YEP!", target = "Blackrock Medallion", count = 50, map = 1428, zone = "Burning Steppes", x = 81.5, y = 56.7, near = true }, -- 27
+        { type = "TURNIN", quest = 3823, questName = "Extinguish the Firegut", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 28
+        { type = "TURNIN", quest = 4283, questName = "FIFTY! YEP!", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 29
+        { type = "ACCEPT", quest = 3824, questName = "Gor'tesh the Brute Lord", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 30
+        { type = "KILL", quest = 3824, questName = "Gor'tesh the Brute Lord", npc = 9176, target = "Gor'tesh", map = 1428, zone = "Burning Steppes", x = 39.3, y = 55.3, note = "loot Gor'tesh's Lopped Off Head" }, -- 31
+        { type = "TURNIN", quest = 3824, questName = "Gor'tesh the Brute Lord", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 32
+        { type = "ACCEPT", quest = 3825, questName = "Ogre Head On A Stick = Party", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 33
+        { type = "COMPLETE", quest = 3825, questName = "Ogre Head On A Stick = Party", target = "Soft Dirt Mound", map = 1428, zone = "Burning Steppes", x = 81, y = 46.8, note = "Gor'tesh Head Planted" }, -- 34
+        { type = "TURNIN", quest = 3825, questName = "Ogre Head On A Stick = Party", npc = 9177, npcName = "Oralius", map = 1428, zone = "Burning Steppes", x = 84.6, y = 68.7 }, -- 35
+        { type = "GRIND", npc = 7033, target = "Firegut Ogre", level = 52, map = 1428, zone = "Burning Steppes", x = 78.7, y = 55.5, near = true, note = "grind Firegut Ogre (level 50-51) to level 52 - nothing worth questing at 51" }, -- 36
+    } end,
 })

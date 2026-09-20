@@ -10,7 +10,7 @@
   "zone": "Badlands",
   "next": "GEN_ALLIANCE_NIGHTELF_16_STRANGLETHORN_VALE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 15 of the NightElf route: level 36 to 37, 42 steps, ~107 min of play in the model (43751 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 15 of the NightElf route: level 36 to 37, 42 steps, ~107 min of play in the model (43751 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1417, "zone": "Arathi Highlands", "x": 45.9, "y": 46.0, "radius": 60, "note": "use your hearthstone (Arathi Highlands)"},
     {"type": "TRAVEL", "map": 1418, "zone": "Badlands", "x": 49.9, "y": 47.6, "radius": 60, "note": "travel to Badlands (Badlands)"},

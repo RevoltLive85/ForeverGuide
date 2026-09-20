@@ -10,7 +10,7 @@
   "zone": "Felwood",
   "next": "GEN_ALLIANCE_SKYBORNE_29_UN_GORO_CRATER",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 28 of the Skyborne route: level 48 to 48, 16 steps, ~75 min of play in the model (37317 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 28 of the Skyborne route: level 48 to 48, 16 steps, ~75 min of play in the model (37317 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1448, "zone": "Felwood", "x": 51.7, "y": 82.5, "radius": 60, "note": "travel to Felwood (Felwood)"},
     {"type": "ACCEPT", "quest": 5155, "questName": "Forces of Jaedenar", "npc": 10922, "npcName": "Greta Mosshoof", "map": 1448, "zone": "Felwood", "x": 51.2, "y": 82.1},

@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Eastern Plaguelands",
     next = "GEN_HORDE_ORC_39_SILITHUS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 38 of the Orc route: level 54 to 54, 20 steps, ~81 min of play in the model (50154 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 38 of the Orc route: level 54 to 54, 20 steps, ~81 min of play in the model (50154 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 20,
+    steps = function() return {
         { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.3, y = 59.1, radius = 60, note = "use your hearthstone (Eastern Plaguelands)" }, -- 1
         { type = "TRAVEL", map = 1423, zone = "Eastern Plaguelands", x = 81.4, y = 58.8, radius = 60, note = "travel to Eastern Plaguelands (Eastern Plaguelands)" }, -- 2
         { type = "ACCEPT", quest = 6026, questName = "That's Asking A Lot", npc = 11033, npcName = "Smokey LaRue", map = 1423, zone = "Eastern Plaguelands", x = 80.6, y = 58 }, -- 3
@@ -34,5 +35,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 6133, questName = "The Ranger Lord's Behest", npc = 11878, npcName = "Nathanos Blightcaller", map = 1423, zone = "Eastern Plaguelands", x = 26.5, y = 74.7 }, -- 18
         { type = "KILL", quest = 6024, questName = "Hameya's Plea", npc = 12248, target = "Infiltrator Hameya", map = 1423, zone = "Eastern Plaguelands", x = 70.7, y = 16.5, note = "loot Hameya's Key" }, -- 19
         { type = "TURNIN", quest = 6024, questName = "Hameya's Plea", map = 1423, zone = "Eastern Plaguelands", x = 28, y = 86.2 }, -- 20
-    },
+    } end,
 })

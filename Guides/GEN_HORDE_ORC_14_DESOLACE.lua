@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Desolace",
     next = "GEN_HORDE_ORC_15_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 14 of the Orc route: level 42 to 43, 59 steps, ~111 min of play in the model (40803 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 14 of the Orc route: level 42 to 43, 59 steps, ~111 min of play in the model (40803 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 59,
+    steps = function() return {
         { type = "TRAVEL", map = 1443, zone = "Desolace", x = 54.2, y = 57.2, radius = 60, note = "travel to Desolace (Desolace)" }, -- 1
         { type = "NOTE", map = 1443, zone = "Desolace", x = 54.2, y = 57.2, text = "set your hearthstone at the inn in Desolace (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 1368, questName = "Gelkis Alliance", npc = 5412, npcName = "Gurda Wildmane", map = 1443, zone = "Desolace", x = 56.3, y = 59.7 }, -- 3
@@ -73,5 +74,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 5501, questName = "Bone Collector", npc = 11438, npcName = "Bibbly F'utzbuckle", map = 1443, zone = "Desolace", x = 62.3, y = 39 }, -- 57
         { type = "TURNIN", quest = 7028, questName = "Twisted Evils", npc = 13656, npcName = "Willow", map = 1443, zone = "Desolace", x = 62.2, y = 39.6 }, -- 58
         { type = "TURNIN", quest = 5581, questName = "Portals of the Legion", npc = 11624, npcName = "Taiga Wisemane", map = 1443, zone = "Desolace", x = 25.8, y = 68.2 }, -- 59
-    },
+    } end,
 })

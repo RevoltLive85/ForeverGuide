@@ -10,7 +10,7 @@
   "zone": "Undercity",
   "next": "GEN_HORDE_SCOURGE_48_SILITHUS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 47 of the Scourge route: level 56 to 58, 5 steps, ~399 min of play in the model (10860 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 47 of the Scourge route: level 56 to 58, 5 steps, ~399 min of play in the model (10860 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "GRIND", "npc": 5624, "target": "Undercity Guardian", "level": 57, "map": 1458, "zone": "Undercity", "x": 69.8, "y": 44.8, "near": true, "note": "grind Undercity Guardian (level 55-55) to level 57 - nothing worth questing at 56"},
     {"type": "TURNIN", "quest": 5023, "questName": "Better Late Than Never", "npc": 10781, "npcName": "Royal Overseer Bauhaus", "map": 1458, "zone": "Undercity", "x": 69.8, "y": 43.2},

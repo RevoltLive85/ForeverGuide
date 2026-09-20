@@ -10,7 +10,7 @@
   "zone": "Redridge Mountains",
   "next": "GEN_ALLIANCE_DWARF_06_DUSKWOOD",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 5 of the Dwarf route: level 17 to 19, 46 steps, ~117 min of play in the model (23570 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 5 of the Dwarf route: level 17 to 19, 46 steps, ~117 min of play in the model (23570 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1433, "zone": "Redridge Mountains", "x": 29.0, "y": 48.0, "radius": 60, "note": "travel to Redridge Mountains (Redridge Mountains)"},
     {"type": "NOTE", "map": 1433, "zone": "Redridge Mountains", "x": 29.0, "y": 48.0, "text": "set your hearthstone at the inn in Redridge Mountains (if there is one)"},

@@ -10,7 +10,7 @@
   "zone": "Arathi Highlands",
   "next": "GEN_ALLIANCE_HUMAN_14_DUSTWALLOW_MARSH",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 13 of the Human route: level 33 to 34, 37 steps, ~107 min of play in the model (34430 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 13 of the Human route: level 33 to 34, 37 steps, ~107 min of play in the model (34430 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1417, "zone": "Arathi Highlands", "x": 45.9, "y": 46.0, "radius": 60, "note": "travel to Arathi Highlands (Arathi Highlands)"},
     {"type": "NOTE", "map": 1417, "zone": "Arathi Highlands", "x": 45.9, "y": 46.0, "text": "set your hearthstone at the inn in Arathi Highlands (if there is one)"},

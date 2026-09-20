@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Feralas",
     next = "GEN_ALLIANCE_HUMAN_28_TANARIS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 27 of the Human route: level 47 to 47, 16 steps, ~52 min of play in the model (39977 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 27 of the Human route: level 47 to 47, 16 steps, ~52 min of play in the model (39977 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 16,
+    steps = function() return {
         { type = "TRAVEL", map = 1444, zone = "Feralas", x = 31.8, y = 44.8, radius = 60, note = "travel to Feralas (Feralas)" }, -- 1
         { type = "ACCEPT", quest = 3445, questName = "The Sunken Temple", npc = 7900, npcName = "Angelas Moonbreeze", map = 1444, zone = "Feralas", x = 31.8, y = 45.6 }, -- 2
         { type = "ACCEPT", quest = 7003, questName = "Zapped Giants", npc = 14637, npcName = "Zorbin Fandazzle", map = 1444, zone = "Feralas", x = 44.8, y = 43.4 }, -- 3
@@ -30,5 +31,5 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 2845, questName = "Wandering Shay", target = "Shay's Bell", map = 1444, zone = "Feralas", x = 38.3, y = 10.3, note = "escort - stay close, it can fail" }, -- 14
         { type = "COMPLETE", quest = 2845, questName = "Wandering Shay", target = "Take Shay Leafrunner to Rockbiter's camp", map = 1444, zone = "Feralas", x = 42.3, y = 21.9, note = "escort - stay close, it can fail: Take Shay Leafrunner to Rockbiter's camp" }, -- 15
         { type = "TURNIN", quest = 2845, questName = "Wandering Shay", npc = 7765, npcName = "Rockbiter", map = 1444, zone = "Feralas", x = 42.4, y = 22 }, -- 16
-    },
+    } end,
 })

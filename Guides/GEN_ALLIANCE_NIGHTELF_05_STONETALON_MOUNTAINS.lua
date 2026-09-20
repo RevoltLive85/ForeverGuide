@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Stonetalon Mountains",
     next = "GEN_ALLIANCE_NIGHTELF_06_ASHENVALE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 5 of the NightElf route: level 18 to 19, 17 steps, ~29 min of play in the model (25317 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 5 of the NightElf route: level 18 to 19, 17 steps, ~29 min of play in the model (25317 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 17,
+    steps = function() return {
         { type = "TRAVEL", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 65.9, radius = 60, note = "travel to Stonetalon Mountains (Stonetalon Mountains)" }, -- 1
         { type = "NOTE", map = 1442, zone = "Stonetalon Mountains", x = 59.5, y = 65.9, text = "set your hearthstone at the inn in Stonetalon Mountains (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 1085, questName = "On Guard in Stonetalon", npc = 4080, npcName = "Kaela Shadowspear", map = 1442, zone = "Stonetalon Mountains", x = 59.9, y = 66.9 }, -- 3
@@ -31,5 +32,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 15
         { type = "ACCEPT", quest = 1092, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 16
         { type = "TURNIN", quest = 1092, questName = "Gerenzo's Orders", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 17
-    },
+    } end,
 })

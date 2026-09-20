@@ -12,13 +12,14 @@ ns.RegisterGuide({
     zone = "Darkshore",
     next = "GEN_ALLIANCE_SKYBORNE_06_WETLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 5 of the Skyborne route: level 22 to 22, 6 steps, ~19 min of play in the model (20747 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 5 of the Skyborne route: level 22 to 22, 6 steps, ~19 min of play in the model (20747 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 6,
+    steps = function() return {
         { type = "TRAVEL", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9, radius = 60, note = "travel to Darkshore (Darkshore)" }, -- 1
         { type = "TURNIN", quest = 1167, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 2
         { type = "ACCEPT", quest = 1143, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 3
         { type = "KILL", quest = 1143, questName = "The Tower of Althalaxx", npc = 3660, target = "Athrikus Narassin", map = 1439, zone = "Darkshore", x = 56, y = 26.3, note = "loot Athrikus Narassin's Head" }, -- 4
         { type = "TURNIN", quest = 1143, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 5
         { type = "ACCEPT", quest = 981, questName = "The Tower of Althalaxx", npc = 3661, npcName = "Balthule Shadowstrike", map = 1439, zone = "Darkshore", x = 55.0, y = 24.9 }, -- 6
-    },
+    } end,
 })

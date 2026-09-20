@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Ashenvale",
     next = "GEN_ALLIANCE_HUMAN_10_THOUSAND_NEEDLES",
     author = "ForeverGuide route planner",
-    notes = "Chapter 9 of the Human route: level 26 to 28, 82 steps, ~211 min of play in the model (23289 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 9 of the Human route: level 26 to 28, 82 steps, ~211 min of play in the model (23289 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 82,
+    steps = function() return {
         { type = "TRAVEL", map = 1437, zone = "Wetlands", x = 10.3, y = 58.9, radius = 60, note = "use your hearthstone (Wetlands)" }, -- 1
         { type = "TRAVEL", map = 1440, zone = "Ashenvale", x = 61.8, y = 83.8, radius = 60, note = "travel to Ashenvale (Ashenvale)" }, -- 2
         { type = "NOTE", map = 1440, zone = "Ashenvale", x = 61.8, y = 83.8, text = "set your hearthstone at the inn in Ashenvale (if there is one)" }, -- 3
@@ -96,5 +97,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1032, questName = "Satyr Slaying!", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 80
         { type = "COLLECT", quest = 1032, questName = "Satyr Slaying!", target = "Satyr Horns", count = 16, map = 1440, zone = "Ashenvale", x = 66.1, y = 53.4, near = true }, -- 81
         { type = "TURNIN", quest = 1032, questName = "Satyr Slaying!", npc = 3901, npcName = "Illiyana", map = 1440, zone = "Ashenvale", x = 21.7, y = 53.3 }, -- 82
-    },
+    } end,
 })

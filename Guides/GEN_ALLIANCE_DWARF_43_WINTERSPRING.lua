@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Winterspring",
     next = "GEN_ALLIANCE_DWARF_44_SILITHUS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 43 of the Dwarf route: level 53 to 54, 23 steps, ~260 min of play in the model (11223 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 43 of the Dwarf route: level 53 to 54, 23 steps, ~260 min of play in the model (11223 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 23,
+    steps = function() return {
         { type = "TRAVEL", map = 1428, zone = "Burning Steppes", x = 65.3, y = 23.5, radius = 60, note = "use your hearthstone (Burning Steppes)" }, -- 1
         { type = "TRAVEL", map = 1452, zone = "Winterspring", x = 61.4, y = 38.2, radius = 60, note = "travel to Winterspring (Winterspring)" }, -- 2
         { type = "ACCEPT", quest = 3783, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 3
@@ -37,5 +38,5 @@ ns.RegisterGuide({
         { type = "KILL", quest = 5082, questName = "Threat of the Winterfall", npc = 7440, target = "Winterfall Den Watcher", count = 8, map = 1452, zone = "Winterspring", x = 30.5, y = 36.9, near = true }, -- 21
         { type = "TURNIN", quest = 5082, questName = "Threat of the Winterfall", npc = 9298, npcName = "Donova Snowden", map = 1452, zone = "Winterspring", x = 31.3, y = 45.2 }, -- 22
         { type = "GRIND", npc = 7444, target = "Shardtooth Bear", level = 54, map = 1452, zone = "Winterspring", x = 34.4, y = 43.9, near = true, note = "grind Shardtooth Bear (level 53-54) to level 54 - nothing worth questing at 53" }, -- 23
-    },
+    } end,
 })

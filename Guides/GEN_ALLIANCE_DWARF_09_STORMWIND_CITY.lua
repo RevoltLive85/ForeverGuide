@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Stormwind City",
     next = "GEN_ALLIANCE_DWARF_10_ASHENVALE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 9 of the Dwarf route: level 25 to 25, 7 steps, ~9 min of play in the model (22017 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 9 of the Dwarf route: level 25 to 25, 7 steps, ~9 min of play in the model (22017 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 7,
+    steps = function() return {
         { type = "TRAVEL", map = 1453, zone = "Stormwind City", x = 75.0, y = 31.0, radius = 60, note = "travel to Stormwind City (Stormwind City)" }, -- 1
         { type = "NOTE", map = 1453, zone = "Stormwind City", x = 75.0, y = 31.0, text = "set your hearthstone at the inn in Stormwind City (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 388, questName = "The Color of Blood", npc = 1721, npcName = "Nikova Raskol", map = 1453, zone = "Stormwind City", x = 73.3, y = 50.7 }, -- 3
@@ -21,5 +22,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 343, questName = "Speaking of Fortitude", npc = 1444, npcName = "Brother Kristoff", map = 1453, zone = "Stormwind City", x = 45.7, y = 38.4 }, -- 5
         { type = "TURNIN", quest = 269, questName = "Seeking Wisdom", npc = 1212, npcName = "Bishop Farthing", map = 1453, zone = "Stormwind City", x = 39.1, y = 27.9 }, -- 6
         { type = "TURNIN", quest = 343, questName = "Speaking of Fortitude", npc = 1440, npcName = "Milton Sheaf", map = 1453, zone = "Stormwind City", x = 74.2, y = 7.5 }, -- 7
-    },
+    } end,
 })

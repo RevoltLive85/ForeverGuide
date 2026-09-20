@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Un'Goro Crater",
     next = "GEN_HORDE_TAUREN_25_TANARIS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 24 of the Tauren route: level 47 to 48, 47 steps, ~105 min of play in the model (45631 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 24 of the Tauren route: level 47 to 48, 47 steps, ~105 min of play in the model (45631 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 47,
+    steps = function() return {
         { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 6.6, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 1
         { type = "NOTE", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 6.6, text = "set your hearthstone at the inn in Un'Goro Crater (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 4145, questName = "Larion and Muigin", npc = 9118, npcName = "Larion", map = 1449, zone = "Un'Goro Crater", x = 45.5, y = 8.7 }, -- 3
@@ -61,5 +62,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 3883, questName = "Alien Ecology", npc = 9271, npcName = "Hol'anyee Marshal", map = 1449, zone = "Un'Goro Crater", x = 43.9, y = 7.2 }, -- 45
         { type = "TURNIN", quest = 3881, questName = "Expedition Salvation", npc = 9270, npcName = "Williden Marshal", map = 1449, zone = "Un'Goro Crater", x = 44, y = 7.1 }, -- 46
         { type = "TURNIN", quest = 4243, questName = "Chasing A-Me 01", npc = 9623, npcName = "A-Me 01", map = 1449, zone = "Un'Goro Crater", x = 67.7, y = 16.8 }, -- 47
-    },
+    } end,
 })

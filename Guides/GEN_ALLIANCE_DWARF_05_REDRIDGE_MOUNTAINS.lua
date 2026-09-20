@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Redridge Mountains",
     next = "GEN_ALLIANCE_DWARF_06_DUSKWOOD",
     author = "ForeverGuide route planner",
-    notes = "Chapter 5 of the Dwarf route: level 17 to 19, 46 steps, ~117 min of play in the model (23570 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 5 of the Dwarf route: level 17 to 19, 46 steps, ~117 min of play in the model (23570 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 46,
+    steps = function() return {
         { type = "TRAVEL", map = 1433, zone = "Redridge Mountains", x = 29.0, y = 48.0, radius = 60, note = "travel to Redridge Mountains (Redridge Mountains)" }, -- 1
         { type = "NOTE", map = 1433, zone = "Redridge Mountains", x = 29.0, y = 48.0, text = "set your hearthstone at the inn in Redridge Mountains (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 129, questName = "A Free Lunch", npc = 379, npcName = "Darcy", map = 1433, zone = "Redridge Mountains", x = 26.6, y = 44.3 }, -- 3
@@ -60,5 +61,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 219, questName = "Missing In Action", npc = 349, npcName = "Corporal Keeshan", map = 1433, zone = "Redridge Mountains", x = 28.4, y = 12.6 }, -- 44
         { type = "COMPLETE", quest = 219, questName = "Missing In Action", target = "Escort Corporal Keeshan back to Redridge", map = 1433, zone = "Redridge Mountains", x = 33.4, y = 48.7, note = "escort - stay close, it can fail: Escort Corporal Keeshan back to Redridge" }, -- 45
         { type = "TURNIN", quest = 219, questName = "Missing In Action", npc = 382, npcName = "Marshal Marris", map = 1433, zone = "Redridge Mountains", x = 33.5, y = 49 }, -- 46
-    },
+    } end,
 })

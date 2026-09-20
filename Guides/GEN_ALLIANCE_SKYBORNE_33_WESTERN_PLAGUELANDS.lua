@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Western Plaguelands",
     next = "GEN_ALLIANCE_SKYBORNE_34_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 33 of the Skyborne route: level 50 to 50, 57 steps, ~128 min of play in the model (55974 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 33 of the Skyborne route: level 50 to 50, 57 steps, ~128 min of play in the model (55974 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 57,
+    steps = function() return {
         { type = "TRAVEL", map = 1447, zone = "Azshara", x = 60.8, y = 66.4, radius = 60, note = "use your hearthstone (Azshara)" }, -- 1
         { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 43.4, y = 83.7, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 2
         { type = "NOTE", map = 1422, zone = "Western Plaguelands", x = 43.4, y = 83.7, text = "set your hearthstone at the inn in Western Plaguelands (if there is one)" }, -- 3
@@ -71,5 +72,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 5226, questName = "Return to Chillwind Point", npc = 11053, npcName = "High Priestess MacDonnell", map = 1422, zone = "Western Plaguelands", x = 43, y = 84.5 }, -- 55
         { type = "ACCEPT", quest = 5237, questName = "Mission Accomplished!", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 56
         { type = "TURNIN", quest = 5237, questName = "Mission Accomplished!", npc = 10838, npcName = "Commander Ashlam Valorfist", map = 1422, zone = "Western Plaguelands", x = 42.7, y = 84 }, -- 57
-    },
+    } end,
 })

@@ -10,7 +10,7 @@
   "zone": "Winterspring",
   "next": "GEN_ALLIANCE_DWARF_35_WESTERN_PLAGUELANDS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 34 of the Dwarf route: level 49 to 50, 9 steps, ~124 min of play in the model (10215 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 34 of the Dwarf route: level 49 to 50, 9 steps, ~124 min of play in the model (10215 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1452, "zone": "Winterspring", "x": 61.4, "y": 38.2, "radius": 60, "note": "travel to Winterspring (Winterspring)"},
     {"type": "NOTE", "map": 1452, "zone": "Winterspring", "x": 61.4, "y": 38.2, "text": "set your hearthstone at the inn in Winterspring (if there is one)"},

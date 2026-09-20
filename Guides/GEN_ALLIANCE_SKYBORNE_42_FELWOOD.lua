@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Felwood",
     next = "GEN_ALLIANCE_SKYBORNE_43_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
-    notes = "Chapter 42 of the Skyborne route: level 53 to 53, 13 steps, ~50 min of play in the model (40955 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 42 of the Skyborne route: level 53 to 53, 13 steps, ~50 min of play in the model (40955 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 13,
+    steps = function() return {
         { type = "TRAVEL", map = 1448, zone = "Felwood", x = 51.3, y = 81.7, radius = 60, note = "travel to Felwood (Felwood)" }, -- 1
         { type = "ACCEPT", quest = 4421, questName = "The Corruption of the Jadefire", npc = 9116, npcName = "Eridan Bluewind", map = 1448, zone = "Felwood", x = 51.4, y = 81.5 }, -- 2
         { type = "KILL", quest = 4421, questName = "The Corruption of the Jadefire", npc = 7109, target = "Jadefire Felsworn", count = 11, map = 1448, zone = "Felwood", x = 44.2, y = 86.4, near = true }, -- 3
@@ -27,5 +28,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 6031, questName = "Runecloth", npc = 11557, npcName = "Meilosh", map = 1448, zone = "Felwood", x = 65.7, y = 2.8 }, -- 11
         { type = "TURNIN", quest = 6031, questName = "Runecloth", npc = 11557, npcName = "Meilosh", map = 1448, zone = "Felwood", x = 65.7, y = 2.8 }, -- 12
         { type = "TURNIN", quest = 4906, questName = "Further Corruption", npc = 9116, npcName = "Eridan Bluewind", map = 1448, zone = "Felwood", x = 51.4, y = 81.5 }, -- 13
-    },
+    } end,
 })

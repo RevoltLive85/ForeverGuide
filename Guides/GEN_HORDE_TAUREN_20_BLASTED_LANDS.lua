@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Blasted Lands",
     next = "GEN_HORDE_TAUREN_21_AZSHARA",
     author = "ForeverGuide route planner",
-    notes = "Chapter 20 of the Tauren route: level 45 to 46, 29 steps, ~141 min of play in the model (39684 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 20 of the Tauren route: level 45 to 46, 29 steps, ~141 min of play in the model (39684 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 29,
+    steps = function() return {
         { type = "TRAVEL", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2, radius = 60, note = "travel to Blasted Lands (Blasted Lands)" }, -- 1
         { type = "NOTE", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2, text = "set your hearthstone at the inn in Blasted Lands (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 2581, questName = "Snickerfang Jowls", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 3
@@ -43,5 +44,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 2581, questName = "Snickerfang Jowls", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 27
         { type = "TURNIN", quest = 2583, questName = "A Boar's Vitality", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 28
         { type = "TURNIN", quest = 2585, questName = "The Decisive Striker", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 29
-    },
+    } end,
 })

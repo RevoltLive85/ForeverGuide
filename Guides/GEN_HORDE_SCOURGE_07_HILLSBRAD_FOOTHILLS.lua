@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Hillsbrad Foothills",
     next = "GEN_HORDE_SCOURGE_08_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 7 of the Scourge route: level 26 to 28, 57 steps, ~146 min of play in the model (25425 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 7 of the Scourge route: level 26 to 28, 63 steps, ~146 min of play in the model (25425 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    stepCount = 63,
+    steps = function() return {
         { type = "TRAVEL", map = 1424, zone = "Hillsbrad Foothills", x = 62.1, y = 20.0, radius = 60, note = "travel to Hillsbrad Foothills (Hillsbrad Foothills)" }, -- 1
         { type = "NOTE", map = 1424, zone = "Hillsbrad Foothills", x = 62.1, y = 20.0, text = "set your hearthstone at the inn in Hillsbrad Foothills (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 549, questName = "WANTED: Syndicate Personnel", map = 1424, zone = "Hillsbrad Foothills", x = 62.6, y = 20.8 }, -- 3
@@ -24,52 +25,58 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 567, questName = "Dangerous!", map = 1424, zone = "Hillsbrad Foothills", x = 62.6, y = 19.7 }, -- 8
         { type = "ACCEPT", quest = 509, questName = "Elixir of Agony", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 9
         { type = "ACCEPT", quest = 547, questName = "Humbert's Sword", npc = 2419, npcName = "Deathguard Humbert", map = 1424, zone = "Hillsbrad Foothills", x = 62.8, y = 20.2 }, -- 10
-        { type = "COLLECT", quest = 496, questName = "Elixir of Suffering", target = "Gray Bear Tongue", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 66.1, y = 23.1, near = true }, -- 11
-        { type = "COLLECT", quest = 496, questName = "Elixir of Suffering", target = "Creeper Ichor", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 69.8, y = 27.6, near = true }, -- 12
-        { type = "KILL", quest = 549, questName = "WANTED: Syndicate Personnel", npc = 2261, target = "Syndicate Watchman", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 75.2, y = 38, near = true }, -- 13
-        { type = "COMPLETE", quest = 498, questName = "The Rescue", target = "Locked ball and chain", map = 1424, zone = "Hillsbrad Foothills", x = 79.8, y = 39.7, note = "Rescue Tog'thar" }, -- 14
-        { type = "COMPLETE", quest = 498, questName = "The Rescue", target = "Locked ball and chain", map = 1424, zone = "Hillsbrad Foothills", x = 75.3, y = 41.5, note = "Rescue Drull" }, -- 15
-        { type = "KILL", quest = 549, questName = "WANTED: Syndicate Personnel", npc = 2260, target = "Syndicate Rogue", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 75, y = 40.7, near = true }, -- 16
-        { type = "COLLECT", quest = 501, questName = "Elixir of Pain", target = "Mountain Lion Blood", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 61, y = 50.9, near = true }, -- 17
-        { type = "KILL", quest = 527, questName = "Battle of Hillsbrad", npc = 2360, target = "Hillsbrad Farmhand / Farmer Getz / Hillsbrad Farmer", count = 6, map = 1424, zone = "Hillsbrad Foothills", x = 36.8, y = 41.3, near = true }, -- 18
-        { type = "KILL", quest = 527, questName = "Battle of Hillsbrad", npc = 232, target = "Farmer Ray", count = 6, map = 1424, zone = "Hillsbrad Foothills", x = 33.2, y = 34.8 }, -- 19
-        { type = "KILL", quest = 567, questName = "Dangerous!", npc = 2449, target = "Citizen Wilkes", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 32.6, y = 39.8 }, -- 20
-        { type = "KILL", quest = 567, questName = "Dangerous!", npc = 2448, target = "Clerk Horrace Whitesteed", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 29.5, y = 42.4 }, -- 21
-        { type = "KILL", quest = 567, questName = "Dangerous!", npc = 2450, target = "Miner Hackett", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 31.8, y = 52.7 }, -- 22
-        { type = "KILL", quest = 567, questName = "Dangerous!", npc = 2451, target = "Farmer Kalaba", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 35.9, y = 46.6 }, -- 23
-        { type = "COLLECT", quest = 509, questName = "Elixir of Agony", target = "Mudsnout Blossoms", count = 6, map = 1424, zone = "Hillsbrad Foothills", x = 63.8, y = 61.2, near = true }, -- 24
-        { type = "COLLECT", quest = 547, questName = "Humbert's Sword", target = "Humbert's Sword", map = 1424, zone = "Hillsbrad Foothills", x = 71.3, y = 74.2, near = true }, -- 25
-        { type = "TURNIN", quest = 498, questName = "The Rescue", npc = 2229, npcName = "Krusk", map = 1424, zone = "Hillsbrad Foothills", x = 63.2, y = 20.7 }, -- 26
-        { type = "TURNIN", quest = 547, questName = "Humbert's Sword", npc = 2419, npcName = "Deathguard Humbert", map = 1424, zone = "Hillsbrad Foothills", x = 62.8, y = 20.2 }, -- 27
-        { type = "TURNIN", quest = 527, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 28
-        { type = "TURNIN", quest = 549, questName = "WANTED: Syndicate Personnel", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 29
-        { type = "TURNIN", quest = 567, questName = "Dangerous!", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 30
-        { type = "TURNIN", quest = 496, questName = "Elixir of Suffering", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 31
-        { type = "TURNIN", quest = 501, questName = "Elixir of Pain", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 32
-        { type = "TURNIN", quest = 509, questName = "Elixir of Agony", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 33
-        { type = "ACCEPT", quest = 499, questName = "Elixir of Suffering", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 34
-        { type = "ACCEPT", quest = 502, questName = "Elixir of Pain", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 35
-        { type = "ACCEPT", quest = 546, questName = "Souvenirs of Death", npc = 2418, npcName = "Deathguard Samsa", map = 1424, zone = "Hillsbrad Foothills", x = 62.1, y = 19.7 }, -- 36
-        { type = "ACCEPT", quest = 528, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 37
-        { type = "ACCEPT", quest = 513, questName = "Elixir of Agony", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 38
-        { type = "TURNIN", quest = 499, questName = "Elixir of Suffering", npc = 2230, npcName = "Umpi", map = 1424, zone = "Hillsbrad Foothills", x = 61.6, y = 19.1 }, -- 39
-        { type = "COLLECT", quest = 546, questName = "Souvenirs of Death", target = "Hillsbrad Human Skull", count = 30, map = 1424, zone = "Hillsbrad Foothills", x = 66.1, y = 45.6, near = true }, -- 40
-        { type = "KILL", quest = 528, questName = "Battle of Hillsbrad", npc = 2267, target = "Hillsbrad Peasant", count = 15, map = 1424, zone = "Hillsbrad Foothills", x = 36.4, y = 45.4, near = true }, -- 41
-        { type = "TURNIN", quest = 528, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 42
-        { type = "ACCEPT", quest = 529, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 43
-        { type = "TURNIN", quest = 546, questName = "Souvenirs of Death", npc = 2418, npcName = "Deathguard Samsa", map = 1424, zone = "Hillsbrad Foothills", x = 62.1, y = 19.7 }, -- 44
-        { type = "COMPLETE", quest = 529, questName = "Battle of Hillsbrad", npc = 2265, target = "Hillsbrad Apprentice Blacksmith / Shipment of Iron / Blacksmith Verringtan", count = 4, map = 1424, zone = "Hillsbrad Foothills", x = 32.6, y = 45.1, near = true }, -- 45
-        { type = "TURNIN", quest = 529, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 46
-        { type = "ACCEPT", quest = 532, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 47
-        { type = "KILL", quest = 532, questName = "Battle of Hillsbrad", npc = 2387, target = "Hillsbrad Councilman", count = 5, map = 1424, zone = "Hillsbrad Foothills", x = 32.1, y = 42.4, near = true }, -- 48
-        { type = "TURNIN", quest = 502, questName = "Elixir of Pain", npc = 2274, npcName = "Stanley", map = 1424, zone = "Hillsbrad Foothills", x = 32.7, y = 35.3 }, -- 49
-        { type = "COMPLETE", quest = 532, questName = "Battle of Hillsbrad", npc = 2335, target = "Magistrate Burnside / Hillsbrad Proclamation / Hillsbrad Town Registry", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 29.7, y = 41.6 }, -- 50
-        { type = "TURNIN", quest = 532, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 51
-        { type = "ACCEPT", quest = 539, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 52
-        { type = "KILL", quest = 539, questName = "Battle of Hillsbrad", npc = 2269, target = "Hillsbrad Miner", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 32.4, y = 52.1, near = true }, -- 53
-        { type = "KILL", quest = 539, questName = "Battle of Hillsbrad", npc = 2305, target = "Foreman Bonds", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 31.2, y = 56 }, -- 54
-        { type = "TURNIN", quest = 539, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 55
-        { type = "ACCEPT", quest = 494, questName = "Time To Strike", npc = 2214, npcName = "Deathstalker Lesh", map = 1424, zone = "Hillsbrad Foothills", x = 20.8, y = 47.4 }, -- 56
-        { type = "TURNIN", quest = 494, questName = "Time To Strike", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5, note = "reduced xp (40%) - you out-levelled it" }, -- 57
-    },
+        { type = "ACCEPT", quest = 541, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 11
+        { type = "KILL", quest = 541, questName = "Battle of Hillsbrad", npc = 2344, target = "Dun Garok Mountaineer", map = 1424, zone = "Hillsbrad Foothills", x = 70.4, y = 77.2, optional = true, near = true }, -- 12
+        { type = "KILL", quest = 541, questName = "Battle of Hillsbrad", npc = 2345, target = "Dun Garok Rifleman", map = 1424, zone = "Hillsbrad Foothills", x = 71.3, y = 74.2, optional = true, near = true }, -- 13
+        { type = "KILL", quest = 541, questName = "Battle of Hillsbrad", npc = 2346, target = "Dun Garok Priest", map = 1424, zone = "Hillsbrad Foothills", x = 70.7, y = 75.8, optional = true, near = true }, -- 14
+        { type = "KILL", quest = 541, questName = "Battle of Hillsbrad", npc = 2304, target = "Captain Ironhill", count = 2, map = 1424, zone = "Hillsbrad Foothills", x = 71.5, y = 79.8, optional = true, near = true }, -- 15
+        { type = "TURNIN", quest = 541, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5, optional = true }, -- 16
+        { type = "COLLECT", quest = 496, questName = "Elixir of Suffering", target = "Gray Bear Tongue", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 66.1, y = 23.1, near = true }, -- 17
+        { type = "COLLECT", quest = 496, questName = "Elixir of Suffering", target = "Creeper Ichor", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 69.8, y = 27.6, near = true }, -- 18
+        { type = "KILL", quest = 549, questName = "WANTED: Syndicate Personnel", npc = 2261, target = "Syndicate Watchman", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 75.2, y = 38, near = true }, -- 19
+        { type = "COMPLETE", quest = 498, questName = "The Rescue", target = "Locked ball and chain", map = 1424, zone = "Hillsbrad Foothills", x = 79.8, y = 39.7, note = "Rescue Tog'thar" }, -- 20
+        { type = "COMPLETE", quest = 498, questName = "The Rescue", target = "Locked ball and chain", map = 1424, zone = "Hillsbrad Foothills", x = 75.3, y = 41.5, note = "Rescue Drull" }, -- 21
+        { type = "KILL", quest = 549, questName = "WANTED: Syndicate Personnel", npc = 2260, target = "Syndicate Rogue", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 75, y = 40.7, near = true }, -- 22
+        { type = "COLLECT", quest = 501, questName = "Elixir of Pain", target = "Mountain Lion Blood", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 61, y = 50.9, near = true }, -- 23
+        { type = "KILL", quest = 527, questName = "Battle of Hillsbrad", npc = 2360, target = "Hillsbrad Farmhand / Farmer Getz / Hillsbrad Farmer", count = 6, map = 1424, zone = "Hillsbrad Foothills", x = 36.8, y = 41.3, near = true }, -- 24
+        { type = "KILL", quest = 527, questName = "Battle of Hillsbrad", npc = 232, target = "Farmer Ray", count = 6, map = 1424, zone = "Hillsbrad Foothills", x = 33.2, y = 34.8 }, -- 25
+        { type = "KILL", quest = 567, questName = "Dangerous!", npc = 2449, target = "Citizen Wilkes", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 32.6, y = 39.8 }, -- 26
+        { type = "KILL", quest = 567, questName = "Dangerous!", npc = 2448, target = "Clerk Horrace Whitesteed", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 29.5, y = 42.4 }, -- 27
+        { type = "KILL", quest = 567, questName = "Dangerous!", npc = 2450, target = "Miner Hackett", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 31.8, y = 52.7 }, -- 28
+        { type = "KILL", quest = 567, questName = "Dangerous!", npc = 2451, target = "Farmer Kalaba", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 35.9, y = 46.6 }, -- 29
+        { type = "COLLECT", quest = 509, questName = "Elixir of Agony", target = "Mudsnout Blossoms", count = 6, map = 1424, zone = "Hillsbrad Foothills", x = 63.8, y = 61.2, near = true }, -- 30
+        { type = "COLLECT", quest = 547, questName = "Humbert's Sword", target = "Humbert's Sword", map = 1424, zone = "Hillsbrad Foothills", x = 71.3, y = 74.2, near = true }, -- 31
+        { type = "TURNIN", quest = 498, questName = "The Rescue", npc = 2229, npcName = "Krusk", map = 1424, zone = "Hillsbrad Foothills", x = 63.2, y = 20.7 }, -- 32
+        { type = "TURNIN", quest = 547, questName = "Humbert's Sword", npc = 2419, npcName = "Deathguard Humbert", map = 1424, zone = "Hillsbrad Foothills", x = 62.8, y = 20.2 }, -- 33
+        { type = "TURNIN", quest = 527, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 34
+        { type = "TURNIN", quest = 549, questName = "WANTED: Syndicate Personnel", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 35
+        { type = "TURNIN", quest = 567, questName = "Dangerous!", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 36
+        { type = "TURNIN", quest = 496, questName = "Elixir of Suffering", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 37
+        { type = "TURNIN", quest = 501, questName = "Elixir of Pain", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 38
+        { type = "TURNIN", quest = 509, questName = "Elixir of Agony", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 39
+        { type = "ACCEPT", quest = 499, questName = "Elixir of Suffering", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 40
+        { type = "ACCEPT", quest = 502, questName = "Elixir of Pain", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 41
+        { type = "ACCEPT", quest = 546, questName = "Souvenirs of Death", npc = 2418, npcName = "Deathguard Samsa", map = 1424, zone = "Hillsbrad Foothills", x = 62.1, y = 19.7 }, -- 42
+        { type = "ACCEPT", quest = 528, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 43
+        { type = "ACCEPT", quest = 513, questName = "Elixir of Agony", npc = 2216, npcName = "Apothecary Lydon", map = 1424, zone = "Hillsbrad Foothills", x = 61.4, y = 19.1 }, -- 44
+        { type = "TURNIN", quest = 499, questName = "Elixir of Suffering", npc = 2230, npcName = "Umpi", map = 1424, zone = "Hillsbrad Foothills", x = 61.6, y = 19.1 }, -- 45
+        { type = "COLLECT", quest = 546, questName = "Souvenirs of Death", target = "Hillsbrad Human Skull", count = 30, map = 1424, zone = "Hillsbrad Foothills", x = 66.1, y = 45.6, near = true }, -- 46
+        { type = "KILL", quest = 528, questName = "Battle of Hillsbrad", npc = 2267, target = "Hillsbrad Peasant", count = 15, map = 1424, zone = "Hillsbrad Foothills", x = 36.4, y = 45.4, near = true }, -- 47
+        { type = "TURNIN", quest = 528, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 48
+        { type = "ACCEPT", quest = 529, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 49
+        { type = "TURNIN", quest = 546, questName = "Souvenirs of Death", npc = 2418, npcName = "Deathguard Samsa", map = 1424, zone = "Hillsbrad Foothills", x = 62.1, y = 19.7 }, -- 50
+        { type = "COMPLETE", quest = 529, questName = "Battle of Hillsbrad", npc = 2265, target = "Hillsbrad Apprentice Blacksmith / Shipment of Iron / Blacksmith Verringtan", count = 4, map = 1424, zone = "Hillsbrad Foothills", x = 32.6, y = 45.1, near = true }, -- 51
+        { type = "TURNIN", quest = 529, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 52
+        { type = "ACCEPT", quest = 532, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 53
+        { type = "KILL", quest = 532, questName = "Battle of Hillsbrad", npc = 2387, target = "Hillsbrad Councilman", count = 5, map = 1424, zone = "Hillsbrad Foothills", x = 32.1, y = 42.4, near = true }, -- 54
+        { type = "TURNIN", quest = 502, questName = "Elixir of Pain", npc = 2274, npcName = "Stanley", map = 1424, zone = "Hillsbrad Foothills", x = 32.7, y = 35.3 }, -- 55
+        { type = "COMPLETE", quest = 532, questName = "Battle of Hillsbrad", npc = 2335, target = "Magistrate Burnside / Hillsbrad Proclamation / Hillsbrad Town Registry", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 29.7, y = 41.6 }, -- 56
+        { type = "TURNIN", quest = 532, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 57
+        { type = "ACCEPT", quest = 539, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 58
+        { type = "KILL", quest = 539, questName = "Battle of Hillsbrad", npc = 2269, target = "Hillsbrad Miner", count = 10, map = 1424, zone = "Hillsbrad Foothills", x = 32.4, y = 52.1, near = true }, -- 59
+        { type = "KILL", quest = 539, questName = "Battle of Hillsbrad", npc = 2305, target = "Foreman Bonds", count = 1, map = 1424, zone = "Hillsbrad Foothills", x = 31.2, y = 56 }, -- 60
+        { type = "TURNIN", quest = 539, questName = "Battle of Hillsbrad", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5 }, -- 61
+        { type = "ACCEPT", quest = 494, questName = "Time To Strike", npc = 2214, npcName = "Deathstalker Lesh", map = 1424, zone = "Hillsbrad Foothills", x = 20.8, y = 47.4 }, -- 62
+        { type = "TURNIN", quest = 494, questName = "Time To Strike", npc = 2215, npcName = "High Executor Darthalia", map = 1424, zone = "Hillsbrad Foothills", x = 62.3, y = 20.5, note = "reduced xp (40%) - you out-levelled it" }, -- 63
+    } end,
 })

@@ -10,7 +10,7 @@
   "zone": "Durotar",
   "next": "GEN_HORDE_ORC_02_THE_BARRENS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 1 of the Orc route: level 1 to 10, 76 steps, ~145 min of play in the model (13465 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 1 of the Orc route: level 1 to 10, 76 steps, ~145 min of play in the model (13465 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "NOTE", "map": 1411, "zone": "Durotar", "x": 42.6, "y": 67.4, "text": "set your hearthstone at the inn in Durotar (if there is one)"},
     {"type": "ACCEPT", "quest": 788, "questName": "Cutting Teeth", "npc": 3143, "npcName": "Gornek", "map": 1411, "zone": "Durotar", "x": 42.1, "y": 68.3},

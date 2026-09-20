@@ -11,7 +11,8 @@ ns.RegisterGuide({
     zone = "Winterspring",
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Winterspring for a Alliance character, 8 quests. The race routes are the faster path; pick this when you just want to quest here.",
-    steps = {
+    stepCount = 27,
+    steps = function() return {
         { type = "TRAVEL", map = 1452, zone = "Winterspring", x = 61.4, y = 38.2, radius = 60, note = "travel to Winterspring (Winterspring)" }, -- 1
         { type = "NOTE", map = 1452, zone = "Winterspring", x = 61.4, y = 38.2, text = "set your hearthstone at the inn in Winterspring (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 3783, questName = "Are We There, Yeti?", npc = 10305, npcName = "Umi Rumplesnicker", map = 1452, zone = "Winterspring", x = 60.9, y = 37.6 }, -- 3
@@ -39,5 +40,5 @@ ns.RegisterGuide({
         { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7438, target = "Winterfall Ursa", count = 8, map = 1452, zone = "Winterspring", x = 65.1, y = 37.2, near = true }, -- 25
         { type = "KILL", quest = 8464, questName = "Winterfall Activity", npc = 7439, target = "Winterfall Shaman", count = 8, map = 1452, zone = "Winterspring", x = 67.4, y = 35.2, near = true }, -- 26
         { type = "TURNIN", quest = 8464, questName = "Winterfall Activity", npc = 11556, npcName = "Salfa", map = 1452, zone = "Winterspring", x = 27.7, y = 34.5 }, -- 27
-    },
+    } end,
 })

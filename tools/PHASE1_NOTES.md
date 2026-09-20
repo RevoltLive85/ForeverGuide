@@ -383,3 +383,18 @@ no camera-yaw API exists; a left-drag camera orbit around a standing character d
   key binding "CLICK ForeverGuideTargetButton:LeftButton" (Key Bindings > AddOns > ForeverGuide > Target the nearest
   quest mob). When the player's own target gets taken, one chat line says so and names the key. /targetexact cannot
   skip tagged mobs itself - press again. Tests: 196.
+
+## Update 2026-09-21 — v0.3.4: group quests, real log cap, corpse run, profiler, lazy guides
+- Planner `addGroupQuests`: elite quests whose giver stands at a hub the route already visits (within 2.5 map
+  units) are added as OPTIONAL steps (accept + objectives + turn-in, note "group quest - only with company"),
+  level/prereq-checked; 9-21 per race route. Engine: optional QUEST steps are walked past unless the player took
+  the quest (then guided normally); GRIND optional (no quest) keeps the old "current until passed" behaviour.
+- Quest log cap: `C_QuestLog.GetMaxNumQuestsCanAccept()` is **40** on Forever (GetMaxNumQuests 175); planner
+  LOG_CAP default 40 (routes unchanged - the cap never bound). Engine: on an ACCEPT step with a full log the note
+  names up to 4 log quests the guide does not need ("abandon one").
+- Corpse.lua: while a ghost, Navigation.override = "corpse" and the target is C_DeathInfo.GetCorpseMapPosition
+  (current map, then parents), "Your corpse - run back"; Guide/Tracker do not touch the target until alive again.
+- `/fg perf`: C_AddOnProfiler metrics (12.x). Measured in Redridge: 0.10-0.13 ms per frame steady, all 50 frames
+  over 5 ms at login/reload, memory 43 MB -> 31 MB after making compiled guides lazy (steps are a closure built on
+  first use; `stepCount` for lists; `Guide.StepCount(g)`). Ilya's 25-41 fps is the GPU, not the addon.
+- Tests: 205 (group quests, full log, corpse, restricted nameplates, secure target macro).

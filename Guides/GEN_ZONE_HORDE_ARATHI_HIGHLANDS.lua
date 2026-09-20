@@ -11,7 +11,8 @@ ns.RegisterGuide({
     zone = "Arathi Highlands",
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Arathi Highlands for a Horde character, 19 quests. The race routes are the faster path; pick this when you just want to quest here.",
-    steps = {
+    stepCount = 65,
+    steps = function() return {
         { type = "TRAVEL", map = 1417, zone = "Arathi Highlands", x = 73.5, y = 31.7, radius = 60, note = "travel to Arathi Highlands (Arathi Highlands)" }, -- 1
         { type = "NOTE", map = 1417, zone = "Arathi Highlands", x = 73.5, y = 31.7, text = "set your hearthstone at the inn in Arathi Highlands (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 8171, questName = "The Battle for Arathi Basin!", npc = 15021, npcName = "Deathmaster Dwire", map = 1417, zone = "Arathi Highlands", x = 73.3, y = 29.7 }, -- 3
@@ -19,50 +20,63 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 8426, questName = "Battle of Warsong Gulch", npc = 15350, npcName = "Horde Warbringer", map = 1417, zone = "Arathi Highlands", x = 73.5, y = 29.1 }, -- 5
         { type = "ACCEPT", quest = 677, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 6
         { type = "ACCEPT", quest = 671, questName = "Foul Magics", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 7
-        { type = "ACCEPT", quest = 8263, questName = "Defiler's Basic Care Package", npc = 15126, npcName = "Rutherford Twing", map = 1417, zone = "Arathi Highlands", x = 73.4, y = 29.7 }, -- 8
-        { type = "ACCEPT", quest = 655, questName = "Hammerfall", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 9
-        { type = "TURNIN", quest = 655, questName = "Hammerfall", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 10
-        { type = "TURNIN", quest = 8171, questName = "The Battle for Arathi Basin!", npc = 15021, npcName = "Deathmaster Dwire", map = 1417, zone = "Arathi Highlands", x = 73.3, y = 29.7 }, -- 11
-        { type = "TURNIN", quest = 8263, questName = "Defiler's Basic Care Package", npc = 15126, npcName = "Rutherford Twing", map = 1417, zone = "Arathi Highlands", x = 73.4, y = 29.7 }, -- 12
-        { type = "TURNIN", quest = 8370, questName = "Conquering Arathi Basin", npc = 15350, npcName = "Horde Warbringer", map = 1417, zone = "Arathi Highlands", x = 73.5, y = 29.1 }, -- 13
-        { type = "TURNIN", quest = 8426, questName = "Battle of Warsong Gulch", npc = 15350, npcName = "Horde Warbringer", map = 1417, zone = "Arathi Highlands", x = 73.5, y = 29.1 }, -- 14
-        { type = "KILL", quest = 677, questName = "Call to Arms", npc = 2554, target = "Witherbark Axe Thrower / Witherbark Witch Doctor", count = 10, map = 1417, zone = "Arathi Highlands", x = 71.6, y = 60.6, near = true }, -- 15
-        { type = "KILL", quest = 677, questName = "Call to Arms", npc = 2556, target = "Witherbark Headhunter", count = 10, map = 1417, zone = "Arathi Highlands", x = 72.7, y = 64.4, near = true }, -- 16
-        { type = "ACCEPT", quest = 672, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 17
-        { type = "TURNIN", quest = 677, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 18
-        { type = "ACCEPT", quest = 678, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 19
-        { type = "ACCEPT", quest = 642, questName = "The Princess Trapped", map = 1417, zone = "Arathi Highlands", x = 62.5, y = 33.7 }, -- 20
-        { type = "COLLECT", quest = 672, questName = "Raising Spirits", target = "Highland Raptor Eye", count = 10, map = 1417, zone = "Arathi Highlands", x = 64.4, y = 40.9, near = true }, -- 21
-        { type = "KILL", quest = 678, questName = "Call to Arms", npc = 2566, target = "Boulderfist Brute / Boulderfist Magus", count = 10, map = 1417, zone = "Arathi Highlands", x = 52.3, y = 71.5, near = true }, -- 22
-        { type = "COLLECT", quest = 671, questName = "Foul Magics", target = "Bloodstone Amulet", count = 10, map = 1417, zone = "Arathi Highlands", x = 33.9, y = 32.9, near = true }, -- 23
-        { type = "COLLECT", quest = 642, questName = "The Princess Trapped", target = "Mote of Myzrael", count = 12, map = 1417, zone = "Arathi Highlands", x = 76.2, y = 42.5, near = true }, -- 24
-        { type = "TURNIN", quest = 671, questName = "Foul Magics", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 25
-        { type = "TURNIN", quest = 672, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 26
-        { type = "ACCEPT", quest = 674, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 27
-        { type = "TURNIN", quest = 678, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 28
-        { type = "TURNIN", quest = 674, questName = "Raising Spirits", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 29
-        { type = "ACCEPT", quest = 675, questName = "Raising Spirits", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 30
-        { type = "TURNIN", quest = 675, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 31
-        { type = "ACCEPT", quest = 701, questName = "Guile of the Raptor", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 32
-        { type = "KILL", quest = 701, questName = "Guile of the Raptor", npc = 2561, target = "Highland Fleshstalker", count = 12, map = 1417, zone = "Arathi Highlands", x = 55.1, y = 67.5, near = true, note = "loot Raptor Heart" }, -- 33
-        { type = "TURNIN", quest = 701, questName = "Guile of the Raptor", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 34
-        { type = "ACCEPT", quest = 702, questName = "Guile of the Raptor", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 35
-        { type = "TURNIN", quest = 702, questName = "Guile of the Raptor", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 36
-        { type = "ACCEPT", quest = 847, questName = "Guile of the Raptor", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 37
-        { type = "TURNIN", quest = 847, questName = "Guile of the Raptor", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 38
-        { type = "TURNIN", quest = 642, questName = "The Princess Trapped", map = 1417, zone = "Arathi Highlands", x = 84.3, y = 31 }, -- 39
-        { type = "ACCEPT", quest = 651, questName = "Stones of Binding", map = 1417, zone = "Arathi Highlands", x = 84.3, y = 31 }, -- 40
-        { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Cresting Key", map = 1417, zone = "Arathi Highlands", x = 66.7, y = 29.7 }, -- 41
-        { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Thundering Key", map = 1417, zone = "Arathi Highlands", x = 52, y = 50.7 }, -- 42
-        { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Burning Key", map = 1417, zone = "Arathi Highlands", x = 25.5, y = 30.1 }, -- 43
-        { type = "TURNIN", quest = 651, questName = "Stones of Binding", map = 1417, zone = "Arathi Highlands", x = 36.2, y = 57.4 }, -- 44
-        { type = "ACCEPT", quest = 639, questName = "Sigil of Strom", npc = 2703, npcName = "Zengu", map = 1417, zone = "Arathi Highlands", x = 73.8, y = 34 }, -- 45
-        { type = "COLLECT", quest = 639, questName = "Sigil of Strom", target = "Sigil of Strom", map = 1417, zone = "Arathi Highlands", x = 29.2, y = 61.3, near = true }, -- 46
-        { type = "TURNIN", quest = 639, questName = "Sigil of Strom", npc = 2703, npcName = "Zengu", map = 1417, zone = "Arathi Highlands", x = 73.8, y = 34 }, -- 47
-        { type = "ACCEPT", quest = 640, questName = "The Broken Sigil", npc = 2703, npcName = "Zengu", map = 1417, zone = "Arathi Highlands", x = 73.8, y = 34 }, -- 48
-        { type = "COLLECT", quest = 640, questName = "The Broken Sigil", target = "Sigil Fragment", count = 11, map = 1417, zone = "Arathi Highlands", x = 28.9, y = 58.9, near = true }, -- 49
-        { type = "TURNIN", quest = 640, questName = "The Broken Sigil", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 50
-        { type = "ACCEPT", quest = 641, questName = "Sigil of Thoradin", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 51
-        { type = "TURNIN", quest = 641, questName = "Sigil of Thoradin", npc = 2703, npcName = "Zengu", map = 1417, zone = "Arathi Highlands", x = 73.8, y = 34 }, -- 52
-    },
+        { type = "ACCEPT", quest = 643, questName = "Sigil of Arathor", npc = 2703, npcName = "Zengu", map = 1417, zone = "Arathi Highlands", x = 73.8, y = 34, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 8
+        { type = "KILL", quest = 643, questName = "Sigil of Arathor", npc = 2612, target = "Lieutenant Valorcall", map = 1417, zone = "Arathi Highlands", x = 33.5, y = 52.1, optional = true }, -- 9
+        { type = "TURNIN", quest = 643, questName = "Sigil of Arathor", npc = 2703, npcName = "Zengu", map = 1417, zone = "Arathi Highlands", x = 73.8, y = 34, optional = true }, -- 10
+        { type = "ACCEPT", quest = 673, questName = "Foul Magics", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 11
+        { type = "KILL", quest = 673, questName = "Foul Magics", npc = 2783, target = "Marez Cowl", map = 1417, zone = "Arathi Highlands", x = 29.6, y = 63, optional = true, near = true }, -- 12
+        { type = "TURNIN", quest = 673, questName = "Foul Magics", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3, optional = true }, -- 13
+        { type = "ACCEPT", quest = 679, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 14
+        { type = "KILL", quest = 679, questName = "Call to Arms", npc = 2570, target = "Boulderfist Shaman", count = 7, map = 1417, zone = "Arathi Highlands", x = 20.9, y = 65.7, optional = true, near = true }, -- 15
+        { type = "KILL", quest = 679, questName = "Call to Arms", npc = 2571, target = "Boulderfist Lord", count = 7, map = 1417, zone = "Arathi Highlands", x = 19.9, y = 65.7, optional = true, near = true }, -- 16
+        { type = "TURNIN", quest = 679, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9, optional = true }, -- 17
+        { type = "ACCEPT", quest = 8263, questName = "Defiler's Basic Care Package", npc = 15126, npcName = "Rutherford Twing", map = 1417, zone = "Arathi Highlands", x = 73.4, y = 29.7 }, -- 18
+        { type = "ACCEPT", quest = 655, questName = "Hammerfall", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 19
+        { type = "ACCEPT", quest = 680, questName = "The Real Threat", npc = 2772, npcName = "Korin Fel", map = 1417, zone = "Arathi Highlands", x = 74, y = 33.1, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 20
+        { type = "KILL", quest = 680, questName = "The Real Threat", npc = 2773, target = "Or'Kalar", map = 1417, zone = "Arathi Highlands", x = 20.8, y = 65.1, optional = true, near = true }, -- 21
+        { type = "TURNIN", quest = 680, questName = "The Real Threat", npc = 2772, npcName = "Korin Fel", map = 1417, zone = "Arathi Highlands", x = 74, y = 33.1, optional = true }, -- 22
+        { type = "TURNIN", quest = 655, questName = "Hammerfall", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 23
+        { type = "TURNIN", quest = 8171, questName = "The Battle for Arathi Basin!", npc = 15021, npcName = "Deathmaster Dwire", map = 1417, zone = "Arathi Highlands", x = 73.3, y = 29.7 }, -- 24
+        { type = "TURNIN", quest = 8263, questName = "Defiler's Basic Care Package", npc = 15126, npcName = "Rutherford Twing", map = 1417, zone = "Arathi Highlands", x = 73.4, y = 29.7 }, -- 25
+        { type = "TURNIN", quest = 8370, questName = "Conquering Arathi Basin", npc = 15350, npcName = "Horde Warbringer", map = 1417, zone = "Arathi Highlands", x = 73.5, y = 29.1 }, -- 26
+        { type = "TURNIN", quest = 8426, questName = "Battle of Warsong Gulch", npc = 15350, npcName = "Horde Warbringer", map = 1417, zone = "Arathi Highlands", x = 73.5, y = 29.1 }, -- 27
+        { type = "KILL", quest = 677, questName = "Call to Arms", npc = 2554, target = "Witherbark Axe Thrower / Witherbark Witch Doctor", count = 10, map = 1417, zone = "Arathi Highlands", x = 71.6, y = 60.6, near = true }, -- 28
+        { type = "KILL", quest = 677, questName = "Call to Arms", npc = 2556, target = "Witherbark Headhunter", count = 10, map = 1417, zone = "Arathi Highlands", x = 72.7, y = 64.4, near = true }, -- 29
+        { type = "ACCEPT", quest = 672, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 30
+        { type = "TURNIN", quest = 677, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 31
+        { type = "ACCEPT", quest = 678, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 32
+        { type = "ACCEPT", quest = 642, questName = "The Princess Trapped", map = 1417, zone = "Arathi Highlands", x = 62.5, y = 33.7 }, -- 33
+        { type = "COLLECT", quest = 672, questName = "Raising Spirits", target = "Highland Raptor Eye", count = 10, map = 1417, zone = "Arathi Highlands", x = 64.4, y = 40.9, near = true }, -- 34
+        { type = "KILL", quest = 678, questName = "Call to Arms", npc = 2566, target = "Boulderfist Brute / Boulderfist Magus", count = 10, map = 1417, zone = "Arathi Highlands", x = 52.3, y = 71.5, near = true }, -- 35
+        { type = "COLLECT", quest = 671, questName = "Foul Magics", target = "Bloodstone Amulet", count = 10, map = 1417, zone = "Arathi Highlands", x = 33.9, y = 32.9, near = true }, -- 36
+        { type = "COLLECT", quest = 642, questName = "The Princess Trapped", target = "Mote of Myzrael", count = 12, map = 1417, zone = "Arathi Highlands", x = 76.2, y = 42.5, near = true }, -- 37
+        { type = "TURNIN", quest = 671, questName = "Foul Magics", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 38
+        { type = "TURNIN", quest = 672, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 39
+        { type = "ACCEPT", quest = 674, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 40
+        { type = "TURNIN", quest = 678, questName = "Call to Arms", npc = 2771, npcName = "Drum Fel", map = 1417, zone = "Arathi Highlands", x = 74.2, y = 33.9 }, -- 41
+        { type = "TURNIN", quest = 674, questName = "Raising Spirits", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 42
+        { type = "ACCEPT", quest = 675, questName = "Raising Spirits", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 43
+        { type = "TURNIN", quest = 675, questName = "Raising Spirits", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 44
+        { type = "ACCEPT", quest = 701, questName = "Guile of the Raptor", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 45
+        { type = "KILL", quest = 701, questName = "Guile of the Raptor", npc = 2561, target = "Highland Fleshstalker", count = 12, map = 1417, zone = "Arathi Highlands", x = 55.1, y = 67.5, near = true, note = "loot Raptor Heart" }, -- 46
+        { type = "TURNIN", quest = 701, questName = "Guile of the Raptor", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 47
+        { type = "ACCEPT", quest = 702, questName = "Guile of the Raptor", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 48
+        { type = "TURNIN", quest = 702, questName = "Guile of the Raptor", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 49
+        { type = "ACCEPT", quest = 847, questName = "Guile of the Raptor", npc = 2792, npcName = "Gor'mul", map = 1417, zone = "Arathi Highlands", x = 72.6, y = 33.9 }, -- 50
+        { type = "TURNIN", quest = 847, questName = "Guile of the Raptor", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 51
+        { type = "TURNIN", quest = 642, questName = "The Princess Trapped", map = 1417, zone = "Arathi Highlands", x = 84.3, y = 31 }, -- 52
+        { type = "ACCEPT", quest = 651, questName = "Stones of Binding", map = 1417, zone = "Arathi Highlands", x = 84.3, y = 31 }, -- 53
+        { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Cresting Key", map = 1417, zone = "Arathi Highlands", x = 66.7, y = 29.7 }, -- 54
+        { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Thundering Key", map = 1417, zone = "Arathi Highlands", x = 52, y = 50.7 }, -- 55
+        { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Burning Key", map = 1417, zone = "Arathi Highlands", x = 25.5, y = 30.1 }, -- 56
+        { type = "TURNIN", quest = 651, questName = "Stones of Binding", map = 1417, zone = "Arathi Highlands", x = 36.2, y = 57.4 }, -- 57
+        { type = "ACCEPT", quest = 639, questName = "Sigil of Strom", npc = 2703, npcName = "Zengu", map = 1417, zone = "Arathi Highlands", x = 73.8, y = 34 }, -- 58
+        { type = "COLLECT", quest = 639, questName = "Sigil of Strom", target = "Sigil of Strom", map = 1417, zone = "Arathi Highlands", x = 29.2, y = 61.3, near = true }, -- 59
+        { type = "TURNIN", quest = 639, questName = "Sigil of Strom", npc = 2703, npcName = "Zengu", map = 1417, zone = "Arathi Highlands", x = 73.8, y = 34 }, -- 60
+        { type = "ACCEPT", quest = 640, questName = "The Broken Sigil", npc = 2703, npcName = "Zengu", map = 1417, zone = "Arathi Highlands", x = 73.8, y = 34 }, -- 61
+        { type = "COLLECT", quest = 640, questName = "The Broken Sigil", target = "Sigil Fragment", count = 11, map = 1417, zone = "Arathi Highlands", x = 28.9, y = 58.9, near = true }, -- 62
+        { type = "TURNIN", quest = 640, questName = "The Broken Sigil", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 63
+        { type = "ACCEPT", quest = 641, questName = "Sigil of Thoradin", npc = 2706, npcName = "Tor'gan", map = 1417, zone = "Arathi Highlands", x = 74.7, y = 36.3 }, -- 64
+        { type = "TURNIN", quest = 641, questName = "Sigil of Thoradin", npc = 2703, npcName = "Zengu", map = 1417, zone = "Arathi Highlands", x = 73.8, y = 34 }, -- 65
+    } end,
 })

@@ -10,7 +10,7 @@
   "zone": "Eastern Plaguelands",
   "next": "GEN_ALLIANCE_NIGHTELF_36_WESTERN_PLAGUELANDS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 35 of the NightElf route: level 50 to 51, 14 steps, ~40 min of play in the model (44286 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 35 of the NightElf route: level 50 to 51, 14 steps, ~40 min of play in the model (44286 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.3, "y": 59.1, "radius": 60, "note": "travel to Eastern Plaguelands (Eastern Plaguelands)"},
     {"type": "NOTE", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.3, "y": 59.1, "text": "set your hearthstone at the inn in Eastern Plaguelands (if there is one)"},

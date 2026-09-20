@@ -10,7 +10,7 @@
   "zone": "Felwood",
   "next": "GEN_ALLIANCE_HUMAN_33_WINTERSPRING",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 32 of the Human route: level 49 to 49, 12 steps, ~61 min of play in the model (30154 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 32 of the Human route: level 49 to 49, 12 steps, ~61 min of play in the model (30154 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1447, "zone": "Azshara", "x": 60.8, "y": 66.4, "radius": 60, "note": "use your hearthstone (Azshara)"},
     {"type": "TRAVEL", "map": 1448, "zone": "Felwood", "x": 51.3, "y": 81.9, "radius": 60, "note": "travel to Felwood (Felwood)"},

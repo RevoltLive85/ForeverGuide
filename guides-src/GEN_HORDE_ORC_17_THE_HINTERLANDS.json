@@ -10,7 +10,7 @@
   "zone": "The Hinterlands",
   "next": "GEN_HORDE_ORC_18_SEARING_GORGE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 17 of the Orc route: level 44 to 45, 37 steps, ~187 min of play in the model (37693 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 17 of the Orc route: level 44 to 45, 40 steps, ~187 min of play in the model (37693 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
     {"type": "TRAVEL", "map": 1425, "zone": "The Hinterlands", "x": 78.9, "y": 79.9, "radius": 60, "note": "travel to The Hinterlands (The Hinterlands)"},
     {"type": "NOTE", "map": 1425, "zone": "The Hinterlands", "x": 78.9, "y": 79.9, "text": "set your hearthstone at the inn in The Hinterlands (if there is one)"},
@@ -22,6 +22,9 @@
     {"type": "ACCEPT", "quest": 7839, "questName": "Vilebranch Hooligans", "npc": 14737, "npcName": "Smith Slagtree", "map": 1425, "zone": "The Hinterlands", "x": 77.2, "y": 80.1},
     {"type": "ACCEPT", "quest": 7840, "questName": "Lard Lost His Lunch", "npc": 14731, "npcName": "Lard", "map": 1425, "zone": "The Hinterlands", "x": 78.1, "y": 81.4},
     {"type": "ACCEPT", "quest": 7815, "questName": "Snapjaws, Mon!", "npc": 14740, "npcName": "Katoom the Angler", "map": 1425, "zone": "The Hinterlands", "x": 80.3, "y": 81.5},
+    {"type": "ACCEPT", "quest": 7816, "questName": "Gammerita, Mon!", "npc": 14740, "npcName": "Katoom the Angler", "map": 1425, "zone": "The Hinterlands", "x": 80.3, "y": 81.5, "note": "group quest (elite mobs) - optional, take it only with company", "optional": true},
+    {"type": "KILL", "quest": 7816, "questName": "Gammerita, Mon!", "npc": 7977, "target": "Gammerita", "map": 1425, "zone": "The Hinterlands", "x": 80.4, "y": 58.2, "optional": true},
+    {"type": "TURNIN", "quest": 7816, "questName": "Gammerita, Mon!", "npc": 14740, "npcName": "Katoom the Angler", "map": 1425, "zone": "The Hinterlands", "x": 80.3, "y": 81.5, "optional": true},
     {"type": "KILL", "quest": 7815, "questName": "Snapjaws, Mon!", "npc": 2505, "target": "Saltwater Snapjaw", "count": 15, "map": 1425, "zone": "The Hinterlands", "x": 80.6, "y": 77.3, "near": true},
     {"type": "TURNIN", "quest": 7815, "questName": "Snapjaws, Mon!", "npc": 14740, "npcName": "Katoom the Angler", "map": 1425, "zone": "The Hinterlands", "x": 80.3, "y": 81.5},
     {"type": "COLLECT", "quest": 7840, "questName": "Lard Lost His Lunch", "target": "Lard's Lunch", "map": 1425, "zone": "The Hinterlands", "x": 84.5, "y": 41.2, "near": true},

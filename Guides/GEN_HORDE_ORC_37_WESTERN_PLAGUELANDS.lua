@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Western Plaguelands",
     next = "GEN_HORDE_ORC_38_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 37 of the Orc route: level 53 to 54, 13 steps, ~242 min of play in the model (8624 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 37 of the Orc route: level 53 to 54, 13 steps, ~242 min of play in the model (8624 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 13,
+    steps = function() return {
         { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 39.0, y = 63.2, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 1
         { type = "ACCEPT", quest = 4971, questName = "A Matter of Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 2
         { type = "KILL", quest = 4971, questName = "A Matter of Time", npc = 10717, target = "Temporal Parasite", count = 10, map = 1422, zone = "Western Plaguelands", x = 45.2, y = 62.8, near = true }, -- 3
@@ -27,5 +28,5 @@ ns.RegisterGuide({
         { type = "KILL", quest = 5060, questName = "Locked Away", npc = 10836, target = "Farmer Dalson", map = 1422, zone = "Western Plaguelands", x = 48.2, y = 49.7, note = "loot Dalson Cabinet Key" }, -- 11
         { type = "TURNIN", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 12
         { type = "GRIND", npc = 1824, target = "Plague Lurker", level = 54, map = 1422, zone = "Western Plaguelands", x = 52.7, y = 51.7, near = true, note = "grind Plague Lurker (level 54-55) to level 54 - nothing worth questing at 53" }, -- 13
-    },
+    } end,
 })

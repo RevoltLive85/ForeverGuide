@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Tirisfal Glades",
     next = "GEN_HORDE_SCOURGE_02_UNDERCITY",
     author = "ForeverGuide route planner",
-    notes = "Chapter 1 of the Scourge route: level 1 to 12, 108 steps, ~190 min of play in the model (15152 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 1 of the Scourge route: level 1 to 12, 108 steps, ~190 min of play in the model (15152 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 108,
+    steps = function() return {
         { type = "GRIND", npc = 1512, target = "Duskbat", level = 2, map = 1420, zone = "Tirisfal Glades", x = 34, y = 58.2, near = true, note = "grind Duskbat (level 1-2) to level 2 - nothing worth questing at 1" }, -- 1
         { type = "NOTE", map = 1420, zone = "Tirisfal Glades", x = 31.5, y = 66.0, text = "set your hearthstone at the inn in Tirisfal Glades (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 376, questName = "The Damned", npc = 1661, npcName = "Novice Elreth", map = 1420, zone = "Tirisfal Glades", x = 30.9, y = 66.1 }, -- 3
@@ -122,5 +123,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 372, questName = "At War With The Scarlet Crusade", npc = 1515, npcName = "Executor Zygand", map = 1420, zone = "Tirisfal Glades", x = 60.6, y = 51.8 }, -- 106
         { type = "ACCEPT", quest = 8, questName = "A Rogue's Deal", npc = 6784, npcName = "Calvin Montague", map = 1420, zone = "Tirisfal Glades", x = 38.2, y = 56.8 }, -- 107
         { type = "TURNIN", quest = 8, questName = "A Rogue's Deal", npc = 5688, npcName = "Innkeeper Renee", map = 1420, zone = "Tirisfal Glades", x = 61.7, y = 52.1, note = "reduced xp (60%) - you out-levelled it" }, -- 108
-    },
+    } end,
 })

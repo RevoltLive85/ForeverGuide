@@ -10,7 +10,7 @@
   "zone": "Westfall",
   "next": "GEN_ALLIANCE_HUMAN_04_LOCH_MODAN",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 3 of the Human route: level 11 to 15, 55 steps, ~164 min of play in the model (18078 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 3 of the Human route: level 11 to 15, 55 steps, ~164 min of play in the model (18078 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1436, "zone": "Westfall", "x": 56.2, "y": 43.9, "radius": 60, "note": "travel to Westfall (Westfall)"},
     {"type": "NOTE", "map": 1436, "zone": "Westfall", "x": 56.2, "y": 43.9, "text": "set your hearthstone at the inn in Westfall (if there is one)"},

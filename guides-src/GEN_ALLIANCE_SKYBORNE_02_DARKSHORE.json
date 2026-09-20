@@ -10,7 +10,7 @@
   "zone": "Darkshore",
   "next": "GEN_ALLIANCE_SKYBORNE_03_STONETALON_MOUNTAINS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 2 of the Skyborne route: level 13 to 18, 143 steps, ~224 min of play in the model (20565 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 2 of the Skyborne route: level 13 to 18, 146 steps, ~224 min of play in the model (20565 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
     {"type": "TRAVEL", "map": 1439, "zone": "Darkshore", "x": 37.6, "y": 43.5, "radius": 60, "note": "travel to Darkshore (Darkshore)"},
     {"type": "NOTE", "map": 1439, "zone": "Darkshore", "x": 37.6, "y": 43.5, "text": "set your hearthstone at the inn in Darkshore (if there is one)"},
@@ -106,6 +106,9 @@
     {"type": "TURNIN", "quest": 966, "questName": "The Tower of Althalaxx", "npc": 3661, "npcName": "Balthule Shadowstrike", "map": 1439, "zone": "Darkshore", "x": 55.0, "y": 24.9},
     {"type": "ACCEPT", "quest": 967, "questName": "The Tower of Althalaxx", "npc": 3661, "npcName": "Balthule Shadowstrike", "map": 1439, "zone": "Darkshore", "x": 55.0, "y": 24.9},
     {"type": "ACCEPT", "quest": 2098, "questName": "Gyromast's Retrieval", "npc": 6667, "npcName": "Gelkak Gyromast", "map": 1439, "zone": "Darkshore", "x": 56.6, "y": 13.5},
+    {"type": "ACCEPT", "quest": 2078, "questName": "Gyromast's Revenge", "npc": 6667, "npcName": "Gelkak Gyromast", "map": 1439, "zone": "Darkshore", "x": 56.6, "y": 13.5, "note": "group quest (elite mobs) - optional, take it only with company", "optional": true},
+    {"type": "KILL", "quest": 2078, "questName": "Gyromast's Revenge", "npc": 6669, "target": "The Threshwackonator 4100", "count": 1, "map": 1439, "zone": "Darkshore", "x": 55.8, "y": 18.3, "optional": true},
+    {"type": "TURNIN", "quest": 2078, "questName": "Gyromast's Revenge", "npc": 6667, "npcName": "Gelkak Gyromast", "map": 1439, "zone": "Darkshore", "x": 56.6, "y": 13.5, "optional": true},
     {"type": "COLLECT", "quest": 2098, "questName": "Gyromast's Retrieval", "target": "Middle of Gelkak's Key / Bottom of Gelkak's Key", "map": 1439, "zone": "Darkshore", "x": 55.5, "y": 12.6, "near": true},
     {"type": "KILL", "quest": 2098, "questName": "Gyromast's Retrieval", "npc": 2323, "target": "Giant Foreststrider", "map": 1439, "zone": "Darkshore", "x": 61.6, "y": 12.3, "near": true, "note": "loot Top of Gelkak's Key"},
     {"type": "TURNIN", "quest": 2098, "questName": "Gyromast's Retrieval", "npc": 6667, "npcName": "Gelkak Gyromast", "map": 1439, "zone": "Darkshore", "x": 56.6, "y": 13.5},

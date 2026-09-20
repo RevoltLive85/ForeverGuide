@@ -10,7 +10,7 @@
   "zone": "Western Plaguelands",
   "next": "GEN_HORDE_SCOURGE_38_EASTERN_PLAGUELANDS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 37 of the Scourge route: level 51 to 51, 15 steps, ~29 min of play in the model (55919 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 37 of the Scourge route: level 51 to 51, 15 steps, ~29 min of play in the model (55919 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1422, "zone": "Western Plaguelands", "x": 39.2, "y": 64.3, "radius": 60, "note": "travel to Western Plaguelands (Western Plaguelands)"},
     {"type": "TURNIN", "quest": 5152, "questName": "Auntie Marlene", "npc": 10927, "npcName": "Marlene Redpath", "map": 1422, "zone": "Western Plaguelands", "x": 49.2, "y": 78.6},

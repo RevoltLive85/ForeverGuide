@@ -10,7 +10,7 @@
   "zone": "Loch Modan",
   "next": "GEN_ALLIANCE_HUMAN_05_REDRIDGE_MOUNTAINS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 4 of the Human route: level 15 to 17, 48 steps, ~103 min of play in the model (20211 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 4 of the Human route: level 15 to 17, 51 steps, ~103 min of play in the model (20211 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
     {"type": "TRAVEL", "map": 1432, "zone": "Loch Modan", "x": 35.7, "y": 49.1, "radius": 60, "note": "travel to Loch Modan (Loch Modan)"},
     {"type": "NOTE", "map": 1432, "zone": "Loch Modan", "x": 35.7, "y": 49.1, "text": "set your hearthstone at the inn in Loch Modan (if there is one)"},
@@ -51,6 +51,9 @@
     {"type": "COLLECT", "quest": 297, "questName": "Gathering Idols", "target": "Carved Stone Idol", "count": 8, "map": 1432, "zone": "Loch Modan", "x": 68, "y": 66.1, "near": true},
     {"type": "TURNIN", "quest": 297, "questName": "Gathering Idols", "npc": 1345, "npcName": "Magmar Fellhew", "map": 1432, "zone": "Loch Modan", "x": 64.9, "y": 66.7},
     {"type": "ACCEPT", "quest": 385, "questName": "Crocolisk Hunting", "npc": 1154, "npcName": "Marek Ironheart", "map": 1432, "zone": "Loch Modan", "x": 81.8, "y": 61.7},
+    {"type": "ACCEPT", "quest": 271, "questName": "Vyrin's Revenge", "npc": 1156, "npcName": "Vyrin Swiftwind", "map": 1432, "zone": "Loch Modan", "x": 81.7, "y": 64.1, "note": "group quest (elite mobs) - optional, take it only with company", "optional": true},
+    {"type": "KILL", "quest": 271, "questName": "Vyrin's Revenge", "npc": 1225, "target": "Ol' Sooty", "map": 1432, "zone": "Loch Modan", "x": 37.9, "y": 63.4, "optional": true},
+    {"type": "TURNIN", "quest": 271, "questName": "Vyrin's Revenge", "npc": 1187, "npcName": "Daryl the Youngling", "map": 1432, "zone": "Loch Modan", "x": 83.5, "y": 65.5, "optional": true},
     {"type": "ACCEPT", "quest": 257, "questName": "A Hunter's Boast", "npc": 1187, "npcName": "Daryl the Youngling", "map": 1432, "zone": "Loch Modan", "x": 83.5, "y": 65.5},
     {"type": "KILL", "quest": 257, "questName": "A Hunter's Boast", "npc": 1194, "target": "Mountain Buzzard", "count": 6, "map": 1432, "zone": "Loch Modan", "x": 79.3, "y": 66.9, "near": true},
     {"type": "TURNIN", "quest": 257, "questName": "A Hunter's Boast", "npc": 1187, "npcName": "Daryl the Youngling", "map": 1432, "zone": "Loch Modan", "x": 83.5, "y": 65.5},

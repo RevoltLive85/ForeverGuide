@@ -10,7 +10,7 @@
   "zone": "Feralas",
   "next": "GEN_ALLIANCE_DWARF_22_DESOLACE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 21 of the Dwarf route: level 41 to 42, 52 steps, ~132 min of play in the model (42045 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 21 of the Dwarf route: level 41 to 42, 52 steps, ~132 min of play in the model (42045 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1444, "zone": "Feralas", "x": 31.2, "y": 45.0, "radius": 60, "note": "travel to Feralas (Feralas)"},
     {"type": "NOTE", "map": 1444, "zone": "Feralas", "x": 31.2, "y": 45.0, "text": "set your hearthstone at the inn in Feralas (if there is one)"},

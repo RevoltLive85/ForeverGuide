@@ -12,15 +12,19 @@ ns.RegisterGuide({
     zone = "Ironforge",
     next = "GEN_ALLIANCE_SKYBORNE_08_REDRIDGE_MOUNTAINS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 7 of the Skyborne route: level 25 to 25, 8 steps, ~13 min of play in the model (43781 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 7 of the Skyborne route: level 25 to 25, 11 steps, ~13 min of play in the model (43781 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    stepCount = 11,
+    steps = function() return {
         { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 61.1, y = 46.6, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 1
         { type = "NOTE", map = 1455, zone = "Ironforge", x = 61.1, y = 46.6, text = "set your hearthstone at the inn in Ironforge (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 3
         { type = "ACCEPT", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 4
-        { type = "TURNIN", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 5
-        { type = "TURNIN", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 6
-        { type = "ACCEPT", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 7
-        { type = "TURNIN", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 8
-    },
+        { type = "ACCEPT", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.6, y = 50.3, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 5
+        { type = "KILL", quest = 2922, questName = "Save Techbot's Brain!", npc = 6231, target = "Techbot", map = 1426, zone = "Dun Morogh", x = 19.8, y = 31.9, optional = true }, -- 6
+        { type = "TURNIN", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.6, y = 50.3, optional = true }, -- 7
+        { type = "TURNIN", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 8
+        { type = "TURNIN", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 9
+        { type = "ACCEPT", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 10
+        { type = "TURNIN", quest = 971, questName = "Knowledge in the Deeps", npc = 2786, npcName = "Gerrig Bonegrip", map = 1455, zone = "Ironforge", x = 50.8, y = 5.6 }, -- 11
+    } end,
 })

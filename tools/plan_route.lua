@@ -114,8 +114,8 @@ end
 
 -- base filter: could this quest ever be on the route for this faction?
 local baseOK = {}
-local function questOK(id, factionMask)
-    local key = id * 2 + (factionMask == RACE_ALLIANCE and 0 or 1)
+local function questOK(id, factionMask, allowElite)
+    local key = id * 4 + (factionMask == RACE_ALLIANCE and 0 or 1) + (allowElite and 2 or 0)
     if baseOK[key] ~= nil then return baseOK[key] end
     local q = Q[id]
     local ok = q.zone and q.zone > 0 and not q.hidden and not q.removed
@@ -129,7 +129,7 @@ local function questOK(id, factionMask)
     if ok then
         local r = rec(id)
         if #r.starts == 0 or #r.ends == 0 then ok = false end
-        if ok and r.elite and not os.getenv("FG_ELITE") then ok = false end
+        if ok and r.elite and not allowElite and not os.getenv("FG_ELITE") then ok = false end
     end
     baseOK[key] = ok and true or false
     return baseOK[key]
@@ -788,6 +788,86 @@ local function zonePromising(state, zd)
     return n
 end
 
+-- ---- group (elite) quests as optional bonus steps -----------------------------------------
+-- The route never counts on elite quests: solo they are slow or impossible. But a giver the
+-- route already talks to may hand one out, and a player with company wants to know. Those
+-- quests are added as OPTIONAL steps (the engine walks past optional steps on its own):
+-- the accept right after the hub's other accepts, the objectives and turn-in behind it.
+local GROUP_RADIUS = 2.5      -- map units (0-100) from the route's own accept spot to the elite's giver
+local function addGroupQuests(steps, mask, lo, hi, doneBefore)
+    local elites = {}
+    for id in pairs(Q) do
+        if questOK(id, mask, true) and rec(id).elite then elites[#elites + 1] = id end
+    end
+    table.sort(elites)
+    local placed, turnedIn = {}, {}
+    for id in pairs(doneBefore or {}) do turnedIn[id] = true end
+    for _, s in ipairs(steps) do if s.type == "TURNIN" and s.quest then turnedIn[s.quest] = true end end
+    local out, added = {}, 0
+    local i = 1
+    while i <= #steps do
+        local s = steps[i]
+        out[#out + 1] = s
+        local nxt = steps[i + 1]
+        local clusterEnd = s.type == "ACCEPT" and s.x and s.map
+            and not (nxt and nxt.type == "ACCEPT" and nxt.map == s.map and nxt.x and math.abs(nxt.x - s.x) < GROUP_RADIUS and math.abs(nxt.y - s.y) < GROUP_RADIUS)
+        if clusterEnd then
+            for _, id in ipairs(elites) do
+                if not placed[id] then
+                    local r = rec(id)
+                    local q = r.q
+                    local levelOK = (q.req or 0) <= hi and (q.lvl or 0) >= lo - 1 and (q.lvl or 0) <= hi + 3
+                    local preOK = true
+                    for _, pre in ipairs(q.pre or {}) do if not turnedIn[pre] then preOK = false end end
+                    for _, pre in ipairs(q.pregroup or {}) do if not turnedIn[pre] then preOK = false end end
+                    if q.parent and not turnedIn[q.parent] then preOK = false end
+                    local giver
+                    if levelOK and preOK then
+                        for _, l in ipairs(r.starts) do
+                            if l.map == s.map and l.x and math.abs(l.x - s.x) < GROUP_RADIUS and math.abs(l.y - s.y) < GROUP_RADIUS then giver = l break end
+                        end
+                    end
+                    if giver then
+                        placed[id] = true
+                        added = added + 1
+                        local function loc(l) return { map = l.map, zone = Z.names[l.area] or Z.names[l.zone], x = l.x, y = l.y } end
+                        local acc = { type = "ACCEPT", quest = id, questName = q.n, optional = true,
+                                      note = "group quest (elite mobs) - optional, take it only with company" }
+                        if giver.kind == "npc" then acc.npc = giver.id acc.npcName = giver.name end
+                        for k, v in pairs(loc(giver)) do acc[k] = v end
+                        out[#out + 1] = acc
+                        for _, o in ipairs(r.objs) do
+                            if #o.locs > 0 then
+                                local best, bd
+                                for _, l in ipairs(o.locs) do
+                                    local d = (l.map == giver.map and l.x) and ((l.x - giver.x) ^ 2 + (l.y - giver.y) ^ 2) or 1e9
+                                    if not bd or d < bd then best, bd = l, d end
+                                end
+                                local st = { type = o.kind, quest = id, questName = q.n, target = o.name, optional = true }
+                                if o.count then st.count = o.count end
+                                if best.kind == "npc" and o.kind == "KILL" then st.npc = best.id end
+                                if #o.locs > 1 then st.near = true end
+                                for k, v in pairs(loc(best)) do st[k] = v end
+                                out[#out + 1] = st
+                            end
+                        end
+                        local fin = r.ends[1]
+                        for _, l in ipairs(r.ends) do if l.map == giver.map then fin = l break end end
+                        if fin then
+                            local ti = { type = "TURNIN", quest = id, questName = q.n, optional = true }
+                            if fin.kind == "npc" then ti.npc = fin.id ti.npcName = fin.name end
+                            for k, v in pairs(loc(fin)) do ti[k] = v end
+                            out[#out + 1] = ti
+                        end
+                    end
+                end
+            end
+        end
+        i = i + 1
+    end
+    return out, added
+end
+
 local function planRoute(startZone)
     local faction = startZone.faction
     local state = { xp = 0, time = 0, pos = nil, qs = {}, visits = {}, faction = faction,
@@ -981,8 +1061,13 @@ for _, run in ipairs(runs) do
             ids[i] = string.format("%s_%02d_%s", prefix, i, D.slug(zoneName))
         end
         local totalSteps = 0
+        local doneSoFar, groupAdded = {}, 0
         for i, ch in ipairs(chapters) do
             local zoneName = Z.names[ch.zone] or tostring(ch.zone)
+            local withGroup, added = addGroupQuests(ch.steps, zd.faction == "Alliance" and RACE_ALLIANCE or RACE_HORDE, ch.startLevel, math.max(ch.endLevel, ch.startLevel), doneSoFar)
+            ch.steps = withGroup
+            groupAdded = groupAdded + added
+            for _, st in ipairs(ch.steps) do if st.type == "TURNIN" and st.quest and not st.optional then doneSoFar[st.quest] = true end end
             local guide = {
                 id = ids[i],
                 name = string.format("%d. %s %d-%d (%s)", i, zoneName, ch.startLevel, ch.endLevel, key == "Scourge" and "Undead" or (key == "NightElf" and "Night Elf" or key)),
@@ -990,8 +1075,8 @@ for _, run in ipairs(runs) do
                 minLevel = ch.startLevel, maxLevel = math.max(ch.endLevel, ch.startLevel),
                 map = Z.areaToMap[ch.zone], zone = zoneName,
                 author = "ForeverGuide route planner",
-                notes = string.format("Chapter %d of the %s route: level %d to %d, %d steps, ~%d min of play in the model (%.0f xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-                    i, key, ch.startLevel, ch.endLevel, #ch.steps, math.floor(ch.time / 60 + 0.5), ch.time > 0 and ch.xp / ch.time * 3600 or 0),
+                notes = string.format("Chapter %d of the %s route: level %d to %d, %d steps, ~%d min of play in the model (%.0f xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps%s.",
+                    i, key, ch.startLevel, ch.endLevel, #ch.steps, math.floor(ch.time / 60 + 0.5), ch.time > 0 and ch.xp / ch.time * 3600 or 0, added > 0 and (" (" .. added .. " here)") or ""),
                 next = ids[i + 1],
             }
             local lines = { "{" }
@@ -1008,7 +1093,7 @@ for _, run in ipairs(runs) do
             totalSteps = totalSteps + #ch.steps
             print(string.format("%-48s L%2d-%2d %4d steps %5.0f min %6.0f xp/h", ids[i], ch.startLevel, ch.endLevel, #ch.steps, ch.time / 60, ch.time > 0 and ch.xp / ch.time * 3600 or 0))
         end
-        summary[#summary + 1] = string.format("%-9s %-8s reaches level %2d in %5.1f h modelled play (%.1f h of it grinding, %.1f h walking; %d chapters, %d steps)", key, zd.faction, level(state), state.time / 3600, (state.tGrind or 0) / 3600, (state.tTravel or 0) / 3600, #chapters, totalSteps)
+        summary[#summary + 1] = string.format("%-9s %-8s reaches level %2d in %5.1f h modelled play (%.1f h of it grinding, %.1f h walking; %d chapters, %d steps, %d optional group quests)", key, zd.faction, level(state), state.time / 3600, (state.tGrind or 0) / 3600, (state.tTravel or 0) / 3600, #chapters, totalSteps, groupAdded)
     end
 end
 -- ---- zone guides: one standalone chapter per zone and faction, for anyone who wants that zone ----
@@ -1046,6 +1131,7 @@ for _, zd in ipairs(D.ZONES) do
             if turnins >= 6 then
                 local zoneName = Z.names[zd.id] or tostring(zd.id)
                 local id = "GEN_ZONE_" .. faction:upper() .. "_" .. D.slug(zoneName)
+                steps = addGroupQuests(steps, faction == "Alliance" and RACE_ALLIANCE or RACE_HORDE, zd.min, zd.max, {})
                 local guide = {
                     id = id, name = string.format("Zone: %s %d-%d (%s)", zoneName, zd.min, zd.max, faction), version = 2, faction = faction,
                     minLevel = zd.min, maxLevel = zd.max, map = Z.areaToMap[zd.id], zone = zoneName, author = "ForeverGuide route planner",

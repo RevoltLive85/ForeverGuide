@@ -10,7 +10,7 @@
   "zone": "Ashenvale",
   "next": "GEN_ALLIANCE_DWARF_11_THOUSAND_NEEDLES",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 10 of the Dwarf route: level 25 to 28, 81 steps, ~226 min of play in the model (22251 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 10 of the Dwarf route: level 25 to 28, 81 steps, ~226 min of play in the model (22251 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1440, "zone": "Ashenvale", "x": 61.8, "y": 83.8, "radius": 60, "note": "travel to Ashenvale (Ashenvale)"},
     {"type": "NOTE", "map": 1440, "zone": "Ashenvale", "x": 61.8, "y": 83.8, "text": "set your hearthstone at the inn in Ashenvale (if there is one)"},

@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Un'Goro Crater",
     next = "GEN_ALLIANCE_NIGHTELF_45_SILITHUS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 44 of the NightElf route: level 53 to 54, 14 steps, ~96 min of play in the model (15492 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 44 of the NightElf route: level 53 to 54, 14 steps, ~96 min of play in the model (15492 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 14,
+    steps = function() return {
         { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 6.8, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 1
         { type = "ACCEPT", quest = 4492, questName = "Lost!", npc = 9997, npcName = "Spraggle Frock", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 8.5 }, -- 2
         { type = "COMPLETE", quest = 4492, questName = "Lost!", target = "Escort Ringo to Spraggle Frock at Marshal's Refuge", map = 1449, zone = "Un'Goro Crater", x = 43.7, y = 8.3, note = "escort - stay close, it can fail: Escort Ringo to Spraggle Frock at Marshal's Refuge" }, -- 3
@@ -28,5 +29,5 @@ ns.RegisterGuide({
         { type = "KILL", quest = 4301, questName = "The Mighty U'cha", npc = 9622, target = "U'cha", map = 1449, zone = "Un'Goro Crater", x = 68.1, y = 12.6, note = "loot U'cha's Pelt" }, -- 12
         { type = "TURNIN", quest = 4301, questName = "The Mighty U'cha", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 13
         { type = "GRIND", npc = 9167, target = "Frenzied Pterrordax", level = 54, map = 1449, zone = "Un'Goro Crater", x = 41, y = 64.8, near = true, note = "grind Frenzied Pterrordax (level 51-54) to level 54 - nothing worth questing at 53" }, -- 14
-    },
+    } end,
 })

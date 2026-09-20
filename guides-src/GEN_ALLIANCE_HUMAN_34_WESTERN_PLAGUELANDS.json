@@ -10,7 +10,7 @@
   "zone": "Western Plaguelands",
   "next": "GEN_ALLIANCE_HUMAN_35_EASTERN_PLAGUELANDS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 34 of the Human route: level 50 to 50, 56 steps, ~133 min of play in the model (54007 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 34 of the Human route: level 50 to 50, 56 steps, ~133 min of play in the model (54007 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1422, "zone": "Western Plaguelands", "x": 43.4, "y": 83.7, "radius": 60, "note": "travel to Western Plaguelands (Western Plaguelands)"},
     {"type": "NOTE", "map": 1422, "zone": "Western Plaguelands", "x": 43.4, "y": 83.7, "text": "set your hearthstone at the inn in Western Plaguelands (if there is one)"},

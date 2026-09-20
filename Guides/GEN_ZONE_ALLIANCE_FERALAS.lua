@@ -11,7 +11,8 @@ ns.RegisterGuide({
     zone = "Feralas",
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Feralas for a Alliance character, 20 quests. The race routes are the faster path; pick this when you just want to quest here.",
-    steps = {
+    stepCount = 52,
+    steps = function() return {
         { type = "TRAVEL", map = 1444, zone = "Feralas", x = 31.2, y = 45.0, radius = 60, note = "travel to Feralas (Feralas)" }, -- 1
         { type = "NOTE", map = 1444, zone = "Feralas", x = 31.2, y = 45.0, text = "set your hearthstone at the inn in Feralas (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 4124, questName = "The Missing Courier", npc = 7877, npcName = "Latronicus Moonspear", map = 1444, zone = "Feralas", x = 30.4, y = 46.2 }, -- 3
@@ -64,5 +65,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 4265, questName = "Freed from the Hive", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 50
         { type = "ACCEPT", quest = 4266, questName = "A Hero's Welcome", npc = 7880, npcName = "Ginro Hearthkindle", map = 1444, zone = "Feralas", x = 31.9, y = 45.1 }, -- 51
         { type = "TURNIN", quest = 4266, questName = "A Hero's Welcome", npc = 3936, npcName = "Shandris Feathermoon", map = 1444, zone = "Feralas", x = 30.3, y = 46.2 }, -- 52
-    },
+    } end,
 })

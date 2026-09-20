@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Thousand Needles",
     next = "GEN_ALLIANCE_HUMAN_11_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 10 of the Human route: level 28 to 29, 16 steps, ~60 min of play in the model (26341 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 10 of the Human route: level 28 to 29, 16 steps, ~60 min of play in the model (26341 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 16,
+    steps = function() return {
         { type = "TRAVEL", map = 1441, zone = "Thousand Needles", x = 78.8, y = 76.7, radius = 60, note = "travel to Thousand Needles (Thousand Needles)" }, -- 1
         { type = "NOTE", map = 1441, zone = "Thousand Needles", x = 78.8, y = 76.7, text = "set your hearthstone at the inn in Thousand Needles (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 1104, questName = "Salt Flat Venom", npc = 4454, npcName = "Fizzle Brassbolts", map = 1441, zone = "Thousand Needles", x = 78.1, y = 77.1 }, -- 3
@@ -30,5 +31,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1176, questName = "Load Lightening", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80.2, y = 75.9 }, -- 14
         { type = "COLLECT", quest = 1176, questName = "Load Lightening", target = "Hollow Vulture Bone", count = 10, map = 1441, zone = "Thousand Needles", x = 83, y = 70.7, near = true }, -- 15
         { type = "TURNIN", quest = 1176, questName = "Load Lightening", npc = 4630, npcName = "Pozzik", map = 1441, zone = "Thousand Needles", x = 80.2, y = 75.9 }, -- 16
-    },
+    } end,
 })

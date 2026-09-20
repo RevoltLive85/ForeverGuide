@@ -11,7 +11,8 @@ ns.RegisterGuide({
     zone = "Ashenvale",
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Ashenvale for a Horde character, 11 quests. The race routes are the faster path; pick this when you just want to quest here.",
-    steps = {
+    stepCount = 33,
+    steps = function() return {
         { type = "TRAVEL", map = 1440, zone = "Ashenvale", x = 72.6, y = 63.9, radius = 60, note = "travel to Ashenvale (Ashenvale)" }, -- 1
         { type = "NOTE", map = 1440, zone = "Ashenvale", x = 72.6, y = 63.9, text = "set your hearthstone at the inn in Ashenvale (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 6442, questName = "Naga at the Zoram Strand", npc = 12719, npcName = "Marukai", map = 1440, zone = "Ashenvale", x = 11.7, y = 34.9 }, -- 3
@@ -45,5 +46,5 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 6441, questName = "Satyr Horns", target = "Satyr Horns", count = 16, map = 1440, zone = "Ashenvale", x = 68.4, y = 54.5, near = true }, -- 31
         { type = "TURNIN", quest = 6441, questName = "Satyr Horns", npc = 12724, npcName = "Pixel", map = 1440, zone = "Ashenvale", x = 73.1, y = 61.5 }, -- 32
         { type = "TURNIN", quest = 6621, questName = "King of the Foulweald", npc = 12757, npcName = "Karang Amakkar", map = 1440, zone = "Ashenvale", x = 11.9, y = 34.5 }, -- 33
-    },
+    } end,
 })

@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Badlands",
     next = "GEN_HORDE_ORC_10_SWAMP_OF_SORROWS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 9 of the Orc route: level 36 to 38, 42 steps, ~145 min of play in the model (39902 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 9 of the Orc route: level 36 to 38, 42 steps, ~145 min of play in the model (39902 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 42,
+    steps = function() return {
         { type = "TRAVEL", map = 1417, zone = "Arathi Highlands", x = 73.6, y = 31.8, radius = 60, note = "use your hearthstone (Arathi Highlands)" }, -- 1
         { type = "TRAVEL", map = 1418, zone = "Badlands", x = 3.5, y = 47.0, radius = 60, note = "travel to Badlands (Badlands)" }, -- 2
         { type = "NOTE", map = 1418, zone = "Badlands", x = 3.5, y = 47.0, text = "set your hearthstone at the inn in Badlands (if there is one)" }, -- 3
@@ -56,5 +57,5 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 703, questName = "Barbecued Buzzard Wings", target = "Buzzard Wing", count = 4, map = 1418, zone = "Badlands", x = 48.9, y = 27.4, near = true }, -- 40
         { type = "TURNIN", quest = 2418, questName = "Power Stones", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 41
         { type = "TURNIN", quest = 703, questName = "Barbecued Buzzard Wings", npc = 2817, npcName = "Rigglefuzz", map = 1418, zone = "Badlands", x = 42.4, y = 52.9 }, -- 42
-    },
+    } end,
 })

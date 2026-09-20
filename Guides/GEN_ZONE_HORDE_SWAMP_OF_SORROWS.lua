@@ -11,7 +11,8 @@ ns.RegisterGuide({
     zone = "Swamp of Sorrows",
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Swamp of Sorrows for a Horde character, 9 quests. The race routes are the faster path; pick this when you just want to quest here.",
-    steps = {
+    stepCount = 31,
+    steps = function() return {
         { type = "TRAVEL", map = 1435, zone = "Swamp of Sorrows", x = 40.2, y = 60.6, radius = 60, note = "travel to Swamp of Sorrows (Swamp of Sorrows)" }, -- 1
         { type = "NOTE", map = 1435, zone = "Swamp of Sorrows", x = 40.2, y = 60.6, text = "set your hearthstone at the inn in Swamp of Sorrows (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 698, questName = "Lack of Surplus", npc = 5591, npcName = "Dar", map = 1435, zone = "Swamp of Sorrows", x = 44.7, y = 57.2 }, -- 3
@@ -43,5 +44,5 @@ ns.RegisterGuide({
         { type = "KILL", quest = 1428, questName = "Continued Threat", npc = 752, target = "Marsh Oracle", count = 10, map = 1435, zone = "Swamp of Sorrows", x = 94.9, y = 61, near = true }, -- 29
         { type = "KILL", quest = 1428, questName = "Continued Threat", npc = 751, target = "Marsh Flesheater", count = 10, map = 1435, zone = "Swamp of Sorrows", x = 94.4, y = 52.5, near = true }, -- 30
         { type = "TURNIN", quest = 1428, questName = "Continued Threat", npc = 5593, npcName = "Katar", map = 1435, zone = "Swamp of Sorrows", x = 83.8, y = 80.4 }, -- 31
-    },
+    } end,
 })

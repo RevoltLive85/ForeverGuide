@@ -11,7 +11,8 @@ ns.RegisterGuide({
     zone = "Dustwallow Marsh",
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Dustwallow Marsh for a Horde character, 15 quests. The race routes are the faster path; pick this when you just want to quest here.",
-    steps = {
+    stepCount = 39,
+    steps = function() return {
         { type = "TRAVEL", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 32.1, radius = 60, note = "travel to Dustwallow Marsh (Dustwallow Marsh)" }, -- 1
         { type = "NOTE", map = 1445, zone = "Dustwallow Marsh", x = 36.4, y = 32.1, text = "set your hearthstone at the inn in Dustwallow Marsh (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 1201, questName = "Theramore Spies", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 3
@@ -51,5 +52,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1240, questName = "The Troll Witchdoctor", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 37
         { type = "COLLECT", quest = 1202, questName = "The Theramore Docks", target = "Captain's Documents", map = 1445, zone = "Dustwallow Marsh", x = 71.5, y = 51.2 }, -- 38
         { type = "TURNIN", quest = 1202, questName = "The Theramore Docks", npc = 4791, npcName = "Nazeer Bloodpike", map = 1445, zone = "Dustwallow Marsh", x = 35.2, y = 30.7 }, -- 39
-    },
+    } end,
 })

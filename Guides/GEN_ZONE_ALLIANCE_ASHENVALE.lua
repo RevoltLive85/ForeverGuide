@@ -11,7 +11,8 @@ ns.RegisterGuide({
     zone = "Ashenvale",
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Ashenvale for a Alliance character, 24 quests. The race routes are the faster path; pick this when you just want to quest here.",
-    steps = {
+    stepCount = 65,
+    steps = function() return {
         { type = "TRAVEL", map = 1440, zone = "Ashenvale", x = 61.8, y = 83.8, radius = 60, note = "travel to Ashenvale (Ashenvale)" }, -- 1
         { type = "NOTE", map = 1440, zone = "Ashenvale", x = 61.8, y = 83.8, text = "set your hearthstone at the inn in Ashenvale (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 8372, questName = "Fight for Warsong Gulch", npc = 15351, npcName = "Alliance Brigadier General", map = 1440, zone = "Ashenvale", x = 61.9, y = 83.8 }, -- 3
@@ -77,5 +78,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 1009, questName = "Ruuzel", npc = 3846, npcName = "Talen", map = 1440, zone = "Ashenvale", x = 14.8, y = 31.3 }, -- 63
         { type = "KILL", quest = 1009, questName = "Ruuzel", npc = 3943, target = "Ruuzel", map = 1440, zone = "Ashenvale", x = 7.2, y = 13.1, note = "loot Ring of Zoram" }, -- 64
         { type = "TURNIN", quest = 1009, questName = "Ruuzel", npc = 3846, npcName = "Talen", map = 1440, zone = "Ashenvale", x = 14.8, y = 31.3 }, -- 65
-    },
+    } end,
 })

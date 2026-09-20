@@ -11,7 +11,8 @@ ns.RegisterGuide({
     zone = "Badlands",
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Badlands for a Horde character, 14 quests. The race routes are the faster path; pick this when you just want to quest here.",
-    steps = {
+    stepCount = 41,
+    steps = function() return {
         { type = "TRAVEL", map = 1418, zone = "Badlands", x = 3.5, y = 47.0, radius = 60, note = "travel to Badlands (Badlands)" }, -- 1
         { type = "NOTE", map = 1418, zone = "Badlands", x = 3.5, y = 47.0, text = "set your hearthstone at the inn in Badlands (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 1419, questName = "Coyote Thieves", npc = 5394, npcName = "Neeka Bloodscar", map = 1418, zone = "Badlands", x = 6.5, y = 47.2 }, -- 3
@@ -53,5 +54,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 2202, questName = "Uldaman Reagent Run", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.4, y = 46.1 }, -- 39
         { type = "COLLECT", quest = 2202, questName = "Uldaman Reagent Run", target = "Magenta Fungus Cap", count = 12, map = 1418, zone = "Badlands", x = 34, y = 24.4, near = true }, -- 40
         { type = "TURNIN", quest = 2202, questName = "Uldaman Reagent Run", npc = 6868, npcName = "Jarkal Mossmeld", map = 1418, zone = "Badlands", x = 2.4, y = 46.1 }, -- 41
-    },
+    } end,
 })

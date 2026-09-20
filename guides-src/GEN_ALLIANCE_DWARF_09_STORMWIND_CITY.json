@@ -10,7 +10,7 @@
   "zone": "Stormwind City",
   "next": "GEN_ALLIANCE_DWARF_10_ASHENVALE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 9 of the Dwarf route: level 25 to 25, 7 steps, ~9 min of play in the model (22017 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 9 of the Dwarf route: level 25 to 25, 7 steps, ~9 min of play in the model (22017 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1453, "zone": "Stormwind City", "x": 75.0, "y": 31.0, "radius": 60, "note": "travel to Stormwind City (Stormwind City)"},
     {"type": "NOTE", "map": 1453, "zone": "Stormwind City", "x": 75.0, "y": 31.0, "text": "set your hearthstone at the inn in Stormwind City (if there is one)"},

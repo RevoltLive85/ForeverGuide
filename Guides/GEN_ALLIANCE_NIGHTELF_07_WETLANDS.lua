@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Wetlands",
     next = "GEN_ALLIANCE_NIGHTELF_08_IRONFORGE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 7 of the NightElf route: level 22 to 24, 64 steps, ~174 min of play in the model (26942 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 7 of the NightElf route: level 22 to 24, 64 steps, ~174 min of play in the model (26942 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 64,
+    steps = function() return {
         { type = "TRAVEL", map = 1437, zone = "Wetlands", x = 10.3, y = 58.9, radius = 60, note = "travel to Wetlands (Wetlands)" }, -- 1
         { type = "NOTE", map = 1437, zone = "Wetlands", x = 10.3, y = 58.9, text = "set your hearthstone at the inn in Wetlands (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 279, questName = "Claws from the Deep", npc = 1242, npcName = "Karl Boran", map = 1437, zone = "Wetlands", x = 8.3, y = 58.6 }, -- 3
@@ -78,5 +79,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 464, questName = "War Banners", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.9, y = 57.5 }, -- 62
         { type = "ACCEPT", quest = 465, questName = "Nek'rosh's Gambit", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.9, y = 57.5 }, -- 63
         { type = "TURNIN", quest = 465, questName = "Nek'rosh's Gambit", map = 1437, zone = "Wetlands", x = 47.5, y = 47 }, -- 64
-    },
+    } end,
 })

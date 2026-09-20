@@ -10,7 +10,7 @@
   "zone": "Desolace",
   "next": "GEN_HORDE_ORC_15_STRANGLETHORN_VALE",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 14 of the Orc route: level 42 to 43, 59 steps, ~111 min of play in the model (40803 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 14 of the Orc route: level 42 to 43, 59 steps, ~111 min of play in the model (40803 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1443, "zone": "Desolace", "x": 54.2, "y": 57.2, "radius": 60, "note": "travel to Desolace (Desolace)"},
     {"type": "NOTE", "map": 1443, "zone": "Desolace", "x": 54.2, "y": 57.2, "text": "set your hearthstone at the inn in Desolace (if there is one)"},

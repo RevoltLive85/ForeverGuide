@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Western Plaguelands",
     next = "GEN_ALLIANCE_HUMAN_40_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 39 of the Human route: level 52 to 52, 8 steps, ~41 min of play in the model (39039 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 39 of the Human route: level 52 to 52, 8 steps, ~41 min of play in the model (39039 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 8,
+    steps = function() return {
         { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 43.0, y = 84.1, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 1
         { type = "ACCEPT", quest = 5343, questName = "Barov Family Fortune", npc = 11023, npcName = "Weldon Barov", map = 1422, zone = "Western Plaguelands", x = 43.5, y = 83.7 }, -- 2
         { type = "TURNIN", quest = 5343, questName = "Barov Family Fortune", npc = 11023, npcName = "Weldon Barov", map = 1422, zone = "Western Plaguelands", x = 43.5, y = 83.7 }, -- 3
@@ -22,5 +23,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 6
         { type = "KILL", quest = 5060, questName = "Locked Away", npc = 10836, target = "Farmer Dalson", map = 1422, zone = "Western Plaguelands", x = 48.2, y = 49.7, note = "loot Dalson Cabinet Key" }, -- 7
         { type = "TURNIN", quest = 5060, questName = "Locked Away", map = 1422, zone = "Western Plaguelands", x = 47.4, y = 49.6 }, -- 8
-    },
+    } end,
 })

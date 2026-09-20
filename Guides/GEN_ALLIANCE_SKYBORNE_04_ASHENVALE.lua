@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Ashenvale",
     next = "GEN_ALLIANCE_SKYBORNE_05_DARKSHORE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 4 of the Skyborne route: level 19 to 22, 77 steps, ~208 min of play in the model (23177 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 4 of the Skyborne route: level 19 to 22, 77 steps, ~208 min of play in the model (23177 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 77,
+    steps = function() return {
         { type = "TRAVEL", map = 1440, zone = "Ashenvale", x = 61.8, y = 83.8, radius = 60, note = "travel to Ashenvale (Ashenvale)" }, -- 1
         { type = "NOTE", map = 1440, zone = "Ashenvale", x = 61.8, y = 83.8, text = "set your hearthstone at the inn in Ashenvale (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 8372, questName = "Fight for Warsong Gulch", npc = 15351, npcName = "Alliance Brigadier General", map = 1440, zone = "Ashenvale", x = 61.9, y = 83.8 }, -- 3
@@ -91,5 +92,5 @@ ns.RegisterGuide({
         { type = "COMPLETE", quest = 1140, questName = "The Tower of Althalaxx", target = "Circle of Imprisonment", map = 1440, zone = "Ashenvale", x = 81.6, y = 48.6, note = "Free the Highborne soul in Satyrnaar" }, -- 75
         { type = "TURNIN", quest = 1140, questName = "The Tower of Althalaxx", npc = 3663, npcName = "Delgren the Purifier", map = 1440, zone = "Ashenvale", x = 26.2, y = 38.7 }, -- 76
         { type = "ACCEPT", quest = 1167, questName = "The Tower of Althalaxx", npc = 3663, npcName = "Delgren the Purifier", map = 1440, zone = "Ashenvale", x = 26.2, y = 38.7 }, -- 77
-    },
+    } end,
 })

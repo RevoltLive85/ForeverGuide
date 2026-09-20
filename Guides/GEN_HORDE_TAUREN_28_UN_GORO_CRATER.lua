@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Un'Goro Crater",
     next = "GEN_HORDE_TAUREN_29_ORGRIMMAR",
     author = "ForeverGuide route planner",
-    notes = "Chapter 28 of the Tauren route: level 49 to 49, 14 steps, ~45 min of play in the model (49486 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 28 of the Tauren route: level 49 to 49, 14 steps, ~45 min of play in the model (49486 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 14,
+    steps = function() return {
         { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 6.6, radius = 60, note = "use your hearthstone (Un'Goro Crater)" }, -- 1
         { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 44.0, y = 8.0, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 2
         { type = "ACCEPT", quest = 3882, questName = "Roll the Bones", npc = 9272, npcName = "Spark Nilminer", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 7.4 }, -- 3
@@ -28,5 +29,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 4503, questName = "Shizzle's Flyer", npc = 9998, npcName = "Shizzle", map = 1449, zone = "Un'Goro Crater", x = 44.2, y = 11.6 }, -- 12
         { type = "TURNIN", quest = 4501, questName = "Beware of Pterrordax", npc = 9997, npcName = "Spraggle Frock", map = 1449, zone = "Un'Goro Crater", x = 43.6, y = 8.5 }, -- 13
         { type = "TURNIN", quest = 3882, questName = "Roll the Bones", npc = 9272, npcName = "Spark Nilminer", map = 1449, zone = "Un'Goro Crater", x = 43.5, y = 7.4 }, -- 14
-    },
+    } end,
 })

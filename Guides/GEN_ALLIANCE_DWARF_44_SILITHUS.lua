@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Silithus",
     next = "GEN_ALLIANCE_DWARF_45_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
-    notes = "Chapter 44 of the Dwarf route: level 54 to 54, 37 steps, ~164 min of play in the model (46030 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 44 of the Dwarf route: level 54 to 54, 37 steps, ~164 min of play in the model (46030 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 37,
+    steps = function() return {
         { type = "TRAVEL", map = 1451, zone = "Silithus", x = 50.1, y = 37.5, radius = 60, note = "travel to Silithus (Silithus)" }, -- 1
         { type = "NOTE", map = 1451, zone = "Silithus", x = 50.1, y = 37.5, text = "set your hearthstone at the inn in Silithus (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 8280, questName = "Securing the Supply Lines", npc = 15191, npcName = "Windcaller Proudhorn", map = 1451, zone = "Silithus", x = 51.2, y = 38.3 }, -- 3
@@ -51,5 +52,5 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 8323, questName = "True Believers", target = "Encrypted Twilight Text", count = 10, map = 1451, zone = "Silithus", x = 41.5, y = 45.2, near = true }, -- 35
         { type = "TURNIN", quest = 8323, questName = "True Believers", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 36
         { type = "TURNIN", quest = 8287, questName = "A Terrible Purpose", npc = 15181, npcName = "Commander Mar'alith", map = 1451, zone = "Silithus", x = 49.2, y = 34.2 }, -- 37
-    },
+    } end,
 })

@@ -10,7 +10,7 @@
   "zone": "Azshara",
   "next": "GEN_HORDE_SKYBORNE_27_UN_GORO_CRATER",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 26 of the Skyborne route: level 48 to 49, 7 steps, ~32 min of play in the model (32053 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 26 of the Skyborne route: level 48 to 49, 7 steps, ~32 min of play in the model (32053 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1447, "zone": "Azshara", "x": 60.8, "y": 66.4, "radius": 60, "note": "travel to Azshara (Azshara)"},
     {"type": "ACCEPT", "quest": 3601, "questName": "Kim'jael Indeed!", "npc": 8420, "npcName": "Kim'jael", "map": 1447, "zone": "Azshara", "x": 53.5, "y": 21.8},

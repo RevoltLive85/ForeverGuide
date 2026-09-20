@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Badlands",
     next = "GEN_ALLIANCE_DWARF_17_DESOLACE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 16 of the Dwarf route: level 35 to 36, 41 steps, ~121 min of play in the model (39113 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 16 of the Dwarf route: level 35 to 36, 41 steps, ~121 min of play in the model (39113 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 41,
+    steps = function() return {
         { type = "TRAVEL", map = 1418, zone = "Badlands", x = 49.9, y = 47.6, radius = 60, note = "travel to Badlands (Badlands)" }, -- 1
         { type = "NOTE", map = 1418, zone = "Badlands", x = 49.9, y = 47.6, text = "set your hearthstone at the inn in Badlands (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 719, questName = "A Dwarf and His Tools", npc = 2910, npcName = "Prospector Ryedol", map = 1418, zone = "Badlands", x = 53.4, y = 43.4 }, -- 3
@@ -55,5 +56,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 778, questName = "This Is Going to Be Hard", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 39
         { type = "KILL", quest = 778, questName = "This Is Going to Be Hard", npc = 2919, target = "Fam'retor Guardian", map = 1418, zone = "Badlands", x = 26, y = 45.8, note = "loot Lotwil's Shackles of Elemental Binding" }, -- 40
         { type = "TURNIN", quest = 778, questName = "This Is Going to Be Hard", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 41
-    },
+    } end,
 })

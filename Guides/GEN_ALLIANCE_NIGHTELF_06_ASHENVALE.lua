@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Ashenvale",
     next = "GEN_ALLIANCE_NIGHTELF_07_WETLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 6 of the NightElf route: level 19 to 22, 75 steps, ~209 min of play in the model (22640 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 6 of the NightElf route: level 19 to 22, 75 steps, ~209 min of play in the model (22640 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 75,
+    steps = function() return {
         { type = "TRAVEL", map = 1440, zone = "Ashenvale", x = 61.8, y = 83.8, radius = 60, note = "travel to Ashenvale (Ashenvale)" }, -- 1
         { type = "NOTE", map = 1440, zone = "Ashenvale", x = 61.8, y = 83.8, text = "set your hearthstone at the inn in Ashenvale (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 1008, questName = "The Zoram Strand", npc = 3845, npcName = "Shindrell Swiftfire", map = 1440, zone = "Ashenvale", x = 34.7, y = 48.8 }, -- 3
@@ -89,5 +90,5 @@ ns.RegisterGuide({
         { type = "COMPLETE", quest = 1140, questName = "The Tower of Althalaxx", target = "Circle of Imprisonment", map = 1440, zone = "Ashenvale", x = 81.6, y = 48.6, note = "Free the Highborne soul in Satyrnaar" }, -- 73
         { type = "TURNIN", quest = 1140, questName = "The Tower of Althalaxx", npc = 3663, npcName = "Delgren the Purifier", map = 1440, zone = "Ashenvale", x = 26.2, y = 38.7 }, -- 74
         { type = "ACCEPT", quest = 1167, questName = "The Tower of Althalaxx", npc = 3663, npcName = "Delgren the Purifier", map = 1440, zone = "Ashenvale", x = 26.2, y = 38.7 }, -- 75
-    },
+    } end,
 })

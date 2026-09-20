@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Silverpine Forest",
     next = "GEN_HORDE_SCOURGE_04_THE_BARRENS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 3 of the Scourge route: level 12 to 15, 61 steps, ~123 min of play in the model (17482 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 3 of the Scourge route: level 12 to 15, 61 steps, ~123 min of play in the model (17482 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 61,
+    steps = function() return {
         { type = "TRAVEL", map = 1421, zone = "Silverpine Forest", x = 43.7, y = 40.7, radius = 60, note = "travel to Silverpine Forest (Silverpine Forest)" }, -- 1
         { type = "NOTE", map = 1421, zone = "Silverpine Forest", x = 43.7, y = 40.7, text = "set your hearthstone at the inn in Silverpine Forest (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 421, questName = "Prove Your Worth", npc = 1938, npcName = "Dalar Dawnweaver", map = 1421, zone = "Silverpine Forest", x = 44.2, y = 39.8 }, -- 3
@@ -75,5 +76,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 425, questName = "Ivar the Foul", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 59
         { type = "KILL", quest = 425, questName = "Ivar the Foul", npc = 1971, target = "Ivar the Foul", map = 1421, zone = "Silverpine Forest", x = 51.5, y = 13.9, note = "loot Ivar's Head" }, -- 60
         { type = "TURNIN", quest = 425, questName = "Ivar the Foul", npc = 1950, npcName = "Rane Yorick", map = 1421, zone = "Silverpine Forest", x = 53.5, y = 13.4 }, -- 61
-    },
+    } end,
 })

@@ -10,7 +10,7 @@
   "zone": "Eastern Plaguelands",
   "next": "GEN_ALLIANCE_SKYBORNE_40_WESTERN_PLAGUELANDS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 39 of the Skyborne route: level 52 to 53, 21 steps, ~212 min of play in the model (18103 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 39 of the Skyborne route: level 52 to 53, 24 steps, ~212 min of play in the model (18103 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
   "steps": [
     {"type": "TRAVEL", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.4, "y": 59.0, "radius": 60, "note": "travel to Eastern Plaguelands (Eastern Plaguelands)"},
     {"type": "TURNIN", "quest": 5210, "questName": "Brother Carlin", "npc": 11063, "npcName": "Carlin Redpath", "map": 1423, "zone": "Eastern Plaguelands", "x": 81.5, "y": 59.8},
@@ -21,6 +21,9 @@
     {"type": "ACCEPT", "quest": 5542, "questName": "Demon Dogs", "npc": 1855, "npcName": "Tirion Fordring", "map": 1423, "zone": "Eastern Plaguelands", "x": 7.6, "y": 43.7},
     {"type": "ACCEPT", "quest": 5543, "questName": "Blood Tinged Skies", "npc": 1855, "npcName": "Tirion Fordring", "map": 1423, "zone": "Eastern Plaguelands", "x": 7.6, "y": 43.7},
     {"type": "ACCEPT", "quest": 5544, "questName": "Carrion Grubbage", "npc": 1855, "npcName": "Tirion Fordring", "map": 1423, "zone": "Eastern Plaguelands", "x": 7.6, "y": 43.7},
+    {"type": "ACCEPT", "quest": 5742, "questName": "Redemption", "npc": 1855, "npcName": "Tirion Fordring", "map": 1423, "zone": "Eastern Plaguelands", "x": 7.6, "y": 43.7, "note": "group quest (elite mobs) - optional, take it only with company", "optional": true},
+    {"type": "KILL", "quest": 5742, "questName": "Redemption", "npc": 1855, "target": "Tirion Fordring", "count": 1, "map": 1423, "zone": "Eastern Plaguelands", "x": 7.6, "y": 43.7, "optional": true},
+    {"type": "TURNIN", "quest": 5742, "questName": "Redemption", "npc": 1855, "npcName": "Tirion Fordring", "map": 1423, "zone": "Eastern Plaguelands", "x": 7.6, "y": 43.7, "optional": true},
     {"type": "COLLECT", "quest": 5544, "questName": "Carrion Grubbage", "target": "Slab of Carrion Worm Meat", "count": 15, "map": 1423, "zone": "Eastern Plaguelands", "x": 6.8, "y": 42.2, "near": true},
     {"type": "TURNIN", "quest": 5544, "questName": "Carrion Grubbage", "npc": 1855, "npcName": "Tirion Fordring", "map": 1423, "zone": "Eastern Plaguelands", "x": 7.6, "y": 43.7},
     {"type": "KILL", "quest": 5542, "questName": "Demon Dogs", "npc": 8596, "target": "Plaguehound Runt", "count": 20, "map": 1423, "zone": "Eastern Plaguelands", "x": 7.7, "y": 53.9, "near": true},

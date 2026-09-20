@@ -514,6 +514,58 @@ do
     check(cur() == 5, "two TRAVEL steps to the same spot both complete on arrival (" .. tostring(cur()) .. ")")
 end
 
+-- ---- optional group quests ------------------------------------------------------------------
+do
+    ns.RegisterGuide({ id = "AUDIT_GROUP", name = "group", steps = {
+        { type = "ACCEPT", quest = 4001 },
+        { type = "ACCEPT", quest = 4002, optional = true, note = "group quest" },
+        { type = "KILL", quest = 4002, target = "Kobold Vermin", optional = true },
+        { type = "TURNIN", quest = 4002, optional = true },
+        { type = "TURNIN", quest = 4001 } } })
+    if ns.Quest:IsOnQuest(4001) then MOCK_ABANDON(4001); settle() end
+    G:Activate("AUDIT_GROUP", true); settle()
+    MOCK_ACCEPT(4001, "Base quest", {}); settle()
+    check(cur() == 5 and step().type == "TURNIN" and step().quest == 4001, "optional group quest steps are walked past when the quest is not taken (" .. tostring(cur()) .. ")")
+    MOCK_ACCEPT(4002, "Group quest", { { text = "Kobold Vermin slain", finished = false, numFulfilled = 0, numRequired = 5 } }); settle()
+    check(cur() == 3 and step().quest == 4002, "taking the group quest by hand guides its objectives (" .. tostring(cur()) .. ")")
+    MOCK_ABANDON(4002); settle()
+    check(cur() == 5, "dropping it walks past again (" .. tostring(cur()) .. ")")
+    MOCK_TURNIN(4001); settle()
+end
+
+-- ---- full quest log ---------------------------------------------------------------------------
+do
+    ns.RegisterGuide({ id = "AUDIT_FULL", name = "full log", steps = {
+        { type = "ACCEPT", quest = 4010 }, { type = "TURNIN", quest = 4010 } } })
+    G:Activate("AUDIT_FULL", true); settle()
+    MOCK.logCap = 2
+    if not ns.Quest:IsOnQuest(4011) then MOCK_ACCEPT(4011, "Spare quest A", {}) end
+    if not ns.Quest:IsOnQuest(4012) then MOCK_ACCEPT(4012, "Spare quest B", {}) end
+    settle()
+    local n = ns.Quest:GetNumQuests()
+    MOCK.logCap = n
+    G:Evaluate("test")
+    check(G.note and G.note:find("Quest log full", 1, true) and G.note:find("Spare quest", 1, true), "a full log on an ACCEPT step names quests the guide does not need (" .. tostring(G.note) .. ")")
+    MOCK.logCap = 40
+    G:Evaluate("test")
+    check(not (G.note and G.note:find("Quest log full", 1, true)), "room again: the note goes away")
+    MOCK_ABANDON(4011); MOCK_ABANDON(4012); settle()
+end
+
+-- ---- corpse run ---------------------------------------------------------------------------------
+do
+    G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); G:SetStep(1); settle()
+    local before = ns.Navigation.target
+    check(before and before.owner == "guide", "guide target before dying")
+    MOCK_DIE(55.5, 66.6); settle()
+    local t = ns.Navigation.target
+    check(t and t.owner == "corpse" and math.abs(t.x - 55.5) < 0.01 and math.abs(t.y - 66.6) < 0.01 and t.label:find("corpse", 1, true), "dead: the target is the corpse (" .. tostring(t and t.label) .. ")")
+    G:Evaluate("test"); settle()
+    check(ns.Navigation.target and ns.Navigation.target.owner == "corpse", "the guide does not steal the target back while a ghost")
+    MOCK_REVIVE(); settle()
+    check(ns.Navigation.target and ns.Navigation.target.owner == "guide" and ns.Navigation.override == nil, "alive again: the guide's target returns (" .. tostring(ns.Navigation.target and ns.Navigation.target.owner) .. ")")
+end
+
 -- ---- skulls over quest mobs ----------------------------------------------------------------
 do
     ns.RegisterGuide({ id = "AUDIT_SKULL", name = "skull", steps = {

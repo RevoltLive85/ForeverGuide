@@ -12,14 +12,18 @@ ns.RegisterGuide({
     zone = "Ironforge",
     next = "GEN_ALLIANCE_DWARF_09_STORMWIND_CITY",
     author = "ForeverGuide route planner",
-    notes = "Chapter 8 of the Dwarf route: level 25 to 25, 7 steps, ~13 min of play in the model (42055 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 8 of the Dwarf route: level 25 to 25, 10 steps, ~13 min of play in the model (42055 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    stepCount = 10,
+    steps = function() return {
         { type = "TRAVEL", map = 1455, zone = "Ironforge", x = 61.5, y = 48.2, radius = 60, note = "travel to Ironforge (Ironforge)" }, -- 1
         { type = "ACCEPT", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 2
         { type = "ACCEPT", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 3
-        { type = "TURNIN", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 4
-        { type = "TURNIN", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 5
-        { type = "ACCEPT", quest = 8374, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 6
-        { type = "TURNIN", quest = 8374, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 7
-    },
+        { type = "ACCEPT", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.6, y = 50.3, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 4
+        { type = "KILL", quest = 2922, questName = "Save Techbot's Brain!", npc = 6231, target = "Techbot", map = 1426, zone = "Dun Morogh", x = 19.8, y = 31.9, optional = true }, -- 5
+        { type = "TURNIN", quest = 2922, questName = "Save Techbot's Brain!", npc = 7944, npcName = "Tinkmaster Overspark", map = 1455, zone = "Ironforge", x = 69.6, y = 50.3, optional = true }, -- 6
+        { type = "TURNIN", quest = 2930, questName = "Data Rescue", npc = 7950, npcName = "Master Mechanic Castpipe", map = 1455, zone = "Ironforge", x = 69.8, y = 48.1 }, -- 7
+        { type = "TURNIN", quest = 2924, questName = "Essential Artificials", npc = 6169, npcName = "Klockmort Spannerspan", map = 1455, zone = "Ironforge", x = 67.9, y = 46.1 }, -- 8
+        { type = "ACCEPT", quest = 8374, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 9
+        { type = "TURNIN", quest = 8374, questName = "Claiming Arathi Basin", npc = 15351, npcName = "Alliance Brigadier General", map = 1455, zone = "Ironforge", x = 70.4, y = 91.1 }, -- 10
+    } end,
 })

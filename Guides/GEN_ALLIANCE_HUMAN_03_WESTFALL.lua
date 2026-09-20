@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Westfall",
     next = "GEN_ALLIANCE_HUMAN_04_LOCH_MODAN",
     author = "ForeverGuide route planner",
-    notes = "Chapter 3 of the Human route: level 11 to 15, 55 steps, ~164 min of play in the model (18078 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 3 of the Human route: level 11 to 15, 55 steps, ~164 min of play in the model (18078 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 55,
+    steps = function() return {
         { type = "TRAVEL", map = 1436, zone = "Westfall", x = 56.2, y = 43.9, radius = 60, note = "travel to Westfall (Westfall)" }, -- 1
         { type = "NOTE", map = 1436, zone = "Westfall", x = 56.2, y = 43.9, text = "set your hearthstone at the inn in Westfall (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 6181, questName = "A Swift Message", npc = 491, npcName = "Quartermaster Lewis", map = 1436, zone = "Westfall", x = 57, y = 47.2 }, -- 3
@@ -69,5 +70,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 104, questName = "The Coastal Menace", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 53
         { type = "KILL", quest = 152, questName = "The Coast Isn't Clear", npc = 126, target = "Murloc Coastrunner", map = 1436, zone = "Westfall", x = 42.5, y = 12.3, near = true }, -- 54
         { type = "TURNIN", quest = 152, questName = "The Coast Isn't Clear", npc = 392, npcName = "Captain Grayson", map = 1436, zone = "Westfall", x = 30, y = 86 }, -- 55
-    },
+    } end,
 })

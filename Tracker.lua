@@ -85,7 +85,7 @@ function Tracker:Rethink()
     local changed = (list[1] and list[1].questID) ~= (self.current and self.current.questID)
         or (list[1] and self.current and list[1].what ~= self.current.what)
     self.current = list[1]
-    if self:IsActive() then
+    if self:IsActive() and not ns.Navigation.override then
         if self.current then
             local c = self.current
             local t = ns.Navigation.target

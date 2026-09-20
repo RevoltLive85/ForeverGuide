@@ -12,18 +12,32 @@ ns.RegisterGuide({
     zone = "The Hinterlands",
     next = "GEN_HORDE_TAUREN_32_WESTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 31 of the Tauren route: level 49 to 50, 11 steps, ~108 min of play in the model (9300 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 31 of the Tauren route: level 49 to 50, 24 steps, ~108 min of play in the model (9300 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (3 here).",
+    stepCount = 24,
+    steps = function() return {
         { type = "TRAVEL", map = 1425, zone = "The Hinterlands", x = 50.3, y = 89.6, radius = 60, note = "travel to The Hinterlands (The Hinterlands)" }, -- 1
         { type = "ACCEPT", quest = 7849, questName = "Separation Anxiety", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 2
         { type = "ACCEPT", quest = 7850, questName = "Dark Vessels", npc = 14736, npcName = "Primal Torntusk", map = 1425, zone = "The Hinterlands", x = 78.2, y = 81.2 }, -- 3
         { type = "ACCEPT", quest = 7845, questName = "Kidnapped Elder Torntusk!", npc = 14736, npcName = "Primal Torntusk", map = 1425, zone = "The Hinterlands", x = 78.2, y = 81.2 }, -- 4
-        { type = "COLLECT", quest = 7850, questName = "Dark Vessels", target = "Vessel of Tainted Blood", count = 10, map = 1425, zone = "The Hinterlands", x = 67.9, y = 75.8, near = true }, -- 5
-        { type = "COLLECT", quest = 7849, questName = "Separation Anxiety", target = "Huntsman Malkhor's Bones", map = 1425, zone = "The Hinterlands", x = 62.1, y = 75.4 }, -- 6
-        { type = "TURNIN", quest = 7845, questName = "Kidnapped Elder Torntusk!", npc = 14757, npcName = "Elder Torntusk", map = 1425, zone = "The Hinterlands", x = 59.7, y = 77.8 }, -- 7
-        { type = "COLLECT", quest = 7849, questName = "Separation Anxiety", target = "Huntsman Malkhor's Skull", map = 1425, zone = "The Hinterlands", x = 58.6, y = 64.8 }, -- 8
-        { type = "TURNIN", quest = 7850, questName = "Dark Vessels", npc = 14736, npcName = "Primal Torntusk", map = 1425, zone = "The Hinterlands", x = 78.2, y = 81.2 }, -- 9
-        { type = "TURNIN", quest = 7849, questName = "Separation Anxiety", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 10
-        { type = "GRIND", npc = 2505, target = "Saltwater Snapjaw", level = 50, map = 1425, zone = "The Hinterlands", x = 80.6, y = 77.3, near = true, note = "grind Saltwater Snapjaw (level 49-50) to level 50 - nothing worth questing at 49" }, -- 11
-    },
+        { type = "ACCEPT", quest = 7816, questName = "Gammerita, Mon!", npc = 14740, npcName = "Katoom the Angler", map = 1425, zone = "The Hinterlands", x = 80.3, y = 81.5, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 5
+        { type = "KILL", quest = 7816, questName = "Gammerita, Mon!", npc = 7977, target = "Gammerita", map = 1425, zone = "The Hinterlands", x = 80.4, y = 58.2, optional = true }, -- 6
+        { type = "TURNIN", quest = 7816, questName = "Gammerita, Mon!", npc = 14740, npcName = "Katoom the Angler", map = 1425, zone = "The Hinterlands", x = 80.3, y = 81.5, optional = true }, -- 7
+        { type = "ACCEPT", quest = 7861, questName = "Wanted: Vile Priestess Hexx and Her Minions", map = 1425, zone = "The Hinterlands", x = 79.1, y = 79, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 8
+        { type = "KILL", quest = 7861, questName = "Wanted: Vile Priestess Hexx and Her Minions", npc = 7995, target = "Vile Priestess Hexx", count = 20, map = 1425, zone = "The Hinterlands", x = 59.5, y = 78.3, optional = true }, -- 9
+        { type = "KILL", quest = 7861, questName = "Wanted: Vile Priestess Hexx and Her Minions", npc = 2648, target = "Vilebranch Aman'zasi Guard", count = 20, map = 1425, zone = "The Hinterlands", x = 64.9, y = 81.8, optional = true, near = true }, -- 10
+        { type = "TURNIN", quest = 7861, questName = "Wanted: Vile Priestess Hexx and Her Minions", npc = 14736, npcName = "Primal Torntusk", map = 1425, zone = "The Hinterlands", x = 78.2, y = 81.2, optional = true }, -- 11
+        { type = "ACCEPT", quest = 7862, questName = "Job Opening: Guard Captain of Revantusk Village", map = 1425, zone = "The Hinterlands", x = 79.1, y = 79, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 12
+        { type = "KILL", quest = 7862, questName = "Job Opening: Guard Captain of Revantusk Village", npc = 2643, target = "Vilebranch Berserker", count = 20, map = 1425, zone = "The Hinterlands", x = 68.2, y = 71.8, optional = true, near = true }, -- 13
+        { type = "KILL", quest = 7862, questName = "Job Opening: Guard Captain of Revantusk Village", npc = 2645, target = "Vilebranch Shadow Hunter", count = 20, map = 1425, zone = "The Hinterlands", x = 68, y = 75.8, optional = true, near = true }, -- 14
+        { type = "KILL", quest = 7862, questName = "Job Opening: Guard Captain of Revantusk Village", npc = 2646, target = "Vilebranch Blood Drinker", count = 20, map = 1425, zone = "The Hinterlands", x = 67.3, y = 77.5, optional = true, near = true }, -- 15
+        { type = "KILL", quest = 7862, questName = "Job Opening: Guard Captain of Revantusk Village", npc = 2647, target = "Vilebranch Soul Eater", count = 20, map = 1425, zone = "The Hinterlands", x = 67.7, y = 78, optional = true, near = true }, -- 16
+        { type = "TURNIN", quest = 7862, questName = "Job Opening: Guard Captain of Revantusk Village", npc = 14736, npcName = "Primal Torntusk", map = 1425, zone = "The Hinterlands", x = 78.2, y = 81.2, optional = true }, -- 17
+        { type = "COLLECT", quest = 7850, questName = "Dark Vessels", target = "Vessel of Tainted Blood", count = 10, map = 1425, zone = "The Hinterlands", x = 67.9, y = 75.8, near = true }, -- 18
+        { type = "COLLECT", quest = 7849, questName = "Separation Anxiety", target = "Huntsman Malkhor's Bones", map = 1425, zone = "The Hinterlands", x = 62.1, y = 75.4 }, -- 19
+        { type = "TURNIN", quest = 7845, questName = "Kidnapped Elder Torntusk!", npc = 14757, npcName = "Elder Torntusk", map = 1425, zone = "The Hinterlands", x = 59.7, y = 77.8 }, -- 20
+        { type = "COLLECT", quest = 7849, questName = "Separation Anxiety", target = "Huntsman Malkhor's Skull", map = 1425, zone = "The Hinterlands", x = 58.6, y = 64.8 }, -- 21
+        { type = "TURNIN", quest = 7850, questName = "Dark Vessels", npc = 14736, npcName = "Primal Torntusk", map = 1425, zone = "The Hinterlands", x = 78.2, y = 81.2 }, -- 22
+        { type = "TURNIN", quest = 7849, questName = "Separation Anxiety", npc = 14741, npcName = "Huntsman Markhor", map = 1425, zone = "The Hinterlands", x = 79.2, y = 79.5 }, -- 23
+        { type = "GRIND", npc = 2505, target = "Saltwater Snapjaw", level = 50, map = 1425, zone = "The Hinterlands", x = 80.6, y = 77.3, near = true, note = "grind Saltwater Snapjaw (level 49-50) to level 50 - nothing worth questing at 49" }, -- 24
+    } end,
 })

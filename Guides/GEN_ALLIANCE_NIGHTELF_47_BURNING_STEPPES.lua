@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Burning Steppes",
     next = "GEN_ALLIANCE_NIGHTELF_48_SILITHUS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 47 of the NightElf route: level 55 to 58, 12 steps, ~618 min of play in the model (2884 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 47 of the NightElf route: level 55 to 58, 12 steps, ~618 min of play in the model (2884 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 12,
+    steps = function() return {
         { type = "TRAVEL", map = 1428, zone = "Burning Steppes", x = 65.4, y = 23.3, radius = 60, note = "travel to Burning Steppes (Burning Steppes)" }, -- 1
         { type = "ACCEPT", quest = 4729, questName = "Kibler's Exotic Pets", npc = 10260, npcName = "Kibler", map = 1428, zone = "Burning Steppes", x = 65.9, y = 21.9 }, -- 2
         { type = "ACCEPT", quest = 4862, questName = "En-Ay-Es-Tee-Why", npc = 10260, npcName = "Kibler", map = 1428, zone = "Burning Steppes", x = 65.9, y = 21.9 }, -- 3
@@ -26,5 +27,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 7848, questName = "Attunement to the Core", npc = 14387, npcName = "Lothos Riftwaker", map = 1428, zone = "Burning Steppes", x = 26.4, y = 24.5 }, -- 10
         { type = "GRIND", npc = 7027, target = "Blackrock Slayer", level = 57, map = 1428, zone = "Burning Steppes", x = 39.9, y = 32.5, near = true, note = "grind Blackrock Slayer (level 56-57) to level 57 - nothing worth questing at 56" }, -- 11
         { type = "GRIND", npc = 7027, target = "Blackrock Slayer", level = 58, map = 1428, zone = "Burning Steppes", x = 39.9, y = 32.5, near = true, note = "grind Blackrock Slayer (level 56-57) to level 58 - nothing worth questing at 57" }, -- 12
-    },
+    } end,
 })

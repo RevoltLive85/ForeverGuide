@@ -12,10 +12,11 @@ ns.RegisterGuide({
     zone = "Orgrimmar",
     next = "GEN_HORDE_SKYBORNE_29_UNDERCITY",
     author = "ForeverGuide route planner",
-    notes = "Chapter 28 of the Skyborne route: level 49 to 49, 3 steps, ~20 min of play in the model (50595 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 28 of the Skyborne route: level 49 to 49, 3 steps, ~20 min of play in the model (50595 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 3,
+    steps = function() return {
         { type = "TRAVEL", map = 1454, zone = "Orgrimmar", x = 62.3, y = 40.1, radius = 60, note = "travel to Orgrimmar (Orgrimmar)" }, -- 1
         { type = "TURNIN", quest = 3507, questName = "Betrayed", npc = 4485, npcName = "Belgrom Rockmaul", map = 1454, zone = "Orgrimmar", x = 75.2, y = 34.2 }, -- 2
         { type = "TURNIN", quest = 8485, questName = "The Brokering of Peace", npc = 4949, npcName = "Thrall", map = 1454, zone = "Orgrimmar", x = 31.7, y = 37.8 }, -- 3
-    },
+    } end,
 })

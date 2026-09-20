@@ -298,7 +298,7 @@ _G.C_QuestLog = {
     GetTitleForQuestID = function(qid) return world.titles and world.titles[qid] end,
     RequestLoadQuestByID = function() end,
     GetNextWaypoint = function() return nil end,
-    GetMaxNumQuestsCanAccept = function() return 20 end,
+    GetMaxNumQuestsCanAccept = function() return world.logCap or 40 end,
     UnitIsRelatedToActiveQuest = function(unit) local p = world.plates and world.plates[unit] return p and p.quest == true or false end,
 }
 _G.C_Item = { GetItemCount = function(id) return world.items[id] or 0 end }
@@ -314,6 +314,10 @@ local function fire(event, ...)
 end
 
 _G.InCombatLockdown = function() return world.inCombat == true end
+_G.UnitIsGhost = function(unit) return unit == "player" and world.ghost == true end
+_G.C_DeathInfo = { GetCorpseMapPosition = function(mapID) if world.corpse and world.corpse.map == mapID then return { x = world.corpse.x / 100, y = world.corpse.y / 100 } end return nil end }
+function _G.MOCK_DIE(x, y) world.ghost = true world.corpse = { map = world.mapID, x = x, y = y } fire("PLAYER_DEAD") fire("PLAYER_ALIVE") end
+function _G.MOCK_REVIVE() world.ghost = false world.corpse = nil fire("PLAYER_UNGHOST") end
 _G.CheckInteractDistance = function(unit, ring)
     local p = world.plates and world.plates[unit]
     if not p or not p.dist then return nil end

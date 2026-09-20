@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Ashenvale",
     next = "GEN_HORDE_SKYBORNE_05_HILLSBRAD_FOOTHILLS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 4 of the Skyborne route: level 24 to 26, 39 steps, ~120 min of play in the model (22872 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 4 of the Skyborne route: level 24 to 26, 39 steps, ~120 min of play in the model (22872 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 39,
+    steps = function() return {
         { type = "TRAVEL", map = 1440, zone = "Ashenvale", x = 72.6, y = 63.9, radius = 60, note = "travel to Ashenvale (Ashenvale)" }, -- 1
         { type = "NOTE", map = 1440, zone = "Ashenvale", x = 72.6, y = 63.9, text = "set your hearthstone at the inn in Ashenvale (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 6383, questName = "The Ashenvale Hunt", npc = 12696, npcName = "Senani Thunderheart", map = 1440, zone = "Ashenvale", x = 73.8, y = 61.5 }, -- 3
@@ -53,5 +54,5 @@ ns.RegisterGuide({
         { type = "COLLECT", quest = 6621, questName = "King of the Foulweald", target = "Murgut's Totem", map = 1440, zone = "Ashenvale", x = 56, y = 63, near = true }, -- 37
         { type = "TURNIN", quest = 6621, questName = "King of the Foulweald", npc = 12757, npcName = "Karang Amakkar", map = 1440, zone = "Ashenvale", x = 11.9, y = 34.5 }, -- 38
         { type = "TURNIN", quest = 6482, questName = "Freedom to Ruul", npc = 12837, npcName = "Yama Snowhoof", map = 1440, zone = "Ashenvale", x = 74.1, y = 60.9 }, -- 39
-    },
+    } end,
 })

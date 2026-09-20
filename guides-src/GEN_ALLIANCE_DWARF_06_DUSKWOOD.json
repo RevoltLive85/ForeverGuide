@@ -10,7 +10,7 @@
   "zone": "Duskwood",
   "next": "GEN_ALLIANCE_DWARF_07_WETLANDS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 6 of the Dwarf route: level 19 to 22, 81 steps, ~197 min of play in the model (22716 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 6 of the Dwarf route: level 19 to 22, 81 steps, ~197 min of play in the model (22716 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1431, "zone": "Duskwood", "x": 74.9, "y": 47.1, "radius": 60, "note": "travel to Duskwood (Duskwood)"},
     {"type": "NOTE", "map": 1431, "zone": "Duskwood", "x": 74.9, "y": 47.1, "text": "set your hearthstone at the inn in Duskwood (if there is one)"},

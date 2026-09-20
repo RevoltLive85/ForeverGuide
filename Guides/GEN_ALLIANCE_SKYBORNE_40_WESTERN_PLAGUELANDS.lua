@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Western Plaguelands",
     next = "GEN_ALLIANCE_SKYBORNE_41_WINTERSPRING",
     author = "ForeverGuide route planner",
-    notes = "Chapter 40 of the Skyborne route: level 53 to 53, 7 steps, ~17 min of play in the model (54042 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 40 of the Skyborne route: level 53 to 53, 7 steps, ~17 min of play in the model (54042 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 7,
+    steps = function() return {
         { type = "TRAVEL", map = 1422, zone = "Western Plaguelands", x = 43.0, y = 84.1, radius = 60, note = "travel to Western Plaguelands (Western Plaguelands)" }, -- 1
         { type = "ACCEPT", quest = 4971, questName = "A Matter of Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 2
         { type = "KILL", quest = 4971, questName = "A Matter of Time", npc = 10717, target = "Temporal Parasite", count = 10, map = 1422, zone = "Western Plaguelands", x = 45.2, y = 62.8, near = true }, -- 3
@@ -21,5 +22,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 4972, questName = "Counting Out Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 5
         { type = "COLLECT", quest = 4972, questName = "Counting Out Time", target = "Andorhal Watch", count = 5, map = 1422, zone = "Western Plaguelands", x = 40.3, y = 68.2, near = true }, -- 6
         { type = "TURNIN", quest = 4972, questName = "Counting Out Time", npc = 10667, npcName = "Chromie", map = 1422, zone = "Western Plaguelands", x = 39.5, y = 66.8 }, -- 7
-    },
+    } end,
 })

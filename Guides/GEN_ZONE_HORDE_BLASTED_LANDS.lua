@@ -11,7 +11,8 @@ ns.RegisterGuide({
     zone = "Blasted Lands",
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Blasted Lands for a Horde character, 7 quests. The race routes are the faster path; pick this when you just want to quest here.",
-    steps = {
+    stepCount = 29,
+    steps = function() return {
         { type = "TRAVEL", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2, radius = 60, note = "travel to Blasted Lands (Blasted Lands)" }, -- 1
         { type = "NOTE", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2, text = "set your hearthstone at the inn in Blasted Lands (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 2581, questName = "Snickerfang Jowls", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 3
@@ -41,5 +42,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 2581, questName = "Snickerfang Jowls", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 27
         { type = "TURNIN", quest = 2583, questName = "A Boar's Vitality", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 28
         { type = "TURNIN", quest = 2585, questName = "The Decisive Striker", npc = 7505, npcName = "Bloodmage Drazial", map = 1419, zone = "Blasted Lands", x = 50.6, y = 14.2 }, -- 29
-    },
+    } end,
 })

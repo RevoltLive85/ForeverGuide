@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Stranglethorn Vale",
     next = "GEN_HORDE_SKYBORNE_16_ORGRIMMAR",
     author = "ForeverGuide route planner",
-    notes = "Chapter 15 of the Skyborne route: level 43 to 43, 31 steps, ~95 min of play in the model (40330 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 15 of the Skyborne route: level 43 to 43, 31 steps, ~95 min of play in the model (40330 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 31,
+    steps = function() return {
         { type = "TRAVEL", map = 1434, zone = "Stranglethorn Vale", x = 27.3, y = 76.1, radius = 60, note = "travel to Stranglethorn Vale (Stranglethorn Vale)" }, -- 1
         { type = "ACCEPT", quest = 595, questName = "The Bloodsail Buccaneers", npc = 2490, npcName = "First Mate Crazz", map = 1434, zone = "Stranglethorn Vale", x = 28.1, y = 76.2 }, -- 2
         { type = "ACCEPT", quest = 209, questName = "Skullsplitter Tusks", npc = 737, npcName = "Kebok", map = 1434, zone = "Stranglethorn Vale", x = 27, y = 77.1 }, -- 3
@@ -45,5 +46,5 @@ ns.RegisterGuide({
         { type = "KILL", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2550, target = "Captain Stillwater", count = 1, map = 1434, zone = "Stranglethorn Vale", x = 32.9, y = 88.2 }, -- 29
         { type = "TURNIN", quest = 608, questName = "The Bloodsail Buccaneers", npc = 2487, npcName = "Fleet Master Seahorn", map = 1434, zone = "Stranglethorn Vale", x = 27.2, y = 77 }, -- 30
         { type = "TURNIN", quest = 1240, questName = "The Troll Witchdoctor", npc = 2519, npcName = "Kin'weelay", map = 1434, zone = "Stranglethorn Vale", x = 32.3, y = 27.7, note = "reduced xp (40%) - you out-levelled it" }, -- 31
-    },
+    } end,
 })

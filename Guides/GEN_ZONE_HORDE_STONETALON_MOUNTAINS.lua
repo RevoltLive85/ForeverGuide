@@ -11,48 +11,55 @@ ns.RegisterGuide({
     zone = "Stonetalon Mountains",
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Stonetalon Mountains for a Horde character, 11 quests. The race routes are the faster path; pick this when you just want to quest here.",
-    steps = {
+    stepCount = 48,
+    steps = function() return {
         { type = "TRAVEL", map = 1442, zone = "Stonetalon Mountains", x = 46.9, y = 61.0, radius = 60, note = "travel to Stonetalon Mountains (Stonetalon Mountains)" }, -- 1
         { type = "NOTE", map = 1442, zone = "Stonetalon Mountains", x = 46.9, y = 61.0, text = "set your hearthstone at the inn in Stonetalon Mountains (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 6421, questName = "Boulderslide Ravine", npc = 11861, npcName = "Mor'rogal", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 64 }, -- 3
-        { type = "COMPLETE", quest = 6421, questName = "Boulderslide Ravine", target = "Resonite Crystal / Investigate Cave in Boulderslide Ravine", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 57.3, y = 89.2, near = true }, -- 4
-        { type = "TURNIN", quest = 6421, questName = "Boulderslide Ravine", npc = 11861, npcName = "Mor'rogal", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 64 }, -- 5
-        { type = "ACCEPT", quest = 6461, questName = "Blood Feeders", npc = 12816, npcName = "Xen'Zilla", map = 1442, zone = "Stonetalon Mountains", x = 71.3, y = 95 }, -- 6
-        { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4005, target = "Deepmoss Creeper", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 67.3, y = 87.7, near = true }, -- 7
-        { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4007, target = "Deepmoss Venomspitter", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 61.6, y = 66.4, near = true }, -- 8
-        { type = "TURNIN", quest = 6461, questName = "Blood Feeders", npc = 12816, npcName = "Xen'Zilla", map = 1442, zone = "Stonetalon Mountains", x = 71.3, y = 95 }, -- 9
-        { type = "ACCEPT", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 10
-        { type = "KILL", quest = 1093, questName = "Super Reaper 6000", npc = 3988, target = "Venture Co. Operator", map = 1442, zone = "Stonetalon Mountains", x = 62.6, y = 53.9, near = true, note = "loot Super Reaper 6000 Blueprints" }, -- 11
-        { type = "TURNIN", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 12
-        { type = "ACCEPT", quest = 1094, questName = "Further Instructions", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 13
-        { type = "ACCEPT", quest = 6301, questName = "Cycle of Rebirth", npc = 11864, npcName = "Tammra Windfield", map = 1442, zone = "Stonetalon Mountains", x = 47.5, y = 58.4 }, -- 14
-        { type = "COLLECT", quest = 6301, questName = "Cycle of Rebirth", target = "Gaea Seed", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 49.7, y = 45.1, near = true }, -- 15
-        { type = "TURNIN", quest = 6301, questName = "Cycle of Rebirth", npc = 11864, npcName = "Tammra Windfield", map = 1442, zone = "Stonetalon Mountains", x = 47.5, y = 58.4 }, -- 16
-        { type = "ACCEPT", quest = 6381, questName = "New Life", npc = 11864, npcName = "Tammra Windfield", map = 1442, zone = "Stonetalon Mountains", x = 47.5, y = 58.4 }, -- 17
-        { type = "COMPLETE", quest = 6381, questName = "New Life", target = "Gaea Dirt Mound", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 35.8, y = 66.1, near = true, note = "Gaea seed planted" }, -- 18
-        { type = "TURNIN", quest = 6381, questName = "New Life", npc = 11864, npcName = "Tammra Windfield", map = 1442, zone = "Stonetalon Mountains", x = 47.5, y = 58.4 }, -- 19
-        { type = "ACCEPT", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 20
-        { type = "KILL", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, target = "Piznik", count = 1, map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 21
-        { type = "TURNIN", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 22
-        { type = "ACCEPT", quest = 1092, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 23
-        { type = "TURNIN", quest = 1092, questName = "Gerenzo's Orders", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 24
-        { type = "ACCEPT", quest = 6282, questName = "Harpies Threaten", npc = 11860, npcName = "Maggran Earthbinder", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 61.2 }, -- 25
-        { type = "KILL", quest = 6282, questName = "Harpies Threaten", npc = 4024, target = "Bloodfury Slayer", count = 7, map = 1442, zone = "Stonetalon Mountains", x = 37.3, y = 65.7, near = true }, -- 26
-        { type = "KILL", quest = 6282, questName = "Harpies Threaten", npc = 4023, target = "Bloodfury Roguefeather", count = 7, map = 1442, zone = "Stonetalon Mountains", x = 36.8, y = 67.7, near = true }, -- 27
-        { type = "KILL", quest = 6282, questName = "Harpies Threaten", npc = 4022, target = "Bloodfury Harpy", count = 7, map = 1442, zone = "Stonetalon Mountains", x = 35.3, y = 63.2, near = true }, -- 28
-        { type = "KILL", quest = 6282, questName = "Harpies Threaten", npc = 4025, target = "Bloodfury Ambusher", count = 7, map = 1442, zone = "Stonetalon Mountains", x = 32.1, y = 60.4, near = true }, -- 29
-        { type = "TURNIN", quest = 6282, questName = "Harpies Threaten", npc = 11860, npcName = "Maggran Earthbinder", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 61.2 }, -- 30
-        { type = "ACCEPT", quest = 6393, questName = "Elemental War", npc = 11862, npcName = "Tsunaman", map = 1442, zone = "Stonetalon Mountains", x = 47.4, y = 64.3 }, -- 31
-        { type = "COLLECT", quest = 6393, questName = "Elemental War", target = "Incendrites", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 37.3, y = 60.5, near = true }, -- 32
-        { type = "TURNIN", quest = 6393, questName = "Elemental War", npc = 11862, npcName = "Tsunaman", map = 1442, zone = "Stonetalon Mountains", x = 47.4, y = 64.3 }, -- 33
-        { type = "ACCEPT", quest = 1087, questName = "Cenarius' Legacy", npc = 4198, npcName = "Braelyn Firehand", map = 1442, zone = "Stonetalon Mountains", x = 45.9, y = 60.4 }, -- 34
-        { type = "ACCEPT", quest = 1058, questName = "Jin'Zil's Forest Magic", npc = 3995, npcName = "Witch Doctor Jin'Zil", map = 1442, zone = "Stonetalon Mountains", x = 74.5, y = 97.9 }, -- 35
-        { type = "COLLECT", quest = 1058, questName = "Jin'Zil's Forest Magic", target = "Courser Eye", count = 30, map = 1442, zone = "Stonetalon Mountains", x = 50.4, y = 36.6, near = true }, -- 36
-        { type = "KILL", quest = 1058, questName = "Jin'Zil's Forest Magic", npc = 4020, target = "Sap Beast", count = 5, map = 1442, zone = "Stonetalon Mountains", x = 46.8, y = 29.5, near = true, note = "loot Stonetalon Sap" }, -- 37
-        { type = "KILL", quest = 1058, questName = "Jin'Zil's Forest Magic", npc = 4067, target = "Twilight Runner", count = 5, map = 1442, zone = "Stonetalon Mountains", x = 39.6, y = 17.7, near = true, note = "loot Twilight Whisker" }, -- 38
-        { type = "COLLECT", quest = 1058, questName = "Jin'Zil's Forest Magic", target = "Fey Dragon Scale", count = 30, map = 1442, zone = "Stonetalon Mountains", x = 39.8, y = 13.8, near = true }, -- 39
-        { type = "KILL", quest = 1087, questName = "Cenarius' Legacy", npc = 4053, target = "Daughter of Cenarius / Son of Cenarius / Cenarion Botanist", count = 4, map = 1442, zone = "Stonetalon Mountains", x = 38.3, y = 13.3, near = true }, -- 40
-        { type = "TURNIN", quest = 1087, questName = "Cenarius' Legacy", npc = 4198, npcName = "Braelyn Firehand", map = 1442, zone = "Stonetalon Mountains", x = 45.9, y = 60.4 }, -- 41
-        { type = "TURNIN", quest = 1058, questName = "Jin'Zil's Forest Magic", npc = 3995, npcName = "Witch Doctor Jin'Zil", map = 1442, zone = "Stonetalon Mountains", x = 74.5, y = 97.9 }, -- 42
-    },
+        { type = "ACCEPT", quest = 6481, questName = "Earthen Arise", npc = 11861, npcName = "Mor'rogal", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 64, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 4
+        { type = "KILL", quest = 6481, questName = "Earthen Arise", npc = 11920, target = "Goggeroc", count = 1, map = 1442, zone = "Stonetalon Mountains", x = 57.4, y = 89.4, optional = true }, -- 5
+        { type = "TURNIN", quest = 6481, questName = "Earthen Arise", npc = 11861, npcName = "Mor'rogal", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 64, optional = true }, -- 6
+        { type = "COMPLETE", quest = 6421, questName = "Boulderslide Ravine", target = "Resonite Crystal / Investigate Cave in Boulderslide Ravine", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 57.3, y = 89.2, near = true }, -- 7
+        { type = "TURNIN", quest = 6421, questName = "Boulderslide Ravine", npc = 11861, npcName = "Mor'rogal", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 64 }, -- 8
+        { type = "ACCEPT", quest = 6461, questName = "Blood Feeders", npc = 12816, npcName = "Xen'Zilla", map = 1442, zone = "Stonetalon Mountains", x = 71.3, y = 95 }, -- 9
+        { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4005, target = "Deepmoss Creeper", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 67.3, y = 87.7, near = true }, -- 10
+        { type = "KILL", quest = 6461, questName = "Blood Feeders", npc = 4007, target = "Deepmoss Venomspitter", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 61.6, y = 66.4, near = true }, -- 11
+        { type = "TURNIN", quest = 6461, questName = "Blood Feeders", npc = 12816, npcName = "Xen'Zilla", map = 1442, zone = "Stonetalon Mountains", x = 71.3, y = 95 }, -- 12
+        { type = "ACCEPT", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 13
+        { type = "KILL", quest = 1093, questName = "Super Reaper 6000", npc = 3988, target = "Venture Co. Operator", map = 1442, zone = "Stonetalon Mountains", x = 62.6, y = 53.9, near = true, note = "loot Super Reaper 6000 Blueprints" }, -- 14
+        { type = "TURNIN", quest = 1093, questName = "Super Reaper 6000", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 15
+        { type = "ACCEPT", quest = 1094, questName = "Further Instructions", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 16
+        { type = "ACCEPT", quest = 6301, questName = "Cycle of Rebirth", npc = 11864, npcName = "Tammra Windfield", map = 1442, zone = "Stonetalon Mountains", x = 47.5, y = 58.4 }, -- 17
+        { type = "COLLECT", quest = 6301, questName = "Cycle of Rebirth", target = "Gaea Seed", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 49.7, y = 45.1, near = true }, -- 18
+        { type = "TURNIN", quest = 6301, questName = "Cycle of Rebirth", npc = 11864, npcName = "Tammra Windfield", map = 1442, zone = "Stonetalon Mountains", x = 47.5, y = 58.4 }, -- 19
+        { type = "ACCEPT", quest = 6381, questName = "New Life", npc = 11864, npcName = "Tammra Windfield", map = 1442, zone = "Stonetalon Mountains", x = 47.5, y = 58.4 }, -- 20
+        { type = "COMPLETE", quest = 6381, questName = "New Life", target = "Gaea Dirt Mound", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 35.8, y = 66.1, near = true, note = "Gaea seed planted" }, -- 21
+        { type = "TURNIN", quest = 6381, questName = "New Life", npc = 11864, npcName = "Tammra Windfield", map = 1442, zone = "Stonetalon Mountains", x = 47.5, y = 58.4 }, -- 22
+        { type = "ACCEPT", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 23
+        { type = "KILL", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, target = "Piznik", count = 1, map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 24
+        { type = "TURNIN", quest = 1090, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 25
+        { type = "ACCEPT", quest = 1092, questName = "Gerenzo's Orders", npc = 4276, npcName = "Piznik", map = 1442, zone = "Stonetalon Mountains", x = 71.9, y = 60 }, -- 26
+        { type = "TURNIN", quest = 1092, questName = "Gerenzo's Orders", npc = 4201, npcName = "Ziz Fizziks", map = 1442, zone = "Stonetalon Mountains", x = 59, y = 62.6 }, -- 27
+        { type = "ACCEPT", quest = 6282, questName = "Harpies Threaten", npc = 11860, npcName = "Maggran Earthbinder", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 61.2 }, -- 28
+        { type = "ACCEPT", quest = 6283, questName = "Bloodfury Bloodline", npc = 11860, npcName = "Maggran Earthbinder", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 61.2, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 29
+        { type = "KILL", quest = 6283, questName = "Bloodfury Bloodline", npc = 12579, target = "Bloodfury Ripper", map = 1442, zone = "Stonetalon Mountains", x = 30.8, y = 61.9, optional = true }, -- 30
+        { type = "TURNIN", quest = 6283, questName = "Bloodfury Bloodline", npc = 11860, npcName = "Maggran Earthbinder", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 61.2, optional = true }, -- 31
+        { type = "KILL", quest = 6282, questName = "Harpies Threaten", npc = 4024, target = "Bloodfury Slayer", count = 7, map = 1442, zone = "Stonetalon Mountains", x = 37.3, y = 65.7, near = true }, -- 32
+        { type = "KILL", quest = 6282, questName = "Harpies Threaten", npc = 4023, target = "Bloodfury Roguefeather", count = 7, map = 1442, zone = "Stonetalon Mountains", x = 36.8, y = 67.7, near = true }, -- 33
+        { type = "KILL", quest = 6282, questName = "Harpies Threaten", npc = 4022, target = "Bloodfury Harpy", count = 7, map = 1442, zone = "Stonetalon Mountains", x = 35.3, y = 63.2, near = true }, -- 34
+        { type = "KILL", quest = 6282, questName = "Harpies Threaten", npc = 4025, target = "Bloodfury Ambusher", count = 7, map = 1442, zone = "Stonetalon Mountains", x = 32.1, y = 60.4, near = true }, -- 35
+        { type = "TURNIN", quest = 6282, questName = "Harpies Threaten", npc = 11860, npcName = "Maggran Earthbinder", map = 1442, zone = "Stonetalon Mountains", x = 47.2, y = 61.2 }, -- 36
+        { type = "ACCEPT", quest = 6393, questName = "Elemental War", npc = 11862, npcName = "Tsunaman", map = 1442, zone = "Stonetalon Mountains", x = 47.4, y = 64.3 }, -- 37
+        { type = "COLLECT", quest = 6393, questName = "Elemental War", target = "Incendrites", count = 10, map = 1442, zone = "Stonetalon Mountains", x = 37.3, y = 60.5, near = true }, -- 38
+        { type = "TURNIN", quest = 6393, questName = "Elemental War", npc = 11862, npcName = "Tsunaman", map = 1442, zone = "Stonetalon Mountains", x = 47.4, y = 64.3 }, -- 39
+        { type = "ACCEPT", quest = 1087, questName = "Cenarius' Legacy", npc = 4198, npcName = "Braelyn Firehand", map = 1442, zone = "Stonetalon Mountains", x = 45.9, y = 60.4 }, -- 40
+        { type = "ACCEPT", quest = 1058, questName = "Jin'Zil's Forest Magic", npc = 3995, npcName = "Witch Doctor Jin'Zil", map = 1442, zone = "Stonetalon Mountains", x = 74.5, y = 97.9 }, -- 41
+        { type = "COLLECT", quest = 1058, questName = "Jin'Zil's Forest Magic", target = "Courser Eye", count = 30, map = 1442, zone = "Stonetalon Mountains", x = 50.4, y = 36.6, near = true }, -- 42
+        { type = "KILL", quest = 1058, questName = "Jin'Zil's Forest Magic", npc = 4020, target = "Sap Beast", count = 5, map = 1442, zone = "Stonetalon Mountains", x = 46.8, y = 29.5, near = true, note = "loot Stonetalon Sap" }, -- 43
+        { type = "KILL", quest = 1058, questName = "Jin'Zil's Forest Magic", npc = 4067, target = "Twilight Runner", count = 5, map = 1442, zone = "Stonetalon Mountains", x = 39.6, y = 17.7, near = true, note = "loot Twilight Whisker" }, -- 44
+        { type = "COLLECT", quest = 1058, questName = "Jin'Zil's Forest Magic", target = "Fey Dragon Scale", count = 30, map = 1442, zone = "Stonetalon Mountains", x = 39.8, y = 13.8, near = true }, -- 45
+        { type = "KILL", quest = 1087, questName = "Cenarius' Legacy", npc = 4053, target = "Daughter of Cenarius / Son of Cenarius / Cenarion Botanist", count = 4, map = 1442, zone = "Stonetalon Mountains", x = 38.3, y = 13.3, near = true }, -- 46
+        { type = "TURNIN", quest = 1087, questName = "Cenarius' Legacy", npc = 4198, npcName = "Braelyn Firehand", map = 1442, zone = "Stonetalon Mountains", x = 45.9, y = 60.4 }, -- 47
+        { type = "TURNIN", quest = 1058, questName = "Jin'Zil's Forest Magic", npc = 3995, npcName = "Witch Doctor Jin'Zil", map = 1442, zone = "Stonetalon Mountains", x = 74.5, y = 97.9 }, -- 48
+    } end,
 })

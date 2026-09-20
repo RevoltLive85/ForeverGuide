@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Silithus",
     next = "GEN_HORDE_ORC_40_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 39 of the Orc route: level 54 to 55, 39 steps, ~179 min of play in the model (44410 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 39 of the Orc route: level 54 to 55, 39 steps, ~179 min of play in the model (44410 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 39,
+    steps = function() return {
         { type = "TRAVEL", map = 1451, zone = "Silithus", x = 50.1, y = 37.6, radius = 60, note = "travel to Silithus (Silithus)" }, -- 1
         { type = "NOTE", map = 1451, zone = "Silithus", x = 50.1, y = 37.6, text = "set your hearthstone at the inn in Silithus (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 8280, questName = "Securing the Supply Lines", npc = 15191, npcName = "Windcaller Proudhorn", map = 1451, zone = "Silithus", x = 51.2, y = 38.3 }, -- 3
@@ -53,5 +54,5 @@ ns.RegisterGuide({
         { type = "KILL", quest = 9422, questName = "Scouring the Desert", npc = 18199, target = "Silithus Dust Turnin Quest Doodad Horde", count = 1, map = 1451, zone = "Silithus", x = 50.9, y = 69.3 }, -- 37
         { type = "TURNIN", quest = 9422, questName = "Scouring the Desert", npc = 17079, npcName = "General Kirika", map = 1451, zone = "Silithus", x = 50.8, y = 69.5 }, -- 38
         { type = "TURNIN", quest = 8287, questName = "A Terrible Purpose", npc = 15181, npcName = "Commander Mar'alith", map = 1451, zone = "Silithus", x = 49.2, y = 34.2 }, -- 39
-    },
+    } end,
 })

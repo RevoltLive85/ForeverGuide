@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Searing Gorge",
     next = "GEN_HORDE_SKYBORNE_19_BLASTED_LANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 18 of the Skyborne route: level 45 to 45, 26 steps, ~106 min of play in the model (39495 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 18 of the Skyborne route: level 45 to 45, 26 steps, ~106 min of play in the model (39495 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 26,
+    steps = function() return {
         { type = "TRAVEL", map = 1427, zone = "Searing Gorge", x = 38.8, y = 33.8, radius = 60, note = "travel to Searing Gorge (Searing Gorge)" }, -- 1
         { type = "NOTE", map = 1427, zone = "Searing Gorge", x = 38.8, y = 33.8, text = "set your hearthstone at the inn in Searing Gorge (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 7728, questName = "STOLEN: Smithing Tuyere and Lookout's Spyglass", map = 1427, zone = "Searing Gorge", x = 37.7, y = 26.5 }, -- 3
@@ -40,5 +41,5 @@ ns.RegisterGuide({
         { type = "KILL", quest = 4449, questName = "Caught!", npc = 5839, target = "Dark Iron Geologist", count = 8, map = 1427, zone = "Searing Gorge", x = 63.9, y = 60.4, near = true }, -- 24
         { type = "COLLECT", quest = 4449, questName = "Caught!", target = "Silk Cloth", count = 8, map = 1427, zone = "Searing Gorge", x = 48.9, y = 55.1, near = true }, -- 25
         { type = "TURNIN", quest = 4449, questName = "Caught!", map = 1427, zone = "Searing Gorge", x = 65.6, y = 62.2 }, -- 26
-    },
+    } end,
 })

@@ -10,7 +10,7 @@
   "zone": "Orgrimmar",
   "next": "GEN_HORDE_ORC_17_THE_HINTERLANDS",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 16 of the Orc route: level 43 to 44, 11 steps, ~18 min of play in the model (55886 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 16 of the Orc route: level 43 to 44, 11 steps, ~18 min of play in the model (55886 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1454, "zone": "Orgrimmar", "x": 59.9, "y": 40.3, "radius": 60, "note": "travel to Orgrimmar (Orgrimmar)"},
     {"type": "NOTE", "map": 1454, "zone": "Orgrimmar", "x": 59.9, "y": 40.3, "text": "set your hearthstone at the inn in Orgrimmar (if there is one)"},

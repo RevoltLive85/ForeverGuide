@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Desolace",
     next = "GEN_ALLIANCE_SKYBORNE_18_FERALAS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 17 of the Skyborne route: level 38 to 40, 71 steps, ~187 min of play in the model (30719 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 17 of the Skyborne route: level 38 to 40, 74 steps, ~187 min of play in the model (30719 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps (1 here).",
+    stepCount = 74,
+    steps = function() return {
         { type = "TRAVEL", map = 1443, zone = "Desolace", x = 66.5, y = 9.9, radius = 60, note = "travel to Desolace (Desolace)" }, -- 1
         { type = "NOTE", map = 1443, zone = "Desolace", x = 66.5, y = 9.9, text = "set your hearthstone at the inn in Desolace (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 1387, questName = "Centaur Bounty", npc = 5752, npcName = "Corporal Melkins", map = 1443, zone = "Desolace", x = 66.7, y = 10.9 }, -- 3
@@ -63,27 +64,30 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 5561, questName = "Kodo Roundup", npc = 11596, npcName = "Smeed Scrabblescrew", map = 1443, zone = "Desolace", x = 60.9, y = 61.9 }, -- 47
         { type = "TURNIN", quest = 1385, questName = "Brutal Politics", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 48
         { type = "ACCEPT", quest = 1386, questName = "Assault on the Kolkar", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 49
-        { type = "KILL", quest = 1386, questName = "Assault on the Kolkar", npc = 4634, target = "Kolkar Mauler / Kolkar Scout / Kolkar Centaur", count = 12, map = 1443, zone = "Desolace", x = 70.9, y = 50.6, near = true }, -- 50
-        { type = "TURNIN", quest = 1386, questName = "Assault on the Kolkar", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2, note = "reduced xp (60%) - you out-levelled it" }, -- 51
-        { type = "ACCEPT", quest = 1369, questName = "Broken Tears", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 52
-        { type = "ACCEPT", quest = 7067, questName = "The Pariah's Instructions", npc = 13717, npcName = "Centaur Pariah", map = 1443, zone = "Desolace", x = 50.4, y = 86.7 }, -- 53
-        { type = "TURNIN", quest = 7067, questName = "The Pariah's Instructions", npc = 13717, npcName = "Centaur Pariah", map = 1443, zone = "Desolace", x = 50.4, y = 86.7 }, -- 54
-        { type = "COLLECT", quest = 1369, questName = "Broken Tears", target = "Broken Tears", count = 3, map = 1443, zone = "Desolace", x = 40.5, y = 91.9, near = true }, -- 55
-        { type = "TURNIN", quest = 1382, questName = "Strange Alliance", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 56
-        { type = "ACCEPT", quest = 1384, questName = "Raid on the Kolkar", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 57
-        { type = "ACCEPT", quest = 6132, questName = "Get Me Out of Here!", npc = 12277, npcName = "Melizza Brimbuzzle", map = 1443, zone = "Desolace", x = 34, y = 53.5 }, -- 58
-        { type = "COMPLETE", quest = 6132, questName = "Get Me Out of Here!", target = "Melizza Brimbuzzle escorted to safety", map = 1443, zone = "Desolace", x = 40.1, y = 61.6, note = "escort - stay close, it can fail: Melizza Brimbuzzle escorted to safety" }, -- 59
-        { type = "TURNIN", quest = 6132, questName = "Get Me Out of Here!", npc = 6019, npcName = "Hornizz Brimbuzzle", map = 1443, zone = "Desolace", x = 47.8, y = 61.8 }, -- 60
-        { type = "COLLECT", quest = 1384, questName = "Raid on the Kolkar", target = "Crude Charm", count = 10, map = 1443, zone = "Desolace", x = 67.7, y = 52, near = true }, -- 61
-        { type = "TURNIN", quest = 1369, questName = "Broken Tears", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2, note = "reduced xp (80%) - you out-levelled it" }, -- 62
-        { type = "ACCEPT", quest = 1371, questName = "Gizmo for Warug", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 63
-        { type = "TURNIN", quest = 1371, questName = "Gizmo for Warug", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 64
-        { type = "ACCEPT", quest = 1375, questName = "Khan Shaka", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 65
-        { type = "KILL", quest = 1375, questName = "Khan Shaka", npc = 5602, target = "Khan Shaka", map = 1443, zone = "Desolace", x = 40.5, y = 95.5, note = "loot Khan Shaka's Head" }, -- 66
-        { type = "TURNIN", quest = 1384, questName = "Raid on the Kolkar", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3, note = "reduced xp (60%) - you out-levelled it" }, -- 67
-        { type = "ACCEPT", quest = 1370, questName = "Stealing Supplies", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 68
-        { type = "COLLECT", quest = 1370, questName = "Stealing Supplies", target = "Crudely Dried Meat", count = 6, map = 1443, zone = "Desolace", x = 65.8, y = 80.5, near = true }, -- 69
-        { type = "TURNIN", quest = 1370, questName = "Stealing Supplies", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 70
-        { type = "TURNIN", quest = 1375, questName = "Khan Shaka", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 71
-    },
+        { type = "ACCEPT", quest = 1381, questName = "Khan Hratha", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2, optional = true, note = "group quest (elite mobs) - optional, take it only with company" }, -- 50
+        { type = "KILL", quest = 1381, questName = "Khan Hratha", npc = 5402, target = "Khan Hratha", map = 1443, zone = "Desolace", x = 29.6, y = 52, optional = true }, -- 51
+        { type = "TURNIN", quest = 1381, questName = "Khan Hratha", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2, optional = true }, -- 52
+        { type = "KILL", quest = 1386, questName = "Assault on the Kolkar", npc = 4634, target = "Kolkar Mauler / Kolkar Scout / Kolkar Centaur", count = 12, map = 1443, zone = "Desolace", x = 70.9, y = 50.6, near = true }, -- 53
+        { type = "TURNIN", quest = 1386, questName = "Assault on the Kolkar", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2, note = "reduced xp (60%) - you out-levelled it" }, -- 54
+        { type = "ACCEPT", quest = 1369, questName = "Broken Tears", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 55
+        { type = "ACCEPT", quest = 7067, questName = "The Pariah's Instructions", npc = 13717, npcName = "Centaur Pariah", map = 1443, zone = "Desolace", x = 50.4, y = 86.7 }, -- 56
+        { type = "TURNIN", quest = 7067, questName = "The Pariah's Instructions", npc = 13717, npcName = "Centaur Pariah", map = 1443, zone = "Desolace", x = 50.4, y = 86.7 }, -- 57
+        { type = "COLLECT", quest = 1369, questName = "Broken Tears", target = "Broken Tears", count = 3, map = 1443, zone = "Desolace", x = 40.5, y = 91.9, near = true }, -- 58
+        { type = "TURNIN", quest = 1382, questName = "Strange Alliance", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 59
+        { type = "ACCEPT", quest = 1384, questName = "Raid on the Kolkar", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 60
+        { type = "ACCEPT", quest = 6132, questName = "Get Me Out of Here!", npc = 12277, npcName = "Melizza Brimbuzzle", map = 1443, zone = "Desolace", x = 34, y = 53.5 }, -- 61
+        { type = "COMPLETE", quest = 6132, questName = "Get Me Out of Here!", target = "Melizza Brimbuzzle escorted to safety", map = 1443, zone = "Desolace", x = 40.1, y = 61.6, note = "escort - stay close, it can fail: Melizza Brimbuzzle escorted to safety" }, -- 62
+        { type = "TURNIN", quest = 6132, questName = "Get Me Out of Here!", npc = 6019, npcName = "Hornizz Brimbuzzle", map = 1443, zone = "Desolace", x = 47.8, y = 61.8 }, -- 63
+        { type = "COLLECT", quest = 1384, questName = "Raid on the Kolkar", target = "Crude Charm", count = 10, map = 1443, zone = "Desolace", x = 67.7, y = 52, near = true }, -- 64
+        { type = "TURNIN", quest = 1369, questName = "Broken Tears", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2, note = "reduced xp (80%) - you out-levelled it" }, -- 65
+        { type = "ACCEPT", quest = 1371, questName = "Gizmo for Warug", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 66
+        { type = "TURNIN", quest = 1371, questName = "Gizmo for Warug", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 67
+        { type = "ACCEPT", quest = 1375, questName = "Khan Shaka", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 68
+        { type = "KILL", quest = 1375, questName = "Khan Shaka", npc = 5602, target = "Khan Shaka", map = 1443, zone = "Desolace", x = 40.5, y = 95.5, note = "loot Khan Shaka's Head" }, -- 69
+        { type = "TURNIN", quest = 1384, questName = "Raid on the Kolkar", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3, note = "reduced xp (60%) - you out-levelled it" }, -- 70
+        { type = "ACCEPT", quest = 1370, questName = "Stealing Supplies", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 71
+        { type = "COLLECT", quest = 1370, questName = "Stealing Supplies", target = "Crudely Dried Meat", count = 6, map = 1443, zone = "Desolace", x = 65.8, y = 80.5, near = true }, -- 72
+        { type = "TURNIN", quest = 1370, questName = "Stealing Supplies", npc = 5397, npcName = "Uthek the Wise", map = 1443, zone = "Desolace", x = 36.2, y = 79.3 }, -- 73
+        { type = "TURNIN", quest = 1375, questName = "Khan Shaka", npc = 5398, npcName = "Warug", map = 1443, zone = "Desolace", x = 75, y = 68.2 }, -- 74
+    } end,
 })

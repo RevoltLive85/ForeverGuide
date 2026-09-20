@@ -11,7 +11,8 @@ ns.RegisterGuide({
     zone = "Dustwallow Marsh",
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Dustwallow Marsh for a Alliance character, 18 quests. The race routes are the faster path; pick this when you just want to quest here.",
-    steps = {
+    stepCount = 42,
+    steps = function() return {
         { type = "TRAVEL", map = 1445, zone = "Dustwallow Marsh", x = 67.0, y = 48.1, radius = 60, note = "travel to Dustwallow Marsh (Dustwallow Marsh)" }, -- 1
         { type = "NOTE", map = 1445, zone = "Dustwallow Marsh", x = 67.0, y = 48.1, text = "set your hearthstone at the inn in Dustwallow Marsh (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 1282, questName = "They Call Him Smiling Jim", npc = 4921, npcName = "Guard Byron", map = 1445, zone = "Dustwallow Marsh", x = 66.2, y = 46.1 }, -- 3
@@ -54,5 +55,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 1286, questName = "The Deserters", npc = 5089, npcName = "Balos Jacken", map = 1445, zone = "Dustwallow Marsh", x = 36.1, y = 54.3 }, -- 40
         { type = "ACCEPT", quest = 1287, questName = "The Deserters", npc = 5089, npcName = "Balos Jacken", map = 1445, zone = "Dustwallow Marsh", x = 36.1, y = 54.3 }, -- 41
         { type = "TURNIN", quest = 1287, questName = "The Deserters", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 42
-    },
+    } end,
 })

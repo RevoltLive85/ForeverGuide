@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Un'Goro Crater",
     next = "GEN_ALLIANCE_SKYBORNE_30_FERALAS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 29 of the Skyborne route: level 48 to 48, 19 steps, ~62 min of play in the model (33190 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 29 of the Skyborne route: level 48 to 48, 19 steps, ~62 min of play in the model (33190 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 19,
+    steps = function() return {
         { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.9, y = 8.0, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 1
         { type = "ACCEPT", quest = 3883, questName = "Alien Ecology", npc = 9271, npcName = "Hol'anyee Marshal", map = 1449, zone = "Un'Goro Crater", x = 43.9, y = 7.2 }, -- 2
         { type = "ACCEPT", quest = 3881, questName = "Expedition Salvation", npc = 9270, npcName = "Williden Marshal", map = 1449, zone = "Un'Goro Crater", x = 44, y = 7.1 }, -- 3
@@ -33,5 +34,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 4292, questName = "The Bait for Lar'korwi", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 17
         { type = "KILL", quest = 4292, questName = "The Bait for Lar'korwi", npc = 9684, target = "Lar'korwi", map = 1449, zone = "Un'Goro Crater", x = 79.7, y = 49.8, note = "loot Lar'korwi's Head" }, -- 18
         { type = "TURNIN", quest = 4292, questName = "The Bait for Lar'korwi", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 19
-    },
+    } end,
 })

@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Felwood",
     next = "GEN_ALLIANCE_SKYBORNE_22_BLASTED_LANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 21 of the Skyborne route: level 45 to 45, 14 steps, ~64 min of play in the model (28315 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 21 of the Skyborne route: level 45 to 45, 14 steps, ~64 min of play in the model (28315 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 14,
+    steps = function() return {
         { type = "TRAVEL", map = 1448, zone = "Felwood", x = 51.6, y = 82.7, radius = 60, note = "travel to Felwood (Felwood)" }, -- 1
         { type = "NOTE", map = 1448, zone = "Felwood", x = 51.6, y = 82.7, text = "set your hearthstone at the inn in Felwood (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 8460, questName = "Timbermaw Ally", npc = 11554, npcName = "Grazle", map = 1448, zone = "Felwood", x = 50.9, y = 85 }, -- 3
@@ -28,5 +29,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 8461, questName = "Deadwood of the North", npc = 15395, npcName = "Nafien", map = 1448, zone = "Felwood", x = 64.8, y = 8.1 }, -- 12
         { type = "ACCEPT", quest = 8462, questName = "Speak to Nafien", npc = 11554, npcName = "Grazle", map = 1448, zone = "Felwood", x = 50.9, y = 85 }, -- 13
         { type = "TURNIN", quest = 8462, questName = "Speak to Nafien", npc = 15395, npcName = "Nafien", map = 1448, zone = "Felwood", x = 64.8, y = 8.1 }, -- 14
-    },
+    } end,
 })

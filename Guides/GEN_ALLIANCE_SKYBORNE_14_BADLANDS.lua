@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Badlands",
     next = "GEN_ALLIANCE_SKYBORNE_15_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 14 of the Skyborne route: level 36 to 37, 42 steps, ~107 min of play in the model (43978 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 14 of the Skyborne route: level 36 to 37, 42 steps, ~107 min of play in the model (43978 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 42,
+    steps = function() return {
         { type = "TRAVEL", map = 1417, zone = "Arathi Highlands", x = 45.9, y = 46.0, radius = 60, note = "use your hearthstone (Arathi Highlands)" }, -- 1
         { type = "TRAVEL", map = 1418, zone = "Badlands", x = 49.9, y = 47.6, radius = 60, note = "travel to Badlands (Badlands)" }, -- 2
         { type = "NOTE", map = 1418, zone = "Badlands", x = 49.9, y = 47.6, text = "set your hearthstone at the inn in Badlands (if there is one)" }, -- 3
@@ -56,5 +57,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 778, questName = "This Is Going to Be Hard", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 40
         { type = "KILL", quest = 778, questName = "This Is Going to Be Hard", npc = 2919, target = "Fam'retor Guardian", map = 1418, zone = "Badlands", x = 26, y = 45.8, note = "loot Lotwil's Shackles of Elemental Binding" }, -- 41
         { type = "TURNIN", quest = 778, questName = "This Is Going to Be Hard", npc = 2921, npcName = "Lotwil Veriatus", map = 1418, zone = "Badlands", x = 26, y = 44.9 }, -- 42
-    },
+    } end,
 })

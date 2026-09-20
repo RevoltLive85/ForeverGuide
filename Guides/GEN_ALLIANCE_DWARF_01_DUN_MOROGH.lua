@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Dun Morogh",
     next = "GEN_ALLIANCE_DWARF_02_IRONFORGE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 1 of the Dwarf route: level 1 to 10, 76 steps, ~123 min of play in the model (14119 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 1 of the Dwarf route: level 1 to 10, 76 steps, ~123 min of play in the model (14119 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 76,
+    steps = function() return {
         { type = "NOTE", map = 1426, zone = "Dun Morogh", x = 27.4, y = 71.9, text = "set your hearthstone at the inn in Dun Morogh (if there is one)" }, -- 1
         { type = "ACCEPT", quest = 179, questName = "Dwarven Outfitters", npc = 658, npcName = "Sten Stoutarm", map = 1426, zone = "Dun Morogh", x = 29.9, y = 71.2 }, -- 2
         { type = "COLLECT", quest = 179, questName = "Dwarven Outfitters", target = "Tough Wolf Meat", count = 8, map = 1426, zone = "Dun Morogh", x = 28.7, y = 72.4, near = true }, -- 3
@@ -90,5 +91,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 417, questName = "A Pilot's Revenge", map = 1426, zone = "Dun Morogh", x = 79.7, y = 36.2 }, -- 74
         { type = "KILL", quest = 417, questName = "A Pilot's Revenge", npc = 1961, target = "Mangeclaw", map = 1426, zone = "Dun Morogh", x = 78.3, y = 37.8, note = "loot Mangy Claw" }, -- 75
         { type = "TURNIN", quest = 417, questName = "A Pilot's Revenge", npc = 1960, npcName = "Pilot Hammerfoot", map = 1426, zone = "Dun Morogh", x = 83.9, y = 39.2 }, -- 76
-    },
+    } end,
 })

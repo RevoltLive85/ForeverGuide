@@ -10,7 +10,7 @@
   "zone": "Un'Goro Crater",
   "next": "GEN_HORDE_TAUREN_46_UNDERCITY",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 45 of the Tauren route: level 56 to 56, 13 steps, ~54 min of play in the model (26887 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 45 of the Tauren route: level 56 to 56, 13 steps, ~54 min of play in the model (26887 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1449, "zone": "Un'Goro Crater", "x": 44.1, "y": 7.3, "radius": 60, "note": "travel to Un'Goro Crater (Un'Goro Crater)"},
     {"type": "ACCEPT", "quest": 4492, "questName": "Lost!", "npc": 9997, "npcName": "Spraggle Frock", "map": 1449, "zone": "Un'Goro Crater", "x": 43.6, "y": 8.5},

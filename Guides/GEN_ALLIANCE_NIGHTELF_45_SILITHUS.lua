@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Silithus",
     next = "GEN_ALLIANCE_NIGHTELF_46_EASTERN_PLAGUELANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 45 of the NightElf route: level 54 to 55, 38 steps, ~219 min of play in the model (34477 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 45 of the NightElf route: level 54 to 55, 38 steps, ~219 min of play in the model (34477 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 38,
+    steps = function() return {
         { type = "TRAVEL", map = 1451, zone = "Silithus", x = 50.1, y = 37.5, radius = 60, note = "travel to Silithus (Silithus)" }, -- 1
         { type = "NOTE", map = 1451, zone = "Silithus", x = 50.1, y = 37.5, text = "set your hearthstone at the inn in Silithus (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 8280, questName = "Securing the Supply Lines", npc = 15191, npcName = "Windcaller Proudhorn", map = 1451, zone = "Silithus", x = 51.2, y = 38.3 }, -- 3
@@ -52,5 +53,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 8323, questName = "True Believers", npc = 15194, npcName = "Hermit Ortell", map = 1451, zone = "Silithus", x = 67.2, y = 69.8 }, -- 36
         { type = "TURNIN", quest = 8287, questName = "A Terrible Purpose", npc = 15181, npcName = "Commander Mar'alith", map = 1451, zone = "Silithus", x = 49.2, y = 34.2 }, -- 37
         { type = "GRIND", npc = 11735, target = "Stonelash Scorpid", level = 55, map = 1451, zone = "Silithus", x = 43, y = 41.2, near = true, note = "grind Stonelash Scorpid (level 54-55) to level 55 - nothing worth questing at 54" }, -- 38
-    },
+    } end,
 })

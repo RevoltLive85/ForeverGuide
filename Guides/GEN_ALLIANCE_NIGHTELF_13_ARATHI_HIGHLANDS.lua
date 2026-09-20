@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Arathi Highlands",
     next = "GEN_ALLIANCE_NIGHTELF_14_STRANGLETHORN_VALE",
     author = "ForeverGuide route planner",
-    notes = "Chapter 13 of the NightElf route: level 30 to 31, 39 steps, ~126 min of play in the model (29856 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 13 of the NightElf route: level 30 to 31, 39 steps, ~126 min of play in the model (29856 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 39,
+    steps = function() return {
         { type = "TRAVEL", map = 1417, zone = "Arathi Highlands", x = 45.9, y = 46.0, radius = 60, note = "travel to Arathi Highlands (Arathi Highlands)" }, -- 1
         { type = "NOTE", map = 1417, zone = "Arathi Highlands", x = 45.9, y = 46.0, text = "set your hearthstone at the inn in Arathi Highlands (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 8168, questName = "The Battle for Arathi Basin!", npc = 14983, npcName = "Field Marshal Oslight", map = 1417, zone = "Arathi Highlands", x = 45.8, y = 45.5 }, -- 3
@@ -53,5 +54,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 647, questName = "MacKreel's Moonshine", npc = 2696, npcName = "Foggy MacKreel", map = 1417, zone = "Arathi Highlands", x = 43.2, y = 92.6 }, -- 37
         { type = "COLLECT", quest = 651, questName = "Stones of Binding", target = "Burning Key", map = 1417, zone = "Arathi Highlands", x = 25.5, y = 30.1 }, -- 38
         { type = "TURNIN", quest = 651, questName = "Stones of Binding", map = 1417, zone = "Arathi Highlands", x = 36.2, y = 57.4 }, -- 39
-    },
+    } end,
 })

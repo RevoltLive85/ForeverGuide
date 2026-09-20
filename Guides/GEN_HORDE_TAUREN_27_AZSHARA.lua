@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Azshara",
     next = "GEN_HORDE_TAUREN_28_UN_GORO_CRATER",
     author = "ForeverGuide route planner",
-    notes = "Chapter 27 of the Tauren route: level 48 to 49, 7 steps, ~32 min of play in the model (32053 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 27 of the Tauren route: level 48 to 49, 7 steps, ~32 min of play in the model (32053 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 7,
+    steps = function() return {
         { type = "TRAVEL", map = 1447, zone = "Azshara", x = 60.8, y = 66.4, radius = 60, note = "travel to Azshara (Azshara)" }, -- 1
         { type = "ACCEPT", quest = 3601, questName = "Kim'jael Indeed!", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 2
         { type = "COLLECT", quest = 3601, questName = "Kim'jael Indeed!", target = "Kim'Jael's Compass / Kim'Jael's Scope / Kim'Jael's Stuffed Chicken / Kim'Jael's Wizzlegoober", map = 1447, zone = "Azshara", x = 56.4, y = 28.4, near = true }, -- 3
@@ -21,5 +22,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 5534, questName = "Kim'jael's \"Missing\" Equipment", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 5
         { type = "COLLECT", quest = 5534, questName = "Kim'jael's \"Missing\" Equipment", target = "Some Rune", map = 1447, zone = "Azshara", x = 49.5, y = 42, near = true }, -- 6
         { type = "TURNIN", quest = 5534, questName = "Kim'jael's \"Missing\" Equipment", npc = 8420, npcName = "Kim'jael", map = 1447, zone = "Azshara", x = 53.5, y = 21.8 }, -- 7
-    },
+    } end,
 })

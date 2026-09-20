@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Zephras Isle",
     next = "GEN_HORDE_SKYBORNE_02_THE_BARRENS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 1 of the Skyborne route: level 1 to 13, 208 steps, ~182 min of play in the model (19955 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 1 of the Skyborne route: level 1 to 13, 208 steps, ~182 min of play in the model (19955 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 208,
+    steps = function() return {
         { type = "NOTE", map = 2521, zone = "Zephras Isle", x = 42.8, y = 24.1, text = "set your hearthstone at the inn in Zephras Isle (if there is one)" }, -- 1
         { type = "ACCEPT", quest = 92474, questName = "Falling With Style", map = 2521, zone = "Zephras Isle", x = 43.6, y = 24.0 }, -- 2
         { type = "ACCEPT", quest = 94414, questName = "The Anchors of Zephras", map = 2521, zone = "Zephras Isle", x = 43.5, y = 24.3 }, -- 3
@@ -222,5 +223,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 92947, questName = "Making Our Move", map = 2521, zone = "Zephras Isle", x = 63.8, y = 50.5 }, -- 206
         { type = "ACCEPT", quest = 93958, questName = "The Inner Sanctum", map = 2521, zone = "Zephras Isle", x = 63.8, y = 50.5 }, -- 207
         { type = "TURNIN", quest = 93958, questName = "The Inner Sanctum", map = 2521, zone = "Zephras Isle", x = 65.2, y = 50.4 }, -- 208
-    },
+    } end,
 })

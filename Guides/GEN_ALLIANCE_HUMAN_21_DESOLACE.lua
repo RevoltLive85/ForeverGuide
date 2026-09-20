@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Desolace",
     next = "GEN_ALLIANCE_HUMAN_22_THE_HINTERLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 21 of the Human route: level 42 to 42, 9 steps, ~40 min of play in the model (36987 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 21 of the Human route: level 42 to 42, 9 steps, ~40 min of play in the model (36987 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 9,
+    steps = function() return {
         { type = "TRAVEL", map = 1443, zone = "Desolace", x = 66.5, y = 9.4, radius = 60, note = "travel to Desolace (Desolace)" }, -- 1
         { type = "ACCEPT", quest = 7041, questName = "Vyletongue Corruption", npc = 11715, npcName = "Talendria", map = 1443, zone = "Desolace", x = 68.5, y = 8.9 }, -- 2
         { type = "ACCEPT", quest = 7028, questName = "Twisted Evils", npc = 13656, npcName = "Willow", map = 1443, zone = "Desolace", x = 62.2, y = 39.6 }, -- 3
@@ -23,5 +24,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 7041, questName = "Vyletongue Corruption", npc = 11715, npcName = "Talendria", map = 1443, zone = "Desolace", x = 68.5, y = 8.9 }, -- 7
         { type = "ACCEPT", quest = 7067, questName = "The Pariah's Instructions", npc = 13717, npcName = "Centaur Pariah", map = 1443, zone = "Desolace", x = 50.4, y = 86.7 }, -- 8
         { type = "TURNIN", quest = 7067, questName = "The Pariah's Instructions", npc = 13717, npcName = "Centaur Pariah", map = 1443, zone = "Desolace", x = 50.4, y = 86.7 }, -- 9
-    },
+    } end,
 })

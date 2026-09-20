@@ -10,7 +10,7 @@
   "zone": "The Hinterlands",
   "next": "GEN_ALLIANCE_NIGHTELF_27_UN_GORO_CRATER",
   "author": "ForeverGuide route planner",
-  "notes": "Chapter 26 of the NightElf route: level 47 to 47, 16 steps, ~48 min of play in the model (31295 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
+  "notes": "Chapter 26 of the NightElf route: level 47 to 47, 16 steps, ~48 min of play in the model (31295 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
   "steps": [
     {"type": "TRAVEL", "map": 1425, "zone": "The Hinterlands", "x": 12.0, "y": 44.5, "radius": 60, "note": "travel to The Hinterlands (The Hinterlands)"},
     {"type": "NOTE", "map": 1425, "zone": "The Hinterlands", "x": 12.0, "y": 44.5, "text": "set your hearthstone at the inn in The Hinterlands (if there is one)"},

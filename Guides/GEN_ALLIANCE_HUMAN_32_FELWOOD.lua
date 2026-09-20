@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Felwood",
     next = "GEN_ALLIANCE_HUMAN_33_WINTERSPRING",
     author = "ForeverGuide route planner",
-    notes = "Chapter 32 of the Human route: level 49 to 49, 12 steps, ~61 min of play in the model (30154 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 32 of the Human route: level 49 to 49, 12 steps, ~61 min of play in the model (30154 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 12,
+    steps = function() return {
         { type = "TRAVEL", map = 1447, zone = "Azshara", x = 60.8, y = 66.4, radius = 60, note = "use your hearthstone (Azshara)" }, -- 1
         { type = "TRAVEL", map = 1448, zone = "Felwood", x = 51.3, y = 81.9, radius = 60, note = "travel to Felwood (Felwood)" }, -- 2
         { type = "ACCEPT", quest = 4421, questName = "The Corruption of the Jadefire", npc = 9116, npcName = "Eridan Bluewind", map = 1448, zone = "Felwood", x = 51.4, y = 81.5 }, -- 3
@@ -26,5 +27,5 @@ ns.RegisterGuide({
         { type = "KILL", quest = 4906, questName = "Further Corruption", npc = 10648, target = "Xavaric / Jadefire Betrayer", count = 1, map = 1448, zone = "Felwood", x = 39.1, y = 22.4 }, -- 10
         { type = "KILL", quest = 4906, questName = "Further Corruption", npc = 7107, target = "Jadefire Trickster", count = 8, map = 1448, zone = "Felwood", x = 41, y = 20.4, near = true }, -- 11
         { type = "TURNIN", quest = 4906, questName = "Further Corruption", npc = 9116, npcName = "Eridan Bluewind", map = 1448, zone = "Felwood", x = 51.4, y = 81.5 }, -- 12
-    },
+    } end,
 })

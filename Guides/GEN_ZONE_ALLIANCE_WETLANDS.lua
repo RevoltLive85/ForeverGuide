@@ -11,7 +11,8 @@ ns.RegisterGuide({
     zone = "Wetlands",
     author = "ForeverGuide route planner",
     notes = "Every quest worth doing in Wetlands for a Alliance character, 23 quests. The race routes are the faster path; pick this when you just want to quest here.",
-    steps = {
+    stepCount = 65,
+    steps = function() return {
         { type = "TRAVEL", map = 1437, zone = "Wetlands", x = 10.3, y = 58.9, radius = 60, note = "travel to Wetlands (Wetlands)" }, -- 1
         { type = "NOTE", map = 1437, zone = "Wetlands", x = 10.3, y = 58.9, text = "set your hearthstone at the inn in Wetlands (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 279, questName = "Claws from the Deep", npc = 1242, npcName = "Karl Boran", map = 1437, zone = "Wetlands", x = 8.3, y = 58.6 }, -- 3
@@ -77,5 +78,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 464, questName = "War Banners", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.9, y = 57.5 }, -- 63
         { type = "ACCEPT", quest = 465, questName = "Nek'rosh's Gambit", npc = 2104, npcName = "Captain Stoutfist", map = 1437, zone = "Wetlands", x = 9.9, y = 57.5 }, -- 64
         { type = "TURNIN", quest = 465, questName = "Nek'rosh's Gambit", map = 1437, zone = "Wetlands", x = 47.5, y = 47 }, -- 65
-    },
+    } end,
 })

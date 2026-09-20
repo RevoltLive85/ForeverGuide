@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Dustwallow Marsh",
     next = "GEN_ALLIANCE_HUMAN_15_BADLANDS",
     author = "ForeverGuide route planner",
-    notes = "Chapter 14 of the Human route: level 34 to 35, 42 steps, ~131 min of play in the model (27015 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 14 of the Human route: level 34 to 35, 42 steps, ~131 min of play in the model (27015 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 42,
+    steps = function() return {
         { type = "TRAVEL", map = 1445, zone = "Dustwallow Marsh", x = 67.0, y = 48.1, radius = 60, note = "travel to Dustwallow Marsh (Dustwallow Marsh)" }, -- 1
         { type = "NOTE", map = 1445, zone = "Dustwallow Marsh", x = 67.0, y = 48.1, text = "set your hearthstone at the inn in Dustwallow Marsh (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 1282, questName = "They Call Him Smiling Jim", npc = 4921, npcName = "Guard Byron", map = 1445, zone = "Dustwallow Marsh", x = 66.2, y = 46.1 }, -- 3
@@ -56,5 +57,5 @@ ns.RegisterGuide({
         { type = "TURNIN", quest = 1286, questName = "The Deserters", npc = 5089, npcName = "Balos Jacken", map = 1445, zone = "Dustwallow Marsh", x = 36.1, y = 54.3 }, -- 40
         { type = "ACCEPT", quest = 1287, questName = "The Deserters", npc = 5089, npcName = "Balos Jacken", map = 1445, zone = "Dustwallow Marsh", x = 36.1, y = 54.3 }, -- 41
         { type = "TURNIN", quest = 1287, questName = "The Deserters", npc = 4944, npcName = "Captain Garran Vimes", map = 1445, zone = "Dustwallow Marsh", x = 68.2, y = 48.6 }, -- 42
-    },
+    } end,
 })

@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Un'Goro Crater",
     next = "GEN_ALLIANCE_SKYBORNE_27_AZSHARA",
     author = "ForeverGuide route planner",
-    notes = "Chapter 26 of the Skyborne route: level 47 to 47, 27 steps, ~102 min of play in the model (28565 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 26 of the Skyborne route: level 47 to 47, 27 steps, ~102 min of play in the model (28565 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 27,
+    steps = function() return {
         { type = "TRAVEL", map = 1449, zone = "Un'Goro Crater", x = 43.2, y = 6.6, radius = 60, note = "travel to Un'Goro Crater (Un'Goro Crater)" }, -- 1
         { type = "NOTE", map = 1449, zone = "Un'Goro Crater", x = 43.2, y = 6.6, text = "set your hearthstone at the inn in Un'Goro Crater (if there is one)" }, -- 2
         { type = "ACCEPT", quest = 4141, questName = "Muigin and Larion", npc = 9119, npcName = "Muigin", map = 1449, zone = "Un'Goro Crater", x = 42.9, y = 9.6 }, -- 3
@@ -41,5 +42,5 @@ ns.RegisterGuide({
         { type = "KILL", quest = 4289, questName = "The Apes of Un'Goro", npc = 6514, target = "Un'Goro Gorilla / Un'Goro Stomper / Un'Goro Thunderer", count = 2, map = 1449, zone = "Un'Goro Crater", x = 62.6, y = 19.7, near = true, note = "loot Un'Goro Gorilla Pelt" }, -- 25
         { type = "TURNIN", quest = 4289, questName = "The Apes of Un'Goro", npc = 9619, npcName = "Torwa Pathfinder", map = 1449, zone = "Un'Goro Crater", x = 71.6, y = 76 }, -- 26
         { type = "TURNIN", quest = 3845, questName = "It's a Secret to Everybody", npc = 8737, npcName = "Linken", map = 1449, zone = "Un'Goro Crater", x = 44.7, y = 8.1 }, -- 27
-    },
+    } end,
 })

@@ -12,8 +12,9 @@ ns.RegisterGuide({
     zone = "Felwood",
     next = "GEN_HORDE_SCOURGE_28_AZSHARA",
     author = "ForeverGuide route planner",
-    notes = "Chapter 27 of the Scourge route: level 48 to 48, 16 steps, ~81 min of play in the model (36565 xp/h). Route tuned for xp per hour: low-value quests, elites and long escorts are skipped on purpose.",
-    steps = {
+    notes = "Chapter 27 of the Scourge route: level 48 to 48, 16 steps, ~81 min of play in the model (36565 xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps.",
+    stepCount = 16,
+    steps = function() return {
         { type = "TRAVEL", map = 1448, zone = "Felwood", x = 50.4, y = 82.1, radius = 60, note = "travel to Felwood (Felwood)" }, -- 1
         { type = "ACCEPT", quest = 5155, questName = "Forces of Jaedenar", npc = 10922, npcName = "Greta Mosshoof", map = 1448, zone = "Felwood", x = 51.2, y = 82.1 }, -- 2
         { type = "ACCEPT", quest = 5156, questName = "Verifying the Corruption", npc = 10921, npcName = "Taronn Redfeather", map = 1448, zone = "Felwood", x = 50.9, y = 81.6 }, -- 3
@@ -30,5 +31,5 @@ ns.RegisterGuide({
         { type = "ACCEPT", quest = 5887, questName = "Salve via Hunting", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83.1 }, -- 14
         { type = "COLLECT", quest = 5887, questName = "Salve via Hunting", target = "Corrupted Soul Shard", map = 1448, zone = "Felwood", x = 47.1, y = 84, near = true }, -- 15
         { type = "TURNIN", quest = 5887, questName = "Salve via Hunting", npc = 9529, npcName = "Maybess Riverbreeze", map = 1448, zone = "Felwood", x = 46.8, y = 83.1 }, -- 16
-    },
+    } end,
 })
