@@ -160,6 +160,7 @@ end
 --- Only then may the diamond ride on it. Blizzard's own mixin fades the frame
 --- to 0 when C_Navigation says the position is invalid; we honour both signals.
 function WP:EngineUsable()
+    if cfg().engine ~= true then return false end   -- opt-in: /fg waypoint engine on
     if not stf or not ns.Navigation.ownsWaypoint then return false end
     local ok, shown = pcall(stf.IsShown, stf)
     if not ok or not shown then return false end
@@ -196,6 +197,7 @@ end
 -- guess did over Lake Everstill. HORIZON caps far targets for the same reason.
 local PITCH = math.rad(17)
 local HORIZON = 0.74
+local EDGE_X, EDGE_LO, EDGE_HI = 0.06, 0.10, HORIZON
 local function screenSize()
     local ui = rawget(_G, "UIParent")
     local w, h = ui and ui:GetWidth() or 1024, ui and ui:GetHeight() or 768
@@ -203,6 +205,25 @@ local function screenSize()
     return w, h
 end
 local function playerPoint(w, h) return w / 2, h * 0.40 end
+
+-- Keep the marker inside the safe rectangle without losing its direction: the
+-- vector from the character to the marker is shortened until it touches the
+-- edge (a target far to the left ends up on the left edge, one behind you on
+-- the bottom edge, never in a corner it has no business in).
+local function rayClamp(px, py, x, y, w, h)
+    local x0, x1, y0, y1 = w * EDGE_X, w * (1 - EDGE_X), h * EDGE_LO, h * EDGE_HI
+    local dx, dy = x - px, y - py
+    local k = 1
+    if x < x0 then k = math.min(k, (x0 - px) / dx) end
+    if x > x1 then k = math.min(k, (x1 - px) / dx) end
+    if y < y0 then k = math.min(k, (y0 - py) / dy) end
+    if y > y1 then k = math.min(k, (y1 - py) / dy) end
+    if k < 1 then return px + dx * k, py + dy * k, true end
+    return x, y, false
+end
+
+--- Returns x, y (UIParent units), the angle, and whether the marker had to be
+--- pinned to the edge (target off-screen: to the side or behind the camera).
 function WP:BearingPosition(state)
     if not state or not state.angle or not state.distance then return nil end
     local w, h = screenSize()
@@ -214,15 +235,21 @@ function WP:BearingPosition(state)
     local a, d = state.angle, state.distance
     local lat = d * math.sin(a)          -- yards to the left of the facing
     local fwd = D + d * math.cos(a)      -- yards in front of the camera
-    local behind = fwd < 6
-    if behind then fwd = 6 end
-    local x = px - f * lat / fwd
-    local depression = math.atan(H / fwd)
-    local y = h * 0.5 + f * math.tan(PITCH - depression)
-    if behind then y = math.min(y, py - 90) end
-    if x < w * 0.06 then x = w * 0.06 elseif x > w * 0.94 then x = w * 0.94 end
-    if y < h * 0.08 then y = h * 0.08 elseif y > h * HORIZON then y = h * HORIZON end
-    return x, y, a, behind
+    local x, y
+    if fwd > math.max(8, 0.3 * d) then
+        -- in front of the camera: real perspective
+        x = px - f * lat / fwd
+        local depression = math.atan(H / fwd)
+        y = h * 0.5 + f * math.tan(PITCH - depression)
+        if y > h * HORIZON then y = h * HORIZON end
+    else
+        -- beside or behind the camera: the ground direction from the character, pushed
+        -- far out so the edge clamp pins it (left = left edge, behind = bottom edge)
+        x = px - math.sin(a) * w
+        y = py + math.cos(a) * w
+    end
+    local cx, cy, pinned = rayClamp(px, py, x, y, w, h)
+    return cx, cy, a, pinned
 end
 WP.PlayerScreenPoint = function() return playerPoint(screenSize()) end
 
@@ -281,11 +308,15 @@ function WP:Tick()
         end
         if not x then
             local st = Nav:Update(true)
-            local bx, by, _, isBehind = self:BearingPosition(st)
+            local bx, by, _, pinned = self:BearingPosition(st)
             if bx then
                 x, y = bx, by
-                behind = isBehind
+                behind = pinned
                 self.mode = "bearing"
+                self.lastPos = { x = x, y = y, pinned = pinned, at = ns.Now() }
+            elseif self.lastPos and ns.Now() - self.lastPos.at < 1.5 then
+                -- a momentary gap in position/facing data must not blink the marker away
+                x, y, behind = self.lastPos.x, self.lastPos.y, self.lastPos.pinned
             end
         end
         if not x then show = false self.mode = nil else

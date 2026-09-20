@@ -324,3 +324,10 @@ after every install via `cc_run` in that folder. Tests: 96 checks.
   log (ACCEPT steps are done either way); regression test added.
 - Tests: mock `GetCenter` now honours a CENTER-on-BOTTOMLEFT anchor, UIParent is 1280x720; route tests compare ids
   (Routes() builds fresh tables). 163 tests.
+- Follow-up (Ilya: "the objective marker now and then disappears, and gets bugged when I rotate"): (1) the engine-pin
+  mode is now opt-in (`/fg waypoint engine on`, account key `we`, default off) - on this client the state can flip
+  and the diamond would jump to the parked frame near the character; (2) targets beside/behind the camera no longer go
+  through the perspective formula (which explodes as the point crosses the camera plane and dumped the marker in a
+  corner) - they take the ground direction from the character and a **ray clamp** pins them to the edge in that
+  direction (left = left edge at the character's height, behind = bottom edge), drawn at 70% alpha; (3) a marker holds
+  its last position for 1.5 s across a momentary gap in position/facing data instead of blinking. Tests: 171.

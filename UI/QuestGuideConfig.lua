@@ -53,6 +53,8 @@ Config.TOGGLES = {
                    set = function(v) Config.Waypoint().route = v Config.Apply() end },
     wpanim     = { label = "waypoint animation", get = function() return Config.Waypoint().animate ~= false end,
                    set = function(v) Config.Waypoint().animate = v Config.Apply() end },
+    wpengine   = { label = "waypoint on the client's own pin (off: the Forever client cannot project it)", get = function() return Config.Waypoint().engine == true end,
+                   set = function(v) Config.Waypoint().engine = v if ns.Waypoint then ns.Waypoint:Tick() end end },
     map        = { label = "hide the Quest Guide while the world map is open", get = function() return ns.db.ui.hideOnMap ~= false end,
                    set = function(v) ns.db.ui.hideOnMap = v end },
     tracker    = { label = "hide Blizzard's objective tracker while the Quest Guide shows", get = function() return ns.db.ui.hideTracker ~= false end,
@@ -81,7 +83,7 @@ function Config.OptionItems()
         items[#items + 1] = { key = "qg_" .. key, label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
     end
     items[#items + 1] = { header = "Waypoint" }
-    for _, key in ipairs({ "waypoint", "route", "wpanim" }) do
+    for _, key in ipairs({ "waypoint", "route", "wpanim", "wpengine" }) do
         local t = Config.TOGGLES[key]
         items[#items + 1] = { key = "qg_" .. key, label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
     end

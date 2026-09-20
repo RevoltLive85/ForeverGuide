@@ -142,9 +142,11 @@ end
 
 function handlers.waypoint(rest)
     rest = (rest or ""):lower()
+    local key = "waypoint"
+    if rest:match("^engine") then key = "wpengine" rest = rest:gsub("^engine%s*", "") end
     local on
     if rest == "on" then on = true elseif rest == "off" then on = false end
-    local ok, msg = ns.QuestGuideConfig.SetToggle("waypoint", on)
+    local ok, msg = ns.QuestGuideConfig.SetToggle(key, on)
     ns.Print(msg)
 end
 

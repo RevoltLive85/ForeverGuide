@@ -569,6 +569,9 @@ do
     ns.Navigation:SetTarget({ map = 1429, x = 40, y = 60, label = "Hilary's Necklace", owner = "test" }); settle()
     ns.Waypoint:Tick()
     check(ns.Navigation.ownsWaypoint and MOCK.superTrack == true, "a target sets the engine's user waypoint and super-tracks it")
+    check(ns.Waypoint.overlay:IsShown() and ns.Waypoint.mode == "bearing", "by default the diamond is placed by our own projection (mode=" .. tostring(ns.Waypoint.mode) .. ")")
+    ns.Commands:Run("waypoint engine on"); ns.Waypoint:Tick()
+    check(ns.db.nav.waypoint.engine == true and ns.Waypoint.mode == "engine", "/fg waypoint engine on rides the client's pin (mode=" .. tostring(ns.Waypoint.mode) .. ")")
     check(ns.Waypoint.overlay:IsShown(), "the world waypoint overlay shows on the engine pin")
     check(ns.Waypoint.overlay.name:GetText() == "Hilary's Necklace", "the overlay carries the quest name")
     check(SuperTrackedFrame.Icon.alpha == 0, "the engine pin's own icon is faded out under our diamond")
@@ -597,10 +600,25 @@ do
         local ahead = st and st.angle and math.abs(st.angle) < math.pi / 2
         check(ox and ((ahead and oy > py) or (not ahead and oy < py)), string.format("bearing ring: a target ahead sits above the character, behind below (angle=%.2f dy=%.0f)", st and st.angle or 0, (oy or 0) - py))
     end
+    do  -- projection geometry (1280x720 mock screen, character at 640,288)
+        local W = ns.Waypoint
+        local x, y, _, pinned = W:BearingPosition({ angle = 0, distance = 60 })
+        check(x and math.abs(x - 640) < 1 and y > 288 and not pinned, string.format("60 yd straight ahead: above the character, centred (%.0f,%.0f)", x or 0, y or 0))
+        local xr = W:BearingPosition({ angle = -math.rad(22), distance = 75 })
+        check(xr and xr > 640 + 100, string.format("75 yd at 22 deg right lands well to the right (%.0f)", xr or 0))
+        local xl, yl, _, pl = W:BearingPosition({ angle = math.rad(90), distance = 40 })
+        check(pl and xl < 640 - 400 and math.abs(yl - 288) < 60, string.format("40 yd to the left pins to the left edge at the character's height (%.0f,%.0f)", xl or 0, yl or 0))
+        local xb, yb, _, pb = W:BearingPosition({ angle = math.pi, distance = 30 })
+        check(pb and math.abs(xb - 640) < 1 and yb < 288, string.format("30 yd behind pins to the bottom edge below the character (%.0f,%.0f)", xb or 0, yb or 0))
+        local _, yf = W:BearingPosition({ angle = 0, distance = 800 })
+        check(yf and yf <= 720 * 0.74 + 0.5, string.format("a far target never rises above the horizon line (%.0f)", yf or 0))
+    end
     -- no direction at all (no facing): fallback to the chevron
     local savedFacing = MOCK.facing
     MOCK.facing = nil; ns.Navigation:Update(); ns.Waypoint:Tick()
-    check(not ns.Waypoint.overlay:IsShown() and ns.Arrow.suppressedByWaypoint == false, "no direction known: overlay hides and the chevron takes over")
+    check(ns.Waypoint.overlay:IsShown(), "a momentary loss of direction keeps the marker where it was (no blinking)")
+    ns.Waypoint.lastPos.at = ns.Waypoint.lastPos.at - 5; ns.Waypoint:Tick()
+    check(not ns.Waypoint.overlay:IsShown() and ns.Arrow.suppressedByWaypoint == false, "no direction known for longer: overlay hides and the chevron takes over")
     MOCK.facing = savedFacing; ns.Navigation:Update()
     MOCK.superTrack = true; ns.Waypoint:Tick()
     ns.Commands:Run("route off")
