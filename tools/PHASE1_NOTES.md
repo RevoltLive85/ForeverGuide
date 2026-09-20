@@ -311,7 +311,7 @@ after every install via `cc_run` in that folder. Tests: 96 checks.
   the projection is missing in this build. Fix: `Waypoint:EngineUsable()` (frame shown, state ~= Invalid,
   HasValidScreenPosition, alpha > 0) gates the "ride the engine pin" mode; otherwise the diamond is placed by a small
   **chase-camera perspective model** (`Waypoint:BearingPosition`): camera GetCameraZoom() yards behind the character,
-  PITCH 23 deg down, aiming at the chest; the target's ground point (distance + angle from Navigation) is projected
+  PITCH 17 deg down (a flatter guess: far markers land a bit short on the ground rather than in the sky - the 23 deg first try floated above Lake Everstill), far targets capped at 74% of the height (a horizon guess), aiming at the chest; the target's ground point (distance + angle from Navigation) is projected
   with a ~90 deg horizontal FOV (focal length = half the UIParent width). Verified in Lakeshire: Hilary 75 yd at
   ~22 deg right lands on the NPC (0.67 w, 0.79 h). A plain ring around the character was tried first and was far too
   compressed sideways ("the marker isn't pointing to the NPC"). Behind the camera -> pushed below the character at

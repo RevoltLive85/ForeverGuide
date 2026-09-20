@@ -190,7 +190,12 @@ end
 -- puts the marker where the spot actually is on screen while the camera is
 -- behind the character (it is exact in x, and in y as far as the pitch guess
 -- holds). Behind the camera the marker is pushed below the character.
-local PITCH = math.rad(23)
+-- PITCH is a guess (the camera's tilt cannot be read); a flatter guess errs
+-- towards drawing a far marker a little short of the spot, on the ground,
+-- instead of floating in the sky above the horizon - which is what a steeper
+-- guess did over Lake Everstill. HORIZON caps far targets for the same reason.
+local PITCH = math.rad(17)
+local HORIZON = 0.74
 local function screenSize()
     local ui = rawget(_G, "UIParent")
     local w, h = ui and ui:GetWidth() or 1024, ui and ui:GetHeight() or 768
@@ -216,7 +221,7 @@ function WP:BearingPosition(state)
     local y = h * 0.5 + f * math.tan(PITCH - depression)
     if behind then y = math.min(y, py - 90) end
     if x < w * 0.06 then x = w * 0.06 elseif x > w * 0.94 then x = w * 0.94 end
-    if y < h * 0.08 then y = h * 0.08 elseif y > h * 0.90 then y = h * 0.90 end
+    if y < h * 0.08 then y = h * 0.08 elseif y > h * HORIZON then y = h * HORIZON end
     return x, y, a, behind
 end
 WP.PlayerScreenPoint = function() return playerPoint(screenSize()) end
