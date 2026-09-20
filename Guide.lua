@@ -242,7 +242,14 @@ function Guide:IsStepDone(step, idx)
 
     local Q = ns.Quest
     local t = step.type
-    if step.quest and Q:IsCompleted(step.quest) then return true, "quest completed" end
+    if step.quest and Q:IsCompleted(step.quest) then
+        -- The completion flag cannot be right while the quest still sits in the log: on the
+        -- Forever client it has come back true for a ready-to-turn-in quest right after a
+        -- /reload (Hilary's Necklace, 2026-09-20) and the guide walked past the turn-in.
+        -- The log is the better witness; an ACCEPT step is done either way.
+        if t == "ACCEPT" or not Q:IsOnQuest(step.quest) then return true, "quest completed" end
+        ns.Debug(string.format("completion flag set for %s (%d) although it is still in the log - ignoring it", ns.Quest:GetTitle(step.quest) or "?", step.quest))
+    end
 
     if t == "ACCEPT" then
         return Q:IsOnQuest(step.quest), nil

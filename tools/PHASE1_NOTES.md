@@ -310,7 +310,7 @@ after every install via `cc_run` in that folder. Tests: 96 checks.
   unrelated to the direction). The distance from C_Navigation matches ours, so the pin's world point is right - only
   the projection is missing in this build. Fix: `Waypoint:EngineUsable()` (frame shown, state ~= Invalid,
   HasValidScreenPosition, alpha > 0) gates the "ride the engine pin" mode; otherwise the diamond goes on a **bearing
-  ring** around the character's on-screen spot (radius 90 + 0.6/yd, clamped 110..34% of the height, direction from
+  ring** around the character's on-screen spot (radius 120 + 0.6/yd, clamped 150..36% of the height, direction from
   Navigation's angle: ahead = above, left = left, behind = below at 70% alpha). Same limitation as every Classic
   arrow: the direction is relative to the player's facing, not the camera (no camera-yaw API), so it is exact while
   moving and off while the camera is swung around a standing character. No direction at all -> chevron.

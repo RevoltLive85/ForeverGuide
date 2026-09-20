@@ -129,6 +129,11 @@ MOCK_ACCEPT(33, "Wolves Across the Border", { { text = "Tough Wolf Meat", finish
 check(cur() == 11, "re-accepted -> collect step again (" .. tostring(cur()) .. ")")
 MOCK_PROGRESS(33, 1, 8); settle()
 check(cur() == 12 and step().type == "TURNIN" and step().quest == 7, "wolf meat done -> turn in 7 (" .. tostring(cur()) .. ")")
+-- Forever quirk: the completion flag can read true for a quest that is still in the log (seen after
+-- /reload); the log wins and the turn-in stays current instead of being walked past
+MOCK.completed[7] = true; ns.Guide:Evaluate("reload"); settle()
+check(cur() == 12 and step().type == "TURNIN" and step().quest == 7, "a completion flag on a quest still in the log does not skip its turn-in (" .. tostring(cur()) .. ")")
+MOCK.completed[7] = nil
 
 -- player is AHEAD of the guide: turns in 7, 33, accepts 15, 3903 and even turns 3903 in
 MOCK_TURNIN(7); settle()

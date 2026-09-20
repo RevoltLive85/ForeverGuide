@@ -186,7 +186,7 @@ end
 -- bearing ring goes: a little below the centre of the view, radius growing
 -- with the distance so a far target sits high on screen, a close one hugs
 -- the character.
-local RING_MIN, RING_BASE, RING_PER_YARD, RING_MAX_FRAC = 110, 90, 0.6, 0.34
+local RING_MIN, RING_BASE, RING_PER_YARD, RING_MAX_FRAC = 150, 120, 0.6, 0.36
 function WP:BearingPosition(state)
     if not state or not state.angle or not state.distance then return nil end
     local ui = rawget(_G, "UIParent")
