@@ -15,6 +15,7 @@ BINDING_NAME_FOREVERGUIDE_SKIP = "Skip the current step"
 BINDING_NAME_FOREVERGUIDE_BACK = "Back one step"
 BINDING_NAME_FOREVERGUIDE_MODE = "Switch guide / auto mode"
 BINDING_NAME_FOREVERGUIDE_WRONG = "Report the current step as wrong"
+_G["BINDING_NAME_CLICK ForeverGuideTargetButton:LeftButton"] = "Target the nearest quest mob"
 
 local function guarded(name, fn)
     _G[name] = function(...)

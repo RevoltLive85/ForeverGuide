@@ -64,6 +64,10 @@ local function NewRegion(kind)
     function r:SetRotation(a) self.rotation = a end
     function r:SetVertexColor(...) self.vertex = { ... } end
     function r:SetAlpha(a) self.alpha = a end
+    function r:SetAttribute(k, v) self.attrs = self.attrs or {} self.attrs[k] = v end
+    function r:SetParent(p) self.parent = p end
+    function r:GetFrameLevel() return self.level or 1 end
+    function r:GetAttribute(k) return self.attrs and self.attrs[k] end
     function r:SetEnabled(e) self.enabled = e end
     function r:SetMaxLines(n) self.maxLines = n end
     function r:SetTexCoord() end
@@ -309,6 +313,7 @@ local function fire(event, ...)
     end
 end
 
+_G.InCombatLockdown = function() return world.inCombat == true end
 _G.CheckInteractDistance = function(unit, ring)
     local p = world.plates and world.plates[unit]
     if not p or not p.dist then return nil end

@@ -76,6 +76,45 @@ function QG:Create()
     f.guideBtn:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 12, 9)
     f.guidesBtn:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -12, 9)
 
+    -- the skull button: a secure button whose click runs "/targetexact <mob>" for the current kill
+    -- step (the one way an addon may change the target). Secure frames cannot be moved or shown in
+    -- combat, so it is anchored once, between Guide and Guides, and simply stays.
+    if ns.MobMarker and ns.MobMarker.TargetButton then
+        local tb = ns.MobMarker:TargetButton()
+        if tb then
+            tb:SetParent(f)
+            tb:ClearAllPoints()
+            tb:SetSize(30, 24)
+            tb:SetPoint("BOTTOM", f, "BOTTOM", 0, 9)
+            tb:SetFrameLevel(f:GetFrameLevel() + 5)
+            local normal = tb:CreateTexture(nil, "BACKGROUND")
+            normal:SetAllPoints()
+            pcall(normal.SetTexture, normal, Theme.TEX.button)
+            local hl = tb:CreateTexture(nil, "HIGHLIGHT")
+            hl:SetAllPoints()
+            pcall(hl.SetTexture, hl, Theme.TEX.buttonHl)
+            pcall(hl.SetBlendMode, hl, "ADD")
+            pcall(hl.SetAlpha, hl, 0.35)
+            local skull = tb:CreateTexture(nil, "ARTWORK")
+            skull:SetSize(16, 16)
+            skull:SetPoint("CENTER")
+            pcall(skull.SetTexture, skull, "Interface\\TargetingFrame\\UI-RaidTargetingIcons")
+            pcall(skull.SetTexCoord, skull, 0.75, 1, 0.25, 0.5)
+            tb:SetScript("OnEnter", function(self)
+                local tt = rawget(_G, "GameTooltip")
+                if not tt then return end
+                tt:SetOwner(self, "ANCHOR_TOP")
+                tt:AddLine("Target the nearest quest mob", 1, 0.88, 0.55)
+                local key = ns.MobMarker:TargetKey()
+                tt:AddLine(key and ("Key: " .. key) or "Bind a key: Key Bindings > AddOns > ForeverGuide", 0.85, 0.82, 0.75, true)
+                tt:AddLine("Press again if the first one is taken.", 0.66, 0.61, 0.52, true)
+                tt:Show()
+            end)
+            tb:SetScript("OnLeave", function() local tt = rawget(_G, "GameTooltip") if tt then tt:Hide() end end)
+            f.targetBtn = tb
+        end
+    end
+
     f.elapsed = 0
     f:SetScript("OnUpdate", function(self, elapsed)
         self.elapsed = self.elapsed + (elapsed or 0)

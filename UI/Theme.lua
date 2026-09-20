@@ -114,8 +114,9 @@ function Theme.Backdrop(f, kind, alpha)
 end
 
 --- Compact textured button: dark plate, gold rim, brighter on hover. icon: atlas name (optional)
-function Theme.NewButton(parent, text, width, height, onClick, icon)
-    local b = CreateFrame("Button", nil, parent)
+function Theme.NewButton(parent, text, width, height, onClick, icon, opts)
+    opts = opts or {}
+    local b = CreateFrame("Button", opts.name, parent, opts.template)
     b:SetSize(width, height or 24)
     local normal = b:CreateTexture(nil, "BACKGROUND")
     normal:SetAllPoints()
@@ -142,10 +143,12 @@ function Theme.NewButton(parent, text, width, height, onClick, icon)
     pcall(label.SetJustifyV, label, "MIDDLE")
     label:SetText(text)
     b.label = label
-    b:SetScript("OnClick", function()
-        local ok, err = pcall(onClick)
-        if not ok then ns.ReportOnce("button:" .. tostring(text), err) end
-    end)
+    if onClick then
+        b:SetScript("OnClick", function()
+            local ok, err = pcall(onClick)
+            if not ok then ns.ReportOnce("button:" .. tostring(text), err) end
+        end)
+    end
     b:SetScript("OnEnter", function() color(label, Theme.C.goldLight) end)
     b:SetScript("OnLeave", function() color(label, Theme.C.gold) end)
     return b

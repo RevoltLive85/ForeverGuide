@@ -41,7 +41,7 @@ MM.Cfg = cfg
 local OBJECTIVE = { KILL = true, COLLECT = true, COMPLETE = true }
 
 local function addName(set, name)
-    if type(name) == "string" and name ~= "" then set[string.lower(name)] = true end
+    if type(name) == "string" and name ~= "" then set[string.lower(name)] = name end   -- lower -> as written
 end
 
 --- lower-case names of the mobs the current step is about ({} when it is not a kill/loot step)
@@ -193,6 +193,50 @@ local function forcePlates(want)
     end
 end
 
+-- ---- the secure "target the next quest mob" button ----------------------------------------
+-- Addons may not change the player's target from Lua; a SecureActionButton with
+-- a /targetexact macro may, when the PLAYER clicks it or presses its key. The
+-- macro is rewritten out of combat only (secure attributes are locked in combat);
+-- the names of a kill step do not change mid-fight, so it is right when it matters.
+local targetBtn, macroNames, macroPending
+function MM:TargetButton()
+    if targetBtn then return targetBtn end
+    local ok, b = pcall(CreateFrame, "Button", "ForeverGuideTargetButton", UIParent, "SecureActionButtonTemplate")
+    if not ok or not b then return nil end
+    targetBtn = b
+    pcall(b.SetAttribute, b, "type", "macro")
+    pcall(b.RegisterForClicks, b, "AnyDown", "AnyUp")
+    b:SetSize(1, 1)
+    b:SetPoint("CENTER")
+    return b
+end
+
+local function inCombat()
+    return ns.Plain(ns.Safe(rawget(_G, "InCombatLockdown"))) == true
+end
+
+--- Point the button's macro at the current step's mobs (deferred while in combat).
+function MM:UpdateTargetMacro(names)
+    local b = self:TargetButton()
+    if not b then return end
+    local list = {}
+    for _, name in pairs(names or {}) do list[#list + 1] = name end
+    table.sort(list)
+    local key = table.concat(list, "|")
+    if key == macroNames then return end
+    if inCombat() then macroPending = names return end
+    local lines = {}
+    for _, name in ipairs(list) do lines[#lines + 1] = "/targetexact " .. name end
+    pcall(b.SetAttribute, b, "macrotext", table.concat(lines, "\n"))
+    macroNames, macroPending = key, nil
+    ns.Events:Fire("FG_TARGET_MACRO_CHANGED", list)
+end
+
+function MM:TargetKey()
+    local k = ns.PlainString(ns.Safe(rawget(_G, "GetBindingKey"), "CLICK ForeverGuideTargetButton:LeftButton"))
+    return k
+end
+
 -- ---- the scan ---------------------------------------------------------------------------
 function MM:Scan()
     releaseAll()
@@ -202,6 +246,7 @@ function MM:Scan()
     local names, step = self:WantedNames()
     local killStep = step ~= nil
     forcePlates(killStep)
+    self:UpdateTargetMacro(names)
     local NP = rawget(_G, "C_NamePlate")
     if not NP or type(NP.GetNamePlates) ~= "function" then return end
     local plates = ns.Safe(NP.GetNamePlates) or {}
@@ -213,7 +258,7 @@ function MM:Scan()
         if u and isMob(u) then
             local name = ns.PlainString(ns.Safe(UnitName, u))
             local lower = name and string.lower(name)
-            local isWanted = lower and names[lower] == true
+            local isWanted = lower and names[lower] ~= nil
             local related = isWanted or questRelated(u)
             -- a mob tagged by someone else is nobody's kill: no skull at all
             if related and not tagged(u) then
@@ -238,6 +283,17 @@ function MM:Scan()
     end
     self.primaryUnit = best and plateUnit(best) or nil
     self.markedCount = #used
+    -- the player's own target got taken by someone else: say so once (we cannot retarget for them)
+    if killStep and targetGUID and not self.taggedWarned then
+        local tName = ns.PlainString(ns.Safe(UnitName, "target"))
+        local tl = tName and string.lower(tName)
+        if tl and names[tl] and tagged("target") then
+            self.taggedWarned = targetGUID
+            local key = self:TargetKey()
+            ns.Printf("%s is taken - %s to target the next one.", tName, key and ("press " .. key) or "click the skull button (or bind a key: Key Bindings > AddOns > ForeverGuide)")
+        end
+    end
+    if not targetGUID or self.taggedWarned ~= targetGUID then self.taggedWarned = nil end
     local guid = best and ns.PlainString(ns.Safe(UnitGUID, plateUnit(best)))
     if guid ~= lastPrimary then
         lastPrimary = guid
@@ -253,11 +309,13 @@ end
 function MM:OnInit()
     ns.Events:RegisterMany({ "NAME_PLATE_UNIT_ADDED", "NAME_PLATE_UNIT_REMOVED", "PLAYER_TARGET_CHANGED", "UNIT_FLAGS", "PLAYER_REGEN_ENABLED" },
         function() ns.Events:Debounce("mobmarker", 0.1, function() MM:Scan() end) end)
+    ns.Events:Register("PLAYER_REGEN_ENABLED", function() if macroPending then MM:UpdateTargetMacro(macroPending) end end)
     ns.Events:RegisterMany({ "FG_STEP_CHANGED", "FG_GUIDE_CHANGED", "FG_MODE_CHANGED", "FG_QUEST_LOG_CHANGED", "FG_HIDDEN_ALL_CHANGED" },
         function() ns.Events:Debounce("mobmarker", 0.1, function() MM:Scan() end) end)
 end
 
 function MM:OnEnable()
+    self:TargetButton()
     -- a slow ticker catches tap changes and deaths the events miss
     local t = CreateFrame("Frame")
     t.elapsed = 0

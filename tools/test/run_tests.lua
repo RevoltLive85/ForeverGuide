@@ -525,7 +525,17 @@ do
     MOCK_ACCEPT(11, "Riverpaw Gnoll Bounty", { { text = "Kobold Vermin slain", finished = false, numFulfilled = 0, numRequired = 10 } }); settle()
     check(cur() == 2 and step().type == "KILL", "skull test: on the kill step (cur=" .. tostring(cur()) .. " lvl=" .. tostring(ns.Player:GetLevel()) .. " deferred=" .. tostring(next(G.progress.deferred or {})) .. " note=" .. tostring(G.note) .. ")")
     local names = ns.MobMarker:WantedNames()
-    check(names["kobold vermin"] == true, "the kill step wants Kobold Vermin")
+    check(names["kobold vermin"] == "Kobold Vermin", "the kill step wants Kobold Vermin")
+    ns.MobMarker:Scan()
+    local macro = ForeverGuideTargetButton and ForeverGuideTargetButton:GetAttribute("macrotext") or ""
+    check(macro:find("/targetexact Kobold Vermin", 1, true) ~= nil, "the secure target button carries a /targetexact macro for the step's mobs (" .. macro:gsub("\n", " | ") .. ")")
+    ns.MobMarker:UpdateTargetMacro({ ["young wolf"] = "Young Wolf" })   -- stale macro from an earlier step
+    MOCK.inCombat = true
+    ns.MobMarker:Scan()
+    check((ForeverGuideTargetButton:GetAttribute("macrotext") or ""):find("Young Wolf", 1, true) ~= nil, "in combat the macro is left alone (secure attributes are locked)")
+    MOCK.inCombat = false
+    MOCK_FIRE("PLAYER_REGEN_ENABLED"); settle()
+    check((ForeverGuideTargetButton:GetAttribute("macrotext") or ""):find("Kobold Vermin", 1, true) ~= nil, "...and rewritten for the step once combat ends")
     MOCK_PLATE("nameplate1", { name = "Kobold Vermin", npcID = 6, scale = 0.8, y = 500 })   -- far
     MOCK_PLATE("nameplate2", { name = "Kobold Vermin", npcID = 6, scale = 1.0, y = 300 })   -- near
     MOCK_PLATE("nameplate3", { name = "Kobold Worker", npcID = 257, scale = 1.0, y = 320, quest = true })  -- another quest's mob

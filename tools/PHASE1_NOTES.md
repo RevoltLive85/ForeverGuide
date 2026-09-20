@@ -376,3 +376,10 @@ no camera-yaw API exists; a left-drag camera orbit around a standing character d
   the rest. Enemy nameplates (cvar nameplateShowEnemies, 45 yd here) are switched on during kill steps and restored
   after / on logout (`plates` setting). Settings mirrored (`sk so sp`), `/fg skull`, options panel section.
   Tests: nameplate mock (MOCK_PLATE), 192 tests.
+- Retargeting (Ilya: "when the mob is tagged, remove the skull and target another quest mob"): a tagged mob (by
+  someone else) now gets no skull at all. Addons cannot change the target from Lua (protected), so the retarget is a
+  SecureActionButton `ForeverGuideTargetButton` (macro "/targetexact <mob>" per wanted name, rewritten out of combat
+  only, deferred to PLAYER_REGEN_ENABLED in combat): the skull button between Guide and Guides in the window, and a
+  key binding "CLICK ForeverGuideTargetButton:LeftButton" (Key Bindings > AddOns > ForeverGuide > Target the nearest
+  quest mob). When the player's own target gets taken, one chat line says so and names the key. /targetexact cannot
+  skip tagged mobs itself - press again. Tests: 196.
