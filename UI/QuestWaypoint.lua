@@ -182,28 +182,44 @@ function WP:EngineUsable()
     return true
 end
 
--- Where the character stands on screen (UIParent units) and how far out the
--- bearing ring goes: a little below the centre of the view, radius growing
--- with the distance so a far target sits high on screen, a close one hugs
--- the character.
-local RING_MIN, RING_BASE, RING_PER_YARD, RING_MAX_FRAC = 150, 120, 0.6, 0.36
+-- Where the diamond goes when the engine cannot project the point: a small
+-- perspective model of the default chase camera. The camera sits `zoom` yards
+-- behind the character (GetCameraZoom), tilted PITCH down; the target is d
+-- yards away at `angle` from the facing. Its ground point is projected with a
+-- ~90 degree horizontal field of view (focal length = half the width), which
+-- puts the marker where the spot actually is on screen while the camera is
+-- behind the character (it is exact in x, and in y as far as the pitch guess
+-- holds). Behind the camera the marker is pushed below the character.
+local PITCH = math.rad(23)
+local function screenSize()
+    local ui = rawget(_G, "UIParent")
+    local w, h = ui and ui:GetWidth() or 1024, ui and ui:GetHeight() or 768
+    if not w or w == 0 then w, h = 1024, 768 end
+    return w, h
+end
+local function playerPoint(w, h) return w / 2, h * 0.40 end
 function WP:BearingPosition(state)
     if not state or not state.angle or not state.distance then return nil end
-    local ui = rawget(_G, "UIParent")
-    local w, h = ui and ui:GetWidth() or 1024, ui and ui:GetHeight() or 768
-    local px, py = w / 2, h * 0.40
-    local r = RING_BASE + state.distance * RING_PER_YARD
-    if r < RING_MIN then r = RING_MIN end
-    if r > h * RING_MAX_FRAC then r = h * RING_MAX_FRAC end
-    -- angle: 0 = straight ahead, positive = to the left (see Navigation:Update)
-    local a = state.angle
-    return px - math.sin(a) * r, py + math.cos(a) * r, a
+    local w, h = screenSize()
+    local px, py = playerPoint(w, h)
+    local zoom = tonumber(ns.Safe and ns.Safe(rawget(_G, "GetCameraZoom")) or nil) or 15
+    if zoom < 5 then zoom = 5 elseif zoom > 40 then zoom = 40 end
+    local D, H = zoom * math.cos(PITCH), zoom * math.sin(PITCH) + 1.5   -- camera aims at the chest
+    local f = w / 2
+    local a, d = state.angle, state.distance
+    local lat = d * math.sin(a)          -- yards to the left of the facing
+    local fwd = D + d * math.cos(a)      -- yards in front of the camera
+    local behind = fwd < 6
+    if behind then fwd = 6 end
+    local x = px - f * lat / fwd
+    local depression = math.atan(H / fwd)
+    local y = h * 0.5 + f * math.tan(PITCH - depression)
+    if behind then y = math.min(y, py - 90) end
+    if x < w * 0.06 then x = w * 0.06 elseif x > w * 0.94 then x = w * 0.94 end
+    if y < h * 0.08 then y = h * 0.08 elseif y > h * 0.90 then y = h * 0.90 end
+    return x, y, a, behind
 end
-WP.PlayerScreenPoint = function()
-    local ui = rawget(_G, "UIParent")
-    local w, h = ui and ui:GetWidth() or 1024, ui and ui:GetHeight() or 768
-    return w / 2, h * 0.40
-end
+WP.PlayerScreenPoint = function() return playerPoint(screenSize()) end
 
 --- /fg wpdbg - everything that decides where the diamond goes, for bug reports.
 function WP:Debug()
@@ -260,10 +276,10 @@ function WP:Tick()
         end
         if not x then
             local st = Nav:Update(true)
-            local bx, by, a = self:BearingPosition(st)
+            local bx, by, _, isBehind = self:BearingPosition(st)
             if bx then
                 x, y = bx, by
-                behind = math.abs(a) > math.pi * 0.5
+                behind = isBehind
                 self.mode = "bearing"
             end
         end

@@ -309,10 +309,18 @@ after every install via `cc_run` in that folder. Tests: 96 checks.
   SuperTrackedFrame to alpha 0 and parks it at a meaningless spot near the character (clamped=true, position
   unrelated to the direction). The distance from C_Navigation matches ours, so the pin's world point is right - only
   the projection is missing in this build. Fix: `Waypoint:EngineUsable()` (frame shown, state ~= Invalid,
-  HasValidScreenPosition, alpha > 0) gates the "ride the engine pin" mode; otherwise the diamond goes on a **bearing
-  ring** around the character's on-screen spot (radius 120 + 0.6/yd, clamped 150..36% of the height, direction from
-  Navigation's angle: ahead = above, left = left, behind = below at 70% alpha). Same limitation as every Classic
-  arrow: the direction is relative to the player's facing, not the camera (no camera-yaw API), so it is exact while
-  moving and off while the camera is swung around a standing character. No direction at all -> chevron.
+  HasValidScreenPosition, alpha > 0) gates the "ride the engine pin" mode; otherwise the diamond is placed by a small
+  **chase-camera perspective model** (`Waypoint:BearingPosition`): camera GetCameraZoom() yards behind the character,
+  PITCH 23 deg down, aiming at the chest; the target's ground point (distance + angle from Navigation) is projected
+  with a ~90 deg horizontal FOV (focal length = half the UIParent width). Verified in Lakeshire: Hilary 75 yd at
+  ~22 deg right lands on the NPC (0.67 w, 0.79 h). A plain ring around the character was tried first and was far too
+  compressed sideways ("the marker isn't pointing to the NPC"). Behind the camera -> pushed below the character at
+  70% alpha; x clamped to 6..94% of the width, y to 8..90% of the height. Same limitation as every Classic arrow:
+  the direction is relative to the player's facing, not the camera (no camera-yaw API), so it is exact while moving
+  and off while the camera is swung around a standing character. No direction at all -> chevron.
+- Reload quirk: `C_QuestLog.IsQuestFlaggedCompleted` came back true for Hilary's Necklace (3741) right after /reload
+  while the quest was still in the log, ready to turn in, and the guide walked past the turn-in (`/fg quest hilary`
+  and a later /run both said flag=false). `Guide:IsStepDone` now takes the flag only when the quest is NOT in the
+  log (ACCEPT steps are done either way); regression test added.
 - Tests: mock `GetCenter` now honours a CENTER-on-BOTTOMLEFT anchor, UIParent is 1280x720; route tests compare ids
-  (Routes() builds fresh tables). 162 tests.
+  (Routes() builds fresh tables). 163 tests.

@@ -66,7 +66,7 @@ ForeverGuide/
   UI/QuestGuideFrame.lua   the Quest Guide window (parchment + gold), header, list, Guide / Guides buttons
   UI/QuestGuideHeader.lua, QuestList.lua, QuestRow.lua   the rows: number ring, kind icon, title, objective line, distance
   UI/QuestWaypoint.lua     the in-world gold waypoint: rides on the engine's super-tracked pin when the client can
-                           project it, otherwise sits on a bearing ring around the character (+ QuestRoute.lua dotted path)
+                           project it, otherwise placed by a chase-camera perspective model (+ QuestRoute.lua dotted path)
   UI/QuestGuideConfig.lua  settings (/fg qg ..., options panel)
   Arrow.lua         compact gold chevron - fallback when the world pin cannot show (Textures/chevron.tga)
   AutoQuest.lua     auto-accept / auto-turn-in through the normal quest windows
