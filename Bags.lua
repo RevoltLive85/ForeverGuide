@@ -24,11 +24,18 @@ local function getContainer()
     return nil
 end
 
---- { free, total, junk } for bags 0-4 (nil when the container API is missing)
+local function itemName(info)
+    local link = info.hyperlink or info.itemLink
+    local name = type(link) == "string" and link:match("%[(.-)%]")
+    if not name and info.itemID then name = ns.PlainString(ns.Call("C_Item.GetItemNameByID", ns.PlainNumber(info.itemID))) end
+    return name
+end
+
+--- { free, total, junk, leftover, leftoverNames } for bags 0-4 (nil when the container API is missing)
 function Bags:Status()
     local C = getContainer()
     if not C then return nil end
-    local free, total, junk = 0, 0, 0
+    local free, total, junk, leftover, leftoverNames = 0, 0, 0, 0, {}
     for bag = 0, 4 do
         local n = ns.PlainNumber(ns.Safe(C.GetContainerNumSlots, bag)) or 0
         if n > 0 then
@@ -43,12 +50,20 @@ function Bags:Status()
                     if type(info) == "table" and ns.PlainNumber(info.quality) == 0 and ns.Plain(info.hasNoValue) ~= true
                         and ns.Plain(info.isQuestItem) ~= true then
                         junk = junk + 1
+                    elseif type(info) == "table" and ns.ItemTips and ns.ItemTips.Leftover then
+                        -- quest ingredients from a quest already turned in: clutter, safe to sell
+                        local id = ns.PlainNumber(info.itemID)
+                        local name = itemName(info)
+                        if (id or name) and ns.ItemTips:Leftover(id, name) then
+                            leftover = leftover + 1
+                            if name and not leftoverNames[name] then leftoverNames[name] = true leftoverNames[#leftoverNames + 1] = name end
+                        end
                     end
                 end
             end
         end
     end
-    return { free = free, total = total, junk = junk }
+    return { free = free, total = total, junk = junk, leftover = leftover, leftoverNames = leftoverNames }
 end
 
 --- nearest npc that sells anything, with a known position: name, distance (yards) or nil
@@ -98,8 +113,9 @@ function Bags:Advice(force)
     local parts = {}
     if st.free == 0 then parts[#parts + 1] = "Bags are FULL - quest loot will be missed."
     else parts[#parts + 1] = string.format("Bags nearly full (%d free of %d).", st.free, st.total) end
-    if st.junk > 0 then parts[#parts + 1] = string.format("%d grey item%s to sell (quest items are never counted).", st.junk, st.junk == 1 and "" or "s")
-    else parts[#parts + 1] = "Nothing grey to sell - bank or vendor gear you do not need (never quest items)." end
+    if st.junk > 0 then parts[#parts + 1] = string.format("%d grey item%s to sell (quest items are never counted).", st.junk, st.junk == 1 and "" or "s") end
+    if st.leftover > 0 then parts[#parts + 1] = string.format("%d stack%s of leftover quest ingredients you can sell (%s).", st.leftover, st.leftover == 1 and "" or "s", table.concat(st.leftoverNames, ", ")) end
+    if st.junk == 0 and st.leftover == 0 then parts[#parts + 1] = "Nothing grey or left over to sell - bank or vendor gear you do not need (never quest items)." end
     local name, d = self:NearestVendor()
     if name then parts[#parts + 1] = string.format("Nearest vendor: %s (%s).", name, ns.Navigation:FormatDistance(d)) end
     return table.concat(parts, " ")
@@ -154,9 +170,10 @@ function Bags:UpdateBanner()
     local full = st.free == 0
     f.title:SetText(full and "BAGS FULL - quest loot will be missed" or string.format("Bags nearly full - %d slot%s left", st.free, st.free == 1 and "" or "s"))
     if ns.Theme then ns.Theme.Color(f.title, full and { 1, 0.35, 0.25 } or { 1, 0.7, 0.3 }) end
-    local sub
-    if st.junk > 0 then sub = string.format("%d grey item%s to sell", st.junk, st.junk == 1 and "" or "s")
-    else sub = "nothing grey to sell - bank or vendor gear you do not need" end
+    local bits = {}
+    if st.junk > 0 then bits[#bits + 1] = string.format("%d grey item%s to sell", st.junk, st.junk == 1 and "" or "s") end
+    if st.leftover > 0 then bits[#bits + 1] = string.format("%d leftover quest ingredient%s to sell", st.leftover, st.leftover == 1 and "" or "s") end
+    local sub = #bits > 0 and table.concat(bits, ", ") or "nothing grey to sell - bank or vendor gear you do not need"
     local name, d = self:NearestVendor()
     if name then sub = sub .. string.format("  ·  nearest vendor %s (%s)", name, ns.Navigation:FormatDistance(d)) end
     f.sub:SetText(sub)

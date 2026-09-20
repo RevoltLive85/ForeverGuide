@@ -36,7 +36,59 @@ local function index()
     return itemQuests
 end
 
---- Lines to add for an item: { { text, kind }, ... }  kind = "log" | "route" | "starts"
+-- Items a live objective named, remembered for the session: once that quest is turned in the
+-- database may not know the link (Forever rewrote the quest), but we do.
+local seenItems = {}    -- lower-case item name -> { [questID] = title }
+function Tips:RememberLog()
+    local Q = ns.Quest
+    if not Q then return end
+    for _, questID in ipairs(Q.order or {}) do
+        for _, o in ipairs(Q:GetObjectives(questID) or {}) do
+            local text = o.text and string.lower(o.text)
+            -- "Tough Condor Meat: 1/5" / "Tough Condor Meat" - the item name is the text before any counter
+            local name = text and text:match("^(.-)%s*:?%s*%d+%s*/%s*%d+%s*$") or text
+            if name and name ~= "" and #name < 60 then
+                seenItems[name] = seenItems[name] or {}
+                seenItems[name][questID] = Q:GetTitle(questID) or ("quest " .. questID)
+            end
+        end
+    end
+end
+
+--- The quest an item is left over from (turned in, nothing else wants it), or nil.
+function Tips:Leftover(itemID, itemName)
+    local Q = ns.Quest
+    if not Q then return nil end
+    local lower = itemName and string.lower(itemName)
+    local doneName
+    local stillNeeded = false
+    -- session memory: quests whose objective named the item
+    if lower and seenItems[lower] then
+        for qid, title in pairs(seenItems[lower]) do
+            if Q:IsOnQuest(qid) then stillNeeded = true
+            elseif Q:IsCompleted(qid) then doneName = doneName or title end
+        end
+    end
+    -- database: quests collecting the item
+    if itemID and ns.DB and ns.DB:IsLoaded() then
+        local ahead = {}
+        local active = ns.Guide and ns.Guide.active
+        if active and rawget(active, "steps") then
+            for i = (ns.Guide.current or 1), #active.steps do local s = active.steps[i] if s.quest then ahead[s.quest] = true end end
+        end
+        for _, qid in ipairs(index()[itemID] or {}) do
+            if not ns.DB:IsRemoved(qid) then
+                if Q:IsOnQuest(qid) or ahead[qid] then stillNeeded = true
+                elseif Q:IsCompleted(qid) then doneName = doneName or ns.DB:QuestName(qid) or ("quest " .. qid)
+                else stillNeeded = true end   -- an untaken quest may still want it
+            end
+        end
+    end
+    if doneName and not stillNeeded then return doneName end
+    return nil
+end
+
+--- Lines to add for an item: { { text, kind }, ... }  kind = "log" | "route" | "starts" | "leftover"
 function Tips:LinesFor(itemID, itemName)
     local out = {}
     local seen = {}
@@ -49,12 +101,18 @@ function Tips:LinesFor(itemID, itemName)
                 if o.text and string.find(string.lower(o.text), lower, 1, true) then
                     local title = Q:GetTitle(questID) or ("quest " .. questID)
                     local prog = (o.numRequired and o.numRequired > 0) and string.format(" (%d/%d)", o.numFulfilled or 0, o.numRequired) or ""
-                    out[#out + 1] = { string.format("Quest item: %s%s", title, prog), o.finished and "done" or "log" }
+                    out[#out + 1] = { string.format("Quest item: %s%s", title, prog) .. (o.finished and " - keep it until you turn in" or ""), o.finished and "done" or "log" }
                     seen[questID] = true
                     break
                 end
             end
         end
+    end
+    -- 1b. left over from a quest already turned in
+    local leftover = self:Leftover(itemID, itemName)
+    if leftover then
+        out[#out + 1] = { "No longer needed: " .. leftover .. " is done - safe to sell", "leftover" }
+        return out
     end
     -- 2. the database: quests collecting this item that are not in the log
     if itemID and ns.DB and ns.DB:IsLoaded() then
@@ -87,7 +145,7 @@ function Tips:LinesFor(itemID, itemName)
     return out
 end
 
-local COLORS = { log = { 1, 0.82, 0.2 }, done = { 0.6, 0.75, 0.5 }, route = { 1, 0.7, 0.3 }, other = { 0.8, 0.75, 0.6 }, starts = { 0.55, 0.85, 0.45 } }
+local COLORS = { log = { 1, 0.82, 0.2 }, done = { 0.6, 0.75, 0.5 }, route = { 1, 0.7, 0.3 }, other = { 0.8, 0.75, 0.6 }, starts = { 0.55, 0.85, 0.45 }, leftover = { 0.62, 0.62, 0.62 } }
 
 local function decorate(tooltip, itemID, itemName)
     if not tooltip or not tooltip.AddLine then return end
@@ -114,7 +172,12 @@ local function itemFromTooltip(tooltip, data)
     return id, name
 end
 
+function Tips:OnInit()
+    ns.Events:Register("FG_QUEST_LOG_CHANGED", function() Tips:RememberLog() end)
+end
+
 function Tips:OnEnable()
+    self:RememberLog()
     local TDP = rawget(_G, "TooltipDataProcessor")
     local E = rawget(_G, "Enum")
     if TDP and TDP.AddTooltipPostCall and E and E.TooltipDataType and E.TooltipDataType.Item then

@@ -594,10 +594,21 @@ do
     lines = ns.ItemTips:LinesFor(782, "Painted Gnoll Armband")
     check(#lines >= 1 and lines[1][1]:find("Quest item for: Riverpaw Gnoll Bounty", 1, true), "an item a database quest collects is labelled even before the quest is taken (" .. tostring(lines[1] and lines[1][1]) .. ")")
     -- a Forever-only wording: the live objective names the item, the database does not know it
-    MOCK_ACCEPT(4020, "Redridge Goulash", { { text = "Tough Condor Meat", finished = false, numFulfilled = 1, numRequired = 5 } }); settle()
+    MOCK_ACCEPT(92, "Redridge Goulash", { { text = "Tough Condor Meat", finished = false, numFulfilled = 1, numRequired = 5 } }); settle()
     lines = ns.ItemTips:LinesFor(1080, "Tough Condor Meat")
     check(#lines >= 1 and lines[1][1]:find("Redridge Goulash (1/5)", 1, true), "an item named by a live objective is labelled from the log alone (" .. tostring(lines[1] and lines[1][1]) .. ")")
-    MOCK_ABANDON(4020); settle()
+    -- turned in: the meat is left over, the tooltip says so and the bag advice counts it
+    MOCK_TURNIN(92); settle()
+    check(ns.ItemTips:Leftover(1080, "Tough Condor Meat") == "Redridge Goulash", "after the turn-in the ingredient is known to be left over")
+    lines = ns.ItemTips:LinesFor(1080, "Tough Condor Meat")
+    check(#lines == 1 and lines[1][2] == "leftover" and lines[1][1]:find("safe to sell", 1, true), "tooltip: no longer needed, safe to sell (" .. tostring(lines[1] and lines[1][1]) .. ")")
+    MOCK_BAG(1, 0, 0)
+    MOCK.bags[0].items[1] = { quality = 1, hasNoValue = false, itemID = 1080, hyperlink = "|Hitem:1080|h[Tough Condor Meat]|h" }
+    MOCK.bags[0].items[2] = { quality = 1, hasNoValue = false, itemID = 1080, hyperlink = "|Hitem:1080|h[Tough Condor Meat]|h" }
+    local st = ns.Bags:Status()
+    check(st.leftover == 2 and st.leftoverNames[1] == "Tough Condor Meat", "bags: leftover ingredients are counted as sellable (" .. tostring(st.leftover) .. ")")
+    check((ns.Bags:Advice(true) or ""):find("leftover quest ingredients", 1, true) ~= nil, "bag advice names the leftover ingredients")
+    MOCK_BAG(16, 0, 0); settle()
     do local l = ns.ItemTips:LinesFor(999999, "Broken Sword") check(#l == 0, "an ordinary item gets no line (" .. tostring(l[1] and l[1][1]) .. ")") end
 end
 
