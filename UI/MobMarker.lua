@@ -313,12 +313,18 @@ function MM:Scan()
     local best, bestScore, mine
     local others = {}
     local targetGUID = ns.PlainString(ns.Safe(UnitGUID, "target"))
+    local seenFree, seenTagged, seenPlayers = 0, 0, {}
     for _, plate in ipairs(plates) do
         local u = plateUnit(plate)
+        if u and ns.Plain(ns.Safe(UnitIsPlayer, u)) == true then
+            local g = ns.PlainString(ns.Safe(UnitGUID, u))
+            if g and g ~= ns.PlainString(ns.Safe(UnitGUID, "player")) then seenPlayers[g] = true end
+        end
         if u and isMob(u) then
             local name = ns.PlainString(ns.Safe(UnitName, u))
             local lower = name and string.lower(name)
             local isWanted = lower and names[lower] ~= nil
+            if isWanted then if tagged(u) then seenTagged = seenTagged + 1 else seenFree = seenFree + 1 end end
             -- objective complete for this mob's quest(s): no skull, whatever the client says
             local related = isWanted or (not (lower and finished[lower]) and questRelated(u))
             -- a mob tagged by someone else is nobody's kill: no skull at all
@@ -358,6 +364,10 @@ function MM:Scan()
         end
     end
     if not targetGUID or self.taggedWarned ~= targetGUID then self.taggedWarned = nil end
+    if killStep and ns.Crowd then
+        ns.Crowd:Observe(seenFree, seenTagged, seenPlayers)
+        ns.Crowd:Update()
+    end
     local guid = best and ns.PlainString(ns.Safe(UnitGUID, plateUnit(best)))
     if guid ~= lastPrimary then
         lastPrimary = guid

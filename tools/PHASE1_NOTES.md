@@ -404,3 +404,15 @@ no camera-yaw API exists; a left-drag camera orbit around a standing character d
   open objective still needs) get no skull; `liveToDB` is strict (DB objective name must appear in the live text -
   Forever's "Kill Dire Condor" has no counterpart in the old data, and the same-position fallback pointed at the
   goretusks). 211 tests. Release zip: `python tools/package.py` -> dist/ForeverGuide-<ver>.zip; CHANGELOG.md.
+- Bags banner (top centre, red FULL / orange nearly full, click = snooze 2 min); bag tag first in the header.
+- ItemTips.lua: item tooltips get quest lines - "Quest item: <quest> (1/5)" from the live log (objective text
+  naming the item, works for Forever rewrites), "Quest item for: <quest>" from QuestDB item objectives
+  (orange "later in your guide - keep it" when ahead on the route), "Starts a quest", and "No longer needed:
+  <quest> is done - safe to sell" once the quest is turned in and nothing else (log / route / untaken DB quest)
+  wants it; session memory of item->quest from objective texts. Bags counts such leftovers as sellable.
+- Crowd.lua (Ilya: "when there are too many people near our questing area, go somewhere else"): MobMarker
+  reports free/tagged wanted mobs + player GUIDs per scan; over a 90 s window the busiest snapshot decides:
+  >= 3 taken and >= 60% taken, or >= 5 players -> banner "Crowded: 7 of 9 quest mobs are taken by others" with
+  the nearest other spawn cluster of the same mobs (DB spawn points clustered at 120 yd, >= 150 yd away,
+  compass direction) and a "Go there" button (navigation override "crowd" until arrival), else another open
+  step of the guide elsewhere; chat reminder every 3 min; x snoozes 5 min. 226 tests.

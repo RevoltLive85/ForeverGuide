@@ -649,6 +649,22 @@ do
     check(ns.MobMarker.primaryUnit == "nameplate1" and ns.MobMarker.markedCount == 2, "a tagged mob loses its skull entirely, the next one gets the big skull (" .. tostring(ns.MobMarker.primaryUnit) .. ", " .. tostring(ns.MobMarker.markedCount) .. ")")
     MOCK_PLATE("nameplate1", { name = "Kobold Vermin", npcID = 6, scale = 0.8, y = 500, tagged = true }); ns.MobMarker:Scan()
     check(ns.MobMarker.primaryUnit == nil and ns.MobMarker.markedCount == 1, "all wanted mobs tagged: no big skull, only the other quest's mob keeps a small one")
+    -- crowd: most wanted mobs tagged by others -> banner with a quieter spawn cluster / another step
+    do
+        for i = 1, 6 do MOCK_PLATE("nameplate" .. (10 + i), { name = "Kobold Vermin", npcID = 6, scale = 1.0, y = 300, tagged = i <= 5 }) end
+        ns.MobMarker:Scan()
+        local tg, fr, pl, crowded = ns.Crowd:Level()
+        check(crowded and tg >= 5, "five of six quest mobs taken: crowded (" .. tostring(tg) .. "/" .. tostring(tg + fr) .. ")")
+        check(ForeverGuideCrowdBanner and ForeverGuideCrowdBanner:IsShown() and (ForeverGuideCrowdBanner.title:GetText() or ""):find("Crowded", 1, true), "the crowd banner shows")
+        local alts = ns.Crowd:SpawnAlternatives()
+        check(#alts >= 1 and alts[1].dist >= 150 and alts[1].map == 1429, "another Kobold Vermin spawn cluster at least 150 yd away is offered (" .. tostring(alts[1] and alts[1].label) .. ")")
+        ns.Crowd:GoToAlternative()
+        check(ns.Navigation.override == "crowd" and ns.Navigation.target and ns.Navigation.target.owner == "crowd", "Go there navigates to the quieter spot")
+        ns.Crowd:ReleaseOverride()
+        check(ns.Navigation.override == nil and ns.Navigation.target and ns.Navigation.target.owner == "guide", "arrival hands navigation back to the guide")
+        for i = 1, 6 do MOCK_PLATE("nameplate" .. (10 + i), nil) end
+        ns.Crowd.snoozedUntil = nil
+    end
     -- in combat the nameplate frames cannot be measured (restricted regions): fall back to interact rings
     MOCK_PLATE("nameplate1", { name = "Kobold Vermin", npcID = 6, restricted = true, dist = 25 })
     MOCK_PLATE("nameplate2", { name = "Kobold Vermin", npcID = 6, restricted = true, dist = 8 })
