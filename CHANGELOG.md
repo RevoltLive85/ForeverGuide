@@ -1,6 +1,8 @@
 # Changelog
 
 ## 0.3.6 - 2026-09-21
+- The options panel scrolls: the checkbox list had grown past the bottom of the settings window and drew over the game. The wheel moves it, and the footer text wraps inside the panel.
+- Level-up announcement: "ForeverGuide: I leveled up to 18 in 1h 24m" goes to your party (raid / instance group when you are in one) and as an emote when you are solo. The time is the time played at the level you just left, taken from the server's own counter. `/fg ding on|off|test|time` or a channel (auto, party, raid, guild, emote, say, yell), and a switch in the options panel.
 - Quests your race or class can never take are no longer part of the route: the planner offered them to the whole faction, so the Dwarf chapter asked for the Human-only "A Swift Message" and sat at a quartermaster with nothing to say. The step and its turn-in are skipped with one line in chat, and the route planner now plans each race route with that race's own quest mask.
 - An optional group (elite) quest taken by hand brings the guide back to it, wherever it had walked past it.
 - A chapter's "travel to <zone>" step finishes when you reach the zone (not only within 60 yd of the hub it names), and a zone change re-evaluates the guide - the Westfall chapter no longer sits on "Travel to Westfall" while you stand in Westfall. Travel steps inside a zone still need the arrival.

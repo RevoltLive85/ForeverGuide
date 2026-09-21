@@ -92,6 +92,13 @@ local function NewRegion(kind)
     function r:GetName() return self.name end
     function r:GetParent() return self.parent end
     function r:IsVisible() return self.shown end
+    function r:SetScrollChild(c) self.scrollChild = c end
+    function r:GetScrollChild() return self.scrollChild end
+    function r:SetVerticalScroll(v) self.scroll = v end
+    function r:GetVerticalScroll() return self.scroll or 0 end
+    function r:GetVerticalScrollRange() return math.max(0, (self.scrollChild and self.scrollChild:GetHeight() or 0) - self:GetHeight()) end
+    function r:EnableMouseWheel() end
+    function r:SetClipsChildren() end
     function r:CreateTexture() return NewRegion("Texture") end
     function r:CreateFontString() return NewRegion("FontString") end
     return r
@@ -317,7 +324,47 @@ _G.InCombatLockdown = function() return world.inCombat == true end
 _G.UnitInParty = function() return false end
 _G.UnitInRaid = function() return false end
 _G.UnitIsUnit = function(a, b) return a == b end
-_G.IsInGroup = function() return false end
+_G.IsInGroup = function() return world.group == true or world.raid == true end
+_G.IsInRaid = function() return world.raid == true end
+
+-- ---- chat + time played ----------------------------------------------------
+world.chat = {}
+world.playedTotal, world.playedLevel = 360000, 3600
+_G.SendChatMessage = function(msg, chatType, language, target)
+    if world.chatBlocked then error("ADDON_ACTION_BLOCKED: SendChatMessage") end
+    world.chat[#world.chat + 1] = { message = msg, channel = chatType, target = target }
+end
+world.chatFilters = {}
+world.printed = {}
+_G.NUM_CHAT_WINDOWS = 2
+for i = 1, 2 do
+    local f = NewRegion("Frame")
+    function f:AddMessage(message) world.printed[#world.printed + 1] = message end
+    _G["ChatFrame" .. i] = f
+end
+--- what ChatFrame1 actually printed for a line the client pushes straight into it
+function _G.MOCK_CHATFRAME(message)
+    local before = #world.printed
+    _G.ChatFrame1:AddMessage(message)
+    return #world.printed > before and world.printed[#world.printed] or nil
+end
+_G.TIME_PLAYED_TOTAL = "Total time played: %s"
+_G.TIME_PLAYED_LEVEL = "Time played this level: %s"
+_G.ChatFrame_AddMessageEventFilter = function(event, fn)
+    world.chatFilters[event] = world.chatFilters[event] or {}
+    table.insert(world.chatFilters[event], fn)
+end
+--- what the client would print for a system message: nil when a filter swallowed it
+function _G.MOCK_SYSTEM(message)
+    for _, fn in ipairs(world.chatFilters.CHAT_MSG_SYSTEM or {}) do
+        if fn(nil, "CHAT_MSG_SYSTEM", message) then return nil end
+    end
+    return message
+end
+_G.RequestTimePlayed = function()
+    world.playedRequests = (world.playedRequests or 0) + 1
+    fire("TIME_PLAYED_MSG", world.playedTotal, world.playedLevel)
+end
 world.invited = {}
 _G.C_PartyInfo = { InviteUnit = function(name) world.invited[#world.invited + 1] = name end }
 _G.C_FriendList = {

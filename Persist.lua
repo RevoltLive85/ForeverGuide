@@ -187,7 +187,7 @@ function Persist:DecodeChar(s)
 end
 
 -- ---- account settings + edits ----------------------------------------------------
-local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "rec", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "sk", "so", "sp", "w", "ht", "hm", "sc", "sd", "ss", "e" }
+local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "rec", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "sk", "so", "sp", "w", "ht", "hm", "sc", "sd", "ss", "dg", "dc", "e" }
 
 function Persist:EncodeAcct()
     local db = ns.db
@@ -208,6 +208,7 @@ function Persist:EncodeAcct()
         bliz = b01(nav.blizzardWaypoint), rad = nav.arrivalRadius,
         acc = auto.accept, ti = b01(auto.turnin), ann = b01(auto.announce),
         rec = b01(db.recorder and db.recorder.enabled),
+        dg = b01(db.ding == nil or db.ding.enabled ~= false), dc = db.ding and db.ding.channel,
     }
     -- step edits: guide:step:map:x:y:npc:radius|...  (note text is not kept here)
     local edits = {}
@@ -269,6 +270,11 @@ function Persist:DecodeAcct(s)
     if t.ti then auto.turnin = bool(t.ti) end
     if t.ann then auto.announce = bool(t.ann) end
     if t.rec and db.recorder then db.recorder.enabled = bool(t.rec) end
+    if t.dg or (t.dc and t.dc ~= "") then
+        db.ding = db.ding or {}
+        if t.dg then db.ding.enabled = bool(t.dg) end
+        if t.dc and t.dc ~= "" then db.ding.channel = t.dc end
+    end
     if t.e and t.e ~= "" then
         db.edits = db.edits or {}
         for entry in string.gmatch(t.e, "[^|]+") do

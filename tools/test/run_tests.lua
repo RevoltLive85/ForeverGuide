@@ -1107,6 +1107,101 @@ do
     if ns.Quest:IsOnQuest(4010) then MOCK_ABANDON(4010); settle() end
 end
 
+-- ---- level-up announcement ------------------------------------------------------------------
+-- (Ilya, 2026-09-21: "when we level up there should be a party message/emote message ...")
+do
+    local D = ns.Ding
+    check(D.FormatTime(42) == "42 sec" and D.FormatTime(1080) == "18 min"
+        and D.FormatTime(5040) == "1h 24m" and D.FormatTime(183600) == "2d 3h",
+        "time played reads naturally (" .. D.FormatTime(5040) .. ")")
+    check(D.Message(18, 5040) == "ForeverGuide: I leveled up to 18 in 1h 24m", "the line is what was asked for: " .. D.Message(18, 5040))
+    check(D.Message(18, nil) == "ForeverGuide: I leveled up to 18", "an unknown time is left out")
+
+    -- the server answer is the baseline; time keeps running from it
+    MOCK.playedTotal, MOCK.playedLevel = 360000, 5000
+    D:Request()
+    check(D.played ~= nil and math.abs(D:Elapsed() - 5000) < 2, "time played at this level comes from the server (" .. tostring(D:Elapsed()) .. ")")
+    MOCK_ADVANCE(40)
+    check(math.abs(D:Elapsed() - 5040) < 2, "and keeps running while online (" .. tostring(D:Elapsed()) .. ")")
+
+    -- the client's own "Total time played" answer to OUR request is swallowed, a /played is not
+    D:Request()
+    check(MOCK_SYSTEM("Total time played: 1 day, 3 hours") == nil, "our own time-played answer is not printed")
+    check(MOCK_SYSTEM("Whatever else the server says") ~= nil, "other system messages are untouched")
+    check(MOCK_CHATFRAME("Total time played: 1 day, 3 hours") == nil, "and neither is it when the client prints it straight into the frame")
+    check(MOCK_CHATFRAME("Sniff Yahbooty says hello") ~= nil, "ordinary chat lines still print")
+    MOCK_ADVANCE(10)
+    check(MOCK_SYSTEM("Total time played: 1 day, 3 hours") ~= nil, "a /played the player types still prints")
+
+    -- solo: an emote
+    MOCK.chat = {}
+    MOCK.group, MOCK.raid = false, false
+    local was = ns.Player:GetLevel()
+    local expected = D.FormatTime(D:Elapsed())
+    MOCK_LEVEL(was + 1); settle()
+    local sent = MOCK.chat[1]
+    check(sent ~= nil and sent.channel == "EMOTE", "solo, the ding goes out as an emote (" .. tostring(sent and sent.channel) .. ")")
+    check(sent and sent.message == string.format("ForeverGuide: I leveled up to %d in %s", was + 1, expected),
+        "with the level and the time played at the level before it: " .. tostring(sent and sent.message))
+    check((MOCK.playedRequests or 0) >= 2, "and the baseline is asked for again after the ding")
+
+    -- in a party: the party
+    MOCK.chat = {}
+    MOCK.group = true
+    MOCK_LEVEL(was + 2); settle()
+    check(MOCK.chat[1] and MOCK.chat[1].channel == "PARTY", "grouped, it goes to the party (" .. tostring(MOCK.chat[1] and MOCK.chat[1].channel) .. ")")
+
+    -- a chosen channel wins, and off means off
+    MOCK.chat = {}
+    ns.Commands:Run("ding guild")
+    MOCK_LEVEL(was + 3); settle()
+    check(MOCK.chat[1] and MOCK.chat[1].channel == "GUILD", "a chosen channel is used (" .. tostring(MOCK.chat[1] and MOCK.chat[1].channel) .. ")")
+    MOCK.chat = {}
+    ns.Commands:Run("ding off")
+    MOCK_LEVEL(was + 4); settle()
+    check(#MOCK.chat == 0, "/fg ding off stops it (" .. #MOCK.chat .. " sent)")
+
+    -- a client that refuses the message says so instead of erroring
+    ns.Commands:Run("ding on")
+    ns.Commands:Run("ding auto")
+    MOCK.chatBlocked = true
+    MOCK.chat = {}
+    MOCK_LEVEL(was + 5); settle()
+    check(#MOCK.chat == 0, "a client that blocks SendChatMessage sends nothing (" .. #MOCK.chat .. ")")
+    MOCK.chatBlocked = nil
+    MOCK.group, MOCK.raid = false, false
+
+    -- the setting survives the cvar mirror
+    ns.Commands:Run("ding emote")
+    local encoded = ns.Persist:EncodeAcct()
+    ns.db.ding.channel = "party"
+    ns.Persist:DecodeAcct(encoded)
+    check(ns.db.ding.channel == "emote", "the channel is kept in the beta cvar mirror (" .. tostring(ns.db.ding.channel) .. ")")
+    ns.Commands:Run("ding auto")
+end
+
+-- ---- the options panel fits in the settings canvas -------------------------------------------
+-- (Ilya, 2026-09-21: "the text is overflowing" - the checkbox list ran off the bottom of the
+--  Options window and drew over the game)
+do
+    local p = ns.Options:Create()
+    check(p ~= nil and p.body ~= nil and p.body ~= p, "the options list lives on a scrolling child")
+    check(p.scroll ~= nil and p.scroll:GetScrollChild() == p.body, "the scroll frame holds it")
+    check((p.contentHeight or 0) > 400, "the child is as tall as its contents (" .. tostring(p.contentHeight) .. ")")
+    local wheel = p.scroll:GetScript("OnMouseWheel")
+    check(type(wheel) == "function", "the wheel scrolls it")
+    if wheel then
+        p.scroll:SetHeight(300)
+        wheel(p.scroll, -1)
+        check(p.scroll:GetVerticalScroll() > 0, "wheeling down moves the list (" .. tostring(p.scroll:GetVerticalScroll()) .. ")")
+        wheel(p.scroll, 1) wheel(p.scroll, 1)
+        check(p.scroll:GetVerticalScroll() == 0, "and it stops at the top (" .. tostring(p.scroll:GetVerticalScroll()) .. ")")
+    end
+    local names = {}
+    for key in pairs(ns.QuestGuideConfig.TOGGLES) do names[#names + 1] = key end
+    check(ns.QuestGuideConfig.TOGGLES.ding ~= nil, "the level-up announcement has a switch in the panel")
+end
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 do
     local expected = 0

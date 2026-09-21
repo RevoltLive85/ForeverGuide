@@ -98,6 +98,35 @@ function Options:Refresh()
     end
 end
 
+--- The settings canvas is only so tall and does not clip what we draw on it, so the checkboxes
+--- go on a scrolling child: the list can grow without spilling over the game (Ilya, 2026-09-21).
+local function MakeScroller(parent, topOffset)
+    local ok, scroll = pcall(CreateFrame, "ScrollFrame", nil, parent)
+    if not ok or not scroll then return parent, nil end
+    scroll:SetPoint("TOPLEFT", parent, "TOPLEFT", 0, topOffset)
+    scroll:SetPoint("BOTTOMRIGHT", parent, "BOTTOMRIGHT", -24, 8)
+    pcall(scroll.SetClipsChildren, scroll, true)
+    local content = CreateFrame("Frame", nil, scroll)
+    content:SetSize(560, 10)
+    pcall(scroll.SetScrollChild, scroll, content)
+    pcall(scroll.EnableMouseWheel, scroll, true)
+    -- the client's own range can lag the child's height, so take whichever is larger
+    local function range(self)
+        local child = self.GetScrollChild and self:GetScrollChild()
+        local byChild = child and math.max(0, (child:GetHeight() or 0) - (self:GetHeight() or 0)) or 0
+        local byApi = self.GetVerticalScrollRange and self:GetVerticalScrollRange() or 0
+        return math.max(byApi or 0, byChild)
+    end
+    scroll:SetScript("OnMouseWheel", function(self, delta)
+        local at = (self.GetVerticalScroll and self:GetVerticalScroll() or 0) - (delta or 0) * 60
+        self:SetVerticalScroll(math.max(0, math.min(range(self), at)))
+    end)
+    scroll:SetScript("OnSizeChanged", function(self, w)
+        if w and w > 0 then content:SetWidth(w) end
+    end)
+    return content, scroll
+end
+
 function Options:Create()
     if panel then return panel end
     panel = CreateFrame("Frame", "ForeverGuideOptionsPanel")
@@ -107,38 +136,54 @@ function Options:Create()
     title:SetText("ForeverGuide")
     local sub = panel:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
     sub:SetPoint("TOPLEFT", title, "BOTTOMLEFT", 0, -4)
+    sub:SetWidth(600)
+    sub:SetJustifyH("LEFT")
     sub:SetText("Free leveling guide engine for WoW Forever. Everything here is also available as /fg commands (/fg help).")
+    local more = panel:CreateFontString(nil, "ARTWORK", "GameFontDisableSmall")
+    more:SetPoint("TOPLEFT", sub, "BOTTOMLEFT", 0, -2)
+    more:SetText("Scroll for the rest of the settings.")
 
-    local y = -64
+    local body, scroll = MakeScroller(panel, -80)
+    panel.body, panel.scroll = body, scroll
+    local y = body == panel and -80 or -4
     -- the Quest Guide / waypoint toggles live with their settings module
     local items = {}
     for _, it in ipairs(ITEMS) do items[#items + 1] = it end
     if ns.QuestGuideConfig then for _, it in ipairs(ns.QuestGuideConfig.OptionItems()) do items[#items + 1] = it end end
     for _, item in ipairs(items) do
         if item.header then
-            local h = panel:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+            local h = body:CreateFontString(nil, "ARTWORK", "GameFontNormal")
             h:SetPoint("TOPLEFT", 16, y - 6)
             h:SetText(item.header)
             y = y - 26
         else
-            local cb = MakeCheck(panel, item, y)
+            local cb = MakeCheck(body, item, y)
             cb.item = item
             widgets[item.key] = cb
             y = y - 26
         end
     end
     y = y - 10
-    MakeButton(panel, "Reset positions", 16, y, function() ns.UI:ResetPosition() ns.Arrow:ResetPosition() end)
-    MakeButton(panel, "Pick a guide", 176, y, function() ns.UI:TogglePicker() end)
-    MakeButton(panel, "Show reports", 336, y, function() ns.Commands:Run("reports") end)
+    MakeButton(body, "Reset positions", 16, y, function() ns.UI:ResetPosition() ns.Arrow:ResetPosition() end)
+    MakeButton(body, "Pick a guide", 176, y, function() ns.UI:TogglePicker() end)
+    MakeButton(body, "Show reports", 336, y, function() ns.Commands:Run("reports") end)
     y = y - 34
-    local hint = panel:CreateFontString(nil, "ARTWORK", "GameFontDisableSmall")
+    local hint = body:CreateFontString(nil, "ARTWORK", "GameFontDisableSmall")
     hint:SetPoint("TOPLEFT", 16, y)
     hint:SetWidth(560)
     hint:SetJustifyH("LEFT")
     hint:SetText("Something wrong with a step? Stand where it should be and type  /fg wrong <what is wrong>  - the report is saved with your position and turned into a correction by tools/collect_reports.py.\nLook: /fg qg scale|opacity|width|rows|wpsize <value>   (e.g. /fg qg opacity 0.8)\nKey bindings: Esc -> Options -> Key Bindings -> AddOns -> ForeverGuide.")
 
-    panel:SetScript("OnShow", function() Options:Refresh() end)
+    -- the scrolling child is exactly as tall as what we put on it
+    if body ~= panel then
+        body:SetHeight(math.abs(y) + 70)
+        panel.contentHeight = body:GetHeight()
+    end
+
+    panel:SetScript("OnShow", function()
+        Options:Refresh()
+        if panel.scroll and panel.scroll.SetVerticalScroll then pcall(panel.scroll.SetVerticalScroll, panel.scroll, 0) end
+    end)
 
     -- register with whichever settings API this client has
     local S = rawget(_G, "Settings")

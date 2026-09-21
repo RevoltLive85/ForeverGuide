@@ -35,6 +35,7 @@ local HELP = {
     "/fg scan new | [from] [to] | stop | resume | status   ask the server for Forever's own quests (new = exactly the ids Questie lacks; titles, levels, objectives)",
     "/fg harvest [sweep [from to] | status]   passive quest discovery: quest lines of every zone map / client cache sweep",
     "/fg bliz on|off     also use Blizzard's own waypoint arrow",
+    "/fg ding on|off|test|<channel>   announce a level-up (\"I leveled up to 18 in 1h 24m\") to your party, or as an emote when solo",
     "/fg resync          skip quests you out-levelled (<=20% xp) and continue from the first open step",
     "/fg edit here|npc|note <text>|radius <yd>|clear   correct the current step in place (saved; tools/apply_edits.py folds it into the guide)",
     "/fg edits [clear]   list / wipe your edits of the active guide",
@@ -230,6 +231,38 @@ function handlers.who()
     local busy, n, zone, capped = ns.Crowd:ZoneBusy()
     if n then ns.Printf("%s: %s%d players of your level%s (%s)", zone or "zone", capped and "50+ " or "", capped and 49 or n, busy and " - busy" or "", "asked " .. math.floor(ns.Now() - (ns.Crowd.zoneAt or 0)) .. "s ago") end
     if ns.Crowd:PollZone(true) then ns.Print("asking the server (/who) - result in a moment.") else ns.Print("/who is throttled - try again in a minute.") end
+end
+
+--- /fg ding - announce a level-up to the party (or as an emote when solo)
+function handlers.ding(rest)
+    local D = ns.Ding
+    if not D then return end
+    rest = (rest or ""):lower():gsub("^%s+", ""):gsub("%s+$", "")
+    local c = D.Cfg()
+    if rest == "on" or rest == "off" then
+        c.enabled = rest == "on"
+    elseif rest == "test" then
+        local sec = D:Elapsed()
+        local ok, msg, channel = D:Announce(ns.Player:GetLevel(), sec)
+        if ok then ns.Printf("sent to %s: %s", string.lower(channel), msg) end
+        return
+    elseif rest == "time" then
+        D.pendingPrint = true
+        if not D:Request() then ns.Print("this client has no RequestTimePlayed.") end
+        return
+    elseif rest ~= "" then
+        local key = rest:gsub("^channel%s*", "")
+        if not ({ auto = 1, party = 1, raid = 1, guild = 1, emote = 1, say = 1, yell = 1 })[key] then
+            ns.Print("/fg ding on|off|test|time, or a channel: auto, party, raid, guild, emote, say, yell.")
+            return
+        end
+        c.channel = key
+    end
+    local sec = D:Elapsed()
+    ns.Printf("level-up announcement %s, channel %s (now: %s)%s", c.enabled == false and "off" or "on",
+        c.channel == "auto" and ("auto - " .. string.lower(D:Channel())) or c.channel,
+        ns.Ding.Message(ns.Player:GetLevel() + 1, sec),
+        sec and "" or "  (time played not known yet - /fg ding time)")
 end
 
 --- /fg crowd test - preview the crowd / group-up banner; /fg crowd on|off - the safeguard itself

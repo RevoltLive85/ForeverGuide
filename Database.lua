@@ -53,6 +53,10 @@ local DEFAULTS = {
             plates = true,        -- switch enemy nameplates on during kill steps
         },
     },
+    ding = {                      -- level-up announcement (Ding.lua)
+        enabled = true,
+        channel = "auto",         -- auto = party/raid when grouped, emote when solo
+    },
     recorder = {
         enabled = true,           -- Phase 10: quietly record quest/NPC/coordinate data
         maxEntries = 4000,

@@ -472,3 +472,19 @@ no camera-yaw API exists; a left-drag camera orbit around a standing character d
   them and the deferred machinery did the rewind. Fixture ids moved to 990001/990002 (outside the database)
   and `Guide.optionalPassed[quest] = idx` (set when an optional step is walked past, consulted in Evaluate
   step 0b) now takes the guide back once the quest is in the log. 252 tests.
+- Level-up announcement, Ding.lua (Ilya: "when we level up there should be a party message/emote message ...
+  I leveled up to 'level' in 'time played this level'"): `ForeverGuide: I leveled up to 18 in 3h 10m` to PARTY /
+  RAID / INSTANCE_CHAT when grouped, EMOTE when solo (`/fg ding on|off|test|time|<channel>`, options-panel
+  switch, mirrored in the cvar store as `dg`/`dc`). `SendChatMessage` works from an addon on Forever 1.60.1
+  (verified live, emote and the /fg ding test path); it is pcall'd and `C_ChatInfo.InChatMessagingLockdown` is
+  checked, and a refusal prints the line locally instead of erroring. TIME: `TIME_PLAYED_MSG(total, thisLevel)`
+  is requested 5 s after login and 3 s after each ding; a request made AFTER the ding answers ~0 for the new
+  level, so the module keeps the last answer and adds the time since (exact while online). The client's two
+  "Total time played / Time played this level" lines are swallowed for 4 s around our own request - and on this
+  client they pass BOTH `ChatFrame_DisplayTimePlayed` and the CHAT_MSG_SYSTEM filter, so the working suppression
+  is a wrapper around each ChatFrame's `AddMessage` (prefixes from TIME_PLAYED_TOTAL/TIME_PLAYED_LEVEL).
+- Options panel overflow (Ilya: "the text is overflowing"): the canvas category does not clip, so the growing
+  checkbox list drew over the game below the settings window. The list now lives on a ScrollFrame child
+  (plain "ScrollFrame", no template - the retail templates are not guaranteed here), wheel-scrolled 60 px a
+  notch with the range taken as max(client range, child height - frame height), plus a "Scroll for the rest of
+  the settings." hint under the subtitle. 277 tests.

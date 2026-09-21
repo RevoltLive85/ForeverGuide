@@ -73,6 +73,8 @@ Config.TOGGLES = {
                    set = function(v) ns.db.ui.showDistances = v ns.UI:Refresh() end },
     subtitles  = { label = "show objective lines", get = function() return ns.db.ui.showSubtitles ~= false end,
                    set = function(v) ns.db.ui.showSubtitles = v ns.UI:Refresh() end },
+    ding       = { label = "announce a level-up to your party (an emote when solo)", get = function() return ns.Ding == nil or ns.Ding.Cfg().enabled ~= false end,
+                   set = function(v) if ns.Ding then ns.Ding.Cfg().enabled = v end end },
 }
 
 function Config.SetToggle(key, value)
@@ -94,6 +96,11 @@ function Config.OptionItems()
     for _, key in ipairs({ "waypoint", "route", "wpanim", "wpengine" }) do
         local t = Config.TOGGLES[key]
         items[#items + 1] = { key = "qg_" .. key, label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
+    end
+    items[#items + 1] = { header = "Levelling" }
+    do
+        local t = Config.TOGGLES.ding
+        items[#items + 1] = { key = "qg_ding", label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
     end
     items[#items + 1] = { header = "Quest mobs" }
     for _, key in ipairs({ "skull", "skullothers", "skullplates", "skullfriends" }) do
