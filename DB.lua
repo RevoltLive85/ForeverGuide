@@ -455,6 +455,33 @@ function DB:QuestFaction(questID)
     return nil
 end
 
+--- The part of availability that can never change for this character: its race and class.
+--- (Level, prerequisites and completion all change with play; race and class do not, so a step
+--- whose quest fails this one is not for this character at all - the Dwarf route carrying the
+--- Human-only "A Swift Message" 6181, seen 2026-09-21.) Returns ok, reason.
+local raceClassCache, raceClassWhy, raceClassFor = {}, {}, nil
+function DB:RaceClassOK(questID)
+    local _, raceFile = ns.Player:GetRace()
+    local _, classFile = ns.Player:GetClass()
+    local who = tostring(raceFile) .. "/" .. tostring(classFile)
+    if who ~= raceClassFor then raceClassCache, raceClassWhy, raceClassFor = {}, {}, who end
+    local cached = raceClassCache[questID]
+    if cached ~= nil then return cached, raceClassWhy[questID] end
+    local q = self:GetQuest(questID)
+    if not q then return true end        -- unknown quest: not ours to judge
+    local ok, why = true, nil
+    local rbit = raceFile and RACE_BIT[raceFile]
+    if q.races and q.races ~= 0 and rbit and band(q.races, rbit) == 0 then ok, why = false, "wrong race/faction" end
+    if ok then
+        local cbit = classFile and CLASS_BIT[classFile]
+        if q.classes and q.classes ~= 0 and cbit and band(q.classes, cbit) == 0 then ok, why = false, "wrong class" end
+    end
+    if raceFile then                     -- only cache once the character is known
+        raceClassCache[questID], raceClassWhy[questID] = ok, why
+    end
+    return ok, why
+end
+
 --- Can this character take the quest (level, race, class, prerequisites)?
 --- Returns ok, reason.
 function DB:IsAvailable(questID)

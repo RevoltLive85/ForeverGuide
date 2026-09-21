@@ -229,6 +229,9 @@ end
 -- ------------------------------------------------------------
 function Guide:StepApplies(step)
     if step.quest and ns.DB and ns.DB:IsRemoved(step.quest) then return false end   -- quest gone from Forever
+    -- a quest this character can never take (a race- or class-only quest the route planner offered
+    -- to the whole faction): the giver has nothing to say, so the step and its turn-in are not ours
+    if step.quest and ns.DB and ns.DB:IsLoaded() and not ns.DB:RaceClassOK(step.quest) then return false end
     if step.faction then
         local f = ns.Player:GetFaction()
         if f and string.upper(step.faction) ~= string.upper(f) then return false end
@@ -454,6 +457,19 @@ function Guide:Evaluate(reason)
         end
     end
 
+    -- 0b. an optional (group / elite) quest the route only offered: its steps were walked past, so
+    --     once the player takes it by hand the guide goes back and works it like any other quest
+    for quest, idx in pairs(self.optionalPassed or {}) do
+        local s = steps[idx]
+        if not s or s.quest ~= quest or p.done[idx] or ns.Quest:IsCompleted(quest) then
+            self.optionalPassed[quest] = nil
+        elseif ns.Quest:IsOnQuest(quest) and idx < i then
+            self.optionalPassed[quest] = nil
+            i = idx
+            self.note = string.format("%s is in your log - back to it.", ns.Quest:GetTitle(quest) or ("quest " .. quest))
+        end
+    end
+
     -- 1. advance over done steps; auto-complete manual steps when the next
     --    automatic step is already done; skip quests the level does not allow yet
     local guard = 0
@@ -461,6 +477,18 @@ function Guide:Evaluate(reason)
     while steps[i] and i ~= self.hold and guard < #steps + 5 do
         guard = guard + 1
         local step = steps[i]
+        if step.quest and step.type == "ACCEPT" and ns.DB and ns.DB:IsLoaded() and not p.done[i] then
+            local ok, why = ns.DB:RaceClassOK(step.quest)
+            if not ok then
+                self.notForYou = self.notForYou or {}
+                if not self.notForYou[step.quest] then
+                    self.notForYou[step.quest] = true
+                    ns.Printf("%s is %s - not one you can take; the route skips it.",
+                        ns.DB:QuestName(step.quest) or ("quest " .. step.quest),
+                        why == "wrong class" and "for another class" or "for another race")
+                end
+            end
+        end
         local done = self:IsStepDone(step, i)
         if not done and step.quest then
             local need = self:LevelGate(step)
@@ -480,7 +508,15 @@ function Guide:Evaluate(reason)
         -- player opted in by taking the quest: then its objectives and turn-in are guided like any other
         if not done and step.optional and step.quest then
             local opted = step.type ~= "ACCEPT" and ns.Quest:IsOnQuest(step.quest)
-            if not opted then done = true end   -- passed over, not marked done
+            if not opted then
+                done = true                     -- passed over, not marked done
+                -- remember where it was: taking it by hand later brings the guide back (see 0b)
+                if not ns.Quest:IsCompleted(step.quest) then
+                    self.optionalPassed = self.optionalPassed or {}
+                    local at = self.optionalPassed[step.quest]
+                    if not at or i < at then self.optionalPassed[step.quest] = i end
+                end
+            end
         end
         -- manual steps and other optional steps complete themselves once the player is past them
         if not done and (MANUAL[step.type] or step.optional) then

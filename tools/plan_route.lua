@@ -42,6 +42,18 @@ local TRACE = os.getenv("FG_TRACE")
 local function env(name, default) return tonumber(os.getenv(name) or "") or default end
 
 local RACE_ALLIANCE, RACE_HORDE = 77, 178
+local RACE_BIT = { Human = 1, Orc = 2, Dwarf = 4, NightElf = 8, Scourge = 16, Tauren = 32, Gnome = 64, Troll = 128 }
+
+--- The quest mask a route should be planned with: the races the route is FOR (a race route serves
+--- one or two races - Dun Morogh is Dwarf+Gnome), else the whole faction. Planning a dwarf route
+--- with the faction mask put Human-only quests such as 6181 "A Swift Message" in it, and the giver
+--- has nothing to say to a dwarf (Ilya, 2026-09-21).
+local function raceMask(zd, faction)
+    local mask = 0
+    for _, r in ipairs(zd and zd.races or {}) do mask = mask + (RACE_BIT[r] or 0) end
+    if mask == 0 then mask = faction == "Alliance" and RACE_ALLIANCE or RACE_HORDE end
+    return mask
+end
 local CLASS_NAMES = { [1] = "WARRIOR", [2] = "PALADIN", [4] = "HUNTER", [8] = "ROGUE", [16] = "PRIEST", [64] = "SHAMAN",
                       [128] = "MAGE", [256] = "WARLOCK", [1024] = "DRUID" }
 
@@ -115,7 +127,7 @@ end
 -- base filter: could this quest ever be on the route for this faction?
 local baseOK = {}
 local function questOK(id, factionMask, allowElite)
-    local key = id * 4 + (factionMask == RACE_ALLIANCE and 0 or 1) + (allowElite and 2 or 0)
+    local key = id .. ":" .. tostring(factionMask) .. ":" .. tostring(allowElite)
     if baseOK[key] ~= nil then return baseOK[key] end
     local q = Q[id]
     local ok = q.zone and q.zone > 0 and not q.hidden and not q.removed
@@ -871,7 +883,7 @@ end
 local function planRoute(startZone)
     local faction = startZone.faction
     local state = { xp = 0, time = 0, pos = nil, qs = {}, visits = {}, faction = faction,
-                    mask = faction == "Alliance" and RACE_ALLIANCE or RACE_HORDE, travel = D.buildTravel(faction) }
+                    mask = raceMask(startZone, faction), travel = D.buildTravel(faction) }
     -- start at the lowest-level giver of the starting zone
     do
         local bestR
@@ -1064,7 +1076,7 @@ for _, run in ipairs(runs) do
         local doneSoFar, groupAdded = {}, 0
         for i, ch in ipairs(chapters) do
             local zoneName = Z.names[ch.zone] or tostring(ch.zone)
-            local withGroup, added = addGroupQuests(ch.steps, zd.faction == "Alliance" and RACE_ALLIANCE or RACE_HORDE, ch.startLevel, math.max(ch.endLevel, ch.startLevel), doneSoFar)
+            local withGroup, added = addGroupQuests(ch.steps, raceMask(zd, zd.faction), ch.startLevel, math.max(ch.endLevel, ch.startLevel), doneSoFar)
             ch.steps = withGroup
             groupAdded = groupAdded + added
             for _, st in ipairs(ch.steps) do if st.type == "TURNIN" and st.quest and not st.optional then doneSoFar[st.quest] = true end end

@@ -517,20 +517,20 @@ end
 -- ---- optional group quests ------------------------------------------------------------------
 do
     ns.RegisterGuide({ id = "AUDIT_GROUP", name = "group", steps = {
-        { type = "ACCEPT", quest = 4001 },
-        { type = "ACCEPT", quest = 4002, optional = true, note = "group quest" },
-        { type = "KILL", quest = 4002, target = "Kobold Vermin", optional = true },
-        { type = "TURNIN", quest = 4002, optional = true },
-        { type = "TURNIN", quest = 4001 } } })
-    if ns.Quest:IsOnQuest(4001) then MOCK_ABANDON(4001); settle() end
+        { type = "ACCEPT", quest = 990001 },
+        { type = "ACCEPT", quest = 990002, optional = true, note = "group quest" },
+        { type = "KILL", quest = 990002, target = "Kobold Vermin", optional = true },
+        { type = "TURNIN", quest = 990002, optional = true },
+        { type = "TURNIN", quest = 990001 } } })
+    if ns.Quest:IsOnQuest(990001) then MOCK_ABANDON(990001); settle() end
     G:Activate("AUDIT_GROUP", true); settle()
-    MOCK_ACCEPT(4001, "Base quest", {}); settle()
-    check(cur() == 5 and step().type == "TURNIN" and step().quest == 4001, "optional group quest steps are walked past when the quest is not taken (" .. tostring(cur()) .. ")")
-    MOCK_ACCEPT(4002, "Group quest", { { text = "Kobold Vermin slain", finished = false, numFulfilled = 0, numRequired = 5 } }); settle()
-    check(cur() == 3 and step().quest == 4002, "taking the group quest by hand guides its objectives (" .. tostring(cur()) .. ")")
-    MOCK_ABANDON(4002); settle()
+    MOCK_ACCEPT(990001, "Base quest", {}); settle()
+    check(cur() == 5 and step().type == "TURNIN" and step().quest == 990001, "optional group quest steps are walked past when the quest is not taken (" .. tostring(cur()) .. ")")
+    MOCK_ACCEPT(990002, "Group quest", { { text = "Kobold Vermin slain", finished = false, numFulfilled = 0, numRequired = 5 } }); settle()
+    check(cur() == 3 and step().quest == 990002, "taking the group quest by hand guides its objectives (" .. tostring(cur()) .. ")")
+    MOCK_ABANDON(990002); settle()
     check(cur() == 5, "dropping it walks past again (" .. tostring(cur()) .. ")")
-    MOCK_TURNIN(4001); settle()
+    MOCK_TURNIN(990001); settle()
 end
 
 -- ---- full quest log ---------------------------------------------------------------------------
@@ -1084,6 +1084,27 @@ do
     MOCK_ABANDON(12) MOCK_ABANDON(102)
     MOCK_ZONE(savedMap, savedZone, 48, 43); settle()
     G:Activate("HUMAN_NORTHSHIRE_1_6", true); G:Reset(); settle()
+end
+
+-- ---- a quest this character's race can never take is not part of the route ----
+-- (Ilya, 2026-09-21: the Dwarf chapter offered 6181 "A Swift Message", a Human-only quest, and the
+--  guide sat on it at Quartermaster Lewis - who has nothing to say to a dwarf)
+do
+    local q = ns.QuestDB and ns.QuestDB[6181]
+    check(q ~= nil and q.races ~= nil and q.races ~= 0, "the database knows 6181 is race-restricted")
+    local mine = MOCK.race
+    MOCK.race = { "Dwarf", "Dwarf" }
+    ns.Player.cache = {}
+    ns.RegisterGuide({ id = "AUDIT_RACE", name = "race", steps = {
+        { type = "ACCEPT", quest = 6181, npc = 491 },
+        { type = "TURNIN", quest = 6181, npc = 523 },
+        { type = "ACCEPT", quest = 4010 } } })
+    G:Activate("AUDIT_RACE", true); settle()
+    check(ns.DB:RaceClassOK(6181) == false, "a dwarf cannot take the human quest 6181")
+    check(cur() == 3, "its accept and turn-in are not part of the route for a dwarf (" .. tostring(cur()) .. ")")
+    MOCK.race = mine
+    ns.Player.cache = {}
+    if ns.Quest:IsOnQuest(4010) then MOCK_ABANDON(4010); settle() end
 end
 
 -- ---- no swallowed errors anywhere -------------------------------------------------
