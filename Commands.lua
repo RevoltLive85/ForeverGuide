@@ -582,8 +582,18 @@ end
 
 function handlers.resync()
     if not ns.Guide.active then ns.Print("no guide active.") return end
+    local before = ns.Guide.current
     local n = ns.Guide:Resync()
-    ns.Printf("resynced: %d out-levelled quest%s skipped, now at step %s.", n, n == 1 and "" or "s", tostring(ns.Guide.current))
+    local step = ns.Guide:GetCurrentStep()
+    local _, total = ns.Guide:GetStepCount()      -- (current, total): only the total is wanted here
+    local where = step and string.format("step %d/%d: %s", step.index, total or 0, ns.Guide:GetStepText(step)) or "the end of the guide"
+    if n > 0 then
+        ns.Printf("resynced: %d out-levelled quest%s skipped - now at %s", n, n == 1 and "" or "s", where)
+    elseif before == ns.Guide.current then
+        ns.Printf("resynced: nothing to skip, still at %s", where)
+    else
+        ns.Printf("resynced: now at %s", where)
+    end
 end
 
 function handlers.edit(rest)

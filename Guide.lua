@@ -43,6 +43,7 @@ Guide.note = nil         -- recovery note shown in UI
 Guide.blocked = nil      -- current step is blocked (quest missing, no accept step)
 
 local MANUAL = { TRAVEL = true, FLY = true, TALK = true, NOTE = true }
+local LOOKAHEAD = 6      -- automatic steps checked past a manual one before calling it stale
 local OBJECTIVE = { COMPLETE = true, KILL = true, COLLECT = true }
 Guide.MANUAL, Guide.OBJECTIVE = MANUAL, OBJECTIVE
 
@@ -315,8 +316,46 @@ function Guide:IsStepDone(step, idx)
         local bind = ns.PlainString(ns.Safe(rawget(_G, "GetBindLocation")))
         if bind and step.zone then return bind == step.zone, nil end
         return false, nil
+    elseif t == "TRAVEL" or t == "FLY" then
+        -- "travel to Westfall" is done the moment you are in Westfall: its coordinates are only
+        -- the hub the route wants next, and the step after it points there anyway. A travel step
+        -- INSIDE the zone you are already in ("follow the road south") still needs the arrival
+        -- (FG_NAV_ARRIVED), or it would tick itself off where you stand.
+        if self:IsZoneEntry(step, idx) then return self:OnStepMap(step), nil end
+        return false, nil
     end
     return false, nil   -- manual types
+end
+
+--- A TRAVEL/FLY step that crosses into another zone (the first mapped step of a chapter,
+--- or one whose map differs from the step before it) - as opposed to moving around inside
+--- the zone you are already in.
+function Guide:IsZoneEntry(step, idx)
+    if not step or not step.map or not idx then return false end
+    local steps = self.active and self.active.steps
+    if not steps then return false end
+    for k = idx - 1, 1, -1 do
+        local s = steps[k]
+        if s and s.map then return s.map ~= step.map end
+    end
+    return true      -- nothing mapped before it: the chapter starts by going there
+end
+
+--- Is the player on the step's map / in its zone? Walks the map's parents, so a
+--- sub-zone map (a cave, a city inside the zone) still counts as the zone.
+function Guide:OnStepMap(step)
+    if not step then return false end
+    local zone = ns.PlainString(ns.Safe(rawget(_G, "GetZoneText")))
+    if step.zone and zone and zone ~= "" and zone == step.zone then return true end
+    if not step.map then return false end
+    local mapID, tries = ns.Player:GetMapID(), 0
+    while mapID and tries < 5 do
+        if mapID == step.map then return true end
+        local info = ns.Call("C_Map.GetMapInfo", mapID)
+        mapID = type(info) == "table" and ns.PlainNumber(info.parentMapID) or nil
+        tries = tries + 1
+    end
+    return false
 end
 
 --- Which live objective a KILL/COLLECT/COMPLETE step refers to: the explicit
@@ -445,11 +484,20 @@ function Guide:Evaluate(reason)
         end
         -- manual steps and other optional steps complete themselves once the player is past them
         if not done and (MANUAL[step.type] or step.optional) then
-            local k = i + 1
-            while steps[k] and (MANUAL[steps[k].type] or not self:StepApplies(steps[k])) do k = k + 1 end
-            if steps[k] and self:IsStepDone(steps[k], k) then
-                p.done[i] = true
-                done = true
+            -- look at the next few automatic steps, not only the first one: quests accepted out of
+            -- order (or a hub already visited) are proof the player is past this travel / note step,
+            -- even when the step right after it is still open.
+            local k, seen = i + 1, 0
+            while steps[k] and seen < LOOKAHEAD do
+                if not (MANUAL[steps[k].type] or not self:StepApplies(steps[k])) then
+                    seen = seen + 1
+                    if self:IsStepDone(steps[k], k) or p.done[k] then
+                        p.done[i] = true
+                        done = true
+                        break
+                    end
+                end
+                k = k + 1
             end
         end
         if not done then break end
@@ -690,8 +738,18 @@ function Guide:Resync()
     for i, s in ipairs(steps) do
         if s.quest and skippedQuests[s.quest] then p.done[i] = true end
     end
+    -- everything before the furthest thing you have actually done is behind you: travel, notes and
+    -- talk steps left open there would otherwise hold the guide at the top of the chapter forever
+    local last = 0
+    for i, s in ipairs(steps) do
+        if p.done[i] or (self:StepApplies(s) and self:IsStepDone(s, i)) then last = i end
+    end
+    for i = 1, last - 1 do
+        if MANUAL[steps[i].type] then p.done[i] = true end
+    end
     self.hold = nil
     self.current = nil
+    p.step = 1               -- re-walk from the top so done steps are skipped in one pass
     self:Evaluate("resync")
     return skipped
 end
@@ -790,7 +848,13 @@ function Guide:OnInit()
     ns.Events:RegisterMany({ "BAG_UPDATE_DELAYED", "SPELLS_CHANGED", "LEARNED_SPELL_IN_SKILL_LINE" }, function(event)
         ns.Events:Debounce("guide:" .. event, 0.3, function() Guide:Evaluate(event) end)
     end)
-    ns.Events:Register("FG_ZONE_CHANGED", function() Guide:UpdateNavigation() end)
+    -- a zone change can finish the chapter's travel step ("travel to Westfall" is done once you
+    -- are in Westfall), so re-evaluate, not just re-aim the arrow
+    ns.Events:Register("FG_ZONE_CHANGED", function(event)
+        local step = Guide:GetCurrentStep()
+        if step and (step.type == "TRAVEL" or step.type == "FLY") then Guide:Evaluate(event or "zone") end
+        Guide:UpdateNavigation()
+    end)
 
     -- TALK steps complete when the matching NPC window opens
     ns.Events:RegisterMany({ "GOSSIP_SHOW", "QUEST_DETAIL", "QUEST_PROGRESS", "QUEST_COMPLETE", "QUEST_GREETING", "MERCHANT_SHOW", "TRAINER_SHOW" },

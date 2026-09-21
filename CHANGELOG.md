@@ -1,6 +1,8 @@
 # Changelog
 
 ## 0.3.6 - 2026-09-21
+- A chapter's "travel to <zone>" step finishes when you reach the zone (not only within 60 yd of the hub it names), and a zone change re-evaluates the guide - the Westfall chapter no longer sits on "Travel to Westfall" while you stand in Westfall. Travel steps inside a zone still need the arrival.
+- Resync moves forward: travel/note/talk steps before the furthest thing you have actually done are marked done, the walk restarts from the top, and the chat line names the step it landed on.
 - Artwork: ComfyUI-rendered gold ornaments (tools/make_art.py from tools/art-src/): the in-world waypoint diamond, a compass emblem for the header and minimap button, a skull medallion on the target button, corner scrolls on the Quest Guide panel and info popup, and a new row icon set (! ? swords bag boot check).
 - Crowd safeguard: quest mobs tagged by others, player nameplates and `/who` zone counts decide when an area is too busy; a crowded step (unless kill-x / loot-item) is postponed for 10 minutes with a quieter spawn, step or zone offered.
 - Group-up banner on any open kill objective with others around: kill credit is shared in a group, so an Invite button asks the players seen near you; banner laid out in two lines with the buttons clear of the text.

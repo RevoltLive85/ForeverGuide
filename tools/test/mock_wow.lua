@@ -405,6 +405,15 @@ function _G.MOCK_MOVE(mapX, mapY)
     world.worldX, world.worldY = -world.mapY * 1000, -world.mapX * 1000
 end
 
+--- move the player to another zone: map id, zone name, and where on that map
+function _G.MOCK_ZONE(mapID, zoneName, mapX, mapY)
+    world.mapID, world.zone = mapID, zoneName or world.zone
+    world.mapName = zoneName or world.mapName
+    if mapX then _G.MOCK_MOVE(mapX, mapY) end
+    fire("ZONE_CHANGED_NEW_AREA")
+    fire("PLAYER_MAP_CHANGED")
+end
+
 
 -- ---- CVars (addon-registered ones persist in config-cache.wtf) ---------------
 world.cvars = { nameplateShowEnemies = "0" }

@@ -1053,6 +1053,39 @@ do
     G:Activate(savedGuide, true); G:Reset(); settle()
 end
 
+-- ---- arriving in the zone finishes the chapter's travel step; resync moves forward ----
+-- (Ilya, 2026-09-21: level 18 in Westfall with the Westfall chapter open, the guide sat on
+--  "Travel to Westfall - 640 yd" forever and every /fg resync answered "now at step 1")
+do
+    local savedMap, savedZone = MOCK.mapID, MOCK.zone
+    G:Activate("GEN_ALLIANCE_DWARF_04_WESTFALL", true); settle()
+    local steps = G.active.steps
+    check(steps[1].type == "TRAVEL" and steps[1].map == 1436, "Westfall chapter starts with a travel step")
+    check(cur() == 1, "outside Westfall the guide holds the travel step (" .. tostring(cur()) .. ")")
+    -- walk in, but nowhere near the coordinates the step carries (Moonbrook, not Sentinel Hill)
+    MOCK_ZONE(1436, "Westfall", 45.5, 66.1); settle()
+    check(G:IsStepDone(steps[1], 1) == true and cur() == 2,
+        "in Westfall the travel step is done -> the hearthstone note (" .. tostring(cur()) .. ")")
+    MOCK_ACCEPT(6181, "A Swift Message"); settle()
+    check(cur() > 2 and steps[cur()].type ~= "TRAVEL", "and the note gives way once a quest is taken (" .. tostring(cur()) .. ")")
+    MOCK_ABANDON(6181); settle()
+    -- an in-zone travel step is NOT ticked off just for being in the zone
+    check(G:IsZoneEntry(steps[1], 1) == true, "step 1 is a zone entry")
+    local inZone = { type = "TRAVEL", map = 1436, zone = "Westfall", x = 20, y = 20 }
+    check(G:IsZoneEntry(inZone, 5) == false, "a travel step later in the same zone is not a zone entry")
+
+    -- resync with quests already taken out of order: it must move forward, not back to step 1
+    G:SetStep(1); settle()
+    MOCK_ACCEPT(12, "The People's Militia", { { text = "Defias Trapper slain", finished = false, numFulfilled = 0, numRequired = 15 } }); settle()
+    MOCK_ACCEPT(102, "Patrolling Westfall"); settle()
+    local landed = G:Resync() and cur()
+    check(landed and landed > 1, "resync moves forward past the stale travel step (" .. tostring(landed) .. ")")
+    check(G.progress.done[1] == true, "the travel step is marked done by the resync")
+    MOCK_ABANDON(12) MOCK_ABANDON(102)
+    MOCK_ZONE(savedMap, savedZone, 48, 43); settle()
+    G:Activate("HUMAN_NORTHSHIRE_1_6", true); G:Reset(); settle()
+end
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 do
     local expected = 0
