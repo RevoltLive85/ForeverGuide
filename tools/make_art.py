@@ -6,6 +6,8 @@ background, Flux schnell) into the addon's TGA textures.
     compass.png          -> Textures/compass.tga     64x64   header icon + minimap button
     skull_medallion.png  -> Textures/skull_btn.tga   64x64   the skull target button
     corner.png           -> Textures/corner.tga     128x128  panel corner ornament (top-left; flipped for the others)
+    compass/ic_*/diamond -> Textures/icons.tga      512x64   the row icon atlas: 8 tiles of 64
+                            (compass, accept !, turnin ?, kill, collect, travel, done, current)
 
 Black background -> alpha: a pixel's alpha is its brightest channel (the render is
 pure black where there is nothing), the colour is un-premultiplied so the edges
@@ -84,8 +86,22 @@ def corner(size=128):
     return sq.resize((size, size), Image.LANCZOS)
 
 
+def icons_atlas(tile=64):
+    """the 8-tile row-icon atlas, same order as Theme.ICON; a soft dark shadow under each glyph."""
+    order = ["compass.png", "ic_accept.png", "ic_turnin.png", "ic_kill.png", "ic_collect.png", "ic_travel.png", "ic_done.png", "diamond.png"]
+    atlas = Image.new("RGBA", (tile * len(order), tile), (0, 0, 0, 0))
+    for i, name in enumerate(order):
+        t = fit_square(cutout(name), tile, pad=0.08)
+        shadow = Image.new("RGBA", (tile, tile), (0, 0, 0, 0))
+        shadow.paste((0, 0, 0, 170), (0, 0, tile, tile), t.split()[3])
+        shadow = shadow.filter(ImageFilter.GaussianBlur(2.0))
+        atlas.paste(Image.alpha_composite(shadow, t), (i * tile, 0))
+    return atlas
+
+
 if __name__ == "__main__":
     save(waypoint(), "waypoint.tga")
     save(fit_square(cutout("compass.png"), 64, pad=0.02), "compass.tga")
     save(fit_square(cutout("skull_medallion.png"), 64, pad=0.02), "skull_btn.tga")
     save(corner(), "corner.tga")
+    save(icons_atlas(), "icons.tga")

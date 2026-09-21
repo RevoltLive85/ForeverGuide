@@ -9,6 +9,7 @@ need the same file names and sizes.
 """
 import math
 import os
+import sys
 import random
 
 from PIL import Image, ImageDraw, ImageFilter
@@ -382,8 +383,10 @@ if __name__ == "__main__":
     save(separator(), "separator.tga")
     save(button(), "button.tga")
     save(button(bright=True), "button_hl.tga")
-    save(icons_atlas(), "icons.tga")
+    # icons.tga and waypoint.tga now come from the ComfyUI renders (tools/make_art.py); the
+    # procedural versions are kept here as the fallback: `make_textures.py --procedural-art`
+    if "--procedural-art" in sys.argv: save(icons_atlas(), "icons.tga")
     save(ring(), "ring.tga")
-    save(waypoint(), "waypoint.tga")
+    if "--procedural-art" in sys.argv: save(waypoint(), "waypoint.tga")
     save(dot(), "dot.tga")
     save(chevron(), "chevron.tga")
