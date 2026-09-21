@@ -443,3 +443,16 @@ no camera-yaw API exists; a left-drag camera orbit around a standing character d
   button, `Layout(f, showInvite, showGo)` re-anchors and grows the frame from GetStringHeight (min 58). Title
   shortened to "Group up - kill credit is shared", the player count lives in the sub line. `/fg crowd test` previews
   the banner for 10 s (`Crowd:Preview`, Update() is held while `Crowd.preview`); `/fg crowd on|off`. v0.3.6, 241 tests.
+- Travel steps / resync (Ilya: "the resync button doesnt work it seems" - level 18 standing in Westfall, the
+  Westfall chapter stuck on "Travel to Westfall 640 yd", every /fg resync answering "now at step 1"): a chapter's
+  TRAVEL/FLY step only completed on FG_NAV_ARRIVED inside its 60 yd radius, so being in the zone was not enough and
+  resync (which just re-runs Evaluate) came straight back to it. `Guide:IsZoneEntry(step, idx)` = the first mapped
+  step of a chapter, or one whose map differs from the nearest earlier mapped step; such a step is done once
+  `Guide:OnStepMap` finds the player on that map (parents walked, GetZoneText as a fallback). In-zone travel steps
+  ("follow the road south", the hand-written Northshire guide) keep needing the arrival. FG_ZONE_CHANGED now
+  re-evaluates while a travel step is current instead of only re-aiming the arrow. A manual step (TRAVEL/NOTE/TALK)
+  goes stale when any of the next LOOKAHEAD=6 automatic steps is done (was: only the very next one) - quests
+  accepted out of order prove the player is past it. `Guide:Resync` additionally marks manual steps before the
+  furthest done step as done, restarts the walk from step 1 (done steps are skipped in one pass) and the chat line
+  names where it landed ("resynced: nothing to skip, still at step 3/55: Accept [10] A Swift Message").
+  `MOCK_ZONE(mapID, zone, x, y)` added to the mock; 249 tests.
