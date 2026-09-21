@@ -11,7 +11,7 @@
 local _, ns = ...
 local MM = ns:NewModule("Minimap")
 
-local ICON = "Interface\\Icons\\INV_Misc_Map_01"
+local ICON = "Interface\\AddOns\\ForeverGuide\\Textures\\compass.tga"
 local button
 
 local function Cfg()
@@ -71,7 +71,7 @@ function MM:Create()
     icon:SetSize(20, 20)
     icon:SetPoint("CENTER", -1, 1)
     pcall(icon.SetTexture, icon, ICON)
-    pcall(icon.SetTexCoord, icon, 0.07, 0.93, 0.07, 0.93)
+    pcall(icon.SetTexCoord, icon, 0, 1, 0, 1)
     b.icon = icon
 
     local hl = b:CreateTexture(nil, "HIGHLIGHT")

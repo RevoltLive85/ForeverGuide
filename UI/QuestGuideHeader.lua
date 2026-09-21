@@ -19,9 +19,9 @@ function Header.Create(parent)
     h:SetHeight(Header.HEIGHT)
 
     h.icon = h:CreateTexture(nil, "ARTWORK")
-    h.icon:SetSize(22, 22)
-    h.icon:SetPoint("TOPLEFT", h, "TOPLEFT", 12, -9)
-    Theme.SetIcon(h.icon, "compass")
+    h.icon:SetSize(24, 24)
+    h.icon:SetPoint("TOPLEFT", h, "TOPLEFT", 11, -8)
+    pcall(h.icon.SetTexture, h.icon, Theme.TEX.compass)
 
     h.title = Theme.NewText(h, { fancy = true, size = 16, color = Theme.C.goldLight, oneLine = true })
     h.title:SetPoint("LEFT", h.icon, "RIGHT", 7, 0)

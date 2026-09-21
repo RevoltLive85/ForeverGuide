@@ -27,6 +27,9 @@ Theme.TEX = {
     waypoint = PATH .. "waypoint.tga",
     dot = PATH .. "dot.tga",
     chevron = PATH .. "chevron.tga",
+    compass = PATH .. "compass.tga",    -- ComfyUI art (tools/make_art.py)
+    skullBtn = PATH .. "skull_btn.tga",
+    corner = PATH .. "corner.tga",
     white = "Interface\\Buttons\\WHITE8x8",
 }
 
@@ -111,6 +114,28 @@ function Theme.Backdrop(f, kind, alpha)
         f:SetBackdropColor(0.06, 0.045, 0.03, alpha or 0.92)
         f:SetBackdropBorderColor(0.58, 0.45, 0.18, 0.9)
     end
+end
+
+--- Gold corner ornaments on a panel: one texture (top-left), flipped for the other three.
+function Theme.Corners(f, size, inset)
+    size, inset = size or 36, inset or -3
+    f.corners = f.corners or {}
+    local spec = {
+        { "TOPLEFT",     inset, -inset, 0, 1, 0, 1 },
+        { "TOPRIGHT",   -inset, -inset, 1, 0, 0, 1 },
+        { "BOTTOMLEFT",  inset,  inset, 0, 1, 1, 0 },
+        { "BOTTOMRIGHT", -inset, inset, 1, 0, 1, 0 },
+    }
+    for i, s in ipairs(spec) do
+        local t = f.corners[i] or f:CreateTexture(nil, "OVERLAY")
+        f.corners[i] = t
+        t:SetSize(size, size)
+        t:ClearAllPoints()
+        t:SetPoint(s[1], f, s[1], s[2], s[3])
+        pcall(t.SetTexture, t, Theme.TEX.corner)
+        pcall(t.SetTexCoord, t, s[4], s[5], s[6], s[7])
+    end
+    return f.corners
 end
 
 --- Compact textured button: dark plate, gold rim, brighter on hover. icon: atlas name (optional)
