@@ -456,3 +456,19 @@ no camera-yaw API exists; a left-drag camera orbit around a standing character d
   furthest done step as done, restarts the walk from step 1 (done steps are skipped in one pass) and the chat line
   names where it landed ("resynced: nothing to skip, still at step 3/55: Accept [10] A Swift Message").
   `MOCK_ZONE(mapID, zone, x, y)` added to the mock; 249 tests.
+- Race-restricted quests in a race route (Ilya: "the quest in the guide has been done already" - standing at
+  Quartermaster Lewis, who offered nothing): `/fg quest 6181` said `state: NOT_STARTED (wrong race/faction)`.
+  6181 "A Swift Message" is the Human copy of the courier chain; the planner picked quests with the whole
+  faction mask (`RACE_ALLIANCE`/`RACE_HORDE`), so the Dwarf route carried it, the client never flags it
+  completed, and its turn-in kept the accept step alive. `DB:RaceClassOK(questID)` = the permanent half of
+  IsAvailable (race + class bits only, cached per race/class so a test can switch character), used by
+  `Guide:StepApplies`, so every step of such a quest falls out of the route with one chat line the first time.
+  The planner now uses `raceMask(zd, faction)` (the route's own races OR'd - Dun Morogh = Dwarf|Gnome) and
+  `questOK`'s cache key no longer assumes two masks. 6 quests across all generated routes were affected
+  (6181/6361/6365/6387, the same courier family), so the guides were NOT regenerated - that would renumber
+  every step and lose saved progress mid-play; the engine guard covers them.
+- Found by the same test run: the "optional group quest taken by hand" rewind never existed. Its test passed
+  because the fixture used ids 4001/4002, which are real level-48 Horde quests, so the LEVEL GATE deferred
+  them and the deferred machinery did the rewind. Fixture ids moved to 990001/990002 (outside the database)
+  and `Guide.optionalPassed[quest] = idx` (set when an optional step is walked past, consulted in Evaluate
+  step 0b) now takes the guide back once the quest is in the log. 252 tests.
