@@ -73,6 +73,8 @@ Config.TOGGLES = {
                    set = function(v) ns.db.ui.showDistances = v ns.UI:Refresh() end },
     subtitles  = { label = "show objective lines", get = function() return ns.db.ui.showSubtitles ~= false end,
                    set = function(v) ns.db.ui.showSubtitles = v ns.UI:Refresh() end },
+    dungeon    = { label = "put the guide away while you are in a dungeon", get = function() return ns.Instance == nil or ns.Instance.Cfg().hide ~= false end,
+                   set = function(v) if ns.Instance then ns.Instance:SetHide(v) end end },
     flightpoints = { label = "point out flight points you have not taken yet", get = function() return ns.Reminders == nil or ns.Reminders.Cfg().flight ~= false end,
                    set = function(v) if ns.Reminders then ns.Reminders.Cfg().flight = v end end },
     trainer    = { label = "remind me about the class trainer every couple of levels", get = function() return ns.Reminders == nil or ns.Reminders.Cfg().trainer ~= false end,
@@ -102,7 +104,7 @@ function Config.OptionItems()
         items[#items + 1] = { key = "qg_" .. key, label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
     end
     items[#items + 1] = { header = "Levelling" }
-    for _, key in ipairs({ "ding", "flightpoints", "trainer" }) do
+    for _, key in ipairs({ "ding", "flightpoints", "trainer", "dungeon" }) do
         local t = Config.TOGGLES[key]
         items[#items + 1] = { key = "qg_" .. key, label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
     end

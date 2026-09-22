@@ -1410,6 +1410,54 @@ do
     ns.char.lastTrained = nil
 end
 
+-- ---- dungeons: the guide steps aside -----------------------------------------------------------
+-- (Ilya, 2026-09-22: "when in a dungeon, we need to disable the quest guide, so it doesnt interfere")
+do
+    local I = ns.Instance
+    ns.UI:Show()
+    MOCK_BAG(0, 3, 0)            -- something that would raise a banner outside
+    ns.Bags:Check("test")
+    check(ForeverGuideBagBanner:IsShown(), "outside, a full-bag banner shows")
+
+    MOCK_INSTANCE("party")
+    check(I:Inside() == true, "the addon knows it is in a dungeon")
+    check(ns.UI:AllHidden() == true and ns.UI:IsSuspended("dungeon"), "so everything is put away")
+    check(ns.db.ui.hiddenAll ~= true, "without touching the hide-everything setting")
+    ns.Bags:Check("test")
+    check(not ForeverGuideBagBanner:IsShown(), "and the banners stay down inside")
+    ns.Crowd:Update()
+    check(not ForeverGuideCrowdBanner:IsShown(), "the crowd banner too")
+
+    MOCK_INSTANCE(nil)
+    check(ns.UI:AllHidden() == false, "walking out brings it back")
+    ns.Bags:Check("test")
+    check(ForeverGuideBagBanner:IsShown(), "banners and all")
+
+    -- a battleground counts, a city does not
+    MOCK_INSTANCE("pvp")
+    check(ns.UI:AllHidden() == true, "a battleground is no place for a levelling guide either")
+    MOCK_INSTANCE("none")
+    check(ns.UI:AllHidden() == false, "out again")
+
+    -- and the player can keep it up if they want
+    ns.Commands:Run("dungeon off")
+    MOCK_INSTANCE("party")
+    check(ns.UI:AllHidden() == false, "/fg dungeon off keeps the guide up inside (" .. tostring(ns.UI:AllHidden()) .. ")")
+    ns.Commands:Run("dungeon on")
+    check(ns.UI:AllHidden() == true, "and turning it back on puts it away again")
+    MOCK_INSTANCE(nil)
+
+    -- the setting survives the cvar mirror
+    ns.Commands:Run("dungeon off")
+    local acct = ns.Persist:EncodeAcct()
+    ns.db.instance.hide = true
+    ns.Persist:DecodeAcct(acct)
+    check(ns.db.instance.hide == false, "the dungeon switch is kept in the mirror")
+    ns.Commands:Run("dungeon on")
+    MOCK_BAG(10, 0, 0)
+    ns.Bags:Check("test")
+end
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 do
     local expected = 0

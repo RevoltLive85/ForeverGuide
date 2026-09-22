@@ -53,6 +53,9 @@ local DEFAULTS = {
             plates = true,        -- switch enemy nameplates on during kill steps
         },
     },
+    instance = {                  -- step aside inside dungeons (Instance.lua)
+        hide = true,
+    },
     ding = {                      -- level-up announcement (Ding.lua)
         enabled = true,
         channel = "auto",         -- auto = party/raid when grouped, emote when solo

@@ -35,6 +35,7 @@ local HELP = {
     "/fg scan new | [from] [to] | stop | resume | status   ask the server for Forever's own quests (new = exactly the ids Questie lacks; titles, levels, objectives)",
     "/fg harvest [sweep [from to] | status]   passive quest discovery: quest lines of every zone map / client cache sweep",
     "/fg bliz on|off     also use Blizzard's own waypoint arrow",
+    "/fg dungeon on|off  put the guide away while you are in an instance (on by default)",
     "/fg fp              list / walk to the flight points in this zone you have not taken yet",
     "/fg remind [flight|trainer] on|off   the flight-point and trainer nudges",
     "/fg xp              levelling pace: xp/h, time to the next level, and how you compare with the route model",
@@ -234,6 +235,17 @@ function handlers.who()
     local busy, n, zone, capped = ns.Crowd:ZoneBusy()
     if n then ns.Printf("%s: %s%d players of your level%s (%s)", zone or "zone", capped and "50+ " or "", capped and 49 or n, busy and " - busy" or "", "asked " .. math.floor(ns.Now() - (ns.Crowd.zoneAt or 0)) .. "s ago") end
     if ns.Crowd:PollZone(true) then ns.Print("asking the server (/who) - result in a moment.") else ns.Print("/who is throttled - try again in a minute.") end
+end
+
+--- /fg dungeon on|off - step aside while you are in an instance
+function handlers.dungeon(rest)
+    local I = ns.Instance
+    if not I then return end
+    rest = (rest or ""):lower()
+    if rest == "on" or rest == "off" then I:SetHide(rest == "on") end
+    local inside, kind = I:Inside()
+    ns.Printf("in dungeons the guide %s (%s)%s", I.Cfg().hide == false and "stays up" or "steps aside",
+        "/fg dungeon on|off", inside and ("  -  you are in a " .. (kind or "instance") .. " now") or "")
 end
 
 --- /fg fp - walk to the nearest flight point you have not taken yet

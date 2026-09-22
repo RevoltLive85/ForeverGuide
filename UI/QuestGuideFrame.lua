@@ -139,7 +139,10 @@ function QG:ApplyTracker()
     if not tracker then return end
     -- the tracker lives in an Edit-Mode managed container that keeps re-showing it, so
     -- it is faded out and made click-through rather than hidden
-    local want = ns.db.ui.hideTracker ~= false and frame and frame:IsShown() and not ns.db.ui.hiddenAll
+    -- while the guide is away (hidden, or stepped aside in a dungeon) Blizzard's tracker is the
+    -- only thing left to read the dungeon quests from, so it goes back to normal
+    local away = (ns.UI and ns.UI.AllHidden and ns.UI:AllHidden()) or ns.db.ui.hiddenAll
+    local want = ns.db.ui.hideTracker ~= false and frame and frame:IsShown() and not away
     if want then
         pcall(tracker.SetAlpha, tracker, 0)
         pcall(tracker.EnableMouse, tracker, false)

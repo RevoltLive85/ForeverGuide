@@ -188,7 +188,7 @@ function Persist:DecodeChar(s)
 end
 
 -- ---- account settings + edits ----------------------------------------------------
-local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "rec", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "sk", "so", "sp", "w", "ht", "hm", "sc", "sd", "ss", "dg", "dc", "rmf", "rmt", "e" }
+local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "rec", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "sk", "so", "sp", "w", "ht", "hm", "sc", "sd", "ss", "dg", "dc", "rmf", "rmt", "dn", "e" }
 
 function Persist:EncodeAcct()
     local db = ns.db
@@ -211,6 +211,7 @@ function Persist:EncodeAcct()
         rec = b01(db.recorder and db.recorder.enabled),
         dg = b01(db.ding == nil or db.ding.enabled ~= false), dc = db.ding and db.ding.channel,
         rmf = b01(db.reminders == nil or db.reminders.flight ~= false), rmt = b01(db.reminders == nil or db.reminders.trainer ~= false),
+        dn = b01(db.instance == nil or db.instance.hide ~= false),
     }
     -- step edits: guide:step:map:x:y:npc:radius|...  (note text is not kept here)
     local edits = {}
@@ -272,6 +273,10 @@ function Persist:DecodeAcct(s)
     if t.ti then auto.turnin = bool(t.ti) end
     if t.ann then auto.announce = bool(t.ann) end
     if t.rec and db.recorder then db.recorder.enabled = bool(t.rec) end
+    if t.dn then
+        db.instance = db.instance or {}
+        db.instance.hide = bool(t.dn)
+    end
     if t.rmf or t.rmt then
         db.reminders = db.reminders or {}
         if t.rmf then db.reminders.flight = bool(t.rmf) end

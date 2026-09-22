@@ -520,3 +520,13 @@ no camera-yaw API exists; a left-drag camera orbit around a standing character d
   trainer (you last trained at 20). Last one you used: Bink in Ironforge - 1.2 km away". `/fg remind
   flight|trainer on|off`, both in the options panel, `rmf`/`rmt` in the account mirror and `tr` in the char
   mirror. 332 tests.
+- Instance.lua (Ilya: "when in a dungeon, we need to disable the quest guide, so it doesnt interfere"):
+  `IsInInstance()` types party/raid/scenario/pvp/arena count as quiet places. `UI:Suspend(on, "dungeon")` is a
+  new, settings-free suspension: `UI:AllHidden()` now returns true while any reason is suspended, so every
+  consumer that already asked it (Bags/gear banner, Crowd banner, MobMarker skulls + its nameplate cvar
+  forcing, the minimap button) goes quiet for free; the window is hidden, Arrow/Waypoint get
+  HideTemporarily("suspend"), and `QG:ApplyTracker` now keys off AllHidden so Blizzard's own tracker comes
+  BACK inside the instance (the dungeon quests need it). `ns.db.ui.hiddenAll` is untouched, so a player who
+  had hidden everything themselves stays hidden on the way out. `/fg dungeon on|off` (default on), options
+  toggle, `dn` in the account mirror. The Options "hide everything" checkbox now reads `db.ui.hiddenAll`
+  directly rather than AllHidden(), or it would tick itself inside a dungeon. 345 tests.

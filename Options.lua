@@ -28,7 +28,7 @@ local ITEMS = {
       get = function() return Bool(ns.db.ui.locked) end,
       set = function(v) ns.db.ui.locked = v ns.Events:Fire("FG_LOCK_CHANGED", v) end },
     { key = "hideall", label = "Hide everything (window + arrow) - the guide keeps running",
-      get = function() return Bool(ns.UI:AllHidden()) end,
+      get = function() return Bool(ns.db.ui.hiddenAll) end,
       set = function(v) ns.UI:SetAllHidden(v) end,
       refresh = { "window", "arrow" } },
     { key = "combat", label = "Hide the window and arrow while in combat",

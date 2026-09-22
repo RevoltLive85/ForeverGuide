@@ -225,7 +225,7 @@ _G.UnitPosition = function() return world.worldX, world.worldY, 0, world.instanc
 _G.GetPlayerFacing = function() return world.facing end
 _G.GetZoneText = function() return world.zone end
 _G.GetSubZoneText = function() return world.subzone end
-_G.IsInInstance = function() return false, "none" end
+_G.IsInInstance = function() return world.instanceType ~= nil and world.instanceType ~= "none", world.instanceType or "none" end
 _G.GetBindLocation = function() return world.bind end
 _G.IsSpellKnown = function(id) return world.spells[id] == true end
 _G.GetQuestID = function() return world.offeredQuest end
@@ -481,6 +481,12 @@ world.taxiOpen = {}        -- what an open flight master would offer
 _G.C_TaxiMap.GetAllTaxiNodes = function() return world.taxiOpen end
 _G.Enum.FlightPathState = { Current = 0, Reachable = 1, Unreachable = 2 }
 _G.ERR_NEWTAXIPATH = "New flight path discovered!"
+
+--- walk into (or out of) an instance: MOCK_INSTANCE("party") / MOCK_INSTANCE(nil)
+function _G.MOCK_INSTANCE(kind)
+    world.instanceType = kind
+    fire("ZONE_CHANGED_NEW_AREA")
+end
 
 --- the player opens a flight master's map: MOCK_TAXIMAP({ {name="Darkshire", state=0}, ... })
 function _G.MOCK_TAXIMAP(nodes)

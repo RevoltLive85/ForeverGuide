@@ -265,8 +265,42 @@ end
 -- screen and puts back exactly what was showing. The addon keeps working
 -- while hidden - steps still advance, auto-accept still fires.
 -- ------------------------------------------------------------
+--- "Everything is out of the way right now" - either because the player asked for it
+--- (hiddenAll, a setting) or because something suspended it for a while (a dungeon).
+--- Every banner and marker asks this before showing itself.
 function UI:AllHidden()
-    return ns.db.ui.hiddenAll and true or false
+    if ns.db.ui.hiddenAll then return true end
+    return next(self.suspended or {}) ~= nil
+end
+
+--- Put the window, arrow and markers away without touching the player's settings, and give
+--- Blizzard's own objective tracker back while they are away. Reasons stack ("dungeon", ...).
+function UI:Suspend(on, reason)
+    reason = reason or "other"
+    self.suspended = self.suspended or {}
+    local was = next(self.suspended) ~= nil
+    self.suspended[reason] = on and true or nil
+    local now = next(self.suspended) ~= nil
+    if was == now then return now end
+    local f = frame()
+    if now then
+        if f then f:Hide() end
+    elseif not ns.db.ui.hiddenAll and ns.db.ui.shown ~= false then
+        self:Create()
+        if f or frame() then (f or frame()):Show() end
+        self:Refresh()
+    end
+    if ns.Arrow and ns.Arrow.HideTemporarily then ns.Arrow:HideTemporarily(now, "suspend") end
+    if ns.Waypoint and ns.Waypoint.HideTemporarily then ns.Waypoint:HideTemporarily(now, "suspend") end
+    if ns.QuestGuide and ns.QuestGuide.ApplyTracker then ns.QuestGuide:ApplyTracker() end
+    ns.Events:Fire("FG_HIDDEN_ALL_CHANGED", now)
+    return now
+end
+
+function UI:IsSuspended(reason)
+    if not self.suspended then return false end
+    if reason then return self.suspended[reason] == true end
+    return next(self.suspended) ~= nil
 end
 
 function UI:SetAllHidden(on, keepWindow)
