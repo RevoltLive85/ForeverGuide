@@ -73,6 +73,10 @@ Config.TOGGLES = {
                    set = function(v) ns.db.ui.showDistances = v ns.UI:Refresh() end },
     subtitles  = { label = "show objective lines", get = function() return ns.db.ui.showSubtitles ~= false end,
                    set = function(v) ns.db.ui.showSubtitles = v ns.UI:Refresh() end },
+    flightpoints = { label = "point out flight points you have not taken yet", get = function() return ns.Reminders == nil or ns.Reminders.Cfg().flight ~= false end,
+                   set = function(v) if ns.Reminders then ns.Reminders.Cfg().flight = v end end },
+    trainer    = { label = "remind me about the class trainer every couple of levels", get = function() return ns.Reminders == nil or ns.Reminders.Cfg().trainer ~= false end,
+                   set = function(v) if ns.Reminders then ns.Reminders.Cfg().trainer = v end end },
     ding       = { label = "announce a level-up to your party (an emote when solo)", get = function() return ns.Ding == nil or ns.Ding.Cfg().enabled ~= false end,
                    set = function(v) if ns.Ding then ns.Ding.Cfg().enabled = v end end },
 }
@@ -98,9 +102,9 @@ function Config.OptionItems()
         items[#items + 1] = { key = "qg_" .. key, label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
     end
     items[#items + 1] = { header = "Levelling" }
-    do
-        local t = Config.TOGGLES.ding
-        items[#items + 1] = { key = "qg_ding", label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
+    for _, key in ipairs({ "ding", "flightpoints", "trainer" }) do
+        local t = Config.TOGGLES[key]
+        items[#items + 1] = { key = "qg_" .. key, label = t.label:sub(1, 1):upper() .. t.label:sub(2), get = t.get, set = t.set }
     end
     items[#items + 1] = { header = "Quest mobs" }
     for _, key in ipairs({ "skull", "skullothers", "skullplates", "skullfriends" }) do

@@ -37,6 +37,7 @@ ItemTips.lua
 Crowd.lua
 Ding.lua
 Pace.lua
+Reminders.lua
 Recorder.lua
 Data\VanillaQuestIDs.lua
 Scanner.lua

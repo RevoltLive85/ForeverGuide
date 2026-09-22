@@ -1,6 +1,8 @@
 # Changelog
 
 ## 0.3.6 - 2026-09-21
+- Flight points: a node of your faction you have not taken yet is named when you enter the zone and again when you come within 400 yd of it; `/fg fp` lists them and walks you to the nearest one (the guide gets its marker back when you arrive).
+- Trainer: two levels after the last time you trained, a line at the ding - with the trainer you used last, its zone and how far away it is. `/fg remind flight|trainer on|off`, switches in the options panel, both kept in the cvar mirror.
 - A chapter belonging to another race's route (a dwarf left on the Night Elf route by a zone switch or a hand-picked chapter) says so once, names the chapter of your own route that fits your level, and auto-pick no longer wanders onto one.
 - `/fg xp`: levelling pace - xp per hour over a rolling window of real play, how long the next level will take at that rate, how you compare with the minutes the route planner budgeted for the chapter you are in, and what that means for the rest of the route to 60. The next-level estimate also sits in the Quest Guide header.
 - The bags banner does repairs too: gear under 25% (or any broken piece) raises the same banner with the worst piece and the nearest vendor; full bags still come first.

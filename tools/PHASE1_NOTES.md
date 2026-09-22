@@ -504,3 +504,19 @@ no camera-yaw API exists; a left-drag camera orbit around a standing character d
   chapter of the character's own route that fits the level, `Guide:WarnOffRoute()` says it once per guide on
   activation and on level-up, and AutoPick now charges another race's route chapter 12 (vs 2/8) so it never
   drifts there on its own. A route the player chose with /fg path is left alone. 309 tests.
+- Reminders.lua (Ilya asked for both): flight points and the trainer.
+  FLIGHT: `C_TaxiMap.GetTaxiNodesForMap(map)` on Forever 1.60.1 returns the whole CONTINENT's node list
+  (38 on Kalimdor) for any map id, with name/position/faction - but `isUndiscovered` is ALWAYS false
+  (Thunder Bluff reads "discovered" for an Alliance dwarf), and `GetAllTaxiNodes` returns 0 unless a flight
+  master's map is open. So the known ones are learned instead: TAXIMAP_OPENED / TAXI_NODE_STATUS_CHANGED ->
+  `LearnFromTaxiMap()` files every node whose state is not Unreachable into `ns.char.flightpoints`, and
+  UI_INFO_MESSAGE == ERR_NEWTAXIPATH files the nearest node. Until something has been learned only the
+  "within 400 yd" nudge fires (the zone list would be guesswork); names starting `zz` are the client's
+  retired entries and are dropped. `/fg fp` lists the nearest four and points the arrow at one
+  (Navigation.override "flightpoint", owner "fp", released on arrival or `/fg fp off`); `/fg fp debug`
+  dumps what both APIs answer. Verified live in The Barrens: Ratchet 1.3 km, Talrendis Point 2.7 km, ...
+  TRAINER: TRAINER_SHOW records `ns.char.lastTrained` (level) and, per class, the trainer's name/zone/coords
+  in `ns.db.trainers[classFile]`; two levels later the ding prints "level 22 - new ranks at your class
+  trainer (you last trained at 20). Last one you used: Bink in Ironforge - 1.2 km away". `/fg remind
+  flight|trainer on|off`, both in the options panel, `rmf`/`rmt` in the account mirror and `tr` in the char
+  mirror. 332 tests.

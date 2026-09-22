@@ -35,6 +35,8 @@ local HELP = {
     "/fg scan new | [from] [to] | stop | resume | status   ask the server for Forever's own quests (new = exactly the ids Questie lacks; titles, levels, objectives)",
     "/fg harvest [sweep [from to] | status]   passive quest discovery: quest lines of every zone map / client cache sweep",
     "/fg bliz on|off     also use Blizzard's own waypoint arrow",
+    "/fg fp              list / walk to the flight points in this zone you have not taken yet",
+    "/fg remind [flight|trainer] on|off   the flight-point and trainer nudges",
     "/fg xp              levelling pace: xp/h, time to the next level, and how you compare with the route model",
     "/fg ding on|off|test|<channel>   announce a level-up (\"I leveled up to 18 in 1h 24m\") to your party, or as an emote when solo",
     "/fg resync          skip quests you out-levelled (<=20% xp) and continue from the first open step",
@@ -232,6 +234,75 @@ function handlers.who()
     local busy, n, zone, capped = ns.Crowd:ZoneBusy()
     if n then ns.Printf("%s: %s%d players of your level%s (%s)", zone or "zone", capped and "50+ " or "", capped and 49 or n, busy and " - busy" or "", "asked " .. math.floor(ns.Now() - (ns.Crowd.zoneAt or 0)) .. "s ago") end
     if ns.Crowd:PollZone(true) then ns.Print("asking the server (/who) - result in a moment.") else ns.Print("/who is throttled - try again in a minute.") end
+end
+
+--- /fg fp - walk to the nearest flight point you have not taken yet
+function handlers.fp(rest)
+    local R = ns.Reminders
+    if not R then return end
+    rest = (rest or ""):lower()
+    if rest == "off" or rest == "stop" then R:ReleaseFlightPoint() ns.Print("flight point marker cleared.") return end
+    if rest == "debug" then
+        local T = rawget(_G, "C_TaxiMap")
+        local map = ns.Player:GetMapID()
+        local info = ns.Call("C_Map.GetMapInfo", map)
+        local parent = type(info) == "table" and ns.PlainNumber(info.parentMapID)
+        for _, id in ipairs({ map, parent }) do
+            if id then
+                local nodes = T and ns.Safe(T.GetTaxiNodesForMap, id)
+                local all = T and ns.Safe(T.GetAllTaxiNodes, id)
+                ns.Printf("map %s (%s): ForMap %s nodes, All %s nodes", tostring(id), tostring(ns.Player:GetMapName(id)),
+                    type(nodes) == "table" and #nodes or "nil", type(all) == "table" and #all or "nil")
+                local n1 = type(nodes) == "table" and nodes[1]
+                if n1 then ns.Printf("   ForMap[1]: %s  undiscovered=%s faction=%s", tostring(n1.name), tostring(n1.isUndiscovered), tostring(n1.faction)) end
+                local states = {}
+                for _, n in ipairs(type(all) == "table" and all or {}) do
+                    local st = tostring(n.state)
+                    states[st] = (states[st] or 0) + 1
+                end
+                local parts = {}
+                for st, count in pairs(states) do parts[#parts + 1] = st .. "=" .. count end
+                if #parts > 0 then ns.Printf("   All states: %s", table.concat(parts, ", ")) end
+                local a1 = type(all) == "table" and all[1]
+                if a1 then ns.Printf("   All[1]: %s state=%s slot=%s", tostring(a1.name), tostring(a1.state), tostring(a1.slotIndex)) end
+            end
+        end
+        local E = rawget(_G, "Enum")
+        if E and E.FlightPathState then
+            ns.Printf("FlightPathState: Current=%s Reachable=%s Unreachable=%s", tostring(E.FlightPathState.Current), tostring(E.FlightPathState.Reachable), tostring(E.FlightPathState.Unreachable))
+        end
+        return
+    end
+    local list = R:FlightPoints()
+    if #list == 0 then
+        local total, undiscovered, ours = R:FlightCounts()
+        if not total then ns.Print("this client does not answer C_TaxiMap.GetTaxiNodesForMap - no flight point help here.")
+        elseif total == 0 then ns.Printf("the client lists no flight points at all on %s.", ns.Player:GetMapName() or "this map")
+        else ns.Printf("%d flight point%s on this map, %d still undiscovered (%d of your faction).", total, total == 1 and "" or "s", undiscovered, ours) end
+        return
+    end
+    for i, fp in ipairs(list) do
+        ns.Printf("  %s%s", fp.name, fp.distance and ("  -  " .. ns.Navigation:FormatDistance(fp.distance)) or "")
+        if i >= 4 then break end
+    end
+    local go = R:GoToFlightPoint()
+    if go then ns.Printf("pointing at %s; /fg fp off gives the guide its marker back.", go.name) end
+end
+
+--- /fg remind [flight|trainer] on|off - the two nudges
+function handlers.remind(rest)
+    local R = ns.Reminders
+    if not R then return end
+    rest = (rest or ""):lower():gsub("^%s+", ""):gsub("%s+$", "")
+    local c = R.Cfg()
+    local what, state = rest:match("^(%a*)%s*(%a*)$")
+    if what == "flight" or what == "trainer" then
+        if state == "on" then c[what] = true elseif state == "off" then c[what] = false end
+    elseif what == "on" or what == "off" then
+        c.flight, c.trainer = what == "on", what == "on"
+    end
+    ns.Printf("reminders: flight points %s, trainer %s  (/fg remind flight|trainer on|off)",
+        c.flight == false and "off" or "on", c.trainer == false and "off" or "on")
 end
 
 --- /fg xp - how fast you are levelling and what the route model says about the rest

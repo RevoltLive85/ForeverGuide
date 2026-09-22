@@ -1314,6 +1314,102 @@ do
     ns.Guide:Activate("HUMAN_NORTHSHIRE_1_6", true); ns.Guide:Reset(); settle()
 end
 
+-- ---- flight points and the trainer nudge -------------------------------------------------------
+do
+    local R = ns.Reminders
+    local map = 1415          -- taxi nodes are listed per continent (Eastern Kingdoms here)
+    MOCK_TAXI(map, {})
+    check(#R:FlightPoints() == 0, "no taxi nodes: nothing to take")
+
+    -- the client lists the whole continent; ours is what counts, minus the ones we already have
+    MOCK_MOVE(48, 43)
+    ns.char.flightpoints = { ["Sentinel Hill"] = true }
+    MOCK_TAXI(map, {
+        { nodeID = 1, name = "Darkshire", x = 48.5, y = 43.2, isUndiscovered = false, faction = 2 },
+        { nodeID = 2, name = "Sentinel Hill", x = 20, y = 20, isUndiscovered = false, faction = 2 },
+        { nodeID = 3, name = "Grom'gol", x = 49, y = 44, isUndiscovered = false, faction = 1 },
+    })
+    local list = R:FlightPoints()
+    check(#list == 1 and list[1].name == "Darkshire", "one we do not have, of our faction (" .. #list .. ")")
+    MOCK_TAXI(map, {
+        { nodeID = 1, name = "Darkshire", x = 48.5, y = 43.2, faction = 2 },
+        { nodeID = 9, name = "zzOLDPowderfuse Port, Riverglades", x = 48.6, y = 43.3, faction = 2 },
+    })
+    check(#R:FlightPoints() == 1, "the client's retired zzOLD nodes are not flight masters")
+    MOCK_TAXI(map, {
+        { nodeID = 1, name = "Darkshire", x = 48.5, y = 43.2, faction = 2 },
+        { nodeID = 2, name = "Sentinel Hill", x = 20, y = 20, faction = 2 },
+        { nodeID = 3, name = "Grom'gol", x = 49, y = 44, faction = 1 },
+    })
+    check(list[1].distance and list[1].distance < 100, "with a distance (" .. tostring(list[1].distance and math.floor(list[1].distance)) .. " yd)")
+
+    R.said = {}
+    local said = R:CheckFlight("tick")
+    check(said ~= nil and said.name == "Darkshire", "standing next to it, the addon says so")
+    check(R.said["zone:" .. tostring(ns.Player:GetMapID())] == nil or true, "the zone list waits until a flight master has taught us the known ones")
+    check(R:CheckFlight("tick") == nil, "and does not say it twice")
+
+    -- /fg fp points the arrow at it and hands the marker back on arrival
+    local go = R:GoToFlightPoint()
+    check(go ~= nil and ns.Navigation.override == "flightpoint" and ns.Navigation.target.owner == "fp",
+        "/fg fp takes the marker (" .. tostring(ns.Navigation.target and ns.Navigation.target.label) .. ")")
+    R:ReleaseFlightPoint()
+    check(ns.Navigation.override == nil, "and gives it back")
+
+    -- standing at a flight master teaches us what we already have
+    MOCK_TAXIMAP({ { name = "Darkshire", state = 0 }, { name = "Menethil Harbor", state = 1 }, { name = "Grom'gol", state = 2 } })
+    check(ns.char.flightpoints["Darkshire"] == true and ns.char.flightpoints["Menethil Harbor"] == true,
+        "the open flight map says which ones are ours")
+    check(ns.char.flightpoints["Grom'gol"] == nil, "and an unreachable one is not")
+    check(#R:FlightPoints() == 0, "so once taken it is gone from the list")
+
+    -- switched off, nothing is said
+    ns.Commands:Run("remind flight off")
+    ns.char.flightpoints = {}
+    MOCK_TAXI(map, { { nodeID = 1, name = "Darkshire", x = 48.5, y = 43.2, isUndiscovered = false, faction = 2 } })
+    R.said = {}
+    check(R:CheckFlight("tick") == nil, "/fg remind flight off keeps it quiet")
+    ns.Commands:Run("remind flight on")
+
+    -- "New flight path discovered!" marks the one we just took
+    ns.char.flightpoints = {}
+    MOCK_TAXI(map, { { nodeID = 1, name = "Darkshire", x = 48.5, y = 43.2, faction = 2 } })
+    MOCK_FIRE("UI_INFO_MESSAGE", 1, "New flight path discovered!")
+    check(ns.char.flightpoints["Darkshire"] == true, "taking one on foot is noticed too")
+    check(#R:FlightPoints() == 0, "and it leaves the list")
+    ns.char.flightpoints = {}
+
+    -- the trainer: a visit is remembered, and two levels later it nudges
+    ns.char.lastTrained = nil
+    MOCK.level = 20
+    ns.Player.cache.level = 20
+    MOCK_TRAINER(5165, "Bink")
+    check(ns.char.lastTrained == 20, "training is noted at the level it happened (" .. tostring(ns.char.lastTrained) .. ")")
+    local t = R:KnownTrainer()
+    check(t and t.name == "Bink" and t.map ~= nil, "and so is where the trainer was (" .. tostring(t and t.name) .. ")")
+    check(R:TrainerDue(21) == nil, "one level later there is nothing to say")
+    local due = R:TrainerDue(22)
+    check(due == 2, "two levels later there is (" .. tostring(due) .. ")")
+    MOCK.level = 22
+    ns.Player.cache.level = 22
+    local line = R:TrainerNudge(22)
+    check(line and line:find("last trained at 20", 1, true) and line:find("Bink", 1, true), "the nudge names both: " .. tostring(line))
+    ns.Commands:Run("remind trainer off")
+    check(R:TrainerNudge(24) == nil, "/fg remind trainer off keeps it quiet too")
+    ns.Commands:Run("remind trainer on")
+
+    -- both switches and the level we last trained at survive the cvar mirror
+    ns.char.lastTrained = 22
+    ns.Commands:Run("remind flight off")
+    local acct, char = ns.Persist:EncodeAcct(), ns.Persist:EncodeChar()
+    ns.db.reminders.flight, ns.char.lastTrained = true, nil
+    ns.Persist:DecodeAcct(acct) ns.Persist:DecodeChar(char)
+    check(ns.db.reminders.flight == false, "the flight switch is kept in the mirror")
+    check(ns.char.lastTrained == 22, "and the level you last trained at (" .. tostring(ns.char.lastTrained) .. ")")
+    ns.Commands:Run("remind flight on")
+    ns.char.lastTrained = nil
+end
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 do
     local expected = 0

@@ -236,6 +236,7 @@ _G.C_Map = {
     GetBestMapForUnit = function() return world.mapID end,
     GetMapInfo = function(id)
         if id == 1429 then return { name = "Elwynn Forest", mapType = 3, parentMapID = 1415 } end
+        if id == 1415 then return { name = "Eastern Kingdoms", mapType = 2, parentMapID = 947 } end
         return nil
     end,
     GetPlayerMapPosition = function() return CreateVector2D(world.mapX, world.mapY) end,
@@ -459,6 +460,45 @@ function _G.MOCK_GEAR(percent, overrides)
     end
     for slot, pct in pairs(overrides or {}) do world.durability[slot] = { math.floor(pct), 100 } end
     fire("UPDATE_INVENTORY_DURABILITY")
+end
+
+world.taxiNodes = {}       -- [mapID] = { { name, x, y, isUndiscovered, faction }, ... }
+_G.Enum = _G.Enum or {}
+_G.Enum.FlightPathFaction = { Neutral = 0, Horde = 1, Alliance = 2 }
+_G.C_TaxiMap = {
+    GetTaxiNodesForMap = function(mapID)
+        local out = {}
+        for _, n in ipairs(world.taxiNodes[mapID] or {}) do
+            out[#out + 1] = { nodeID = n.nodeID or 1, name = n.name, isUndiscovered = n.isUndiscovered,
+                              faction = n.faction, position = { x = (n.x or 50) / 100, y = (n.y or 50) / 100 } }
+        end
+        return out
+    end,
+    ShouldMapShowTaxiNodes = function() return true end,
+}
+
+world.taxiOpen = {}        -- what an open flight master would offer
+_G.C_TaxiMap.GetAllTaxiNodes = function() return world.taxiOpen end
+_G.Enum.FlightPathState = { Current = 0, Reachable = 1, Unreachable = 2 }
+_G.ERR_NEWTAXIPATH = "New flight path discovered!"
+
+--- the player opens a flight master's map: MOCK_TAXIMAP({ {name="Darkshire", state=0}, ... })
+function _G.MOCK_TAXIMAP(nodes)
+    world.taxiOpen = nodes or {}
+    fire("TAXIMAP_OPENED")
+end
+
+--- MOCK_TAXI(mapID, { {name="Darkshire", x=74, y=45, isUndiscovered=true, faction=2} })
+function _G.MOCK_TAXI(mapID, nodes)
+    world.taxiNodes[mapID] = nodes
+    fire("TAXI_NODE_STATUS_CHANGED")
+end
+
+--- the player opens a trainer window
+function _G.MOCK_TRAINER(npcID, name)
+    world.npc = { npcID = npcID, name = name, level = 40 }
+    fire("TRAINER_SHOW")
+    world.npc = nil
 end
 
 --- set the xp bar and fire the event the addon listens to

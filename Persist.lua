@@ -140,7 +140,7 @@ end
 -- ---- character state ------------------------------------------------------------
 function Persist:EncodeChar()
     local ch = ns.char
-    local t = { v = 1, g = ch.activeGuide, m = ch.mode, a = b01(ch.autoPickGuide ~= false), r = ch.route }
+    local t = { v = 1, g = ch.activeGuide, m = ch.mode, a = b01(ch.autoPickGuide ~= false), r = ch.route, tr = ch.lastTrained }
     local active = ch.activeGuide and ch.guides[ch.activeGuide]
     if active then
         t.s = active.step
@@ -158,7 +158,7 @@ function Persist:EncodeChar()
     end
     table.sort(others)
     if #others > 0 then t.p = table.concat(others, ",") end
-    return encodePairs(t, { "v", "g", "m", "a", "r", "s", "gv", "d", "df", "p" })
+    return encodePairs(t, { "v", "g", "m", "a", "r", "tr", "s", "gv", "d", "df", "p" })
 end
 
 function Persist:DecodeChar(s)
@@ -169,6 +169,7 @@ function Persist:DecodeChar(s)
     if t.m and t.m ~= "" then ch.mode = t.m end
     if t.a then ch.autoPickGuide = bool(t.a) end
     if t.r and t.r ~= "" then ch.route = t.r end
+    if num(t.tr) then ch.lastTrained = num(t.tr) end
     if ch.activeGuide and t.s then
         local p = ch.guides[ch.activeGuide] or { step = 1, done = {}, version = 1 }
         p.step = num(t.s) or 1
@@ -187,7 +188,7 @@ function Persist:DecodeChar(s)
 end
 
 -- ---- account settings + edits ----------------------------------------------------
-local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "rec", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "sk", "so", "sp", "w", "ht", "hm", "sc", "sd", "ss", "dg", "dc", "e" }
+local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "rec", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "sk", "so", "sp", "w", "ht", "hm", "sc", "sd", "ss", "dg", "dc", "rmf", "rmt", "e" }
 
 function Persist:EncodeAcct()
     local db = ns.db
@@ -209,6 +210,7 @@ function Persist:EncodeAcct()
         acc = auto.accept, ti = b01(auto.turnin), ann = b01(auto.announce),
         rec = b01(db.recorder and db.recorder.enabled),
         dg = b01(db.ding == nil or db.ding.enabled ~= false), dc = db.ding and db.ding.channel,
+        rmf = b01(db.reminders == nil or db.reminders.flight ~= false), rmt = b01(db.reminders == nil or db.reminders.trainer ~= false),
     }
     -- step edits: guide:step:map:x:y:npc:radius|...  (note text is not kept here)
     local edits = {}
@@ -270,6 +272,11 @@ function Persist:DecodeAcct(s)
     if t.ti then auto.turnin = bool(t.ti) end
     if t.ann then auto.announce = bool(t.ann) end
     if t.rec and db.recorder then db.recorder.enabled = bool(t.rec) end
+    if t.rmf or t.rmt then
+        db.reminders = db.reminders or {}
+        if t.rmf then db.reminders.flight = bool(t.rmf) end
+        if t.rmt then db.reminders.trainer = bool(t.rmt) end
+    end
     if t.dg or (t.dc and t.dc ~= "") then
         db.ding = db.ding or {}
         if t.dg then db.ding.enabled = bool(t.dg) end
