@@ -166,8 +166,9 @@ _G.GetBuildInfo = function() return "1.60.1", "69913", "Sep 17 2026", 16001 end
 
 -- ---- player -------------------------------------------------------------
 _G.UnitLevel = function(unit) if unit == "player" then return world.level end return world.target and world.target.level end
-_G.UnitXP = function() return 100 end
-_G.UnitXPMax = function() return 400 end
+world.xp, world.xpMax = 100, 400
+_G.UnitXP = function() return world.xp end
+_G.UnitXPMax = function() return world.xpMax end
 _G.GetXPExhaustion = function() return 0 end
 _G.UnitFactionGroup = function() return world.faction, world.faction end
 _G.UnitClass = function() return unpack(world.class) end
@@ -440,6 +441,31 @@ function _G.MOCK_TALK(npcID, name)
     world.npc = { npcID = npcID, name = name, level = 10 }
     fire("GOSSIP_SHOW")
     world.npc = nil
+end
+
+world.durability = {}      -- [slot] = { current, max }
+_G.GetInventoryItemDurability = function(slot)
+    local d = world.durability[slot]
+    if not d then return nil end
+    return d[1], d[2]
+end
+
+--- wear the gear down: MOCK_GEAR(60) puts everything at 60%, MOCK_GEAR(60, {[1]=0}) breaks the head
+function _G.MOCK_GEAR(percent, overrides)
+    world.durability = {}
+    if percent == nil then return end
+    for _, slot in ipairs({ 1, 3, 5, 6, 7, 8, 9, 10, 16, 17, 18 }) do
+        world.durability[slot] = { math.floor(100 * percent / 100), 100 }
+    end
+    for slot, pct in pairs(overrides or {}) do world.durability[slot] = { math.floor(pct), 100 } end
+    fire("UPDATE_INVENTORY_DURABILITY")
+end
+
+--- set the xp bar and fire the event the addon listens to
+function _G.MOCK_XP(xp, max)
+    world.xp = xp
+    if max then world.xpMax = max end
+    fire("PLAYER_XP_UPDATE")
 end
 
 function _G.MOCK_LEVEL(level)

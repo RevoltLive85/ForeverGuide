@@ -191,6 +191,36 @@ end
 --- Pick the guide that fits this character best: level range first, then
 --- the zone the player is standing in, then the same continent, then the
 --- guide's own starting-zone chain (a dwarf gets Loch Modan, not Darkshore).
+--- The chapter of the route this character follows that fits its level (nil when none does).
+function Guide:RouteChapterForLevel(level)
+    level = level or ns.Player:GetLevel()
+    local route = self:CurrentRoute()
+    if not route then return nil end
+    local best
+    for _, g in ipairs(route.chapters) do
+        local lo, hi = g.minLevel or 1, g.maxLevel or 60
+        if level >= lo and level <= hi then
+            if not best or (g.minLevel or 1) > (best.minLevel or 1) then best = g end
+        end
+    end
+    return best, route
+end
+
+--- The active guide belongs to ANOTHER race's route (not a zone guide, not the followed route):
+--- a dwarf sent to Ashenvale by a zone switch or a hand-picked chapter. Returns that route's label
+--- and the chapter of the character's own route that would fit instead.
+function Guide:OffRouteChapter()
+    local g = self.active
+    if not g then return nil end
+    local key, race = self:RouteOf(g)
+    if not key then return nil end                        -- GEN_ZONE_* / hand-written guides: fine
+    if self:ForMyRace(g) then return nil end              -- our own route
+    if ns.char.route == key then return nil end           -- the player asked for this one
+    local mine = self:RouteChapterForLevel()
+    if not mine or mine.id == g.id then return nil end
+    return race, mine
+end
+
 function Guide:AutoPick()
     local level = ns.Player:GetLevel()
     local curMap = ns.Player:GetMapID()
@@ -217,7 +247,11 @@ function Guide:AutoPick()
                 local inst = ns.Navigation:MapToWorld(g.map, 50, 50)
                 if inst and inst ~= curInst then score = score + 4 end   -- other continent
             end
-            if not chain[g.id] then score = score + (ns.char.route and 8 or 2) end   -- off the route we follow
+            if not chain[g.id] then
+                -- off the route we follow: a zone guide is a fair stand-in, another race's chapter is not
+                local key = self:RouteOf(g)
+                score = score + ((key and not self:ForMyRace(g)) and 12 or (ns.char.route and 8 or 2))
+            end
             if not bestScore or score < bestScore then best, bestScore = g, score end
         end
     end
@@ -652,7 +686,19 @@ function Guide:Activate(id, silent)
     self:Evaluate("activate")
     if self.active ~= g then return true end   -- finished instantly and chained into the next guide
     ns.Events:Fire("FG_GUIDE_CHANGED", g)
+    self:WarnOffRoute()
     return true
+end
+
+--- One line when the active chapter is another race's (a zone switch or a hand-picked chapter left
+--- a dwarf on the Night Elf route): quests only that race can take are skipped, so say so once.
+function Guide:WarnOffRoute()
+    local race, mine = self:OffRouteChapter()
+    if not race then self.warnedOffRoute = nil return end
+    if self.warnedOffRoute == (self.active and self.active.id) then return end
+    self.warnedOffRoute = self.active and self.active.id
+    ns.Printf("this is the %s route's chapter - your own route has %s for level %d. /fg path race goes back to it (or /fg guide %s).",
+        ROUTE_LABEL[race] or race, mine.name or mine.id, ns.Player:GetLevel(), mine.id)
 end
 
 --- Walk past a step for `seconds` (it returns on its own); the guide moves on to the next one.
@@ -881,6 +927,7 @@ end
 function Guide:OnInit()
     local function reeval(event) Guide:Evaluate(event) end
     ns.Events:RegisterMany({ "FG_QUEST_LOG_CHANGED", "FG_LEVEL_CHANGED", "FG_QUEST_TITLE_LOADED" }, reeval)
+    ns.Events:Register("FG_LEVEL_CHANGED", function() Guide:WarnOffRoute() end)
     ns.Events:RegisterMany({ "BAG_UPDATE_DELAYED", "SPELLS_CHANGED", "LEARNED_SPELL_IN_SKILL_LINE" }, function(event)
         ns.Events:Debounce("guide:" .. event, 0.3, function() Guide:Evaluate(event) end)
     end)

@@ -488,3 +488,19 @@ no camera-yaw API exists; a left-drag camera orbit around a standing character d
   (plain "ScrollFrame", no template - the retail templates are not guaranteed here), wheel-scrolled 60 px a
   notch with the range taken as max(client range, child height - frame height), plus a "Scroll for the rest of
   the settings." hint under the subtitle. 277 tests.
+- Pace.lua (`/fg xp`): xp/h over a rolling 30 min window of *measured play* (Tick() drops gaps > 5 min, a 30 s
+  heartbeat keeps it honest), time to the next level, and the route model for context: every generated chapter
+  carries the planner's budget, read from `modelMinutes`/`modelXph` when present and parsed out of `notes`
+  otherwise (the guides on disk predate the fields; plan_route/compile_guides now emit them). `Pace:Chapter()`
+  compares elapsed time against the model's share for the steps done (ratio = model/actual, so > 1 is fast);
+  `RouteRemaining()` sums the model minutes of the rest of the route and scales them by that ratio for a "level
+  60 in about N h of play" line. The next-level estimate also rides in the Quest Guide header subtitle.
+- Gear wear folded into the bags banner: `Bags:Durability()` over the 11 slots that wear (GetInventoryItemDurability),
+  warning under 25% or on any broken piece, worst piece named, same nearest-vendor line; full bags still win the
+  banner. `MOCK_GEAR(percent, overrides)` in the mock.
+- Off-route chapters (seen live: a level-20 dwarf in Duskwood following "6. Ashenvale 19-22 (Night Elf)" while
+  /fg path said the Dwarf route - a crowd zone-switch or a hand-picked chapter can do this, and with the new
+  race guard its Night-Elf-only quests are all skipped): `Guide:OffRouteChapter()` names the race and the
+  chapter of the character's own route that fits the level, `Guide:WarnOffRoute()` says it once per guide on
+  activation and on level-up, and AutoPick now charges another race's route chapter 12 (vs 2/8) so it never
+  drifts there on its own. A route the player chose with /fg path is left alone. 309 tests.

@@ -337,6 +337,9 @@ function QG:Refresh()
     local entries, cur, total = self:BuildGuideEntries()
     local bagTag, bagFull = ns.Bags and ns.Bags:Tag()
     local sub = string.format("%s  ·  Lv %d", g.name or g.id, level)
+    -- "Lv 18 -> 19 in 1h 0m" while the pace is known
+    local pace = ns.Pace and ns.Pace:Tag()
+    if pace then sub = sub .. "  ·  " .. pace end
     if bagTag then sub = (bagFull and "|cffff5040" or "|cffffa040") .. bagTag .. "|r  ·  " .. sub end
     f.header:Set(string.format("%d / %d", math.min(cur, total), total), sub)
     if cur > total then

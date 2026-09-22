@@ -66,6 +66,39 @@ function Bags:Status()
     return { free = free, total = total, junk = junk, leftover = leftover, leftoverNames = leftoverNames }
 end
 
+local DURABILITY_SLOTS = { 1, 3, 5, 6, 7, 8, 9, 10, 16, 17, 18 }   -- head..ranged; the rest never wears
+local SLOT_NAME = { [1] = "head", [3] = "shoulders", [5] = "chest", [6] = "belt", [7] = "legs", [8] = "boots",
+                    [9] = "bracers", [10] = "gloves", [16] = "main hand", [17] = "off hand", [18] = "ranged" }
+local WARN_DURABILITY = 25   -- percent
+
+--- Gear wear: percent left over everything you are wearing, how many pieces are broken,
+--- and the worst piece. nil when the client cannot say (or you wear nothing that wears).
+function Bags:Durability()
+    local f = rawget(_G, "GetInventoryItemDurability")
+    if type(f) ~= "function" then return nil end
+    local cur, max, broken, worst, worstPct = 0, 0, 0, nil, nil
+    for _, slot in ipairs(DURABILITY_SLOTS) do
+        local c, m = ns.Safe(f, slot)
+        c, m = ns.PlainNumber(c), ns.PlainNumber(m)
+        if c and m and m > 0 then
+            cur, max = cur + c, max + m
+            local pct = c / m * 100
+            if c <= 0 then broken = broken + 1 end
+            if not worstPct or pct < worstPct then worst, worstPct = SLOT_NAME[slot] or ("slot " .. slot), pct end
+        end
+    end
+    if max <= 0 then return nil end
+    return { percent = cur / max * 100, broken = broken, worst = worst, worstPercent = worstPct }
+end
+
+--- Is the gear worth a trip to a vendor? (returns the reading when it is)
+function Bags:GearLow()
+    local d = self:Durability()
+    if not d then return nil end
+    if d.broken > 0 or d.percent <= (cfg().durability or WARN_DURABILITY) then return d end
+    return nil
+end
+
 --- nearest npc that sells anything, with a known position: name, distance (yards) or nil
 function Bags:NearestVendor()
     local DB = ns.DB
@@ -96,12 +129,15 @@ function Bags:NearestVendor()
     return best.name or DB:NPCName(best.id) or "a vendor", bestD, best
 end
 
---- short tag for the header ("bags 2/16"), or nil when there is room
+--- short tag for the header ("bags 2/16" / "gear 18%"), or nil when nothing needs doing
 function Bags:Tag()
     local st = self.last or self:Status()
-    if not st or st.total == 0 then return nil end
-    if st.free > (cfg().warn or WARN_FREE) then return nil end
-    return string.format("bags %d/%d", st.free, st.total), st.free == 0
+    if st and st.total > 0 and st.free <= (cfg().warn or WARN_FREE) then
+        return string.format("bags %d/%d", st.free, st.total), st.free == 0
+    end
+    local d = self:GearLow()
+    if d then return string.format("gear %d%%", math.floor(d.percent)), d.broken > 0 end
+    return nil
 end
 
 --- the full advice line, or nil
@@ -109,13 +145,27 @@ function Bags:Advice(force)
     local st = self:Status()
     self.last = st
     if not st or st.total == 0 then return nil end
-    if not force and st.free > (cfg().warn or WARN_FREE) then return nil end
+    if not force and st.free > (cfg().warn or WARN_FREE) and not self:GearLow() then return nil end
     local parts = {}
+    if st.free > (cfg().warn or WARN_FREE) then
+        local gear = self:GearLow()
+        if gear then
+            local name, d = self:NearestVendor()
+            return (gear.broken > 0 and string.format("%d piece%s of your gear %s broken.", gear.broken, gear.broken == 1 and "" or "s", gear.broken == 1 and "is" or "are")
+                or string.format("Your gear is at %d%% (worst: %s at %d%%) - repair when you can.", math.floor(gear.percent), gear.worst or "?", math.floor(gear.worstPercent or 0)))
+                .. (name and string.format(" Nearest vendor: %s (%s).", name, ns.Navigation:FormatDistance(d)) or "")
+        end
+    end
     if st.free == 0 then parts[#parts + 1] = "Bags are FULL - quest loot will be missed."
     else parts[#parts + 1] = string.format("Bags nearly full (%d free of %d).", st.free, st.total) end
     if st.junk > 0 then parts[#parts + 1] = string.format("%d grey item%s to sell (quest items are never counted).", st.junk, st.junk == 1 and "" or "s") end
     if st.leftover > 0 then parts[#parts + 1] = string.format("%d stack%s of leftover quest ingredients you can sell (%s).", st.leftover, st.leftover == 1 and "" or "s", table.concat(st.leftoverNames, ", ")) end
     if st.junk == 0 and st.leftover == 0 then parts[#parts + 1] = "Nothing grey or left over to sell - bank or vendor gear you do not need (never quest items)." end
+    local gear = self:GearLow()
+    if gear then
+        parts[#parts + 1] = gear.broken > 0 and string.format("%d piece%s of gear broken.", gear.broken, gear.broken == 1 and "" or "s")
+            or string.format("Gear at %d%% - repair while you are there.", math.floor(gear.percent))
+    end
     local name, d = self:NearestVendor()
     if name then parts[#parts + 1] = string.format("Nearest vendor: %s (%s).", name, ns.Navigation:FormatDistance(d)) end
     return table.concat(parts, " ")
@@ -163,10 +213,31 @@ function Bags:UpdateBanner()
     local st = self.last or self:Status()
     local f = Banner()
     local hidden = ns.UI and ns.UI.AllHidden and ns.UI:AllHidden()
-    if not st or st.total == 0 or st.free > (cfg().warn or WARN_FREE) or hidden or (self.snoozedUntil and ns.Now() < self.snoozedUntil) then
+    local bagsLow = st and st.total > 0 and st.free <= (cfg().warn or WARN_FREE)
+    local gear = (not bagsLow) and self:GearLow() or nil
+    if (not bagsLow and not gear) or hidden or (self.snoozedUntil and ns.Now() < self.snoozedUntil) then
         f:Hide()
         return
     end
+    if gear then
+        -- the bags are fine but the gear is not: same banner, same errand (a vendor)
+        local broken = gear.broken > 0
+        f.title:SetText(broken and string.format("%d piece%s of your gear %s broken", gear.broken, gear.broken == 1 and "" or "s", gear.broken == 1 and "is" or "are")
+            or string.format("Gear at %d%% - time to repair", math.floor(gear.percent)))
+        if ns.Theme then ns.Theme.Color(f.title, broken and { 1, 0.35, 0.25 } or { 1, 0.7, 0.3 }) end
+        pcall(f.icon.SetTexture, f.icon, "Interface\\Icons\\INV_Hammer_20")
+        local sub = gear.worst and string.format("worst: your %s at %d%%", gear.worst, math.floor(gear.worstPercent or 0)) or "visit a repair vendor"
+        local name, d = self:NearestVendor()
+        if name then sub = sub .. string.format("  ·  nearest vendor %s (%s)", name, ns.Navigation:FormatDistance(d)) end
+        f.sub:SetText(sub)
+        if ns.Theme and ns.Theme.Pulse then
+            ns.Theme.Pulse(f.icon, 1.4, 0.55, 1.0)
+            ns.Theme.SetPulseEnabled(f.icon, broken)
+        end
+        f:Show()
+        return
+    end
+    pcall(f.icon.SetTexture, f.icon, "Interface\\Icons\\INV_Misc_Bag_08")
     local full = st.free == 0
     f.title:SetText(full and "BAGS FULL - quest loot will be missed" or string.format("Bags nearly full - %d slot%s left", st.free, st.free == 1 and "" or "s"))
     if ns.Theme then ns.Theme.Color(f.title, full and { 1, 0.35, 0.25 } or { 1, 0.7, 0.3 }) end
@@ -190,7 +261,9 @@ function Bags:Check(reason)
     local st = self:Status()
     self.last = st
     if not st or st.total == 0 then return end
+    local gear = self:GearLow()
     local band = st.free == 0 and 2 or (st.free <= (cfg().warn or WARN_FREE) and 1 or 0)
+    if band == 0 and gear then band = gear.broken > 0 and 2 or 1 end
     local step = ns.Guide and ns.Guide:GetCurrentStep()
     local lootStep = step and (step.type == "COLLECT" or step.type == "KILL" or step.type == "COMPLETE")
     if band > (lastBand or 0) or (reason == "step" and band > 0 and lootStep and self.warnedStep ~= (step and step.index)) then
@@ -206,6 +279,8 @@ end
 
 function Bags:OnInit()
     ns.Events:Register("BAG_UPDATE_DELAYED", function() ns.Events:Debounce("bags", 0.5, function() Bags:Check("bags") end) end)
+    ns.Events:RegisterMany({ "UPDATE_INVENTORY_DURABILITY", "PLAYER_UNGHOST", "PLAYER_ALIVE" },
+        function() ns.Events:Debounce("bags:gear", 2, function() Bags:Check("gear") end) end)
     ns.Events:RegisterMany({ "FG_STEP_CHANGED", "FG_GUIDE_CHANGED" }, function() ns.Events:Debounce("bags:step", 0.5, function() Bags:Check("step") end) end)
 end
 

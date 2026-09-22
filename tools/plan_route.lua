@@ -1087,6 +1087,8 @@ for _, run in ipairs(runs) do
                 minLevel = ch.startLevel, maxLevel = math.max(ch.endLevel, ch.startLevel),
                 map = Z.areaToMap[ch.zone], zone = zoneName,
                 author = "ForeverGuide route planner",
+                modelMinutes = math.floor(ch.time / 60 + 0.5),
+                modelXph = math.floor(ch.time > 0 and ch.xp / ch.time * 3600 or 0),
                 notes = string.format("Chapter %d of the %s route: level %d to %d, %d steps, ~%d min of play in the model (%.0f xp/h). Route tuned for xp per hour: low-value quests and long escorts are skipped on purpose; group (elite) quests appear as optional steps%s.",
                     i, key, ch.startLevel, ch.endLevel, #ch.steps, math.floor(ch.time / 60 + 0.5), ch.time > 0 and ch.xp / ch.time * 3600 or 0, added > 0 and (" (" .. added .. " here)") or ""),
                 next = ids[i + 1],

@@ -1202,6 +1202,118 @@ do
     check(ns.QuestGuideConfig.TOGGLES.ding ~= nil, "the level-up announcement has a switch in the panel")
 end
 
+-- ---- levelling pace ---------------------------------------------------------------------------
+do
+    local P = ns.Pace
+    check(P.Number(19600) == "19 600" and P.Number(940) == "940", "numbers are grouped for reading (" .. P.Number(19600) .. ")")
+
+    -- a chapter's model comes from the planner, through the notes of the guides already generated
+    local g = ns.Guide.registry["GEN_ALLIANCE_DWARF_04_WESTFALL"]
+    local minutes, xph = P.Model(g)
+    check(minutes and minutes > 0 and xph and xph > 0, "the model minutes / xp-h are read off a generated chapter (" .. tostring(minutes) .. ", " .. tostring(xph) .. ")")
+    check(P.Model({ modelMinutes = 90, modelXph = 12000 }) == 90, "a guide that carries the numbers is used directly")
+
+    -- earn xp over measured play and the rate follows
+    P.samples, P.earned, P.played = {}, 0, 0
+    P.lastXP, P.lastMax, P.lastLevel = nil, nil, nil
+    P:Sample("reset")
+    MOCK_XP(100, 1000)
+    P:Sample("base")
+    local earnedBefore = P.earned
+    for _ = 1, 10 do MOCK_ADVANCE(60) end     -- ten minutes of play, in steps a session would take
+    MOCK_XP(600, 1000)
+    check(P.earned - earnedBefore == 500, "xp earned since the last look (" .. tostring(P.earned - earnedBefore) .. ")")
+    local perHour = P:PerHour()
+    check(perHour and math.abs(perHour - 3000) < 60, "500 xp in ten minutes reads as 3000 xp/h (" .. tostring(perHour and math.floor(perHour)) .. ")")
+
+    local s = P:Stats()
+    check(s.remaining == 400 and math.abs((s.percent or 0) - 60) < 1, "what is left of the level (" .. tostring(s.remaining) .. ", " .. tostring(math.floor(s.percent or 0)) .. "%)")
+    check(s.secondsToLevel and math.abs(s.secondsToLevel - 480) < 30, "400 xp at 3000/h is about 8 minutes (" .. tostring(s.secondsToLevel and math.floor(s.secondsToLevel)) .. ")")
+    check(P:Tag() ~= nil and P:Tag():find("in ", 1, true) ~= nil, "the header tag reads like '19 in 8 min' (" .. tostring(P:Tag()) .. ")")
+
+    -- a level-up counts the rest of the old level plus what is on the new one
+    MOCK_XP(900, 1000)
+    local before = P.earned
+    MOCK.level = MOCK.level + 1
+    MOCK_XP(50, 1200)
+    check(P.earned - before == 150, "a level-up counts the rest of the old bar plus the new (" .. tostring(P.earned - before) .. ")")
+
+    -- the route model knows what is left
+    ns.Guide:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); settle()
+    local left, chapters = P:RouteRemaining()
+    check(left and left > 0 and chapters and chapters > 1, "minutes left on the route, over the remaining chapters (" .. tostring(left and math.floor(left)) .. " min, " .. tostring(chapters) .. ")")
+    local lines = P:Lines()
+    check(#lines >= 3, "/fg xp has something to say (" .. #lines .. " lines)")
+    for _, line in ipairs(lines) do check(type(line) == "string" and #line > 0, "each line is text") end
+end
+
+-- ---- gear wear: the bags banner does the repair reminder too ---------------------------------
+do
+    local B = ns.Bags
+    MOCK_GEAR(nil)
+    check(B:Durability() == nil, "no gear that wears: nothing to say")
+    MOCK_BAG(10, 0, 0)          -- roomy bags, so only the gear can raise the banner
+    MOCK_GEAR(80)
+    B:Check("test")
+    check(B:GearLow() == nil, "gear at 80% is fine")
+    check(not ForeverGuideBagBanner:IsShown(), "and the banner stays down")
+    MOCK_GEAR(18)
+    B:Check("test")
+    local d = B:GearLow()
+    check(d ~= nil and math.abs(d.percent - 18) < 1, "gear at 18% is low (" .. tostring(d and math.floor(d.percent)) .. ")")
+    check(ForeverGuideBagBanner:IsShown(), "the banner says so")
+    check((ForeverGuideBagBanner.title:GetText() or ""):find("repair", 1, true) ~= nil,
+        "with a repair line: " .. tostring(ForeverGuideBagBanner.title:GetText()))
+    local tag = B:Tag()
+    check(tag == "gear 18%", "and the header tag reads " .. tostring(tag))
+    MOCK_GEAR(40, { [1] = 0 })
+    B:Check("test")
+    local broken = B:GearLow()
+    check(broken and broken.broken == 1 and broken.worst == "head", "a broken piece is named (" .. tostring(broken and broken.worst) .. ")")
+    check((ForeverGuideBagBanner.title:GetText() or ""):find("broken", 1, true) ~= nil,
+        "and the banner leads with it: " .. tostring(ForeverGuideBagBanner.title:GetText()))
+    -- full bags win: one errand, the more urgent line
+    MOCK_BAG(0, 2, 0)
+    B:Check("test")
+    check((ForeverGuideBagBanner.title:GetText() or ""):find("BAGS FULL", 1, true) ~= nil,
+        "full bags come first: " .. tostring(ForeverGuideBagBanner.title:GetText()))
+    MOCK_GEAR(nil)
+    MOCK_BAG(10, 0, 0)
+    B:Check("test")
+    check(not ForeverGuideBagBanner:IsShown(), "and everything settles down again")
+end
+
+-- ---- a chapter of another race's route ---------------------------------------------------------
+-- (seen live 2026-09-22: a level-20 dwarf in Duskwood was following "6. Ashenvale 19-22 (Night Elf)"
+--  while /fg path said the Dwarf route; the race-only quests in it are skipped, so say so)
+do
+    local mineBefore = ns.char.route
+    ns.char.route = nil
+    MOCK.level = 20
+    ns.Player.cache.level = 20
+    local mine, route = ns.Guide:RouteChapterForLevel(20)
+    check(route ~= nil and mine ~= nil, "the followed route has a chapter for level 20 (" .. tostring(mine and mine.id) .. ")")
+    check(ns.Guide:ForMyRace(mine) == true, "and it is one for this character's race")
+
+    ns.Guide:Activate("GEN_ALLIANCE_NIGHTELF_06_ASHENVALE", true); settle()
+    local race, instead = ns.Guide:OffRouteChapter()
+    check(race == "NIGHTELF" and instead ~= nil, "a night elf chapter is spotted as off-route (" .. tostring(race) .. " -> " .. tostring(instead and instead.id) .. ")")
+
+    ns.Guide:Activate(mine.id, true); settle()
+    check(ns.Guide:OffRouteChapter() == nil, "our own chapter raises nothing")
+
+    -- and auto-pick prefers our own route's chapter over another race's
+    local pick = ns.Guide:AutoPick()
+    check(pick ~= nil and ns.Guide:ForMyRace(pick), "auto-pick stays on this character's route (" .. tostring(pick and pick.id) .. ")")
+
+    -- asking for another route by hand is not second-guessed
+    ns.char.route = "GEN_ALLIANCE_NIGHTELF"
+    ns.Guide:Activate("GEN_ALLIANCE_NIGHTELF_06_ASHENVALE", true); settle()
+    check(ns.Guide:OffRouteChapter() == nil, "a route the player chose is left alone")
+    ns.char.route = mineBefore
+    ns.Guide:Activate("HUMAN_NORTHSHIRE_1_6", true); ns.Guide:Reset(); settle()
+end
+
 -- ---- no swallowed errors anywhere -------------------------------------------------
 do
     local expected = 0

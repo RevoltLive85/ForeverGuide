@@ -35,6 +35,7 @@ local HELP = {
     "/fg scan new | [from] [to] | stop | resume | status   ask the server for Forever's own quests (new = exactly the ids Questie lacks; titles, levels, objectives)",
     "/fg harvest [sweep [from to] | status]   passive quest discovery: quest lines of every zone map / client cache sweep",
     "/fg bliz on|off     also use Blizzard's own waypoint arrow",
+    "/fg xp              levelling pace: xp/h, time to the next level, and how you compare with the route model",
     "/fg ding on|off|test|<channel>   announce a level-up (\"I leveled up to 18 in 1h 24m\") to your party, or as an emote when solo",
     "/fg resync          skip quests you out-levelled (<=20% xp) and continue from the first open step",
     "/fg edit here|npc|note <text>|radius <yd>|clear   correct the current step in place (saved; tools/apply_edits.py folds it into the guide)",
@@ -231,6 +232,12 @@ function handlers.who()
     local busy, n, zone, capped = ns.Crowd:ZoneBusy()
     if n then ns.Printf("%s: %s%d players of your level%s (%s)", zone or "zone", capped and "50+ " or "", capped and 49 or n, busy and " - busy" or "", "asked " .. math.floor(ns.Now() - (ns.Crowd.zoneAt or 0)) .. "s ago") end
     if ns.Crowd:PollZone(true) then ns.Print("asking the server (/who) - result in a moment.") else ns.Print("/who is throttled - try again in a minute.") end
+end
+
+--- /fg xp - how fast you are levelling and what the route model says about the rest
+function handlers.xp()
+    if not ns.Pace then return end
+    for _, line in ipairs(ns.Pace:Lines()) do ns.Print(line) end
 end
 
 --- /fg ding - announce a level-up to the party (or as an emote when solo)

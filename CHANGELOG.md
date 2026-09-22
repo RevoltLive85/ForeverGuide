@@ -1,6 +1,9 @@
 # Changelog
 
 ## 0.3.6 - 2026-09-21
+- A chapter belonging to another race's route (a dwarf left on the Night Elf route by a zone switch or a hand-picked chapter) says so once, names the chapter of your own route that fits your level, and auto-pick no longer wanders onto one.
+- `/fg xp`: levelling pace - xp per hour over a rolling window of real play, how long the next level will take at that rate, how you compare with the minutes the route planner budgeted for the chapter you are in, and what that means for the rest of the route to 60. The next-level estimate also sits in the Quest Guide header.
+- The bags banner does repairs too: gear under 25% (or any broken piece) raises the same banner with the worst piece and the nearest vendor; full bags still come first.
 - The options panel scrolls: the checkbox list had grown past the bottom of the settings window and drew over the game. The wheel moves it, and the footer text wraps inside the panel.
 - Level-up announcement: "ForeverGuide: I leveled up to 18 in 1h 24m" goes to your party (raid / instance group when you are in one) and as an emote when you are solo. The time is the time played at the level you just left, taken from the server's own counter. `/fg ding on|off|test|time` or a channel (auto, party, raid, guild, emote, say, yell), and a switch in the options panel.
 - Quests your race or class can never take are no longer part of the route: the planner offered them to the whole faction, so the Dwarf chapter asked for the Human-only "A Swift Message" and sat at a quartermaster with nothing to say. The step and its turn-in are skipped with one line in chat, and the route planner now plans each race route with that race's own quest mask.
