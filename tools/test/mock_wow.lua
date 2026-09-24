@@ -40,10 +40,13 @@ local function NewRegion(kind)
     function r:SetFrameStrata() end
     function r:SetMovable() end
     function r:SetClampedToScreen() end
-    function r:EnableMouse() end
+    function r:EnableMouse(on) self.mouse = on end
     function r:RegisterForDrag() end
-    function r:StartMoving() end
-    function r:StopMovingOrSizing() end
+    function r:StartMoving() self.moving = true end
+    function r:StartSizing() self.sizing = true end
+    function r:StopMovingOrSizing() self.moving = false self.sizing = false end
+    function r:SetResizable(on) self.resizable = on end
+    function r:SetResizeBounds(minW, minH, maxW, maxH) self.resizeBounds = {minW, minH, maxW, maxH} end
     function r:SetBackdrop() end
     function r:SetBackdropColor() end
     function r:SetBackdropBorderColor() end
@@ -88,6 +91,12 @@ local function NewRegion(kind)
     function r:GetAttribute(k) return self.attrs and self.attrs[k] end
     function r:SetEnabled(e) self.enabled = e end
     function r:SetMaxLines(n) self.maxLines = n end
+    function r:SetMaxLetters() end
+    function r:SetMultiLine() end
+    function r:SetAutoFocus() end
+    function r:SetFocus() end
+    function r:ClearFocus() end
+    function r:HighlightText() end
     function r:SetTexCoord() end
     function r:SetFrameLevel() end
     function r:RegisterForClicks() end

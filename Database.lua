@@ -29,7 +29,7 @@ local DEFAULTS = {
         showPrevious = 2,     -- completed steps shown above the current one
         showUpcoming = 4,     -- upcoming steps shown below the current one
         -- Quest Guide window (UI/QuestGuide*.lua)
-        opacity = 0.92,
+        opacity = 0.75,
         maxRows = 7,          -- rows in the list (the current one is always among them)
         showCompleted = true,
         showDistances = true,
@@ -38,18 +38,16 @@ local DEFAULTS = {
         hideOnMap = true,     -- the window steps aside while the world map is open
     },
     nav = {
-        blizzardWaypoint = true,  -- also set Blizzard's own map pin / super-track arrow
+        blizzardWaypoint = false, -- use the addon arrow without placing a map pin
         arrivalRadius = 15,       -- yards: TRAVEL steps complete within this distance
         updateInterval = 0.1,     -- seconds between distance/arrow updates
-        waypoint = {              -- the in-world gold waypoint diamond (UI/QuestWaypoint.lua)
-            enabled = true,       -- only actually shows once `engine` (below) is also on
+        waypoint = {              -- optional in-world diamond (UI/QuestWaypoint.lua)
+            enabled = false,
             size = 1.0,
             animate = true,
-            route = true,         -- the dotted path towards it, while it shows
-            -- engine = false,   -- opt-in: ride the client's own pin. Off by default: most
-                                  -- Forever clients cannot project it, and guessing the spot
-                                  -- ourselves needed smoothing that felt sluggish when turning.
-                                  -- The plain chevron (Arrow.lua) is the default indicator.
+            route = false,        -- no dotted path by default
+            -- engine = false: only use the client's own pin when explicitly enabled.
+            -- The plain chevron (Arrow.lua) is the default indicator.
         },
         skull = {                 -- skulls over quest mobs (UI/MobMarker.lua)
             enabled = true,
@@ -61,7 +59,7 @@ local DEFAULTS = {
         hide = true,
     },
     ding = {                      -- level-up announcement (Ding.lua)
-        enabled = true,
+        enabled = false,
         channel = "auto",         -- auto = party/raid when grouped, emote when solo
     },
     recorder = {

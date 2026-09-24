@@ -14,7 +14,7 @@ local function clamp(v, lo, hi) v = tonumber(v) if not v then return nil end if 
 
 function Config.UI() return ns.db.ui end
 function Config.Waypoint()
-    ns.db.nav.waypoint = ns.db.nav.waypoint or { enabled = true, size = 1.0, animate = true, route = true }
+    ns.db.nav.waypoint = ns.db.nav.waypoint or { enabled = false, size = 1.0, animate = true, route = false }
     return ns.db.nav.waypoint
 end
 

@@ -29,7 +29,7 @@ local GROUP_UP_PLAYERS = 2   -- on a kill step, this many other players around =
 local samples = {}           -- { t, free, tagged, players = {guid=true} }
 
 local function cfg()
-    ns.db.crowd = ns.db.crowd or { enabled = true }
+    ns.db.crowd = ns.db.crowd or { enabled = false }
     return ns.db.crowd
 end
 
@@ -315,7 +315,7 @@ local function Banner()
     f:SetSize(560, 58)
     f:SetPoint("TOP", UIParent, "TOP", 0, -210)
     f:SetFrameStrata("HIGH")
-    if Theme and Theme.Backdrop then Theme.Backdrop(f, "panel", 0.92) end
+    if Theme and Theme.Backdrop then Theme.Backdrop(f, "panel", 0.75) end
     f.icon = f:CreateTexture(nil, "ARTWORK")
     f.icon:SetSize(28, 28)
     f.icon:SetPoint("TOPLEFT", f, "TOPLEFT", 12, -12)
@@ -407,8 +407,9 @@ end
 
 function Crowd:Update()
     if self.preview then return end
+    if cfg().enabled == false then if banner then banner:Hide() end return end
     local f = Banner()
-    if cfg().enabled == false or (ns.UI and ns.UI.AllHidden and ns.UI:AllHidden()) then f:Hide() return end
+    if ns.UI and ns.UI.AllHidden and ns.UI:AllHidden() then f:Hide() return end
     local tagged, free, players, crowded = self:Level()
     if crowded then self:MaybePostpone() end
     -- a kill-x-mobs step with anyone else on the same mobs: the standing "group up" reminder (like the
