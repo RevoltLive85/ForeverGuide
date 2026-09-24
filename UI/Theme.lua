@@ -1,8 +1,6 @@
 -- ============================================================
 -- ForeverGuide / UI/Theme.lua
--- One place for the look: textures (Textures/*.tga, drawn by
--- tools/make_textures.py), colours, fonts, backdrops, buttons and the
--- shared pulse ticker. Dark parchment, thin gold, warm glows.
+-- Shared fonts, colours and plain UI surfaces.
 -- ============================================================
 
 local _, ns = ...
@@ -12,39 +10,33 @@ ns.Theme = Theme
 local PATH = "Interface\\AddOns\\ForeverGuide\\Textures\\"
 Theme.PATH = PATH
 Theme.TEX = {
-    panel = PATH .. "panel_bg.tga",
-    border = PATH .. "border_gold.tga",
-    glow = PATH .. "glow_gold.tga",
-    thin = PATH .. "border_thin.tga",
-    rowActive = PATH .. "row_active.tga",
-    rowBar = PATH .. "row_bar.tga",
-    headerLine = PATH .. "header_line.tga",
-    separator = PATH .. "separator.tga",
-    button = PATH .. "button.tga",
-    buttonHl = PATH .. "button_hl.tga",
+    rowActive = "Interface\\Buttons\\WHITE8x8",
+    rowBar = "Interface\\Buttons\\WHITE8x8",
+    headerLine = "Interface\\Buttons\\WHITE8x8",
+    separator = "Interface\\Buttons\\WHITE8x8",
+    button = "Interface\\Buttons\\WHITE8x8",
+    buttonHl = "Interface\\Buttons\\WHITE8x8",
     icons = PATH .. "icons.tga",
     ring = PATH .. "ring.tga",
     waypoint = PATH .. "waypoint.tga",
     dot = PATH .. "dot.tga",
     chevron = PATH .. "chevron.tga",
-    compass = PATH .. "compass.tga",    -- ComfyUI art (tools/make_art.py)
     skullBtn = PATH .. "skull_btn.tga",
-    corner = PATH .. "corner.tga",
     white = "Interface\\Buttons\\WHITE8x8",
 }
 
 Theme.FONT = rawget(_G, "STANDARD_TEXT_FONT") or "Fonts\\FRIZQT__.TTF"
-Theme.FANCY = "Fonts\\MORPHEUS.TTF"      -- the quest-title font that ships with the game
+Theme.FANCY = Theme.FONT
 Theme.NUMBER = "Fonts\\ARIALN.TTF"
 
 Theme.C = {
-    gold      = { 0.87, 0.70, 0.29 },
-    goldLight = { 1.00, 0.88, 0.55 },
-    goldDim   = { 0.58, 0.45, 0.18 },
-    text      = { 0.93, 0.89, 0.80 },
-    textDim   = { 0.66, 0.61, 0.52 },
-    muted     = { 0.46, 0.43, 0.37 },
-    done      = { 0.50, 0.47, 0.41 },
+    gold      = { 0.75, 0.80, 0.87 },
+    goldLight = { 1.00, 1.00, 1.00 },
+    goldDim   = { 0.45, 0.49, 0.55 },
+    text      = { 0.92, 0.92, 0.92 },
+    textDim   = { 0.68, 0.68, 0.68 },
+    muted     = { 0.48, 0.48, 0.48 },
+    done      = { 0.52, 0.52, 0.52 },
     warn      = { 1.00, 0.50, 0.30 },
     blocked   = { 0.85, 0.35, 0.25 },
     green     = { 0.55, 0.85, 0.45 },
@@ -88,54 +80,20 @@ function Theme.NewText(parent, opts)
     return fs
 end
 
---- Backdrops. kind: "panel" (parchment + ornate gold), "glow" (soft outer glow only), "thin" (1px gold)
+--- A solid panel, with an optional subtle outline. No decorative textures.
 function Theme.Backdrop(f, kind, alpha)
+    if kind == "glow" then return end
     if not f.SetBackdrop then
-        if kind == "panel" then
+        if kind == "panel" or kind == "plain" then
             local bg = f:CreateTexture(nil, "BACKGROUND")
             bg:SetAllPoints()
-            bg:SetColorTexture(0.06, 0.045, 0.03, alpha or 0.92)
+            bg:SetColorTexture(0, 0, 0, alpha or 0.75)
         end
         return
     end
-    if kind == "panel" then
-        f:SetBackdrop({ bgFile = Theme.TEX.panel, edgeFile = Theme.TEX.border, edgeSize = 16, tile = true, tileSize = 256,
-                        insets = { left = 4, right = 4, top = 4, bottom = 4 } })
-        f:SetBackdropColor(1, 1, 1, alpha or 0.92)
-        f:SetBackdropBorderColor(1, 1, 1, 1)
-    elseif kind == "glow" then
-        f:SetBackdrop({ edgeFile = Theme.TEX.glow, edgeSize = 32 })
-        f:SetBackdropBorderColor(1, 1, 1, alpha or 0.9)
-    elseif kind == "thin" then
-        f:SetBackdrop({ edgeFile = Theme.TEX.thin, edgeSize = 8 })
-        f:SetBackdropBorderColor(1, 1, 1, alpha or 0.9)
-    elseif kind == "plain" then
-        f:SetBackdrop({ bgFile = Theme.TEX.white, edgeFile = Theme.TEX.white, edgeSize = 1, insets = { left = 1, right = 1, top = 1, bottom = 1 } })
-        f:SetBackdropColor(0.06, 0.045, 0.03, alpha or 0.92)
-        f:SetBackdropBorderColor(0.58, 0.45, 0.18, 0.9)
-    end
-end
-
---- Gold corner ornaments on a panel: one texture (top-left), flipped for the other three.
-function Theme.Corners(f, size, inset)
-    size, inset = size or 36, inset or -3
-    f.corners = f.corners or {}
-    local spec = {
-        { "TOPLEFT",     inset, -inset, 0, 1, 0, 1 },
-        { "TOPRIGHT",   -inset, -inset, 1, 0, 0, 1 },
-        { "BOTTOMLEFT",  inset,  inset, 0, 1, 1, 0 },
-        { "BOTTOMRIGHT", -inset, inset, 1, 0, 1, 0 },
-    }
-    for i, s in ipairs(spec) do
-        local t = f.corners[i] or f:CreateTexture(nil, "OVERLAY")
-        f.corners[i] = t
-        t:SetSize(size, size)
-        t:ClearAllPoints()
-        t:SetPoint(s[1], f, s[1], s[2], s[3])
-        pcall(t.SetTexture, t, Theme.TEX.corner)
-        pcall(t.SetTexCoord, t, s[4], s[5], s[6], s[7])
-    end
-    return f.corners
+    f:SetBackdrop({ bgFile = Theme.TEX.white, edgeFile = Theme.TEX.white, edgeSize = 1 })
+    f:SetBackdropColor(0, 0, 0, kind == "thin" and 0 or (alpha or 0.75))
+    f:SetBackdropBorderColor(0.3, 0.3, 0.3, kind == "thin" and 0.7 or 0.9)
 end
 
 --- Compact textured button: dark plate, gold rim, brighter on hover. icon: atlas name (optional)
@@ -146,9 +104,11 @@ function Theme.NewButton(parent, text, width, height, onClick, icon, opts)
     local normal = b:CreateTexture(nil, "BACKGROUND")
     normal:SetAllPoints()
     pcall(normal.SetTexture, normal, Theme.TEX.button)
+    normal:SetVertexColor(0.18, 0.18, 0.18, 1)
     local hl = b:CreateTexture(nil, "HIGHLIGHT")
     hl:SetAllPoints()
     pcall(hl.SetTexture, hl, Theme.TEX.buttonHl)
+    hl:SetVertexColor(0.35, 0.35, 0.35, 1)
     pcall(hl.SetBlendMode, hl, "ADD")
     pcall(hl.SetAlpha, hl, 0.35)
     local label = Theme.NewText(b, { size = 12, justify = "CENTER", color = Theme.C.gold, oneLine = true, shadow = true })
@@ -179,37 +139,6 @@ function Theme.NewButton(parent, text, width, height, onClick, icon, opts)
     return b
 end
 
--- ---- pulse ticker: one OnUpdate for every breathing region ----------------------------------
-local pulses, ticker = {}, nil
-local function tick(self, elapsed)
-    self.elapsed = (self.elapsed or 0) + (elapsed or 0)
-    if self.elapsed < 0.05 then return end
-    local dt = self.elapsed
-    self.elapsed = 0
-    local now = ns.Now and ns.Now() or 0
-    for region, p in pairs(pulses) do
-        if p.enabled and region:IsShown() then
-            local phase = (now % p.period) / p.period
-            local v = 0.5 + 0.5 * math.sin(phase * 2 * math.pi)
-            local a = p.min + (p.max - p.min) * v
-            pcall(region.SetAlpha, region, a)
-            if p.scale and region.SetScale then pcall(region.SetScale, region, 1 + (p.scale - 1) * v) end
-        end
-    end
-end
---- Make a region breathe between min and max alpha (and optionally scale) with the given period.
-function Theme.Pulse(region, period, minA, maxA, scale)
-    if not ticker then
-        ticker = CreateFrame("Frame")
-        ticker:SetScript("OnUpdate", tick)
-    end
-    pulses[region] = { period = period or 2.0, min = minA or 0.6, max = maxA or 1.0, scale = scale, enabled = true }
-end
-function Theme.SetPulseEnabled(region, on)
-    local p = pulses[region]
-    if p then
-        p.enabled = on and true or false
-        if not on then pcall(region.SetAlpha, region, p.max) if p.scale then pcall(region.SetScale, region, 1) end end
-    end
-end
-function Theme.Unpulse(region) pulses[region] = nil end
+function Theme.Pulse() end
+function Theme.SetPulseEnabled() end
+function Theme.Unpulse() end

@@ -37,6 +37,7 @@ function Row.Create(parent, index)
     r.bg:SetPoint("TOPLEFT", r, "TOPLEFT", 2, 0)
     r.bg:SetPoint("BOTTOMRIGHT", r, "BOTTOMRIGHT", -2, 0)
     pcall(r.bg.SetTexture, r.bg, Theme.TEX.rowActive)
+    r.bg:SetVertexColor(0.24, 0.28, 0.34, 0.65)
     r.bg:Hide()
 
     local ok, outline = pcall(CreateFrame, "Frame", nil, r, "BackdropTemplate")
@@ -48,28 +49,18 @@ function Row.Create(parent, index)
         r.outline = outline
     end
 
-    local okg, glow = pcall(CreateFrame, "Frame", nil, r, "BackdropTemplate")
-    if okg and glow then
-        glow:SetPoint("TOPLEFT", r, "TOPLEFT", -10, 10)
-        glow:SetPoint("BOTTOMRIGHT", r, "BOTTOMRIGHT", 10, -10)
-        pcall(glow.SetFrameLevel, glow, math.max(0, (r.GetFrameLevel and r:GetFrameLevel() or 1) - 1))
-        Theme.Backdrop(glow, "glow", 0.45)
-        glow:Hide()
-        r.glow = glow
-        Theme.Pulse(glow, 2.4, 0.35, 0.8)
-    end
-
     r.bar = r:CreateTexture(nil, "ARTWORK")
     r.bar:SetSize(6, Row.HEIGHT_TWO - 6)
     r.bar:SetPoint("LEFT", r, "LEFT", 0, 0)
     pcall(r.bar.SetTexture, r.bar, Theme.TEX.rowBar)
+    r.bar:SetVertexColor(0.75, 0.80, 0.87, 1)
     r.bar:Hide()
 
     -- number ring
     r.ring = r:CreateTexture(nil, "ARTWORK")
     r.ring:SetSize(RING, RING)
     r.ring:SetPoint("LEFT", r, "LEFT", 8, 0)
-    pcall(r.ring.SetTexture, r.ring, Theme.TEX.ring)
+    r.ring:Hide()
     r.number = Theme.NewText(r, { number = true, size = 10, justify = "CENTER", color = Theme.C.gold, oneLine = true, shadow = false })
     r.number:SetPoint("CENTER", r.ring, "CENTER", 0, 0)
     r.number:SetWidth(RING)
@@ -93,10 +84,11 @@ function Row.Create(parent, index)
 
     -- separator under the row
     r.sep = r:CreateTexture(nil, "ARTWORK")
-    r.sep:SetHeight(4)
+    r.sep:SetHeight(1)
     r.sep:SetPoint("BOTTOMLEFT", r, "BOTTOMLEFT", 10, -2)
     r.sep:SetPoint("BOTTOMRIGHT", r, "BOTTOMRIGHT", -10, -2)
     pcall(r.sep.SetTexture, r.sep, Theme.TEX.separator)
+    r.sep:SetVertexColor(0.25, 0.25, 0.25, 1)
 
     r:RegisterForClicks("LeftButtonUp", "RightButtonUp")
     r:SetScript("OnClick", function(self, button)
@@ -155,10 +147,6 @@ function Row.Set(r, entry, showSubtitle)
     r.bg:SetShown(active)
     pcall(r.bg.SetAlpha, r.bg, 1)
     if r.outline then r.outline:SetShown(active) end
-    if r.glow then
-        r.glow:SetShown(active)
-        Theme.SetPulseEnabled(r.glow, active and (ns.db.nav.waypoint == nil or ns.db.nav.waypoint.animate ~= false))
-    end
     r.bar:SetShown(active)
     if entry.state == "done" then
         pcall(r.sep.SetAlpha, r.sep, 0.5)
