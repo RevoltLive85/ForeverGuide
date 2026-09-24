@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.10 - 2026-09-24
+- Fixed "Interface action failed because of an AddOn" firing during kill steps: switching enemy/friendly nameplates on or off is a protected action, and the code that does it was not checking for combat lockdown, so it kept retrying - and kept getting silently denied - on every 0.5s scan of a fight. It now skips that entirely while in combat and catches up the moment combat ends.
+
 ## 0.3.9 - 2026-09-24
 - Arrow size is now a real slider in the options panel (Esc -> Options -> AddOns -> ForeverGuide), not just `/fg arrow size` - drag it and the chevron above your head resizes live. `/fg arrow <anything else>` now tells you it didn't understand instead of quietly flipping the arrow off, which is what a mistyped option used to do.
 

@@ -261,14 +261,25 @@ local function setCVar(name, value)
     return ns.Safe(rawget(_G, "SetCVar"), name, value)
 end
 
+local function inCombat()
+    return ns.Plain(ns.Safe(rawget(_G, "InCombatLockdown"))) == true
+end
+
 -- Friendly PLAYER nameplates (not npcs / pets / totems) during kill steps: the one way to see who
 -- is hunting next to you (the crowd rules and the group-up reminder count them). Restored after.
 local FRIEND_CVARS = { nameplateShowFriends = "1", nameplateShowFriendlyNPCs = "0", nameplateShowFriendlyPets = "0",
                        nameplateShowFriendlyGuardians = "0", nameplateShowFriendlyTotems = "0", nameplateShowFriendlyMinions = "0" }
 local forcedFriends = nil
 
+--- nameplateShowEnemies/nameplateShowFriends* are protected cvars: setting them from combat lockdown
+--- is silently denied by the client (Ilya, 2026-09-24: "Interface action failed because of an AddOn" -
+--- firing live, right as a kill step started mid-fight) and, since Scan() retries every 0.5s while a
+--- kill step is current, it would keep retrying - and keep getting denied - for the whole fight. Skip
+--- entirely while in combat; Scan() already re-runs on PLAYER_REGEN_ENABLED (below), which calls this
+--- again once it is safe to actually change the cvars.
 local function forcePlates(want)
     if not cfg().plates then return end
+    if inCombat() then return end
     if want then
         if forcedPlates == nil and getCVar("nameplateShowEnemies") ~= "1" then
             forcedPlates = getCVar("nameplateShowEnemies") or "0"
@@ -309,10 +320,6 @@ function MM:TargetButton()
     b:SetSize(1, 1)
     b:SetPoint("CENTER")
     return b
-end
-
-local function inCombat()
-    return ns.Plain(ns.Safe(rawget(_G, "InCombatLockdown"))) == true
 end
 
 --- Point the button's macro at the current step's mobs (deferred while in combat).

@@ -790,6 +790,45 @@ do
     for i = 1, 4 do MOCK_PLATE("nameplate" .. i, nil) end
 end
 
+-- ---- combat lockdown: nameplate cvars are protected, must never be touched mid-fight -------
+-- (Ilya, 2026-09-24: live "Interface action failed because of an AddOn" - forcePlates() called
+-- SetCVar unconditionally, and Scan() retries every 0.5s while a kill step is current, so it kept
+-- retrying - and kept getting denied - for the whole fight it fired in.)
+do
+    ns.RegisterGuide({ id = "AUDIT_COMBAT_PLATES", name = "combat plates", steps = {
+        { type = "ACCEPT", quest = 990010 },
+        { type = "KILL", quest = 990010, target = "Test Grunt", npc = 990010, near = true },
+        { type = "TURNIN", quest = 990010 } } })
+    -- other quests elsewhere in the log may already have open kill objectives by this point in the
+    -- suite, so get a genuinely clean baseline by disabling (which unconditionally releases any
+    -- forced cvar - confirmed a reliable reset) and re-enabling without a Scan() in between, rather
+    -- than assuming nothing else in the log wants plates on.
+    MOCK.inCombat = false
+    MOCK_ABANDON(990010); settle()
+    ns.MobMarker:SetEnabled(false); settle()
+    check(GetCVar("nameplateShowEnemies") == "0", "clean baseline: nothing forcing nameplates on")
+    ns.MobMarker.Cfg().enabled = true
+    -- enter combat BEFORE touching the guide/quest log, so every Scan() this triggers - from
+    -- G:Activate, from accepting the quest, from the ticker - runs while already in combat, same
+    -- as a kill step appearing mid-fight for real.
+    MOCK.inCombat = true
+    G:Activate("AUDIT_COMBAT_PLATES", true); settle()
+    check(GetCVar("nameplateShowEnemies") == "0", "activating the guide mid-combat does not touch the cvar")
+    MOCK_ACCEPT(990010, "Test Grunt Bounty", { { text = "Test Grunt slain", finished = false, numFulfilled = 0, numRequired = 5 } }); settle()
+    check(cur() == 2 and step().type == "KILL", "on the kill step, started while already in combat")
+    check(GetCVar("nameplateShowEnemies") == "0", "a kill step starting mid-combat does not touch the protected cvar")
+    ns.MobMarker:Scan(); ns.MobMarker:Scan()   -- the 0.5s ticker would otherwise retry every tick all fight
+    check(GetCVar("nameplateShowEnemies") == "0", "...and repeated scans while still in combat don't retry it either")
+    MOCK.inCombat = false
+    MOCK_FIRE("PLAYER_REGEN_ENABLED"); settle()
+    check(GetCVar("nameplateShowEnemies") == "1", "nameplates switch on once combat ends and Scan() re-runs")
+    MOCK.inCombat = true
+    ns.MobMarker:Scan()
+    check(GetCVar("nameplateShowEnemies") == "1", "leaving the step mid-combat (already forced) doesn't touch the cvar either")
+    MOCK.inCombat = false
+    MOCK_ABANDON(990010); settle()
+end
+
 -- ---- editor + resync -------------------------------------------------------------------
 do
     G:Activate("GEN_ALLIANCE_HUMAN_01_ELWYNN_FOREST", true); G:SetStep(1); settle()
