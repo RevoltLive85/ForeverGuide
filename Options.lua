@@ -18,7 +18,7 @@ local ITEMS = {
     { key = "window", label = "Show the guide window",
       get = function() return Bool(ns.db.ui.shown) end,
       set = function(v) if v then ns.UI:Show() else ns.UI:Hide() end end },
-    { key = "arrow", label = "Show the compact chevron arrow (fallback when the world waypoint cannot show)",
+    { key = "arrow", label = "Show the compact chevron arrow above your head (the everyday indicator)",
       get = function() return Bool(ns.db.ui.arrow and ns.db.ui.arrow.enabled ~= false) end,
       set = function(v) ns.Arrow:SetEnabled(v) end },
     { key = "minimap", label = "Show the minimap button",
@@ -172,7 +172,7 @@ function Options:Create()
     hint:SetPoint("TOPLEFT", 16, y)
     hint:SetWidth(560)
     hint:SetJustifyH("LEFT")
-    hint:SetText("Something wrong with a step? Stand where it should be and type  /fg wrong <what is wrong>  - the report is saved with your position and turned into a correction by tools/collect_reports.py.\nLook: /fg qg scale|opacity|width|rows|wpsize <value>   (e.g. /fg qg opacity 0.8)\nKey bindings: Esc -> Options -> Key Bindings -> AddOns -> ForeverGuide.")
+    hint:SetText("Something wrong with a step? Stand where it should be and type  /fg wrong <what is wrong>  - the report is saved with your position and turned into a correction by tools/collect_reports.py.\nLook: /fg qg scale|opacity|width|rows|wpsize|arrowsize <value>   (e.g. /fg qg opacity 0.8, or /fg arrow size 1.5)\nKey bindings: Esc -> Options -> Key Bindings -> AddOns -> ForeverGuide.")
 
     -- the scrolling child is exactly as tall as what we put on it
     if body ~= panel then

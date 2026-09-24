@@ -35,7 +35,8 @@ local function NewRegion(kind)
     function r:Hide() self.shown = false end
     function r:IsShown() return self.shown end
     function r:SetShown(v) self.shown = v end
-    function r:SetScale() end
+    function r:SetScale(v) self.scale = v end
+    function r:GetScale() return self.scale or 1 end
     function r:SetFrameStrata() end
     function r:SetMovable() end
     function r:SetClampedToScreen() end

@@ -9,8 +9,9 @@
 -- opts into "/fg waypoint engine on" and the client's own pin can
 -- genuinely project it - otherwise this chevron is what shows.
 --
---   /fg arrow on|off      show / hide
---   /fg unlock            drag it (and the window) somewhere else
+--   /fg arrow on|off        show / hide
+--   /fg arrow size <0.5-2.5>   bigger / smaller (also /fg qg arrowsize <value>)
+--   /fg unlock              drag it (and the window) somewhere else
 -- ============================================================
 
 local _, ns = ...
@@ -174,6 +175,18 @@ end
 function Arrow:SetEnabled(on)
     Cfg().enabled = on
     self:Refresh()
+end
+
+--- Bigger / smaller (0.5-2.5, /fg arrow size <value> or the qg "arrowsize" number).
+function Arrow:SetScale(v)
+    v = tonumber(v)
+    if not v then return end
+    Cfg().scale = v
+    if frame then frame:SetScale(v) end
+end
+
+function Arrow:GetScale()
+    return Cfg().scale or 1
 end
 
 function Arrow:ResetPosition()

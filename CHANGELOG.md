@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.8 - 2026-09-24
+- The chevron above your head can now be resized: `/fg arrow size <0.5-2.5>` (or `/fg qg arrowsize <value>`), saved and restored like everything else.
+
 ## 0.3.7 - 2026-09-24
 - The compact chevron above your head is the everyday direction indicator again, the way it was before the in-world waypoint diamond existed. Reported live as "the guide arrow feels sluggish when rotating my character": the diamond's default placement guessed a screen position from your facing plus an estimate of which way the camera itself was pointed, blended in with a smoother so the guess would not jitter - and that smoothing is exactly what made it lag a beat behind when you turned. The chevron has no guess to smooth: it turns straight from your real facing, instantly. `/fg waypoint engine on` still puts the diamond up for players who want it and whose pin the client can genuinely project (it now only ever rides the real pin - it no longer falls back to the guessed placement, so there is nothing left in it that can feel sluggish).
 - Fixed a reentrancy bug this change surfaced: a navigation target already inside its arrival radius the moment it is set (standing right next to the flight point you just asked `/fg fp` to walk you to, say) could fire "arrived" from inside the very call that set the target, and a handler reacting to that (releasing the flight-point override, handing navigation back to the guide) reassigned the target before the original caller had finished with it - so `/fg fp` could hand you straight back to your quest step instead of pointing at the flight point. Arrival is now announced one tick later, which costs nothing a player would notice and closes the reentrancy off.

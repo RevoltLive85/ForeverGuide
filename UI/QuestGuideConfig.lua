@@ -31,6 +31,8 @@ Config.NUMBERS = {
     width   = { min = 240, max = 520, label = "window width",   get = function() return ns.db.ui.width or 300 end,    set = function(v) ns.db.ui.width = math.floor(v) end },
     rows    = { min = 3,   max = 15,  label = "rows shown",     get = function() return ns.db.ui.maxRows or 7 end,    set = function(v) ns.db.ui.maxRows = math.floor(v) end },
     wpsize  = { min = 0.5, max = 2.0, label = "waypoint size",  get = function() return Config.Waypoint().size or 1 end, set = function(v) Config.Waypoint().size = v end },
+    arrowsize = { min = 0.5, max = 2.5, label = "arrow size", get = function() return ns.Arrow and ns.Arrow:GetScale() or (ns.db.ui.arrow and ns.db.ui.arrow.scale) or 1 end,
+                  set = function(v) if ns.Arrow then ns.Arrow:SetScale(v) else ns.db.ui.arrow = ns.db.ui.arrow or {} ns.db.ui.arrow.scale = v end end },
 }
 
 function Config.SetNumber(key, value)

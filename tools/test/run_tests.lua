@@ -276,6 +276,17 @@ do
     ns.UI:Show()
     ns.Navigation:SetTarget({ map = 1429, x = 40, y = 60, label = "test", owner = "test" })
     ns.Arrow:SetEnabled(true); ns.Arrow:Refresh()
+    -- arrow size: /fg arrow size, /fg qg arrowsize, and out-of-range values
+    check(ns.Arrow:GetScale() == 1, "arrow size defaults to 1")
+    ns.Commands:Run("arrow size 1.5")
+    check(ns.Arrow:GetScale() == 1.5 and ForeverGuideArrowFrame:GetScale() == 1.5, "/fg arrow size resizes the live frame")
+    check(ns.db.ui.arrow.scale == 1.5, "the size is saved (mirrored via the 'as' cvar key)")
+    ns.Commands:Run("qg arrowsize 0.7")
+    check(ns.Arrow:GetScale() == 0.7, "/fg qg arrowsize also sets it")
+    local okBig, msgBig = ns.QuestGuideConfig.SetNumber("arrowsize", 9)
+    check(okBig == true and ns.Arrow:GetScale() == 2.5, "an out-of-range size is clamped to the max, not rejected (" .. tostring(msgBig) .. ")")
+    ns.Commands:Run("arrow size 1")
+    check(ns.Arrow:GetScale() == 1, "back to 1 for the rest of the tests")
     local function pointerShown() return ns.Arrow:IsShown() or (ns.Waypoint.overlay and ns.Waypoint.overlay:IsShown()) end
     local frameWasShown = ForeverGuideFrame:IsShown()
     local arrowWasShown = pointerShown()

@@ -23,7 +23,7 @@ local HELP = {
     "/fg nav             distance/direction to the current step",
     "/fg way <x> <y>     point the arrow at x,y on your current map",
     "/fg lock|unlock     lock or unlock the window and the arrow  |  /fg scale <0.5-2>  |  /fg resetpos",
-    "/fg arrow on|off    the compact chevron arrow above your head (the everyday indicator)",
+    "/fg arrow on|off|size <0.5-2.5>   the compact chevron above your head (the everyday indicator) and its size",
     "/fg path [name|race] follow another race's leveling route (any of your faction's)",
     "/fg waypoint on|off  the in-world gold waypoint diamond (advanced)  |  /fg waypoint engine on|off  ride the client's own pin instead of the arrow  |  /fg route on|off  its dotted path",
     "/fg skull on|off  skull over the nearest quest mob  |  /fg skull others|plates on|off",
@@ -611,6 +611,13 @@ function handlers.minimap(rest)
 end
 
 function handlers.arrow(rest)
+    rest = rest or ""
+    local sizeArg = rest:match("^[Ss]ize%s+(.+)$") or rest:match("^[Ss]cale%s+(.+)$")
+    if sizeArg then
+        local ok, msg = ns.QuestGuideConfig.SetNumber("arrowsize", sizeArg)
+        ns.Print(msg)
+        return
+    end
     if rest == "on" then ns.Arrow:SetEnabled(true)
     elseif rest == "off" then ns.Arrow:SetEnabled(false)
     else ns.Arrow:SetEnabled(not (ns.db.ui.arrow and ns.db.ui.arrow.enabled)) end

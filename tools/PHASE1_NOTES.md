@@ -557,3 +557,16 @@ no camera-yaw API exists; a left-drag camera orbit around a standing character d
   Fix: `Nav:Update()` now fires FG_NAV_ARRIVED a tick later (`ns.Events:After(0, ...)`, guarded against the
   target having already changed by the time it runs) instead of inline, so a caller mid-way through setting a
   target always finishes before anything reacts to arrival. 345 tests.
+
+## Update 2026-09-24 (later) — arrow size option (v0.3.8)
+- Ilya: "add an option to increase/decrease the size of the arrow". The plumbing was already half there:
+  `ns.db.ui.arrow.scale` has existed since the arrow was first built (defaults to 1, `f:SetScale(a.scale)` at
+  creation) and Persist.lua has mirrored it as the account cvar key `as` since the SavedVariables workaround was
+  written - there was just never a way to actually change it after creation. Added `Arrow:SetScale(v)` /
+  `Arrow:GetScale()` (updates the saved value and calls `frame:SetScale` live, no reload needed), a matching
+  `arrowsize` entry in `Config.NUMBERS` (0.5-2.5, same shape as `wpsize`/`scale`, so `/fg qg arrowsize <value>`
+  and `/fg qg` with no args both pick it up for free), and a `/fg arrow size <value>` shortcut on the arrow's own
+  command since that reads more naturally than routing through `/fg qg`. Also relabelled the Options-panel
+  checkbox and its hint text, which still said the chevron was a "fallback" from before the 0.3.7 default swap.
+  Mock gained `SetScale`/`GetScale` recording (previously a no-op) so a test can check the live frame, not just
+  the saved setting. 351 tests.
