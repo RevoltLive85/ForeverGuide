@@ -510,6 +510,20 @@ do
     check(objs[1] and #objs[1].locations > 0, "vanilla objective of 317 keeps its own locations (" .. tostring(objs[1] and #objs[1].locations) .. ")")
     local fq = ns.QuestDB[99128]
     check(fq and fq.forever and fq.n == "Slimy Menace", "Forever-only quest 99128 exists with its title")
+ns.Commands:Run("wrong")
+check(ForeverGuideReportPrompt and ForeverGuideReportPrompt:IsShown(), "/fg wrong opens feedback dialog")
+ForeverGuideReportPrompt.input:SetText("giver moved east")
+ForeverGuideReportPrompt.save:GetScript("OnClick")()
+check(not ForeverGuideReportPrompt:IsShown() and ns.db.reports[2].text == "giver moved east", "Save records dialog feedback and closes it")
+ns.Commands:Run("reports")
+check(ForeverGuideReports and ForeverGuideReports:IsShown() and ForeverGuideReports.text:GetText():find("giver moved east", 1, true)
+    and ForeverGuideReports.text:GetText():find("expected map", 1, true), "/fg reports shows copyable full feedback")
+check(ForeverGuideFrame.header.reports ~= nil, "guide header has a reports button next to feedback")
+ForeverGuideReports.clear:GetScript("OnClick")()
+check(#ns.db.reports == 2, "first clear click asks for confirmation without deleting feedback")
+ForeverGuideReports.clear:GetScript("OnClick")()
+check(#ns.db.reports == 0 and ForeverGuideReports.text:GetText():find("No reports yet", 1, true),
+    "confirmed clear deletes feedback and refreshes the list")
     check(ns.Quest:XPMultiplier(783, 1) == 1 and ns.Quest:XPMultiplier(783, 7) == 0.8 and ns.Quest:XPMultiplier(783, 12) == 0.1, "xp multiplier follows the Classic reduction table")
 end
 

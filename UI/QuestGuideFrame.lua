@@ -22,7 +22,7 @@ local Theme = ns.Theme
 local QG = ns:NewModule("QuestGuide")
 
 local FOOTER = 40
-local frame, glow
+local frame
 
 local ICON_FOR = { ACCEPT = "accept", TURNIN = "turnin", KILL = "kill", COLLECT = "collect", COMPLETE = "collect",
                    GRIND = "kill", TRAVEL = "travel", FLY = "travel", HEARTH = "travel", TALK = "accept", NOTE = "travel",
@@ -49,28 +49,16 @@ function QG:Create()
         local point, _, _, x, y = self:GetPoint(1)
         ns.db.ui.point, ns.db.ui.x, ns.db.ui.y = point or "TOPRIGHT", x or 0, y or 0
     end)
-    Theme.Backdrop(f, "panel", cfg.opacity or 0.92)
-    Theme.Corners(f, 40)
-
-    -- soft outer glow behind the panel
-    local okg, g = pcall(CreateFrame, "Frame", nil, f, "BackdropTemplate")
-    if okg and g then
-        glow = g
-        g:SetPoint("TOPLEFT", f, "TOPLEFT", -14, 14)
-        g:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", 14, -14)
-        pcall(g.SetFrameLevel, g, math.max(0, (f.GetFrameLevel and f:GetFrameLevel() or 2) - 1))
-        Theme.Backdrop(g, "glow", 0.55)
-        f.glow = g
-    end
-
+    Theme.Backdrop(f, "panel", cfg.opacity or 0.75)
     f.header = ns.QuestGuideHeader.Create(f)
     f.list = ns.QuestList.Create(f)
     f.list:SetPoint("TOPLEFT", f.header, "BOTTOMLEFT", 6, -2)
     f.list:SetPoint("TOPRIGHT", f.header, "BOTTOMRIGHT", -6, -2)
 
     f.footerLine = f:CreateTexture(nil, "ARTWORK")
-    f.footerLine:SetHeight(4)
+    f.footerLine:SetHeight(1)
     pcall(f.footerLine.SetTexture, f.footerLine, Theme.TEX.separator)
+    f.footerLine:SetVertexColor(0.3, 0.3, 0.3, 1)
 
     f.guideBtn = Theme.NewButton(f, "Guide", 104, 24, function() QG:ToggleInfo() end, "compass")
     f.guidesBtn = Theme.NewButton(f, "Guides", 104, 24, function() ns.UI:TogglePicker() end, "current")
@@ -166,7 +154,7 @@ function QG:Apply()
     local cfg = ns.db.ui
     pcall(frame.SetScale, frame, cfg.scale or 1)
     frame:SetWidth(math.max(cfg.width or 300, 240))
-    if frame.SetBackdropColor then pcall(frame.SetBackdropColor, frame, 1, 1, 1, cfg.opacity or 0.92) end
+    if frame.SetBackdropColor then pcall(frame.SetBackdropColor, frame, 0, 0, 0, cfg.opacity or 0.75) end
     self:Layout()
 end
 
@@ -368,8 +356,7 @@ function QG:CreateInfo()
     p:RegisterForDrag("LeftButton")
     p:SetScript("OnDragStart", function(self) self:StartMoving() end)
     p:SetScript("OnDragStop", function(self) self:StopMovingOrSizing() end)
-    Theme.Backdrop(p, "panel", 0.96)
-    Theme.Corners(p, 32)
+    Theme.Backdrop(p, "panel", 0.75)
     p.title = Theme.NewText(p, { fancy = true, size = 15, color = Theme.C.goldLight, maxLines = 2 })
     p.title:SetPoint("TOPLEFT", p, "TOPLEFT", 14, -12)
     p.title:SetPoint("TOPRIGHT", p, "TOPRIGHT", -44, -12)

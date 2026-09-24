@@ -29,7 +29,7 @@ local DEFAULTS = {
         showPrevious = 2,     -- completed steps shown above the current one
         showUpcoming = 4,     -- upcoming steps shown below the current one
         -- Quest Guide window (UI/QuestGuide*.lua)
-        opacity = 0.92,
+        opacity = 0.75,
         maxRows = 7,          -- rows in the list (the current one is always among them)
         showCompleted = true,
         showDistances = true,

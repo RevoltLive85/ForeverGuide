@@ -45,6 +45,7 @@ Scanner.lua
 Harvest.lua
 # ---- the Quest Guide interface (UI\*.lua: theme, window, list, waypoint; UI.lua coordinates) ----
 UI\Theme.lua
+UI\Reports.lua
 UI\QuestGuideConfig.lua
 UI\QuestGuideHeader.lua
 UI\QuestRow.lua
