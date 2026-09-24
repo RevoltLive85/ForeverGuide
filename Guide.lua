@@ -50,12 +50,21 @@ Guide.MANUAL, Guide.OBJECTIVE = MANUAL, OBJECTIVE
 -- ------------------------------------------------------------
 -- Registry (called by compiled guide files)
 -- ------------------------------------------------------------
+---@class FGStep
+---@field type? string
+---@field index? integer       Assigned during registration (1-based).
+---@field quest? integer
+---@field faction? string
+---@field class? string[]
+---@field race? string[]
+
 function ns.RegisterGuide(guide)
     if type(guide) ~= "table" or type(guide.id) ~= "string" then
         ns.Error("RegisterGuide: guide needs a string id")
         return
     end
     guide.version = guide.version or 1
+    ---@param steps FGStep[]
     local function prepare(steps)
         for i, step in ipairs(steps) do
             step.index = i
@@ -261,6 +270,7 @@ end
 -- ------------------------------------------------------------
 -- Step evaluation
 -- ------------------------------------------------------------
+---@param step FGStep
 function Guide:StepApplies(step)
     if step.quest and ns.DB and ns.DB:IsRemoved(step.quest) then return false end   -- quest gone from Forever
     -- a quest this character can never take (a race- or class-only quest the route planner offered
