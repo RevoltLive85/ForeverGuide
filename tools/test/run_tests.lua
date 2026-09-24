@@ -315,6 +315,11 @@ do
         end
         ns.Commands:Run("arrow size 1")
     end
+    check(ForeverGuideArrowFrame.mouse == true, "arrow accepts dragging when unlocked and tracking a target")
+    ns.Commands:Run("lock")
+    check(ForeverGuideArrowFrame.mouse == false and not ForeverGuideFrame.resizeGrip:IsShown(), "locking disables arrow drag and hides resize grip")
+    ns.Commands:Run("unlock")
+    check(ForeverGuideArrowFrame.mouse == true and ForeverGuideFrame.resizeGrip:IsShown(), "unlocking enables arrow drag and resize grip")
     local function pointerShown() return ns.Arrow:IsShown() or (ns.Waypoint.overlay and ns.Waypoint.overlay:IsShown()) end
     local frameWasShown = ForeverGuideFrame:IsShown()
     local arrowWasShown = pointerShown()
@@ -938,6 +943,38 @@ do
         f.list.rows[1]:GetScript("OnClick")(f.list.rows[1], "LeftButton"); settle()
         check(G.current == target.index, "clicking a row jumps to that step (" .. tostring(G.current) .. " vs " .. tostring(target.index) .. ")")
     end
+    -- width grip: drag to resize, persist the new width, and reflow the list
+    check(f.resizeGrip ~= nil and f.resizable == true, "guide has a resize grip")
+    if f.resizeGrip then
+        f.resizeGrip:GetScript("OnMouseDown")(f.resizeGrip)
+        check(f.sizing == true, "resize grip starts sizing the guide")
+        f:SetWidth(360)
+        f:SetHeight(160)
+        f:GetScript("OnSizeChanged")(f, 360, 160)
+        check(f.list:GetWidth() == 348 and f.footerLine.points[1][5] == -120,
+            "quest list and footer follow the resize while the mouse is still down")
+        f.resizeGrip:GetScript("OnMouseUp")(f.resizeGrip)
+        check(ns.db.ui.width == 360 and f.sizing == false, "resize saves guide width")
+        check(ns.db.ui.height == 160 and f:GetHeight() == 160 and f.scroll and f.scroll:GetScrollChild() == f.list,
+            "resize saves height and clips the quest list to a scroll viewport")
+        check(f.list:GetWidth() == f:GetWidth() - 12 and f.list:GetHeight() > 0,
+            "scroll child has a real width and height so quest text renders")
+        f.scroll:SetVerticalScroll(0)
+        ns.UI:Refresh()
+        local activeTop = 4
+        for i, entry in ipairs(f.list.entries) do
+            if entry.state == "active" then break end
+            activeTop = activeTop + f.list.rows[i]:GetHeight() + 3
+        end
+        check(activeTop <= f.scroll:GetVerticalScroll() + 64,
+            "resized guide keeps the current step inside the visible list")
+        f:SetHeight(520)
+        f.resizeGrip:GetScript("OnMouseUp")(f.resizeGrip)
+        check(ns.db.ui.maxRows > 7 and #f.list.entries > 7,
+            "taller guide displays more than the default seven steps")
+        f:SetHeight(160)
+        f.resizeGrip:GetScript("OnMouseUp")(f.resizeGrip)
+    end
     -- settings
     ns.Commands:Run("qg opacity 0.7")
     check(math.abs((ns.db.ui.opacity or 0) - 0.7) < 1e-6, "/fg qg opacity sets the window opacity")
@@ -1117,7 +1154,7 @@ do
     ns.Commands:Run("edit note keep me")
     ns.db.edits.GEN_ALLIANCE_DWARF_01_DUN_MOROGH[G.current] = { type = G:GetCurrentStep().type, quest = G:GetCurrentStep().quest, map = 1426, x = 12.5, y = 34.5, npc = 999 }
     ns.db.edits.GEN_ALLIANCE_DWARF_01_DUN_MOROGH[3] = { type = "ACCEPT", quest = 179, npc = 658 }
-    ns.db.ui.width = 480; ns.db.ui.hideTracker = false; ns.db.ui.hideOnMap = false
+    ns.db.ui.width = 480; ns.db.ui.height = 280; ns.db.ui.hideTracker = false; ns.db.ui.hideOnMap = false
     ns.Persist:Save()
     check(ns.Persist.lastSaveOK == true, "the cvar mirror verified its write")
     check(#(MOCK.cvars.ForeverGuideA0 or "") > 0 and #(MOCK.cvars.ForeverGuideCSniffClassicBetaPvE20 or MOCK.cvars["ForeverGuideC" .. ((UnitName("player") .. GetRealmName()):gsub("[^%w]", "")):sub(1, 24) .. "0"] or "") > 0, "cvar mirror written (account + character)")
@@ -1136,7 +1173,8 @@ do
     check(e and e.x == 12.5 and e.npc == 999, "step edit restored")
     local e2 = ns.db.edits[savedGuide][3]
     check(e2 and e2.npc == 658 and e2.quest == 179 and e and e.quest ~= nil, "a second step edit survives the mirror too (separator kept)")
-    check(ns.db.ui.width == 480 and ns.db.ui.hideTracker == false and ns.db.ui.hideOnMap == false, "window width and the tracker/map switches are restored")
+    check(ns.db.ui.width == 480 and ns.db.ui.height == 280 and ns.db.ui.hideTracker == false and ns.db.ui.hideOnMap == false,
+        "window size and tracker/map switches are restored")
     ns.AutoQuest:Set("accept", "on")
     ns.db.edits = {}
     G:Activate(savedGuide, true); G:Reset(); settle()

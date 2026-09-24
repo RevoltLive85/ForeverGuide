@@ -188,7 +188,7 @@ function Persist:DecodeChar(s)
 end
 
 -- ---- account settings + edits ----------------------------------------------------
-local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "rec", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "sk", "so", "sp", "w", "ht", "hm", "sc", "sd", "ss", "dg", "dc", "rmf", "rmt", "dn", "e" }
+local ACCT_KEYS = { "v", "shown", "locked", "scale", "point", "x", "y", "hic", "fs", "ar", "ap", "ax", "ay", "as", "mm", "ma", "bliz", "rad", "acc", "ti", "ann", "rec", "ha", "op", "rows", "wp", "rt", "wa", "ws", "we", "sk", "so", "sp", "w", "h", "ht", "hm", "sc", "sd", "ss", "dg", "dc", "rmf", "rmt", "dn", "e" }
 
 function Persist:EncodeAcct()
     local db = ns.db
@@ -197,7 +197,7 @@ function Persist:EncodeAcct()
         v = 1,
         shown = b01(ui.shown ~= false), locked = b01(ui.locked), scale = ui.scale, point = ui.point, x = ui.x, y = ui.y,
         hic = b01(ui.hideInCombat), fs = ui.fontSize, ha = b01(ui.hiddenAll),
-        op = ui.opacity, rows = ui.maxRows, w = ui.width, ht = b01(ui.hideTracker ~= false), hm = b01(ui.hideOnMap ~= false),
+        op = ui.opacity, rows = ui.maxRows, w = ui.width, h = ui.height, ht = b01(ui.hideTracker ~= false), hm = b01(ui.hideOnMap ~= false),
         sc = b01(ui.showCompleted ~= false), sd = b01(ui.showDistances ~= false), ss = b01(ui.showSubtitles ~= false),
         wp = b01(nav.waypoint == nil or nav.waypoint.enabled ~= false), rt = b01(nav.waypoint == nil or nav.waypoint.route ~= false),
         wa = b01(nav.waypoint == nil or nav.waypoint.animate ~= false), ws = nav.waypoint and nav.waypoint.size,
@@ -244,6 +244,7 @@ function Persist:DecodeAcct(s)
     if num(t.op) then ui.opacity = num(t.op) end
     if num(t.rows) then ui.maxRows = num(t.rows) end
     if num(t.w) then ui.width = num(t.w) end
+    if num(t.h) then ui.height = num(t.h) end
     if t.ht then ui.hideTracker = bool(t.ht) end
     if t.hm then ui.hideOnMap = bool(t.hm) end
     if t.sc then ui.showCompleted = bool(t.sc) end
