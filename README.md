@@ -58,6 +58,8 @@ Then:
 
 The window and the floating arrow are draggable while unlocked (`/fg unlock` / `/fg lock`); `/fg arrow off` hides the arrow, `/fg bliz off` disables the Blizzard map-pin arrow. The **Guides** button opens a picker (auto mode or any installed guide); **Auto**/**Guide** switches modes.
 
+Want to help? See [CONTRIBUTING.md](CONTRIBUTING.md) for bug reports, guide edits, and testing.
+
 ## Layout
 
 ```
