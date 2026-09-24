@@ -108,7 +108,7 @@ ForeverGuide/
     scan_diff.py        /fg scan results vs Questie: new / removed / renamed quests
     merge_recorded.py   SavedVariables (recorder/harvest/scan, incl. .bak, every account) -> data-src/forever.json -> Data/ForeverDB.lua
     import_db2.py       wago.tools CSV exports of Forever's own quest tables (QuestV2, QuestObjective, QuestPOI*) -> same overlay
-    collect_reports.py  "/fg wrong" reports -> data-src/reports.json + review list
+    collect_reports.py  "/fg wrong" reports -> local-only data-src/reports.json + review list
     apply_edits.py      "/fg edit" corrections -> guides-src/*.json (then compile_guides.py)
     sync_to_github.cmd  commit + push this folder to github.com/RevoltLive85/ForeverGuide (double-click after editing)
     package.py          dist/ForeverGuide-<version>.zip (--dev includes tools and sources)
@@ -130,7 +130,9 @@ records only gain what they lack; unknown ids become new records flagged `foreve
   converted to map coordinates in-game.
 
 Hand fixes go into `data-src/corrections.json` (applied last). Player reports (`/fg wrong`) are
-collected with `tools/collect_reports.py`. Rebuild the guides after the data changes.
+collected with `tools/collect_reports.py`. `data-src/reports.json` and SavedVariables snapshots
+are private local files, ignored by Git; review individual reports before sharing them.
+Rebuild the guides after the data changes.
 
 What the client's tables actually contain on build 69913: `QuestV2` is only the **list of quest ids**
 (6600 - no titles, levels or zones; those are server-side), and the POI tables hold ~50 static

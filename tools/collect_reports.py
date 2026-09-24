@@ -35,6 +35,7 @@ def main():
     if os.path.isfile(OUT):
         with open(OUT, "r", encoding="utf-8") as fh:
             for r in json.load(fh):
+                r.pop("file", None)  # older exports included the account folder name
                 seen[r.get("key")] = r
     for f in files:
         sv, _ = foreverdb.load_saved_variables(f)
@@ -43,8 +44,8 @@ def main():
                 continue
             key = "%s|%s|%s|%s" % (r.get("t"), r.get("guide") or r.get("mode"), r.get("step"), r.get("q"))
             r = dict(r)
+            r.pop("file", None)
             r["key"] = key
-            r["file"] = os.path.basename(os.path.dirname(os.path.dirname(f)))
             if "loc" in r and isinstance(r["loc"], dict):
                 r["loc"] = {k: v for k, v in r["loc"].items()}
             seen[key] = r
