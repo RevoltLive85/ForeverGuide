@@ -26,7 +26,19 @@ into CVars every 30 s and restores them at login ("beta workaround" line in chat
 SavedVariables file and can be lost - `tools/apply_edits.py` folds them into the guide source.
 
 Developers: the addon folder doubles as the repo (`tools/`, `guides-src/`, `data-src/` are not loaded by the game);
-`python tools/package.py` builds the release zip, `lua5.1 tools/test/run_tests.lua` runs the engine tests.
+`python tools/package.py` builds the release zip. For local checks, install **Lua 5.1 or LuaJIT** and
+[Luacheck](https://github.com/lunarmodules/luacheck) (on macOS, `brew install luajit luacheck`), then run:
+
+```sh
+luajit tools/test/run_tests.lua           # or: lua5.1 tools/test/run_tests.lua
+python3 tools/compile_guides.py --check # validate source guides, no generated-file changes
+luacheck Core.lua Database.lua Events.lua Persist.lua Player.lua Navigation.lua Guide.lua DB.lua
+```
+
+Luacheck currently covers these eight clean engine files, not the whole addon; its config suppresses
+WoW-provided global warnings, **not** local-variable or control-flow warnings. Expand its coverage as
+existing warnings elsewhere are resolved. Headless mocks cannot catch every client API, secret-value,
+or combat-lockdown issue: also verify behavior in-game after `/reload` and in combat when relevant.
 Then:
 
 | command | what |
