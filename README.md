@@ -8,6 +8,10 @@ no chat, no combat assistance.
 ForeverGuide DB (JSON)  ->  tools/compile_guides.py  ->  Guides/*.lua  ->  addon engine  ->  WoW Forever
 ```
 
+## License
+
+The [MIT license](LICENSE) covers only original ForeverGuide code and assets owned by RevoltLive85. It does **not** grant rights to redistribute the bundled Questie-derived database or other third-party-sourced material; see [Data/README.md](Data/README.md) for attribution and check those sources' terms separately.
+
 ## Install
 
 1. Download `ForeverGuide-<version>.zip` from the [releases page](https://github.com/RevoltLive85/ForeverGuide/releases)
