@@ -19,7 +19,7 @@ ROOT = os.path.dirname(HERE)
 NAME = os.path.basename(ROOT)
 
 RUNTIME_EXT = {".lua", ".xml", ".toc", ".tga", ".blp", ".md", ".txt"}
-RUNTIME_DIRS = {"", "Data", "Guides", "Textures"}
+RUNTIME_DIRS = {"", "Data", "Guides", "Textures", "UI"}
 DEV_DIRS = {"tools", "tools/test", "guides-src", "data-src"}
 SKIP = {"dist", "__pycache__", ".git", "WTF"}
 
@@ -50,7 +50,7 @@ def main():
                 continue
             for fn in sorted(filenames):
                 ext = os.path.splitext(fn)[1].lower()
-                if rel in RUNTIME_DIRS and ext not in RUNTIME_EXT and not dev:
+                if rel in RUNTIME_DIRS and ext not in RUNTIME_EXT and fn != "LICENSE" and not dev:
                     continue
                 if fn.endswith(".pyc"):
                     continue

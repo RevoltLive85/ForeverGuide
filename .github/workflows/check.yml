@@ -1,0 +1,21 @@
+name: Check addon
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Lua 5.1
+        run: sudo apt-get update && sudo apt-get install -y lua5.1
+      - name: Test engine
+        run: lua5.1 tools/test/run_tests.lua
+      - name: Validate guide sources
+        run: python3 tools/compile_guides.py --check
+      - name: Check release ZIP
+        run: |
+          python3 tools/package.py
+          python3 tools/check_package.py
