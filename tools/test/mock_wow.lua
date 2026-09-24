@@ -62,6 +62,23 @@ local function NewRegion(kind)
     function r:GetStringHeight() return 14 end
     function r:SetTexture() end
     function r:SetColorTexture() end
+    -- ---- slider (base widget type, not a named template - see Options.lua's MakeSlider) ----
+    function r:SetOrientation(o) self.orientation = o end
+    function r:SetMinMaxValues(lo, hi) self.vmin, self.vmax = lo, hi end
+    function r:GetMinMaxValues() return self.vmin or 0, self.vmax or 1 end
+    function r:SetValueStep(step) self.vstep = step end
+    function r:SetObeyStepOnDrag() end
+    function r:SetHitRectInsets() end
+    function r:SetThumbTexture(t) self.thumb = t end
+    function r:GetThumbTexture() return self.thumb end
+    function r:SetValue(v)
+        if self.vmin and v < self.vmin then v = self.vmin end
+        if self.vmax and v > self.vmax then v = self.vmax end
+        self.value = v
+        local fn = self.scripts.OnValueChanged
+        if fn then fn(self, v) end
+    end
+    function r:GetValue() return self.value or self.vmin or 0 end
     function r:SetRotation(a) self.rotation = a end
     function r:SetVertexColor(...) self.vertex = { ... } end
     function r:SetAlpha(a) self.alpha = a end

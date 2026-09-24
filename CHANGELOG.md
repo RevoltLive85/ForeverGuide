@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.9 - 2026-09-24
+- Arrow size is now a real slider in the options panel (Esc -> Options -> AddOns -> ForeverGuide), not just `/fg arrow size` - drag it and the chevron above your head resizes live. `/fg arrow <anything else>` now tells you it didn't understand instead of quietly flipping the arrow off, which is what a mistyped option used to do.
+
 ## 0.3.8 - 2026-09-24
 - The chevron above your head can now be resized: `/fg arrow size <0.5-2.5>` (or `/fg qg arrowsize <value>`), saved and restored like everything else.
 

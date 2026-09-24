@@ -287,6 +287,27 @@ do
     check(okBig == true and ns.Arrow:GetScale() == 2.5, "an out-of-range size is clamped to the max, not rejected (" .. tostring(msgBig) .. ")")
     ns.Commands:Run("arrow size 1")
     check(ns.Arrow:GetScale() == 1, "back to 1 for the rest of the tests")
+    -- a typo after "arrow " must not silently flip it off (Ilya, 2026-09-24: this happened live)
+    local arrowWasOn = ns.db.ui.arrow.enabled
+    ns.Commands:Run("arrow sized 2")
+    check(ns.db.ui.arrow.enabled == arrowWasOn, "an unrecognized /fg arrow option is rejected, not treated as a toggle")
+    -- the Options panel exposes arrow size as a real slider, not just the chat command
+    do
+        ns.Options:Create()
+        local slider = ns.Options:GetWidget("arrowsize")
+        check(slider ~= nil, "the panel built a slider for arrow size")
+        if slider then
+            -- drive it the way a player drags it, then confirm Refresh() reads the change back
+            slider:SetValue(2.0)
+            check(ns.Arrow:GetScale() == 2.0, "dragging the panel slider resizes the arrow")
+            ns.Commands:Run("arrow size 1.2")
+            ns.Options:Refresh()
+            check(slider:GetValue() == 1.2, "setting it from /fg is reflected back onto the panel slider")
+            slider:SetValue(9)
+            check(ns.Arrow:GetScale() == 2.5, "the slider clamps to its own max (2.5) before item.set ever sees an out-of-range drag")
+        end
+        ns.Commands:Run("arrow size 1")
+    end
     local function pointerShown() return ns.Arrow:IsShown() or (ns.Waypoint.overlay and ns.Waypoint.overlay:IsShown()) end
     local frameWasShown = ForeverGuideFrame:IsShown()
     local arrowWasShown = pointerShown()

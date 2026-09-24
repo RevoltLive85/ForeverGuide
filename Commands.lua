@@ -611,16 +611,28 @@ function handlers.minimap(rest)
 end
 
 function handlers.arrow(rest)
-    rest = rest or ""
+    rest = ns.Trim(rest or "")
     local sizeArg = rest:match("^[Ss]ize%s+(.+)$") or rest:match("^[Ss]cale%s+(.+)$")
     if sizeArg then
         local ok, msg = ns.QuestGuideConfig.SetNumber("arrowsize", sizeArg)
         ns.Print(msg)
         return
     end
-    if rest == "on" then ns.Arrow:SetEnabled(true)
-    elseif rest == "off" then ns.Arrow:SetEnabled(false)
-    else ns.Arrow:SetEnabled(not (ns.db.ui.arrow and ns.db.ui.arrow.enabled)) end
+    -- anything that isn't blank/on/off/a recognized size is a mistyped command, not a toggle -
+    -- silently flipping the arrow off on a typo is exactly the kind of surprise a player can't
+    -- explain (Ilya, 2026-09-24: a live "/fg arrow size 2" once printed "arrow off" instead of
+    -- resizing; this guard turns any repeat of that into a visible error instead of a silent
+    -- wrong toggle).
+    if rest == "" then
+        ns.Arrow:SetEnabled(not (ns.db.ui.arrow and ns.db.ui.arrow.enabled))
+    elseif rest == "on" then
+        ns.Arrow:SetEnabled(true)
+    elseif rest == "off" then
+        ns.Arrow:SetEnabled(false)
+    else
+        ns.Printf("arrow: didn't understand '%s'. /fg arrow on|off|size <0.5-2.5>", rest)
+        return
+    end
     ns.Printf("arrow %s", ns.db.ui.arrow.enabled and "on" or "off")
 end
 

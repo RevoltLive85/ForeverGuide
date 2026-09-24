@@ -1,8 +1,9 @@
 -- ============================================================
 -- ForeverGuide / Options.lua
 -- Options panel (Esc -> Options -> AddOns -> ForeverGuide, or /fg options).
--- Plain checkboxes on a canvas category; everything here also has a slash
--- command, the panel just makes it discoverable.
+-- Checkboxes plus a couple of sliders (numeric settings like arrow size) on
+-- a canvas category; everything here also has a slash command, the panel
+-- just makes it discoverable.
 -- ============================================================
 
 local _, ns = ...
@@ -21,6 +22,9 @@ local ITEMS = {
     { key = "arrow", label = "Show the compact chevron arrow above your head (the everyday indicator)",
       get = function() return Bool(ns.db.ui.arrow and ns.db.ui.arrow.enabled ~= false) end,
       set = function(v) ns.Arrow:SetEnabled(v) end },
+    { key = "arrowsize", type = "slider", label = "Arrow size", min = 0.5, max = 2.5, step = 0.1,
+      get = function() return ns.Arrow and ns.Arrow:GetScale() or (ns.db.ui.arrow and ns.db.ui.arrow.scale) or 1 end,
+      set = function(v) if ns.QuestGuideConfig then ns.QuestGuideConfig.SetNumber("arrowsize", v) elseif ns.Arrow then ns.Arrow:SetScale(v) end end },
     { key = "minimap", label = "Show the minimap button",
       get = function() return Bool(ns.db.minimap == nil or ns.db.minimap.shown ~= false) end,
       set = function(v) ns.Minimap:SetShown(v) end },
@@ -78,6 +82,48 @@ local function MakeCheck(parent, item, y)
     return cb
 end
 
+--- A plain base "Slider" widget (not a named FrameXML template - those are unconfirmed on
+--- Forever's client, see tools/PHASE1_NOTES.md) with hand-drawn track/thumb textures, so it
+--- needs nothing beyond the core widget API every WoW client has always shipped.
+local function MakeSlider(parent, item, y)
+    local label = parent:CreateFontString(nil, "ARTWORK", "GameFontHighlight")
+    label:SetPoint("TOPLEFT", parent, "TOPLEFT", 16, y)
+    label:SetText(item.label)
+
+    local slider = CreateFrame("Slider", nil, parent)
+    slider:SetOrientation("HORIZONTAL")
+    slider:SetSize(200, 16)
+    slider:SetPoint("TOPLEFT", parent, "TOPLEFT", 20, y - 20)
+    pcall(slider.SetHitRectInsets, slider, 0, 0, -6, -6)
+    slider:SetMinMaxValues(item.min, item.max)
+    slider:SetValueStep(item.step or 0.1)
+    pcall(slider.SetObeyStepOnDrag, slider, true)
+
+    local track = slider:CreateTexture(nil, "BACKGROUND")
+    track:SetColorTexture(0, 0, 0, 0.6)
+    track:SetPoint("LEFT", slider, "LEFT", 0, 0)
+    track:SetPoint("RIGHT", slider, "RIGHT", 0, 0)
+    track:SetHeight(4)
+
+    local thumb = slider:CreateTexture(nil, "OVERLAY")
+    thumb:SetColorTexture(0.9, 0.75, 0.2, 1)
+    thumb:SetSize(10, 18)
+    slider:SetThumbTexture(thumb)
+
+    local valueText = parent:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+    valueText:SetPoint("LEFT", slider, "RIGHT", 10, 0)
+
+    slider:SetScript("OnValueChanged", function(self, value)
+        value = tonumber(string.format("%.1f", value)) or value
+        valueText:SetText(string.format("%.1f", value))
+        if self.suppress then return end
+        local ok, err = pcall(item.set, value)
+        if not ok then ns.ReportOnce("options:" .. item.key, err) end
+    end)
+
+    return slider, valueText
+end
+
 local function MakeButton(parent, text, x, y, onClick)
     local b = CreateFrame("Button", nil, parent, "UIPanelButtonTemplate")
     b:SetSize(150, 22)
@@ -91,10 +137,18 @@ local function MakeButton(parent, text, x, y, onClick)
 end
 
 function Options:Refresh()
-    for key, cb in pairs(widgets) do
-        local item = cb.item
+    for _, w in pairs(widgets) do
+        local item = w.item
         local ok, v = pcall(item.get)
-        cb:SetChecked(ok and v and true or false)
+        if w.kind == "slider" then
+            v = (ok and tonumber(v)) or item.min
+            w.widget.suppress = true
+            w.widget:SetValue(v)
+            w.widget.suppress = false
+            if w.valueText then w.valueText:SetText(string.format("%.1f", v)) end
+        else
+            w.widget:SetChecked(ok and v and true or false)
+        end
     end
 end
 
@@ -156,10 +210,13 @@ function Options:Create()
             h:SetPoint("TOPLEFT", 16, y - 6)
             h:SetText(item.header)
             y = y - 26
+        elseif item.type == "slider" then
+            local slider, valueText = MakeSlider(body, item, y)
+            widgets[item.key] = { widget = slider, item = item, kind = "slider", valueText = valueText }
+            y = y - 46
         else
             local cb = MakeCheck(body, item, y)
-            cb.item = item
-            widgets[item.key] = cb
+            widgets[item.key] = { widget = cb, item = item, kind = "check" }
             y = y - 26
         end
     end
@@ -214,4 +271,10 @@ end
 
 function Options:OnEnable()
     self:Create()
+end
+
+--- The widget for one option's key (mainly for tests to drive - e.g. dragging the arrow-size
+--- slider the way a player would - without duplicating the ITEMS table).
+function Options:GetWidget(key)
+    return widgets[key] and widgets[key].widget
 end
