@@ -1,6 +1,6 @@
 -- ============================================================
 -- ForeverGuide / UI/QuestWaypoint.lua
--- The in-world waypoint:
+-- The in-world waypoint (opt-in, /fg waypoint engine on):
 --
 --            Hilary's Necklace
 --                  85 yd
@@ -13,19 +13,28 @@
 -- C_SuperTrack.SetSuperTrackedUserWaypoint). When the engine can project
 -- that point (C_Navigation.GetTargetState() ~= Invalid, frame alpha > 0)
 -- we dress SuperTrackedFrame: its own icon/text are faded out, our
--- diamond, quest name and distance ride on its position.
+-- diamond, quest name and distance ride on its position. That is the
+-- ONLY case this file shows anything - EngineUsable() gates it, and
+-- EngineUsable() itself is opt-in (cfg().engine).
 --
--- On the Forever client the projection is not available in the open
--- world: GetTargetState() reports Invalid, the engine fades its frame to
--- alpha 0 and parks it at a meaningless spot near the character (that
--- was the "the diamond is next to me but the target is 78 yd away" bug).
--- Then we place the diamond ourselves: on a ring around the character's
--- on-screen position, in the direction of the target relative to the
--- player's facing (ahead = above the character, right = right of it),
--- with the ring radius growing with the distance. It still reads as an
--- in-world marker and the dotted route still leads towards it.
--- No target direction at all (other continent, no facing) -> the compact
--- gold chevron in Arrow.lua takes over.
+-- Why opt-in: on the Forever client the projection is usually not
+-- available in the open world. GetTargetState() reports Invalid, the
+-- engine fades its frame to alpha 0 and parks it at a meaningless spot
+-- near the character (that was the "the diamond is next to me but the
+-- target is 78 yd away" bug). This file used to paper over that by
+-- placing the diamond itself: guessing a screen position from the
+-- character's facing and a modelled chase camera, then estimating which
+-- way the camera itself was actually looking from SuperTrackedFrame's own
+-- (wrong) position and blending that in with an EMA smoother so the
+-- estimate did not jitter. It worked, but the smoothing that kept it
+-- from jittering is also exactly what made it feel a beat behind when
+-- you turned - reported live as "the guide arrow feels sluggish when
+-- rotating my character". The compact gold chevron in Arrow.lua has
+-- neither problem (it turns from your real facing, instantly), so it is
+-- the everyday indicator again, the way it was before this file existed.
+-- BearingPosition/CameraCorrected below no longer run in Tick() (PinShown
+-- now requires EngineUsable(), so the guess is never reached) - they are
+-- left in place, still unit-tested, rather than deleted outright.
 -- ============================================================
 
 local _, ns = ...
@@ -153,6 +162,16 @@ function WP:PinShown()
     if not cfg().enabled or self:IsSuppressed() then return false end
     if mapOpen() then return false end
     if not ns.Navigation.target then return false end
+    -- The diamond only earns its keep when it can ride the engine's own pin
+    -- (accurate). Without that, its only option is the guessed screen
+    -- position below - a perspective model plus a camera-direction estimate
+    -- that has to be smoothed to stop it jittering, which reads as sluggish
+    -- the moment you turn. Rather than ship that as the everyday experience,
+    -- the plain chevron (Arrow.lua) - instant, no guessing - is the default
+    -- again, the way it was before this file existed. /fg waypoint engine on
+    -- brings the diamond back for players who want it and whose pin the
+    -- client can actually project.
+    if not self:EngineUsable() then return false end
     return true
 end
 

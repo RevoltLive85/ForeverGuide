@@ -192,7 +192,18 @@ function Nav:Update(allowCached)
     self.state, self.stateAt, self.stateTarget = state, ns.Now(), t
     if state.arrived and not t.arrivedFired then
         t.arrivedFired = true
-        ns.Events:Fire("FG_NAV_ARRIVED", t)
+        -- deferred, not fired in-line: Update() runs synchronously inside whoever just
+        -- called SetTarget (Arrow and the waypoint both refresh immediately on
+        -- FG_NAV_TARGET_CHANGED). A target that is already within radius the moment it
+        -- is set - standing right next to the flight point you just asked to walk to,
+        -- say - used to fire FG_NAV_ARRIVED from inside that same SetTarget call, and a
+        -- handler reacting to arrival (Reminders releasing the flight-point override,
+        -- Crowd releasing its override) would reassign the navigation target while the
+        -- original caller had not finished setting it up. One tick later costs nothing
+        -- a player would notice and closes that reentrancy off.
+        ns.Events:After(0, function()
+            if self.target == t then ns.Events:Fire("FG_NAV_ARRIVED", t) end
+        end)
     end
     return state
 end

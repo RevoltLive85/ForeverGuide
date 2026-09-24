@@ -530,3 +530,30 @@ no camera-yaw API exists; a left-drag camera orbit around a standing character d
   had hidden everything themselves stays hidden on the way out. `/fg dungeon on|off` (default on), options
   toggle, `dn` in the account mirror. The Options "hide everything" checkbox now reads `db.ui.hiddenAll`
   directly rather than AllHidden(), or it would tick itself inside a dungeon. 345 tests.
+- Arrow/waypoint default swap (Ilya, live: "the guide arrow feels sluggish when rotating my character", then
+  "redo the arrow, it should be like the old way, just an arrow pointing above the characters head"): the
+  in-world diamond (UI/QuestWaypoint.lua) was the everyday indicator by default, and by default it could not
+  ride the engine's own SuperTrackedFrame (GetTargetState Invalid on this client, same old bug), so it placed
+  itself by guessing a screen position from a modelled chase camera plus a camera-direction estimate reverse-
+  engineered from SuperTrackedFrame's own (wrong) parked position, blended in with an EMA (0.35) so the guess
+  did not jitter as the character turned - that smoothing is exactly what read as sluggish. Fix: `WP:PinShown()`
+  now also requires `EngineUsable()`, so the diamond only ever shows when `/fg waypoint engine on` is set AND
+  the client can genuinely project the pin; there is no more guessed-placement fallback in Tick() at all
+  (BearingPosition/CameraCorrected are left in the file, still unit-tested as pure functions, but unreached).
+  With the diamond off by default, Arrow.lua (the plain chevron, always instant - it turns straight off
+  Navigation's real facing-relative angle, no smoothing) is unsuppressed and is the default indicator again,
+  matching how the addon behaved before QuestWaypoint.lua existed. No saved-setting migration needed: `engine`
+  already defaulted to false/opt-in, so this took effect on Ilya's live character immediately.
+  Reentrancy bug this surfaced (fixed in Navigation.lua): Arrow now calls `Nav:Update(true)` synchronously on
+  every FG_NAV_TARGET_CHANGED (it used to be suppressed while the diamond was the default, which is why this
+  was never seen live) - so a target already inside its arrival radius the instant it is set (e.g. `/fg fp`
+  while already standing next to the flight point) fired FG_NAV_ARRIVED from inside `SetTarget` itself, and
+  Reminders' arrival handler released the flight-point override and handed navigation back to
+  `Guide:UpdateNavigation()` *before* `Rem:GoToFlightPoint()` had returned - so the caller's own `SetTarget`
+  call was immediately overwritten with the guide's step. Caught by the existing `/fg fp takes the marker`
+  test (it had been silently passing for the wrong reason: an earlier test left `waypoint engine on`
+  lingering, which took Tick() down the "engine" branch that never calls Update() - turning it back off at
+  the end of that test block, as the new default now does for real players too, exposed the bug immediately).
+  Fix: `Nav:Update()` now fires FG_NAV_ARRIVED a tick later (`ns.Events:After(0, ...)`, guarded against the
+  target having already changed by the time it runs) instead of inline, so a caller mid-way through setting a
+  target always finishes before anything reacts to arrival. 345 tests.

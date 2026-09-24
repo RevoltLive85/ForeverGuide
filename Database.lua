@@ -41,11 +41,15 @@ local DEFAULTS = {
         blizzardWaypoint = true,  -- also set Blizzard's own map pin / super-track arrow
         arrivalRadius = 15,       -- yards: TRAVEL steps complete within this distance
         updateInterval = 0.1,     -- seconds between distance/arrow updates
-        waypoint = {              -- the in-world gold waypoint (UI/QuestWaypoint.lua)
-            enabled = true,
+        waypoint = {              -- the in-world gold waypoint diamond (UI/QuestWaypoint.lua)
+            enabled = true,       -- only actually shows once `engine` (below) is also on
             size = 1.0,
             animate = true,
-            route = true,         -- the dotted path towards it
+            route = true,         -- the dotted path towards it, while it shows
+            -- engine = false,   -- opt-in: ride the client's own pin. Off by default: most
+                                  -- Forever clients cannot project it, and guessing the spot
+                                  -- ourselves needed smoothing that felt sluggish when turning.
+                                  -- The plain chevron (Arrow.lua) is the default indicator.
         },
         skull = {                 -- skulls over quest mobs (UI/MobMarker.lua)
             enabled = true,

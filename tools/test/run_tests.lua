@@ -863,23 +863,31 @@ do
     ns.QuestGuide:ToggleInfo(); settle()
     check(ForeverGuideInfo and ForeverGuideInfo:IsShown() and (ForeverGuideInfo.body:GetText() or ""):find("Step") ~= nil, "the Guide button opens the info popup with the current step")
     ns.QuestGuide:ToggleInfo(); settle()
-    -- waypoint: the engine pin (SuperTrackedFrame) is dressed by our overlay while it shows
+    -- waypoint: the plain chevron is the default indicator; the engine-pin diamond is opt-in
     ns.Navigation:SetTarget({ map = 1429, x = 40, y = 60, label = "Hilary's Necklace", owner = "test" }); settle()
     ns.Waypoint:Tick()
     check(ns.Navigation.ownsWaypoint and MOCK.superTrack == true, "a target sets the engine's user waypoint and super-tracks it")
-    check(ns.Waypoint.overlay:IsShown() and ns.Waypoint.mode == "bearing", "by default the diamond is placed by our own projection (mode=" .. tostring(ns.Waypoint.mode) .. ")")
+    check(not ns.Waypoint.overlay:IsShown() and not ns.Arrow.suppressedByWaypoint, "by default the diamond stays off and the chevron is the indicator (mode=" .. tostring(ns.Waypoint.mode) .. ")")
+    check(ns.Arrow:IsShown() and not ns.Arrow.suppressedByWaypoint, "the chevron is visible by default")
     ns.Commands:Run("waypoint engine on"); ns.Waypoint:Tick()
     check(ns.db.nav.waypoint.engine == true and ns.Waypoint.mode == "engine", "/fg waypoint engine on rides the client's pin (mode=" .. tostring(ns.Waypoint.mode) .. ")")
     check(ns.Waypoint.overlay:IsShown(), "the world waypoint overlay shows on the engine pin")
     check(ns.Waypoint.overlay.name:GetText() == "Hilary's Necklace", "the overlay carries the quest name")
     check(SuperTrackedFrame.Icon.alpha == 0, "the engine pin's own icon is faded out under our diamond")
     check(ns.Arrow.suppressedByWaypoint == true, "the chevron arrow steps aside while the world pin shows")
+    -- the engine cannot project the pin after all (Forever: NavigationState Invalid, frame
+    -- faded): even with engine mode on, the diamond does NOT fall back to a guessed screen
+    -- position any more (that guess is what felt sluggish) - it simply steps aside for the chevron
+    MOCK.superTrack = false; ns.Waypoint:Tick()
+    check(not ns.Waypoint.overlay:IsShown() and ns.Arrow.suppressedByWaypoint == false, "engine pin unusable: no guessed fallback - the chevron takes over (mode=" .. tostring(ns.Waypoint.mode) .. ")")
+    MOCK.superTrack = true; ns.Waypoint:Tick()
+    check(ns.Waypoint.overlay:IsShown() and ns.Waypoint.mode == "engine", "engine pin usable again: the diamond is back")
     ns.Commands:Run("waypoint off"); ns.Waypoint:Tick()
     check(ns.db.nav.waypoint.enabled == false and not ns.Waypoint.overlay:IsShown(), "/fg waypoint off hides the overlay")
     check(SuperTrackedFrame.Icon.alpha == 1, "the engine pin's own art is restored when the waypoint is off")
     check(ns.Arrow.suppressedByWaypoint == false, "the chevron arrow is back when the waypoint is off")
     ns.Commands:Run("waypoint on"); ns.Waypoint:Tick()
-    check(ns.db.nav.waypoint.enabled == true and ns.db.nav.blizzardWaypoint == true and ns.Waypoint.overlay:IsShown(), "/fg waypoint on brings the overlay back")
+    check(ns.db.nav.waypoint.enabled == true and ns.db.nav.blizzardWaypoint == true and ns.Waypoint.overlay:IsShown(), "/fg waypoint on brings the overlay back (engine mode is still on from above)")
     -- the world map opens: nothing of ours floats over it; closes: back
     MOCK.mapOpen = true; WorldMapFrame.hooks.OnShow(); settle()
     check(not ns.Waypoint.overlay:IsShown() and not ns.Arrow:IsShown(), "world map open: waypoint and chevron hide")
@@ -887,18 +895,9 @@ do
     MOCK.mapOpen = false; WorldMapFrame.hooks.OnHide(); settle()
     check(ns.Waypoint.overlay:IsShown(), "world map closed: the waypoint is back")
     check(ForeverGuideFrame:IsShown(), "world map closed: the window is back")
-    -- the engine cannot project the pin (Forever: NavigationState Invalid, frame faded):
-    -- the diamond is placed on the bearing ring around the character instead
-    MOCK.superTrack = false; ns.Waypoint:Tick()
-    check(ns.Waypoint.overlay:IsShown() and ns.Waypoint.mode == "bearing" and ns.Arrow.suppressedByWaypoint == true, "engine pin unusable: the diamond goes on the bearing ring (mode=" .. tostring(ns.Waypoint.mode) .. ")")
-    do
-        local px, py = ns.Waypoint.PlayerScreenPoint()
-        local ox, oy = ns.Waypoint.overlay:GetCenter()
-        local st = ns.Navigation.state
-        local ahead = st and st.angle and math.abs(st.angle) < math.pi / 2
-        check(ox and ((ahead and oy > py) or (not ahead and oy < py)), string.format("bearing ring: a target ahead sits above the character, behind below (angle=%.2f dy=%.0f)", st and st.angle or 0, (oy or 0) - py))
-    end
-    do  -- projection geometry (1280x720 mock screen, character at 640,288)
+    do  -- BearingPosition is no longer reached from Tick() (engine mode required to show at
+        -- all), but the projection geometry itself is still exercised directly since it is
+        -- still around for possible future use (1280x720 mock screen, character at 640,288)
         local W = ns.Waypoint
         local x, y, _, pinned = W:BearingPosition({ angle = 0, distance = 60 })
         check(x and math.abs(x - 640) < 1 and y > 288 and not pinned, string.format("60 yd straight ahead: above the character, centred (%.0f,%.0f)", x or 0, y or 0))
@@ -911,14 +910,9 @@ do
         local _, yf = W:BearingPosition({ angle = 0, distance = 800 })
         check(yf and yf <= 720 * 0.74 + 0.5, string.format("a far target never rises above the horizon line (%.0f)", yf or 0))
     end
-    -- no direction at all (no facing): fallback to the chevron
-    local savedFacing = MOCK.facing
-    MOCK.facing = nil; ns.Navigation:Update(); ns.Waypoint:Tick()
-    check(ns.Waypoint.overlay:IsShown(), "a momentary loss of direction keeps the marker where it was (no blinking)")
-    ns.Waypoint.lastPos.at = ns.Waypoint.lastPos.at - 5; ns.Waypoint:Tick()
-    check(not ns.Waypoint.overlay:IsShown() and ns.Arrow.suppressedByWaypoint == false, "no direction known for longer: overlay hides and the chevron takes over")
-    MOCK.facing = savedFacing; ns.Navigation:Update()
-    MOCK.superTrack = true; ns.Waypoint:Tick()
+    -- back to the default (engine off): the chevron leads, no smoothing to feel sluggish
+    ns.Commands:Run("waypoint engine off"); ns.Waypoint:Tick()
+    check(not ns.Waypoint.overlay:IsShown() and ns.Arrow:IsShown() and not ns.Arrow.suppressedByWaypoint, "engine off: back to the plain chevron by default")
     ns.Commands:Run("route off")
     check(ns.db.nav.waypoint.route == false, "/fg route off disables the dotted path")
     ns.Commands:Run("route on")

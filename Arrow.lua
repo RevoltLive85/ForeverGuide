@@ -1,11 +1,13 @@
 -- ============================================================
 -- ForeverGuide / Arrow.lua
--- The compact gold chevron: rotates towards the destination, with the
--- destination name and distance under it. Since the in-world waypoint
--- (UI/QuestWaypoint.lua) took over the everyday job, this only shows when
--- the engine cannot place the world pin (other continent, no
--- SuperTrackedFrame, waypoint disabled). Warm gold when you face the
--- target, cooler / dimmer the further it is to the side or behind.
+-- The compact gold chevron above your character: rotates towards the
+-- destination straight from your real facing (Navigation's angle, no
+-- smoothing, no guessing), with the destination name and distance under
+-- it. Warm gold when you face the target, cooler / dimmer the further it
+-- is to the side or behind. This is the everyday indicator; the fancier
+-- in-world diamond (UI/QuestWaypoint.lua) only takes over when a player
+-- opts into "/fg waypoint engine on" and the client's own pin can
+-- genuinely project it - otherwise this chevron is what shows.
 --
 --   /fg arrow on|off      show / hide
 --   /fg unlock            drag it (and the window) somewhere else
