@@ -131,7 +131,11 @@ records only gain what they lack; unknown ids become new records flagged `foreve
 
 Hand fixes go into `data-src/corrections.json` (applied last). Player reports (`/fg wrong`) are
 collected with `tools/collect_reports.py`. `data-src/reports.json` and SavedVariables snapshots
-are private local files, ignored by Git; review individual reports before sharing them.
+are private local files, ignored by Git. Before posting a report or committing a derived
+correction, scrub account, character, and realm names (including free text and file paths),
+and omit timestamps or player locations unless needed to reproduce the bug. Share the
+smallest correction, not a raw SavedVariables file. Gitignore and deleting a tracked file
+do not remove copies from past commits.
 Rebuild the guides after the data changes.
 
 What the client's tables actually contain on build 69913: `QuestV2` is only the **list of quest ids**
