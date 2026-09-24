@@ -14,7 +14,7 @@ local WARN_FREE = 3          -- "getting full" at this many free slots
 local vendorIDs              -- npcID -> true, built on first use from ItemDB
 
 local function cfg()
-    ns.db.bags = ns.db.bags or { warn = WARN_FREE }
+    ns.db.bags = ns.db.bags or { warn = WARN_FREE, banners = false }
     return ns.db.bags
 end
 
@@ -186,7 +186,7 @@ local function Banner()
     f:SetSize(420, 52)
     f:SetPoint("TOP", UIParent, "TOP", 0, -150)
     f:SetFrameStrata("HIGH")
-    if Theme and Theme.Backdrop then Theme.Backdrop(f, "panel", 0.92) end
+    if Theme and Theme.Backdrop then Theme.Backdrop(f, "panel", 0.75) end
     f.icon = f:CreateTexture(nil, "ARTWORK")
     f.icon:SetSize(30, 30)
     f.icon:SetPoint("LEFT", f, "LEFT", 12, 0)
@@ -210,6 +210,7 @@ local function Banner()
 end
 
 function Bags:UpdateBanner()
+    if cfg().banners ~= true then if banner then banner:Hide() end return end
     local st = self.last or self:Status()
     local f = Banner()
     local hidden = ns.UI and ns.UI.AllHidden and ns.UI:AllHidden()
@@ -268,7 +269,7 @@ function Bags:Check(reason)
     local lootStep = step and (step.type == "COLLECT" or step.type == "KILL" or step.type == "COMPLETE")
     if band > (lastBand or 0) or (reason == "step" and band > 0 and lootStep and self.warnedStep ~= (step and step.index)) then
         local advice = self:Advice(true)
-        if advice then ns.Print(advice) end
+        if advice and cfg().banners == true then ns.Print(advice) end
         if reason == "step" and step then self.warnedStep = step.index end
     end
     lastBand = band
