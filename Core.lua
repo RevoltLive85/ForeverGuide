@@ -41,7 +41,10 @@ local function IsSecret(value)
 end
 ns.IsSecret = IsSecret
 
---- value if it is usable, otherwise nil.
+--- Returns nil for a secret value; callers must still check game results at runtime.
+---@generic T
+---@param value T
+---@return T?
 local function Plain(value)
     if value == nil or IsSecret(value) then return nil end
     return value
@@ -49,6 +52,8 @@ end
 ns.Plain = Plain
 
 --- value if it is a plain number, otherwise nil.
+---@param value any
+---@return number?
 local function PlainNumber(value)
     value = Plain(value)
     if type(value) == "number" then return value end
@@ -57,6 +62,8 @@ end
 ns.PlainNumber = PlainNumber
 
 --- value if it is a plain string, otherwise nil.
+---@param value any
+---@return string?
 local function PlainString(value)
     value = Plain(value)
     if type(value) == "string" then return value end
@@ -65,6 +72,8 @@ end
 ns.PlainString = PlainString
 
 --- value if it is a plain boolean, otherwise nil.
+---@param value any
+---@return boolean?
 local function PlainBool(value)
     value = Plain(value)
     if type(value) == "boolean" then return value end
@@ -83,6 +92,8 @@ end
 ns.Safe = Safe
 
 --- Resolve "C_Namespace.Func" to a function, or nil if it does not exist.
+---@param path string
+---@return function?
 local function API(path)
     local tbl = _G
     for part in string.gmatch(path, "[^%.]+") do
@@ -95,6 +106,8 @@ end
 ns.API = API
 
 --- Call a namespaced API by string path, safely. ns.Call("C_Map.GetBestMapForUnit", "player")
+--- Results may be secret; pass them through Plain* before use.
+---@param path string
 function ns.Call(path, ...)
     local fn = API(path)
     if not fn then return nil end

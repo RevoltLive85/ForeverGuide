@@ -27,7 +27,30 @@ SavedVariables file and can be lost - `tools/apply_edits.py` folds them into the
 
 Developers: the addon folder doubles as the repo (`tools/`, `guides-src/`, `data-src/` are not loaded by the game);
 `python tools/package.py` builds the release zip, `lua5.1 tools/test/run_tests.lua` runs the engine tests.
-Then:
+
+### LuaLS (local editor diagnostics, not a type-check gate)
+
+Open this folder as the workspace in an editor with Lua Language Server. `.luarc.json` uses Lua 5.1 and
+checks the handwritten addon Lua files at the root and in `UI/` (39 files); `Guides/`, `Data/`,
+`guides-src/`, `data-src/`, and `tools/` are excluded from workspace diagnostics. These exclusions
+are not a guarantee that an individually opened file will have no diagnostics. From this folder, run:
+
+```sh
+lua-language-server --check . --checklevel=Warning
+luajit tools/test/run_tests.lua             # or lua5.1 tools/test/run_tests.lua
+python3 tools/compile_guides.py --check     # Windows: py -3 tools/compile_guides.py --check
+```
+
+LuaCATS hints describe the `Plain*` helpers' nullable results, the string path to `ns.Call`, and
+selected fields of a registered guide step. LuaLS can flag incompatible annotated step fields
+(e.g. a string quest ID), or misuse of typed helpers where their types are known; generated
+steps are **not** checked by LuaLS. There is no WoW Forever API definition here: undefined-game-global
+warnings remain, and static types cannot validate API availability, secret values in combat, or
+whether a game result is safe to use without `Plain*`/`Safe`. Treat warnings as leads to inspect,
+not proof of a passing type check. The CLI currently reports 172 warnings in 28 files (LuaLS 3.19.1:
+150 undefined globals, 21 possible nil accesses, 1 unbalanced assignment) and exits nonzero.
+
+In game:
 
 | command | what |
 |---|---|
