@@ -43,8 +43,8 @@ local HELP = {
     "/fg resync          skip quests you out-levelled (<=20% xp) and continue from the first open step",
     "/fg edit here|npc|note <text>|radius <yd>|clear   correct the current step in place (saved; tools/apply_edits.py folds it into the guide)",
     "/fg edits [clear]   list / wipe your edits of the active guide",
-    "/fg wrong [text]    report the current step as wrong (coords/npc/quest) - saved with your position for the route fixer",
-    "/fg reports [clear] what you reported so far (tools/collect_reports.py turns them into corrections)",
+    "/fg wrong [text]    open feedback dialog (or save the supplied text with your step/position)",
+    "/fg reports [clear] open a copyable list of feedback (clear deletes it)",
     "/fg options         open the options panel",
     "/fg persist [save]  state of the beta workaround that keeps your guide/settings when the client forgets SavedVariables",
     "/fg debug           toggle debug output",
@@ -684,6 +684,7 @@ end
 -- Feedback: "/fg wrong" snapshots the current step + where you really are
 -- ------------------------------------------------------------
 function handlers.wrong(rest)
+    if rest == "" then ns.Reports:Prompt() return end
     ns.db.reports = ns.db.reports or {}
     local G, T, P = ns.Guide, ns.Tracker, ns.Player
     local map, x, y = P:GetMapPosition()
@@ -713,13 +714,7 @@ handlers.report = handlers.wrong
 function handlers.reports(rest)
     ns.db.reports = ns.db.reports or {}
     if rest == "clear" then ns.db.reports = {} ns.Print("reports cleared.") return end
-    if #ns.db.reports == 0 then ns.Print("no reports yet. /fg wrong <what is wrong> while on a bad step.") return end
-    for i, r in ipairs(ns.db.reports) do
-        ns.Printf("%d. %s%s%s @ %s %.1f,%.1f%s", i,
-            r.guide and (r.guide .. " step " .. tostring(r.step) .. " ") or (r.mode == "auto" and "auto " or ""),
-            r.q and ("quest " .. r.q .. " ") or "", r.text and ('"' .. r.text .. '"') or "",
-            r.zone or "?", r.x or 0, r.y or 0, r.npcName and (" target " .. r.npcName .. " (" .. tostring(r.npc) .. ")") or "")
-    end
+    ns.Reports:ShowList()
 end
 
 function handlers.resync()
