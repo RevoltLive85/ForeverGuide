@@ -8,6 +8,9 @@ no chat, no combat assistance.
 ForeverGuide DB (JSON)  ->  tools/compile_guides.py  ->  Guides/*.lua  ->  addon engine  ->  WoW Forever
 ```
 
+**Redistributors:** bundled data has unresolved third-party licensing questions; see
+[Data/README.md](Data/README.md#redistribution-status-unresolved) before publishing a package.
+
 ## Install
 
 1. Download `ForeverGuide-<version>.zip` from the [releases page](https://github.com/RevoltLive85/ForeverGuide/releases)
