@@ -25,7 +25,7 @@ local CHANNELS = {          -- what /fg ding <name> means
 local function cfg()
     ns.db.ding = ns.db.ding or {}
     local c = ns.db.ding
-    if c.enabled == nil then c.enabled = true end
+    if c.enabled == nil then c.enabled = false end
     if c.channel == nil then c.channel = "auto" end
     return c
 end

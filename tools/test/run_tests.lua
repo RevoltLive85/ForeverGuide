@@ -57,6 +57,13 @@ local function step() return G:GetCurrentStep() end
 local function settle() MOCK_ADVANCE(1) end
 
 print("guide active: " .. tostring(G.active and G.active.id))
+check(ns.db.ding.enabled == false and ns.db.nav.blizzardWaypoint == false
+    and ns.db.nav.waypoint.enabled == false and ns.db.nav.waypoint.route == false
+    and ns.db.ui.arrow.enabled == true, "quiet defaults: no ding, pin or dotted route; arrow on")
+MOCK_BAG(0, 0, 0); settle()
+check(rawget(_G, "ForeverGuideBagBanner") == nil and ns.db.bags.banners == false, "bag and gear alerts do not pop up by default")
+check(rawget(_G, "ForeverGuideCrowdBanner") == nil and (ns.db.crowd == nil or ns.db.crowd.enabled == false), "crowd reminders do not pop up by default")
+MOCK_BAG(16, 0, 0); settle()
 check(G.active and G.active.faction == "Alliance" and G.active.minLevel == 1 and ns.Contains(G.active.race, "Human"), "auto-picked a human 1-10 guide: " .. tostring(G.active and G.active.id))
 G:Activate("HUMAN_NORTHSHIRE_1_6", true); settle()
 check(cur() == 1 and step().type == "ACCEPT" and step().quest == 783, "starts at step 1 (accept 783)")
@@ -308,6 +315,11 @@ do
         end
         ns.Commands:Run("arrow size 1")
     end
+    check(ForeverGuideArrowFrame.mouse == true, "arrow accepts dragging when unlocked and tracking a target")
+    ns.Commands:Run("lock")
+    check(ForeverGuideArrowFrame.mouse == false and not ForeverGuideFrame.resizeGrip:IsShown(), "locking disables arrow drag and hides resize grip")
+    ns.Commands:Run("unlock")
+    check(ForeverGuideArrowFrame.mouse == true and ForeverGuideFrame.resizeGrip:IsShown(), "unlocking enables arrow drag and resize grip")
     local function pointerShown() return ns.Arrow:IsShown() or (ns.Waypoint.overlay and ns.Waypoint.overlay:IsShown()) end
     local frameWasShown = ForeverGuideFrame:IsShown()
     local arrowWasShown = pointerShown()
@@ -510,6 +522,20 @@ do
     check(objs[1] and #objs[1].locations > 0, "vanilla objective of 317 keeps its own locations (" .. tostring(objs[1] and #objs[1].locations) .. ")")
     local fq = ns.QuestDB[99128]
     check(fq and fq.forever and fq.n == "Slimy Menace", "Forever-only quest 99128 exists with its title")
+ns.Commands:Run("wrong")
+check(ForeverGuideReportPrompt and ForeverGuideReportPrompt:IsShown(), "/fg wrong opens feedback dialog")
+ForeverGuideReportPrompt.input:SetText("giver moved east")
+ForeverGuideReportPrompt.save:GetScript("OnClick")()
+check(not ForeverGuideReportPrompt:IsShown() and ns.db.reports[2].text == "giver moved east", "Save records dialog feedback and closes it")
+ns.Commands:Run("reports")
+check(ForeverGuideReports and ForeverGuideReports:IsShown() and ForeverGuideReports.text:GetText():find("giver moved east", 1, true)
+    and ForeverGuideReports.text:GetText():find("expected map", 1, true), "/fg reports shows copyable full feedback")
+check(ForeverGuideFrame.header.reports ~= nil, "guide header has a reports button next to feedback")
+ForeverGuideReports.clear:GetScript("OnClick")()
+check(#ns.db.reports == 2, "first clear click asks for confirmation without deleting feedback")
+ForeverGuideReports.clear:GetScript("OnClick")()
+check(#ns.db.reports == 0 and ForeverGuideReports.text:GetText():find("No reports yet", 1, true),
+    "confirmed clear deletes feedback and refreshes the list")
     check(ns.Quest:XPMultiplier(783, 1) == 1 and ns.Quest:XPMultiplier(783, 7) == 0.8 and ns.Quest:XPMultiplier(783, 12) == 0.1, "xp multiplier follows the Classic reduction table")
 end
 
@@ -600,6 +626,7 @@ end
 
 -- ---- bag space --------------------------------------------------------------------------------
 do
+    ns.db.bags.banners = true -- opt into legacy banner behavior for the existing banner checks
     MOCK_BAG(10, 2, 1); settle()
     check(ns.Bags:Tag() == nil, "plenty of room: no bag tag")
     MOCK_BAG(2, 4, 3); settle()
@@ -683,6 +710,7 @@ do
     check(ns.MobMarker.primaryUnit == nil and ns.MobMarker.markedCount == 1, "all wanted mobs tagged: no big skull, only the other quest's mob keeps a small one")
     -- crowd: most wanted mobs tagged by others -> banner with a quieter spawn cluster / another step
     do
+        ns.db.crowd = { enabled = true } -- opt into crowd behavior for its existing checks
         for i = 1, 6 do MOCK_PLATE("nameplate" .. (10 + i), { name = "Kobold Vermin", npcID = 6, scale = 1.0, y = 300, tagged = i <= 5 }) end
         ns.MobMarker:Scan()
         local tg, fr, pl, crowded = ns.Crowd:Level()
@@ -915,6 +943,38 @@ do
         f.list.rows[1]:GetScript("OnClick")(f.list.rows[1], "LeftButton"); settle()
         check(G.current == target.index, "clicking a row jumps to that step (" .. tostring(G.current) .. " vs " .. tostring(target.index) .. ")")
     end
+    -- width grip: drag to resize, persist the new width, and reflow the list
+    check(f.resizeGrip ~= nil and f.resizable == true, "guide has a resize grip")
+    if f.resizeGrip then
+        f.resizeGrip:GetScript("OnMouseDown")(f.resizeGrip)
+        check(f.sizing == true, "resize grip starts sizing the guide")
+        f:SetWidth(360)
+        f:SetHeight(160)
+        f:GetScript("OnSizeChanged")(f, 360, 160)
+        check(f.list:GetWidth() == 348 and f.footerLine.points[1][5] == -120,
+            "quest list and footer follow the resize while the mouse is still down")
+        f.resizeGrip:GetScript("OnMouseUp")(f.resizeGrip)
+        check(ns.db.ui.width == 360 and f.sizing == false, "resize saves guide width")
+        check(ns.db.ui.height == 160 and f:GetHeight() == 160 and f.scroll and f.scroll:GetScrollChild() == f.list,
+            "resize saves height and clips the quest list to a scroll viewport")
+        check(f.list:GetWidth() == f:GetWidth() - 12 and f.list:GetHeight() > 0,
+            "scroll child has a real width and height so quest text renders")
+        f.scroll:SetVerticalScroll(0)
+        ns.UI:Refresh()
+        local activeTop = 4
+        for i, entry in ipairs(f.list.entries) do
+            if entry.state == "active" then break end
+            activeTop = activeTop + f.list.rows[i]:GetHeight() + 3
+        end
+        check(activeTop <= f.scroll:GetVerticalScroll() + 64,
+            "resized guide keeps the current step inside the visible list")
+        f:SetHeight(520)
+        f.resizeGrip:GetScript("OnMouseUp")(f.resizeGrip)
+        check(ns.db.ui.maxRows > 7 and #f.list.entries > 7,
+            "taller guide displays more than the default seven steps")
+        f:SetHeight(160)
+        f.resizeGrip:GetScript("OnMouseUp")(f.resizeGrip)
+    end
     -- settings
     ns.Commands:Run("qg opacity 0.7")
     check(math.abs((ns.db.ui.opacity or 0) - 0.7) < 1e-6, "/fg qg opacity sets the window opacity")
@@ -934,7 +994,8 @@ do
     ns.QuestGuide:ToggleInfo(); settle()
     check(ForeverGuideInfo and ForeverGuideInfo:IsShown() and (ForeverGuideInfo.body:GetText() or ""):find("Step") ~= nil, "the Guide button opens the info popup with the current step")
     ns.QuestGuide:ToggleInfo(); settle()
-    -- waypoint: the plain chevron is the default indicator; the engine-pin diamond is opt-in
+    -- The chevron is the default; opt into the map pin to exercise its behavior.
+    ns.Commands:Run("waypoint on")
     ns.Navigation:SetTarget({ map = 1429, x = 40, y = 60, label = "Hilary's Necklace", owner = "test" }); settle()
     ns.Waypoint:Tick()
     check(ns.Navigation.ownsWaypoint and MOCK.superTrack == true, "a target sets the engine's user waypoint and super-tracks it")
@@ -1093,7 +1154,7 @@ do
     ns.Commands:Run("edit note keep me")
     ns.db.edits.GEN_ALLIANCE_DWARF_01_DUN_MOROGH[G.current] = { type = G:GetCurrentStep().type, quest = G:GetCurrentStep().quest, map = 1426, x = 12.5, y = 34.5, npc = 999 }
     ns.db.edits.GEN_ALLIANCE_DWARF_01_DUN_MOROGH[3] = { type = "ACCEPT", quest = 179, npc = 658 }
-    ns.db.ui.width = 480; ns.db.ui.hideTracker = false; ns.db.ui.hideOnMap = false
+    ns.db.ui.width = 480; ns.db.ui.height = 280; ns.db.ui.hideTracker = false; ns.db.ui.hideOnMap = false
     ns.Persist:Save()
     check(ns.Persist.lastSaveOK == true, "the cvar mirror verified its write")
     check(#(MOCK.cvars.ForeverGuideA0 or "") > 0 and #(MOCK.cvars.ForeverGuideCSniffClassicBetaPvE20 or MOCK.cvars["ForeverGuideC" .. ((UnitName("player") .. GetRealmName()):gsub("[^%w]", "")):sub(1, 24) .. "0"] or "") > 0, "cvar mirror written (account + character)")
@@ -1112,7 +1173,8 @@ do
     check(e and e.x == 12.5 and e.npc == 999, "step edit restored")
     local e2 = ns.db.edits[savedGuide][3]
     check(e2 and e2.npc == 658 and e2.quest == 179 and e and e.quest ~= nil, "a second step edit survives the mirror too (separator kept)")
-    check(ns.db.ui.width == 480 and ns.db.ui.hideTracker == false and ns.db.ui.hideOnMap == false, "window width and the tracker/map switches are restored")
+    check(ns.db.ui.width == 480 and ns.db.ui.height == 280 and ns.db.ui.hideTracker == false and ns.db.ui.hideOnMap == false,
+        "window size and tracker/map switches are restored")
     ns.AutoQuest:Set("accept", "on")
     ns.db.edits = {}
     G:Activate(savedGuide, true); G:Reset(); settle()
@@ -1198,6 +1260,8 @@ do
     MOCK_ADVANCE(10)
     check(MOCK_SYSTEM("Total time played: 1 day, 3 hours") ~= nil, "a /played the player types still prints")
 
+    -- Opt into announcements for their behavior tests; normal default is off.
+    ns.Commands:Run("ding on")
     -- solo: an emote
     MOCK.chat = {}
     MOCK.group, MOCK.raid = false, false
@@ -1314,6 +1378,7 @@ end
 
 -- ---- gear wear: the bags banner does the repair reminder too ---------------------------------
 do
+    ns.db.bags.banners = true -- the fresh-login test reset the defaults
     local B = ns.Bags
     MOCK_GEAR(nil)
     check(B:Durability() == nil, "no gear that wears: nothing to say")

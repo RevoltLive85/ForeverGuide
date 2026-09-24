@@ -225,11 +225,13 @@ function Options:Create()
     MakeButton(body, "Pick a guide", 176, y, function() ns.UI:TogglePicker() end)
     MakeButton(body, "Show reports", 336, y, function() ns.Commands:Run("reports") end)
     y = y - 34
+    MakeButton(body, "Report wrong step", 16, y, function() ns.Commands:Run("wrong") end)
+    y = y - 34
     local hint = body:CreateFontString(nil, "ARTWORK", "GameFontDisableSmall")
     hint:SetPoint("TOPLEFT", 16, y)
     hint:SetWidth(560)
     hint:SetJustifyH("LEFT")
-    hint:SetText("Something wrong with a step? Stand where it should be and type  /fg wrong <what is wrong>  - the report is saved with your position and turned into a correction by tools/collect_reports.py.\nLook: /fg qg scale|opacity|width|rows|wpsize|arrowsize <value>   (e.g. /fg qg opacity 0.8, or /fg arrow size 1.5)\nKey bindings: Esc -> Options -> Key Bindings -> AddOns -> ForeverGuide.")
+    hint:SetText("Something wrong? Stand where it should be, then use Report wrong step or /fg wrong. /fg reports opens a copyable list for review.\nLook: /fg qg scale|opacity|width|rows|wpsize|arrowsize <value>   (e.g. /fg qg opacity 0.8, or /fg arrow size 1.5)\nKey bindings: Esc -> Options -> Key Bindings -> AddOns -> ForeverGuide.")
 
     -- the scrolling child is exactly as tall as what we put on it
     if body ~= panel then

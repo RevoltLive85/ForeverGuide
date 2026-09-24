@@ -1,6 +1,6 @@
 -- ============================================================
 -- ForeverGuide / UI/QuestGuideFrame.lua
--- The Quest Guide window: parchment panel with a gold rim and glow,
+-- The Quest Guide window: plain panel,
 -- header, the step list, two buttons. Reads the guide engine / tracker,
 -- never changes them. UI.lua (the coordinator) shows / hides it.
 --
@@ -22,7 +22,7 @@ local Theme = ns.Theme
 local QG = ns:NewModule("QuestGuide")
 
 local FOOTER = 40
-local frame, glow
+local frame
 
 local ICON_FOR = { ACCEPT = "accept", TURNIN = "turnin", KILL = "kill", COLLECT = "collect", COMPLETE = "collect",
                    GRIND = "kill", TRAVEL = "travel", FLY = "travel", HEARTH = "travel", TALK = "accept", NOTE = "travel",
@@ -49,30 +49,62 @@ function QG:Create()
         local point, _, _, x, y = self:GetPoint(1)
         ns.db.ui.point, ns.db.ui.x, ns.db.ui.y = point or "TOPRIGHT", x or 0, y or 0
     end)
-    Theme.Backdrop(f, "panel", cfg.opacity or 0.92)
-    Theme.Corners(f, 40)
-
-    -- soft outer glow behind the panel
-    local okg, g = pcall(CreateFrame, "Frame", nil, f, "BackdropTemplate")
-    if okg and g then
-        glow = g
-        g:SetPoint("TOPLEFT", f, "TOPLEFT", -14, 14)
-        g:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", 14, -14)
-        pcall(g.SetFrameLevel, g, math.max(0, (f.GetFrameLevel and f:GetFrameLevel() or 2) - 1))
-        Theme.Backdrop(g, "glow", 0.55)
-        f.glow = g
-    end
+    Theme.Backdrop(f, "panel", cfg.opacity or 0.75)
+    f:SetResizable(true)
+    pcall(f.SetResizeBounds, f, 240, 120, 520, 800)
+    local grip = CreateFrame("Button", nil, f)
+    grip:SetSize(20, 20)
+    grip:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -1, 1)
+    grip:SetFrameLevel(f:GetFrameLevel() + 3)
+    local handle = grip:CreateTexture(nil, "ARTWORK")
+    handle:SetAllPoints()
+    handle:SetTexture("Interface\\ChatFrame\\UI-ChatIM-SizeGrabber-Up")
+    grip:SetScript("OnMouseDown", function()
+        if not ns.db.ui.locked then f.resizing = true f:StartSizing("BOTTOMRIGHT") end
+    end)
+    grip:SetScript("OnMouseUp", function()
+        f.resizing = false
+        f:StopMovingOrSizing()
+        ns.db.ui.width = math.floor(math.max(240, math.min(520, f:GetWidth())) + 0.5)
+        ns.db.ui.height = math.floor(math.max(120, math.min(800, f:GetHeight())) + 0.5)
+        local rowHeight = ns.db.ui.showSubtitles ~= false and ns.QuestRow.HEIGHT_TWO + 3 or ns.QuestRow.HEIGHT_ONE + 3
+        ns.db.ui.maxRows = math.max(3, math.min(15,
+            math.floor((ns.db.ui.height - ns.QuestGuideHeader.HEIGHT - FOOTER - 6) / rowHeight)))
+        QG:Apply()
+        QG:Refresh()
+    end)
+    grip:SetShown(not cfg.locked)
+    f.resizeGrip = grip
 
     f.header = ns.QuestGuideHeader.Create(f)
-    f.list = ns.QuestList.Create(f)
-    f.list:SetPoint("TOPLEFT", f.header, "BOTTOMLEFT", 6, -2)
-    f.list:SetPoint("TOPRIGHT", f.header, "BOTTOMRIGHT", -6, -2)
+    local scroll = CreateFrame("ScrollFrame", nil, f)
+    scroll:SetPoint("TOPLEFT", f.header, "BOTTOMLEFT", 6, -2)
+    scroll:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -6, FOOTER + 4)
+    scroll:EnableMouseWheel(true)
+    scroll:SetScript("OnMouseWheel", function(self, delta)
+        local viewport = f:GetHeight() - ns.QuestGuideHeader.HEIGHT - 2 - 4 - FOOTER
+        local range = math.max(self:GetVerticalScrollRange(), f.list.height - viewport, 0)
+        self:SetVerticalScroll(math.max(0, math.min(range, self:GetVerticalScroll() - delta * 40)))
+    end)
+    f.scroll = scroll
+    f.list = ns.QuestList.Create(scroll)
+    f.list:SetSize(cfg.width - 12, 40)
+    f.list:SetPoint("TOPLEFT", scroll, "TOPLEFT", 0, 0)
+    scroll:SetScrollChild(f.list)
 
     f.footerLine = f:CreateTexture(nil, "ARTWORK")
-    f.footerLine:SetHeight(4)
+    f.footerLine:SetHeight(1)
     pcall(f.footerLine.SetTexture, f.footerLine, Theme.TEX.separator)
+    f.footerLine:SetVertexColor(0.3, 0.3, 0.3, 1)
+    f:SetScript("OnSizeChanged", function(self, width, height)
+        if not self.resizing then return end
+        self.list:SetWidth(width - 12)
+        self.footerLine:ClearAllPoints()
+        self.footerLine:SetPoint("TOPLEFT", self, "TOPLEFT", 12, -(height - FOOTER))
+        self.footerLine:SetPoint("TOPRIGHT", self, "TOPRIGHT", -12, -(height - FOOTER))
+    end)
 
-    f.guideBtn = Theme.NewButton(f, "Guide", 104, 24, function() QG:ToggleInfo() end, "compass")
+    f.guideBtn = Theme.NewButton(f, "Details", 104, 24, function() QG:ToggleInfo() end, "compass")
     f.guidesBtn = Theme.NewButton(f, "Guides", 104, 24, function() ns.UI:TogglePicker() end, "current")
     f.guideBtn:SetPoint("BOTTOMLEFT", f, "BOTTOMLEFT", 12, 9)
     f.guidesBtn:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -12, 9)
@@ -91,9 +123,11 @@ function QG:Create()
             local normal = tb:CreateTexture(nil, "BACKGROUND")
             normal:SetAllPoints()
             pcall(normal.SetTexture, normal, Theme.TEX.button)
+            normal:SetVertexColor(0.18, 0.18, 0.18, 1)
             local hl = tb:CreateTexture(nil, "HIGHLIGHT")
             hl:SetAllPoints()
             pcall(hl.SetTexture, hl, Theme.TEX.buttonHl)
+            hl:SetVertexColor(0.35, 0.35, 0.35, 1)
             pcall(hl.SetBlendMode, hl, "ADD")
             pcall(hl.SetAlpha, hl, 0.35)
             local skull = tb:CreateTexture(nil, "ARTWORK")
@@ -166,18 +200,34 @@ function QG:Apply()
     local cfg = ns.db.ui
     pcall(frame.SetScale, frame, cfg.scale or 1)
     frame:SetWidth(math.max(cfg.width or 300, 240))
-    if frame.SetBackdropColor then pcall(frame.SetBackdropColor, frame, 1, 1, 1, cfg.opacity or 0.92) end
+    frame.list:SetWidth(frame:GetWidth() - 12)
+    if frame.SetBackdropColor then pcall(frame.SetBackdropColor, frame, 0, 0, 0, cfg.opacity or 0.75) end
     self:Layout()
 end
 
 function QG:Layout()
     if not frame then return end
     local f = frame
-    local y = ns.QuestGuideHeader.HEIGHT + 2 + (f.list.height or 40) + 4
+    local natural = ns.QuestGuideHeader.HEIGHT + 2 + (f.list.height or 40) + 4 + FOOTER
+    local height = math.max(120, math.min(800, ns.db.ui.height or natural))
+    f:SetHeight(height)
     f.footerLine:ClearAllPoints()
-    f.footerLine:SetPoint("TOPLEFT", f, "TOPLEFT", 12, -y)
-    f.footerLine:SetPoint("TOPRIGHT", f, "TOPRIGHT", -12, -y)
-    f:SetHeight(y + FOOTER)
+    f.footerLine:SetPoint("TOPLEFT", f, "TOPLEFT", 12, -(height - FOOTER))
+    f.footerLine:SetPoint("TOPRIGHT", f, "TOPRIGHT", -12, -(height - FOOTER))
+    if f.scroll then
+        local viewport = height - ns.QuestGuideHeader.HEIGHT - 2 - 4 - FOOTER
+        local at = f.scroll:GetVerticalScroll()
+        local top = 4
+        for i, entry in ipairs(f.list.entries) do
+            if entry.state == "active" then
+                local bottom = top + f.list.rows[i]:GetHeight()
+                if top < at then at = top elseif bottom > at + viewport then at = bottom - viewport end
+                break
+            end
+            top = top + f.list.rows[i]:GetHeight() + 3
+        end
+        f.scroll:SetVerticalScroll(math.max(0, math.min(at, math.max(0, f.list.height - viewport))))
+    end
 end
 
 -- ---- entries ---------------------------------------------------------------------------
@@ -353,7 +403,7 @@ function QG:Refresh()
     self:Layout()
 end
 
--- ---- the "Guide" info popup ----------------------------------------------------------------
+-- ---- the "Details" info popup --------------------------------------------------------------
 local info
 function QG:CreateInfo()
     if info then return info end
@@ -368,8 +418,7 @@ function QG:CreateInfo()
     p:RegisterForDrag("LeftButton")
     p:SetScript("OnDragStart", function(self) self:StartMoving() end)
     p:SetScript("OnDragStop", function(self) self:StopMovingOrSizing() end)
-    Theme.Backdrop(p, "panel", 0.96)
-    Theme.Corners(p, 32)
+    Theme.Backdrop(p, "panel", 0.75)
     p.title = Theme.NewText(p, { fancy = true, size = 15, color = Theme.C.goldLight, maxLines = 2 })
     p.title:SetPoint("TOPLEFT", p, "TOPLEFT", 14, -12)
     p.title:SetPoint("TOPRIGHT", p, "TOPRIGHT", -44, -12)
@@ -438,6 +487,9 @@ function QG:ToggleInfo()
 end
 
 function QG:OnInit()
+    ns.Events:Register("FG_LOCK_CHANGED", function(_, locked)
+        if frame and frame.resizeGrip then frame.resizeGrip:SetShown(not locked) end
+    end)
     ns.Events:RegisterMany({ "FG_STEP_CHANGED", "FG_STEP_UPDATED", "FG_GUIDE_CHANGED", "FG_MODE_CHANGED", "FG_QUEST_LOG_CHANGED" },
         function() if info and info:IsShown() then ns.Events:Debounce("qginfo", 0.1, function() QG:RefreshInfo() end) end end)
 end

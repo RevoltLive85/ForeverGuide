@@ -107,7 +107,7 @@ function Arrow:Tick()
     local f = frame
     local Nav = ns.Navigation
     local unlocked = Arrow.dragMode
-    f:EnableMouse(unlocked)
+    f:EnableMouse(not ns.db.ui.locked and (unlocked or Nav.target ~= nil))
     f.hint:SetShown(unlocked)
     local t = Nav.target
     if not t then
