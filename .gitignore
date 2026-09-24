@@ -5,3 +5,7 @@ __pycache__/
 # scratch
 *.bak
 *.tmp
+# local player data: never commit harvested reports or SavedVariables snapshots
+WTF/
+data-src/reports.json
+data-src/sv/
